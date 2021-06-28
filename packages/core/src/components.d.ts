@@ -6,14 +6,35 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { PlugButtonType } from "./partials/plug-button/plug-button.types";
+import { PlugInputChangeEvent, PlugInputMode, PlugInputType, PlugInputValue } from "./partials/plug-input/plug-input.types";
 export namespace Components {
     interface PlugButton {
-        "customClass": string;
-        "disabled": boolean;
+        "customClass"?: string;
+        "disabled"?: boolean;
         "fullWidth": boolean;
-        "hasIcon": boolean;
+        "hasIcon"?: boolean;
         "label": string;
-        "type": PlugButtonType;
+        "type"?: PlugButtonType;
+    }
+    interface PlugInput {
+        "autofocus": boolean;
+        "customContainerClass"?: string;
+        "customInputClass"?: string;
+        "customLabelClass"?: string;
+        "disabled": boolean;
+        "inputmode": PlugInputMode;
+        "label"?: string;
+        "max"?: string;
+        "maxlength"?: number;
+        "min"?: string;
+        "minlength"?: number;
+        "multiple"?: boolean;
+        "name": string;
+        "placeholder"?: string;
+        "readonly": boolean;
+        "required": boolean;
+        "type": PlugInputType;
+        "value"?: PlugInputValue;
     }
 }
 declare global {
@@ -23,8 +44,15 @@ declare global {
         prototype: HTMLPlugButtonElement;
         new (): HTMLPlugButtonElement;
     };
+    interface HTMLPlugInputElement extends Components.PlugInput, HTMLStencilElement {
+    }
+    var HTMLPlugInputElement: {
+        prototype: HTMLPlugInputElement;
+        new (): HTMLPlugInputElement;
+    };
     interface HTMLElementTagNameMap {
         "plug-button": HTMLPlugButtonElement;
+        "plug-input": HTMLPlugInputElement;
     }
 }
 declare namespace LocalJSX {
@@ -39,8 +67,33 @@ declare namespace LocalJSX {
         "onFocused"?: (event: CustomEvent<void>) => void;
         "type"?: PlugButtonType;
     }
+    interface PlugInput {
+        "autofocus"?: boolean;
+        "customContainerClass"?: string;
+        "customInputClass"?: string;
+        "customLabelClass"?: string;
+        "disabled"?: boolean;
+        "inputmode"?: PlugInputMode;
+        "label"?: string;
+        "max"?: string;
+        "maxlength"?: number;
+        "min"?: string;
+        "minlength"?: number;
+        "multiple"?: boolean;
+        "name"?: string;
+        "onBlurred"?: (event: CustomEvent<void>) => void;
+        "onChanged"?: (event: CustomEvent<PlugInputChangeEvent>) => void;
+        "onFocused"?: (event: CustomEvent<void>) => void;
+        "onInputed"?: (event: CustomEvent<KeyboardEvent>) => void;
+        "placeholder"?: string;
+        "readonly"?: boolean;
+        "required"?: boolean;
+        "type"?: PlugInputType;
+        "value"?: PlugInputValue;
+    }
     interface IntrinsicElements {
         "plug-button": PlugButton;
+        "plug-input": PlugInput;
     }
 }
 export { LocalJSX as JSX };
@@ -48,6 +101,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "plug-button": LocalJSX.PlugButton & JSXBase.HTMLAttributes<HTMLPlugButtonElement>;
+            "plug-input": LocalJSX.PlugInput & JSXBase.HTMLAttributes<HTMLPlugInputElement>;
         }
     }
 }

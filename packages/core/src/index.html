@@ -21,11 +21,18 @@
     </style>
   </head>
   <body>
-    <plug-button disabled has-icon full-width="false" label="button" custom-class="custom-button"></plug-button>
+    <plug-button disabled="false" has-icon full-width="false" label="button" custom-class="custom-button"></plug-button>
+    <plug-input value="tega" name="user" label="Label" placeholder="Placeholder"></plug-input>
 
     <script>
       const plugButton = document.querySelector('plug-button')
       plugButton.addEventListener('clicked', () => console.log('gg easy'))
+
+      const plugInput = document.querySelector('plug-input')
+      plugInput.addEventListener('changed', (event) => {
+        console.log('event', event.target.value);
+        plugInput.value = event.target.value
+      })
     </script>
   </body>
 </html>

@@ -10,7 +10,22 @@
 
     <script type="module" src="/build/plug-checkout.esm.js"></script>
     <script nomodule src="/build/plug-checkout.js"></script>
+    <style>
+      body {
+        padding: 50px;
+      };
+
+      .custom-button {
+        color: white;
+      }
+    </style>
   </head>
   <body>
+    <plug-button disabled has-icon full-width="false" label="button" custom-class="custom-button"></plug-button>
+
+    <script>
+      const plugButton = document.querySelector('plug-button')
+      plugButton.addEventListener('clicked', () => console.log('gg easy'))
+    </script>
   </body>
 </html>

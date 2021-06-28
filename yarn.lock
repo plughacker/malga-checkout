@@ -8961,6 +8961,11 @@ static-extend@^0.1.1:
     define-property "^0.2.5"
     object-copy "^0.1.0"
 
+stencil-inline-svg@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/stencil-inline-svg/-/stencil-inline-svg-1.1.0.tgz#622630fbfc4b10df010f80625fbefd7546f9928c"
+  integrity sha512-couT89xzsoycwHOIAgnl3WBpXaVRQ3ZlUBINo7HsT/AtWaFW9cxGlAzsK2JzkzxK7yUuoeIpdH2fNlvuH06DRg==
+
 strict-uri-encode@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-2.0.0.tgz#b9c7330c7042862f6b142dc274bbcc5866ce3546"

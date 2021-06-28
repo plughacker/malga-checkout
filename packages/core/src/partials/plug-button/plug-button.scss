@@ -1,3 +1,48 @@
-:host {
-  display: block;
+.plug-button__native {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+
+  min-width: 255px;
+  height: 40px;
+  background: #141b4d;
+  border: 0px;
+  border-radius: 4px;
+  transition: background 0.5s ease;
+
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  color: #ffffff;
+
+  &:hover {
+    background: #344383;
+  }
+
+  &:focus {
+    border: 2px solid #4ebff1;
+  }
+
+  &:disabled {
+    background: #eef2f6;
+    color: #aebfd0;
+    cursor: not-allowed;
+
+    i {
+      color: #aebfd0;
+    }
+  }
+
+  & > i {
+    height: 16px;
+    margin-right: 8px;
+  }
+
+  &--full-width {
+    width: 100%;
+  }
 }

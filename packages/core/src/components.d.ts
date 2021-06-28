@@ -5,21 +5,49 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { PlugButtonType } from "./partials/plug-button/plug-button.types";
 export namespace Components {
-
+    interface PlugButton {
+        "customClass": string;
+        "disabled": boolean;
+        "fullWidth": boolean;
+        "hasIcon": boolean;
+        "label": string;
+        "type": PlugButtonType;
+    }
 }
 declare global {
+    interface HTMLPlugButtonElement extends Components.PlugButton, HTMLStencilElement {
+    }
+    var HTMLPlugButtonElement: {
+        prototype: HTMLPlugButtonElement;
+        new (): HTMLPlugButtonElement;
+    };
     interface HTMLElementTagNameMap {
+        "plug-button": HTMLPlugButtonElement;
     }
 }
 declare namespace LocalJSX {
+    interface PlugButton {
+        "customClass"?: string;
+        "disabled"?: boolean;
+        "fullWidth"?: boolean;
+        "hasIcon"?: boolean;
+        "label"?: string;
+        "onBlured"?: (event: CustomEvent<void>) => void;
+        "onClicked"?: (event: CustomEvent<void>) => void;
+        "onFocused"?: (event: CustomEvent<void>) => void;
+        "type"?: PlugButtonType;
+    }
     interface IntrinsicElements {
+        "plug-button": PlugButton;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "plug-button": LocalJSX.PlugButton & JSXBase.HTMLAttributes<HTMLPlugButtonElement>;
         }
     }
 }

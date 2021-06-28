@@ -1,14 +1,21 @@
 import { Config } from '@stencil/core'
-
-import { sass } from '@stencil/sass';
-
+import { sass } from '@stencil/sass'
 import { angularOutputTarget } from '@stencil/angular-output-target'
 import { reactOutputTarget } from '@stencil/react-output-target'
 import { vueOutputTarget } from '@stencil/vue-output-target'
+import { inlineSvg } from 'stencil-inline-svg'
 
 export const config: Config = {
   namespace: 'plug-checkout',
-  plugins: [sass()],
+  plugins: [
+    inlineSvg(),
+    sass({
+      injectGlobalPaths: [
+        'src/assets/styles/base.scss',
+        'src/assets/styles/theme.scss',
+      ],
+    }),
+  ],
   outputTargets: [
     angularOutputTarget({
       componentCorePackage: '@plug-checkout/core',

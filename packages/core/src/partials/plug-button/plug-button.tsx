@@ -16,12 +16,12 @@ import { PlugButtonType } from './plug-button.types'
   styleUrl: 'plug-button.scss',
 })
 export class PlugButton implements ComponentInterface {
-  @Prop() customClass: string
-  @Prop() hasIcon: boolean
+  @Prop() customClass?: string
+  @Prop() hasIcon?: boolean
   @Prop() label: string
   @Prop() fullWidth: boolean
-  @Prop() disabled: boolean
-  @Prop() type: PlugButtonType = 'button'
+  @Prop() disabled? = false
+  @Prop() type?: PlugButtonType = 'button'
 
   @Event() clicked!: EventEmitter<void>
   @Event() focused!: EventEmitter<void>

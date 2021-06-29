@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { PlugIconNames } from "./partials/plug-icon/plug-icon.types";
 import { PlugButtonType } from "./partials/plug-button/plug-button.types";
 import { PlugInputChangeEvent, PlugInputMode, PlugInputType, PlugInputValue } from "./partials/plug-input/plug-input.types";
 export namespace Components {
@@ -12,9 +13,13 @@ export namespace Components {
         "customClass"?: string;
         "disabled"?: boolean;
         "fullWidth": boolean;
-        "icon"?: boolean;
+        "icon"?: PlugIconNames;
         "label": string;
         "type"?: PlugButtonType;
+    }
+    interface PlugIcon {
+        "class"?: string;
+        "icon": PlugIconNames;
     }
     interface PlugInput {
         "autofocus": boolean;
@@ -22,8 +27,8 @@ export namespace Components {
         "customInputClass"?: string;
         "customLabelClass"?: string;
         "disabled": boolean;
-        "endIcon"?: string;
         "hasError"?: boolean;
+        "hasValidation"?: boolean;
         "inputmode": PlugInputMode;
         "label"?: string;
         "max"?: string;
@@ -35,7 +40,7 @@ export namespace Components {
         "placeholder"?: string;
         "readonly": boolean;
         "required": boolean;
-        "startIcon"?: string;
+        "startIcon"?: PlugIconNames;
         "type": PlugInputType;
         "value"?: PlugInputValue;
     }
@@ -47,6 +52,12 @@ declare global {
         prototype: HTMLPlugButtonElement;
         new (): HTMLPlugButtonElement;
     };
+    interface HTMLPlugIconElement extends Components.PlugIcon, HTMLStencilElement {
+    }
+    var HTMLPlugIconElement: {
+        prototype: HTMLPlugIconElement;
+        new (): HTMLPlugIconElement;
+    };
     interface HTMLPlugInputElement extends Components.PlugInput, HTMLStencilElement {
     }
     var HTMLPlugInputElement: {
@@ -55,6 +66,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "plug-button": HTMLPlugButtonElement;
+        "plug-icon": HTMLPlugIconElement;
         "plug-input": HTMLPlugInputElement;
     }
 }
@@ -63,12 +75,16 @@ declare namespace LocalJSX {
         "customClass"?: string;
         "disabled"?: boolean;
         "fullWidth"?: boolean;
-        "icon"?: boolean;
+        "icon"?: PlugIconNames;
         "label"?: string;
         "onBlured"?: (event: CustomEvent<void>) => void;
         "onClicked"?: (event: CustomEvent<void>) => void;
         "onFocused"?: (event: CustomEvent<void>) => void;
         "type"?: PlugButtonType;
+    }
+    interface PlugIcon {
+        "class"?: string;
+        "icon"?: PlugIconNames;
     }
     interface PlugInput {
         "autofocus"?: boolean;
@@ -76,8 +92,8 @@ declare namespace LocalJSX {
         "customInputClass"?: string;
         "customLabelClass"?: string;
         "disabled"?: boolean;
-        "endIcon"?: string;
         "hasError"?: boolean;
+        "hasValidation"?: boolean;
         "inputmode"?: PlugInputMode;
         "label"?: string;
         "max"?: string;
@@ -93,12 +109,13 @@ declare namespace LocalJSX {
         "placeholder"?: string;
         "readonly"?: boolean;
         "required"?: boolean;
-        "startIcon"?: string;
+        "startIcon"?: PlugIconNames;
         "type"?: PlugInputType;
         "value"?: PlugInputValue;
     }
     interface IntrinsicElements {
         "plug-button": PlugButton;
+        "plug-icon": PlugIcon;
         "plug-input": PlugInput;
     }
 }
@@ -107,6 +124,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "plug-button": LocalJSX.PlugButton & JSXBase.HTMLAttributes<HTMLPlugButtonElement>;
+            "plug-icon": LocalJSX.PlugIcon & JSXBase.HTMLAttributes<HTMLPlugIconElement>;
             "plug-input": LocalJSX.PlugInput & JSXBase.HTMLAttributes<HTMLPlugInputElement>;
         }
     }

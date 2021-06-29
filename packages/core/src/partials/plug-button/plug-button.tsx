@@ -17,7 +17,7 @@ import { PlugButtonType } from './plug-button.types'
 })
 export class PlugButton implements ComponentInterface {
   @Prop() customClass?: string
-  @Prop() hasIcon?: boolean
+  @Prop() icon?: boolean
   @Prop() label: string
   @Prop() fullWidth: boolean
   @Prop() disabled? = false
@@ -54,7 +54,7 @@ export class PlugButton implements ComponentInterface {
           onFocus={this.onFocus}
           onBlur={this.onBlur}
         >
-          {this.hasIcon && <i innerHTML={LockIcon} />}
+          {!!this.icon && <i innerHTML={LockIcon} />}
           {this.label}
         </button>
       </Host>

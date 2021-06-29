@@ -9,6 +9,9 @@ import {
   Watch,
 } from '@stencil/core'
 
+import CreditCardIcon from '../../assets/icons/credit-card.svg'
+import CheckIcon from '../../assets/icons/check.svg'
+
 import {
   PlugInputMode,
   PlugInputType,
@@ -24,6 +27,9 @@ export class PlugInput implements ComponentInterface {
   @Prop() customContainerClass?: string
   @Prop() customLabelClass?: string
   @Prop() customInputClass?: string
+  @Prop() startIcon?: string
+  @Prop() endIcon?: string
+  @Prop() hasError?: boolean
   @Prop() max?: string
   @Prop() maxlength?: number
   @Prop() min?: string
@@ -86,6 +92,14 @@ export class PlugInput implements ComponentInterface {
           [this.customContainerClass]: !!this.customContainerClass,
         }}
       >
+        {!!this.startIcon && (
+          <i class="plug-input__start-icon" innerHTML={CreditCardIcon} />
+        )}
+
+        {!!this.endIcon && (
+          <i class="plug-input__end-icon" innerHTML={CheckIcon} />
+        )}
+
         {this.label && (
           <label
             htmlFor={this.name}
@@ -97,10 +111,13 @@ export class PlugInput implements ComponentInterface {
             {this.label}
           </label>
         )}
+
         <input
           class={{
             'plug-input__native': true,
             'plug-input__native--filled': this.hasValue(),
+            'plug-input__native--start-icon': !!this.startIcon,
+            'plug-input__native--end-icon': !!this.endIcon,
             [this.customInputClass]: !!this.customInputClass,
           }}
           id={this.name}

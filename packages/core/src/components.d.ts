@@ -12,7 +12,7 @@ export namespace Components {
         "customClass"?: string;
         "disabled"?: boolean;
         "fullWidth": boolean;
-        "hasIcon"?: boolean;
+        "icon"?: boolean;
         "label": string;
         "type"?: PlugButtonType;
     }
@@ -22,6 +22,8 @@ export namespace Components {
         "customInputClass"?: string;
         "customLabelClass"?: string;
         "disabled": boolean;
+        "endIcon"?: string;
+        "hasError"?: boolean;
         "inputmode": PlugInputMode;
         "label"?: string;
         "max"?: string;
@@ -33,6 +35,7 @@ export namespace Components {
         "placeholder"?: string;
         "readonly": boolean;
         "required": boolean;
+        "startIcon"?: string;
         "type": PlugInputType;
         "value"?: PlugInputValue;
     }
@@ -60,7 +63,7 @@ declare namespace LocalJSX {
         "customClass"?: string;
         "disabled"?: boolean;
         "fullWidth"?: boolean;
-        "hasIcon"?: boolean;
+        "icon"?: boolean;
         "label"?: string;
         "onBlured"?: (event: CustomEvent<void>) => void;
         "onClicked"?: (event: CustomEvent<void>) => void;
@@ -73,6 +76,8 @@ declare namespace LocalJSX {
         "customInputClass"?: string;
         "customLabelClass"?: string;
         "disabled"?: boolean;
+        "endIcon"?: string;
+        "hasError"?: boolean;
         "inputmode"?: PlugInputMode;
         "label"?: string;
         "max"?: string;
@@ -88,6 +93,7 @@ declare namespace LocalJSX {
         "placeholder"?: string;
         "readonly"?: boolean;
         "required"?: boolean;
+        "startIcon"?: string;
         "type"?: PlugInputType;
         "value"?: PlugInputValue;
     }

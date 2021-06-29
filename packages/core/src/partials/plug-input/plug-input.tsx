@@ -9,15 +9,14 @@ import {
   Watch,
 } from '@stencil/core'
 
-import CreditCardIcon from '../../assets/icons/credit-card.svg'
-import CheckIcon from '../../assets/icons/check.svg'
-
 import {
   PlugInputMode,
   PlugInputType,
   PlugInputValue,
   PlugInputChangeEvent,
 } from './plug-input.types'
+
+import { PlugIconNames } from '../plug-icon/plug-icon.types'
 
 @Component({
   tag: 'plug-input',
@@ -27,8 +26,8 @@ export class PlugInput implements ComponentInterface {
   @Prop() customContainerClass?: string
   @Prop() customLabelClass?: string
   @Prop() customInputClass?: string
-  @Prop() startIcon?: string
-  @Prop() endIcon?: string
+  @Prop() startIcon?: PlugIconNames
+  @Prop() hasValidation?: boolean
   @Prop() hasError?: boolean
   @Prop() max?: string
   @Prop() maxlength?: number
@@ -93,11 +92,14 @@ export class PlugInput implements ComponentInterface {
         }}
       >
         {!!this.startIcon && (
-          <i class="plug-input__start-icon" innerHTML={CreditCardIcon} />
+          <plug-icon icon={this.startIcon} class="plug-input__start-icon" />
         )}
 
-        {!!this.endIcon && (
-          <i class="plug-input__end-icon" innerHTML={CheckIcon} />
+        {!!this.hasValidation && (
+          <plug-icon
+            icon={this.hasError ? 'warning' : 'check'}
+            class="plug-input__end-icon"
+          />
         )}
 
         {this.label && (
@@ -117,7 +119,7 @@ export class PlugInput implements ComponentInterface {
             'plug-input__native': true,
             'plug-input__native--filled': this.hasValue(),
             'plug-input__native--start-icon': !!this.startIcon,
-            'plug-input__native--end-icon': !!this.endIcon,
+            'plug-input__native--end-icon': this.hasValidation,
             [this.customInputClass]: !!this.customInputClass,
           }}
           id={this.name}

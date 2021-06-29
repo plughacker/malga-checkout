@@ -32,12 +32,12 @@
     color: #aebfd0;
     cursor: not-allowed;
 
-    i {
+    .icon {
       color: #aebfd0;
     }
   }
 
-  & > i {
+  & > .icon {
     height: 16px;
     margin-right: 8px;
   }

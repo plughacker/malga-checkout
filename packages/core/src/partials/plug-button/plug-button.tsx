@@ -8,16 +8,15 @@ import {
   Prop,
 } from '@stencil/core'
 
-import LockIcon from '../../assets/icons/lock.svg'
-
 import { PlugButtonType } from './plug-button.types'
+import { PlugIconNames } from '../plug-icon/plug-icon.types'
 @Component({
   tag: 'plug-button',
   styleUrl: 'plug-button.scss',
 })
 export class PlugButton implements ComponentInterface {
   @Prop() customClass?: string
-  @Prop() icon?: boolean
+  @Prop() icon?: PlugIconNames
   @Prop() label: string
   @Prop() fullWidth: boolean
   @Prop() disabled? = false
@@ -54,7 +53,7 @@ export class PlugButton implements ComponentInterface {
           onFocus={this.onFocus}
           onBlur={this.onBlur}
         >
-          {!!this.icon && <i innerHTML={LockIcon} />}
+          {!!this.icon && <plug-icon icon={this.icon} class="icon" />}
           {this.label}
         </button>
       </Host>

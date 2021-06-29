@@ -16,6 +16,8 @@ export namespace Components {
         "label": string;
         "type"?: PlugButtonType;
     }
+    interface PlugIcon {
+    }
     interface PlugInput {
         "autofocus": boolean;
         "customContainerClass"?: string;
@@ -47,6 +49,12 @@ declare global {
         prototype: HTMLPlugButtonElement;
         new (): HTMLPlugButtonElement;
     };
+    interface HTMLPlugIconElement extends Components.PlugIcon, HTMLStencilElement {
+    }
+    var HTMLPlugIconElement: {
+        prototype: HTMLPlugIconElement;
+        new (): HTMLPlugIconElement;
+    };
     interface HTMLPlugInputElement extends Components.PlugInput, HTMLStencilElement {
     }
     var HTMLPlugInputElement: {
@@ -55,6 +63,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "plug-button": HTMLPlugButtonElement;
+        "plug-icon": HTMLPlugIconElement;
         "plug-input": HTMLPlugInputElement;
     }
 }
@@ -69,6 +78,8 @@ declare namespace LocalJSX {
         "onClicked"?: (event: CustomEvent<void>) => void;
         "onFocused"?: (event: CustomEvent<void>) => void;
         "type"?: PlugButtonType;
+    }
+    interface PlugIcon {
     }
     interface PlugInput {
         "autofocus"?: boolean;
@@ -99,6 +110,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "plug-button": PlugButton;
+        "plug-icon": PlugIcon;
         "plug-input": PlugInput;
     }
 }
@@ -107,6 +119,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "plug-button": LocalJSX.PlugButton & JSXBase.HTMLAttributes<HTMLPlugButtonElement>;
+            "plug-icon": LocalJSX.PlugIcon & JSXBase.HTMLAttributes<HTMLPlugIconElement>;
             "plug-input": LocalJSX.PlugInput & JSXBase.HTMLAttributes<HTMLPlugInputElement>;
         }
     }

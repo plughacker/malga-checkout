@@ -1,12 +1,12 @@
 $typography-variantions-map: (
-  'header5': typography-header5,
-  'header6': typography-header6,
-  'subtitle1': typography-subtitle1,
-  'subtitle2': typography-subtitle2,
-  'body1': typography-body1,
-  'body2': typography-body2,
-  'button': typography-button,
-  'label': typography-label,
+  'header5',
+  'header6',
+  'subtitle1',
+  'subtitle2',
+  'body1',
+  'body2',
+  'button',
+  'label'
 );
 
 $typography-colors-map: (
@@ -16,16 +16,16 @@ $typography-colors-map: (
 );
 
 .checkout-typography {
-  @each $key, $value in $typography-variantions-map {
-    &--#{$key} {
+  @each $variation in $typography-variantions-map {
+    &--#{$variation} {
       @extend %reset;
-      @include typography($value: $value);
+      @include typography($value: $variation);
     }
   }
 
-  @each $key, $value in $typography-colors-map {
+  @each $key, $color in $typography-colors-map {
     &--#{$key} {
-      color: $value;
+      color: $color;
     }
   }
 }

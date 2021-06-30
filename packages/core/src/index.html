@@ -15,9 +15,17 @@
         font-family: 'Times New Roman', Times, serif;
       }
 
-      body {
+      main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
         padding: 50px;
-      };
+      }
+
+      section {
+        width: 360px;
+      }
 
       .custom-button {
         color: white;
@@ -34,19 +42,23 @@
     </style>
   </head>
   <body>
-    <checkout-button disabled="false" icon="lock" full-width="false" label="button" custom-class="custom-button"></checkout-button>
+    <main>
+      <section>
+        <checkout-button full-width disabled="false" icon="lock" full-width="false" label="button" custom-class="custom-button"></checkout-button>
 
-    <span class="separator"></span>
+        <span class="separator"></span>
 
-    <checkout-input custom-input-class="custom-input" start-icon="creditCard" has-validation="true" has-error="false" value="Filled" name="user" label="Label" placeholder="Placeholder"></checkout-input>
+        <checkout-input full-width custom-input-class="custom-input" start-icon="creditCard" has-validation="true" has-error="false" value="Filled" name="user" label="Label" placeholder="Placeholder"></checkout-input>
 
-    <span class="separator"></span>
+        <span class="separator"></span>
 
-    <checkout-typography content="test"></checkout-typography>
+        <checkout-error-message message="Formato inválido, verifique os dados do cartão."></checkout-error-message>
 
-    <span class="separator"></span>
+        <span class="separator"></span>
 
-    <buton>Test</buton>
+        <checkout-typography content="test"></checkout-typography>
+      </section>
+    </main>
 
     <script>
       const checkoutButton = document.querySelector('checkout-button')

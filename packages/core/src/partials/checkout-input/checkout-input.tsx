@@ -37,6 +37,7 @@ export class CheckoutInput implements ComponentInterface {
   @Prop() placeholder?: string
   @Prop() label?: string
   @Prop() name: string
+  @Prop() fullWidth = false
   @Prop() readonly = false
   @Prop() required = false
   @Prop() autofocus = false
@@ -88,6 +89,7 @@ export class CheckoutInput implements ComponentInterface {
       <Host
         class={{
           'checkout-input__container': true,
+          'checkout-input__container--full-width': this.fullWidth,
           [this.customContainerClass]: !!this.customContainerClass,
         }}
       >

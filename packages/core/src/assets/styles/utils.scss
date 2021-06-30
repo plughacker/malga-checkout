@@ -1,0 +1,12 @@
+%reset {
+  font-family: var(--plug-checkout-typography-family);
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+%centralized {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

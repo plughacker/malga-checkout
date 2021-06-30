@@ -11,6 +11,10 @@
     <script type="module" src="/build/plug-checkout.esm.js"></script>
     <script nomodule src="/build/plug-checkout.js"></script>
     <style>
+      * {
+        font-family: 'Times New Roman', Times, serif;
+      }
+
       body {
         padding: 50px;
       };
@@ -18,11 +22,25 @@
       .custom-button {
         color: white;
       }
+
+      .custom-input {
+        color: white;
+      }
+
+      .separator {
+        display: block;
+        margin: 20px 0;
+      }
     </style>
   </head>
   <body>
-    <plug-button disabled="false" has-icon full-width="false" label="button" custom-class="custom-button"></plug-button>
-    <plug-input value="tega" name="user" label="Label" placeholder="Placeholder"></plug-input>
+    <plug-button disabled="false" icon="lock" full-width="false" label="button" custom-class="custom-button"></plug-button>
+
+    <span class="separator"></span>
+
+    <plug-input custom-input-class="custom-input" start-icon="creditCard" has-validation="true" has-error="false" value="Filled" name="user" label="Label" placeholder="Placeholder"></plug-input>
+
+    <buton>GG</buton>
 
     <script>
       const plugButton = document.querySelector('plug-button')

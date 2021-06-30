@@ -1,8 +1,10 @@
 .plug-input__container {
+  @extend %reset;
+
   display: flex;
   flex-direction: column;
-  width: 250px;
   position: relative;
+  width: var(--plug-checkout-size-min-width);
 
   &--full-width {
     width: 100%;
@@ -10,26 +12,29 @@
 }
 
 .plug-input__label {
-  font-size: 12px;
-  color: #3f4252;
-  margin-bottom: 8px;
+  @extend %reset;
+  @extend %typography-label;
+
+  color: var(--plug-checkout-color-grey-dark);
+  margin-bottom: var(--plug-checkout-spacing-xs);
 }
 
 .plug-input__native {
+  @extend %reset;
+  @extend %typography-subtitle1;
+  @include transition($duration: var(--plug-checkout-transition-slow));
+  @include border($color: var(--plug-checkout-color-grey-light));
+
   width: 100%;
-  padding: 8px;
-  border-radius: 4px;
-  border: 1px solid #aaafc5;
+  padding: var(--plug-checkout-spacing-xs);
+  border-radius: var(--plug-checkout-border-radius-default);
   outline: none;
   background: transparent;
-  transition: all 0.3s ease;
 
-  font-weight: bold;
-  font-size: 14px;
-  color: #3f4252;
+  color: var(--plug-checkout-color-grey-dark);
 
   &::placeholder {
-    color: #8b90a7;
+    color: var(--plug-checkout-color-grey-normal);
   }
 
   &--start-icon {
@@ -42,23 +47,27 @@
 
   &:hover,
   &--filled {
-    border: 1px solid #3f4252;
+    @include border($color: var(--plug-checkout-color-grey-dark));
   }
 
   &:focus {
-    background: #fff;
-    border: 1px solid #0055a2;
-    box-shadow: 0px 0px 1px 1px #0091ea;
+    @include border($color: var(--plug-checkout-color-brand-accent-normal));
+    background: var(--plug-checkout-color-accent-light);
+    box-shadow: 0px 0px 1px 1px var(--plug-checkout-color-brand-light);
   }
 }
 
 .plug-input__start-icon {
+  @extend %reset;
+
   position: absolute;
   top: 32px;
   left: 6px;
 }
 
 .plug-input__end-icon {
+  @extend %reset;
+
   position: absolute;
   top: 29px;
   right: 6px;

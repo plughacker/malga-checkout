@@ -1,45 +1,48 @@
 .plug-button__native {
-  display: flex;
+  @extend %reset;
+  @extend %centralized;
+  @extend %typography-button;
+  @include transition($element: background);
+
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
   outline: none;
 
-  min-width: 250px;
   height: 40px;
-  background: #141b4d;
-  border: 0px;
-  border-radius: 4px;
-  transition: background 0.5s ease;
+  min-width: var(--plug-checkout-size-min-width);
+  padding: 0 var(--plug-checkout-spacing-sm);
+  border: 0;
+  border-radius: var(--plug-checkout-border-radius-default);
+  background: var(--plug-checkout-color-brand-dark);
 
-  font-size: 14px;
-  text-align: center;
   letter-spacing: 1.25px;
-  text-transform: uppercase;
-  color: #ffffff;
+  text-align: center;
+  color: var(--plug-checkout-color-accent-light);
 
   &:hover {
-    background: #344383;
+    background: var(--plug-checkout-color-brand-middle);
   }
 
   &:focus {
-    border: 2px solid #4ebff1;
+    @include border(
+      $size: 2px,
+      $color: var(--plug-checkout-color-brand-accent-light)
+    );
   }
 
   &:disabled {
-    background: #eef2f6;
-    color: #aebfd0;
+    background: var(--plug-checkout-color-accent-normal);
+    color: var(--plug-checkout-color-accent-middle);
     cursor: not-allowed;
 
-    .icon {
-      color: #aebfd0;
+    > .icon {
+      color: var(--plug-checkout-color-accent-middle);
     }
   }
 
   & > .icon {
-    height: 16px;
-    margin-right: 8px;
+    @include square($size: var(--plug-checkout-spacing-sm));
+    margin-right: var(--plug-checkout-spacing-xs);
   }
 
   &--full-width {

@@ -11,8 +11,10 @@ export const config: Config = {
     inlineSvg(),
     sass({
       injectGlobalPaths: [
-        'src/assets/styles/base.scss',
+        'src/assets/styles/mixins.scss',
         'src/assets/styles/theme.scss',
+        'src/assets/styles/typography.scss',
+        'src/assets/styles/utils.scss',
       ],
     }),
   ],

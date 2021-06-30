@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { CheckoutIconNames } from "./partials/checkout-icon/checkout-icon.types";
 import { CheckoutButtonType } from "./partials/checkout-button/checkout-button.types";
 import { CheckoutInputChangeEvent, CheckoutInputMode, CheckoutInputType, CheckoutInputValue } from "./partials/checkout-input/checkout-input.types";
+import { CheckoutTypographyColor, CheckoutTypographyVariation } from "./partials/checkout-typography/checkout-typography.types";
 export namespace Components {
     interface CheckoutButton {
         "customClass"?: string;
@@ -45,6 +46,10 @@ export namespace Components {
         "value"?: CheckoutInputValue;
     }
     interface CheckoutTypography {
+        "color": CheckoutTypographyColor;
+        "content": string;
+        "tag": string;
+        "variation": CheckoutTypographyVariation;
     }
 }
 declare global {
@@ -123,6 +128,10 @@ declare namespace LocalJSX {
         "value"?: CheckoutInputValue;
     }
     interface CheckoutTypography {
+        "color"?: CheckoutTypographyColor;
+        "content"?: string;
+        "tag"?: string;
+        "variation"?: CheckoutTypographyVariation;
     }
     interface IntrinsicElements {
         "checkout-button": CheckoutButton;

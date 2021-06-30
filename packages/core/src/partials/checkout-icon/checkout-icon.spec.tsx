@@ -1,18 +1,18 @@
 import { newSpecPage } from '@stencil/core/testing'
-import { PlugInput } from './plug-input'
+import { CheckoutIcon } from './checkout-icon'
 
-describe('plug-input', () => {
+describe('checkout-icon', () => {
   it('renders', async () => {
     const page = await newSpecPage({
-      components: [PlugInput],
-      html: `<plug-input></plug-input>`,
+      components: [CheckoutIcon],
+      html: `<checkout-icon></checkout-icon>`,
     })
     expect(page.root).toEqualHtml(`
-      <plug-input>
+      <checkout-icon>
         <mock:shadow-root>
           <slot></slot>
         </mock:shadow-root>
-      </plug-input>
+      </checkout-icon>
     `)
   })
 })

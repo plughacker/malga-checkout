@@ -1,6 +1,6 @@
 import { Component, Host, h, Prop } from '@stencil/core'
 
-import { PlugIconNames, PlugIconsObject } from './plug-icon.types'
+import { CheckoutIconNames, CheckoutIconsObject } from './checkout-icon.types'
 
 import CalendarIcon from '../../assets/icons/calendar.svg'
 import CheckIcon from '../../assets/icons/check.svg'
@@ -12,13 +12,13 @@ import SpinnerIcon from '../../assets/icons/spinner.svg'
 import UserIcon from '../../assets/icons/user.svg'
 import WarningIcon from '../../assets/icons/warning.svg'
 
-@Component({ tag: 'plug-icon' })
-export class PlugIcon {
-  @Prop() icon: PlugIconNames
+@Component({ tag: 'checkout-icon' })
+export class CheckoutIcon {
+  @Prop() icon: CheckoutIconNames
   @Prop() class?: string
 
   private renderCurrentIcon = (): string => {
-    const icons: PlugIconsObject = {
+    const icons: CheckoutIconsObject = {
       calendar: CalendarIcon,
       check: CheckIcon,
       creditCard: CreditCardIcon,

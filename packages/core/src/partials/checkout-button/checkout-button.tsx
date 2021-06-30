@@ -8,19 +8,19 @@ import {
   Prop,
 } from '@stencil/core'
 
-import { PlugButtonType } from './plug-button.types'
-import { PlugIconNames } from '../plug-icon/plug-icon.types'
+import { CheckoutButtonType } from './checkout-button.types'
+import { CheckoutIconNames } from '../checkout-icon/checkout-icon.types'
 @Component({
-  tag: 'plug-button',
-  styleUrl: 'plug-button.scss',
+  tag: 'checkout-button',
+  styleUrl: 'checkout-button.scss',
 })
-export class PlugButton implements ComponentInterface {
+export class CheckoutButton implements ComponentInterface {
   @Prop() customClass?: string
-  @Prop() icon?: PlugIconNames
+  @Prop() icon?: CheckoutIconNames
   @Prop() label: string
   @Prop() fullWidth: boolean
   @Prop() disabled? = false
-  @Prop() type?: PlugButtonType = 'button'
+  @Prop() type?: CheckoutButtonType = 'button'
 
   @Event() clicked!: EventEmitter<void>
   @Event() focused!: EventEmitter<void>
@@ -45,15 +45,15 @@ export class PlugButton implements ComponentInterface {
           disabled={this.disabled}
           type={this.type}
           class={{
-            'plug-button__native': true,
-            'plug-button__native--full-width': this.fullWidth,
+            'checkout-button__native': true,
+            'checkout-button__native--full-width': this.fullWidth,
             [this.customClass]: !!this.customClass,
           }}
           onClick={this.onClick}
           onFocus={this.onFocus}
           onBlur={this.onBlur}
         >
-          {!!this.icon && <plug-icon icon={this.icon} class="icon" />}
+          {!!this.icon && <checkout-icon icon={this.icon} class="icon" />}
           {this.label}
         </button>
       </Host>

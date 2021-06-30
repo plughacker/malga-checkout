@@ -1,4 +1,4 @@
-export type PlugIconNames =
+export type CheckoutIconNames =
   | 'calendar'
   | 'check'
   | 'creditCard'
@@ -9,4 +9,4 @@ export type PlugIconNames =
   | 'user'
   | 'warning'
 
-export type PlugIconsObject = Record<PlugIconNames, string>
+export type CheckoutIconsObject = Record<CheckoutIconNames, string>

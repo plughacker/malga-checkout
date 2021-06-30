@@ -5,23 +5,23 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { PlugIconNames } from "./partials/plug-icon/plug-icon.types";
-import { PlugButtonType } from "./partials/plug-button/plug-button.types";
-import { PlugInputChangeEvent, PlugInputMode, PlugInputType, PlugInputValue } from "./partials/plug-input/plug-input.types";
+import { CheckoutIconNames } from "./partials/checkout-icon/checkout-icon.types";
+import { CheckoutButtonType } from "./partials/checkout-button/checkout-button.types";
+import { CheckoutInputChangeEvent, CheckoutInputMode, CheckoutInputType, CheckoutInputValue } from "./partials/checkout-input/checkout-input.types";
 export namespace Components {
-    interface PlugButton {
+    interface CheckoutButton {
         "customClass"?: string;
         "disabled"?: boolean;
         "fullWidth": boolean;
-        "icon"?: PlugIconNames;
+        "icon"?: CheckoutIconNames;
         "label": string;
-        "type"?: PlugButtonType;
+        "type"?: CheckoutButtonType;
     }
-    interface PlugIcon {
+    interface CheckoutIcon {
         "class"?: string;
-        "icon": PlugIconNames;
+        "icon": CheckoutIconNames;
     }
-    interface PlugInput {
+    interface CheckoutInput {
         "autofocus": boolean;
         "customContainerClass"?: string;
         "customInputClass"?: string;
@@ -29,7 +29,7 @@ export namespace Components {
         "disabled": boolean;
         "hasError"?: boolean;
         "hasValidation"?: boolean;
-        "inputmode": PlugInputMode;
+        "inputmode": CheckoutInputMode;
         "label"?: string;
         "max"?: string;
         "maxlength"?: number;
@@ -40,53 +40,62 @@ export namespace Components {
         "placeholder"?: string;
         "readonly": boolean;
         "required": boolean;
-        "startIcon"?: PlugIconNames;
-        "type": PlugInputType;
-        "value"?: PlugInputValue;
+        "startIcon"?: CheckoutIconNames;
+        "type": CheckoutInputType;
+        "value"?: CheckoutInputValue;
+    }
+    interface CheckoutTypography {
     }
 }
 declare global {
-    interface HTMLPlugButtonElement extends Components.PlugButton, HTMLStencilElement {
+    interface HTMLCheckoutButtonElement extends Components.CheckoutButton, HTMLStencilElement {
     }
-    var HTMLPlugButtonElement: {
-        prototype: HTMLPlugButtonElement;
-        new (): HTMLPlugButtonElement;
+    var HTMLCheckoutButtonElement: {
+        prototype: HTMLCheckoutButtonElement;
+        new (): HTMLCheckoutButtonElement;
     };
-    interface HTMLPlugIconElement extends Components.PlugIcon, HTMLStencilElement {
+    interface HTMLCheckoutIconElement extends Components.CheckoutIcon, HTMLStencilElement {
     }
-    var HTMLPlugIconElement: {
-        prototype: HTMLPlugIconElement;
-        new (): HTMLPlugIconElement;
+    var HTMLCheckoutIconElement: {
+        prototype: HTMLCheckoutIconElement;
+        new (): HTMLCheckoutIconElement;
     };
-    interface HTMLPlugInputElement extends Components.PlugInput, HTMLStencilElement {
+    interface HTMLCheckoutInputElement extends Components.CheckoutInput, HTMLStencilElement {
     }
-    var HTMLPlugInputElement: {
-        prototype: HTMLPlugInputElement;
-        new (): HTMLPlugInputElement;
+    var HTMLCheckoutInputElement: {
+        prototype: HTMLCheckoutInputElement;
+        new (): HTMLCheckoutInputElement;
+    };
+    interface HTMLCheckoutTypographyElement extends Components.CheckoutTypography, HTMLStencilElement {
+    }
+    var HTMLCheckoutTypographyElement: {
+        prototype: HTMLCheckoutTypographyElement;
+        new (): HTMLCheckoutTypographyElement;
     };
     interface HTMLElementTagNameMap {
-        "plug-button": HTMLPlugButtonElement;
-        "plug-icon": HTMLPlugIconElement;
-        "plug-input": HTMLPlugInputElement;
+        "checkout-button": HTMLCheckoutButtonElement;
+        "checkout-icon": HTMLCheckoutIconElement;
+        "checkout-input": HTMLCheckoutInputElement;
+        "checkout-typography": HTMLCheckoutTypographyElement;
     }
 }
 declare namespace LocalJSX {
-    interface PlugButton {
+    interface CheckoutButton {
         "customClass"?: string;
         "disabled"?: boolean;
         "fullWidth"?: boolean;
-        "icon"?: PlugIconNames;
+        "icon"?: CheckoutIconNames;
         "label"?: string;
         "onBlured"?: (event: CustomEvent<void>) => void;
         "onClicked"?: (event: CustomEvent<void>) => void;
         "onFocused"?: (event: CustomEvent<void>) => void;
-        "type"?: PlugButtonType;
+        "type"?: CheckoutButtonType;
     }
-    interface PlugIcon {
+    interface CheckoutIcon {
         "class"?: string;
-        "icon"?: PlugIconNames;
+        "icon"?: CheckoutIconNames;
     }
-    interface PlugInput {
+    interface CheckoutInput {
         "autofocus"?: boolean;
         "customContainerClass"?: string;
         "customInputClass"?: string;
@@ -94,7 +103,7 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "hasError"?: boolean;
         "hasValidation"?: boolean;
-        "inputmode"?: PlugInputMode;
+        "inputmode"?: CheckoutInputMode;
         "label"?: string;
         "max"?: string;
         "maxlength"?: number;
@@ -103,29 +112,33 @@ declare namespace LocalJSX {
         "multiple"?: boolean;
         "name"?: string;
         "onBlurred"?: (event: CustomEvent<void>) => void;
-        "onChanged"?: (event: CustomEvent<PlugInputChangeEvent>) => void;
+        "onChanged"?: (event: CustomEvent<CheckoutInputChangeEvent>) => void;
         "onFocused"?: (event: CustomEvent<void>) => void;
         "onInputed"?: (event: CustomEvent<KeyboardEvent>) => void;
         "placeholder"?: string;
         "readonly"?: boolean;
         "required"?: boolean;
-        "startIcon"?: PlugIconNames;
-        "type"?: PlugInputType;
-        "value"?: PlugInputValue;
+        "startIcon"?: CheckoutIconNames;
+        "type"?: CheckoutInputType;
+        "value"?: CheckoutInputValue;
+    }
+    interface CheckoutTypography {
     }
     interface IntrinsicElements {
-        "plug-button": PlugButton;
-        "plug-icon": PlugIcon;
-        "plug-input": PlugInput;
+        "checkout-button": CheckoutButton;
+        "checkout-icon": CheckoutIcon;
+        "checkout-input": CheckoutInput;
+        "checkout-typography": CheckoutTypography;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "plug-button": LocalJSX.PlugButton & JSXBase.HTMLAttributes<HTMLPlugButtonElement>;
-            "plug-icon": LocalJSX.PlugIcon & JSXBase.HTMLAttributes<HTMLPlugIconElement>;
-            "plug-input": LocalJSX.PlugInput & JSXBase.HTMLAttributes<HTMLPlugInputElement>;
+            "checkout-button": LocalJSX.CheckoutButton & JSXBase.HTMLAttributes<HTMLCheckoutButtonElement>;
+            "checkout-icon": LocalJSX.CheckoutIcon & JSXBase.HTMLAttributes<HTMLCheckoutIconElement>;
+            "checkout-input": LocalJSX.CheckoutInput & JSXBase.HTMLAttributes<HTMLCheckoutInputElement>;
+            "checkout-typography": LocalJSX.CheckoutTypography & JSXBase.HTMLAttributes<HTMLCheckoutTypographyElement>;
         }
     }
 }

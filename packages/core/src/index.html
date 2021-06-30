@@ -34,19 +34,19 @@
     </style>
   </head>
   <body>
-    <plug-button disabled="false" icon="lock" full-width="false" label="button" custom-class="custom-button"></plug-button>
+    <checkout-button disabled="false" icon="lock" full-width="false" label="button" custom-class="custom-button"></checkout-button>
 
     <span class="separator"></span>
 
-    <plug-input custom-input-class="custom-input" start-icon="creditCard" has-validation="true" has-error="false" value="Filled" name="user" label="Label" placeholder="Placeholder"></plug-input>
+    <checkout-input custom-input-class="custom-input" start-icon="creditCard" has-validation="true" has-error="false" value="Filled" name="user" label="Label" placeholder="Placeholder"></checkout-input>
 
     <buton>GG</buton>
 
     <script>
-      const plugButton = document.querySelector('plug-button')
+      const plugButton = document.querySelector('checkout-button')
       plugButton.addEventListener('clicked', () => console.log('gg easy'))
 
-      const plugInput = document.querySelector('plug-input')
+      const plugInput = document.querySelector('checkout-input')
       plugInput.addEventListener('changed', (event) => {
         console.log('event', event.target.value);
         plugInput.value = event.target.value

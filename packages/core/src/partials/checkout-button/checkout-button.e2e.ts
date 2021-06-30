@@ -1,11 +1,11 @@
 import { newE2EPage } from '@stencil/core/testing'
 
-describe('plug-icon', () => {
+describe('checkout-button', () => {
   it('renders', async () => {
     const page = await newE2EPage()
-    await page.setContent('<plug-icon></plug-icon>')
+    await page.setContent('<checkout-button></checkout-button>')
 
-    const element = await page.find('plug-icon')
+    const element = await page.find('checkout-button')
     expect(element).toHaveClass('hydrated')
   })
 })

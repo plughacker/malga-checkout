@@ -1,4 +1,4 @@
-export type PlugInputMode =
+export type CheckoutInputMode =
   | 'none'
   | 'text'
   | 'tel'
@@ -8,7 +8,7 @@ export type PlugInputMode =
   | 'decimal'
   | 'search'
 
-export type PlugInputType =
+export type CheckoutInputType =
   | 'date'
   | 'email'
   | 'number'
@@ -19,8 +19,8 @@ export type PlugInputType =
   | 'url'
   | 'time'
 
-export type PlugInputValue = string | number | null
+export type CheckoutInputValue = string | number | null
 
-export interface PlugInputChangeEvent {
+export interface CheckoutInputChangeEvent {
   value: string | number | undefined | null
 }

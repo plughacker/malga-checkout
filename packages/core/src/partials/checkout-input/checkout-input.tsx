@@ -10,23 +10,23 @@ import {
 } from '@stencil/core'
 
 import {
-  PlugInputMode,
-  PlugInputType,
-  PlugInputValue,
-  PlugInputChangeEvent,
-} from './plug-input.types'
+  CheckoutInputMode,
+  CheckoutInputType,
+  CheckoutInputValue,
+  CheckoutInputChangeEvent,
+} from './checkout-input.types'
 
-import { PlugIconNames } from '../plug-icon/plug-icon.types'
+import { CheckoutIconNames } from '../checkout-icon/checkout-icon.types'
 
 @Component({
-  tag: 'plug-input',
-  styleUrl: 'plug-input.scss',
+  tag: 'checkout-input',
+  styleUrl: 'checkout-input.scss',
 })
-export class PlugInput implements ComponentInterface {
+export class CheckoutInput implements ComponentInterface {
   @Prop() customContainerClass?: string
   @Prop() customLabelClass?: string
   @Prop() customInputClass?: string
-  @Prop() startIcon?: PlugIconNames
+  @Prop() startIcon?: CheckoutIconNames
   @Prop() hasValidation?: boolean
   @Prop() hasError?: boolean
   @Prop() max?: string
@@ -41,12 +41,12 @@ export class PlugInput implements ComponentInterface {
   @Prop() required = false
   @Prop() autofocus = false
   @Prop() disabled = false
-  @Prop() inputmode: PlugInputMode = 'text'
-  @Prop() type: PlugInputType = 'text'
-  @Prop({ mutable: true }) value?: PlugInputValue = ''
+  @Prop() inputmode: CheckoutInputMode = 'text'
+  @Prop() type: CheckoutInputType = 'text'
+  @Prop({ mutable: true }) value?: CheckoutInputValue = ''
 
   @Event() inputed!: EventEmitter<KeyboardEvent>
-  @Event() changed!: EventEmitter<PlugInputChangeEvent>
+  @Event() changed!: EventEmitter<CheckoutInputChangeEvent>
   @Event() blurred!: EventEmitter<void>
   @Event() focused!: EventEmitter<void>
 
@@ -87,18 +87,21 @@ export class PlugInput implements ComponentInterface {
     return (
       <Host
         class={{
-          'plug-input__container': true,
+          'checkout-input__container': true,
           [this.customContainerClass]: !!this.customContainerClass,
         }}
       >
         {!!this.startIcon && (
-          <plug-icon icon={this.startIcon} class="plug-input__start-icon" />
+          <checkout-icon
+            icon={this.startIcon}
+            class="checkout-input__start-icon"
+          />
         )}
 
         {!!this.hasValidation && (
-          <plug-icon
+          <checkout-icon
             icon={this.hasError ? 'warning' : 'check'}
-            class="plug-input__end-icon"
+            class="checkout-input__end-icon"
           />
         )}
 
@@ -106,7 +109,7 @@ export class PlugInput implements ComponentInterface {
           <label
             htmlFor={this.name}
             class={{
-              'plug-input__label': true,
+              'checkout-input__label': true,
               [this.customLabelClass]: !!this.customLabelClass,
             }}
           >
@@ -116,10 +119,10 @@ export class PlugInput implements ComponentInterface {
 
         <input
           class={{
-            'plug-input__native': true,
-            'plug-input__native--filled': this.hasValue(),
-            'plug-input__native--start-icon': !!this.startIcon,
-            'plug-input__native--end-icon': this.hasValidation,
+            'checkout-input__native': true,
+            'checkout-input__native--filled': this.hasValue(),
+            'checkout-input__native--start-icon': !!this.startIcon,
+            'checkout-input__native--end-icon': this.hasValidation,
             [this.customInputClass]: !!this.customInputClass,
           }}
           id={this.name}

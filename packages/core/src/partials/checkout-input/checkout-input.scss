@@ -1,4 +1,4 @@
-.plug-input__container {
+.checkout-input__container {
   @extend %reset;
 
   display: flex;
@@ -11,7 +11,7 @@
   }
 }
 
-.plug-input__label {
+.checkout-input__label {
   @extend %reset;
   @extend %typography-label;
 
@@ -19,7 +19,7 @@
   margin-bottom: var(--plug-checkout-spacing-xs);
 }
 
-.plug-input__native {
+.checkout-input__native {
   @extend %reset;
   @extend %typography-subtitle1;
   @include transition($duration: var(--plug-checkout-transition-slow));
@@ -57,7 +57,7 @@
   }
 }
 
-.plug-input__start-icon {
+.checkout-input__start-icon {
   @extend %reset;
 
   position: absolute;
@@ -65,7 +65,7 @@
   left: 6px;
 }
 
-.plug-input__end-icon {
+.checkout-input__end-icon {
   @extend %reset;
 
   position: absolute;

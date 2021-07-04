@@ -40,7 +40,10 @@ export class CheckoutButton implements ComponentInterface {
 
   render() {
     return (
-      <Host aria-disabled={this.disabled ? 'true' : null}>
+      <Host
+        class={{ 'checkout-button__container--full-width': this.fullWidth }}
+        aria-disabled={this.disabled ? 'true' : null}
+      >
         <button
           disabled={this.disabled}
           type={this.type}

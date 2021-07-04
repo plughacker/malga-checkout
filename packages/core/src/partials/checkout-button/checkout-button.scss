@@ -1,3 +1,9 @@
+.checkout-button__container {
+  &--full-width {
+    width: 100%;
+  }
+}
+
 .checkout-button__native {
   @extend %reset;
   @extend %centralized;

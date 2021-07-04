@@ -7,12 +7,14 @@ import { Component, Host, h, Prop } from '@stencil/core'
 export class CheckoutErrorMessage {
   @Prop() message: string
   @Prop() customClass?: string
+  @Prop() fullWidth = false
 
   render() {
     return (
       <Host
         class={{
           'checkout-error-message': true,
+          'checkout-error-message--full-width': this.fullWidth,
           [this.customClass]: !!this.customClass,
         }}
       >

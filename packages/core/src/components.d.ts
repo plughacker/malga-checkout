@@ -18,8 +18,19 @@ export namespace Components {
         "label": string;
         "type"?: CheckoutButtonType;
     }
+    interface CheckoutCreditCard {
+        "cvv": string;
+        "expiry": string;
+        "focused": string;
+        "issuer": string;
+        "locale": { valid: string };
+        "name": string;
+        "number": string;
+        "placeholders": { name: string };
+    }
     interface CheckoutErrorMessage {
         "customClass"?: string;
+        "fullWidth": boolean;
         "message": string;
     }
     interface CheckoutIcon {
@@ -64,6 +75,12 @@ declare global {
         prototype: HTMLCheckoutButtonElement;
         new (): HTMLCheckoutButtonElement;
     };
+    interface HTMLCheckoutCreditCardElement extends Components.CheckoutCreditCard, HTMLStencilElement {
+    }
+    var HTMLCheckoutCreditCardElement: {
+        prototype: HTMLCheckoutCreditCardElement;
+        new (): HTMLCheckoutCreditCardElement;
+    };
     interface HTMLCheckoutErrorMessageElement extends Components.CheckoutErrorMessage, HTMLStencilElement {
     }
     var HTMLCheckoutErrorMessageElement: {
@@ -90,6 +107,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "checkout-button": HTMLCheckoutButtonElement;
+        "checkout-credit-card": HTMLCheckoutCreditCardElement;
         "checkout-error-message": HTMLCheckoutErrorMessageElement;
         "checkout-icon": HTMLCheckoutIconElement;
         "checkout-input": HTMLCheckoutInputElement;
@@ -108,8 +126,19 @@ declare namespace LocalJSX {
         "onFocused"?: (event: CustomEvent<void>) => void;
         "type"?: CheckoutButtonType;
     }
+    interface CheckoutCreditCard {
+        "cvv"?: string;
+        "expiry"?: string;
+        "focused"?: string;
+        "issuer"?: string;
+        "locale"?: { valid: string };
+        "name"?: string;
+        "number"?: string;
+        "placeholders"?: { name: string };
+    }
     interface CheckoutErrorMessage {
         "customClass"?: string;
+        "fullWidth"?: boolean;
         "message"?: string;
     }
     interface CheckoutIcon {
@@ -152,6 +181,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "checkout-button": CheckoutButton;
+        "checkout-credit-card": CheckoutCreditCard;
         "checkout-error-message": CheckoutErrorMessage;
         "checkout-icon": CheckoutIcon;
         "checkout-input": CheckoutInput;
@@ -163,6 +193,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "checkout-button": LocalJSX.CheckoutButton & JSXBase.HTMLAttributes<HTMLCheckoutButtonElement>;
+            "checkout-credit-card": LocalJSX.CheckoutCreditCard & JSXBase.HTMLAttributes<HTMLCheckoutCreditCardElement>;
             "checkout-error-message": LocalJSX.CheckoutErrorMessage & JSXBase.HTMLAttributes<HTMLCheckoutErrorMessageElement>;
             "checkout-icon": LocalJSX.CheckoutIcon & JSXBase.HTMLAttributes<HTMLCheckoutIconElement>;
             "checkout-input": LocalJSX.CheckoutInput & JSXBase.HTMLAttributes<HTMLCheckoutInputElement>;

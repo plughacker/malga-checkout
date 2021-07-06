@@ -1,4 +1,4 @@
-.checkout-input__container {
+.checkout-select__container {
   @extend %reset;
 
   display: flex;
@@ -11,7 +11,7 @@
   }
 }
 
-.checkout-input__label {
+.checkout-select__label {
   @extend %reset;
   @extend %typography-label;
 
@@ -19,7 +19,7 @@
   margin-bottom: var(--plug-checkout-spacing-xs);
 }
 
-.checkout-input__native {
+.checkout-select__native {
   @extend %reset;
   @extend %typography-subtitle1;
   @include transition($duration: var(--plug-checkout-transition-slow));
@@ -29,11 +29,13 @@
   padding: var(--plug-checkout-spacing-xs);
   border-radius: var(--plug-checkout-border-radius-default);
   outline: none;
+  appearance: none;
   background: var(--plug-checkout-color-accent-light);
 
   color: var(--plug-checkout-color-grey-dark);
 
-  &::placeholder {
+  &::placeholder,
+  &--none-value {
     color: var(--plug-checkout-color-grey-normal);
   }
 
@@ -56,18 +58,18 @@
   }
 }
 
-.checkout-input__start-icon {
+.checkout-select__start-icon {
   @extend %reset;
 
   position: absolute;
-  top: 32px;
+  top: 33px;
   left: 6px;
 }
 
-.checkout-input__end-icon {
+.checkout-select__end-icon {
   @extend %reset;
 
   position: absolute;
   top: 29px;
-  right: 6px;
+  right: 10px;
 }

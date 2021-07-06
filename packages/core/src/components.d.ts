@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { CheckoutIconNames } from "./partials/checkout-icon/checkout-icon.types";
 import { CheckoutButtonType } from "./partials/checkout-button/checkout-button.types";
 import { CheckoutInputChangeEvent, CheckoutInputMode, CheckoutInputType, CheckoutInputValue } from "./partials/checkout-input/checkout-input.types";
+import { CheckoutSelectChangeEvent, CheckoutSelectOptions, CheckoutSelectValue } from "./partials/checkout-select/checkout-select.types";
 import { CheckoutTypographyColor, CheckoutTypographyVariation } from "./partials/checkout-typography/checkout-typography.types";
 export namespace Components {
     interface CheckoutButton {
@@ -61,6 +62,24 @@ export namespace Components {
         "type": CheckoutInputType;
         "value"?: CheckoutInputValue;
     }
+    interface CheckoutSelect {
+        "autofocus": boolean;
+        "customContainerClass"?: string;
+        "customInputClass"?: string;
+        "customLabelClass"?: string;
+        "disabled": boolean;
+        "fullWidth": boolean;
+        "hasError"?: boolean;
+        "hasValidation": boolean;
+        "label"?: string;
+        "name": string;
+        "options": CheckoutSelectOptions[];
+        "placeholder"?: string;
+        "readonly": boolean;
+        "required": boolean;
+        "startIcon"?: CheckoutIconNames;
+        "value"?: CheckoutSelectValue;
+    }
     interface CheckoutTypography {
         "color": CheckoutTypographyColor;
         "content": string;
@@ -99,6 +118,12 @@ declare global {
         prototype: HTMLCheckoutInputElement;
         new (): HTMLCheckoutInputElement;
     };
+    interface HTMLCheckoutSelectElement extends Components.CheckoutSelect, HTMLStencilElement {
+    }
+    var HTMLCheckoutSelectElement: {
+        prototype: HTMLCheckoutSelectElement;
+        new (): HTMLCheckoutSelectElement;
+    };
     interface HTMLCheckoutTypographyElement extends Components.CheckoutTypography, HTMLStencilElement {
     }
     var HTMLCheckoutTypographyElement: {
@@ -111,6 +136,7 @@ declare global {
         "checkout-error-message": HTMLCheckoutErrorMessageElement;
         "checkout-icon": HTMLCheckoutIconElement;
         "checkout-input": HTMLCheckoutInputElement;
+        "checkout-select": HTMLCheckoutSelectElement;
         "checkout-typography": HTMLCheckoutTypographyElement;
     }
 }
@@ -173,6 +199,28 @@ declare namespace LocalJSX {
         "type"?: CheckoutInputType;
         "value"?: CheckoutInputValue;
     }
+    interface CheckoutSelect {
+        "autofocus"?: boolean;
+        "customContainerClass"?: string;
+        "customInputClass"?: string;
+        "customLabelClass"?: string;
+        "disabled"?: boolean;
+        "fullWidth"?: boolean;
+        "hasError"?: boolean;
+        "hasValidation"?: boolean;
+        "label"?: string;
+        "name"?: string;
+        "onBlurred"?: (event: CustomEvent<void>) => void;
+        "onChanged"?: (event: CustomEvent<CheckoutSelectChangeEvent>) => void;
+        "onFocused"?: (event: CustomEvent<void>) => void;
+        "onInputed"?: (event: CustomEvent<KeyboardEvent>) => void;
+        "options"?: CheckoutSelectOptions[];
+        "placeholder"?: string;
+        "readonly"?: boolean;
+        "required"?: boolean;
+        "startIcon"?: CheckoutIconNames;
+        "value"?: CheckoutSelectValue;
+    }
     interface CheckoutTypography {
         "color"?: CheckoutTypographyColor;
         "content"?: string;
@@ -185,6 +233,7 @@ declare namespace LocalJSX {
         "checkout-error-message": CheckoutErrorMessage;
         "checkout-icon": CheckoutIcon;
         "checkout-input": CheckoutInput;
+        "checkout-select": CheckoutSelect;
         "checkout-typography": CheckoutTypography;
     }
 }
@@ -197,6 +246,7 @@ declare module "@stencil/core" {
             "checkout-error-message": LocalJSX.CheckoutErrorMessage & JSXBase.HTMLAttributes<HTMLCheckoutErrorMessageElement>;
             "checkout-icon": LocalJSX.CheckoutIcon & JSXBase.HTMLAttributes<HTMLCheckoutIconElement>;
             "checkout-input": LocalJSX.CheckoutInput & JSXBase.HTMLAttributes<HTMLCheckoutInputElement>;
+            "checkout-select": LocalJSX.CheckoutSelect & JSXBase.HTMLAttributes<HTMLCheckoutSelectElement>;
             "checkout-typography": LocalJSX.CheckoutTypography & JSXBase.HTMLAttributes<HTMLCheckoutTypographyElement>;
         }
     }

@@ -2,6 +2,7 @@ import { Component, Host, h, Prop } from '@stencil/core'
 
 import { CheckoutIconNames, CheckoutIconsObject } from './checkout-icon.types'
 
+import ArrowDownIcon from '../../assets/icons/arrow-down.svg'
 import CalendarIcon from '../../assets/icons/calendar.svg'
 import CheckIcon from '../../assets/icons/check.svg'
 import CreditCardIcon from '../../assets/icons/credit-card.svg'
@@ -19,6 +20,7 @@ export class CheckoutIcon {
 
   private renderCurrentIcon = (): string => {
     const icons: CheckoutIconsObject = {
+      arrowDown: ArrowDownIcon,
       calendar: CalendarIcon,
       check: CheckIcon,
       creditCard: CreditCardIcon,

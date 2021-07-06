@@ -9,6 +9,8 @@ import {
   Watch,
 } from '@stencil/core'
 
+import Inputmask from 'inputmask'
+
 import {
   CheckoutInputMode,
   CheckoutInputType,
@@ -26,6 +28,7 @@ export class CheckoutInput implements ComponentInterface {
   @Prop() customContainerClass?: string
   @Prop() customLabelClass?: string
   @Prop() customInputClass?: string
+  @Prop() mask?: string
   @Prop() startIcon?: CheckoutIconNames
   @Prop() hasValidation?: boolean
   @Prop() hasError?: boolean
@@ -50,6 +53,8 @@ export class CheckoutInput implements ComponentInterface {
   @Event() changed!: EventEmitter<CheckoutInputChangeEvent>
   @Event() blurred!: EventEmitter<void>
   @Event() focused!: EventEmitter<void>
+
+  inputRef!: HTMLInputElement
 
   @Watch('value')
   protected valueChanged() {
@@ -83,6 +88,12 @@ export class CheckoutInput implements ComponentInterface {
   }
 
   private hasValue = (): boolean => this.getValue().length > 0
+
+  componentDidLoad() {
+    if (this.mask) {
+      Inputmask({ mask: this.mask }).mask(this.inputRef)
+    }
+  }
 
   render() {
     return (
@@ -120,6 +131,7 @@ export class CheckoutInput implements ComponentInterface {
         )}
 
         <input
+          ref={(element) => (this.inputRef = element)}
           class={{
             'checkout-input__native': true,
             'checkout-input__native--filled': this.hasValue(),

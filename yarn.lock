@@ -5086,6 +5086,11 @@ init-package-json@^2.0.2:
     validate-npm-package-license "^3.0.4"
     validate-npm-package-name "^3.0.0"
 
+inputmask@^5.0.6:
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/inputmask/-/inputmask-5.0.6.tgz#c537a197b0c15ff926db4c2ea654f9768015b1c4"
+  integrity sha512-/QjZuOEB7fJKMEu3xKL3LlycctMmK53Zr/fGSFtcjrfYxXks93iptutYowWNR1oUsHr2QIzy6V3MMYz07P2Cfw==
+
 inquirer@6.5.2:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-6.5.2.tgz#ad50942375d036d327ff528c08bd5fab089928ca"

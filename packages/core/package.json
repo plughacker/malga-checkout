@@ -36,6 +36,7 @@
     "stencil-inline-svg": "^1.1.0"
   },
   "dependencies": {
+    "inputmask": "^5.0.6",
     "payment": "2.3.0"
   }
 }

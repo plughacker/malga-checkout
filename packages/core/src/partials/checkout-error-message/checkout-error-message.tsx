@@ -1,10 +1,10 @@
-import { Component, Host, h, Prop } from '@stencil/core'
+import { Component, Host, h, Prop, ComponentInterface } from '@stencil/core'
 
 @Component({
   tag: 'checkout-error-message',
   styleUrl: 'checkout-error-message.scss',
 })
-export class CheckoutErrorMessage {
+export class CheckoutErrorMessage implements ComponentInterface {
   @Prop() message: string
   @Prop() customClass?: string
   @Prop() fullWidth = false

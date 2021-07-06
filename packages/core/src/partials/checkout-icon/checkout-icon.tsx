@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop } from '@stencil/core'
+import { Component, Host, h, Prop, ComponentInterface } from '@stencil/core'
 
 import { CheckoutIconNames, CheckoutIconsObject } from './checkout-icon.types'
 
@@ -14,7 +14,7 @@ import UserIcon from '../../assets/icons/user.svg'
 import WarningIcon from '../../assets/icons/warning.svg'
 
 @Component({ tag: 'checkout-icon' })
-export class CheckoutIcon {
+export class CheckoutIcon implements ComponentInterface {
   @Prop() icon: CheckoutIconNames
   @Prop() class?: string
 

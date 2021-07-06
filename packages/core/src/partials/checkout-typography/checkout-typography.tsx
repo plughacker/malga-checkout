@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop } from '@stencil/core'
+import { Component, Host, h, Prop, ComponentInterface } from '@stencil/core'
 
 import {
   CheckoutTypographyColor,
@@ -9,7 +9,7 @@ import {
   tag: 'checkout-typography',
   styleUrl: 'checkout-typography.scss',
 })
-export class CheckoutTypography {
+export class CheckoutTypography implements ComponentInterface {
   @Prop() tag = 'p'
   @Prop() variation: CheckoutTypographyVariation = 'body1'
   @Prop() color: CheckoutTypographyColor = 'dark'

@@ -65,8 +65,8 @@ export namespace Components {
     interface CheckoutSelect {
         "autofocus": boolean;
         "customContainerClass"?: string;
-        "customInputClass"?: string;
         "customLabelClass"?: string;
+        "customSelectClass"?: string;
         "disabled": boolean;
         "fullWidth": boolean;
         "hasError"?: boolean;
@@ -202,8 +202,8 @@ declare namespace LocalJSX {
     interface CheckoutSelect {
         "autofocus"?: boolean;
         "customContainerClass"?: string;
-        "customInputClass"?: string;
         "customLabelClass"?: string;
+        "customSelectClass"?: string;
         "disabled"?: boolean;
         "fullWidth"?: boolean;
         "hasError"?: boolean;

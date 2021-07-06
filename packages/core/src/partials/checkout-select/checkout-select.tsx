@@ -24,7 +24,7 @@ import {
 export class CheckoutSelect implements ComponentInterface {
   @Prop() customContainerClass?: string
   @Prop() customLabelClass?: string
-  @Prop() customInputClass?: string
+  @Prop() customSelectClass?: string
   @Prop() startIcon?: CheckoutIconNames
   @Prop() hasError?: boolean
   @Prop() placeholder?: string
@@ -135,7 +135,7 @@ export class CheckoutSelect implements ComponentInterface {
             'checkout-select__native--none-value': this.value === 'none',
             'checkout-select__native--start-icon': !!this.startIcon,
             'checkout-select__native--end-icon': this.hasValidation,
-            [this.customInputClass]: !!this.customInputClass,
+            [this.customSelectClass]: !!this.customSelectClass,
           }}
           id={this.name}
           disabled={this.disabled}

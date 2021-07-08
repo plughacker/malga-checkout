@@ -18,3 +18,9 @@ export const defaultCustomStyles = {
   installmentsFieldSelectContainer: '',
   submitButton: '',
 }
+
+export const transformExpirationDate = (expiry: string) => {
+  const [month, year] = expiry.split('/')
+
+  return `${month}/20${year}`
+}

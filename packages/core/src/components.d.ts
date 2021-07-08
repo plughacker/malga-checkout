@@ -90,8 +90,13 @@ export namespace Components {
     }
     interface PlugCheckout {
         "amount": number;
+        "apiKey": string;
+        "capture": boolean;
+        "clientId": string;
         "customFormStyleClasses"?: PlugCheckoutFormCustomStyleFormClasses;
         "installmentsConfig": PlugCheckoutInstallmentsConfig;
+        "merchantId": string;
+        "statementDescriptor": string;
     }
     interface PlugCheckoutForm {
         "amount": number;
@@ -257,8 +262,13 @@ declare namespace LocalJSX {
     }
     interface PlugCheckout {
         "amount"?: number;
+        "apiKey"?: string;
+        "capture"?: boolean;
+        "clientId"?: string;
         "customFormStyleClasses"?: PlugCheckoutFormCustomStyleFormClasses;
         "installmentsConfig"?: PlugCheckoutInstallmentsConfig;
+        "merchantId"?: string;
+        "statementDescriptor"?: string;
     }
     interface PlugCheckoutForm {
         "amount"?: number;

@@ -31,3 +31,11 @@ export interface PlugCheckoutInstallmentsConfig {
   show: boolean
   quantity: number
 }
+
+export interface PlugCheckoutRequestPayload {
+  card: PlugCheckoutFormValues
+  merchantId: string
+  amount: number
+  statementDescriptor: string
+  capture: boolean
+}

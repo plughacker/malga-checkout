@@ -51,8 +51,8 @@ export class CheckoutInput implements ComponentInterface {
 
   @Event() inputed!: EventEmitter<KeyboardEvent>
   @Event() changed!: EventEmitter<CheckoutInputChangeEvent>
-  @Event() blurred!: EventEmitter<void>
-  @Event() focused!: EventEmitter<void>
+  @Event() blurred!: EventEmitter<FocusEvent>
+  @Event() focused!: EventEmitter<FocusEvent>
 
   inputRef!: HTMLInputElement
 
@@ -73,12 +73,12 @@ export class CheckoutInput implements ComponentInterface {
     this.inputed.emit(event as KeyboardEvent)
   }
 
-  private onBlur = () => {
-    this.blurred.emit()
+  private onBlur = (event: FocusEvent) => {
+    this.blurred.emit(event)
   }
 
-  private onFocus = () => {
-    this.focused.emit()
+  private onFocus = (event: FocusEvent) => {
+    this.focused.emit(event)
   }
 
   private getValue = (): string => {
@@ -91,7 +91,12 @@ export class CheckoutInput implements ComponentInterface {
 
   componentDidLoad() {
     if (this.mask) {
-      Inputmask({ mask: this.mask }).mask(this.inputRef)
+      Inputmask({
+        mask: this.mask,
+        placeholder: ' ',
+        showMaskOnHover: false,
+        showMaskOnFocus: false,
+      }).mask(this.inputRef)
     }
   }
 

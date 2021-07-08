@@ -5,6 +5,7 @@
   border-radius: var(--plug-checkout-border-radius-default);
   text-align: center;
   background: var(--plug-checkout-color-warning-light);
+  margin-top: var(--plug-checkout-spacing-xs);
 
   &--full-width {
     width: 100%;

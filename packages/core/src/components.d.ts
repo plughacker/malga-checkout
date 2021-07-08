@@ -10,6 +10,8 @@ import { CheckoutButtonType } from "./partials/checkout-button/checkout-button.t
 import { CheckoutInputChangeEvent, CheckoutInputMode, CheckoutInputType, CheckoutInputValue } from "./partials/checkout-input/checkout-input.types";
 import { CheckoutSelectChangeEvent, CheckoutSelectOptions, CheckoutSelectValue } from "./partials/checkout-select/checkout-select.types";
 import { CheckoutTypographyColor, CheckoutTypographyVariation } from "./partials/checkout-typography/checkout-typography.types";
+import { PlugCheckoutFormValues } from "./components/plug-checkout/plug-checkout.types";
+import { PlugCheckoutFormCustomStyleFormClasses } from "./components/plug-checkout/partials/plug-checkout-form/plug-checkout-form.types";
 export namespace Components {
     interface CheckoutButton {
         "customClass"?: string;
@@ -49,6 +51,7 @@ export namespace Components {
         "hasValidation"?: boolean;
         "inputmode": CheckoutInputMode;
         "label"?: string;
+        "mask"?: string;
         "max"?: string;
         "maxlength"?: number;
         "min"?: string;
@@ -85,6 +88,12 @@ export namespace Components {
         "content": string;
         "tag": string;
         "variation": CheckoutTypographyVariation;
+    }
+    interface PlugCheckout {
+    }
+    interface PlugCheckoutForm {
+        "customFormStyleClasses"?: PlugCheckoutFormCustomStyleFormClasses;
+        "formValues": PlugCheckoutFormValues;
     }
 }
 declare global {
@@ -130,6 +139,18 @@ declare global {
         prototype: HTMLCheckoutTypographyElement;
         new (): HTMLCheckoutTypographyElement;
     };
+    interface HTMLPlugCheckoutElement extends Components.PlugCheckout, HTMLStencilElement {
+    }
+    var HTMLPlugCheckoutElement: {
+        prototype: HTMLPlugCheckoutElement;
+        new (): HTMLPlugCheckoutElement;
+    };
+    interface HTMLPlugCheckoutFormElement extends Components.PlugCheckoutForm, HTMLStencilElement {
+    }
+    var HTMLPlugCheckoutFormElement: {
+        prototype: HTMLPlugCheckoutFormElement;
+        new (): HTMLPlugCheckoutFormElement;
+    };
     interface HTMLElementTagNameMap {
         "checkout-button": HTMLCheckoutButtonElement;
         "checkout-credit-card": HTMLCheckoutCreditCardElement;
@@ -138,6 +159,8 @@ declare global {
         "checkout-input": HTMLCheckoutInputElement;
         "checkout-select": HTMLCheckoutSelectElement;
         "checkout-typography": HTMLCheckoutTypographyElement;
+        "plug-checkout": HTMLPlugCheckoutElement;
+        "plug-checkout-form": HTMLPlugCheckoutFormElement;
     }
 }
 declare namespace LocalJSX {
@@ -182,15 +205,16 @@ declare namespace LocalJSX {
         "hasValidation"?: boolean;
         "inputmode"?: CheckoutInputMode;
         "label"?: string;
+        "mask"?: string;
         "max"?: string;
         "maxlength"?: number;
         "min"?: string;
         "minlength"?: number;
         "multiple"?: boolean;
         "name"?: string;
-        "onBlurred"?: (event: CustomEvent<void>) => void;
+        "onBlurred"?: (event: CustomEvent<FocusEvent>) => void;
         "onChanged"?: (event: CustomEvent<CheckoutInputChangeEvent>) => void;
-        "onFocused"?: (event: CustomEvent<void>) => void;
+        "onFocused"?: (event: CustomEvent<FocusEvent>) => void;
         "onInputed"?: (event: CustomEvent<KeyboardEvent>) => void;
         "placeholder"?: string;
         "readonly"?: boolean;
@@ -227,6 +251,14 @@ declare namespace LocalJSX {
         "tag"?: string;
         "variation"?: CheckoutTypographyVariation;
     }
+    interface PlugCheckout {
+    }
+    interface PlugCheckoutForm {
+        "customFormStyleClasses"?: PlugCheckoutFormCustomStyleFormClasses;
+        "formValues"?: PlugCheckoutFormValues;
+        "onFieldChange"?: (event: CustomEvent<{ field: string; value: string }>) => void;
+        "onFormSubmit"?: (event: CustomEvent<void>) => void;
+    }
     interface IntrinsicElements {
         "checkout-button": CheckoutButton;
         "checkout-credit-card": CheckoutCreditCard;
@@ -235,6 +267,8 @@ declare namespace LocalJSX {
         "checkout-input": CheckoutInput;
         "checkout-select": CheckoutSelect;
         "checkout-typography": CheckoutTypography;
+        "plug-checkout": PlugCheckout;
+        "plug-checkout-form": PlugCheckoutForm;
     }
 }
 export { LocalJSX as JSX };
@@ -248,6 +282,8 @@ declare module "@stencil/core" {
             "checkout-input": LocalJSX.CheckoutInput & JSXBase.HTMLAttributes<HTMLCheckoutInputElement>;
             "checkout-select": LocalJSX.CheckoutSelect & JSXBase.HTMLAttributes<HTMLCheckoutSelectElement>;
             "checkout-typography": LocalJSX.CheckoutTypography & JSXBase.HTMLAttributes<HTMLCheckoutTypographyElement>;
+            "plug-checkout": LocalJSX.PlugCheckout & JSXBase.HTMLAttributes<HTMLPlugCheckoutElement>;
+            "plug-checkout-form": LocalJSX.PlugCheckoutForm & JSXBase.HTMLAttributes<HTMLPlugCheckoutFormElement>;
         }
     }
 }

@@ -1,0 +1,42 @@
+.plug-checkout-form__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 10px;
+  margin-top: var(--plug-checkout-spacing-sm);
+}
+
+.plug-checkout-form__form {
+  margin: 0 auto;
+
+  & > checkout-input {
+    margin-top: var(--plug-checkout-spacing-xs);
+  }
+
+  & > checkout-select {
+    margin-top: var(--plug-checkout-spacing-xs);
+  }
+
+  & > checkout-button button {
+    margin-top: var(--plug-checkout-spacing-lg);
+  }
+}
+
+.plug-checkout-form__row-fields {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: none;
+  margin: 0px;
+  margin-top: var(--plug-checkout-spacing-xs);
+  margin-bottom: var(--plug-checkout-spacing-xs);
+  padding: 0px;
+
+  & > checkout-input:first-child {
+    margin-right: var(--plug-checkout-spacing-xxs);
+  }
+
+  & > checkout-input:last-child {
+    margin-left: var(--plug-checkout-spacing-xxs);
+  }
+}

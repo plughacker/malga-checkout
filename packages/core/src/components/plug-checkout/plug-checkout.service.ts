@@ -1,7 +1,10 @@
 import axios, { AxiosRequestConfig } from 'axios'
 
 import { PlugCheckoutRequestPayload } from './plug-checkout.types'
-import { transformExpirationDate } from './plug-checkout.utils'
+import {
+  cleanTextOnlyNumbers,
+  transformExpirationDate,
+} from './plug-checkout.utils'
 
 const axiosConfig: AxiosRequestConfig = {
   baseURL: 'https://sandbox-api.plugpagamentos.com/v1',
@@ -29,12 +32,12 @@ export const checkoutOneShotRequest = async (
     capture: data.capture,
     paymentMethod: {
       paymentType: 'credit',
-      installments: data.card.installments,
+      installments: parseInt(data.card.installments),
     },
     paymentSource: {
       sourceType: 'card',
       card: {
-        cardNumber: data.card.cardNumber,
+        cardNumber: cleanTextOnlyNumbers(data.card.cardNumber),
         cardCvv: data.card.cvv,
         cardExpirationDate: transformExpirationDate(data.card.expirationDate),
         cardHolderName: data.card.name,

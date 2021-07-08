@@ -10,8 +10,7 @@ import { CheckoutButtonType } from "./partials/checkout-button/checkout-button.t
 import { CheckoutInputChangeEvent, CheckoutInputMode, CheckoutInputType, CheckoutInputValue } from "./partials/checkout-input/checkout-input.types";
 import { CheckoutSelectChangeEvent, CheckoutSelectOptions, CheckoutSelectValue } from "./partials/checkout-select/checkout-select.types";
 import { CheckoutTypographyColor, CheckoutTypographyVariation } from "./partials/checkout-typography/checkout-typography.types";
-import { PlugCheckoutFormValues } from "./components/plug-checkout/plug-checkout.types";
-import { PlugCheckoutFormCustomStyleFormClasses } from "./components/plug-checkout/partials/plug-checkout-form/plug-checkout-form.types";
+import { PlugCheckoutFormCustomStyleFormClasses, PlugCheckoutFormValues, PlugCheckoutInstallmentsConfig } from "./components/plug-checkout/plug-checkout.types";
 export namespace Components {
     interface CheckoutButton {
         "customClass"?: string;
@@ -90,10 +89,15 @@ export namespace Components {
         "variation": CheckoutTypographyVariation;
     }
     interface PlugCheckout {
+        "amount": number;
+        "customFormStyleClasses"?: PlugCheckoutFormCustomStyleFormClasses;
+        "installmentsConfig": PlugCheckoutInstallmentsConfig;
     }
     interface PlugCheckoutForm {
-        "customFormStyleClasses"?: PlugCheckoutFormCustomStyleFormClasses;
+        "amount": number;
+        "customFormStyleClasses": PlugCheckoutFormCustomStyleFormClasses;
         "formValues": PlugCheckoutFormValues;
+        "installmentsConfig": PlugCheckoutInstallmentsConfig;
     }
 }
 declare global {
@@ -252,10 +256,15 @@ declare namespace LocalJSX {
         "variation"?: CheckoutTypographyVariation;
     }
     interface PlugCheckout {
+        "amount"?: number;
+        "customFormStyleClasses"?: PlugCheckoutFormCustomStyleFormClasses;
+        "installmentsConfig"?: PlugCheckoutInstallmentsConfig;
     }
     interface PlugCheckoutForm {
+        "amount"?: number;
         "customFormStyleClasses"?: PlugCheckoutFormCustomStyleFormClasses;
         "formValues"?: PlugCheckoutFormValues;
+        "installmentsConfig"?: PlugCheckoutInstallmentsConfig;
         "onFieldChange"?: (event: CustomEvent<{ field: string; value: string }>) => void;
         "onFormSubmit"?: (event: CustomEvent<void>) => void;
     }

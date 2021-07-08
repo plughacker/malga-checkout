@@ -1,27 +1,6 @@
 import { ValidationError } from 'yup'
 import { PlugCheckoutFormValues } from '../../plug-checkout.types'
 
-export const defaultCustomStyles = {
-  formContainer: '',
-  formContent: '',
-  creditCardFieldContainer: '',
-  creditCardFieldLabelContainer: '',
-  creditCardFieldInputContainer: '',
-  expirationDateFieldContainer: '',
-  expirationDateFieldLabelContainer: '',
-  expirationDateFieldInputContainer: '',
-  cvvFieldContainer: '',
-  cvvFieldLabelContainer: '',
-  cvvFieldInputContainer: '',
-  nameFieldContainer: '',
-  nameFieldLabelContainer: '',
-  nameFieldInputContainer: '',
-  installmentsFieldContainer: '',
-  installmentsFieldLabelContainer: '',
-  installmentsFieldSelectContainer: '',
-  submitButton: '',
-}
-
 export const normalizeValidationErrors = (errors: ValidationError[]) => {
   const normalizedErrors = errors.reduce(
     (accumulatorErrors, currentError) => ({
@@ -47,4 +26,22 @@ export const checkIfAllFieldsIsBlank = (data: PlugCheckoutFormValues) => {
     .filter((field) => !field || field === 'none')
 
   return fields.length === filteredBlankFieldValues.length
+}
+
+export const centsToReal = (amount: number) => {
+  if (!amount) {
+    return 'R$00,00'
+  }
+
+  const parseToReal = amount / 100
+  const [real, cents] = parseToReal.toString().split('.')
+
+  const centsPossibilities = {
+    0: '00',
+    1: `${cents}0`,
+    2: cents,
+  }
+  const parsedCents = centsPossibilities[cents ? cents.length : 0]
+
+  return `R$${real},${parsedCents}`
 }

@@ -1,12 +1,25 @@
-import { Component, Host, h, State } from '@stencil/core'
+import { Component, Host, h, State, Prop } from '@stencil/core'
+import { defaultCustomStyles } from './plug-checkout.utils'
 
-import { PlugCheckoutFormValues } from './plug-checkout.types'
+import {
+  PlugCheckoutFormCustomStyleFormClasses,
+  PlugCheckoutFormValues,
+  PlugCheckoutInstallmentsConfig,
+} from './plug-checkout.types'
 
 @Component({
   tag: 'plug-checkout',
   styleUrl: 'plug-checkout.scss',
 })
 export class PlugCheckout {
+  @Prop() amount: number
+  @Prop() installmentsConfig: PlugCheckoutInstallmentsConfig = {
+    show: true,
+    quantity: 0,
+  }
+  @Prop() customFormStyleClasses?: PlugCheckoutFormCustomStyleFormClasses =
+    defaultCustomStyles
+
   @State() formValues: PlugCheckoutFormValues = {
     cardNumber: '',
     expirationDate: '',
@@ -36,6 +49,12 @@ export class PlugCheckout {
           number={this.formValues.cardNumber}
         />
         <plug-checkout-form
+          customFormStyleClasses={{
+            ...defaultCustomStyles,
+            ...this.customFormStyleClasses,
+          }}
+          amount={this.amount}
+          installmentsConfig={this.installmentsConfig}
           formValues={this.formValues}
           onFieldChange={({ detail }) => {
             this.handleSetFormValues(detail.field, detail.value)

@@ -9,16 +9,17 @@ import {
   State,
 } from '@stencil/core'
 
-import { PlugCheckoutFormValues } from '../../plug-checkout.types'
-
 import {
   PlugCheckoutFormCustomStyleFormClasses,
-  PlugCheckoutValidFields,
-} from './plug-checkout-form.types'
+  PlugCheckoutFormValues,
+  PlugCheckoutInstallmentsConfig,
+} from '../../plug-checkout.types'
+
+import { PlugCheckoutValidFields } from './plug-checkout-form.types'
 
 import {
+  centsToReal,
   checkIfAllFieldsIsBlank,
-  defaultCustomStyles,
 } from './plug-checkout-form.utils'
 import { validateCheckout } from './plug-checkout-form.schema'
 
@@ -28,8 +29,9 @@ import { validateCheckout } from './plug-checkout-form.schema'
 })
 export class PlugCheckoutForm implements ComponentInterface {
   @Prop() formValues: PlugCheckoutFormValues
-  @Prop() customFormStyleClasses?: PlugCheckoutFormCustomStyleFormClasses =
-    defaultCustomStyles
+  @Prop() amount: number
+  @Prop() installmentsConfig: PlugCheckoutInstallmentsConfig
+  @Prop() customFormStyleClasses: PlugCheckoutFormCustomStyleFormClasses
 
   @Event() formSubmit: EventEmitter<void>
   @Event() fieldChange: EventEmitter<{ field: string; value: string }>
@@ -45,7 +47,7 @@ export class PlugCheckoutForm implements ComponentInterface {
 
   private handleSubmitValidation = async () => {
     const validation = await validateCheckout(this.formValues, {
-      hasInstallments: true,
+      hasInstallments: this.installmentsConfig.show,
     })
 
     if (!validation.isValid) {
@@ -78,12 +80,12 @@ export class PlugCheckoutForm implements ComponentInterface {
         ...this.formValues,
         [field]: isMaskedField ? normalizedValue : event.target.value,
       },
-      { hasInstallments: true },
+      { hasInstallments: this.installmentsConfig.show },
     )
 
     this.validFields = {
       ...this.validFields,
-      [field]: validation.errors[field],
+      [field]: validation.errors ? validation.errors[field] : '',
     }
   }
 
@@ -102,6 +104,24 @@ export class PlugCheckoutForm implements ComponentInterface {
     }
 
     return
+  }
+
+  private renderInstallmentOptions = () => {
+    const installmentOptions = Array.from({
+      length: this.installmentsConfig.quantity,
+    }).map((_, index) => {
+      const currentInstalment = index + 1
+      const installmentValue = this.amount / currentInstalment
+
+      return {
+        label: `${currentInstalment}x ${centsToReal(
+          installmentValue,
+        )}, total ${centsToReal(this.amount)}`,
+        value: currentInstalment,
+      }
+    })
+
+    return installmentOptions
   }
 
   render() {
@@ -208,7 +228,7 @@ export class PlugCheckoutForm implements ComponentInterface {
           )}
 
           <checkout-input
-            value={this.formValues.name}
+            value={this.formValues.name.toUpperCase()}
             onChanged={this.handleFieldChange('name')}
             onBlurred={this.handleFieldBlurred('name')}
             onFocused={this.handleFieldFocused('name')}
@@ -233,31 +253,36 @@ export class PlugCheckoutForm implements ComponentInterface {
             <checkout-error-message message={this.validFields.name} />
           )}
 
-          <checkout-select
-            value={this.formValues.installments}
-            onChanged={this.handleFieldChange('installments')}
-            onBlurred={this.handleFieldBlurred('installments')}
-            onFocused={this.handleFieldFocused('installments')}
-            fullWidth
-            startIcon="dollar"
-            hasValidation
-            hasError={!!this.validFields.installments}
-            name="installments"
-            label="Parcelas"
-            customContainerClass={
-              this.customFormStyleClasses.installmentsFieldContainer
-            }
-            customSelectClass={
-              this.customFormStyleClasses.installmentsFieldSelectContainer
-            }
-            customLabelClass={
-              this.customFormStyleClasses.installmentsFieldLabelContainer
-            }
-          />
-
-          {!this.allFieldIsBlank && !!this.validFields.installments && (
-            <checkout-error-message message={this.validFields.installments} />
+          {this.installmentsConfig.show && (
+            <checkout-select
+              value={this.formValues.installments}
+              onChanged={this.handleFieldChange('installments')}
+              onBlurred={this.handleFieldBlurred('installments')}
+              onFocused={this.handleFieldFocused('installments')}
+              options={this.renderInstallmentOptions()}
+              fullWidth
+              startIcon="dollar"
+              hasValidation
+              hasError={!!this.validFields.installments}
+              name="installments"
+              label="Parcelas"
+              customContainerClass={
+                this.customFormStyleClasses.installmentsFieldContainer
+              }
+              customSelectClass={
+                this.customFormStyleClasses.installmentsFieldSelectContainer
+              }
+              customLabelClass={
+                this.customFormStyleClasses.installmentsFieldLabelContainer
+              }
+            />
           )}
+
+          {this.installmentsConfig.show &&
+            !this.allFieldIsBlank &&
+            !!this.validFields.installments && (
+              <checkout-error-message message={this.validFields.installments} />
+            )}
 
           {this.allFieldIsBlank && (
             <checkout-error-message message="Preencha todos os campos para prosseguir." />

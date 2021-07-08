@@ -245,22 +245,23 @@ $plug-checkout-credit-card-visa-logo: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0
     overflow: hidden;
     position: absolute;
     text-align: left;
+    white-space: nowrap;
     text-overflow: ellipsis;
     text-transform: uppercase;
-    width: 60%;
+    width: 75%;
   }
 
   &__expiry {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     bottom: 13%;
     font-family: $plug-checkout-credit-card-name-font-family;
     font-size: $plug-checkout-credit-card-expiry-font-size;
     font-weight: bold;
     position: absolute;
     left: 10%;
-    width: 20px;
+    width: 100px;
     text-transform: uppercase;
 
     > * {
@@ -272,13 +273,15 @@ $plug-checkout-credit-card-visa-logo: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0
       font-size: $plug-checkout-credit-card-valid-font-size;
       font-weight: bold;
       text-align: right;
+      width: 30px;
     }
 
     &__value {
       font-family: $plug-checkout-credit-card-expiry-font-family;
       font-size: $plug-checkout-credit-card-expiry-font-size;
       font-weight: bold;
-      margin-left: 8px;
+      margin-left: 10px;
+      width: 60px;
     }
   }
 

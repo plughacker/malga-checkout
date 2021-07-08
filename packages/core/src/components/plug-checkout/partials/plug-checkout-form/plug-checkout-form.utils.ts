@@ -1,4 +1,5 @@
 import { ValidationError } from 'yup'
+import { PlugCheckoutFormValues } from '../../plug-checkout.types'
 
 export const defaultCustomStyles = {
   formContainer: '',
@@ -31,4 +32,19 @@ export const normalizeValidationErrors = (errors: ValidationError[]) => {
   )
 
   return normalizedErrors
+}
+
+export const checkIfAllFieldsIsBlank = (data: PlugCheckoutFormValues) => {
+  const fields = Object.entries(data)
+
+  const filteredBlankFieldValues = fields
+    .map(([field, value]) => {
+      const isMaskedField = ['expirationDate', 'cvv'].includes(field)
+      const normalizedValue = field.replace(/\D/g, '').trim()
+
+      return isMaskedField ? normalizedValue : value
+    })
+    .filter((field) => !field || field === 'none')
+
+  return fields.length === filteredBlankFieldValues.length
 }

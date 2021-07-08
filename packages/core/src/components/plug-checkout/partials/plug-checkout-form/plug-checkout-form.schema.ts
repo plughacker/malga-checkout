@@ -62,7 +62,7 @@ export const schema = Yup.object().shape({
     ),
   installments: Yup.string().test(
     'isValidInstallments',
-    'Selecione uma parcela para continuar.',
+    'Selecione uma parcela para prosseguir.',
     (value, context) => {
       if (!context.options.context.hasInstallments) {
         return true

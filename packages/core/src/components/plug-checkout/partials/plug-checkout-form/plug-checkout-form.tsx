@@ -16,7 +16,10 @@ import {
   PlugCheckoutValidFields,
 } from './plug-checkout-form.types'
 
-import { defaultCustomStyles } from './plug-checkout-form.utils'
+import {
+  checkIfAllFieldsIsBlank,
+  defaultCustomStyles,
+} from './plug-checkout-form.utils'
 import { validateCheckout } from './plug-checkout-form.schema'
 
 @Component({
@@ -31,6 +34,7 @@ export class PlugCheckoutForm implements ComponentInterface {
   @Event() formSubmit: EventEmitter<void>
   @Event() fieldChange: EventEmitter<{ field: string; value: string }>
 
+  @State() allFieldIsBlank = false
   @State() validFields: PlugCheckoutValidFields = {
     cardNumber: null,
     cvv: null,
@@ -39,7 +43,29 @@ export class PlugCheckoutForm implements ComponentInterface {
     expirationDate: null,
   }
 
+  private handleSubmitValidation = async () => {
+    const validation = await validateCheckout(this.formValues, {
+      hasInstallments: true,
+    })
+
+    if (!validation.isValid) {
+      this.validFields = { ...this.validFields, ...validation.errors }
+
+      const checkedIfAllFieldsIsBlank = checkIfAllFieldsIsBlank(this.formValues)
+
+      if (checkedIfAllFieldsIsBlank) {
+        this.allFieldIsBlank = true
+      }
+    }
+
+    return validation.isValid
+  }
+
   private handleFieldFocused = (field: string) => () => {
+    if (this.allFieldIsBlank) {
+      this.allFieldIsBlank = false
+    }
+
     this.validFields = { ...this.validFields, [field]: null }
   }
 
@@ -65,9 +91,17 @@ export class PlugCheckoutForm implements ComponentInterface {
     this.fieldChange.emit({ field, value: event.target.value })
   }
 
-  private handleFormSubmit = (event) => {
+  private handleFormSubmit = async (event) => {
     event.preventDefault()
-    this.formSubmit.emit()
+
+    const formIsValid = await this.handleSubmitValidation()
+
+    if (formIsValid) {
+      this.formSubmit.emit()
+      return
+    }
+
+    return
   }
 
   render() {
@@ -110,7 +144,7 @@ export class PlugCheckoutForm implements ComponentInterface {
               this.customFormStyleClasses.creditCardFieldLabelContainer
             }
           />
-          {!!this.validFields.cardNumber && (
+          {!this.allFieldIsBlank && !!this.validFields.cardNumber && (
             <checkout-error-message message={this.validFields.cardNumber} />
           )}
 
@@ -165,11 +199,11 @@ export class PlugCheckoutForm implements ComponentInterface {
               }
             />
           </fieldset>
-          {!!this.validFields.expirationDate && (
+          {!this.allFieldIsBlank && !!this.validFields.expirationDate && (
             <checkout-error-message message={this.validFields.expirationDate} />
           )}
 
-          {!!this.validFields.cvv && (
+          {!this.allFieldIsBlank && !!this.validFields.cvv && (
             <checkout-error-message message={this.validFields.cvv} />
           )}
 
@@ -195,7 +229,7 @@ export class PlugCheckoutForm implements ComponentInterface {
               this.customFormStyleClasses.nameFieldLabelContainer
             }
           />
-          {!!this.validFields.name && (
+          {!this.allFieldIsBlank && !!this.validFields.name && (
             <checkout-error-message message={this.validFields.name} />
           )}
 
@@ -220,8 +254,13 @@ export class PlugCheckoutForm implements ComponentInterface {
               this.customFormStyleClasses.installmentsFieldLabelContainer
             }
           />
-          {!!this.validFields.installments && (
+
+          {!this.allFieldIsBlank && !!this.validFields.installments && (
             <checkout-error-message message={this.validFields.installments} />
+          )}
+
+          {this.allFieldIsBlank && (
+            <checkout-error-message message="Preencha todos os campos para prosseguir." />
           )}
 
           <checkout-button

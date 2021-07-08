@@ -11,64 +11,21 @@
     <script type="module" src="/build/plug-checkout.esm.js"></script>
     <script nomodule src="/build/plug-checkout.js"></script>
     <style>
-      * {
-        font-family: 'Times New Roman', Times, serif;
-      }
-
       main {
         display: flex;
-        align-items: center;
         justify-content: center;
-        flex-direction: column;
-        padding: 50px;
-      }
-
-      section {
-        width: 360px;
-      }
-
-      .custom-button {
-        color: white;
-      }
-
-      .custom-input {
-        color: white;
-      }
-
-      .separator {
-        display: block;
-        margin: 20px 0;
+        align-items: center;
+        height: 100vh;
       }
     </style>
   </head>
   <body>
     <main>
-      <section>
-        <checkout-button full-width disabled="false" icon="lock" full-width="false" label="button" custom-class="custom-button"></checkout-button>
-
-        <span class="separator"></span>
-
-        <checkout-input full-width custom-input-class="custom-input" start-icon="creditCard" has-validation="true" has-error="false" value="Filled" name="user" label="Label" placeholder="Placeholder"></checkout-input>
-
-        <span class="separator"></span>
-
-        <checkout-error-message message="Formato inválido, verifique os dados do cartão."></checkout-error-message>
-
-        <span class="separator"></span>
-
-        <checkout-typography content="test"></checkout-typography>
-      </section>
+      <plug-checkout></plug-checkout>
     </main>
 
     <script>
-      const checkoutButton = document.querySelector('checkout-button')
-      checkoutButton.addEventListener('clicked', () => console.log('checkout-button has been clicked!'))
-
-      const checkoutInput = document.querySelector('checkout-input')
-      checkoutInput.addEventListener('changed', (event) => {
-        console.log('checkout-input has been changed: ', event.target.value);
-        checkoutInput.value = event.target.value
-      })
+      const plugCheckout = document.querySelector('plug-checkout')
     </script>
   </body>
 </html>

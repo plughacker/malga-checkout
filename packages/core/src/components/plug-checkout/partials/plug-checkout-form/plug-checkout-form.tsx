@@ -33,6 +33,7 @@ export class PlugCheckoutForm implements ComponentInterface {
   @Prop() amount: number
   @Prop() installmentsConfig: PlugCheckoutInstallmentsConfig
   @Prop() customFormStyleClasses: PlugCheckoutFormCustomStyleFormClasses
+  @Prop() isLoading: boolean
 
   @Event() formSubmit: EventEmitter<void>
   @Event() fieldChange: EventEmitter<{ field: string; value: string }>
@@ -99,7 +100,7 @@ export class PlugCheckoutForm implements ComponentInterface {
 
     const formIsValid = await this.handleSubmitValidation()
 
-    if (formIsValid) {
+    if (formIsValid && !this.isLoading) {
       this.formSubmit.emit()
       return
     }
@@ -292,6 +293,7 @@ export class PlugCheckoutForm implements ComponentInterface {
 
           <checkout-button
             customClass={this.customFormStyleClasses.submitButton}
+            isLoading={this.isLoading}
             type="submit"
             fullWidth
             icon="lock"

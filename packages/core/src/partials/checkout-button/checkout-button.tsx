@@ -18,9 +18,10 @@ export class CheckoutButton implements ComponentInterface {
   @Prop() customClass?: string
   @Prop() icon?: CheckoutIconNames
   @Prop() label: string
-  @Prop() fullWidth: boolean
+  @Prop() fullWidth?: boolean
   @Prop() disabled? = false
   @Prop() type?: CheckoutButtonType = 'button'
+  @Prop() isLoading?: boolean
 
   @Event() clicked!: EventEmitter<void>
   @Event() focused!: EventEmitter<void>
@@ -56,8 +57,13 @@ export class CheckoutButton implements ComponentInterface {
           onFocus={this.onFocus}
           onBlur={this.onBlur}
         >
-          {!!this.icon && <checkout-icon icon={this.icon} class="icon" />}
-          {this.label}
+          {!!this.icon && (
+            <checkout-icon
+              icon={this.isLoading ? 'spinner' : this.icon}
+              class={this.isLoading ? 'icon icon-loading' : 'icon'}
+            />
+          )}
+          {this.isLoading ? 'Processando' : this.label}
         </button>
       </Host>
     )

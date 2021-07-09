@@ -15,8 +15,9 @@ export namespace Components {
     interface CheckoutButton {
         "customClass"?: string;
         "disabled"?: boolean;
-        "fullWidth": boolean;
+        "fullWidth"?: boolean;
         "icon"?: CheckoutIconNames;
+        "isLoading"?: boolean;
         "label": string;
         "type"?: CheckoutButtonType;
     }
@@ -103,6 +104,7 @@ export namespace Components {
         "customFormStyleClasses": PlugCheckoutFormCustomStyleFormClasses;
         "formValues": PlugCheckoutFormValues;
         "installmentsConfig": PlugCheckoutInstallmentsConfig;
+        "isLoading": boolean;
     }
 }
 declare global {
@@ -178,6 +180,7 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "fullWidth"?: boolean;
         "icon"?: CheckoutIconNames;
+        "isLoading"?: boolean;
         "label"?: string;
         "onBlured"?: (event: CustomEvent<void>) => void;
         "onClicked"?: (event: CustomEvent<void>) => void;
@@ -275,6 +278,7 @@ declare namespace LocalJSX {
         "customFormStyleClasses"?: PlugCheckoutFormCustomStyleFormClasses;
         "formValues"?: PlugCheckoutFormValues;
         "installmentsConfig"?: PlugCheckoutInstallmentsConfig;
+        "isLoading"?: boolean;
         "onFieldChange"?: (event: CustomEvent<{ field: string; value: string }>) => void;
         "onFormSubmit"?: (event: CustomEvent<void>) => void;
     }

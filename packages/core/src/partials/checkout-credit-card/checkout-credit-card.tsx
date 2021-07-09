@@ -109,6 +109,9 @@ export class CheckoutCreditCard implements ComponentInterface {
             }}
           >
             <div class="checkout-credit-card__card--front">
+              <div class="checkout-credit-card__safe-environment">
+                ambiente seguro
+              </div>
               <div class="checkout-credit-card__card__background" />
               <div class="checkout-credit-card__issuer" />
               <div
@@ -154,6 +157,9 @@ export class CheckoutCreditCard implements ComponentInterface {
               <div class="checkout-credit-card__chip" />
             </div>
             <div class="checkout-credit-card__card--back">
+              <div class="checkout-credit-card__safe-environment">
+                ambiente seguro
+              </div>
               <div class="checkout-credit-card__card__background" />
               <div class="checkout-credit-card__stripe" />
               <div class="checkout-credit-card__signature" />

@@ -12,6 +12,9 @@ $plug-checkout-credit-card-cvv-font-size: 14px !default;
 $plug-checkout-credit-card-cvv-font-family: $plug-checkout-credit-card-font !default;
 $plug-checkout-credit-card-cvv-color: #1d1f2a !default;
 
+$plug-checkout-credit-card-safe-environment-color: var(
+  --plug-checkout-color-grey-light
+) !default;
 $plug-checkout-credit-card-text-color: var(
   --plug-checkout-color-grey-light
 ) !default;
@@ -219,6 +222,19 @@ $plug-checkout-credit-card-visa-logo: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0
         height: 40px;
       }
     }
+  }
+
+  &__safe-environment {
+    position: absolute;
+    top: 50%;
+    right: -8%;
+    transform: rotate(-90deg);
+
+    font-family: $plug-checkout-credit-card-font;
+    font-style: normal;
+    font-weight: bold;
+    font-size: $plug-checkout-credit-card-valid-font-size;
+    color: $plug-checkout-credit-card-safe-environment-color;
   }
 
   &__number {

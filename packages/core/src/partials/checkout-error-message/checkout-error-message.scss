@@ -1,7 +1,7 @@
 .checkout-error-message {
   @extend %centralized;
 
-  padding: var(--plug-checkout-spacing-xxs);
+  padding: var(--plug-checkout-spacing-xxs) 0px;
   border-radius: var(--plug-checkout-border-radius-default);
   text-align: center;
   background: var(--plug-checkout-color-warning-light);

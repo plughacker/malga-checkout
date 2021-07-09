@@ -89,14 +89,24 @@ export class CheckoutInput implements ComponentInterface {
 
   private hasValue = (): boolean => this.getValue().length > 0
 
+  private handleSetMask = () => {
+    Inputmask({
+      mask: this.mask,
+      placeholder: ' ',
+      showMaskOnHover: false,
+      showMaskOnFocus: false,
+    }).mask(this.inputRef)
+  }
+
   componentDidLoad() {
     if (this.mask) {
-      Inputmask({
-        mask: this.mask,
-        placeholder: ' ',
-        showMaskOnHover: false,
-        showMaskOnFocus: false,
-      }).mask(this.inputRef)
+      this.handleSetMask()
+    }
+  }
+
+  componentWillUpdate() {
+    if (this.mask) {
+      this.handleSetMask()
     }
   }
 

@@ -36,11 +36,7 @@ export const centsToReal = (amount: number) => {
   const parseToReal = amount / 100
   const [real, cents] = parseToReal.toString().split('.')
 
-  const centsPossibilities = {
-    0: '00',
-    1: `${cents}0`,
-    2: cents,
-  }
+  const centsPossibilities = ['00', `${cents}0`, cents]
   const parsedCents = centsPossibilities[cents ? cents.length : 0]
 
   return `R$${real},${parsedCents}`

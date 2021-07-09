@@ -22,6 +22,7 @@ import {
   checkIfAllFieldsIsBlank,
 } from './plug-checkout-form.utils'
 import { validateCheckout } from './plug-checkout-form.schema'
+import { getCurrentMaskPerIssuer } from '../../../../utils/issuer'
 
 @Component({
   tag: 'plug-checkout-form',
@@ -149,6 +150,7 @@ export class PlugCheckoutForm implements ComponentInterface {
             fullWidth
             inputmode="numeric"
             startIcon="creditCard"
+            mask={getCurrentMaskPerIssuer(this.formValues.cardNumber)}
             hasValidation={this.validFields.cardNumber !== null}
             hasError={!!this.validFields.cardNumber}
             name="cardNumber"

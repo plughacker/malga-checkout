@@ -7,7 +7,7 @@ export const schema = Yup.object().shape({
   cardNumber: Yup.string()
     .required('Número do cartão é obrigatório.')
     .min(14, 'Formato inválido, verifique os dados do cartão.')
-    .max(19, 'Formato inválido, verifique os dados do cartão.')
+    .max(22, 'Formato inválido, verifique os dados do cartão.')
     .test(
       'isNumber',
       'Formato inválido, verifique os dados do cartão.',

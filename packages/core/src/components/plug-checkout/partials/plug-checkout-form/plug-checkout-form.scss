@@ -1,6 +1,6 @@
 .plug-checkout-form__container {
   display: flex;
-  width: 255px;
+  width: 260px;
   margin-top: var(--plug-checkout-spacing-xs);
   margin-left: auto;
   margin-right: auto;
@@ -18,7 +18,7 @@
   }
 
   & > checkout-button button {
-    margin-top: var(--plug-checkout-spacing-lg);
+    margin-top: var(--plug-checkout-spacing-md);
   }
 }
 
@@ -33,10 +33,10 @@
   padding: 0px;
 
   & > checkout-input:first-child {
-    margin-right: var(--plug-checkout-spacing-xxs);
+    margin-right: var(--plug-checkout-spacing-xs);
   }
 
   & > checkout-input:last-child {
-    margin-left: var(--plug-checkout-spacing-xxs);
+    margin-left: var(--plug-checkout-spacing-xs);
   }
 }

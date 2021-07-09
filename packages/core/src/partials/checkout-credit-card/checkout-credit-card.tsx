@@ -1,12 +1,21 @@
-import { Component, Host, h, Prop, Watch, State } from '@stencil/core'
-import Payment from 'payment'
+import {
+  Component,
+  Host,
+  h,
+  Prop,
+  Watch,
+  State,
+  ComponentInterface,
+} from '@stencil/core'
+
+import { getCurrentIssuer, getMaxLengthPerIssuer } from '../../utils/issuer'
 
 @Component({
   tag: 'checkout-credit-card',
   styleUrl: 'checkout-credit-card.scss',
 })
-export class CheckoutCreditCard {
-  @Prop() cvv: string
+export class CheckoutCreditCard implements ComponentInterface {
+  @Prop({ mutable: true }) cvv: string
   @Prop({ mutable: true }) expiry: string
   @Prop() focused: string
   @Prop({ mutable: true }) issuer: string
@@ -17,118 +26,71 @@ export class CheckoutCreditCard {
 
   @State() options: { issuer: string; maxLength: number } = {
     issuer: 'unknow',
-    maxLength: 16,
+    maxLength: 19,
+  }
+
+  @Watch('cvv')
+  protected handleWatchCvv() {
+    this.cvv = this.cvv.trim() || 'CVV'
   }
 
   @Watch('number')
-  protected handleWatchNumberAndPreview() {
-    const { number, options } = this
+  protected handleWatchFillNumber() {
+    const numberWhiteSpaces = this.issuer === 'amex' ? [4, 11] : [4, 9, 14]
 
-    let maxLength = options.maxLength
-    let nextNumber =
-      typeof number === 'number'
-        ? this.number.toString()
-        : this.number.replace(/[A-Za-z]| /g, '')
+    const parsedNumberStringToArray = this.number
+      ? this.number.trim().split('')
+      : []
 
-    if (isNaN(parseInt(nextNumber, 10))) {
-      nextNumber = ''
-    }
+    const maxLengthPerIssuer = getMaxLengthPerIssuer(this.issuer)
+    const totalUnfilledCharacters =
+      maxLengthPerIssuer - parsedNumberStringToArray.length
+    const autoFill = Array.from({ length: totalUnfilledCharacters }).fill('•')
 
-    if (maxLength > 16) {
-      maxLength = nextNumber.length <= 16 ? 16 : maxLength
-    }
+    const cardNumber = [...parsedNumberStringToArray, ...autoFill]
+    const newCardNumber = cardNumber.reduce((accumulator, current, index) => {
+      const number = numberWhiteSpaces.includes(index) ? ' ' : current
 
-    if (nextNumber.length > maxLength) {
-      nextNumber = nextNumber.slice(0, maxLength)
-    }
+      return `${accumulator}${number}`
+    }, '')
 
-    while (nextNumber.length < maxLength) {
-      nextNumber += '•'
-    }
-
-    if (['amex', 'dinersclub'].includes(this.issuer)) {
-      const format = [0, 4, 10]
-      const limit = [4, 6, 5]
-      nextNumber = `${nextNumber.substr(
-        format[0],
-        limit[0],
-      )} ${nextNumber.substr(format[1], limit[1])} ${nextNumber.substr(
-        format[2],
-        limit[2],
-      )}`
-    } else if (nextNumber.length > 16) {
-      const format = [0, 4, 8, 12]
-      const limit = [4, 7]
-      nextNumber = `${nextNumber.substr(
-        format[0],
-        limit[0],
-      )} ${nextNumber.substr(format[1], limit[0])} ${nextNumber.substr(
-        format[2],
-        limit[0],
-      )} ${nextNumber.substr(format[3], limit[1])}`
-    } else {
-      for (let i = 1; i < maxLength / 4; i++) {
-        const spaceIndex = i * 4 + (i - 1)
-        nextNumber = `${nextNumber.slice(0, spaceIndex)} ${nextNumber.slice(
-          spaceIndex,
-        )}`
-      }
-    }
-
-    this.number = nextNumber
-  }
-
-  @Watch('expiry')
-  protected handleWatchExpiry() {
-    const { expiry = '' } = this
-    const date = expiry
-    let month = ''
-    let year = ''
-
-    if (date.includes('/')) {
-      month = date.split('/')[0]
-      year = date.split('/')[1]
-    } else if (date.length) {
-      month = date.substr(0, 2)
-      year = date.substr(2, 6)
-    }
-
-    while (month.length < 2) {
-      month += '•'
-    }
-
-    if (year.length > 2) {
-      year = year.substr(2, 4)
-    }
-
-    while (year.length < 2) {
-      year += '•'
-    }
-
-    this.expiry = `${month}/${year}`
+    this.number = newCardNumber as string
   }
 
   @Watch('number')
-  protected handleWatchNumber() {
-    const { number } = this
-    const issuer = Payment.fns.cardType(number) || 'unknown'
+  protected handleWatchFillIssuerAndOptions() {
+    const issuer = getCurrentIssuer(this.number)
+    const maxLength = getMaxLengthPerIssuer(issuer)
 
-    const maxLengthPerIssuer = {
-      amex: 15,
-      dinersclub: 14,
-      hipercard: 19,
-      mastercard: 19,
-      visa: 19,
-    }
-
-    const maxLength = maxLengthPerIssuer[issuer] || 16
+    this.issuer = issuer
 
     this.options = {
       issuer,
       maxLength,
     }
+  }
 
-    this.issuer = issuer
+  @Watch('expiry')
+  protected handleWatchExpiry() {
+    const [currentMonth, currentYear] = this.expiry.split('/')
+
+    const month = currentMonth ? currentMonth.trim() : ''
+    const year = currentYear ? currentYear.trim() : ''
+
+    const monthPossible = ['MM', `${month}M`, month]
+    const yearPossible = ['AA', `${year}A`, year]
+
+    const parsedMonth = monthPossible[month.length]
+    const parsedYear = yearPossible[year.length]
+
+    this.expiry = `${parsedMonth}/${parsedYear}`
+  }
+
+  componentWillLoad() {
+    this.handleWatchFillNumber()
+    this.handleWatchFillIssuerAndOptions()
+    this.handleWatchExpiry()
+    this.handleWatchCvv()
   }
 
   render() {

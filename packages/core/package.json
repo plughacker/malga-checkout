@@ -2,7 +2,11 @@
   "name": "@plug-checkout/core",
   "version": "0.0.1",
   "description": "Core components for Plug Checkout",
-  "repository": "git@github.com:plughacker/plug-checkout.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plughacker/plug-checkout.git",
+    "directory": "packages/core"
+  },
   "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
   "bugs": {
     "url": "https://github.com/plughacker/plug-checkout/issues"
@@ -56,5 +60,6 @@
     "inputmask": "^5.0.6",
     "payment": "2.3.0",
     "yup": "^0.32.9"
-  }
+  },
+  "homepage": "https://github.com/plughacker/plug-checkout#readme"
 }

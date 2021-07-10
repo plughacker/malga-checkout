@@ -1,10 +1,13 @@
 {
   "name": "@plug-checkout/angular",
   "version": "0.0.1",
-  "private": true,
   "description": "Angular specific wrapper for Plug Checkout core components",
   "license": "MIT",
-  "repository": "git@github.com:plughacker/plug-checkout.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plughacker/plug-checkout.git",
+    "directory": "packages/angular"
+  },
   "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
   "bugs": {
     "url": "https://github.com/plughacker/plug-checkout/issues"
@@ -27,15 +30,11 @@
     "lint": "yarn lint.ts",
     "lint.ts": "tslint --project .",
     "lint.fix": "tslint --project . --fix",
-    "prerelease": "yarn validate && np prerelease --yolo --any-branch --tag next",
     "test": "jest",
     "tsc": "tsc -p .",
-    "validate": "npm i && yarn lint && yarn test && yarn build",
-    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by NGCC. This is not allowed.\\nPlease delete and rebuild the package, without compiling with NGCC, before attempting to publish.\\nNote that NGCC may have been run by importing this package into another project that is being built with Ivy enabled.\\n')\" && exit 1"
+    "validate": "npm i && yarn lint && yarn test && yarn build"
   },
-  "module_ivy_ngcc": "__ivy_ngcc__/dist/fesm5.js",
   "module": "dist/fesm5.js",
-  "main_ivy_ngcc": "__ivy_ngcc__/dist/fesm5.js",
   "main": "dist/fesm5.js",
   "types": "dist/core.d.ts",
   "files": [

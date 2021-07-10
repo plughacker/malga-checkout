@@ -17,6 +17,7 @@
 # production
 **/dist
 **/dist-transpiled
+**/__ivy_ngcc__
 
 # misc
 **/DS_Store

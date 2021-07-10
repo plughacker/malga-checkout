@@ -16,9 +16,12 @@
     "prerelease": "yarn validate && np prerelease --yolo --any-branch --tag next",
     "test": "jest",
     "tsc": "tsc -p .",
-    "validate": "npm i && yarn lint && yarn test && yarn build"
+    "validate": "npm i && yarn lint && yarn test && yarn build",
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by NGCC. This is not allowed.\\nPlease delete and rebuild the package, without compiling with NGCC, before attempting to publish.\\nNote that NGCC may have been run by importing this package into another project that is being built with Ivy enabled.\\n')\" && exit 1"
   },
+  "module_ivy_ngcc": "__ivy_ngcc__/dist/fesm5.js",
   "module": "dist/fesm5.js",
+  "main_ivy_ngcc": "__ivy_ngcc__/dist/fesm5.js",
   "main": "dist/fesm5.js",
   "types": "dist/core.d.ts",
   "files": [
@@ -73,5 +76,10 @@
     "setupFilesAfterEnv": [
       "<rootDir>/src/setupJest.ts"
     ]
+  },
+  "__processed_by_ivy_ngcc__": {
+    "main": "12.0.5",
+    "module": "12.0.5",
+    "typings": "12.0.5"
   }
 }

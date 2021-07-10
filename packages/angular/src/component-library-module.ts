@@ -1,11 +1,31 @@
 import { NgModule } from '@angular/core'
 import { defineCustomElements } from '@plug-checkout/core/loader'
 
-import {} from './directives/proxies'
+import {
+  PlugCheckout,
+  PlugCheckoutForm,
+  CheckoutButton,
+  CheckoutCreditCard,
+  CheckoutErrorMessage,
+  CheckoutIcon,
+  CheckoutInput,
+  CheckoutSelect,
+  CheckoutTypography,
+} from './directives/proxies'
 
 defineCustomElements(window)
 
-const DECLARATIONS = []
+const DECLARATIONS = [
+  PlugCheckout,
+  PlugCheckoutForm,
+  CheckoutButton,
+  CheckoutCreditCard,
+  CheckoutErrorMessage,
+  CheckoutIcon,
+  CheckoutInput,
+  CheckoutSelect,
+  CheckoutTypography,
+]
 
 @NgModule({
   declarations: DECLARATIONS,
@@ -13,4 +33,4 @@ const DECLARATIONS = []
   imports: [],
   providers: [],
 })
-export class ComponentLibraryModule {}
+export class PlugCheckoutModule {}

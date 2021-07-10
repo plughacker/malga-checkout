@@ -4,6 +4,20 @@
   "version": "0.0.1",
   "private": true,
   "description": "React specific wrapper for Plug Checkout core components",
+  "repository": "https://github.com/plughacker/plug-checkout",
+  "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
+  "bugs": {
+    "url": "https://github.com/plughacker/plug-checkout/issues"
+  },
+  "keywords": [
+    "payments",
+    "plug",
+    "checkout",
+    "stenciljs",
+    "react",
+    "webcomponents",
+    "web-components"
+  ],
   "license": "MIT",
   "scripts": {
     "test": "jest",

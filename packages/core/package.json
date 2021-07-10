@@ -2,6 +2,22 @@
   "name": "@plug-checkout/core",
   "version": "0.0.1",
   "description": "Core components for Plug Checkout",
+  "repository": "https://github.com/plughacker/plug-checkout",
+  "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
+  "bugs": {
+    "url": "https://github.com/plughacker/plug-checkout/issues"
+  },
+  "keywords": [
+    "payments",
+    "plug",
+    "checkout",
+    "stenciljs",
+    "react",
+    "angular",
+    "vue",
+    "webcomponents",
+    "web-components"
+  ],
   "license": "MIT",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",

@@ -4,6 +4,20 @@
   "version": "0.0.1",
   "private": true,
   "description": "Vue specific wrapper for Plug Checkout core components",
+  "repository": "https://github.com/plughacker/plug-checkout",
+  "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
+  "bugs": {
+    "url": "https://github.com/plughacker/plug-checkout/issues"
+  },
+  "keywords": [
+    "payments",
+    "plug",
+    "checkout",
+    "vue",
+    "stenciljs",
+    "webcomponents",
+    "web-components"
+  ],
   "scripts": {
     "test": "jest",
     "build": "yarn clean && yarn compile",

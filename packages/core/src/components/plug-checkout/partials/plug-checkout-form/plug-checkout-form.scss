@@ -1,0 +1,42 @@
+.plug-checkout-form__container {
+  display: flex;
+  width: 260px;
+  margin-top: var(--plug-checkout-spacing-xs);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.plug-checkout-form__form {
+  margin: 0 auto;
+
+  & > checkout-input {
+    margin-top: var(--plug-checkout-spacing-xs);
+  }
+
+  & > checkout-select {
+    margin-top: var(--plug-checkout-spacing-xs);
+  }
+
+  & > checkout-button button {
+    margin-top: var(--plug-checkout-spacing-md);
+  }
+}
+
+.plug-checkout-form__row-fields {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: none;
+  margin: 0px;
+  margin-top: var(--plug-checkout-spacing-xs);
+  margin-bottom: var(--plug-checkout-spacing-xs);
+  padding: 0px;
+
+  & > checkout-input:first-child {
+    margin-right: var(--plug-checkout-spacing-xs);
+  }
+
+  & > checkout-input:last-child {
+    margin-left: var(--plug-checkout-spacing-xs);
+  }
+}

@@ -1,0 +1,79 @@
+.checkout-button__container {
+  &--full-width {
+    width: 100%;
+  }
+}
+
+.checkout-button__native {
+  @extend %reset;
+  @extend %centralized;
+  @extend %typography-button;
+  @include transition($element: background);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+
+  height: 40px;
+  min-width: var(--plug-checkout-size-min-width);
+  padding: 0 var(--plug-checkout-spacing-sm);
+  border: 0;
+  border-radius: var(--plug-checkout-border-radius-default);
+  background: var(--plug-checkout-color-brand-dark);
+
+  letter-spacing: 1.25px;
+  text-align: center;
+  color: var(--plug-checkout-color-accent-light);
+
+  &:hover {
+    background: var(--plug-checkout-color-brand-middle);
+  }
+
+  &:focus {
+    @include border(
+      $size: 2px,
+      $color: var(--plug-checkout-color-brand-accent-light)
+    );
+  }
+
+  &:disabled {
+    background: var(--plug-checkout-color-accent-normal);
+    color: var(--plug-checkout-color-accent-middle);
+    cursor: not-allowed;
+
+    > .icon {
+      color: var(--plug-checkout-color-accent-middle);
+    }
+  }
+
+  & > .icon {
+    @include square($size: var(--plug-checkout-spacing-sm));
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    margin-top: 3px;
+
+    &-loading {
+      animation: spin 1.5s linear infinite;
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    }
+  }
+
+  &--full-width {
+    width: 100%;
+  }
+}

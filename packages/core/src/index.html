@@ -11,28 +11,21 @@
     <script type="module" src="/build/plug-checkout.esm.js"></script>
     <script nomodule src="/build/plug-checkout.js"></script>
     <style>
-      body {
-        padding: 50px;
-      };
-
-      .custom-button {
-        color: white;
+      main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
       }
     </style>
   </head>
   <body>
-    <plug-button disabled="false" has-icon full-width="false" label="button" custom-class="custom-button"></plug-button>
-    <plug-input value="tega" name="user" label="Label" placeholder="Placeholder"></plug-input>
+    <main>
+      <plug-checkout></plug-checkout>
+    </main>
 
     <script>
-      const plugButton = document.querySelector('plug-button')
-      plugButton.addEventListener('clicked', () => console.log('gg easy'))
-
-      const plugInput = document.querySelector('plug-input')
-      plugInput.addEventListener('changed', (event) => {
-        console.log('event', event.target.value);
-        plugInput.value = event.target.value
-      })
+      const plugCheckout = document.querySelector('plug-checkout')
     </script>
   </body>
 </html>

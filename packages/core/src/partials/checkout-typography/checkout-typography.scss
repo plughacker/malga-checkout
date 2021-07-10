@@ -1,0 +1,31 @@
+$typography-variantions-map: (
+  'header5',
+  'header6',
+  'subtitle1',
+  'subtitle2',
+  'body1',
+  'body2',
+  'button',
+  'label'
+);
+
+$typography-colors-map: (
+  'white': var(--plug-checkout-color-accent-light),
+  'dark': var(--plug-checkout-color-grey-dark),
+  'warning': var(--plug-checkout-color-warning-middle),
+);
+
+.checkout-typography {
+  @each $variation in $typography-variantions-map {
+    &--#{$variation} {
+      @extend %reset;
+      @include typography($value: $variation);
+    }
+  }
+
+  @each $key, $color in $typography-colors-map {
+    &--#{$key} {
+      color: $color;
+    }
+  }
+}

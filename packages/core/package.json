@@ -35,5 +35,10 @@
     "puppeteer": "5.5.0",
     "stencil-inline-svg": "^1.1.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "axios": "^0.21.1",
+    "inputmask": "^5.0.6",
+    "payment": "2.3.0",
+    "yup": "^0.32.9"
+  }
 }

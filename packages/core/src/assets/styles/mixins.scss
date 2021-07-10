@@ -1,0 +1,16 @@
+@mixin transition(
+  $element: all,
+  $duration: var(--plug-checkout-transition-default),
+  $type: ease
+) {
+  transition: $element $duration $type;
+}
+
+@mixin border($size: 1px, $type: solid, $color) {
+  border: $size $type $color;
+}
+
+@mixin square($size) {
+  height: $size;
+  width: $size;
+}

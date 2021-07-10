@@ -1,0 +1,78 @@
+%typography-header5 {
+  font-family: var(--plug-checkout-typography-family);
+  font-size: 24px;
+  font-style: normal;
+  font-weight: normal;
+}
+
+%typography-header6 {
+  font-family: var(--plug-checkout-typography-family);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: bold;
+}
+
+%typography-subtitle1 {
+  font-family: var(--plug-checkout-typography-family);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: bold;
+}
+
+%typography-subtitle2 {
+  font-family: var(--plug-checkout-typography-family);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: bold;
+}
+
+%typography-body1 {
+  font-family: var(--plug-checkout-typography-family);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
+}
+
+%typography-body2 {
+  font-family: var(--plug-checkout-typography-family);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: normal;
+}
+
+%typography-button {
+  font-family: var(--plug-checkout-typography-family);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+%typography-label {
+  font-family: var(--plug-checkout-typography-family);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: normal;
+}
+
+@mixin typography($value) {
+  @if $value == 'header5' {
+    @extend %typography-header5;
+  } @else if $value == 'header6' {
+    @extend %typography-header6;
+  } @else if $value == 'subtitle1' {
+    @extend %typography-subtitle1;
+  } @else if $value == 'subtitle2' {
+    @extend %typography-subtitle2;
+  } @else if $value == 'body1' {
+    @extend %typography-body1;
+  } @else if $value == 'body2' {
+    @extend %typography-body2;
+  } @else if $value == 'button' {
+    @extend %typography-button;
+  } @else if $value == 'label' {
+    @extend %typography-label;
+  } @else {
+    @extend %typography-body1;
+  }
+}

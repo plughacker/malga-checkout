@@ -10,7 +10,6 @@ import { checkoutOneShotRequest } from './plug-checkout.service'
 
 @Component({
   tag: 'plug-checkout',
-  styleUrl: 'plug-checkout.scss',
 })
 export class PlugCheckout {
   @Prop() clientId: string
@@ -21,11 +20,13 @@ export class PlugCheckout {
   @Prop() capture = false
   @Prop() installmentsConfig: PlugCheckoutInstallmentsConfig = {
     show: true,
-    quantity: 0,
+    quantity: 1,
   }
   @Prop() customFormStyleClasses?: PlugCheckoutFormCustomStyleFormClasses =
     defaultCustomStyles
 
+  @State() isLoading = false
+  @State() currentFieldChanged = 'cardNumber'
   @State() formValues: PlugCheckoutFormValues = {
     cardNumber: '',
     expirationDate: '',
@@ -33,7 +34,6 @@ export class PlugCheckout {
     name: '',
     installments: 'none',
   }
-  @State() currentFieldChanged = 'cardNumber'
 
   private handleSetFormValues = (field: string, value: string) => {
     this.formValues = { ...this.formValues, [field]: value }
@@ -41,6 +41,8 @@ export class PlugCheckout {
   }
 
   private handleFormSubmit = async () => {
+    this.isLoading = true
+
     try {
       const data = {
         card: this.formValues,
@@ -59,6 +61,8 @@ export class PlugCheckout {
     } catch (error) {
       console.log(error)
     }
+
+    this.isLoading = false
   }
 
   render() {
@@ -72,17 +76,18 @@ export class PlugCheckout {
           number={this.formValues.cardNumber}
         />
         <plug-checkout-form
+          isLoading={this.isLoading}
+          amount={this.amount}
+          installmentsConfig={this.installmentsConfig}
+          formValues={this.formValues}
+          onFormSubmit={() => this.handleFormSubmit()}
+          onFieldChange={({ detail }) => {
+            this.handleSetFormValues(detail.field, detail.value)
+          }}
           customFormStyleClasses={{
             ...defaultCustomStyles,
             ...this.customFormStyleClasses,
           }}
-          amount={this.amount}
-          installmentsConfig={this.installmentsConfig}
-          formValues={this.formValues}
-          onFieldChange={({ detail }) => {
-            this.handleSetFormValues(detail.field, detail.value)
-          }}
-          onFormSubmit={() => this.handleFormSubmit()}
         />
       </Host>
     )

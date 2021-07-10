@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "private": true,
   "description": "Vue specific wrapper for Plug Checkout core components",
-  "repository": "https://github.com/plughacker/plug-checkout",
+  "repository": "git@github.com:plughacker/plug-checkout.git",
   "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
   "bugs": {
     "url": "https://github.com/plughacker/plug-checkout/issues"

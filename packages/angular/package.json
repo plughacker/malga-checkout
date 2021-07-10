@@ -4,7 +4,7 @@
   "private": true,
   "description": "Angular specific wrapper for Plug Checkout core components",
   "license": "MIT",
-  "repository": "https://github.com/plughacker/plug-checkout",
+  "repository": "git@github.com:plughacker/plug-checkout.git",
   "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
   "bugs": {
     "url": "https://github.com/plughacker/plug-checkout/issues"

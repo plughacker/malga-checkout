@@ -1,6 +1,6 @@
 {
   "name": "@plug-checkout/angular",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Angular specific wrapper for Plug Checkout core components",
   "license": "MIT",
   "repository": {
@@ -41,7 +41,7 @@
     "dist/"
   ],
   "dependencies": {
-    "@plug-checkout/core": "0.0.2",
+    "@plug-checkout/core": "0.0.3",
     "tslib": "^1.9.3"
   },
   "peerDependencies": {

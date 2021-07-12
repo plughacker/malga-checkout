@@ -37,8 +37,12 @@ export const schema = Yup.object().shape({
         const today = new Date()
         const months = Array.from({ length: 12 }).map((_, index) => index)
 
-        const isValidMonth =
+        const isValidMonthOfCurrentYear =
           parsedMonth >= today.getMonth() && months.includes(parsedMonth)
+        const isValidMonth =
+          parsedYear === today.getFullYear()
+            ? isValidMonthOfCurrentYear
+            : months.includes(parsedMonth)
         const isValidYear = parsedYear >= today.getFullYear()
 
         return isValidMonth && isValidYear

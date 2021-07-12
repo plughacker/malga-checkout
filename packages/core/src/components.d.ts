@@ -10,7 +10,7 @@ import { CheckoutButtonType } from "./partials/checkout-button/checkout-button.t
 import { CheckoutInputChangeEvent, CheckoutInputMode, CheckoutInputType, CheckoutInputValue } from "./partials/checkout-input/checkout-input.types";
 import { CheckoutSelectChangeEvent, CheckoutSelectOptions, CheckoutSelectValue } from "./partials/checkout-select/checkout-select.types";
 import { CheckoutTypographyColor, CheckoutTypographyVariation } from "./partials/checkout-typography/checkout-typography.types";
-import { PlugCheckoutFormCustomStyleFormClasses, PlugCheckoutFormValues, PlugCheckoutInstallmentsConfig } from "./components/plug-checkout/plug-checkout.types";
+import { PlugCheckoutFormCustomStyleFormClasses, PlugCheckoutFormValues, PlugCheckoutInstallmentsConfig, PlugCheckoutOneShotError, PlugCheckoutOneShotSuccess } from "./components/plug-checkout/plug-checkout.types";
 export namespace Components {
     interface CheckoutButton {
         "customClass"?: string;
@@ -97,6 +97,7 @@ export namespace Components {
         "customFormStyleClasses"?: PlugCheckoutFormCustomStyleFormClasses;
         "installmentsConfig": PlugCheckoutInstallmentsConfig;
         "merchantId": string;
+        "sandbox": boolean;
         "statementDescriptor": string;
     }
     interface PlugCheckoutForm {
@@ -271,6 +272,9 @@ declare namespace LocalJSX {
         "customFormStyleClasses"?: PlugCheckoutFormCustomStyleFormClasses;
         "installmentsConfig"?: PlugCheckoutInstallmentsConfig;
         "merchantId"?: string;
+        "onPaymentFailed"?: (event: CustomEvent<{ error: PlugCheckoutOneShotError }>) => void;
+        "onPaymentSuccess"?: (event: CustomEvent<{ data: PlugCheckoutOneShotSuccess }>) => void;
+        "sandbox"?: boolean;
         "statementDescriptor"?: string;
     }
     interface PlugCheckoutForm {

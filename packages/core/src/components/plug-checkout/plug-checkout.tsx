@@ -1,10 +1,20 @@
-import { Component, Host, h, State, Prop } from '@stencil/core'
+import {
+  Component,
+  Host,
+  h,
+  State,
+  Prop,
+  Event,
+  EventEmitter,
+} from '@stencil/core'
 import { defaultCustomStyles } from './plug-checkout.utils'
 
 import {
   PlugCheckoutFormCustomStyleFormClasses,
   PlugCheckoutFormValues,
   PlugCheckoutInstallmentsConfig,
+  PlugCheckoutOneShotError,
+  PlugCheckoutOneShotSuccess,
 } from './plug-checkout.types'
 import { checkoutOneShotRequest } from './plug-checkout.service'
 
@@ -17,6 +27,7 @@ export class PlugCheckout {
   @Prop() merchantId: string
   @Prop() statementDescriptor: string
   @Prop() amount: number
+  @Prop() sandbox = false
   @Prop() capture = false
   @Prop() installmentsConfig: PlugCheckoutInstallmentsConfig = {
     show: true,
@@ -24,6 +35,9 @@ export class PlugCheckout {
   }
   @Prop() customFormStyleClasses?: PlugCheckoutFormCustomStyleFormClasses =
     defaultCustomStyles
+
+  @Event() paymentSuccess!: EventEmitter<{ data: PlugCheckoutOneShotSuccess }>
+  @Event() paymentFailed!: EventEmitter<{ error: PlugCheckoutOneShotError }>
 
   @State() isLoading = false
   @State() currentFieldChanged = 'cardNumber'
@@ -43,24 +57,24 @@ export class PlugCheckout {
   private handleFormSubmit = async () => {
     this.isLoading = true
 
-    try {
-      const data = {
-        card: this.formValues,
-        merchantId: this.merchantId,
-        amount: this.amount,
-        statementDescriptor: this.statementDescriptor,
-        capture: this.capture,
-      }
-
-      const responseCheckout = await checkoutOneShotRequest(
-        this.apiKey,
-        this.clientId,
-        data,
-      )
-      console.log(responseCheckout)
-    } catch (error) {
-      console.log(error)
+    const data = {
+      card: this.formValues,
+      merchantId: this.merchantId,
+      amount: this.amount,
+      statementDescriptor: this.statementDescriptor,
+      capture: this.capture,
     }
+
+    await checkoutOneShotRequest({
+      apiKey: this.apiKey,
+      clientId: this.clientId,
+      sandbox: this.sandbox,
+      onPaymentSuccess: (data: PlugCheckoutOneShotSuccess) =>
+        this.paymentSuccess.emit({ data }),
+      onPaymentFailed: (error: PlugCheckoutOneShotError) =>
+        this.paymentFailed.emit({ error }),
+      data,
+    })
 
     this.isLoading = false
   }

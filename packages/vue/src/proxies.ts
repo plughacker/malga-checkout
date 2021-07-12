@@ -118,9 +118,12 @@ export const PlugCheckout = /*@__PURE__*/ defineContainer<JSX.PlugCheckout>('plu
   'merchantId',
   'statementDescriptor',
   'amount',
+  'sandbox',
   'capture',
   'installmentsConfig',
-  'customFormStyleClasses'
+  'customFormStyleClasses',
+  'paymentSuccess',
+  'paymentFailed'
 ]);
 
 

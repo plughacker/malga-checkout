@@ -2,18 +2,29 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
-| Property                 | Attribute              | Description | Type                                     | Default                        |
-| ------------------------ | ---------------------- | ----------- | ---------------------------------------- | ------------------------------ |
-| `amount`                 | `amount`               |             | `number`                                 | `undefined`                    |
-| `apiKey`                 | `api-key`              |             | `string`                                 | `undefined`                    |
-| `capture`                | `capture`              |             | `boolean`                                | `false`                        |
-| `clientId`               | `client-id`            |             | `string`                                 | `undefined`                    |
-| `customFormStyleClasses` | --                     |             | `PlugCheckoutFormCustomStyleFormClasses` | `defaultCustomStyles`          |
-| `installmentsConfig`     | --                     |             | `PlugCheckoutInstallmentsConfig`         | `{ show: true, quantity: 1, }` |
-| `merchantId`             | `merchant-id`          |             | `string`                                 | `undefined`                    |
-| `statementDescriptor`    | `statement-descriptor` |             | `string`                                 | `undefined`                    |
+| Property                 | Attribute              | Description | Type                                     | Default                                  |
+| ------------------------ | ---------------------- | ----------- | ---------------------------------------- | ---------------------------------------- |
+| `amount`                 | `amount`               |             | `number`                                 | `undefined`                              |
+| `apiKey`                 | `api-key`              |             | `string`                                 | `undefined`                              |
+| `capture`                | `capture`              |             | `boolean`                                | `false`                                  |
+| `clientId`               | `client-id`            |             | `string`                                 | `undefined`                              |
+| `customFormStyleClasses` | --                     |             | `PlugCheckoutFormCustomStyleFormClasses` | `defaultCustomStyles`                    |
+| `installmentsConfig`     | --                     |             | `PlugCheckoutInstallmentsConfig`         | `{     show: true,     quantity: 1,   }` |
+| `merchantId`             | `merchant-id`          |             | `string`                                 | `undefined`                              |
+| `sandbox`                | `sandbox`              |             | `boolean`                                | `false`                                  |
+| `statementDescriptor`    | `statement-descriptor` |             | `string`                                 | `undefined`                              |
+
+
+## Events
+
+| Event            | Description | Type                                                 |
+| ---------------- | ----------- | ---------------------------------------------------- |
+| `paymentFailed`  |             | `CustomEvent<{ error: PlugCheckoutOneShotError; }>`  |
+| `paymentSuccess` |             | `CustomEvent<{ data: PlugCheckoutOneShotSuccess; }>` |
+
 
 ## Dependencies
 
@@ -23,7 +34,6 @@
 - [plug-checkout-form](./partials/plug-checkout-form)
 
 ### Graph
-
 ```mermaid
 graph TD;
   plug-checkout --> checkout-credit-card
@@ -39,6 +49,6 @@ graph TD;
   style plug-checkout fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

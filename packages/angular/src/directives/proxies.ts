@@ -166,22 +166,28 @@ export class CheckoutTypography {
   }
 }
 
-
+import { PlugCheckout as IPlugCheckout } from '@plug-checkout/core/dist/types/components/plug-checkout/plug-checkout';
 export declare interface PlugCheckout extends Components.PlugCheckout {}
 @ProxyCmp({
-  inputs: ['amount', 'apiKey', 'capture', 'clientId', 'customFormStyleClasses', 'installmentsConfig', 'merchantId', 'statementDescriptor']
+  inputs: ['amount', 'apiKey', 'capture', 'clientId', 'customFormStyleClasses', 'installmentsConfig', 'merchantId', 'sandbox', 'statementDescriptor']
 })
 @Component({
   selector: 'plug-checkout',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['amount', 'apiKey', 'capture', 'clientId', 'customFormStyleClasses', 'installmentsConfig', 'merchantId', 'statementDescriptor']
+  inputs: ['amount', 'apiKey', 'capture', 'clientId', 'customFormStyleClasses', 'installmentsConfig', 'merchantId', 'sandbox', 'statementDescriptor'],
+  outputs: ['paymentSuccess', 'paymentFailed']
 })
 export class PlugCheckout {
+  /**  */
+  paymentSuccess!: IPlugCheckout['paymentSuccess'];
+  /**  */
+  paymentFailed!: IPlugCheckout['paymentFailed'];
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['paymentSuccess', 'paymentFailed']);
   }
 }
 

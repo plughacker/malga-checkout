@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property                 | Attribute    | Description | Type                                     | Default     |
@@ -12,6 +13,7 @@
 | `installmentsConfig`     | --           |             | `PlugCheckoutInstallmentsConfig`         | `undefined` |
 | `isLoading`              | `is-loading` |             | `boolean`                                | `undefined` |
 
+
 ## Events
 
 | Event         | Description | Type                                             |
@@ -19,11 +21,12 @@
 | `fieldChange` |             | `CustomEvent<{ field: string; value: string; }>` |
 | `formSubmit`  |             | `CustomEvent<void>`                              |
 
+
 ## Dependencies
 
 ### Used by
 
-- [plug-checkout](../..)
+ - [plug-checkout](../..)
 
 ### Depends on
 
@@ -33,7 +36,6 @@
 - [checkout-button](../../../../partials/checkout-button)
 
 ### Graph
-
 ```mermaid
 graph TD;
   plug-checkout-form --> checkout-input
@@ -48,6 +50,6 @@ graph TD;
   style plug-checkout-form fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

@@ -75,12 +75,10 @@ export interface PlugCheckoutOneShotSuccess {
 }
 
 export interface PlugCheckoutOneShotError {
-  error: {
-    type: string
-    message: string
-    code?: number
-    declined_code?: string
-  }
+  type: string
+  message: string
+  code?: number
+  declined_code?: string
 }
 
 export interface PlugCheckoutOneShotRequest {

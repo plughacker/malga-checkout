@@ -91,12 +91,12 @@ export namespace Components {
     }
     interface PlugCheckout {
         "amount": number;
-        "apiKey": string;
         "capture": boolean;
         "clientId": string;
         "customFormStyleClasses"?: PlugCheckoutFormCustomStyleFormClasses;
         "installmentsConfig": PlugCheckoutInstallmentsConfig;
         "merchantId": string;
+        "publicKey": string;
         "sandbox": boolean;
         "statementDescriptor": string;
     }
@@ -266,7 +266,6 @@ declare namespace LocalJSX {
     }
     interface PlugCheckout {
         "amount"?: number;
-        "apiKey"?: string;
         "capture"?: boolean;
         "clientId"?: string;
         "customFormStyleClasses"?: PlugCheckoutFormCustomStyleFormClasses;
@@ -274,6 +273,7 @@ declare namespace LocalJSX {
         "merchantId"?: string;
         "onPaymentFailed"?: (event: CustomEvent<{ error: PlugCheckoutOneShotError }>) => void;
         "onPaymentSuccess"?: (event: CustomEvent<{ data: PlugCheckoutOneShotSuccess }>) => void;
+        "publicKey"?: string;
         "sandbox"?: boolean;
         "statementDescriptor"?: string;
     }

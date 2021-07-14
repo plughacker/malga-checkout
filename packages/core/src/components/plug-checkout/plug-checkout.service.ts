@@ -58,10 +58,8 @@ export const checkoutOneShotRequest = async ({
 
     if (['failed', 'charged_back'].includes(checkoutResponse.data.status)) {
       onPaymentFailed({
-        error: {
-          type: checkoutResponse.data.status,
-          message: 'Your transaction cannot be completed',
-        },
+        type: checkoutResponse.data.status,
+        message: 'Your transaction cannot be completed',
       })
 
       return
@@ -69,6 +67,6 @@ export const checkoutOneShotRequest = async ({
 
     onPaymentSuccess(checkoutResponse.data)
   } catch (error) {
-    onPaymentFailed({ error: error.response.data.error })
+    onPaymentFailed(error.response.data.error)
   }
 }

@@ -84,7 +84,7 @@ export interface PlugCheckoutOneShotError {
 }
 
 export interface PlugCheckoutOneShotRequest {
-  apiKey: string
+  publicKey: string
   clientId: string
   sandbox: boolean
   onPaymentSuccess: (data: PlugCheckoutOneShotSuccess) => CustomEvent<{ data }>

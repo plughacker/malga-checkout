@@ -23,7 +23,7 @@ import { checkoutOneShotRequest } from './plug-checkout.service'
 })
 export class PlugCheckout {
   @Prop() clientId: string
-  @Prop() apiKey: string
+  @Prop() publicKey: string
   @Prop() merchantId: string
   @Prop() statementDescriptor: string
   @Prop() amount: number
@@ -66,7 +66,7 @@ export class PlugCheckout {
     }
 
     await checkoutOneShotRequest({
-      apiKey: this.apiKey,
+      publicKey: this.publicKey,
       clientId: this.clientId,
       sandbox: this.sandbox,
       onPaymentSuccess: (data: PlugCheckoutOneShotSuccess) =>

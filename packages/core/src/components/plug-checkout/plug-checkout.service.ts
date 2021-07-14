@@ -15,7 +15,7 @@ const axiosConfig: AxiosRequestConfig = {
 const api = axios.create(axiosConfig)
 
 export const checkoutOneShotRequest = async ({
-  apiKey,
+  publicKey,
   clientId,
   sandbox,
   onPaymentSuccess,
@@ -29,7 +29,7 @@ export const checkoutOneShotRequest = async ({
 
     const headers = {
       'X-Client-Id': clientId,
-      'X-Api-Key': apiKey,
+      'X-Api-Key': publicKey,
     }
 
     const payload = {

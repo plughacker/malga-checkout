@@ -8,12 +8,12 @@
 | Property                 | Attribute              | Description | Type                                     | Default                                  |
 | ------------------------ | ---------------------- | ----------- | ---------------------------------------- | ---------------------------------------- |
 | `amount`                 | `amount`               |             | `number`                                 | `undefined`                              |
-| `apiKey`                 | `api-key`              |             | `string`                                 | `undefined`                              |
 | `capture`                | `capture`              |             | `boolean`                                | `false`                                  |
 | `clientId`               | `client-id`            |             | `string`                                 | `undefined`                              |
 | `customFormStyleClasses` | --                     |             | `PlugCheckoutFormCustomStyleFormClasses` | `defaultCustomStyles`                    |
 | `installmentsConfig`     | --                     |             | `PlugCheckoutInstallmentsConfig`         | `{     show: true,     quantity: 1,   }` |
 | `merchantId`             | `merchant-id`          |             | `string`                                 | `undefined`                              |
+| `publicKey`              | `public-key`           |             | `string`                                 | `undefined`                              |
 | `sandbox`                | `sandbox`              |             | `boolean`                                | `false`                                  |
 | `statementDescriptor`    | `statement-descriptor` |             | `string`                                 | `undefined`                              |
 

@@ -169,13 +169,13 @@ export class CheckoutTypography {
 import { PlugCheckout as IPlugCheckout } from '@plug-checkout/core/dist/types/components/plug-checkout/plug-checkout';
 export declare interface PlugCheckout extends Components.PlugCheckout {}
 @ProxyCmp({
-  inputs: ['amount', 'apiKey', 'capture', 'clientId', 'customFormStyleClasses', 'installmentsConfig', 'merchantId', 'sandbox', 'statementDescriptor']
+  inputs: ['amount', 'capture', 'clientId', 'customFormStyleClasses', 'installmentsConfig', 'merchantId', 'publicKey', 'sandbox', 'statementDescriptor']
 })
 @Component({
   selector: 'plug-checkout',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['amount', 'apiKey', 'capture', 'clientId', 'customFormStyleClasses', 'installmentsConfig', 'merchantId', 'sandbox', 'statementDescriptor'],
+  inputs: ['amount', 'capture', 'clientId', 'customFormStyleClasses', 'installmentsConfig', 'merchantId', 'publicKey', 'sandbox', 'statementDescriptor'],
   outputs: ['paymentSuccess', 'paymentFailed']
 })
 export class PlugCheckout {

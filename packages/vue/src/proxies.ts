@@ -114,7 +114,7 @@ export const CheckoutTypography = /*@__PURE__*/ defineContainer<JSX.CheckoutTypo
 
 export const PlugCheckout = /*@__PURE__*/ defineContainer<JSX.PlugCheckout>('plug-checkout', undefined, [
   'clientId',
-  'apiKey',
+  'publicKey',
   'merchantId',
   'statementDescriptor',
   'amount',

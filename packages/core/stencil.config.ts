@@ -36,12 +36,6 @@ const angularValueAccessorBindings: ValueAccessorConfig[] = [
     targetAttr: 'value',
     type: 'text',
   },
-  {
-    elementSelectors: ['plug-checkout-form'],
-    event: 'fieldChange',
-    targetAttr: 'value',
-    type: 'text',
-  },
 ]
 
 const vueComponentModels: ComponentModelConfig[] = [
@@ -63,11 +57,6 @@ const vueComponentModels: ComponentModelConfig[] = [
   {
     elements: ['checkout-input'],
     event: 'focused',
-    targetAttr: 'value',
-  },
-  {
-    elements: ['plug-checkout-form'],
-    event: 'fieldChange',
     targetAttr: 'value',
   },
 ]

@@ -1,39 +1,89 @@
-# Plug Checkout - React
+# Plug Checkout - Core
 
 A simple, fast and customizable way of integrating with Plug, with no need to stop using your favorite front-end framework.
 
 ## Introduction
 
-[Here is a demonstration](https://github.com/plughacker/demo-plug-checkout-react) of a React application integrated with Plug Checkout.
+[Here is a demonstration](https://github.com/plughacker/demo-plug-checkout-vanilla) of a VanillaJS application integrated with Plug Checkout.
 
 ## Get Started
 
 To start it, simply install the dependency on your project
 
-```bash
-yarn add @plug-checkout/react
-# or
-npm install --save @plug-checkout/react
+```html
+<script
+  type="module"
+  src="https://unpkg.com/@plug-checkout/core@latest/dist/plug-checkout/plug-checkout.esm.js"
+></script>
 ```
 
-Import Plug Checkout in one of your components
+Now just add the `<plug-checkout></plug-checkout>` in your HTML file
 
-```js
-import PlugCheckout from '@plug-checkout/react'
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <script
+      type="module"
+      src="https://unpkg.com/@plug-checkout/core@latest/dist/plug-checkout/plug-checkout.esm.js"
+    ></script>
+    <title>Plug Checkout Components</title>
+  </head>
+  <body>
+    <main>
+      <plug-checkout></plug-checkout>
+    </main>
+  </body>
+</html>
 ```
 
-And use it like this. Its most basic way, with no customization, needs very few configurations.
+Use it like this in one of your HTML file. Its most basic way, with no customization, needs very few configurations. Adding events and attributes without primitive types in one of your Javascript files or in `<script>` tag.
 
-```tsx
-<PlugCheckout
-  publicKey="<YOUR_PUBLIC_KEY>"
-  clientId="<YOUR_CLIENT_ID>"
-  merchantId="<YOUR_MERCHANT_ID"
-  statementDescriptor="#1 Demonstration Plug Checkout"
-  amount={100}
-  onPaymentSuccess={({ detail }) => handlePaymentSuccess(detail.data)}
-  onPaymentFailed={({ detail }) => handlePaymentFailed(detail.error)}
-/>
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <script
+      type="module"
+      src="https://unpkg.com/@plug-checkout/core@latest/dist/plug-checkout/plug-checkout.esm.js"
+    ></script>
+    <title>Plug Checkout Components</title>
+  </head>
+  <body>
+    <main>
+      <plug-checkout
+        public-key="<YOUR_PUBLIC_KEY>"
+        client-id="<YOUR_CLIENT_ID>"
+        merchant-id="<YOUR_MERCHANT_ID>"
+        statement-descriptor="#1 Demonstration Plug Checkout"
+        amount="100"
+      >
+      </plug-checkout>
+    </main>
+
+    <script>
+      const plugCheckout = document.querySelector('plug-checkout')
+
+      plugCheckout.addEventListener('paymentSuccess', () => {
+        // Your specifications here
+      })
+
+      plugCheckout.addEventListener('paymentFailed', () => {
+        // Your specifications here
+      })
+    </script>
+  </body>
+</html>
 ```
 
 ## Props
@@ -43,16 +93,16 @@ Below there is a list of properties that the component accepts for you to custom
 | Property                 | Description                                                                                                                                                                                      | Type       | Default                       |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | ----------------------------- |
 | `amount`                 | Total amount of the transaction, we indicate that the amount be used in CENTS form.                                                                                                              | `number`   | `undefined`                   |
-| `publicKey`              | Public key for client-side applications, generated from Plug’s API. [Click here](https://docs.plugpagamentos.com/#section/Autenticacao/Client-Token) to read more about it in the documentation. | `string`   | `undefined`                   |
+| `public-key`             | Public key for client-side applications, generated from Plug’s API. [Click here](https://docs.plugpagamentos.com/#section/Autenticacao/Client-Token) to read more about it in the documentation. | `string`   | `undefined`                   |
 | `capture`                | It determines if the transaction should be captured immediately.                                                                                                                                 | `boolean`  | `false`                       |
-| `clientId`               | Key to identify the client on Plug. [Click here](https://docs.plugpagamentos.com/#section/Get-started/Configure-uma-conta-Plug) to read more about it in the documentation.                      | `string`   | `undefined`                   |
+| `client-id`              | Key to identify the client on Plug. [Click here](https://docs.plugpagamentos.com/#section/Get-started/Configure-uma-conta-Plug) to read more about it in the documentation.                      | `string`   | `undefined`                   |
 | `customFormStyleClasses` | Properties that make the use of CSS classes available for individual customization of each component of Plug Checkout.                                                                           | `object`   | `{}`                          |
 | `installmentsConfig`     | Configurations for the installments field, if it should be exhibited and/or the quantity of installments the transaction provides.                                                               | `object`   | `{ show: true, quantity: 1 }` |
-| `merchantId`             | Subaccounts identifier on Plug. [Click here](https://docs.plugpagamentos.com/#tag/Merchants) to read more about it in the documentation.                                                         | `string`   | `undefined`                   |
+| `merchant-id`            | Subaccounts identifier on Plug. [Click here](https://docs.plugpagamentos.com/#tag/Merchants) to read more about it in the documentation.                                                         | `string`   | `undefined`                   |
 | `sandbox`                | Flag to define if the requests for Plug’s API must be made in a homologation or production environment.                                                                                          | `boolean`  | `false`                       |
-| `statementDescriptor`    | Description that will be shown on the buyer’s bill.                                                                                                                                              | `string`   | `undefined`                   |
-| `onPaymentSuccess`       | Callback called right after the success of the transaction.                                                                                                                                      | `function` | `undefined`                   |
-| `onPaymentFailed`        | Callback called right after some transaction fail occurs.                                                                                                                                        | `function` | `undefined`                   |
+| `statement-descriptor`   | Description that will be shown on the buyer’s bill.                                                                                                                                              | `string`   | `undefined`                   |
+| `paymentSuccess`         | Event called right after the success of the transaction.                                                                                                                                         | `function` | `undefined`                   |
+| `paymentFailed`          | Event called right after some transaction fail occurs.                                                                                                                                           | `function` | `undefined`                   |
 
 ## UI Customization
 
@@ -108,7 +158,7 @@ For theme customization (color pallet, spacing and typography) you may overwrite
 }
 ```
 
-You can see an example of how to do it by [clicking here](https://github.com/plughacker/demo-plug-checkout-react/blob/main/src/index.css).
+You can see an example of how to do it by [clicking here](https://github.com/plughacker/demo-plug-checkout-vanilla/blob/main/index.css).
 
 ### Components
 
@@ -137,7 +187,7 @@ const defaultCustomStyles = {
 }
 ```
 
-You can see an example of how to do it by [clicking here](https://github.com/plughacker/demo-plug-checkout-react/blob/main/src/App.tsx).
+You can see an example of how to do it by [clicking here](https://github.com/plughacker/demo-plug-checkout-vanilla/blob/main/index.css).
 
 ## Contributing
 

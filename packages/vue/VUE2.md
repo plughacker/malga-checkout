@@ -60,7 +60,7 @@ new Vue({
 
 Use it like this in one of your components. Its most basic way, with no customization, needs very few configurations.
 
-```jsx
+```html
 <plug-checkout
   :publicKey.prop="<YOUR_PUBLIC_KEY>"
   :clientId.prop="<YOUR_CLIENT_ID>"

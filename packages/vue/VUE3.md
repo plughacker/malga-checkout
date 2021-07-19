@@ -58,38 +58,37 @@ applyPolyfills().then(() => {
 
 Use it like this in one of your components. Its most basic way, with no customization, needs very few configurations.
 
-```jsx
+```html
 <template>
   <PlugCheckout
     :publicKey="<YOUR_PUBLIC_KEY>"
     :clientId="<YOUR_CLIENT_ID>"
     :merchantId="<YOUR_MERCHANT_ID>"
     :statementDescriptor="#1 Demonstration Plug Checkout"
-    :amount={100}
+    :amount="{100}"
     @paymentSuccess="handlePaymentSuccess"
     @paymentFailed="handlePaymentFailed"
-
   />
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import PlugCheckout from "@plug-checkout/vue";
+  import { defineComponent } from 'vue'
+  import PlugCheckout from '@plug-checkout/vue'
 
-export default defineComponent({
-  name: "App",
-  components: {
-    PlugCheckout,
-  },
-  methods: {
-    handlePaymentSuccess({ detail: { data } }) {
-      // Your specifications here
+  export default defineComponent({
+    name: 'App',
+    components: {
+      PlugCheckout,
     },
-    handlePaymentFailed({ detail: { error } }) {
-      // Your specifications here
+    methods: {
+      handlePaymentSuccess({ detail: { data } }) {
+        // Your specifications here
+      },
+      handlePaymentFailed({ detail: { error } }) {
+        // Your specifications here
+      },
     },
-  }
-});
+  })
 </script>
 ```
 

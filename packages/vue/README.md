@@ -6,8 +6,8 @@ A simple, fast and customizable way of integrating with Plug, with no need to st
 
 First you need to choose the Vue version.
 
-[Click here](https://github.com/plughacker/plug-checkout/blob/main/packages/vue/VUE2.md) to see Vue2 settings.
-[Click here](https://github.com/plughacker/plug-checkout/blob/main/packages/vue/VUE3.md) to see Vue3 settings.
+- [Click here](https://github.com/plughacker/plug-checkout/blob/main/packages/vue/VUE2.md) to see Vue2 settings.
+- [Click here](https://github.com/plughacker/plug-checkout/blob/main/packages/vue/VUE3.md) to see Vue3 settings.
 
 ## Contributing
 

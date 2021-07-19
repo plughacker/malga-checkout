@@ -26,9 +26,9 @@ And use it like this. Its most basic way, with no customization, needs very few 
 
 ```tsx
 <PlugCheckout
-  publicKey={process.env.REACT_APP_PLUG_API_KEY}
-  clientId={process.env.REACT_APP_PLUG_CLIENT_ID}
-  merchantId={process.env.REACT_APP_PLUG_MERCHANT_ID}
+  publicKey="<YOUR_PUBLIC_KEY>"
+  clientId="<YOUR_CLIENT_ID>"
+  merchantId="<YOUR_MERCHANT_ID"
   statementDescriptor="#1 Demonstration Plug Checkout"
   amount={100}
   onPaymentSuccess={({ detail }) => handlePaymentSuccess(detail.data)}
@@ -43,7 +43,7 @@ Below there is a list of properties that the component accepts for you to custom
 | Property                 | Description                                                                                                                                                                                      | Type       | Default                       |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | ----------------------------- |
 | `amount`                 | Total amount of the transaction, we indicate that the amount be used in CENTS form.                                                                                                              | `number`   | `undefined`                   |
-| `publicKey`              | Puclic key for client-side applications, generated from Plug’s API. [Click here](https://docs.plugpagamentos.com/#section/Autenticacao/Client-Token) to read more about it in the documentation. | `string`   | `undefined`                   |
+| `publicKey`              | Public key for client-side applications, generated from Plug’s API. [Click here](https://docs.plugpagamentos.com/#section/Autenticacao/Client-Token) to read more about it in the documentation. | `string`   | `undefined`                   |
 | `capture`                | It determines if the transaction should be captured immediately.                                                                                                                                 | `boolean`  | `false`                       |
 | `clientId`               | Key to identify the client on Plug. [Click here](https://docs.plugpagamentos.com/#section/Get-started/Configure-uma-conta-Plug) to read more about it in the documentation.                      | `string`   | `undefined`                   |
 | `customFormStyleClasses` | Properties that make the use of CSS classes available for individual customization of each component of Plug Checkout.                                                                           | `object`   | `{}`                          |

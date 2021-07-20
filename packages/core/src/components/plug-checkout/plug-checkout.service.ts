@@ -3,6 +3,7 @@ import axios, { AxiosRequestConfig } from 'axios'
 import { PlugCheckoutOneShotRequest } from './plug-checkout.types'
 import {
   cleanTextOnlyNumbers,
+  parseInstallments,
   transformExpirationDate,
 } from './plug-checkout.utils'
 
@@ -39,7 +40,7 @@ export const checkoutOneShotRequest = async ({
       capture: data.capture,
       paymentMethod: {
         paymentType: 'credit',
-        installments: parseInt(data.card.installments),
+        installments: parseInstallments(data.card.installments),
       },
       paymentSource: {
         sourceType: 'card',

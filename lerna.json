@@ -1,6 +1,8 @@
 {
   "packages": [
-    "packages/*"
+    "packages/*",
+    "packages/checkout-full/*",
+    "packages/checkout-simple/*"
   ],
   "useWorkspaces": true,
   "version": "independent",

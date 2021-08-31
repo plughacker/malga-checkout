@@ -56,11 +56,11 @@
     "stencil-inline-svg": "^1.1.0"
   },
   "dependencies": {
+    "@plug-checkout/common": "*",
     "axios": "^0.21.1",
     "inputmask": "^5.0.6",
     "payment": "2.3.0",
-    "yup": "^0.32.9",
-    "@plug-checkout/common": "*"
+    "yup": "^0.32.9"
   },
   "homepage": "https://github.com/plughacker/plug-checkout#readme"
 }

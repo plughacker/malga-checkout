@@ -28,7 +28,9 @@
   },
   "workspaces": {
     "packages": [
-      "packages/*"
+      "packages/*",
+      "packages/checkout-full/*",
+      "packages/checkout/*"
     ],
     "nohoist": [
       "**/@types/**"

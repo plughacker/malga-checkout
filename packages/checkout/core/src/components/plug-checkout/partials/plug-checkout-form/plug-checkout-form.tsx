@@ -22,7 +22,7 @@ import {
   checkIfAllFieldsIsBlank,
 } from './plug-checkout-form.utils'
 import { validateCheckout } from './plug-checkout-form.schema'
-import { getCurrentMaskPerIssuer } from '../../../../utils/issuer'
+import { getCurrentMaskPerIssuer } from '@plug-checkout/common'
 
 @Component({
   tag: 'plug-checkout-form',

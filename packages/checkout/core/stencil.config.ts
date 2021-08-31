@@ -1,65 +1,9 @@
 import { Config } from '@stencil/core'
 import { sass } from '@stencil/sass'
-import {
-  angularOutputTarget,
-  ValueAccessorConfig,
-} from '@stencil/angular-output-target'
+import { angularOutputTarget } from '@stencil/angular-output-target'
 import { reactOutputTarget } from '@stencil/react-output-target'
-import {
-  ComponentModelConfig,
-  vueOutputTarget,
-} from '@stencil/vue-output-target'
+import { vueOutputTarget } from '@stencil/vue-output-target'
 import { inlineSvg } from 'stencil-inline-svg'
-
-const angularValueAccessorBindings: ValueAccessorConfig[] = [
-  {
-    elementSelectors: ['checkout-input', 'checkout-select'],
-    event: 'changed',
-    targetAttr: 'value',
-    type: 'text',
-  },
-  {
-    elementSelectors: ['checkout-input', 'checkout-select'],
-    event: 'inputed',
-    targetAttr: 'value',
-    type: 'text',
-  },
-  {
-    elementSelectors: ['checkout-input'],
-    event: 'blurred',
-    targetAttr: 'value',
-    type: 'text',
-  },
-  {
-    elementSelectors: ['checkout-input'],
-    event: 'focused',
-    targetAttr: 'value',
-    type: 'text',
-  },
-]
-
-const vueComponentModels: ComponentModelConfig[] = [
-  {
-    elements: ['checkout-input', 'checkout-select'],
-    event: 'changed',
-    targetAttr: 'value',
-  },
-  {
-    elements: ['checkout-input', 'checkout-select'],
-    event: 'inputed',
-    targetAttr: 'value',
-  },
-  {
-    elements: ['checkout-input'],
-    event: 'blurred',
-    targetAttr: 'value',
-  },
-  {
-    elements: ['checkout-input'],
-    event: 'focused',
-    targetAttr: 'value',
-  },
-]
 
 export const config: Config = {
   namespace: 'plug-checkout',
@@ -67,10 +11,10 @@ export const config: Config = {
     inlineSvg(),
     sass({
       injectGlobalPaths: [
-        'src/assets/styles/mixins.scss',
-        'src/assets/styles/theme.scss',
-        'src/assets/styles/typography.scss',
-        'src/assets/styles/utils.scss',
+        '../../common/src/assets/styles/mixins.scss',
+        '../../common/src/assets/styles/theme.scss',
+        '../../common/src/assets/styles/typography.scss',
+        '../../common/src/assets/styles/utils.scss',
       ],
     }),
   ],
@@ -78,7 +22,6 @@ export const config: Config = {
     angularOutputTarget({
       componentCorePackage: '@plug-checkout/core',
       directivesProxyFile: '../angular/src/directives/proxies.ts',
-      valueAccessorConfigs: angularValueAccessorBindings,
     }),
     reactOutputTarget({
       componentCorePackage: '@plug-checkout/core',
@@ -91,7 +34,6 @@ export const config: Config = {
       proxiesFile: '../vue/src/proxies.ts',
       includeDefineCustomElements: false,
       includePolyfills: false,
-      componentModels: vueComponentModels,
     }),
     {
       type: 'dist',

@@ -2,7 +2,7 @@
   "packages": [
     "packages/*",
     "packages/checkout-full/*",
-    "packages/checkout-simple/*"
+    "packages/checkout/*"
   ],
   "useWorkspaces": true,
   "version": "independent",

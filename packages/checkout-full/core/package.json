@@ -1,6 +1,6 @@
 {
   "name": "@plug-checkout-full/core",
-  "version": "0.0.4",
+  "version": "0.0.1",
   "description": "Core components for Plug Checkout Full",
   "repository": {
     "type": "git",
@@ -57,7 +57,8 @@
     "axios": "^0.21.1",
     "inputmask": "^5.0.6",
     "payment": "2.3.0",
-    "yup": "^0.32.9"
+    "yup": "^0.32.9",
+    "@plug-checkout/common": "*"
   },
   "homepage": "https://github.com/plughacker/plug-checkout#readme"
 }

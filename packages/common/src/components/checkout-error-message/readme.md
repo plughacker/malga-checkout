@@ -16,10 +16,6 @@
 
 ## Dependencies
 
-### Used by
-
- - [plug-checkout-form](../../components/plug-checkout/partials/plug-checkout-form)
-
 ### Depends on
 
 - [checkout-typography](../checkout-typography)
@@ -28,7 +24,6 @@
 ```mermaid
 graph TD;
   checkout-error-message --> checkout-typography
-  plug-checkout-form --> checkout-error-message
   style checkout-error-message fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

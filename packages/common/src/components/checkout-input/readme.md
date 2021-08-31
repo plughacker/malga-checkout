@@ -46,10 +46,6 @@
 
 ## Dependencies
 
-### Used by
-
- - [plug-checkout-form](../../components/plug-checkout/partials/plug-checkout-form)
-
 ### Depends on
 
 - [checkout-icon](../checkout-icon)
@@ -58,7 +54,6 @@
 ```mermaid
 graph TD;
   checkout-input --> checkout-icon
-  plug-checkout-form --> checkout-input
   style checkout-input fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

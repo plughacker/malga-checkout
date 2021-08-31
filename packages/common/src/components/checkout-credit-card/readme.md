@@ -19,19 +19,6 @@
 | `placeholders` | --        |             | `{ name: string; }`  | `{ name: 'Nome Completo' }` |
 
 
-## Dependencies
-
-### Used by
-
- - [plug-checkout](../../components/plug-checkout)
-
-### Graph
-```mermaid
-graph TD;
-  plug-checkout --> checkout-credit-card
-  style checkout-credit-card fill:#f9f,stroke:#333,stroke-width:4px
-```
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

@@ -10,6 +10,7 @@ import { CheckoutButtonType } from "./components/checkout-button/checkout-button
 import { CheckoutInputChangeEvent, CheckoutInputMode, CheckoutInputType, CheckoutInputValue } from "./components/checkout-input/checkout-input.types";
 import { CheckoutSelectChangeEvent, CheckoutSelectOptions, CheckoutSelectValue } from "./components/checkout-select/checkout-select.types";
 import { CheckoutSelectFieldChangeEvent, CheckoutSelectFieldOptions, CheckoutSelectFieldValue } from "./components/checkout-select-field/checkout-select-field.types";
+import { CheckoutTextFieldChangeEvent, CheckoutTextFieldMode, CheckoutTextFieldType, CheckoutTextFieldValue } from "./components/checkout-text-field/checkout-text-field.types";
 import { CheckoutTypographyColor, CheckoutTypographyVariation } from "./components/checkout-typography/checkout-typography.types";
 export namespace Components {
     interface CheckoutButton {
@@ -91,7 +92,6 @@ export namespace Components {
         "disabled": boolean;
         "fullWidth": boolean;
         "hasError"?: boolean;
-        "hasValidation": boolean;
         "label"?: string;
         "name": string;
         "noneOptionLabel": string;
@@ -99,8 +99,32 @@ export namespace Components {
         "placeholder"?: string;
         "readonly": boolean;
         "required": boolean;
-        "startIcon"?: CheckoutIconNames;
         "value"?: CheckoutSelectFieldValue;
+    }
+    interface CheckoutTextField {
+        "autofocus": boolean;
+        "customContainerClass"?: string;
+        "customInputClass"?: string;
+        "customLabelClass"?: string;
+        "disabled": boolean;
+        "fullWidth": boolean;
+        "hasError"?: boolean;
+        "hasValidation"?: boolean;
+        "inputmode": CheckoutTextFieldMode;
+        "label"?: string;
+        "mask"?: string;
+        "max"?: string;
+        "maxlength"?: number;
+        "min"?: string;
+        "minlength"?: number;
+        "multiple"?: boolean;
+        "name": string;
+        "placeholder"?: string;
+        "readonly": boolean;
+        "required": boolean;
+        "startIcon"?: CheckoutIconNames;
+        "type": CheckoutTextFieldType;
+        "value"?: CheckoutTextFieldValue;
     }
     interface CheckoutTypography {
         "color": CheckoutTypographyColor;
@@ -152,6 +176,12 @@ declare global {
         prototype: HTMLCheckoutSelectFieldElement;
         new (): HTMLCheckoutSelectFieldElement;
     };
+    interface HTMLCheckoutTextFieldElement extends Components.CheckoutTextField, HTMLStencilElement {
+    }
+    var HTMLCheckoutTextFieldElement: {
+        prototype: HTMLCheckoutTextFieldElement;
+        new (): HTMLCheckoutTextFieldElement;
+    };
     interface HTMLCheckoutTypographyElement extends Components.CheckoutTypography, HTMLStencilElement {
     }
     var HTMLCheckoutTypographyElement: {
@@ -166,6 +196,7 @@ declare global {
         "checkout-input": HTMLCheckoutInputElement;
         "checkout-select": HTMLCheckoutSelectElement;
         "checkout-select-field": HTMLCheckoutSelectFieldElement;
+        "checkout-text-field": HTMLCheckoutTextFieldElement;
         "checkout-typography": HTMLCheckoutTypographyElement;
     }
 }
@@ -260,7 +291,6 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "fullWidth"?: boolean;
         "hasError"?: boolean;
-        "hasValidation"?: boolean;
         "label"?: string;
         "name"?: string;
         "noneOptionLabel"?: string;
@@ -272,8 +302,36 @@ declare namespace LocalJSX {
         "placeholder"?: string;
         "readonly"?: boolean;
         "required"?: boolean;
-        "startIcon"?: CheckoutIconNames;
         "value"?: CheckoutSelectFieldValue;
+    }
+    interface CheckoutTextField {
+        "autofocus"?: boolean;
+        "customContainerClass"?: string;
+        "customInputClass"?: string;
+        "customLabelClass"?: string;
+        "disabled"?: boolean;
+        "fullWidth"?: boolean;
+        "hasError"?: boolean;
+        "hasValidation"?: boolean;
+        "inputmode"?: CheckoutTextFieldMode;
+        "label"?: string;
+        "mask"?: string;
+        "max"?: string;
+        "maxlength"?: number;
+        "min"?: string;
+        "minlength"?: number;
+        "multiple"?: boolean;
+        "name"?: string;
+        "onBlurred"?: (event: CustomEvent<FocusEvent>) => void;
+        "onChanged"?: (event: CustomEvent<CheckoutTextFieldChangeEvent>) => void;
+        "onFocused"?: (event: CustomEvent<FocusEvent>) => void;
+        "onInputed"?: (event: CustomEvent<KeyboardEvent>) => void;
+        "placeholder"?: string;
+        "readonly"?: boolean;
+        "required"?: boolean;
+        "startIcon"?: CheckoutIconNames;
+        "type"?: CheckoutTextFieldType;
+        "value"?: CheckoutTextFieldValue;
     }
     interface CheckoutTypography {
         "color"?: CheckoutTypographyColor;
@@ -289,6 +347,7 @@ declare namespace LocalJSX {
         "checkout-input": CheckoutInput;
         "checkout-select": CheckoutSelect;
         "checkout-select-field": CheckoutSelectField;
+        "checkout-text-field": CheckoutTextField;
         "checkout-typography": CheckoutTypography;
     }
 }
@@ -303,6 +362,7 @@ declare module "@stencil/core" {
             "checkout-input": LocalJSX.CheckoutInput & JSXBase.HTMLAttributes<HTMLCheckoutInputElement>;
             "checkout-select": LocalJSX.CheckoutSelect & JSXBase.HTMLAttributes<HTMLCheckoutSelectElement>;
             "checkout-select-field": LocalJSX.CheckoutSelectField & JSXBase.HTMLAttributes<HTMLCheckoutSelectFieldElement>;
+            "checkout-text-field": LocalJSX.CheckoutTextField & JSXBase.HTMLAttributes<HTMLCheckoutTextFieldElement>;
             "checkout-typography": LocalJSX.CheckoutTypography & JSXBase.HTMLAttributes<HTMLCheckoutTypographyElement>;
         }
     }

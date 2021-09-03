@@ -1,0 +1,117 @@
+%field-is-filled {
+  top: 2px !important;
+  font-size: 12px !important;
+  background: var(--plug-checkout-color-accent-light) !important;
+  padding: 0 var(--plug-checkout-spacing-xs) !important;
+  margin: 0 var(--plug-checkout-spacing-xs) !important;
+  line-height: var(--plug-checkout-spacing-sm) !important;
+  color: var(--plug-checkout-color-grey-light) !important;
+  z-index: 2 !important;
+}
+
+.checkout-text-field__container {
+  @extend %reset;
+
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: var(--plug-checkout-size-min-width);
+
+  &--full-width {
+    width: 100%;
+  }
+}
+
+.checkout-text-field__fieldset {
+  display: block;
+  width: 100%;
+  border: none;
+}
+
+.checkout-text-field__content {
+  position: relative;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: var(--plug-checkout-spacing-sm);
+
+  & > checkout-typography label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    margin: 0 var(--plug-checkout-spacing-sm);
+    transition: all 0.15s ease-in-out;
+  }
+
+  &--filled {
+    & > checkout-typography label {
+      @extend %field-is-filled;
+    }
+  }
+
+  & > checkout-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 30px;
+  }
+}
+
+.checkout-text-field__native {
+  flex: 1;
+  width: 100%;
+
+  background: transparent;
+  border: 1px solid var(--plug-checkout-color-grey-light);
+  border-radius: var(--plug-checkout-border-radius-default);
+  color: var(--plug-checkout-color-grey-darkness);
+  padding: 0 var(--plug-checkout-spacing-md) 0 var(--plug-checkout-spacing-sm);
+  height: 50px;
+  outline: none;
+  appearance: none;
+  z-index: 1;
+
+  &::-webkit-input-placeholder {
+    color: transparent;
+    text-transform: capitalize;
+    font-size: 0;
+  }
+
+  &::-moz-placeholder {
+    color: transparent;
+    text-transform: capitalize;
+    font-size: 0;
+  }
+
+  &:focus {
+    outline: none;
+
+    &::-moz-placeholder {
+      font-size: var(--plug-checkout-spacing-sm);
+      color: var(--plug-checkout-color-grey-darkness);
+      opacity: 0.5;
+    }
+
+    &::-webkit-input-placeholder {
+      font-size: var(--plug-checkout-spacing-sm);
+      color: var(--plug-checkout-color-grey-darkness);
+      opacity: 0.5;
+    }
+
+    & > option {
+      color: var(--plug-checkout-color-grey-darkness) !important;
+    }
+  }
+
+  & > option {
+    color: var(--plug-checkout-color-grey-darkness) !important;
+  }
+
+  &:focus + checkout-typography label {
+    @extend %field-is-filled;
+  }
+}

@@ -6,9 +6,8 @@ import {
   Event,
   Watch,
   EventEmitter,
+  ComponentInterface,
 } from '@stencil/core'
-
-import { CheckoutIconNames } from '../checkout-icon/checkout-icon.types'
 
 import {
   CheckoutSelectFieldOptions,
@@ -20,18 +19,16 @@ import {
   tag: 'checkout-select-field',
   styleUrl: 'checkout-select-field.scss',
 })
-export class CheckoutSelectField {
+export class CheckoutSelectField implements ComponentInterface {
   @Prop() customContainerClass?: string
   @Prop() customLabelClass?: string
   @Prop() customSelectClass?: string
-  @Prop() startIcon?: CheckoutIconNames
   @Prop() hasError?: boolean
   @Prop() placeholder?: string
   @Prop() label?: string
   @Prop() noneOptionLabel: string
   @Prop() name: string
   @Prop({ mutable: true }) options: CheckoutSelectFieldOptions[] = []
-  @Prop() hasValidation = true
   @Prop() fullWidth = false
   @Prop() readonly = false
   @Prop() required = false
@@ -131,9 +128,7 @@ export class CheckoutSelectField {
               variation="field"
               content={this.label}
             />
-            {!!this.hasValidation && (
-              <checkout-icon icon={this.hasError ? 'warning' : 'arrowDown'} />
-            )}
+            <checkout-icon icon={this.hasError ? 'warning' : 'arrowDown'} />
           </div>
         </fieldset>
       </Host>

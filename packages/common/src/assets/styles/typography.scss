@@ -55,6 +55,13 @@
   font-weight: normal;
 }
 
+%typography-field {
+  font-family: var(--plug-checkout-typography-family);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: normal;
+}
+
 @mixin typography($value) {
   @if $value == 'header5' {
     @extend %typography-header5;

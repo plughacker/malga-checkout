@@ -6,12 +6,14 @@ $typography-variantions-map: (
   'body1',
   'body2',
   'button',
-  'label'
+  'label',
+  'field'
 );
 
 $typography-colors-map: (
   'white': var(--plug-checkout-color-accent-light),
   'dark': var(--plug-checkout-color-grey-dark),
+  'darkness': var(--plug-checkout-color-grey-darkness),
   'warning': var(--plug-checkout-color-warning-middle),
 );
 

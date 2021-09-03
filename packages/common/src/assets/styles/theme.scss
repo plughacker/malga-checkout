@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 
 :root {
@@ -15,6 +15,7 @@
   --plug-checkout-color-grey-normal: #8b90a7;
   --plug-checkout-color-grey-middle: #5e6277;
   --plug-checkout-color-grey-dark: #3f4252;
+  --plug-checkout-color-grey-darkness: #1d1f2a;
 
   --plug-checkout-color-accent-light: #ffffff;
   --plug-checkout-color-accent-normal: #eef2f6;
@@ -27,7 +28,7 @@
   --plug-checkout-color-success: #32c000;
 
   /* Typography */
-  --plug-checkout-typography-family: 'Lato', sans-serif;
+  --plug-checkout-typography-family: 'Roboto', sans-serif;
 
   /* Spacings */
   --plug-checkout-spacing-xxs: 4px;

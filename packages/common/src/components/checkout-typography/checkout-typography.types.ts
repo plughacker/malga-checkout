@@ -1,4 +1,4 @@
-export type CheckoutTypographyColor = 'white' | 'dark' | 'warning'
+export type CheckoutTypographyColor = 'white' | 'dark' | 'darkness' | 'warning'
 
 export type CheckoutTypographyVariation =
   | 'header5'
@@ -9,3 +9,4 @@ export type CheckoutTypographyVariation =
   | 'body2'
   | 'button'
   | 'label'
+  | 'field'

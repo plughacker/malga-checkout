@@ -29,6 +29,7 @@ export class PlugCheckout {
   @Prop() amount: number
   @Prop() sandbox = false
   @Prop() capture = false
+  @Prop() showCreditCard = true
   @Prop() installmentsConfig: PlugCheckoutInstallmentsConfig = {
     show: true,
     quantity: 1,
@@ -82,13 +83,15 @@ export class PlugCheckout {
   render() {
     return (
       <Host>
-        <checkout-credit-card
-          focused={this.currentFieldChanged}
-          cvv={this.formValues.cvv}
-          expiry={this.formValues.expirationDate}
-          name={this.formValues.name}
-          number={this.formValues.cardNumber}
-        />
+        {this.showCreditCard && (
+          <checkout-credit-card
+            focused={this.currentFieldChanged}
+            cvv={this.formValues.cvv}
+            expiry={this.formValues.expirationDate}
+            name={this.formValues.name}
+            number={this.formValues.cardNumber}
+          />
+        )}
         <plug-checkout-form
           isLoading={this.isLoading}
           amount={this.amount}

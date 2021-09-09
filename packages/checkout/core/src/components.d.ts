@@ -16,6 +16,7 @@ export namespace Components {
         "merchantId": string;
         "publicKey": string;
         "sandbox": boolean;
+        "showCreditCard": boolean;
         "statementDescriptor": string;
     }
     interface PlugCheckoutForm {
@@ -26,6 +27,7 @@ export namespace Components {
         "isLoading": boolean;
     }
     interface PlugPayments {
+        "showCreditCard": boolean;
     }
     interface PlugPaymentsBoleto {
     }
@@ -83,6 +85,7 @@ declare namespace LocalJSX {
         "onPaymentSuccess"?: (event: CustomEvent<{ data: PlugCheckoutOneShotSuccess }>) => void;
         "publicKey"?: string;
         "sandbox"?: boolean;
+        "showCreditCard"?: boolean;
         "statementDescriptor"?: string;
     }
     interface PlugCheckoutForm {
@@ -95,6 +98,7 @@ declare namespace LocalJSX {
         "onFormSubmit"?: (event: CustomEvent<void>) => void;
     }
     interface PlugPayments {
+        "showCreditCard"?: boolean;
     }
     interface PlugPaymentsBoleto {
     }

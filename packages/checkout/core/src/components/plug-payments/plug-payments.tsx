@@ -1,10 +1,19 @@
-import { Component, Host, h, ComponentInterface, State } from '@stencil/core'
+import {
+  Component,
+  Host,
+  h,
+  ComponentInterface,
+  State,
+  Prop,
+} from '@stencil/core'
 
 @Component({
   tag: 'plug-payments',
   styleUrl: 'plug-payments.scss',
 })
 export class PlugPayments implements ComponentInterface {
+  @Prop() showCreditCard = false
+
   @State() currentPayment: string
 
   private handlePaymentChange = (value: string) => {
@@ -40,7 +49,9 @@ export class PlugPayments implements ComponentInterface {
             isChecked={this.currentPayment === 'credit'}
             onClicked={() => this.handlePaymentChange('credit')}
           />
-          {this.currentPayment === 'credit' && <plug-checkout />}
+          {this.currentPayment === 'credit' && (
+            <plug-checkout showCreditCard={this.showCreditCard} />
+          )}
         </section>
       </Host>
     )

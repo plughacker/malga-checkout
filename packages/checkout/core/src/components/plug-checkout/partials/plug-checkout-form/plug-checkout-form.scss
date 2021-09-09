@@ -1,24 +1,20 @@
 .plug-checkout-form__container {
   display: flex;
-  width: 260px;
+  width: 500px;
   margin-top: var(--plug-checkout-spacing-xs);
   margin-left: auto;
   margin-right: auto;
 }
 
 .plug-checkout-form__form {
-  margin: 0 auto;
+  width: 100%;
 
-  & > checkout-input {
+  & > checkout-text-field {
     margin-top: var(--plug-checkout-spacing-xs);
   }
 
-  & > checkout-select {
+  & > checkout-select-field {
     margin-top: var(--plug-checkout-spacing-xs);
-  }
-
-  & > checkout-button button {
-    margin-top: var(--plug-checkout-spacing-md);
   }
 }
 
@@ -32,11 +28,23 @@
   margin-bottom: var(--plug-checkout-spacing-xs);
   padding: 0px;
 
-  & > checkout-input:first-child {
+  & > checkout-text-field:first-child {
     margin-right: var(--plug-checkout-spacing-xs);
   }
 
-  & > checkout-input:last-child {
+  & > checkout-text-field:last-child {
     margin-left: var(--plug-checkout-spacing-xs);
+  }
+}
+
+.plug-checkout-form__submit {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--plug-checkout-spacing-md);
+
+  & > checkout-icon {
+    height: 30px;
   }
 }

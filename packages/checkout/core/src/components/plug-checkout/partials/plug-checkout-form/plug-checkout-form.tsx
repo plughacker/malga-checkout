@@ -143,20 +143,18 @@ export class PlugCheckoutForm implements ComponentInterface {
           }}
           onSubmit={this.handleFormSubmit}
         >
-          <checkout-input
+          <checkout-text-field
             value={this.formValues.cardNumber}
             onChanged={this.handleFieldChange('cardNumber')}
             onBlurred={this.handleFieldBlurred('cardNumber')}
             onFocused={this.handleFieldFocused('cardNumber')}
             fullWidth
             inputmode="numeric"
-            startIcon="creditCard"
             mask={getCurrentMaskPerIssuer(this.formValues.cardNumber)}
             hasValidation={this.validFields.cardNumber !== null}
             hasError={!!this.validFields.cardNumber}
             name="cardNumber"
-            label="Número do cartão"
-            placeholder="Número do cartão"
+            label="Número do cartão *"
             customContainerClass={
               this.customFormStyleClasses.creditCardFieldContainer
             }
@@ -172,19 +170,17 @@ export class PlugCheckoutForm implements ComponentInterface {
           )}
 
           <fieldset class="plug-checkout-form__row-fields">
-            <checkout-input
+            <checkout-text-field
               value={this.formValues.expirationDate}
               onChanged={this.handleFieldChange('expirationDate')}
               onBlurred={this.handleFieldBlurred('expirationDate')}
               onFocused={this.handleFieldFocused('expirationDate')}
               fullWidth
               inputmode="numeric"
-              startIcon="calendar"
               hasValidation={this.validFields.expirationDate !== null}
               hasError={!!this.validFields.expirationDate}
               name="expirationDate"
-              label="Validade"
-              placeholder="MM/AA"
+              label="Data de expiração (MM/AA) *"
               mask="99/99"
               customContainerClass={
                 this.customFormStyleClasses.expirationDateFieldContainer
@@ -197,19 +193,17 @@ export class PlugCheckoutForm implements ComponentInterface {
               }
             />
 
-            <checkout-input
+            <checkout-text-field
               value={this.formValues.cvv}
               onChanged={this.handleFieldChange('cvv')}
               onBlurred={this.handleFieldBlurred('cvv')}
               onFocused={this.handleFieldFocused('cvv')}
               fullWidth
               inputmode="numeric"
-              startIcon="cvv"
               hasValidation={this.validFields.cvv !== null}
               hasError={!!this.validFields.cvv}
               name="cvv"
-              label="Código de segurança"
-              placeholder="CVV"
+              label="Código de segurança (CVV) *"
               mask="999"
               customContainerClass={
                 this.customFormStyleClasses.cvvFieldContainer
@@ -230,18 +224,16 @@ export class PlugCheckoutForm implements ComponentInterface {
             <checkout-error-message message={this.validFields.cvv} />
           )}
 
-          <checkout-input
+          <checkout-text-field
             value={this.formValues.name.toUpperCase()}
             onChanged={this.handleFieldChange('name')}
             onBlurred={this.handleFieldBlurred('name')}
             onFocused={this.handleFieldFocused('name')}
             fullWidth
-            startIcon="user"
             hasValidation={this.validFields.name !== null}
             hasError={!!this.validFields.name}
             name="name"
-            label="Portador do cartão"
-            placeholder="Nome (igual ao do cartão)"
+            label="Nome no cartão *"
             customContainerClass={
               this.customFormStyleClasses.nameFieldContainer
             }
@@ -257,18 +249,16 @@ export class PlugCheckoutForm implements ComponentInterface {
           )}
 
           {this.installmentsConfig.show && (
-            <checkout-select
+            <checkout-select-field
               value={this.formValues.installments}
               onChanged={this.handleFieldChange('installments')}
               onBlurred={this.handleFieldBlurred('installments')}
               onFocused={this.handleFieldFocused('installments')}
               options={this.renderInstallmentOptions()}
               fullWidth
-              startIcon="dollar"
-              hasValidation
               hasError={!!this.validFields.installments}
               name="installments"
-              label="Parcelas"
+              label="Parcelamento *"
               customContainerClass={
                 this.customFormStyleClasses.installmentsFieldContainer
               }
@@ -291,14 +281,15 @@ export class PlugCheckoutForm implements ComponentInterface {
             <checkout-error-message message="Preencha todos os campos para prosseguir." />
           )}
 
-          <checkout-button
-            customClass={this.customFormStyleClasses.submitButton}
-            isLoading={this.isLoading}
-            type="submit"
-            fullWidth
-            icon="lock"
-            label="Finalizar Pagamento"
-          />
+          <div class="plug-checkout-form__submit">
+            <checkout-button
+              customClass={this.customFormStyleClasses.submitButton}
+              isLoading={this.isLoading}
+              type="submit"
+              label="Pagar"
+            />
+            <checkout-icon icon="poweredByPlug" />
+          </div>
         </form>
       </Host>
     )

@@ -15,6 +15,7 @@ import { CheckoutManualPaymentDescriptions } from './checkout-manual-payment.typ
   styleUrl: 'checkout-manual-payment.scss',
 })
 export class CheckoutManualPayment implements ComponentInterface {
+  @Prop() fullWidth: boolean
   @Prop() paymentMethod: CheckoutManualPaymentDescriptions = 'pix'
 
   @Event() paymentClick!: EventEmitter<void>
@@ -47,7 +48,12 @@ export class CheckoutManualPayment implements ComponentInterface {
 
   render() {
     return (
-      <Host class={{ 'checkout-manual-payment__container': true }}>
+      <Host
+        class={{
+          'checkout-manual-payment__container': true,
+          'checkout-manual-payment__container--full-width': !!this.fullWidth,
+        }}
+      >
         <checkout-typography tag="p">
           {CheckoutManualPayment.DESCRIPTIONS[this.paymentMethod]}
         </checkout-typography>

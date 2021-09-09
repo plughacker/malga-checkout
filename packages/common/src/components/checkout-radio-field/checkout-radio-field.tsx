@@ -28,6 +28,7 @@ export class CheckoutRadioField implements ComponentInterface {
   @Prop({ mutable: true }) value?: CheckoutRadioFieldValue = ''
 
   @Event() inputed!: EventEmitter<KeyboardEvent>
+  @Event() clicked!: EventEmitter<MouseEvent>
   @Event() changed!: EventEmitter<CheckoutRadioFieldChangeEvent>
 
   @Watch('value')
@@ -47,6 +48,10 @@ export class CheckoutRadioField implements ComponentInterface {
     this.inputed.emit(event as KeyboardEvent)
   }
 
+  private onClick = () => {
+    this.clicked.emit()
+  }
+
   render() {
     return (
       <Host
@@ -62,6 +67,7 @@ export class CheckoutRadioField implements ComponentInterface {
             'checkout-radio-field__label--filled': this.isChecked,
             [this.customLabelClass]: !!this.customLabelClass,
           }}
+          onClick={this.onClick}
         >
           <input
             type="radio"

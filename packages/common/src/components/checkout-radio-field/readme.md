@@ -23,6 +23,7 @@
 | Event     | Description | Type                                         |
 | --------- | ----------- | -------------------------------------------- |
 | `changed` |             | `CustomEvent<CheckoutRadioFieldChangeEvent>` |
+| `clicked` |             | `CustomEvent<MouseEvent>`                    |
 | `inputed` |             | `CustomEvent<KeyboardEvent>`                 |
 
 

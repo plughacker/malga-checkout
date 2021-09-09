@@ -69,6 +69,7 @@ export namespace Components {
         "value"?: CheckoutInputValue;
     }
     interface CheckoutManualPayment {
+        "fullWidth": boolean;
         "paymentMethod": CheckoutManualPaymentDescriptions;
     }
     interface CheckoutRadioField {
@@ -290,6 +291,7 @@ declare namespace LocalJSX {
         "value"?: CheckoutInputValue;
     }
     interface CheckoutManualPayment {
+        "fullWidth"?: boolean;
         "onPaymentClick"?: (event: CustomEvent<void>) => void;
         "paymentMethod"?: CheckoutManualPaymentDescriptions;
     }
@@ -301,6 +303,7 @@ declare namespace LocalJSX {
         "isChecked"?: boolean;
         "label"?: string;
         "onChanged"?: (event: CustomEvent<CheckoutRadioFieldChangeEvent>) => void;
+        "onClicked"?: (event: CustomEvent<MouseEvent>) => void;
         "onInputed"?: (event: CustomEvent<KeyboardEvent>) => void;
         "value"?: CheckoutRadioFieldValue;
     }

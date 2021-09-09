@@ -25,6 +25,8 @@ export namespace Components {
         "installmentsConfig": PlugCheckoutInstallmentsConfig;
         "isLoading": boolean;
     }
+    interface PlugPayments {
+    }
 }
 declare global {
     interface HTMLPlugCheckoutElement extends Components.PlugCheckout, HTMLStencilElement {
@@ -39,9 +41,16 @@ declare global {
         prototype: HTMLPlugCheckoutFormElement;
         new (): HTMLPlugCheckoutFormElement;
     };
+    interface HTMLPlugPaymentsElement extends Components.PlugPayments, HTMLStencilElement {
+    }
+    var HTMLPlugPaymentsElement: {
+        prototype: HTMLPlugPaymentsElement;
+        new (): HTMLPlugPaymentsElement;
+    };
     interface HTMLElementTagNameMap {
         "plug-checkout": HTMLPlugCheckoutElement;
         "plug-checkout-form": HTMLPlugCheckoutFormElement;
+        "plug-payments": HTMLPlugPaymentsElement;
     }
 }
 declare namespace LocalJSX {
@@ -67,9 +76,12 @@ declare namespace LocalJSX {
         "onFieldChange"?: (event: CustomEvent<{ field: string; value: string }>) => void;
         "onFormSubmit"?: (event: CustomEvent<void>) => void;
     }
+    interface PlugPayments {
+    }
     interface IntrinsicElements {
         "plug-checkout": PlugCheckout;
         "plug-checkout-form": PlugCheckoutForm;
+        "plug-payments": PlugPayments;
     }
 }
 export { LocalJSX as JSX };
@@ -78,6 +90,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "plug-checkout": LocalJSX.PlugCheckout & JSXBase.HTMLAttributes<HTMLPlugCheckoutElement>;
             "plug-checkout-form": LocalJSX.PlugCheckoutForm & JSXBase.HTMLAttributes<HTMLPlugCheckoutFormElement>;
+            "plug-payments": LocalJSX.PlugPayments & JSXBase.HTMLAttributes<HTMLPlugPaymentsElement>;
         }
     }
 }

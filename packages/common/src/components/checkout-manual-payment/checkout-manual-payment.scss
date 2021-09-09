@@ -4,7 +4,6 @@
   display: flex;
   flex-direction: column;
   width: var(--plug-checkout-size-min-width);
-  padding: var(--plug-checkout-spacing-sm) var(--plug-checkout-spacing-xs);
 
   &--full-width {
     width: 100%;

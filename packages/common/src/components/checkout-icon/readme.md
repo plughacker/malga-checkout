@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type                                                                                                                      | Default     |
-| -------- | --------- | ----------- | ------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `class`  | `class`   |             | `string`                                                                                                                  | `undefined` |
-| `icon`   | `icon`    |             | `"arrowDown" \| "calendar" \| "check" \| "creditCard" \| "cvv" \| "dollar" \| "lock" \| "spinner" \| "user" \| "warning"` | `undefined` |
+| Property | Attribute | Description | Type                                                                                                                                         | Default     |
+| -------- | --------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `class`  | `class`   |             | `string`                                                                                                                                     | `undefined` |
+| `icon`   | `icon`    |             | `"arrowDown" \| "calendar" \| "check" \| "creditCard" \| "cvv" \| "dollar" \| "lock" \| "poweredByPlug" \| "spinner" \| "user" \| "warning"` | `undefined` |
 
 
 ## Dependencies
@@ -19,6 +19,7 @@
 
  - [checkout-button](../checkout-button)
  - [checkout-input](../checkout-input)
+ - [checkout-manual-payment](../checkout-manual-payment)
  - [checkout-select](../checkout-select)
  - [checkout-select-field](../checkout-select-field)
  - [checkout-text-field](../checkout-text-field)
@@ -28,6 +29,7 @@
 graph TD;
   checkout-button --> checkout-icon
   checkout-input --> checkout-icon
+  checkout-manual-payment --> checkout-icon
   checkout-select --> checkout-icon
   checkout-select-field --> checkout-icon
   checkout-text-field --> checkout-icon

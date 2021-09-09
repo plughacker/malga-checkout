@@ -7,15 +7,15 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type                                                                                                                      | Default     |
-| ------------- | -------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `customClass` | `custom-class` |             | `string`                                                                                                                  | `undefined` |
-| `disabled`    | `disabled`     |             | `boolean`                                                                                                                 | `false`     |
-| `fullWidth`   | `full-width`   |             | `boolean`                                                                                                                 | `undefined` |
-| `icon`        | `icon`         |             | `"arrowDown" \| "calendar" \| "check" \| "creditCard" \| "cvv" \| "dollar" \| "lock" \| "spinner" \| "user" \| "warning"` | `undefined` |
-| `isLoading`   | `is-loading`   |             | `boolean`                                                                                                                 | `undefined` |
-| `label`       | `label`        |             | `string`                                                                                                                  | `undefined` |
-| `type`        | `type`         |             | `"button" \| "reset" \| "submit"`                                                                                         | `'button'`  |
+| Property      | Attribute      | Description | Type                                                                                                                                         | Default     |
+| ------------- | -------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `customClass` | `custom-class` |             | `string`                                                                                                                                     | `undefined` |
+| `disabled`    | `disabled`     |             | `boolean`                                                                                                                                    | `false`     |
+| `fullWidth`   | `full-width`   |             | `boolean`                                                                                                                                    | `undefined` |
+| `icon`        | `icon`         |             | `"arrowDown" \| "calendar" \| "check" \| "creditCard" \| "cvv" \| "dollar" \| "lock" \| "poweredByPlug" \| "spinner" \| "user" \| "warning"` | `undefined` |
+| `isLoading`   | `is-loading`   |             | `boolean`                                                                                                                                    | `undefined` |
+| `label`       | `label`        |             | `string`                                                                                                                                     | `undefined` |
+| `type`        | `type`         |             | `"button" \| "reset" \| "submit"`                                                                                                            | `'button'`  |
 
 
 ## Events
@@ -29,6 +29,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [checkout-manual-payment](../checkout-manual-payment)
+
 ### Depends on
 
 - [checkout-icon](../checkout-icon)
@@ -37,6 +41,7 @@
 ```mermaid
 graph TD;
   checkout-button --> checkout-icon
+  checkout-manual-payment --> checkout-button
   style checkout-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

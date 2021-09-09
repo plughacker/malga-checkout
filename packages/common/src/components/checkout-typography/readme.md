@@ -20,6 +20,7 @@
 ### Used by
 
  - [checkout-error-message](../checkout-error-message)
+ - [checkout-manual-payment](../checkout-manual-payment)
  - [checkout-select-field](../checkout-select-field)
  - [checkout-text-field](../checkout-text-field)
 
@@ -27,6 +28,7 @@
 ```mermaid
 graph TD;
   checkout-error-message --> checkout-typography
+  checkout-manual-payment --> checkout-typography
   checkout-select-field --> checkout-typography
   checkout-text-field --> checkout-typography
   style checkout-typography fill:#f9f,stroke:#333,stroke-width:4px

@@ -290,7 +290,7 @@ declare namespace LocalJSX {
         "value"?: CheckoutInputValue;
     }
     interface CheckoutManualPayment {
-        "onOnPaymentClick"?: (event: CustomEvent<void>) => void;
+        "onPaymentClick"?: (event: CustomEvent<void>) => void;
         "paymentMethod"?: CheckoutManualPaymentDescriptions;
     }
     interface CheckoutRadioField {

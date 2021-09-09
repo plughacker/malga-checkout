@@ -1,0 +1,28 @@
+.checkout-manual-payment__container {
+  @extend %reset;
+
+  display: flex;
+  flex-direction: column;
+  width: var(--plug-checkout-size-min-width);
+  padding: var(--plug-checkout-spacing-sm) var(--plug-checkout-spacing-xs);
+
+  &--full-width {
+    width: 100%;
+  }
+}
+
+.checkout-manual-paymnet__content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--plug-checkout-spacing-md);
+
+  & > checkout-icon {
+    height: 30px;
+  }
+}
+
+.checkout-manual-payment__description {
+  @extend %typography-field;
+}

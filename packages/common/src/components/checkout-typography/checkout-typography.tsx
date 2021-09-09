@@ -60,7 +60,10 @@ export class CheckoutTypography implements ComponentInterface {
 
     return (
       <Host>
-        <Tag class={this.generateClass()}>{this.content}</Tag>
+        <Tag class={this.generateClass()}>
+          {this.content}
+          <slot name="content" />
+        </Tag>
       </Host>
     )
   }

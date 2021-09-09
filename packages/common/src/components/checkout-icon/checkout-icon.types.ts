@@ -9,5 +9,6 @@ export type CheckoutIconNames =
   | 'spinner'
   | 'user'
   | 'warning'
+  | 'poweredByPlug'
 
 export type CheckoutIconsObject = Record<CheckoutIconNames, string>

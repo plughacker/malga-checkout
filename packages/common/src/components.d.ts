@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { CheckoutIconNames } from "./components/checkout-icon/checkout-icon.types";
 import { CheckoutButtonType } from "./components/checkout-button/checkout-button.types";
 import { CheckoutInputChangeEvent, CheckoutInputMode, CheckoutInputType, CheckoutInputValue } from "./components/checkout-input/checkout-input.types";
+import { CheckoutManualPaymentDescriptions } from "./components/checkout-manual-payment/checkout-manual-payment.types";
 import { CheckoutRadioFieldChangeEvent, CheckoutRadioFieldValue } from "./components/checkout-radio-field/checkout-radio-field.types";
 import { CheckoutSelectChangeEvent, CheckoutSelectOptions, CheckoutSelectValue } from "./components/checkout-select/checkout-select.types";
 import { CheckoutSelectFieldChangeEvent, CheckoutSelectFieldOptions, CheckoutSelectFieldValue } from "./components/checkout-select-field/checkout-select-field.types";
@@ -66,6 +67,9 @@ export namespace Components {
         "startIcon"?: CheckoutIconNames;
         "type": CheckoutInputType;
         "value"?: CheckoutInputValue;
+    }
+    interface CheckoutManualPayment {
+        "paymentMethod": CheckoutManualPaymentDescriptions;
     }
     interface CheckoutRadioField {
         "customContainerClass"?: string;
@@ -174,6 +178,12 @@ declare global {
         prototype: HTMLCheckoutInputElement;
         new (): HTMLCheckoutInputElement;
     };
+    interface HTMLCheckoutManualPaymentElement extends Components.CheckoutManualPayment, HTMLStencilElement {
+    }
+    var HTMLCheckoutManualPaymentElement: {
+        prototype: HTMLCheckoutManualPaymentElement;
+        new (): HTMLCheckoutManualPaymentElement;
+    };
     interface HTMLCheckoutRadioFieldElement extends Components.CheckoutRadioField, HTMLStencilElement {
     }
     var HTMLCheckoutRadioFieldElement: {
@@ -210,6 +220,7 @@ declare global {
         "checkout-error-message": HTMLCheckoutErrorMessageElement;
         "checkout-icon": HTMLCheckoutIconElement;
         "checkout-input": HTMLCheckoutInputElement;
+        "checkout-manual-payment": HTMLCheckoutManualPaymentElement;
         "checkout-radio-field": HTMLCheckoutRadioFieldElement;
         "checkout-select": HTMLCheckoutSelectElement;
         "checkout-select-field": HTMLCheckoutSelectFieldElement;
@@ -277,6 +288,10 @@ declare namespace LocalJSX {
         "startIcon"?: CheckoutIconNames;
         "type"?: CheckoutInputType;
         "value"?: CheckoutInputValue;
+    }
+    interface CheckoutManualPayment {
+        "onOnPaymentClick"?: (event: CustomEvent<void>) => void;
+        "paymentMethod"?: CheckoutManualPaymentDescriptions;
     }
     interface CheckoutRadioField {
         "customContainerClass"?: string;
@@ -373,6 +388,7 @@ declare namespace LocalJSX {
         "checkout-error-message": CheckoutErrorMessage;
         "checkout-icon": CheckoutIcon;
         "checkout-input": CheckoutInput;
+        "checkout-manual-payment": CheckoutManualPayment;
         "checkout-radio-field": CheckoutRadioField;
         "checkout-select": CheckoutSelect;
         "checkout-select-field": CheckoutSelectField;
@@ -389,6 +405,7 @@ declare module "@stencil/core" {
             "checkout-error-message": LocalJSX.CheckoutErrorMessage & JSXBase.HTMLAttributes<HTMLCheckoutErrorMessageElement>;
             "checkout-icon": LocalJSX.CheckoutIcon & JSXBase.HTMLAttributes<HTMLCheckoutIconElement>;
             "checkout-input": LocalJSX.CheckoutInput & JSXBase.HTMLAttributes<HTMLCheckoutInputElement>;
+            "checkout-manual-payment": LocalJSX.CheckoutManualPayment & JSXBase.HTMLAttributes<HTMLCheckoutManualPaymentElement>;
             "checkout-radio-field": LocalJSX.CheckoutRadioField & JSXBase.HTMLAttributes<HTMLCheckoutRadioFieldElement>;
             "checkout-select": LocalJSX.CheckoutSelect & JSXBase.HTMLAttributes<HTMLCheckoutSelectElement>;
             "checkout-select-field": LocalJSX.CheckoutSelectField & JSXBase.HTMLAttributes<HTMLCheckoutSelectFieldElement>;

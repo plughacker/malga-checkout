@@ -12,6 +12,7 @@ import LockIcon from '../../assets/icons/lock.svg'
 import SpinnerIcon from '../../assets/icons/spinner.svg'
 import UserIcon from '../../assets/icons/user.svg'
 import WarningIcon from '../../assets/icons/warning.svg'
+import PoweredByPlug from '../../assets/icons/powered-by-plug.svg'
 
 @Component({ tag: 'checkout-icon' })
 export class CheckoutIcon implements ComponentInterface {
@@ -30,6 +31,7 @@ export class CheckoutIcon implements ComponentInterface {
       spinner: SpinnerIcon,
       user: UserIcon,
       warning: WarningIcon,
+      poweredByPlug: PoweredByPlug,
     }
 
     return icons[this.icon]

@@ -18,18 +18,17 @@
   outline: none;
 
   height: 40px;
-  min-width: var(--plug-checkout-size-min-width);
   padding: 0 var(--plug-checkout-spacing-sm);
   border: 0;
   border-radius: var(--plug-checkout-border-radius-default);
-  background: var(--plug-checkout-color-brand-dark);
+  background: var(--plug-checkout-color-brand-middle);
 
   letter-spacing: 1.25px;
   text-align: center;
   color: var(--plug-checkout-color-accent-light);
 
   &:hover {
-    background: var(--plug-checkout-color-brand-middle);
+    background: var(--plug-checkout-color-brand-normal);
   }
 
   &:focus {

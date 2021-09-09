@@ -79,6 +79,8 @@
     @extend %typography-button;
   } @else if $value == 'label' {
     @extend %typography-label;
+  } @else if $value == 'field' {
+    @extend %typography-field;
   } @else {
     @extend %typography-body1;
   }

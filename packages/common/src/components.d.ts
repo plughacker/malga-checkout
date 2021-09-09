@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { CheckoutIconNames } from "./components/checkout-icon/checkout-icon.types";
 import { CheckoutButtonType } from "./components/checkout-button/checkout-button.types";
 import { CheckoutInputChangeEvent, CheckoutInputMode, CheckoutInputType, CheckoutInputValue } from "./components/checkout-input/checkout-input.types";
+import { CheckoutRadioFieldChangeEvent, CheckoutRadioFieldValue } from "./components/checkout-radio-field/checkout-radio-field.types";
 import { CheckoutSelectChangeEvent, CheckoutSelectOptions, CheckoutSelectValue } from "./components/checkout-select/checkout-select.types";
 import { CheckoutSelectFieldChangeEvent, CheckoutSelectFieldOptions, CheckoutSelectFieldValue } from "./components/checkout-select-field/checkout-select-field.types";
 import { CheckoutTextFieldChangeEvent, CheckoutTextFieldMode, CheckoutTextFieldType, CheckoutTextFieldValue } from "./components/checkout-text-field/checkout-text-field.types";
@@ -65,6 +66,15 @@ export namespace Components {
         "startIcon"?: CheckoutIconNames;
         "type": CheckoutInputType;
         "value"?: CheckoutInputValue;
+    }
+    interface CheckoutRadioField {
+        "customContainerClass"?: string;
+        "customInputClass"?: string;
+        "customLabelClass"?: string;
+        "fullWidth": boolean;
+        "isChecked": boolean;
+        "label": string;
+        "value"?: CheckoutRadioFieldValue;
     }
     interface CheckoutSelect {
         "autofocus": boolean;
@@ -164,6 +174,12 @@ declare global {
         prototype: HTMLCheckoutInputElement;
         new (): HTMLCheckoutInputElement;
     };
+    interface HTMLCheckoutRadioFieldElement extends Components.CheckoutRadioField, HTMLStencilElement {
+    }
+    var HTMLCheckoutRadioFieldElement: {
+        prototype: HTMLCheckoutRadioFieldElement;
+        new (): HTMLCheckoutRadioFieldElement;
+    };
     interface HTMLCheckoutSelectElement extends Components.CheckoutSelect, HTMLStencilElement {
     }
     var HTMLCheckoutSelectElement: {
@@ -194,6 +210,7 @@ declare global {
         "checkout-error-message": HTMLCheckoutErrorMessageElement;
         "checkout-icon": HTMLCheckoutIconElement;
         "checkout-input": HTMLCheckoutInputElement;
+        "checkout-radio-field": HTMLCheckoutRadioFieldElement;
         "checkout-select": HTMLCheckoutSelectElement;
         "checkout-select-field": HTMLCheckoutSelectFieldElement;
         "checkout-text-field": HTMLCheckoutTextFieldElement;
@@ -260,6 +277,17 @@ declare namespace LocalJSX {
         "startIcon"?: CheckoutIconNames;
         "type"?: CheckoutInputType;
         "value"?: CheckoutInputValue;
+    }
+    interface CheckoutRadioField {
+        "customContainerClass"?: string;
+        "customInputClass"?: string;
+        "customLabelClass"?: string;
+        "fullWidth"?: boolean;
+        "isChecked"?: boolean;
+        "label"?: string;
+        "onChanged"?: (event: CustomEvent<CheckoutRadioFieldChangeEvent>) => void;
+        "onInputed"?: (event: CustomEvent<KeyboardEvent>) => void;
+        "value"?: CheckoutRadioFieldValue;
     }
     interface CheckoutSelect {
         "autofocus"?: boolean;
@@ -345,6 +373,7 @@ declare namespace LocalJSX {
         "checkout-error-message": CheckoutErrorMessage;
         "checkout-icon": CheckoutIcon;
         "checkout-input": CheckoutInput;
+        "checkout-radio-field": CheckoutRadioField;
         "checkout-select": CheckoutSelect;
         "checkout-select-field": CheckoutSelectField;
         "checkout-text-field": CheckoutTextField;
@@ -360,6 +389,7 @@ declare module "@stencil/core" {
             "checkout-error-message": LocalJSX.CheckoutErrorMessage & JSXBase.HTMLAttributes<HTMLCheckoutErrorMessageElement>;
             "checkout-icon": LocalJSX.CheckoutIcon & JSXBase.HTMLAttributes<HTMLCheckoutIconElement>;
             "checkout-input": LocalJSX.CheckoutInput & JSXBase.HTMLAttributes<HTMLCheckoutInputElement>;
+            "checkout-radio-field": LocalJSX.CheckoutRadioField & JSXBase.HTMLAttributes<HTMLCheckoutRadioFieldElement>;
             "checkout-select": LocalJSX.CheckoutSelect & JSXBase.HTMLAttributes<HTMLCheckoutSelectElement>;
             "checkout-select-field": LocalJSX.CheckoutSelectField & JSXBase.HTMLAttributes<HTMLCheckoutSelectFieldElement>;
             "checkout-text-field": LocalJSX.CheckoutTextField & JSXBase.HTMLAttributes<HTMLCheckoutTextFieldElement>;

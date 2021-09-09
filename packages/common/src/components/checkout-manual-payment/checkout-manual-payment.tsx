@@ -17,10 +17,10 @@ import { CheckoutManualPaymentDescriptions } from './checkout-manual-payment.typ
 export class CheckoutManualPayment implements ComponentInterface {
   @Prop() paymentMethod: CheckoutManualPaymentDescriptions = 'pix'
 
-  @Event() onPaymentClick!: EventEmitter<void>
+  @Event() paymentClick!: EventEmitter<void>
 
   private onClick = () => {
-    this.onPaymentClick.emit()
+    this.paymentClick.emit()
   }
 
   static DESCRIPTIONS = {

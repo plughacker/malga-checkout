@@ -22,9 +22,7 @@ export class PlugPayments implements ComponentInterface {
             isChecked={this.currentPayment === 'boleto'}
             onClicked={() => this.handlePaymentChange('boleto')}
           />
-          {this.currentPayment === 'boleto' && (
-            <checkout-manual-payment fullWidth paymentMethod="boleto" />
-          )}
+          {this.currentPayment === 'boleto' && <plug-payments-boleto />}
 
           <checkout-radio-field
             fullWidth
@@ -33,9 +31,7 @@ export class PlugPayments implements ComponentInterface {
             isChecked={this.currentPayment === 'pix'}
             onClicked={() => this.handlePaymentChange('pix')}
           />
-          {this.currentPayment === 'pix' && (
-            <checkout-manual-payment fullWidth paymentMethod="pix" />
-          )}
+          {this.currentPayment === 'pix' && <plug-payments-pix />}
 
           <checkout-radio-field
             fullWidth

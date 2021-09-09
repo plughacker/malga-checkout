@@ -16,11 +16,13 @@
     );
   }
 
-  & > checkout-manual-payment {
+  & > plug-payments-boleto > checkout-manual-payment,
+  & > plug-payments-pix > checkout-manual-payment {
     margin-bottom: var(--plug-checkout-spacing-sm);
   }
 
-  & > checkout-manual-payment > checkout-typography {
+  & > plug-payments-boleto > checkout-manual-payment > checkout-typography,
+  & > plug-payments-pix > checkout-manual-payment > checkout-typography {
     padding: 0px var(--plug-checkout-spacing-sm);
   }
 }

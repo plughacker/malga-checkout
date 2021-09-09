@@ -27,6 +27,10 @@ export namespace Components {
     }
     interface PlugPayments {
     }
+    interface PlugPaymentsBoleto {
+    }
+    interface PlugPaymentsPix {
+    }
 }
 declare global {
     interface HTMLPlugCheckoutElement extends Components.PlugCheckout, HTMLStencilElement {
@@ -47,10 +51,24 @@ declare global {
         prototype: HTMLPlugPaymentsElement;
         new (): HTMLPlugPaymentsElement;
     };
+    interface HTMLPlugPaymentsBoletoElement extends Components.PlugPaymentsBoleto, HTMLStencilElement {
+    }
+    var HTMLPlugPaymentsBoletoElement: {
+        prototype: HTMLPlugPaymentsBoletoElement;
+        new (): HTMLPlugPaymentsBoletoElement;
+    };
+    interface HTMLPlugPaymentsPixElement extends Components.PlugPaymentsPix, HTMLStencilElement {
+    }
+    var HTMLPlugPaymentsPixElement: {
+        prototype: HTMLPlugPaymentsPixElement;
+        new (): HTMLPlugPaymentsPixElement;
+    };
     interface HTMLElementTagNameMap {
         "plug-checkout": HTMLPlugCheckoutElement;
         "plug-checkout-form": HTMLPlugCheckoutFormElement;
         "plug-payments": HTMLPlugPaymentsElement;
+        "plug-payments-boleto": HTMLPlugPaymentsBoletoElement;
+        "plug-payments-pix": HTMLPlugPaymentsPixElement;
     }
 }
 declare namespace LocalJSX {
@@ -78,10 +96,16 @@ declare namespace LocalJSX {
     }
     interface PlugPayments {
     }
+    interface PlugPaymentsBoleto {
+    }
+    interface PlugPaymentsPix {
+    }
     interface IntrinsicElements {
         "plug-checkout": PlugCheckout;
         "plug-checkout-form": PlugCheckoutForm;
         "plug-payments": PlugPayments;
+        "plug-payments-boleto": PlugPaymentsBoleto;
+        "plug-payments-pix": PlugPaymentsPix;
     }
 }
 export { LocalJSX as JSX };
@@ -91,6 +115,8 @@ declare module "@stencil/core" {
             "plug-checkout": LocalJSX.PlugCheckout & JSXBase.HTMLAttributes<HTMLPlugCheckoutElement>;
             "plug-checkout-form": LocalJSX.PlugCheckoutForm & JSXBase.HTMLAttributes<HTMLPlugCheckoutFormElement>;
             "plug-payments": LocalJSX.PlugPayments & JSXBase.HTMLAttributes<HTMLPlugPaymentsElement>;
+            "plug-payments-boleto": LocalJSX.PlugPaymentsBoleto & JSXBase.HTMLAttributes<HTMLPlugPaymentsBoletoElement>;
+            "plug-payments-pix": LocalJSX.PlugPaymentsPix & JSXBase.HTMLAttributes<HTMLPlugPaymentsPixElement>;
         }
     }
 }

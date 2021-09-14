@@ -1,4 +1,4 @@
-.plug-checkout-form__container {
+.plug-payments-credit-form__container {
   display: flex;
   width: 500px;
   margin-top: var(--plug-checkout-spacing-xs);
@@ -6,7 +6,7 @@
   margin-right: auto;
 }
 
-.plug-checkout-form__form {
+.plug-payments-credit-form__form {
   width: 100%;
 
   & > checkout-text-field {
@@ -18,7 +18,7 @@
   }
 }
 
-.plug-checkout-form__row-fields {
+.plug-payments-credit-form__row-fields {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -37,7 +37,7 @@
   }
 }
 
-.plug-checkout-form__submit {
+.plug-payments-credit-form__submit {
   display: flex;
   flex-direction: row;
   align-items: center;

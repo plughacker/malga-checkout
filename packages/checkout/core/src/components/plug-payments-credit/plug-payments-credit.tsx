@@ -7,21 +7,21 @@ import {
   Event,
   EventEmitter,
 } from '@stencil/core'
-import { defaultCustomStyles } from './plug-checkout.utils'
+import { defaultCustomStyles } from './plug-payments-credit.utils'
 
 import {
-  PlugCheckoutFormCustomStyleFormClasses,
-  PlugCheckoutFormValues,
-  PlugCheckoutInstallmentsConfig,
-  PlugCheckoutOneShotError,
-  PlugCheckoutOneShotSuccess,
-} from './plug-checkout.types'
-import { checkoutOneShotRequest } from './plug-checkout.service'
+  PlugPaymentsCreditFormCustomStyleFormClasses,
+  PlugPaymentsCreditFormValues,
+  PlugPaymentsCreditInstallmentsConfig,
+  PlugPaymentsCreditOneShotError,
+  PlugPaymentsCreditOneShotSuccess,
+} from './plug-payments-credit.types'
+import { checkoutOneShotRequest } from './plug-payments-credit.service'
 
 @Component({
-  tag: 'plug-checkout',
+  tag: 'plug-payments-credit',
 })
-export class PlugCheckout {
+export class PlugPaymentsCredit {
   @Prop() clientId: string
   @Prop() publicKey: string
   @Prop() merchantId: string
@@ -30,19 +30,23 @@ export class PlugCheckout {
   @Prop() sandbox = false
   @Prop() capture = false
   @Prop() showCreditCard = true
-  @Prop() installmentsConfig: PlugCheckoutInstallmentsConfig = {
+  @Prop() installmentsConfig: PlugPaymentsCreditInstallmentsConfig = {
     show: true,
     quantity: 1,
   }
-  @Prop() customFormStyleClasses?: PlugCheckoutFormCustomStyleFormClasses =
-    defaultCustomStyles
+  @Prop()
+  customFormStyleClasses?: PlugPaymentsCreditFormCustomStyleFormClasses = defaultCustomStyles
 
-  @Event() paymentSuccess!: EventEmitter<{ data: PlugCheckoutOneShotSuccess }>
-  @Event() paymentFailed!: EventEmitter<{ error: PlugCheckoutOneShotError }>
+  @Event() paymentSuccess!: EventEmitter<{
+    data: PlugPaymentsCreditOneShotSuccess
+  }>
+  @Event() paymentFailed!: EventEmitter<{
+    error: PlugPaymentsCreditOneShotError
+  }>
 
   @State() isLoading = false
   @State() currentFieldChanged = 'cardNumber'
-  @State() formValues: PlugCheckoutFormValues = {
+  @State() formValues: PlugPaymentsCreditFormValues = {
     cardNumber: '',
     expirationDate: '',
     cvv: '',
@@ -70,9 +74,9 @@ export class PlugCheckout {
       publicKey: this.publicKey,
       clientId: this.clientId,
       sandbox: this.sandbox,
-      onPaymentSuccess: (data: PlugCheckoutOneShotSuccess) =>
+      onPaymentSuccess: (data: PlugPaymentsCreditOneShotSuccess) =>
         this.paymentSuccess.emit({ data }),
-      onPaymentFailed: (error: PlugCheckoutOneShotError) =>
+      onPaymentFailed: (error: PlugPaymentsCreditOneShotError) =>
         this.paymentFailed.emit({ error }),
       data,
     })
@@ -92,7 +96,7 @@ export class PlugCheckout {
             number={this.formValues.cardNumber}
           />
         )}
-        <plug-checkout-form
+        <plug-payments-credit-form
           isLoading={this.isLoading}
           amount={this.amount}
           installmentsConfig={this.installmentsConfig}

@@ -10,36 +10,36 @@ import {
 } from '@stencil/core'
 
 import {
-  PlugCheckoutFormCustomStyleFormClasses,
-  PlugCheckoutFormValues,
-  PlugCheckoutInstallmentsConfig,
-} from '../../plug-checkout.types'
+  PlugPaymentsCreditFormCustomStyleFormClasses,
+  PlugPaymentsCreditFormValues,
+  PlugPaymentsCreditInstallmentsConfig,
+} from '../../plug-payments-credit.types'
 
-import { PlugCheckoutValidFields } from './plug-checkout-form.types'
+import { PlugPaymentsCreditFormValidFields } from './plug-payments-credit-form.types'
 
 import {
   centsToReal,
   checkIfAllFieldsIsBlank,
-} from './plug-checkout-form.utils'
-import { validateCheckout } from './plug-checkout-form.schema'
+} from './plug-payments-credit-form.utils'
+import { validateCheckout } from './plug-payments-credit-form.schema'
 import { getCurrentMaskPerIssuer } from '@plug-checkout/common'
 
 @Component({
-  tag: 'plug-checkout-form',
-  styleUrl: 'plug-checkout-form.scss',
+  tag: 'plug-payments-credit-form',
+  styleUrl: 'plug-payments-credit-form.scss',
 })
-export class PlugCheckoutForm implements ComponentInterface {
-  @Prop() formValues: PlugCheckoutFormValues
+export class PlugPaymentsCreditForm implements ComponentInterface {
+  @Prop() formValues: PlugPaymentsCreditFormValues
   @Prop() amount: number
-  @Prop() installmentsConfig: PlugCheckoutInstallmentsConfig
-  @Prop() customFormStyleClasses: PlugCheckoutFormCustomStyleFormClasses
+  @Prop() installmentsConfig: PlugPaymentsCreditInstallmentsConfig
+  @Prop() customFormStyleClasses: PlugPaymentsCreditFormCustomStyleFormClasses
   @Prop() isLoading: boolean
 
   @Event() formSubmit: EventEmitter<void>
   @Event() fieldChange: EventEmitter<{ field: string; value: string }>
 
   @State() allFieldIsBlank = false
-  @State() validFields: PlugCheckoutValidFields = {
+  @State() validFields: PlugPaymentsCreditFormValidFields = {
     cardNumber: null,
     cvv: null,
     installments: null,
@@ -130,14 +130,14 @@ export class PlugCheckoutForm implements ComponentInterface {
     return (
       <Host
         class={{
-          'plug-checkout-form__container': true,
+          'plug-payments-credit-form__container': true,
           [this.customFormStyleClasses.formContainer]:
             !!this.customFormStyleClasses.formContainer,
         }}
       >
         <form
           class={{
-            'plug-checkout-form__form': true,
+            'plug-payments-credit-form__form': true,
             [this.customFormStyleClasses.formContent]:
               !!this.customFormStyleClasses.formContent,
           }}
@@ -169,7 +169,7 @@ export class PlugCheckoutForm implements ComponentInterface {
             <checkout-error-message message={this.validFields.cardNumber} />
           )}
 
-          <fieldset class="plug-checkout-form__row-fields">
+          <fieldset class="plug-payments-credit-form__row-fields">
             <checkout-text-field
               value={this.formValues.expirationDate}
               onChanged={this.handleFieldChange('expirationDate')}
@@ -281,7 +281,7 @@ export class PlugCheckoutForm implements ComponentInterface {
             <checkout-error-message message="Preencha todos os campos para prosseguir." />
           )}
 
-          <div class="plug-checkout-form__submit">
+          <div class="plug-payments-credit-form__submit">
             <checkout-button
               customClass={this.customFormStyleClasses.submitButton}
               isLoading={this.isLoading}

@@ -5,48 +5,36 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { PlugCheckoutFormCustomStyleFormClasses, PlugCheckoutFormValues, PlugCheckoutInstallmentsConfig, PlugCheckoutOneShotError, PlugCheckoutOneShotSuccess } from "./components/plug-checkout/plug-checkout.types";
+import { PlugPaymentsCreditFormCustomStyleFormClasses, PlugPaymentsCreditFormValues, PlugPaymentsCreditInstallmentsConfig, PlugPaymentsCreditOneShotError, PlugPaymentsCreditOneShotSuccess } from "./components/plug-payments-credit/plug-payments-credit.types";
 export namespace Components {
-    interface PlugCheckout {
+    interface PlugPayments {
+        "showCreditCard": boolean;
+    }
+    interface PlugPaymentsBoleto {
+    }
+    interface PlugPaymentsCredit {
         "amount": number;
         "capture": boolean;
         "clientId": string;
-        "customFormStyleClasses"?: PlugCheckoutFormCustomStyleFormClasses;
-        "installmentsConfig": PlugCheckoutInstallmentsConfig;
+        "customFormStyleClasses"?: PlugPaymentsCreditFormCustomStyleFormClasses;
+        "installmentsConfig": PlugPaymentsCreditInstallmentsConfig;
         "merchantId": string;
         "publicKey": string;
         "sandbox": boolean;
         "showCreditCard": boolean;
         "statementDescriptor": string;
     }
-    interface PlugCheckoutForm {
+    interface PlugPaymentsCreditForm {
         "amount": number;
-        "customFormStyleClasses": PlugCheckoutFormCustomStyleFormClasses;
-        "formValues": PlugCheckoutFormValues;
-        "installmentsConfig": PlugCheckoutInstallmentsConfig;
+        "customFormStyleClasses": PlugPaymentsCreditFormCustomStyleFormClasses;
+        "formValues": PlugPaymentsCreditFormValues;
+        "installmentsConfig": PlugPaymentsCreditInstallmentsConfig;
         "isLoading": boolean;
-    }
-    interface PlugPayments {
-        "showCreditCard": boolean;
-    }
-    interface PlugPaymentsBoleto {
     }
     interface PlugPaymentsPix {
     }
 }
 declare global {
-    interface HTMLPlugCheckoutElement extends Components.PlugCheckout, HTMLStencilElement {
-    }
-    var HTMLPlugCheckoutElement: {
-        prototype: HTMLPlugCheckoutElement;
-        new (): HTMLPlugCheckoutElement;
-    };
-    interface HTMLPlugCheckoutFormElement extends Components.PlugCheckoutForm, HTMLStencilElement {
-    }
-    var HTMLPlugCheckoutFormElement: {
-        prototype: HTMLPlugCheckoutFormElement;
-        new (): HTMLPlugCheckoutFormElement;
-    };
     interface HTMLPlugPaymentsElement extends Components.PlugPayments, HTMLStencilElement {
     }
     var HTMLPlugPaymentsElement: {
@@ -59,6 +47,18 @@ declare global {
         prototype: HTMLPlugPaymentsBoletoElement;
         new (): HTMLPlugPaymentsBoletoElement;
     };
+    interface HTMLPlugPaymentsCreditElement extends Components.PlugPaymentsCredit, HTMLStencilElement {
+    }
+    var HTMLPlugPaymentsCreditElement: {
+        prototype: HTMLPlugPaymentsCreditElement;
+        new (): HTMLPlugPaymentsCreditElement;
+    };
+    interface HTMLPlugPaymentsCreditFormElement extends Components.PlugPaymentsCreditForm, HTMLStencilElement {
+    }
+    var HTMLPlugPaymentsCreditFormElement: {
+        prototype: HTMLPlugPaymentsCreditFormElement;
+        new (): HTMLPlugPaymentsCreditFormElement;
+    };
     interface HTMLPlugPaymentsPixElement extends Components.PlugPaymentsPix, HTMLStencilElement {
     }
     var HTMLPlugPaymentsPixElement: {
@@ -66,49 +66,53 @@ declare global {
         new (): HTMLPlugPaymentsPixElement;
     };
     interface HTMLElementTagNameMap {
-        "plug-checkout": HTMLPlugCheckoutElement;
-        "plug-checkout-form": HTMLPlugCheckoutFormElement;
         "plug-payments": HTMLPlugPaymentsElement;
         "plug-payments-boleto": HTMLPlugPaymentsBoletoElement;
+        "plug-payments-credit": HTMLPlugPaymentsCreditElement;
+        "plug-payments-credit-form": HTMLPlugPaymentsCreditFormElement;
         "plug-payments-pix": HTMLPlugPaymentsPixElement;
     }
 }
 declare namespace LocalJSX {
-    interface PlugCheckout {
-        "amount"?: number;
-        "capture"?: boolean;
-        "clientId"?: string;
-        "customFormStyleClasses"?: PlugCheckoutFormCustomStyleFormClasses;
-        "installmentsConfig"?: PlugCheckoutInstallmentsConfig;
-        "merchantId"?: string;
-        "onPaymentFailed"?: (event: CustomEvent<{ error: PlugCheckoutOneShotError }>) => void;
-        "onPaymentSuccess"?: (event: CustomEvent<{ data: PlugCheckoutOneShotSuccess }>) => void;
-        "publicKey"?: string;
-        "sandbox"?: boolean;
-        "showCreditCard"?: boolean;
-        "statementDescriptor"?: string;
-    }
-    interface PlugCheckoutForm {
-        "amount"?: number;
-        "customFormStyleClasses"?: PlugCheckoutFormCustomStyleFormClasses;
-        "formValues"?: PlugCheckoutFormValues;
-        "installmentsConfig"?: PlugCheckoutInstallmentsConfig;
-        "isLoading"?: boolean;
-        "onFieldChange"?: (event: CustomEvent<{ field: string; value: string }>) => void;
-        "onFormSubmit"?: (event: CustomEvent<void>) => void;
-    }
     interface PlugPayments {
         "showCreditCard"?: boolean;
     }
     interface PlugPaymentsBoleto {
     }
+    interface PlugPaymentsCredit {
+        "amount"?: number;
+        "capture"?: boolean;
+        "clientId"?: string;
+        "customFormStyleClasses"?: PlugPaymentsCreditFormCustomStyleFormClasses;
+        "installmentsConfig"?: PlugPaymentsCreditInstallmentsConfig;
+        "merchantId"?: string;
+        "onPaymentFailed"?: (event: CustomEvent<{
+    error: PlugPaymentsCreditOneShotError
+  }>) => void;
+        "onPaymentSuccess"?: (event: CustomEvent<{
+    data: PlugPaymentsCreditOneShotSuccess
+  }>) => void;
+        "publicKey"?: string;
+        "sandbox"?: boolean;
+        "showCreditCard"?: boolean;
+        "statementDescriptor"?: string;
+    }
+    interface PlugPaymentsCreditForm {
+        "amount"?: number;
+        "customFormStyleClasses"?: PlugPaymentsCreditFormCustomStyleFormClasses;
+        "formValues"?: PlugPaymentsCreditFormValues;
+        "installmentsConfig"?: PlugPaymentsCreditInstallmentsConfig;
+        "isLoading"?: boolean;
+        "onFieldChange"?: (event: CustomEvent<{ field: string; value: string }>) => void;
+        "onFormSubmit"?: (event: CustomEvent<void>) => void;
+    }
     interface PlugPaymentsPix {
     }
     interface IntrinsicElements {
-        "plug-checkout": PlugCheckout;
-        "plug-checkout-form": PlugCheckoutForm;
         "plug-payments": PlugPayments;
         "plug-payments-boleto": PlugPaymentsBoleto;
+        "plug-payments-credit": PlugPaymentsCredit;
+        "plug-payments-credit-form": PlugPaymentsCreditForm;
         "plug-payments-pix": PlugPaymentsPix;
     }
 }
@@ -116,10 +120,10 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "plug-checkout": LocalJSX.PlugCheckout & JSXBase.HTMLAttributes<HTMLPlugCheckoutElement>;
-            "plug-checkout-form": LocalJSX.PlugCheckoutForm & JSXBase.HTMLAttributes<HTMLPlugCheckoutFormElement>;
             "plug-payments": LocalJSX.PlugPayments & JSXBase.HTMLAttributes<HTMLPlugPaymentsElement>;
             "plug-payments-boleto": LocalJSX.PlugPaymentsBoleto & JSXBase.HTMLAttributes<HTMLPlugPaymentsBoletoElement>;
+            "plug-payments-credit": LocalJSX.PlugPaymentsCredit & JSXBase.HTMLAttributes<HTMLPlugPaymentsCreditElement>;
+            "plug-payments-credit-form": LocalJSX.PlugPaymentsCreditForm & JSXBase.HTMLAttributes<HTMLPlugPaymentsCreditFormElement>;
             "plug-payments-pix": LocalJSX.PlugPaymentsPix & JSXBase.HTMLAttributes<HTMLPlugPaymentsPixElement>;
         }
     }

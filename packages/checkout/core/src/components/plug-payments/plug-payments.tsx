@@ -50,7 +50,7 @@ export class PlugPayments implements ComponentInterface {
             onClicked={() => this.handlePaymentChange('credit')}
           />
           {this.currentPayment === 'credit' && (
-            <plug-checkout showCreditCard={this.showCreditCard} />
+            <plug-payments-credit showCreditCard={this.showCreditCard} />
           )}
         </section>
       </Host>

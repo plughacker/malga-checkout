@@ -1,4 +1,4 @@
-export interface PlugCheckoutValidFields {
+export interface PlugPaymentsCreditFormValidFields {
   cardNumber: string | null
   expirationDate: string | null
   cvv: string | null

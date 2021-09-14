@@ -1,4 +1,4 @@
-export interface PlugCheckoutFormCustomStyleFormClasses {
+export interface PlugPaymentsCreditFormCustomStyleFormClasses {
   formContainer?: string
   formContent?: string
   creditCardFieldContainer?: string
@@ -19,7 +19,7 @@ export interface PlugCheckoutFormCustomStyleFormClasses {
   submitButton?: string
 }
 
-export interface PlugCheckoutFormValues {
+export interface PlugPaymentsCreditFormValues {
   cardNumber: string
   expirationDate: string
   cvv: string
@@ -27,20 +27,20 @@ export interface PlugCheckoutFormValues {
   installments: string
 }
 
-export interface PlugCheckoutInstallmentsConfig {
+export interface PlugPaymentsCreditInstallmentsConfig {
   show: boolean
   quantity: number
 }
 
-export interface PlugCheckoutRequestPayload {
-  card: PlugCheckoutFormValues
+export interface PlugPaymentsCreditRequestPayload {
+  card: PlugPaymentsCreditFormValues
   merchantId: string
   amount: number
   statementDescriptor: string
   capture: boolean
 }
 
-export interface PlugCheckoutOneShotSuccess {
+export interface PlugPaymentsCreditOneShotSuccess {
   id: string
   clientId: string
   createdAt: string
@@ -74,18 +74,22 @@ export interface PlugCheckoutOneShotSuccess {
   }[]
 }
 
-export interface PlugCheckoutOneShotError {
+export interface PlugPaymentsCreditOneShotError {
   type: string
   message: string
   code?: number
   declined_code?: string
 }
 
-export interface PlugCheckoutOneShotRequest {
+export interface PlugPaymentsCreditOneShotRequest {
   publicKey: string
   clientId: string
   sandbox: boolean
-  onPaymentSuccess: (data: PlugCheckoutOneShotSuccess) => CustomEvent<{ data }>
-  onPaymentFailed: (error: PlugCheckoutOneShotError) => CustomEvent<{ error }>
-  data: PlugCheckoutRequestPayload
+  onPaymentSuccess: (
+    data: PlugPaymentsCreditOneShotSuccess,
+  ) => CustomEvent<{ data }>
+  onPaymentFailed: (
+    error: PlugPaymentsCreditOneShotError,
+  ) => CustomEvent<{ error }>
+  data: PlugPaymentsCreditRequestPayload
 }

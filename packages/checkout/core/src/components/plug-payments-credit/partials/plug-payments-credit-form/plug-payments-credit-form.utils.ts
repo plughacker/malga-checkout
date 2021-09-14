@@ -1,5 +1,5 @@
 import { ValidationError } from 'yup'
-import { PlugCheckoutFormValues } from '../../plug-checkout.types'
+import { PlugPaymentsCreditFormValues } from '../../plug-payments-credit.types'
 
 export const normalizeValidationErrors = (errors: ValidationError[]) => {
   const normalizedErrors = errors.reduce(
@@ -13,7 +13,7 @@ export const normalizeValidationErrors = (errors: ValidationError[]) => {
   return normalizedErrors
 }
 
-export const checkIfAllFieldsIsBlank = (data: PlugCheckoutFormValues) => {
+export const checkIfAllFieldsIsBlank = (data: PlugPaymentsCreditFormValues) => {
   const fields = Object.entries(data)
 
   const filteredBlankFieldValues = fields

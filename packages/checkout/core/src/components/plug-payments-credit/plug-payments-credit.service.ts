@@ -1,11 +1,11 @@
 import axios, { AxiosRequestConfig } from 'axios'
 
-import { PlugCheckoutOneShotRequest } from './plug-checkout.types'
+import { PlugPaymentsCreditOneShotRequest } from './plug-payments-credit.types'
 import {
   cleanTextOnlyNumbers,
   parseInstallments,
   transformExpirationDate,
-} from './plug-checkout.utils'
+} from './plug-payments-credit.utils'
 
 const axiosConfig: AxiosRequestConfig = {
   headers: {
@@ -22,7 +22,7 @@ export const checkoutOneShotRequest = async ({
   onPaymentSuccess,
   onPaymentFailed,
   data,
-}: PlugCheckoutOneShotRequest) => {
+}: PlugPaymentsCreditOneShotRequest) => {
   try {
     const url = sandbox
       ? 'https://sandbox-api.plugpagamentos.com/v1'

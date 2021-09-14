@@ -1,7 +1,7 @@
 import * as Yup from 'yup'
 
-import { PlugCheckoutFormValues } from '../../plug-checkout.types'
-import { normalizeValidationErrors } from './plug-checkout-form.utils'
+import { PlugPaymentsCreditFormValues } from '../../plug-payments-credit.types'
+import { normalizeValidationErrors } from './plug-payments-credit-form.utils'
 
 export const schema = Yup.object().shape({
   cardNumber: Yup.string()
@@ -78,7 +78,7 @@ export const schema = Yup.object().shape({
 })
 
 export const validateCheckout = async (
-  data: Partial<PlugCheckoutFormValues>,
+  data: Partial<PlugPaymentsCreditFormValues>,
   context?: Record<string, unknown>,
 ) => {
   try {

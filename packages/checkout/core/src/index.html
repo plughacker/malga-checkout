@@ -13,6 +13,7 @@
     <style>
       main {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         height: 100vh;
@@ -21,11 +22,13 @@
   </head>
   <body>
     <main>
-      <plug-checkout></plug-checkout>
+      <!-- <plug-payments-credit show-credit-card="false"></plug-payments-credit> -->
+      <!-- <plug-payments-pix></plug-payments-pix> -->
+      <!-- <plug-payments-boleto></plug-payments-boleto> -->
+      <plug-payments show-credit-card="false"></plug-payments>
     </main>
 
     <script>
-      const plugCheckout = document.querySelector('plug-checkout')
     </script>
   </body>
 </html>

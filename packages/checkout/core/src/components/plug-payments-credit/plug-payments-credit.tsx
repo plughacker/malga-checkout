@@ -7,14 +7,14 @@ import {
   Event,
   EventEmitter,
 } from '@stencil/core'
-import { defaultCustomStyles } from './plug-payments-credit.utils'
 
+import { defaultCustomStyles } from './plug-payments-credit.utils'
 import {
   PlugPaymentsCreditFormCustomStyleFormClasses,
   PlugPaymentsCreditFormValues,
   PlugPaymentsCreditInstallmentsConfig,
-  PlugPaymentsCreditOneShotError,
-  PlugPaymentsCreditOneShotSuccess,
+  PlugPaymentsCreditChargeError,
+  PlugPaymentsCreditChargeSuccess,
 } from './plug-payments-credit.types'
 import { chargeRequest } from './plug-payments-credit.service'
 
@@ -27,6 +27,10 @@ export class PlugPaymentsCredit {
   @Prop() merchantId: string
   @Prop() statementDescriptor: string
   @Prop() amount: number
+  @Prop() description?: string
+  @Prop() orderId?: string
+  @Prop() customerId?: string
+  @Prop() currency = 'BRL'
   @Prop() sandbox = false
   @Prop() capture = false
   @Prop() showCreditCard = true
@@ -38,10 +42,10 @@ export class PlugPaymentsCredit {
   customFormStyleClasses?: PlugPaymentsCreditFormCustomStyleFormClasses = defaultCustomStyles
 
   @Event() paymentSuccess!: EventEmitter<{
-    data: PlugPaymentsCreditOneShotSuccess
+    data: PlugPaymentsCreditChargeSuccess
   }>
   @Event() paymentFailed!: EventEmitter<{
-    error: PlugPaymentsCreditOneShotError
+    error: PlugPaymentsCreditChargeError
   }>
 
   @State() isLoading = false
@@ -68,15 +72,19 @@ export class PlugPaymentsCredit {
       amount: this.amount,
       statementDescriptor: this.statementDescriptor,
       capture: this.capture,
+      orderId: this.orderId,
+      customerId: this.customerId,
+      description: this.description,
+      currency: this.currency,
     }
 
     await chargeRequest({
       publicKey: this.publicKey,
       clientId: this.clientId,
       sandbox: this.sandbox,
-      onPaymentSuccess: (data: PlugPaymentsCreditOneShotSuccess) =>
+      onPaymentSuccess: (data: PlugPaymentsCreditChargeSuccess) =>
         this.paymentSuccess.emit({ data }),
-      onPaymentFailed: (error: PlugPaymentsCreditOneShotError) =>
+      onPaymentFailed: (error: PlugPaymentsCreditChargeError) =>
         this.paymentFailed.emit({ error }),
       data,
     })

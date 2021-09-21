@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { PlugPaymentsCreditFormCustomStyleFormClasses, PlugPaymentsCreditFormValues, PlugPaymentsCreditInstallmentsConfig, PlugPaymentsCreditOneShotError, PlugPaymentsCreditOneShotSuccess } from "./components/plug-payments-credit/plug-payments-credit.types";
+import { PlugPaymentsCreditChargeError, PlugPaymentsCreditChargeSuccess, PlugPaymentsCreditFormCustomStyleFormClasses, PlugPaymentsCreditFormValues, PlugPaymentsCreditInstallmentsConfig } from "./components/plug-payments-credit/plug-payments-credit.types";
 export namespace Components {
     interface PlugPayments {
         "showCreditCard": boolean;
@@ -16,9 +16,13 @@ export namespace Components {
         "amount": number;
         "capture": boolean;
         "clientId": string;
+        "currency": string;
         "customFormStyleClasses"?: PlugPaymentsCreditFormCustomStyleFormClasses;
+        "customerId"?: string;
+        "description"?: string;
         "installmentsConfig": PlugPaymentsCreditInstallmentsConfig;
         "merchantId": string;
+        "orderId"?: string;
         "publicKey": string;
         "sandbox": boolean;
         "showCreditCard": boolean;
@@ -83,15 +87,19 @@ declare namespace LocalJSX {
         "amount"?: number;
         "capture"?: boolean;
         "clientId"?: string;
+        "currency"?: string;
         "customFormStyleClasses"?: PlugPaymentsCreditFormCustomStyleFormClasses;
+        "customerId"?: string;
+        "description"?: string;
         "installmentsConfig"?: PlugPaymentsCreditInstallmentsConfig;
         "merchantId"?: string;
         "onPaymentFailed"?: (event: CustomEvent<{
-    error: PlugPaymentsCreditOneShotError
+    error: PlugPaymentsCreditChargeError
   }>) => void;
         "onPaymentSuccess"?: (event: CustomEvent<{
-    data: PlugPaymentsCreditOneShotSuccess
+    data: PlugPaymentsCreditChargeSuccess
   }>) => void;
+        "orderId"?: string;
         "publicKey"?: string;
         "sandbox"?: boolean;
         "showCreditCard"?: boolean;

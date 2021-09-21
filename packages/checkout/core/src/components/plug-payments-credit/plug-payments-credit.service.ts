@@ -3,7 +3,7 @@ import { Api } from '../../services/api'
 import { Charges, ICreateChargeData } from '../../services/charges'
 import { cleanObjectProperties } from '../../utils'
 
-import { PlugPaymentsCreditOneShotRequest } from './plug-payments-credit.types'
+import { PlugPaymentsCreditChargeRequest } from './plug-payments-credit.types'
 
 export const chargeRequest = async ({
   publicKey,
@@ -12,13 +12,13 @@ export const chargeRequest = async ({
   onPaymentSuccess,
   onPaymentFailed,
   data,
-}: PlugPaymentsCreditOneShotRequest) => {
+}: PlugPaymentsCreditChargeRequest) => {
   try {
     const payload = cleanObjectProperties({
-      customerId: '',
-      currency: 'BRL',
-      orderId: '',
-      description: '',
+      customerId: data.customerId,
+      currency: data.currency,
+      orderId: data.orderId,
+      description: data.description,
       merchantId: data.merchantId,
       amount: data.amount,
       statementDescriptor: data.statementDescriptor,

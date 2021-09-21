@@ -32,15 +32,19 @@ export interface PlugPaymentsCreditInstallmentsConfig {
   quantity: number
 }
 
-export interface PlugPaymentsCreditRequestPayload {
+export interface PlugPaymentsCreditChargePayload {
   card: PlugPaymentsCreditFormValues
   merchantId: string
   amount: number
   statementDescriptor: string
   capture: boolean
+  orderId: string
+  description: string
+  customerId: string
+  currency: string
 }
 
-export interface PlugPaymentsCreditOneShotSuccess {
+export interface PlugPaymentsCreditChargeSuccess {
   id: string
   clientId: string
   createdAt: string
@@ -74,22 +78,22 @@ export interface PlugPaymentsCreditOneShotSuccess {
   }[]
 }
 
-export interface PlugPaymentsCreditOneShotError {
+export interface PlugPaymentsCreditChargeError {
   type: string
   message: string
   code?: number
   declined_code?: string
 }
 
-export interface PlugPaymentsCreditOneShotRequest {
+export interface PlugPaymentsCreditChargeRequest {
   publicKey: string
   clientId: string
   sandbox: boolean
   onPaymentSuccess: (
-    data: PlugPaymentsCreditOneShotSuccess,
+    data: PlugPaymentsCreditChargeSuccess,
   ) => CustomEvent<{ data }>
   onPaymentFailed: (
-    error: PlugPaymentsCreditOneShotError,
+    error: PlugPaymentsCreditChargeError,
   ) => CustomEvent<{ error }>
-  data: PlugPaymentsCreditRequestPayload
+  data: PlugPaymentsCreditChargePayload
 }

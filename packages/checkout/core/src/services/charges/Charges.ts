@@ -12,7 +12,6 @@ export class Charges implements ICharges {
   readonly provider: IProvider
 
   constructor({ api, provider }: IChargeConstructor) {
-    // this.api = new Api(clientId, publicKey, sandbox)
     this.api = api
     this.provider = provider
   }

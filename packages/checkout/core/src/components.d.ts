@@ -5,12 +5,28 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { IBoleto } from "./providers/Boleto";
+import { ICustomer } from "./providers/BaseProvider";
+import { PlugPaymentsBoletoChargeError, PlugPaymentsBoletoChargeSuccess } from "./components/plug-payments-boleto/plug-payments-boleto.types";
 import { PlugPaymentsCreditChargeError, PlugPaymentsCreditChargeSuccess, PlugPaymentsCreditFormCustomStyleFormClasses, PlugPaymentsCreditFormValues, PlugPaymentsCreditInstallmentsConfig } from "./components/plug-payments-credit/plug-payments-credit.types";
 export namespace Components {
     interface PlugPayments {
         "showCreditCard": boolean;
     }
     interface PlugPaymentsBoleto {
+        "amount": number;
+        "boleto": IBoleto;
+        "capture": boolean;
+        "clientId": string;
+        "currency": string;
+        "customer"?: ICustomer;
+        "customerId"?: string;
+        "description"?: string;
+        "merchantId": string;
+        "orderId"?: string;
+        "publicKey": string;
+        "sandbox": boolean;
+        "statementDescriptor": string;
     }
     interface PlugPaymentsCredit {
         "amount": number;
@@ -82,6 +98,25 @@ declare namespace LocalJSX {
         "showCreditCard"?: boolean;
     }
     interface PlugPaymentsBoleto {
+        "amount"?: number;
+        "boleto"?: IBoleto;
+        "capture"?: boolean;
+        "clientId"?: string;
+        "currency"?: string;
+        "customer"?: ICustomer;
+        "customerId"?: string;
+        "description"?: string;
+        "merchantId"?: string;
+        "onPaymentFailed"?: (event: CustomEvent<{
+    error: PlugPaymentsBoletoChargeError
+  }>) => void;
+        "onPaymentSuccess"?: (event: CustomEvent<{
+    data: PlugPaymentsBoletoChargeSuccess
+  }>) => void;
+        "orderId"?: string;
+        "publicKey"?: string;
+        "sandbox"?: boolean;
+        "statementDescriptor"?: string;
     }
     interface PlugPaymentsCredit {
         "amount"?: number;

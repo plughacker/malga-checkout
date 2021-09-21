@@ -1,8 +1,8 @@
 import { ICustomer } from '../../providers/BaseProvider'
-import { IBoleto } from '../../providers/Boleto'
+import { IPix } from '../../providers/Pix'
 
-export interface PlugPaymentsBoletoChargePayload {
-  boleto: IBoleto
+export interface PlugPaymentsPixChargePayload {
+  pix: IPix
   merchantId: string
   amount: number
   statementDescriptor: string
@@ -14,7 +14,7 @@ export interface PlugPaymentsBoletoChargePayload {
   currency: string
 }
 
-export interface PlugPaymentsBoletoChargeSuccess {
+export interface PlugPaymentsPixChargeSuccess {
   id: string
   clientId: string
   createdAt: string
@@ -26,10 +26,10 @@ export interface PlugPaymentsBoletoChargeSuccess {
   description: string | null
   orderId: string | null
   paymentMethod: {
+    expiresIn: number
     paymentType: string
-    barcodeData: string
-    barcodeImageUrl: string
-    expiresDate: string
+    qrCodeData: string
+    qrCodeImageUrl: string
   }
   paymentSource: {
     sourceType: string
@@ -49,23 +49,26 @@ export interface PlugPaymentsBoletoChargeSuccess {
     requestStatus: string
     requestType: string
     responseTs: string
+    pix: {
+      expiresIn: number
+      qrCodeData: string
+      qrCodeImageUrl: string
+    }
   }[]
 }
 
-export interface PlugPaymentsBoletoChargeError {
+export interface PlugPaymentsPixChargeError {
   type: string
   message: string
 }
 
-export interface PlugPaymentsBoletoChargeRequest {
+export interface PlugPaymentsPixChargeRequest {
   publicKey: string
   clientId: string
   sandbox: boolean
   onPaymentSuccess: (
-    data: PlugPaymentsBoletoChargeSuccess,
+    data: PlugPaymentsPixChargeSuccess,
   ) => CustomEvent<{ data }>
-  onPaymentFailed: (
-    error: PlugPaymentsBoletoChargeError,
-  ) => CustomEvent<{ error }>
-  data: PlugPaymentsBoletoChargePayload
+  onPaymentFailed: (error: PlugPaymentsPixChargeError) => CustomEvent<{ error }>
+  data: PlugPaymentsPixChargePayload
 }

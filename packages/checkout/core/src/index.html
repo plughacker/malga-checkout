@@ -23,12 +23,61 @@
   <body>
     <main>
       <!-- <plug-payments-credit show-credit-card="false"></plug-payments-credit> -->
-      <!-- <plug-payments-pix></plug-payments-pix> -->
-      <!-- <plug-payments-boleto></plug-payments-boleto> -->
-      <plug-payments show-credit-card="false"></plug-payments>
+      <!-- <plug-payments-pix
+        public-key="f53937b1-e57b-4103-b3df-7bff4da3bbda"
+        client-id="8edc08eb-0264-4c10-ba88-0d04ab40804a"
+        merchant-id="fa5d96ad-2e8d-477b-9345-2e3a8ea9a069"
+        customer-id="66069028-d45f-4d84-8bc4-71d304219fea"
+        statement-descriptor="#1 Demonstration Plug Checkout"
+        amount="100"
+        sandbox
+      ></plug-payments-pix> -->
+      <!-- <plug-payments-boleto
+        public-key="f53937b1-e57b-4103-b3df-7bff4da3bbda"
+        client-id="8edc08eb-0264-4c10-ba88-0d04ab40804a"
+        merchant-id="fa5d96ad-2e8d-477b-9345-2e3a8ea9a069"
+        customer-id="66069028-d45f-4d84-8bc4-71d304219fea"
+        statement-descriptor="#1 Demonstration Plug Checkout"
+        amount="100"
+        sandbox
+      ></plug-payments-boleto> -->
+      <!-- <plug-payments show-credit-card="false"></plug-payments> -->
+      <plug-payments-credit
+        public-key="f53937b1-e57b-4103-b3df-7bff4da3bbda"
+        client-id="8edc08eb-0264-4c10-ba88-0d04ab40804a"
+        merchant-id="fa5d96ad-2e8d-477b-9345-2e3a8ea9a069"
+        customer-id="66069028-d45f-4d84-8bc4-71d304219fea"
+        statement-descriptor="#1 Demonstration Plug Checkout"
+        amount="100"
+        sandbox
+      >
+      </plug-payments-credit>
     </main>
 
     <script>
+      // const plugPaymentsCredit = document.querySelector('plug-payments-credit')
+      // plugPaymentsCredit.addEventListener('paymentFailed', (event) => {
+      //   console.log('caiu aqui nesse carai', event)
+      // })
+
+      // const plugPaymentsBoleto = document.querySelector('plug-payments-boleto')
+      // plugPaymentsBoleto.boleto = {
+      //   "expiresDate": "2022-12-31",
+      //   "instructions": "Instruções para pagamento do boleto",
+      //   "interest": {
+      //   "days": 1,
+      //   "amount": 100,
+      //   },
+      //   "fine": {
+      //   "days": 2,
+      //   "amount": 200,
+      //   }
+      // }
+
+      // const plugPaymentsPix = document.querySelector('plug-payments-pix')
+      // plugPaymentsPix.pix = {
+      //   expiresIn: 3600
+      // }
     </script>
   </body>
 </html>

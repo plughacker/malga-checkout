@@ -9,6 +9,8 @@ import { IBoleto } from "./providers/Boleto";
 import { ICustomer } from "./providers/BaseProvider";
 import { PlugPaymentsBoletoChargeError, PlugPaymentsBoletoChargeSuccess } from "./components/plug-payments-boleto/plug-payments-boleto.types";
 import { PlugPaymentsCreditChargeError, PlugPaymentsCreditChargeSuccess, PlugPaymentsCreditFormCustomStyleFormClasses, PlugPaymentsCreditFormValues, PlugPaymentsCreditInstallmentsConfig } from "./components/plug-payments-credit/plug-payments-credit.types";
+import { IPix } from "./providers/Pix";
+import { PlugPaymentsPixChargeError, PlugPaymentsPixChargeSuccess } from "./components/plug-payments-pix/plug-payments-pix.types";
 export namespace Components {
     interface PlugPayments {
         "showCreditCard": boolean;
@@ -52,6 +54,19 @@ export namespace Components {
         "isLoading": boolean;
     }
     interface PlugPaymentsPix {
+        "amount": number;
+        "capture": boolean;
+        "clientId": string;
+        "currency": string;
+        "customer"?: ICustomer;
+        "customerId"?: string;
+        "description"?: string;
+        "merchantId": string;
+        "orderId"?: string;
+        "pix": IPix;
+        "publicKey": string;
+        "sandbox": boolean;
+        "statementDescriptor": string;
     }
 }
 declare global {
@@ -150,6 +165,25 @@ declare namespace LocalJSX {
         "onFormSubmit"?: (event: CustomEvent<void>) => void;
     }
     interface PlugPaymentsPix {
+        "amount"?: number;
+        "capture"?: boolean;
+        "clientId"?: string;
+        "currency"?: string;
+        "customer"?: ICustomer;
+        "customerId"?: string;
+        "description"?: string;
+        "merchantId"?: string;
+        "onPaymentFailed"?: (event: CustomEvent<{
+    error: PlugPaymentsPixChargeError
+  }>) => void;
+        "onPaymentSuccess"?: (event: CustomEvent<{
+    data: PlugPaymentsPixChargeSuccess
+  }>) => void;
+        "orderId"?: string;
+        "pix"?: IPix;
+        "publicKey"?: string;
+        "sandbox"?: boolean;
+        "statementDescriptor"?: string;
     }
     interface IntrinsicElements {
         "plug-payments": PlugPayments;

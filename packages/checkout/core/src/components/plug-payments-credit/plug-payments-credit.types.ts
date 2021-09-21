@@ -74,7 +74,6 @@ export interface PlugPaymentsCreditChargeSuccess {
     requestStatus: string
     requestType: string
     responseTs: string
-    pix: null
   }[]
 }
 

@@ -1,5 +1,11 @@
 import { BaseProvider } from '../BaseProvider'
 
+import {
+  cleanTextOnlyNumbers,
+  parseInstallments,
+  transformExpirationDate,
+} from '../../utils'
+
 import { ICard, IPaymentSourceCard, IPaymentMethodCard } from './Card.types'
 
 export class Card extends BaseProvider {
@@ -13,7 +19,7 @@ export class Card extends BaseProvider {
   public getPaymentMethod(): IPaymentMethodCard {
     return {
       paymentType: 'credit',
-      installments: this.card.installments,
+      installments: parseInstallments(this.card.installments),
     }
   }
 
@@ -21,9 +27,9 @@ export class Card extends BaseProvider {
     return {
       sourceType: 'card',
       card: {
-        cardNumber: this.card.cardNumber,
+        cardNumber: cleanTextOnlyNumbers(this.card.cardNumber),
         cardCvv: this.card.cvv,
-        cardExpirationDate: this.card.expirationDate,
+        cardExpirationDate: transformExpirationDate(this.card.expirationDate),
         cardHolderName: this.card.name,
       },
     }

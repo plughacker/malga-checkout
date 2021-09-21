@@ -10,7 +10,7 @@ export interface ICard {
   expirationDate: string
   cvv: string
   name: string
-  installments: number
+  installments: string
 }
 
 export interface IPaymentSourceCard {

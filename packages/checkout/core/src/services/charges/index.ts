@@ -1,2 +1,7 @@
 export { Charges } from './Charges'
-export { ICharges, Provider } from './Charges.types'
+export {
+  ICharges,
+  IProvider,
+  IChargeConstructor,
+  ICreateChargeData,
+} from './Charges.types'

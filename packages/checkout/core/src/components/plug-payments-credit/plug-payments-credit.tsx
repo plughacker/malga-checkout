@@ -16,7 +16,7 @@ import {
   PlugPaymentsCreditOneShotError,
   PlugPaymentsCreditOneShotSuccess,
 } from './plug-payments-credit.types'
-import { checkoutOneShotRequest } from './plug-payments-credit.service'
+import { chargeRequest } from './plug-payments-credit.service'
 
 @Component({
   tag: 'plug-payments-credit',
@@ -70,7 +70,7 @@ export class PlugPaymentsCredit {
       capture: this.capture,
     }
 
-    await checkoutOneShotRequest({
+    await chargeRequest({
       publicKey: this.publicKey,
       clientId: this.clientId,
       sandbox: this.sandbox,

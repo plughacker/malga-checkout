@@ -1,10 +1,14 @@
 import { BaseProvider } from '../BaseProvider'
-import { IBoleto, IPaymentMethodBoleto } from './Boleto.types'
+import {
+  IBoleto,
+  IPaymentMethodBoleto,
+  BoletoConstructor,
+} from './Boleto.types'
 
 export class Boleto extends BaseProvider {
   readonly boleto: IBoleto
 
-  constructor({ customer, customerId, boleto }) {
+  constructor({ customer, customerId, boleto }: BoletoConstructor) {
     super({ customer, customerId })
     this.boleto = boleto
   }

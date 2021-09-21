@@ -1,21 +1,11 @@
-import axios, { AxiosRequestConfig } from 'axios'
+import { Card } from '../../providers/Card'
+import { Api } from '../../services/api'
+import { Charges, ICreateChargeData } from '../../services/charges'
+import { cleanObjectProperties } from '../../utils'
 
 import { PlugPaymentsCreditOneShotRequest } from './plug-payments-credit.types'
-import {
-  cleanTextOnlyNumbers,
-  parseInstallments,
-  transformExpirationDate,
-} from './plug-payments-credit.utils'
 
-const axiosConfig: AxiosRequestConfig = {
-  headers: {
-    'Content-Type': 'application/json',
-  },
-}
-
-const api = axios.create(axiosConfig)
-
-export const checkoutOneShotRequest = async ({
+export const chargeRequest = async ({
   publicKey,
   clientId,
   sandbox,
@@ -24,40 +14,25 @@ export const checkoutOneShotRequest = async ({
   data,
 }: PlugPaymentsCreditOneShotRequest) => {
   try {
-    const url = sandbox
-      ? 'https://sandbox-api.plugpagamentos.com/v1'
-      : 'https://api.plugpagamentos.com/v1'
-
-    const headers = {
-      'X-Client-Id': clientId,
-      'X-Api-Key': publicKey,
-    }
-
-    const payload = {
+    const payload = cleanObjectProperties({
+      customerId: '',
+      currency: 'BRL',
+      orderId: '',
+      description: '',
       merchantId: data.merchantId,
       amount: data.amount,
       statementDescriptor: data.statementDescriptor,
       capture: data.capture,
-      paymentMethod: {
-        paymentType: 'credit',
-        installments: parseInstallments(data.card.installments),
-      },
-      paymentSource: {
-        sourceType: 'card',
-        card: {
-          cardNumber: cleanTextOnlyNumbers(data.card.cardNumber),
-          cardCvv: data.card.cvv,
-          cardExpirationDate: transformExpirationDate(data.card.expirationDate),
-          cardHolderName: data.card.name,
-        },
-      },
-    }
-
-    const checkoutResponse = await api.post(`${url}/charges`, payload, {
-      headers,
     })
 
-    if (['failed', 'charged_back'].includes(checkoutResponse.data.status)) {
+    const charge = new Charges({
+      api: new Api(clientId, publicKey, sandbox),
+      provider: new Card({ card: data.card }),
+    })
+
+    const checkoutResponse = await charge.create(payload as ICreateChargeData)
+
+    if (checkoutResponse.hasError) {
       onPaymentFailed({
         type: checkoutResponse.data.status,
         message: 'Your transaction cannot be completed',

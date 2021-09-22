@@ -1,0 +1,52 @@
+.checkout-accordion__container {
+  display: flex;
+  flex-direction: column;
+  padding: var(--plug-checkout-spacing-sm);
+  border-radius: var(--plug-checkout-spacing-xs);
+  background: var(--plug-checkout-color-accent-light);
+
+  &--full-width {
+    width: 100%;
+  }
+}
+
+.checkout-accordion__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  font-family: var(--plug-checkout-typography-family);
+  font-size: var(--plug-checkout-spacing-sm);
+  font-weight: bold;
+  color: var(--plug-checkout-color-brand-middle);
+
+  & > button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    padding: 0;
+  }
+
+  &--editable {
+    & > button {
+      opacity: 1;
+    }
+  }
+}
+
+.checkout-accordion__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  margin-top: 0;
+
+  &--opened {
+    margin-top: var(--plug-checkout-spacing-sm);
+  }
+}

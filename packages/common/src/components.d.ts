@@ -15,6 +15,12 @@ import { CheckoutSelectFieldChangeEvent, CheckoutSelectFieldOptions, CheckoutSel
 import { CheckoutTextFieldChangeEvent, CheckoutTextFieldMode, CheckoutTextFieldType, CheckoutTextFieldValue } from "./components/checkout-text-field/checkout-text-field.types";
 import { CheckoutTypographyColor, CheckoutTypographyVariation } from "./components/checkout-typography/checkout-typography.types";
 export namespace Components {
+    interface CheckoutAccordion {
+        "fullWidth": boolean;
+        "isEditable": boolean;
+        "label": string;
+        "opened": boolean;
+    }
     interface CheckoutButton {
         "customClass"?: string;
         "disabled"?: boolean;
@@ -149,6 +155,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLCheckoutAccordionElement extends Components.CheckoutAccordion, HTMLStencilElement {
+    }
+    var HTMLCheckoutAccordionElement: {
+        prototype: HTMLCheckoutAccordionElement;
+        new (): HTMLCheckoutAccordionElement;
+    };
     interface HTMLCheckoutButtonElement extends Components.CheckoutButton, HTMLStencilElement {
     }
     var HTMLCheckoutButtonElement: {
@@ -216,6 +228,7 @@ declare global {
         new (): HTMLCheckoutTypographyElement;
     };
     interface HTMLElementTagNameMap {
+        "checkout-accordion": HTMLCheckoutAccordionElement;
         "checkout-button": HTMLCheckoutButtonElement;
         "checkout-credit-card": HTMLCheckoutCreditCardElement;
         "checkout-error-message": HTMLCheckoutErrorMessageElement;
@@ -230,6 +243,13 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface CheckoutAccordion {
+        "fullWidth"?: boolean;
+        "isEditable"?: boolean;
+        "label"?: string;
+        "onExpandClick"?: (event: CustomEvent<void>) => void;
+        "opened"?: boolean;
+    }
     interface CheckoutButton {
         "customClass"?: string;
         "disabled"?: boolean;
@@ -386,6 +406,7 @@ declare namespace LocalJSX {
         "variation"?: CheckoutTypographyVariation;
     }
     interface IntrinsicElements {
+        "checkout-accordion": CheckoutAccordion;
         "checkout-button": CheckoutButton;
         "checkout-credit-card": CheckoutCreditCard;
         "checkout-error-message": CheckoutErrorMessage;
@@ -403,6 +424,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "checkout-accordion": LocalJSX.CheckoutAccordion & JSXBase.HTMLAttributes<HTMLCheckoutAccordionElement>;
             "checkout-button": LocalJSX.CheckoutButton & JSXBase.HTMLAttributes<HTMLCheckoutButtonElement>;
             "checkout-credit-card": LocalJSX.CheckoutCreditCard & JSXBase.HTMLAttributes<HTMLCheckoutCreditCardElement>;
             "checkout-error-message": LocalJSX.CheckoutErrorMessage & JSXBase.HTMLAttributes<HTMLCheckoutErrorMessageElement>;

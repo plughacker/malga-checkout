@@ -5,15 +5,32 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { PaymentMethods, PlugPaymentsChargeError, PlugPaymentsChargeSuccess } from "./components/plug-payments/plug-payments.types";
+import { IPix } from "./providers/Pix";
 import { IBoleto } from "./providers/Boleto";
+import { PlugPaymentsCreditChargeError, PlugPaymentsCreditChargeSuccess, PlugPaymentsCreditFormCustomStyleFormClasses, PlugPaymentsCreditFormValues, PlugPaymentsCreditInstallmentsConfig } from "./components/plug-payments-credit/plug-payments-credit.types";
 import { ICustomer } from "./providers/BaseProvider";
 import { PlugPaymentsBoletoChargeError, PlugPaymentsBoletoChargeSuccess } from "./components/plug-payments-boleto/plug-payments-boleto.types";
-import { PlugPaymentsCreditChargeError, PlugPaymentsCreditChargeSuccess, PlugPaymentsCreditFormCustomStyleFormClasses, PlugPaymentsCreditFormValues, PlugPaymentsCreditInstallmentsConfig } from "./components/plug-payments-credit/plug-payments-credit.types";
-import { IPix } from "./providers/Pix";
 import { PlugPaymentsPixChargeError, PlugPaymentsPixChargeSuccess } from "./components/plug-payments-pix/plug-payments-pix.types";
 export namespace Components {
     interface PlugPayments {
+        "amount": number;
+        "boleto"?: IBoleto;
+        "capture": boolean;
+        "clientId": string;
+        "currency": string;
+        "customer"?: ICustomer;
+        "customerId"?: string;
+        "description"?: string;
+        "installments"?: PlugPaymentsCreditInstallmentsConfig;
+        "merchantId": string;
+        "orderId"?: string;
+        "paymentMethods": PaymentMethods;
+        "pix"?: IPix;
+        "publicKey": string;
+        "sandbox": boolean;
         "showCreditCard": boolean;
+        "statementDescriptor": string;
     }
     interface PlugPaymentsBoleto {
         "amount": number;
@@ -110,7 +127,29 @@ declare global {
 }
 declare namespace LocalJSX {
     interface PlugPayments {
+        "amount"?: number;
+        "boleto"?: IBoleto;
+        "capture"?: boolean;
+        "clientId"?: string;
+        "currency"?: string;
+        "customer"?: ICustomer;
+        "customerId"?: string;
+        "description"?: string;
+        "installments"?: PlugPaymentsCreditInstallmentsConfig;
+        "merchantId"?: string;
+        "onPaymentFailed"?: (event: CustomEvent<{
+    error: PlugPaymentsChargeError
+  }>) => void;
+        "onPaymentSuccess"?: (event: CustomEvent<{
+    data: PlugPaymentsChargeSuccess
+  }>) => void;
+        "orderId"?: string;
+        "paymentMethods"?: PaymentMethods;
+        "pix"?: IPix;
+        "publicKey"?: string;
+        "sandbox"?: boolean;
         "showCreditCard"?: boolean;
+        "statementDescriptor"?: string;
     }
     interface PlugPaymentsBoleto {
         "amount"?: number;

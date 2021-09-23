@@ -1,5 +1,7 @@
 import { Component, Host, h, Event, EventEmitter } from '@stencil/core'
 
+import { countries } from './plug-checkout-full-identification.utils'
+
 @Component({
   tag: 'plug-checkout-full-identification',
   styleUrl: 'plug-checkout-full-identification.scss',
@@ -110,7 +112,7 @@ export class PlugCheckoutFullIdentification {
         </fieldset>
 
         <checkout-select-field
-          options={[]}
+          options={countries}
           fullWidth
           name="country"
           label="País *"

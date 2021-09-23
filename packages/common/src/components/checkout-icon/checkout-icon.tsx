@@ -3,6 +3,7 @@ import { Component, Host, h, Prop, ComponentInterface } from '@stencil/core'
 import { CheckoutIconNames, CheckoutIconsObject } from './checkout-icon.types'
 
 import ArrowDownIcon from '../../assets/icons/arrow-down.svg'
+import ArrowLeftIcon from '../../assets/icons/arrow-left.svg'
 import CalendarIcon from '../../assets/icons/calendar.svg'
 import CheckIcon from '../../assets/icons/check.svg'
 import CreditCardIcon from '../../assets/icons/credit-card.svg'
@@ -38,6 +39,7 @@ export class CheckoutIcon implements ComponentInterface {
       edit: EditIcon,
       eye: EyeIcon,
       eyeSlash: EyeSlashIcon,
+      arrowLeft: ArrowLeftIcon,
     }
 
     return icons[this.icon]

@@ -13,5 +13,6 @@ export type CheckoutIconNames =
   | 'edit'
   | 'eye'
   | 'eyeSlash'
+  | 'arrowLeft'
 
 export type CheckoutIconsObject = Record<CheckoutIconNames, string>

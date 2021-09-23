@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type                                                                                                                                                                          | Default     |
-| -------- | --------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `class`  | `class`   |             | `string`                                                                                                                                                                      | `undefined` |
-| `icon`   | `icon`    |             | `"arrowDown" \| "calendar" \| "check" \| "creditCard" \| "cvv" \| "dollar" \| "edit" \| "eye" \| "eyeSlash" \| "lock" \| "poweredByPlug" \| "spinner" \| "user" \| "warning"` | `undefined` |
+| Property | Attribute | Description | Type                                                                                                                                                                                         | Default     |
+| -------- | --------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `class`  | `class`   |             | `string`                                                                                                                                                                                     | `undefined` |
+| `icon`   | `icon`    |             | `"arrowDown" \| "arrowLeft" \| "calendar" \| "check" \| "creditCard" \| "cvv" \| "dollar" \| "edit" \| "eye" \| "eyeSlash" \| "lock" \| "poweredByPlug" \| "spinner" \| "user" \| "warning"` | `undefined` |
 
 
 ## Dependencies

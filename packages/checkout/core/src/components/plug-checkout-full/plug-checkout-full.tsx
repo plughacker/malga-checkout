@@ -24,6 +24,7 @@ import {
 export class PlugCheckoutFull {
   @Prop() paymentMethods: PaymentMethods = ['card', 'pix', 'boleto']
   @Prop() showCreditCard = false
+  @Prop() brandUrl: string
   @Prop() clientId: string
   @Prop() publicKey: string
   @Prop() merchantId: string
@@ -64,7 +65,7 @@ export class PlugCheckoutFull {
   render() {
     return (
       <Host class={{ 'plug-checkout-full__container': true }}>
-        <plug-checkout-full-header />
+        <plug-checkout-full-header brand={this.brandUrl} />
         <plug-checkout-full-content>
           <checkout-order-summary
             slot="order"

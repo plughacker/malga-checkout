@@ -2,7 +2,7 @@
   display: block;
   width: 100%;
   height: 80px;
-  position: relative;
+  margin-bottom: var(--plug-checkout-spacing-md);
 }
 
 .plug-checkout-full-header__content {
@@ -13,4 +13,34 @@
   height: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+}
+
+.plug-checkout-full-header__logo {
+  max-width: 200px;
+  max-height: 72px;
+}
+
+.plug-checkout-full-header__navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  left: -60px;
+}
+
+.plug-checkout-full-header__message {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  & > h5 {
+    @extend %typography-label;
+
+    margin-left: var(--plug-checkout-spacing-xs);
+    color: var(--plug-checkout-color-grey-darkness);
+  }
 }

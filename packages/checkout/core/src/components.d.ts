@@ -16,6 +16,7 @@ export namespace Components {
     interface PlugCheckoutFull {
         "amount": number;
         "boleto"?: IBoleto;
+        "brandUrl": string;
         "capture": boolean;
         "clientId": string;
         "currency": string;
@@ -46,6 +47,7 @@ export namespace Components {
         "description": string;
     }
     interface PlugCheckoutFullHeader {
+        "brand": string;
     }
     interface PlugCheckoutFullIdentification {
     }
@@ -200,6 +202,7 @@ declare namespace LocalJSX {
     interface PlugCheckoutFull {
         "amount"?: number;
         "boleto"?: IBoleto;
+        "brandUrl"?: string;
         "capture"?: boolean;
         "clientId"?: string;
         "currency"?: string;
@@ -236,6 +239,7 @@ declare namespace LocalJSX {
         "description"?: string;
     }
     interface PlugCheckoutFullHeader {
+        "brand"?: string;
     }
     interface PlugCheckoutFullIdentification {
         "onSubmitForm"?: (event: CustomEvent<void>) => void;

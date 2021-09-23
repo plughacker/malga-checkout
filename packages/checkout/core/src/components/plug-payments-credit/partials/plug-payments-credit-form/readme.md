@@ -5,13 +5,13 @@
 
 ## Properties
 
-| Property                 | Attribute    | Description | Type                                     | Default     |
-| ------------------------ | ------------ | ----------- | ---------------------------------------- | ----------- |
-| `amount`                 | `amount`     |             | `number`                                 | `undefined` |
-| `customFormStyleClasses` | --           |             | `PlugCheckoutFormCustomStyleFormClasses` | `undefined` |
-| `formValues`             | --           |             | `PlugCheckoutFormValues`                 | `undefined` |
-| `installmentsConfig`     | --           |             | `PlugCheckoutInstallmentsConfig`         | `undefined` |
-| `isLoading`              | `is-loading` |             | `boolean`                                | `undefined` |
+| Property                 | Attribute    | Description | Type                                           | Default     |
+| ------------------------ | ------------ | ----------- | ---------------------------------------------- | ----------- |
+| `amount`                 | `amount`     |             | `number`                                       | `undefined` |
+| `customFormStyleClasses` | --           |             | `PlugPaymentsCreditFormCustomStyleFormClasses` | `undefined` |
+| `formValues`             | --           |             | `PlugPaymentsCreditFormValues`                 | `undefined` |
+| `installmentsConfig`     | --           |             | `PlugPaymentsCreditInstallmentsConfig`         | `undefined` |
+| `isLoading`              | `is-loading` |             | `boolean`                                      | `undefined` |
 
 
 ## Events
@@ -26,28 +26,32 @@
 
 ### Used by
 
- - [plug-checkout](../..)
+ - [plug-payments-credit](../..)
 
 ### Depends on
 
-- [checkout-input](../../../../partials/checkout-input)
-- [checkout-error-message](../../../../partials/checkout-error-message)
-- [checkout-select](../../../../partials/checkout-select)
-- [checkout-button](../../../../partials/checkout-button)
+- checkout-text-field
+- checkout-error-message
+- checkout-select-field
+- checkout-button
+- checkout-icon
 
 ### Graph
 ```mermaid
 graph TD;
-  plug-checkout-form --> checkout-input
-  plug-checkout-form --> checkout-error-message
-  plug-checkout-form --> checkout-select
-  plug-checkout-form --> checkout-button
-  checkout-input --> checkout-icon
+  plug-payments-credit-form --> checkout-text-field
+  plug-payments-credit-form --> checkout-error-message
+  plug-payments-credit-form --> checkout-select-field
+  plug-payments-credit-form --> checkout-button
+  plug-payments-credit-form --> checkout-icon
+  checkout-text-field --> checkout-typography
+  checkout-text-field --> checkout-icon
   checkout-error-message --> checkout-typography
-  checkout-select --> checkout-icon
+  checkout-select-field --> checkout-typography
+  checkout-select-field --> checkout-icon
   checkout-button --> checkout-icon
-  plug-checkout --> plug-checkout-form
-  style plug-checkout-form fill:#f9f,stroke:#333,stroke-width:4px
+  plug-payments-credit --> plug-payments-credit-form
+  style plug-payments-credit-form fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

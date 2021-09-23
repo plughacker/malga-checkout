@@ -7,15 +7,15 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type                                                                                                                                         | Default     |
-| ------------- | -------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `customClass` | `custom-class` |             | `string`                                                                                                                                     | `undefined` |
-| `disabled`    | `disabled`     |             | `boolean`                                                                                                                                    | `false`     |
-| `fullWidth`   | `full-width`   |             | `boolean`                                                                                                                                    | `undefined` |
-| `icon`        | `icon`         |             | `"arrowDown" \| "calendar" \| "check" \| "creditCard" \| "cvv" \| "dollar" \| "lock" \| "poweredByPlug" \| "spinner" \| "user" \| "warning"` | `undefined` |
-| `isLoading`   | `is-loading`   |             | `boolean`                                                                                                                                    | `undefined` |
-| `label`       | `label`        |             | `string`                                                                                                                                     | `undefined` |
-| `type`        | `type`         |             | `"button" \| "reset" \| "submit"`                                                                                                            | `'button'`  |
+| Property      | Attribute      | Description | Type                                                                                                                                                                          | Default     |
+| ------------- | -------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `customClass` | `custom-class` |             | `string`                                                                                                                                                                      | `undefined` |
+| `disabled`    | `disabled`     |             | `boolean`                                                                                                                                                                     | `false`     |
+| `fullWidth`   | `full-width`   |             | `boolean`                                                                                                                                                                     | `undefined` |
+| `icon`        | `icon`         |             | `"arrowDown" \| "calendar" \| "check" \| "creditCard" \| "cvv" \| "dollar" \| "edit" \| "eye" \| "eyeSlash" \| "lock" \| "poweredByPlug" \| "spinner" \| "user" \| "warning"` | `undefined` |
+| `isLoading`   | `is-loading`   |             | `boolean`                                                                                                                                                                     | `undefined` |
+| `label`       | `label`        |             | `string`                                                                                                                                                                      | `undefined` |
+| `type`        | `type`         |             | `"button" \| "reset" \| "submit"`                                                                                                                                             | `'button'`  |
 
 
 ## Events

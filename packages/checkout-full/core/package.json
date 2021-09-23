@@ -58,7 +58,8 @@
     "inputmask": "^5.0.6",
     "payment": "2.3.0",
     "yup": "^0.32.9",
-    "@plug-checkout/common": "*"
+    "@plug-checkout/common": "*",
+    "@plug-checkout/core": "*"
   },
   "homepage": "https://github.com/plughacker/plug-checkout#readme"
 }

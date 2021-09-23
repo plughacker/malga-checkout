@@ -17,6 +17,7 @@ export class CheckoutAccordion {
   @Prop() label: string
   @Prop() isEditable: boolean
   @Prop() fullWidth = false
+  @Prop() contentHeight?: string
 
   @State() contentScrollHeight = 0
 
@@ -59,7 +60,7 @@ export class CheckoutAccordion {
             'checkout-accordion__content': true,
             'checkout-accordion__content--opened': this.opened,
           }}
-          style={{ maxHeight: contentMaxHeight }}
+          style={{ maxHeight: this.contentHeight || contentMaxHeight }}
           aria-hidden={this.opened}
         >
           <slot />

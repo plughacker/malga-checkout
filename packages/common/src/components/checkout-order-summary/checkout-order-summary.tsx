@@ -2,6 +2,8 @@ import { Component, Host, h, Prop, State } from '@stencil/core'
 
 import { Product } from './checkout-order-summary.types'
 
+import { formatToReal } from './checkout-order-summary.utils'
+
 @Component({
   tag: 'checkout-order-summary',
   styleUrl: 'checkout-order-summary.scss',
@@ -12,7 +14,7 @@ export class CheckoutOrderSummary {
   @Prop() amount: number
   @Prop() products?: Product[]
 
-  @State() showDescription: boolean
+  @State() showDescription = true
 
   private handleToggleShowDescription = () => {
     this.showDescription = !this.showDescription
@@ -41,7 +43,7 @@ export class CheckoutOrderSummary {
         <checkout-typography
           tag="span"
           variation="body1"
-          content={product.amount.toString()}
+          content={formatToReal(product.amount)}
         />
       </li>
     ))
@@ -77,7 +79,7 @@ export class CheckoutOrderSummary {
 
         <section class={{ 'checkout-order-summary__total': true }}>
           <p>Total</p>
-          <p>{this.amount}</p>
+          <p>{formatToReal(this.amount)}</p>
         </section>
       </Host>
     )

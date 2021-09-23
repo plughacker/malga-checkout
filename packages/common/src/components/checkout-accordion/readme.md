@@ -7,12 +7,13 @@
 
 ## Properties
 
-| Property     | Attribute     | Description | Type      | Default     |
-| ------------ | ------------- | ----------- | --------- | ----------- |
-| `fullWidth`  | `full-width`  |             | `boolean` | `false`     |
-| `isEditable` | `is-editable` |             | `boolean` | `undefined` |
-| `label`      | `label`       |             | `string`  | `undefined` |
-| `opened`     | `opened`      |             | `boolean` | `undefined` |
+| Property        | Attribute        | Description | Type      | Default     |
+| --------------- | ---------------- | ----------- | --------- | ----------- |
+| `contentHeight` | `content-height` |             | `string`  | `undefined` |
+| `fullWidth`     | `full-width`     |             | `boolean` | `false`     |
+| `isEditable`    | `is-editable`    |             | `boolean` | `undefined` |
+| `label`         | `label`          |             | `string`  | `undefined` |
+| `opened`        | `opened`         |             | `boolean` | `undefined` |
 
 
 ## Events

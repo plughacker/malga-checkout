@@ -109,6 +109,7 @@ export class PlugCheckoutFull {
                 pix={this.pix}
                 installments={this.installments}
                 sandbox={this.sandbox}
+                paymentMethods={this.paymentMethods}
                 onPaymentSuccess={({ detail: { data } }) =>
                   this.paymentSuccess.emit({ data })
                 }

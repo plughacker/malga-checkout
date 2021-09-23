@@ -22,6 +22,7 @@ export namespace Components {
         "customer"?: ICustomer;
         "customerId"?: string;
         "description"?: string;
+        "footerDescription"?: string;
         "hasIdentificationSection": boolean;
         "installments"?: PlugPaymentsCreditInstallmentsConfig;
         "merchantId": string;
@@ -40,6 +41,9 @@ export namespace Components {
         "statementDescriptor": string;
     }
     interface PlugCheckoutFullContent {
+    }
+    interface PlugCheckoutFullFooter {
+        "description": string;
     }
     interface PlugCheckoutFullHeader {
     }
@@ -131,6 +135,12 @@ declare global {
         prototype: HTMLPlugCheckoutFullContentElement;
         new (): HTMLPlugCheckoutFullContentElement;
     };
+    interface HTMLPlugCheckoutFullFooterElement extends Components.PlugCheckoutFullFooter, HTMLStencilElement {
+    }
+    var HTMLPlugCheckoutFullFooterElement: {
+        prototype: HTMLPlugCheckoutFullFooterElement;
+        new (): HTMLPlugCheckoutFullFooterElement;
+    };
     interface HTMLPlugCheckoutFullHeaderElement extends Components.PlugCheckoutFullHeader, HTMLStencilElement {
     }
     var HTMLPlugCheckoutFullHeaderElement: {
@@ -176,6 +186,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "plug-checkout-full": HTMLPlugCheckoutFullElement;
         "plug-checkout-full-content": HTMLPlugCheckoutFullContentElement;
+        "plug-checkout-full-footer": HTMLPlugCheckoutFullFooterElement;
         "plug-checkout-full-header": HTMLPlugCheckoutFullHeaderElement;
         "plug-checkout-full-identification": HTMLPlugCheckoutFullIdentificationElement;
         "plug-payments": HTMLPlugPaymentsElement;
@@ -195,6 +206,7 @@ declare namespace LocalJSX {
         "customer"?: ICustomer;
         "customerId"?: string;
         "description"?: string;
+        "footerDescription"?: string;
         "hasIdentificationSection"?: boolean;
         "installments"?: PlugPaymentsCreditInstallmentsConfig;
         "merchantId"?: string;
@@ -219,6 +231,9 @@ declare namespace LocalJSX {
         "statementDescriptor"?: string;
     }
     interface PlugCheckoutFullContent {
+    }
+    interface PlugCheckoutFullFooter {
+        "description"?: string;
     }
     interface PlugCheckoutFullHeader {
     }
@@ -326,6 +341,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "plug-checkout-full": PlugCheckoutFull;
         "plug-checkout-full-content": PlugCheckoutFullContent;
+        "plug-checkout-full-footer": PlugCheckoutFullFooter;
         "plug-checkout-full-header": PlugCheckoutFullHeader;
         "plug-checkout-full-identification": PlugCheckoutFullIdentification;
         "plug-payments": PlugPayments;
@@ -341,6 +357,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "plug-checkout-full": LocalJSX.PlugCheckoutFull & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullElement>;
             "plug-checkout-full-content": LocalJSX.PlugCheckoutFullContent & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullContentElement>;
+            "plug-checkout-full-footer": LocalJSX.PlugCheckoutFullFooter & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullFooterElement>;
             "plug-checkout-full-header": LocalJSX.PlugCheckoutFullHeader & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullHeaderElement>;
             "plug-checkout-full-identification": LocalJSX.PlugCheckoutFullIdentification & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullIdentificationElement>;
             "plug-payments": LocalJSX.PlugPayments & JSXBase.HTMLAttributes<HTMLPlugPaymentsElement>;

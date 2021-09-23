@@ -42,6 +42,7 @@ export class PlugCheckoutFull {
   @Prop() description?: string
   @Prop() orderId?: string
   @Prop() customerId?: string
+  @Prop() footerDescription?: string
   @Prop() currency = 'BRL'
   @Prop() sandbox = false
   @Prop() capture = false
@@ -75,7 +76,6 @@ export class PlugCheckoutFull {
           <div slot="informations" class="plug-checkout-full__informations">
             {this.hasIdentificationSection && (
               <checkout-accordion
-                fullWidth
                 label="Identificação"
                 isEditable={this.currentSection !== 'identification'}
                 opened={this.currentSection === 'identification'}
@@ -88,7 +88,6 @@ export class PlugCheckoutFull {
             )}
 
             <checkout-accordion
-              fullWidth
               label="Pagamento"
               isEditable={this.currentSection !== 'payments'}
               contentHeight={
@@ -119,6 +118,10 @@ export class PlugCheckoutFull {
             </checkout-accordion>
           </div>
         </plug-checkout-full-content>
+
+        {this.footerDescription && (
+          <plug-checkout-full-footer description={this.footerDescription} />
+        )}
       </Host>
     )
   }

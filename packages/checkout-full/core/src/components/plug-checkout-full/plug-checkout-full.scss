@@ -1,0 +1,15 @@
+.plug-checkout-full__container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--plug-checkout-color-accent-normal);
+}
+
+.plug-checkout-full__informations {
+  & > checkout-accordion:first-child {
+    margin-bottom: var(--plug-checkout-spacing-sm);
+  }
+}

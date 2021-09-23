@@ -13,6 +13,8 @@ import LockIcon from '../../assets/icons/lock.svg'
 import SpinnerIcon from '../../assets/icons/spinner.svg'
 import UserIcon from '../../assets/icons/user.svg'
 import WarningIcon from '../../assets/icons/warning.svg'
+import EyeIcon from '../../assets/icons/eye.svg'
+import EyeSlashIcon from '../../assets/icons/eye-slash.svg'
 import PoweredByPlug from '../../assets/icons/powered-by-plug.svg'
 
 @Component({ tag: 'checkout-icon' })
@@ -34,6 +36,8 @@ export class CheckoutIcon implements ComponentInterface {
       warning: WarningIcon,
       poweredByPlug: PoweredByPlug,
       edit: EditIcon,
+      eye: EyeIcon,
+      eyeSlash: EyeSlashIcon,
     }
 
     return icons[this.icon]

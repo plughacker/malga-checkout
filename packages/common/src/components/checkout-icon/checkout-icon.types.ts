@@ -11,5 +11,7 @@ export type CheckoutIconNames =
   | 'warning'
   | 'poweredByPlug'
   | 'edit'
+  | 'eye'
+  | 'eyeSlash'
 
 export type CheckoutIconsObject = Record<CheckoutIconNames, string>

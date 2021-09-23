@@ -9,6 +9,7 @@ import { CheckoutIconNames } from "./components/checkout-icon/checkout-icon.type
 import { CheckoutButtonType } from "./components/checkout-button/checkout-button.types";
 import { CheckoutInputChangeEvent, CheckoutInputMode, CheckoutInputType, CheckoutInputValue } from "./components/checkout-input/checkout-input.types";
 import { CheckoutManualPaymentDescriptions } from "./components/checkout-manual-payment/checkout-manual-payment.types";
+import { Product } from "./components/checkout-order-summary/checkout-order-summary.types";
 import { CheckoutRadioFieldChangeEvent, CheckoutRadioFieldValue } from "./components/checkout-radio-field/checkout-radio-field.types";
 import { CheckoutSelectChangeEvent, CheckoutSelectOptions, CheckoutSelectValue } from "./components/checkout-select/checkout-select.types";
 import { CheckoutSelectFieldChangeEvent, CheckoutSelectFieldOptions, CheckoutSelectFieldValue } from "./components/checkout-select-field/checkout-select-field.types";
@@ -77,6 +78,12 @@ export namespace Components {
     interface CheckoutManualPayment {
         "fullWidth": boolean;
         "paymentMethod": CheckoutManualPaymentDescriptions;
+    }
+    interface CheckoutOrderSummary {
+        "amount": number;
+        "fullWidth": boolean;
+        "label": string;
+        "products"?: Product[];
     }
     interface CheckoutRadioField {
         "customContainerClass"?: string;
@@ -197,6 +204,12 @@ declare global {
         prototype: HTMLCheckoutManualPaymentElement;
         new (): HTMLCheckoutManualPaymentElement;
     };
+    interface HTMLCheckoutOrderSummaryElement extends Components.CheckoutOrderSummary, HTMLStencilElement {
+    }
+    var HTMLCheckoutOrderSummaryElement: {
+        prototype: HTMLCheckoutOrderSummaryElement;
+        new (): HTMLCheckoutOrderSummaryElement;
+    };
     interface HTMLCheckoutRadioFieldElement extends Components.CheckoutRadioField, HTMLStencilElement {
     }
     var HTMLCheckoutRadioFieldElement: {
@@ -235,6 +248,7 @@ declare global {
         "checkout-icon": HTMLCheckoutIconElement;
         "checkout-input": HTMLCheckoutInputElement;
         "checkout-manual-payment": HTMLCheckoutManualPaymentElement;
+        "checkout-order-summary": HTMLCheckoutOrderSummaryElement;
         "checkout-radio-field": HTMLCheckoutRadioFieldElement;
         "checkout-select": HTMLCheckoutSelectElement;
         "checkout-select-field": HTMLCheckoutSelectFieldElement;
@@ -314,6 +328,12 @@ declare namespace LocalJSX {
         "fullWidth"?: boolean;
         "onPaymentClick"?: (event: CustomEvent<void>) => void;
         "paymentMethod"?: CheckoutManualPaymentDescriptions;
+    }
+    interface CheckoutOrderSummary {
+        "amount"?: number;
+        "fullWidth"?: boolean;
+        "label"?: string;
+        "products"?: Product[];
     }
     interface CheckoutRadioField {
         "customContainerClass"?: string;
@@ -413,6 +433,7 @@ declare namespace LocalJSX {
         "checkout-icon": CheckoutIcon;
         "checkout-input": CheckoutInput;
         "checkout-manual-payment": CheckoutManualPayment;
+        "checkout-order-summary": CheckoutOrderSummary;
         "checkout-radio-field": CheckoutRadioField;
         "checkout-select": CheckoutSelect;
         "checkout-select-field": CheckoutSelectField;
@@ -431,6 +452,7 @@ declare module "@stencil/core" {
             "checkout-icon": LocalJSX.CheckoutIcon & JSXBase.HTMLAttributes<HTMLCheckoutIconElement>;
             "checkout-input": LocalJSX.CheckoutInput & JSXBase.HTMLAttributes<HTMLCheckoutInputElement>;
             "checkout-manual-payment": LocalJSX.CheckoutManualPayment & JSXBase.HTMLAttributes<HTMLCheckoutManualPaymentElement>;
+            "checkout-order-summary": LocalJSX.CheckoutOrderSummary & JSXBase.HTMLAttributes<HTMLCheckoutOrderSummaryElement>;
             "checkout-radio-field": LocalJSX.CheckoutRadioField & JSXBase.HTMLAttributes<HTMLCheckoutRadioFieldElement>;
             "checkout-select": LocalJSX.CheckoutSelect & JSXBase.HTMLAttributes<HTMLCheckoutSelectElement>;
             "checkout-select-field": LocalJSX.CheckoutSelectField & JSXBase.HTMLAttributes<HTMLCheckoutSelectFieldElement>;

@@ -1,0 +1,22 @@
+.checkout-clipboard-button__container {
+  display: block;
+  width: 100%;
+}
+
+.checkout-clipboard-button__button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  & > checkout-icon {
+    margin-right: var(--plug-checkout-spacing-xs);
+  }
+
+  & > checkout-typography > span {
+    color: var(--plug-checkout-color-grey-normal);
+  }
+}

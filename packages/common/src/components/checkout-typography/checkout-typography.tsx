@@ -19,6 +19,7 @@ export class CheckoutTypography implements ComponentInterface {
   static VARIATIONS = [
     'header5',
     'header6',
+    'header7',
     'subtitle1',
     'subtitle2',
     'body1',

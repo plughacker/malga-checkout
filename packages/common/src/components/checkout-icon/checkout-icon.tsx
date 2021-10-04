@@ -9,6 +9,7 @@ import CheckIcon from '../../assets/icons/check.svg'
 import CheckLargeIcon from '../../assets/icons/check-large.svg'
 import CreditCardIcon from '../../assets/icons/credit-card.svg'
 import CvvIcon from '../../assets/icons/cvv.svg'
+import ClipboardIcon from '../../assets/icons/clipboard.svg'
 import DollarIcon from '../../assets/icons/dollar.svg'
 import EditIcon from '../../assets/icons/edit.svg'
 import ErrorIcon from '../../assets/icons/error.svg'
@@ -44,6 +45,7 @@ export class CheckoutIcon implements ComponentInterface {
       arrowLeft: ArrowLeftIcon,
       error: ErrorIcon,
       checkLarge: CheckLargeIcon,
+      clipboard: ClipboardIcon,
     }
 
     return icons[this.icon]

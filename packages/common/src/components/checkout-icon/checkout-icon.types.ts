@@ -16,5 +16,6 @@ export type CheckoutIconNames =
   | 'arrowLeft'
   | 'error'
   | 'checkLarge'
+  | 'clipboard'
 
 export type CheckoutIconsObject = Record<CheckoutIconNames, string>

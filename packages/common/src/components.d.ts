@@ -33,6 +33,10 @@ export namespace Components {
         "label": string;
         "type"?: CheckoutButtonType;
     }
+    interface CheckoutClipboardButton {
+        "clipboardContent": string;
+        "label": string;
+    }
     interface CheckoutCreditCard {
         "cvv": string;
         "expiry": string;
@@ -88,6 +92,8 @@ export namespace Components {
     interface CheckoutModalError {
         "errorDescription"?: string;
         "errorTitle"?: string;
+    }
+    interface CheckoutModalPix {
     }
     interface CheckoutModalSuccess {
     }
@@ -186,6 +192,12 @@ declare global {
         prototype: HTMLCheckoutButtonElement;
         new (): HTMLCheckoutButtonElement;
     };
+    interface HTMLCheckoutClipboardButtonElement extends Components.CheckoutClipboardButton, HTMLStencilElement {
+    }
+    var HTMLCheckoutClipboardButtonElement: {
+        prototype: HTMLCheckoutClipboardButtonElement;
+        new (): HTMLCheckoutClipboardButtonElement;
+    };
     interface HTMLCheckoutCreditCardElement extends Components.CheckoutCreditCard, HTMLStencilElement {
     }
     var HTMLCheckoutCreditCardElement: {
@@ -227,6 +239,12 @@ declare global {
     var HTMLCheckoutModalErrorElement: {
         prototype: HTMLCheckoutModalErrorElement;
         new (): HTMLCheckoutModalErrorElement;
+    };
+    interface HTMLCheckoutModalPixElement extends Components.CheckoutModalPix, HTMLStencilElement {
+    }
+    var HTMLCheckoutModalPixElement: {
+        prototype: HTMLCheckoutModalPixElement;
+        new (): HTMLCheckoutModalPixElement;
     };
     interface HTMLCheckoutModalSuccessElement extends Components.CheckoutModalSuccess, HTMLStencilElement {
     }
@@ -273,6 +291,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "checkout-accordion": HTMLCheckoutAccordionElement;
         "checkout-button": HTMLCheckoutButtonElement;
+        "checkout-clipboard-button": HTMLCheckoutClipboardButtonElement;
         "checkout-credit-card": HTMLCheckoutCreditCardElement;
         "checkout-error-message": HTMLCheckoutErrorMessageElement;
         "checkout-icon": HTMLCheckoutIconElement;
@@ -280,6 +299,7 @@ declare global {
         "checkout-manual-payment": HTMLCheckoutManualPaymentElement;
         "checkout-modal": HTMLCheckoutModalElement;
         "checkout-modal-error": HTMLCheckoutModalErrorElement;
+        "checkout-modal-pix": HTMLCheckoutModalPixElement;
         "checkout-modal-success": HTMLCheckoutModalSuccessElement;
         "checkout-order-summary": HTMLCheckoutOrderSummaryElement;
         "checkout-radio-field": HTMLCheckoutRadioFieldElement;
@@ -309,6 +329,10 @@ declare namespace LocalJSX {
         "onClicked"?: (event: CustomEvent<void>) => void;
         "onFocused"?: (event: CustomEvent<void>) => void;
         "type"?: CheckoutButtonType;
+    }
+    interface CheckoutClipboardButton {
+        "clipboardContent"?: string;
+        "label"?: string;
     }
     interface CheckoutCreditCard {
         "cvv"?: string;
@@ -371,6 +395,8 @@ declare namespace LocalJSX {
         "errorDescription"?: string;
         "errorTitle"?: string;
         "onErrorButtonClicked"?: (event: CustomEvent<void>) => void;
+    }
+    interface CheckoutModalPix {
     }
     interface CheckoutModalSuccess {
         "onSuccessButtonClicked"?: (event: CustomEvent<void>) => void;
@@ -474,6 +500,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "checkout-accordion": CheckoutAccordion;
         "checkout-button": CheckoutButton;
+        "checkout-clipboard-button": CheckoutClipboardButton;
         "checkout-credit-card": CheckoutCreditCard;
         "checkout-error-message": CheckoutErrorMessage;
         "checkout-icon": CheckoutIcon;
@@ -481,6 +508,7 @@ declare namespace LocalJSX {
         "checkout-manual-payment": CheckoutManualPayment;
         "checkout-modal": CheckoutModal;
         "checkout-modal-error": CheckoutModalError;
+        "checkout-modal-pix": CheckoutModalPix;
         "checkout-modal-success": CheckoutModalSuccess;
         "checkout-order-summary": CheckoutOrderSummary;
         "checkout-radio-field": CheckoutRadioField;
@@ -496,6 +524,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "checkout-accordion": LocalJSX.CheckoutAccordion & JSXBase.HTMLAttributes<HTMLCheckoutAccordionElement>;
             "checkout-button": LocalJSX.CheckoutButton & JSXBase.HTMLAttributes<HTMLCheckoutButtonElement>;
+            "checkout-clipboard-button": LocalJSX.CheckoutClipboardButton & JSXBase.HTMLAttributes<HTMLCheckoutClipboardButtonElement>;
             "checkout-credit-card": LocalJSX.CheckoutCreditCard & JSXBase.HTMLAttributes<HTMLCheckoutCreditCardElement>;
             "checkout-error-message": LocalJSX.CheckoutErrorMessage & JSXBase.HTMLAttributes<HTMLCheckoutErrorMessageElement>;
             "checkout-icon": LocalJSX.CheckoutIcon & JSXBase.HTMLAttributes<HTMLCheckoutIconElement>;
@@ -503,6 +532,7 @@ declare module "@stencil/core" {
             "checkout-manual-payment": LocalJSX.CheckoutManualPayment & JSXBase.HTMLAttributes<HTMLCheckoutManualPaymentElement>;
             "checkout-modal": LocalJSX.CheckoutModal & JSXBase.HTMLAttributes<HTMLCheckoutModalElement>;
             "checkout-modal-error": LocalJSX.CheckoutModalError & JSXBase.HTMLAttributes<HTMLCheckoutModalErrorElement>;
+            "checkout-modal-pix": LocalJSX.CheckoutModalPix & JSXBase.HTMLAttributes<HTMLCheckoutModalPixElement>;
             "checkout-modal-success": LocalJSX.CheckoutModalSuccess & JSXBase.HTMLAttributes<HTMLCheckoutModalSuccessElement>;
             "checkout-order-summary": LocalJSX.CheckoutOrderSummary & JSXBase.HTMLAttributes<HTMLCheckoutOrderSummaryElement>;
             "checkout-radio-field": LocalJSX.CheckoutRadioField & JSXBase.HTMLAttributes<HTMLCheckoutRadioFieldElement>;

@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type                                                                                                                                                                                         | Default     |
-| -------- | --------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `class`  | `class`   |             | `string`                                                                                                                                                                                     | `undefined` |
-| `icon`   | `icon`    |             | `"arrowDown" \| "arrowLeft" \| "calendar" \| "check" \| "creditCard" \| "cvv" \| "dollar" \| "edit" \| "eye" \| "eyeSlash" \| "lock" \| "poweredByPlug" \| "spinner" \| "user" \| "warning"` | `undefined` |
+| Property | Attribute | Description | Type                                                                                                                                                                                                                                   | Default     |
+| -------- | --------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `class`  | `class`   |             | `string`                                                                                                                                                                                                                               | `undefined` |
+| `icon`   | `icon`    |             | `"arrowDown" \| "arrowLeft" \| "calendar" \| "check" \| "checkLarge" \| "clipboard" \| "creditCard" \| "cvv" \| "dollar" \| "edit" \| "error" \| "eye" \| "eyeSlash" \| "lock" \| "poweredByPlug" \| "spinner" \| "user" \| "warning"` | `undefined` |
 
 
 ## Dependencies
@@ -19,8 +19,13 @@
 
  - [checkout-accordion](../checkout-accordion)
  - [checkout-button](../checkout-button)
+ - [checkout-clipboard-button](../checkout-clipboard-button)
  - [checkout-input](../checkout-input)
  - [checkout-manual-payment](../checkout-manual-payment)
+ - [checkout-modal-boleto](../checkout-modal/partials/checkout-modal-boleto)
+ - [checkout-modal-error](../checkout-modal/partials/checkout-modal-error)
+ - [checkout-modal-pix](../checkout-modal/partials/checkout-modal-pix)
+ - [checkout-modal-success](../checkout-modal/partials/checkout-modal-success)
  - [checkout-order-summary](../checkout-order-summary)
  - [checkout-select](../checkout-select)
  - [checkout-select-field](../checkout-select-field)
@@ -31,8 +36,13 @@
 graph TD;
   checkout-accordion --> checkout-icon
   checkout-button --> checkout-icon
+  checkout-clipboard-button --> checkout-icon
   checkout-input --> checkout-icon
   checkout-manual-payment --> checkout-icon
+  checkout-modal-boleto --> checkout-icon
+  checkout-modal-error --> checkout-icon
+  checkout-modal-pix --> checkout-icon
+  checkout-modal-success --> checkout-icon
   checkout-order-summary --> checkout-icon
   checkout-select --> checkout-icon
   checkout-select-field --> checkout-icon

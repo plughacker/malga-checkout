@@ -83,6 +83,10 @@ export namespace Components {
     interface CheckoutModal {
         "open": boolean;
     }
+    interface CheckoutModalError {
+        "errorDescription"?: string;
+        "errorTitle"?: string;
+    }
     interface CheckoutOrderSummary {
         "amount": number;
         "fullWidth": boolean;
@@ -214,6 +218,12 @@ declare global {
         prototype: HTMLCheckoutModalElement;
         new (): HTMLCheckoutModalElement;
     };
+    interface HTMLCheckoutModalErrorElement extends Components.CheckoutModalError, HTMLStencilElement {
+    }
+    var HTMLCheckoutModalErrorElement: {
+        prototype: HTMLCheckoutModalErrorElement;
+        new (): HTMLCheckoutModalErrorElement;
+    };
     interface HTMLCheckoutOrderSummaryElement extends Components.CheckoutOrderSummary, HTMLStencilElement {
     }
     var HTMLCheckoutOrderSummaryElement: {
@@ -259,6 +269,7 @@ declare global {
         "checkout-input": HTMLCheckoutInputElement;
         "checkout-manual-payment": HTMLCheckoutManualPaymentElement;
         "checkout-modal": HTMLCheckoutModalElement;
+        "checkout-modal-error": HTMLCheckoutModalErrorElement;
         "checkout-order-summary": HTMLCheckoutOrderSummaryElement;
         "checkout-radio-field": HTMLCheckoutRadioFieldElement;
         "checkout-select": HTMLCheckoutSelectElement;
@@ -343,6 +354,11 @@ declare namespace LocalJSX {
     }
     interface CheckoutModal {
         "open"?: boolean;
+    }
+    interface CheckoutModalError {
+        "errorDescription"?: string;
+        "errorTitle"?: string;
+        "onErrorButtonClicked"?: (event: CustomEvent<void>) => void;
     }
     interface CheckoutOrderSummary {
         "amount"?: number;
@@ -449,6 +465,7 @@ declare namespace LocalJSX {
         "checkout-input": CheckoutInput;
         "checkout-manual-payment": CheckoutManualPayment;
         "checkout-modal": CheckoutModal;
+        "checkout-modal-error": CheckoutModalError;
         "checkout-order-summary": CheckoutOrderSummary;
         "checkout-radio-field": CheckoutRadioField;
         "checkout-select": CheckoutSelect;
@@ -469,6 +486,7 @@ declare module "@stencil/core" {
             "checkout-input": LocalJSX.CheckoutInput & JSXBase.HTMLAttributes<HTMLCheckoutInputElement>;
             "checkout-manual-payment": LocalJSX.CheckoutManualPayment & JSXBase.HTMLAttributes<HTMLCheckoutManualPaymentElement>;
             "checkout-modal": LocalJSX.CheckoutModal & JSXBase.HTMLAttributes<HTMLCheckoutModalElement>;
+            "checkout-modal-error": LocalJSX.CheckoutModalError & JSXBase.HTMLAttributes<HTMLCheckoutModalErrorElement>;
             "checkout-order-summary": LocalJSX.CheckoutOrderSummary & JSXBase.HTMLAttributes<HTMLCheckoutOrderSummaryElement>;
             "checkout-radio-field": LocalJSX.CheckoutRadioField & JSXBase.HTMLAttributes<HTMLCheckoutRadioFieldElement>;
             "checkout-select": LocalJSX.CheckoutSelect & JSXBase.HTMLAttributes<HTMLCheckoutSelectElement>;

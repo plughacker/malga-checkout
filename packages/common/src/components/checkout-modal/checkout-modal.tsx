@@ -14,9 +14,8 @@ export class CheckoutModal {
 
     return (
       <Host class={{ 'checkout-modal__container': true }}>
-        <div class={{ 'checkout-modal__content': true }}>
-          <slot></slot>
-        </div>
+        <checkout-modal-error />
+        <slot></slot>
       </Host>
     )
   }

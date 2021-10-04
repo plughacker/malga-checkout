@@ -6,10 +6,12 @@ import ArrowDownIcon from '../../assets/icons/arrow-down.svg'
 import ArrowLeftIcon from '../../assets/icons/arrow-left.svg'
 import CalendarIcon from '../../assets/icons/calendar.svg'
 import CheckIcon from '../../assets/icons/check.svg'
+import CheckLargeIcon from '../../assets/icons/check-large.svg'
 import CreditCardIcon from '../../assets/icons/credit-card.svg'
 import CvvIcon from '../../assets/icons/cvv.svg'
 import DollarIcon from '../../assets/icons/dollar.svg'
 import EditIcon from '../../assets/icons/edit.svg'
+import ErrorIcon from '../../assets/icons/error.svg'
 import LockIcon from '../../assets/icons/lock.svg'
 import SpinnerIcon from '../../assets/icons/spinner.svg'
 import UserIcon from '../../assets/icons/user.svg'
@@ -40,6 +42,8 @@ export class CheckoutIcon implements ComponentInterface {
       eye: EyeIcon,
       eyeSlash: EyeSlashIcon,
       arrowLeft: ArrowLeftIcon,
+      error: ErrorIcon,
+      checkLarge: CheckLargeIcon,
     }
 
     return icons[this.icon]

@@ -25,6 +25,7 @@ export class CheckoutTypography implements ComponentInterface {
     'body2',
     'button',
     'label',
+    'field',
   ]
   static COLORS = ['white', 'dark', 'warning']
 

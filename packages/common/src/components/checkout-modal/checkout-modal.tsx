@@ -20,6 +20,7 @@ export class CheckoutModal {
         {this.mode === 'success' && <checkout-modal-success />}
         {this.mode === 'error' && <checkout-modal-error />}
         {this.mode === 'pix' && <checkout-modal-pix />}
+        {this.mode === 'boleto' && <checkout-modal-boleto />}
       </Host>
     )
   }

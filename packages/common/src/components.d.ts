@@ -89,6 +89,12 @@ export namespace Components {
         "mode": CheckoutModalMode;
         "open": boolean;
     }
+    interface CheckoutModalBoleto {
+        "amount": number;
+        "boletoCode": string;
+        "boletoImageUrl": string;
+        "expirationDate": string;
+    }
     interface CheckoutModalError {
         "errorDescription"?: string;
         "errorTitle"?: string;
@@ -239,6 +245,12 @@ declare global {
         prototype: HTMLCheckoutModalElement;
         new (): HTMLCheckoutModalElement;
     };
+    interface HTMLCheckoutModalBoletoElement extends Components.CheckoutModalBoleto, HTMLStencilElement {
+    }
+    var HTMLCheckoutModalBoletoElement: {
+        prototype: HTMLCheckoutModalBoletoElement;
+        new (): HTMLCheckoutModalBoletoElement;
+    };
     interface HTMLCheckoutModalErrorElement extends Components.CheckoutModalError, HTMLStencilElement {
     }
     var HTMLCheckoutModalErrorElement: {
@@ -303,6 +315,7 @@ declare global {
         "checkout-input": HTMLCheckoutInputElement;
         "checkout-manual-payment": HTMLCheckoutManualPaymentElement;
         "checkout-modal": HTMLCheckoutModalElement;
+        "checkout-modal-boleto": HTMLCheckoutModalBoletoElement;
         "checkout-modal-error": HTMLCheckoutModalErrorElement;
         "checkout-modal-pix": HTMLCheckoutModalPixElement;
         "checkout-modal-success": HTMLCheckoutModalSuccessElement;
@@ -395,6 +408,12 @@ declare namespace LocalJSX {
     interface CheckoutModal {
         "mode"?: CheckoutModalMode;
         "open"?: boolean;
+    }
+    interface CheckoutModalBoleto {
+        "amount"?: number;
+        "boletoCode"?: string;
+        "boletoImageUrl"?: string;
+        "expirationDate"?: string;
     }
     interface CheckoutModalError {
         "errorDescription"?: string;
@@ -517,6 +536,7 @@ declare namespace LocalJSX {
         "checkout-input": CheckoutInput;
         "checkout-manual-payment": CheckoutManualPayment;
         "checkout-modal": CheckoutModal;
+        "checkout-modal-boleto": CheckoutModalBoleto;
         "checkout-modal-error": CheckoutModalError;
         "checkout-modal-pix": CheckoutModalPix;
         "checkout-modal-success": CheckoutModalSuccess;
@@ -541,6 +561,7 @@ declare module "@stencil/core" {
             "checkout-input": LocalJSX.CheckoutInput & JSXBase.HTMLAttributes<HTMLCheckoutInputElement>;
             "checkout-manual-payment": LocalJSX.CheckoutManualPayment & JSXBase.HTMLAttributes<HTMLCheckoutManualPaymentElement>;
             "checkout-modal": LocalJSX.CheckoutModal & JSXBase.HTMLAttributes<HTMLCheckoutModalElement>;
+            "checkout-modal-boleto": LocalJSX.CheckoutModalBoleto & JSXBase.HTMLAttributes<HTMLCheckoutModalBoletoElement>;
             "checkout-modal-error": LocalJSX.CheckoutModalError & JSXBase.HTMLAttributes<HTMLCheckoutModalErrorElement>;
             "checkout-modal-pix": LocalJSX.CheckoutModalPix & JSXBase.HTMLAttributes<HTMLCheckoutModalPixElement>;
             "checkout-modal-success": LocalJSX.CheckoutModalSuccess & JSXBase.HTMLAttributes<HTMLCheckoutModalSuccessElement>;

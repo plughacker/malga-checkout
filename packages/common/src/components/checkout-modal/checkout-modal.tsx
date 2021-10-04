@@ -19,6 +19,7 @@ export class CheckoutModal {
       <Host class={{ 'checkout-modal__container': true }}>
         {this.mode === 'success' && <checkout-modal-success />}
         {this.mode === 'error' && <checkout-modal-error />}
+        {this.mode === 'pix' && <checkout-modal-pix />}
       </Host>
     )
   }

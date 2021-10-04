@@ -7,9 +7,16 @@
 
 %typography-header6 {
   font-family: var(--plug-checkout-typography-family);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: normal;
+}
+
+%typography-header7 {
+  font-family: var(--plug-checkout-typography-family);
   font-size: 18px;
   font-style: normal;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 %typography-subtitle1 {
@@ -67,6 +74,8 @@
     @extend %typography-header5;
   } @else if $value == 'header6' {
     @extend %typography-header6;
+  } @else if $value == 'header7' {
+    @extend %typography-header7;
   } @else if $value == 'subtitle1' {
     @extend %typography-subtitle1;
   } @else if $value == 'subtitle2' {

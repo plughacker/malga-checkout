@@ -9,7 +9,7 @@ export class CheckoutModalSuccess {
 
   render() {
     return (
-      <Host class={{ 'checkout-modal-success__container ': true }}>
+      <Host class={{ 'checkout-modal-success__container': true }}>
         <checkout-icon icon="checkLarge" />
         <checkout-typography
           tag="h3"

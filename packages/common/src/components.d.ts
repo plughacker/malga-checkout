@@ -94,6 +94,11 @@ export namespace Components {
         "errorTitle"?: string;
     }
     interface CheckoutModalPix {
+        "amount": number;
+        "expirationDate": string;
+        "expirationTime": number;
+        "qrCodeIdentificator": string;
+        "qrCodeImageUrl": string;
     }
     interface CheckoutModalSuccess {
     }
@@ -397,6 +402,11 @@ declare namespace LocalJSX {
         "onErrorButtonClicked"?: (event: CustomEvent<void>) => void;
     }
     interface CheckoutModalPix {
+        "amount"?: number;
+        "expirationDate"?: string;
+        "expirationTime"?: number;
+        "qrCodeIdentificator"?: string;
+        "qrCodeImageUrl"?: string;
     }
     interface CheckoutModalSuccess {
         "onSuccessButtonClicked"?: (event: CustomEvent<void>) => void;

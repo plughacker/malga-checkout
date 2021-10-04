@@ -12,7 +12,7 @@ export class CheckoutModalError {
 
   render() {
     return (
-      <Host class={{ 'checkout-modal-error__container ': true }}>
+      <Host class={{ 'checkout-modal-error__container': true }}>
         <checkout-icon icon="error" />
         <checkout-typography
           tag="h3"

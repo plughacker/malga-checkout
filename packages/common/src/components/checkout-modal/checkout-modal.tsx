@@ -1,11 +1,14 @@
 import { Component, Host, h, Prop } from '@stencil/core'
 
+import { CheckoutModalMode } from './checkout-modal.types'
+
 @Component({
   tag: 'checkout-modal',
   styleUrl: 'checkout-modal.scss',
 })
 export class CheckoutModal {
   @Prop() open: boolean
+  @Prop() mode: CheckoutModalMode
 
   render() {
     if (!this.open) {
@@ -14,8 +17,8 @@ export class CheckoutModal {
 
     return (
       <Host class={{ 'checkout-modal__container': true }}>
-        <checkout-modal-error />
-        <slot></slot>
+        {this.mode === 'success' && <checkout-modal-success />}
+        {this.mode === 'error' && <checkout-modal-error />}
       </Host>
     )
   }

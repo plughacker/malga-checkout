@@ -1,0 +1,38 @@
+.checkout-modal-success__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 585px;
+  height: 625px;
+  position: relative;
+  background: var(--plug-checkout-color-success);
+  border-radius: var(--plug-checkout-border-radius-lg);
+
+  & > checkout-typography {
+    & > h3 {
+      margin-top: calc(
+        var(--plug-checkout-spacing-md) + var(--plug-checkout-spacing-xxs)
+      );
+      margin-bottom: var(--plug-checkout-spacing-md);
+      text-align: center;
+    }
+
+    & > h4 {
+      font-weight: bold;
+      text-align: center;
+      width: 290px;
+      margin-bottom: var(--plug-checkout-spacing-xxs);
+    }
+
+    & > p {
+      width: 290px;
+      text-align: center;
+    }
+  }
+
+  & > checkout-button {
+    position: absolute;
+    bottom: 75px;
+  }
+}

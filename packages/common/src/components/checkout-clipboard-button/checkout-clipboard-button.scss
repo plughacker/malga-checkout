@@ -6,17 +6,22 @@
 .checkout-clipboard-button__button {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
   border: none;
   background: transparent;
   cursor: pointer;
+  margin: 0;
+  padding: 0;
 
   & > checkout-icon {
     margin-right: var(--plug-checkout-spacing-xs);
   }
 
-  & > checkout-typography > span {
-    color: var(--plug-checkout-color-grey-normal);
+  & > checkout-typography {
+    text-align: start;
+
+    & > span {
+      color: var(--plug-checkout-color-grey-normal);
+    }
   }
 }

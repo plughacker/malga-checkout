@@ -86,8 +86,15 @@ export namespace Components {
         "paymentMethod": CheckoutManualPaymentDescriptions;
     }
     interface CheckoutModal {
+        "amount": number;
+        "errorDescription"?: string;
+        "errorTitle"?: string;
+        "expirationDate"?: string;
+        "expirationTime"?: number;
         "mode": CheckoutModalMode;
         "open": boolean;
+        "paymentCode": string;
+        "paymentImageUrl": string;
     }
     interface CheckoutModalBoleto {
         "amount": number;
@@ -406,8 +413,17 @@ declare namespace LocalJSX {
         "paymentMethod"?: CheckoutManualPaymentDescriptions;
     }
     interface CheckoutModal {
+        "amount"?: number;
+        "errorDescription"?: string;
+        "errorTitle"?: string;
+        "expirationDate"?: string;
+        "expirationTime"?: number;
         "mode"?: CheckoutModalMode;
+        "onErrorButtonClicked"?: (event: CustomEvent<any>) => void;
+        "onSuccessButtonClicked"?: (event: CustomEvent<any>) => void;
         "open"?: boolean;
+        "paymentCode"?: string;
+        "paymentImageUrl"?: string;
     }
     interface CheckoutModalBoleto {
         "amount"?: number;

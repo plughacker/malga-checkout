@@ -3,28 +3,37 @@ import { Api } from '../../services/api'
 import { Charges, ICreateChargeData } from '../../services/charges'
 import { cleanObjectProperties } from '../../utils'
 
-import { PlugPaymentsPixChargeRequest } from './plug-payments-pix.types'
+import {
+  PlugPaymentsPixChargeRequest,
+  PlugPaymentsPixChargeSuccess,
+  PlugPaymentsPixChargeError,
+  PlugPaymentsPixChargePayload,
+  PlugPaymentsPixDialogState,
+} from './plug-payments-pix.types'
 
-export const chargeRequest = async ({
-  publicKey,
-  clientId,
-  sandbox,
-  onPaymentSuccess,
-  onPaymentFailed,
-  data,
-}: PlugPaymentsPixChargeRequest) => {
-  try {
-    const payload = cleanObjectProperties({
-      currency: data.currency,
-      orderId: data.orderId,
-      description: data.description,
-      merchantId: data.merchantId,
-      amount: data.amount,
-      statementDescriptor: data.statementDescriptor,
-      capture: data.capture,
-    })
+export class PlugPaymentsPixService {
+  readonly charge: Charges
+  readonly data: PlugPaymentsPixChargePayload
+  readonly showDialog: boolean
+  readonly onPaymentSuccess: (
+    data: PlugPaymentsPixChargeSuccess,
+  ) => CustomEvent<{ data: unknown }>
+  readonly onPaymentFailed: (
+    error: PlugPaymentsPixChargeError,
+  ) => CustomEvent<{ error: unknown }>
+  readonly onShowDialog: (dialogData: PlugPaymentsPixDialogState) => void
 
-    const charge = new Charges({
+  constructor({
+    publicKey,
+    clientId,
+    sandbox,
+    onPaymentSuccess,
+    onPaymentFailed,
+    onShowDialog,
+    showDialog,
+    data,
+  }: PlugPaymentsPixChargeRequest) {
+    this.charge = new Charges({
       api: new Api(clientId, publicKey, sandbox),
       provider: new Pix({
         customer: data.customer,
@@ -32,23 +41,72 @@ export const chargeRequest = async ({
         pix: data.pix,
       }),
     })
+    this.onPaymentSuccess = onPaymentSuccess
+    this.onPaymentFailed = onPaymentFailed
+    this.onShowDialog = onShowDialog
+    this.showDialog = showDialog
+    this.data = data
+  }
 
-    const checkoutResponse = await charge.create(payload as ICreateChargeData)
-
-    if (checkoutResponse.hasError) {
-      onPaymentFailed({
-        type: checkoutResponse.data.status,
-        message: 'Your transaction cannot be completed',
+  private handlePaymentSuccess(data: PlugPaymentsPixChargeSuccess) {
+    if (this.showDialog) {
+      this.onShowDialog({
+        mode: 'pix',
+        amount: data.amount,
+        open: true,
+        paymentCode: data.paymentMethod.qrCodeData,
+        paymentImageUrl: data.paymentMethod.qrCodeImageUrl,
+        expirationTime: data.paymentMethod.expiresIn,
       })
-
-      return
     }
 
-    onPaymentSuccess(checkoutResponse.data)
-  } catch (error) {
-    onPaymentFailed({
-      type: error.data.status,
-      message: 'Your transaction cannot be completed',
-    })
+    this.onPaymentSuccess(data)
+  }
+
+  private handlePaymentFailed(error: PlugPaymentsPixChargeError) {
+    if (this.showDialog) {
+      this.onShowDialog({
+        open: true,
+        mode: 'error',
+        errorMessage:
+          'Não foi possível concluir sua transação, tente novamente.',
+      })
+    }
+
+    this.onPaymentFailed(error)
+  }
+
+  public async pay() {
+    try {
+      const payload = cleanObjectProperties({
+        currency: this.data.currency,
+        orderId: this.data.orderId,
+        description: this.data.description,
+        merchantId: this.data.merchantId,
+        amount: this.data.amount,
+        statementDescriptor: this.data.statementDescriptor,
+        capture: this.data.capture,
+      })
+
+      const checkoutResponse = await this.charge.create(
+        payload as ICreateChargeData,
+      )
+
+      if (checkoutResponse.hasError) {
+        this.handlePaymentFailed({
+          type: checkoutResponse.data.status,
+          message: 'Your transaction cannot be completed',
+        })
+
+        return
+      }
+
+      this.handlePaymentSuccess(checkoutResponse.data)
+    } catch (error) {
+      this.handlePaymentFailed({
+        type: error.response.status,
+        message: 'Your transaction cannot be completed',
+      })
+    }
   }
 }

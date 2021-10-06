@@ -52,6 +52,16 @@ export interface PlugPaymentsBoletoChargeSuccess {
   }[]
 }
 
+export interface PlugPaymentsBoletoDialogState {
+  open: boolean
+  mode: 'pix' | 'boleto' | 'success' | 'error'
+  amount?: number
+  paymentCode?: string
+  paymentImageUrl?: string
+  expirationDate?: string
+  errorMessage?: string
+}
+
 export interface PlugPaymentsBoletoChargeError {
   type: string
   message: string
@@ -61,11 +71,13 @@ export interface PlugPaymentsBoletoChargeRequest {
   publicKey: string
   clientId: string
   sandbox: boolean
+  showDialog: boolean
+  data: PlugPaymentsBoletoChargePayload
   onPaymentSuccess: (
     data: PlugPaymentsBoletoChargeSuccess,
   ) => CustomEvent<{ data }>
   onPaymentFailed: (
     error: PlugPaymentsBoletoChargeError,
   ) => CustomEvent<{ error }>
-  data: PlugPaymentsBoletoChargePayload
+  onShowDialog: (dialogData: PlugPaymentsBoletoDialogState) => void
 }

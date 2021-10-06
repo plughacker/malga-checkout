@@ -45,6 +45,7 @@ export class PlugPayments implements ComponentInterface {
   @Prop() currency = 'BRL'
   @Prop() sandbox = false
   @Prop() capture = false
+  @Prop() showDialog = true
 
   @Event() paymentSuccess!: EventEmitter<{
     data: PlugPaymentsChargeSuccess
@@ -80,6 +81,7 @@ export class PlugPayments implements ComponentInterface {
               />
               {this.currentPayment === 'boleto' && (
                 <plug-payments-boleto
+                  showDialog={this.showDialog}
                   clientId={this.clientId}
                   publicKey={this.publicKey}
                   merchantId={this.merchantId}
@@ -115,6 +117,7 @@ export class PlugPayments implements ComponentInterface {
               />
               {this.currentPayment === 'pix' && (
                 <plug-payments-pix
+                  showDialog={this.showDialog}
                   clientId={this.clientId}
                   publicKey={this.publicKey}
                   merchantId={this.merchantId}
@@ -150,6 +153,7 @@ export class PlugPayments implements ComponentInterface {
               />
               {this.currentPayment === 'credit' && (
                 <plug-payments-credit
+                  showDialog={this.showDialog}
                   showCreditCard={this.showCreditCard}
                   clientId={this.clientId}
                   publicKey={this.publicKey}

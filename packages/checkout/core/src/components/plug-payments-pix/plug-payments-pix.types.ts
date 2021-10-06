@@ -14,6 +14,17 @@ export interface PlugPaymentsPixChargePayload {
   currency: string
 }
 
+export interface PlugPaymentsPixDialogState {
+  open: boolean
+  mode: 'pix' | 'boleto' | 'success' | 'error'
+  amount?: number
+  paymentCode?: string
+  paymentImageUrl?: string
+  expirationDate?: string
+  expirationTime?: number
+  errorMessage?: string
+}
+
 export interface PlugPaymentsPixChargeSuccess {
   id: string
   clientId: string
@@ -66,9 +77,11 @@ export interface PlugPaymentsPixChargeRequest {
   publicKey: string
   clientId: string
   sandbox: boolean
+  showDialog: boolean
+  data: PlugPaymentsPixChargePayload
   onPaymentSuccess: (
     data: PlugPaymentsPixChargeSuccess,
   ) => CustomEvent<{ data }>
   onPaymentFailed: (error: PlugPaymentsPixChargeError) => CustomEvent<{ error }>
-  data: PlugPaymentsPixChargePayload
+  onShowDialog: (dialogData: PlugPaymentsPixDialogState) => void
 }

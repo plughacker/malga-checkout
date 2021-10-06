@@ -19,6 +19,13 @@ export interface PlugPaymentsCreditFormCustomStyleFormClasses {
   submitButton?: string
 }
 
+export interface PlugPaymentsCreditDialogState {
+  open: boolean
+  mode: 'pix' | 'boleto' | 'success' | 'error'
+  amount?: number
+  errorMessage?: string
+}
+
 export interface PlugPaymentsCreditFormValues {
   cardNumber: string
   expirationDate: string
@@ -88,11 +95,13 @@ export interface PlugPaymentsCreditChargeRequest {
   publicKey: string
   clientId: string
   sandbox: boolean
+  showDialog: boolean
+  data: PlugPaymentsCreditChargePayload
   onPaymentSuccess: (
     data: PlugPaymentsCreditChargeSuccess,
   ) => CustomEvent<{ data }>
   onPaymentFailed: (
     error: PlugPaymentsCreditChargeError,
   ) => CustomEvent<{ error }>
-  data: PlugPaymentsCreditChargePayload
+  onShowDialog: (dialogData: PlugPaymentsCreditDialogState) => void
 }

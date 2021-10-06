@@ -11,9 +11,10 @@ import { IPix } from '../../providers/Pix'
 import {
   PlugPaymentsPixChargeSuccess,
   PlugPaymentsPixChargeError,
+  PlugPaymentsPixDialogState,
 } from './plug-payments-pix.types'
 
-import { chargeRequest } from './plug-payments-pix.service'
+import { PlugPaymentsPixService } from './plug-payments-pix.service'
 import { ICustomer } from '../../providers/BaseProvider'
 
 @Component({
@@ -34,6 +35,7 @@ export class PlugPaymentsPix {
   @Prop() currency = 'BRL'
   @Prop() sandbox = false
   @Prop() capture = false
+  @Prop() showDialog = true
 
   @Event() paymentSuccess!: EventEmitter<{
     data: PlugPaymentsPixChargeSuccess
@@ -43,6 +45,19 @@ export class PlugPaymentsPix {
   }>
 
   @State() isLoading = false
+  @State() dialog: PlugPaymentsPixDialogState = {
+    open: false,
+    mode: 'pix',
+    amount: 0,
+    paymentCode: '',
+    paymentImageUrl: '',
+    expirationDate: '',
+    expirationTime: 3600,
+  }
+
+  private handleShowDialog = (dialogData: PlugPaymentsPixDialogState) => {
+    this.dialog = { ...this.dialog, ...dialogData }
+  }
 
   private handleFormSubmit = async () => {
     this.isLoading = true
@@ -60,16 +75,21 @@ export class PlugPaymentsPix {
       currency: this.currency,
     }
 
-    await chargeRequest({
+    const pixService = new PlugPaymentsPixService({
       publicKey: this.publicKey,
       clientId: this.clientId,
       sandbox: this.sandbox,
+      showDialog: this.showDialog,
+      data,
       onPaymentSuccess: (data: PlugPaymentsPixChargeSuccess) =>
         this.paymentSuccess.emit({ data }),
       onPaymentFailed: (error: PlugPaymentsPixChargeError) =>
         this.paymentFailed.emit({ error }),
-      data,
+      onShowDialog: (dialogData: PlugPaymentsPixDialogState) =>
+        this.handleShowDialog(dialogData),
     })
+
+    await pixService.pay()
 
     this.isLoading = false
   }
@@ -82,6 +102,18 @@ export class PlugPaymentsPix {
           paymentMethod="pix"
           onPaymentClick={() => this.handleFormSubmit()}
         />
+        {this.showDialog && this.dialog.open && (
+          <checkout-modal
+            mode={this.dialog.mode}
+            open={this.dialog.open}
+            amount={this.dialog.amount}
+            paymentCode={this.dialog.paymentCode}
+            paymentImageUrl={this.dialog.paymentImageUrl}
+            expirationDate={this.dialog.expirationDate}
+            expirationTime={this.dialog.expirationTime}
+            errorDescription={this.dialog.errorMessage}
+          />
+        )}
       </Host>
     )
   }

@@ -11,9 +11,10 @@ import { IBoleto } from '../../providers/Boleto'
 import {
   PlugPaymentsBoletoChargeSuccess,
   PlugPaymentsBoletoChargeError,
+  PlugPaymentsBoletoDialogState,
 } from './plug-payments-boleto.types'
 
-import { chargeRequest } from './plug-payments-boleto.service'
+import { PlugPaymentsBoletoService } from './plug-payments-boleto.service'
 import { ICustomer } from '../../providers/BaseProvider'
 
 @Component({
@@ -34,6 +35,7 @@ export class PlugPaymentsBoleto {
   @Prop() currency = 'BRL'
   @Prop() sandbox = false
   @Prop() capture = false
+  @Prop() showDialog = true
 
   @Event() paymentSuccess!: EventEmitter<{
     data: PlugPaymentsBoletoChargeSuccess
@@ -43,6 +45,18 @@ export class PlugPaymentsBoleto {
   }>
 
   @State() isLoading = false
+  @State() dialog: PlugPaymentsBoletoDialogState = {
+    open: false,
+    mode: 'boleto',
+    amount: 0,
+    paymentCode: '',
+    paymentImageUrl: '',
+    expirationDate: '',
+  }
+
+  private handleShowDialog = (dialogData: PlugPaymentsBoletoDialogState) => {
+    this.dialog = { ...this.dialog, ...dialogData }
+  }
 
   private handleFormSubmit = async () => {
     this.isLoading = true
@@ -60,16 +74,21 @@ export class PlugPaymentsBoleto {
       currency: this.currency,
     }
 
-    await chargeRequest({
+    const boletoService = new PlugPaymentsBoletoService({
       publicKey: this.publicKey,
       clientId: this.clientId,
       sandbox: this.sandbox,
+      showDialog: this.showDialog,
+      data,
       onPaymentSuccess: (data: PlugPaymentsBoletoChargeSuccess) =>
         this.paymentSuccess.emit({ data }),
       onPaymentFailed: (error: PlugPaymentsBoletoChargeError) =>
         this.paymentFailed.emit({ error }),
-      data,
+      onShowDialog: (dialogData: PlugPaymentsBoletoDialogState) =>
+        this.handleShowDialog(dialogData),
     })
+
+    await boletoService.pay()
 
     this.isLoading = false
   }
@@ -82,6 +101,17 @@ export class PlugPaymentsBoleto {
           paymentMethod="boleto"
           onPaymentClick={() => this.handleFormSubmit()}
         />
+        {this.showDialog && this.dialog.open && (
+          <checkout-modal
+            mode={this.dialog.mode}
+            open={this.dialog.open}
+            amount={this.dialog.amount}
+            paymentCode={this.dialog.paymentCode}
+            paymentImageUrl={this.dialog.paymentImageUrl}
+            expirationDate={this.dialog.expirationDate}
+            errorDescription={this.dialog.errorMessage}
+          />
+        )}
       </Host>
     )
   }

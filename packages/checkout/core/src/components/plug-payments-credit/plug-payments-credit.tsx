@@ -15,8 +15,9 @@ import {
   PlugPaymentsCreditInstallmentsConfig,
   PlugPaymentsCreditChargeError,
   PlugPaymentsCreditChargeSuccess,
+  PlugPaymentsCreditDialogState,
 } from './plug-payments-credit.types'
-import { chargeRequest } from './plug-payments-credit.service'
+import { PlugPaymentsCreditService } from './plug-payments-credit.service'
 
 @Component({
   tag: 'plug-payments-credit',
@@ -34,6 +35,7 @@ export class PlugPaymentsCredit {
   @Prop() sandbox = false
   @Prop() capture = false
   @Prop() showCreditCard = true
+  @Prop() showDialog = true
   @Prop() installmentsConfig: PlugPaymentsCreditInstallmentsConfig = {
     show: true,
     quantity: 1,
@@ -57,6 +59,15 @@ export class PlugPaymentsCredit {
     name: '',
     installments: 'none',
   }
+  @State() dialog: PlugPaymentsCreditDialogState = {
+    open: false,
+    mode: 'success',
+    amount: 0,
+  }
+
+  private handleShowDialog = (dialogData: PlugPaymentsCreditDialogState) => {
+    this.dialog = { ...this.dialog, ...dialogData }
+  }
 
   private handleSetFormValues = (field: string, value: string) => {
     this.formValues = { ...this.formValues, [field]: value }
@@ -78,16 +89,21 @@ export class PlugPaymentsCredit {
       currency: this.currency,
     }
 
-    await chargeRequest({
+    const creditService = new PlugPaymentsCreditService({
       publicKey: this.publicKey,
       clientId: this.clientId,
       sandbox: this.sandbox,
+      showDialog: this.showDialog,
+      data,
       onPaymentSuccess: (data: PlugPaymentsCreditChargeSuccess) =>
         this.paymentSuccess.emit({ data }),
       onPaymentFailed: (error: PlugPaymentsCreditChargeError) =>
         this.paymentFailed.emit({ error }),
-      data,
+      onShowDialog: (dialogData: PlugPaymentsCreditDialogState) =>
+        this.handleShowDialog(dialogData),
     })
+
+    await creditService.pay()
 
     this.isLoading = false
   }
@@ -118,6 +134,14 @@ export class PlugPaymentsCredit {
             ...this.customFormStyleClasses,
           }}
         />
+        {this.showDialog && this.dialog.open && (
+          <checkout-modal
+            mode={this.dialog.mode}
+            open={this.dialog.open}
+            amount={this.dialog.amount}
+            errorDescription={this.dialog.errorMessage}
+          />
+        )}
       </Host>
     )
   }

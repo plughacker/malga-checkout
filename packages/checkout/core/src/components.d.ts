@@ -22,6 +22,7 @@ export namespace Components {
         "currency": string;
         "customer"?: ICustomer;
         "customerId"?: string;
+        "delivery"?: number;
         "description"?: string;
         "footerDescription"?: string;
         "hasIdentificationSection": boolean;
@@ -212,6 +213,7 @@ declare namespace LocalJSX {
         "currency"?: string;
         "customer"?: ICustomer;
         "customerId"?: string;
+        "delivery"?: number;
         "description"?: string;
         "footerDescription"?: string;
         "hasIdentificationSection"?: boolean;

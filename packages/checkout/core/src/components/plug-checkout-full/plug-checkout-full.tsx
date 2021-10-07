@@ -30,6 +30,7 @@ export class PlugCheckoutFull {
   @Prop() merchantId: string
   @Prop() statementDescriptor: string
   @Prop() amount: number
+  @Prop() delivery?: number
   @Prop() products?: {
     name: string
     amount: number
@@ -68,10 +69,10 @@ export class PlugCheckoutFull {
         <plug-checkout-full-header brand={this.brandUrl} />
         <plug-checkout-full-content>
           <checkout-order-summary
-            slot="order"
             label="Pedido"
             amount={this.amount}
             products={this.products}
+            delivery={this.delivery}
           />
 
           <div slot="informations" class="plug-checkout-full__informations">

@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State } from '@stencil/core'
+import { Component, Host, h, Prop, State, Fragment } from '@stencil/core'
 
 import { Product } from './checkout-order-summary.types'
 
@@ -12,6 +12,7 @@ export class CheckoutOrderSummary {
   @Prop() label: string
   @Prop() fullWidth = false
   @Prop() amount: number
+  @Prop() delivery: number
   @Prop() products?: Product[]
 
   @State() showDescription = true
@@ -69,12 +70,24 @@ export class CheckoutOrderSummary {
         </header>
 
         {this.showDescription && this.products && (
-          <ul
-            class={{ 'checkout-order-summary__products': true }}
-            aria-hidden={this.showDescription}
-          >
-            {this.renderProductList()}
-          </ul>
+          <Fragment>
+            <ul
+              class={{ 'checkout-order-summary__products': true }}
+              aria-hidden={this.showDescription}
+            >
+              {this.renderProductList()}
+            </ul>
+            {this.delivery && (
+              <div class={{ 'checkout-order-summary__delivery': true }}>
+                <checkout-typography variation="subtitle1" content="Frete" />
+                <checkout-typography
+                  tag="span"
+                  variation="body1"
+                  content={formatToReal(this.delivery)}
+                />
+              </div>
+            )}
+          </Fragment>
         )}
 
         <section class={{ 'checkout-order-summary__total': true }}>

@@ -122,6 +122,7 @@ export namespace Components {
     }
     interface CheckoutOrderSummary {
         "amount": number;
+        "delivery": number;
         "fullWidth": boolean;
         "label": string;
         "products"?: Product[];
@@ -466,6 +467,7 @@ declare namespace LocalJSX {
     }
     interface CheckoutOrderSummary {
         "amount"?: number;
+        "delivery"?: number;
         "fullWidth"?: boolean;
         "label"?: string;
         "products"?: Product[];

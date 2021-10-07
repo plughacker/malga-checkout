@@ -60,6 +60,17 @@
   }
 }
 
+.checkout-order-summary__delivery {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: var(--plug-checkout-spacing-default);
+
+  & > checkout-typography > p {
+    color: var(--plug-checkout-color-brand-middle);
+  }
+}
+
 .checkout-order-summary__total {
   display: flex;
   flex-direction: row;

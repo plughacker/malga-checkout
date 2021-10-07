@@ -1,4 +1,4 @@
-import { Component, Host, h, Event, EventEmitter } from '@stencil/core'
+import { Component, Host, h, Event, EventEmitter, State } from '@stencil/core'
 
 import { countries } from './plug-checkout-full-identification.utils'
 
@@ -7,10 +7,49 @@ import { countries } from './plug-checkout-full-identification.utils'
   styleUrl: 'plug-checkout-full-identification.scss',
 })
 export class PlugCheckoutFullIdentification {
+  @State() customer = {
+    zipCode: '',
+    state: '',
+    street: '',
+    city: '',
+    neighborhood: '',
+    complement: '',
+  }
+
   @Event() submitForm: EventEmitter<void>
 
   private handleSubmitForm = () => {
     this.submitForm.emit()
+  }
+
+  private handleZipCodeChange = async (event) => {
+    if (event.target.value.length === 8) {
+      const viacepResponse = await fetch(
+        `https://viacep.com.br/ws/${event.target.value}/json/`,
+      )
+      const addressData = await viacepResponse.json()
+
+      this.customer = {
+        ...this.customer,
+        zipCode: event.target.value,
+        state: addressData.uf,
+        street: addressData.logradouro,
+        city: addressData.localidade,
+        neighborhood: addressData.bairro,
+        complement: addressData.complemento,
+      }
+
+      return
+    }
+
+    this.customer = {
+      ...this.customer,
+      zipCode: event.target.value,
+    }
+  }
+
+  private handleFieldChange = (field: string) => (event) => {
+    this.customer = { ...this.customer, [field]: event.target.value }
   }
 
   render() {
@@ -59,8 +98,15 @@ export class PlugCheckoutFullIdentification {
             inputmode="text"
             name="zipCode"
             label="CEP *"
+            value={this.customer.zipCode}
+            onChanged={this.handleZipCodeChange}
           />
-          <a>Não sei meu CEP</a>
+          <a
+            href="https://buscacepinter.correios.com.br/app/endereco/index.php"
+            target="_blank"
+          >
+            Não sei meu CEP
+          </a>
         </fieldset>
 
         <checkout-text-field
@@ -68,6 +114,8 @@ export class PlugCheckoutFullIdentification {
           inputmode="text"
           name="address"
           label="Endereço *"
+          value={this.customer.street}
+          onChanged={this.handleFieldChange('street')}
         />
 
         <fieldset
@@ -84,6 +132,8 @@ export class PlugCheckoutFullIdentification {
             inputmode="text"
             name="complement"
             label="Complemento"
+            value={this.customer.complement}
+            onChanged={this.handleFieldChange('complement')}
           />
         </fieldset>
 
@@ -92,6 +142,8 @@ export class PlugCheckoutFullIdentification {
           inputmode="text"
           name="neighborhood"
           label="Bairro"
+          value={this.customer.neighborhood}
+          onChanged={this.handleFieldChange('neighborhood')}
         />
 
         <fieldset
@@ -102,12 +154,16 @@ export class PlugCheckoutFullIdentification {
             inputmode="text"
             name="city"
             label="Cidade *"
+            value={this.customer.city}
+            onChanged={this.handleFieldChange('city')}
           />
           <checkout-text-field
             fullWidth
             inputmode="text"
             name="state"
             label="Estado *"
+            value={this.customer.state}
+            onChanged={this.handleFieldChange('state')}
           />
         </fieldset>
 

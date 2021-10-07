@@ -11,6 +11,7 @@
 | ----------- | ----------- | ----------- | --------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | `color`     | `color`     |             | `"dark" \| "darkness" \| "warning" \| "white"`                                                                              | `'dark'`    |
 | `content`   | `content`   |             | `string`                                                                                                                    | `undefined` |
+| `styles`    | --          |             | `{}`                                                                                                                        | `{}`        |
 | `tag`       | `tag`       |             | `string`                                                                                                                    | `'p'`       |
 | `variation` | `variation` |             | `"body1" \| "body2" \| "button" \| "field" \| "header5" \| "header6" \| "header7" \| "label" \| "subtitle1" \| "subtitle2"` | `'body1'`   |
 
@@ -20,6 +21,7 @@
 ### Used by
 
  - [checkout-clipboard-button](../checkout-clipboard-button)
+ - [checkout-countdown](../checkout-countdown)
  - [checkout-error-message](../checkout-error-message)
  - [checkout-manual-payment](../checkout-manual-payment)
  - [checkout-modal-boleto](../checkout-modal/partials/checkout-modal-boleto)
@@ -34,6 +36,7 @@
 ```mermaid
 graph TD;
   checkout-clipboard-button --> checkout-typography
+  checkout-countdown --> checkout-typography
   checkout-error-message --> checkout-typography
   checkout-manual-payment --> checkout-typography
   checkout-modal-boleto --> checkout-typography

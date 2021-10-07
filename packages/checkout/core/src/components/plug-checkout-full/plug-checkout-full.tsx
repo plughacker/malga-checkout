@@ -69,6 +69,7 @@ export class PlugCheckoutFull {
         <plug-checkout-full-header brand={this.brandUrl} />
         <plug-checkout-full-content>
           <checkout-order-summary
+            slot="order"
             label="Pedido"
             amount={this.amount}
             products={this.products}

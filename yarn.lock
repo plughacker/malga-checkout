@@ -3081,6 +3081,11 @@ canonical-path@1.0.0:
   resolved "https://registry.yarnpkg.com/canonical-path/-/canonical-path-1.0.0.tgz#fcb470c23958def85081856be7a86e904f180d1d"
   integrity sha512-feylzsbDxi1gPZ1IjystzIQZagYYLvfKrSuygUCgf7z6x790VEzze5QEkdSV1U58RA7Hi0+v6fv4K54atOzATg==
 
+canvas-circular-countdown@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/canvas-circular-countdown/-/canvas-circular-countdown-1.5.0.tgz#d49093d5cf9e623530f565deb026bb23076a87d4"
+  integrity sha512-S/38DiWg5Uso2+wNvIEXqQFqZYuxV+UHJfnO6HI3/CucNYiTmoakbqLsUDVcPjU6GmaGJd8OiGJ43pue/+6t1A==
+
 capture-exit@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/capture-exit/-/capture-exit-2.0.0.tgz#fb953bfaebeb781f62898239dabb426d08a509a4"
@@ -3940,6 +3945,11 @@ duplexer@^0.1.1:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/duplexer/-/duplexer-0.1.2.tgz#3abe43aef3835f8ae077d136ddce0f276b0400e6"
   integrity sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==
+
+easytimer.js@^4.5.1:
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/easytimer.js/-/easytimer.js-4.5.1.tgz#76053bdcae1d504c9bf918be4f5de8c8ebf1c37f"
+  integrity sha512-m+ZVLeBevBhUqw6kghBMnXHSIH+N1VFcwj2cP5zJ+ovbXLR0mWddDj9n1VwmJGpHMbOjLuBfq3j4l/gJ/lvdRQ==
 
 ecc-jsbn@~0.1.1:
   version "0.1.2"

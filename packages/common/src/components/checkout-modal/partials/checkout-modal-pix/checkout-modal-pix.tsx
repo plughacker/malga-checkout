@@ -1,4 +1,5 @@
-import { Component, Host, h, Prop } from '@stencil/core'
+import { Component, Host, h, Prop, Fragment } from '@stencil/core'
+
 import { formatToReal } from '../../../../utils/currency'
 import { formatDate } from '../../../../utils/date'
 
@@ -14,6 +15,12 @@ export class CheckoutModalPix {
   @Prop() expirationTime: number
 
   private getExpirationDateFormatted = () => formatDate(new Date())
+
+  private getListTitle = () => {
+    if (this.expirationTime) return 'Instruções para pagamento'
+
+    return 'Informações Importantes'
+  }
 
   render() {
     return (
@@ -55,16 +62,39 @@ export class CheckoutModalPix {
           <div
             class={{
               'checkout-modal-pix__payment-informations': true,
+              'checkout-modal-pix__payment-informations--countdown':
+                !!this.expirationTime,
             }}
           >
-            <p>
-              <strong>Valor a pagar: </strong>
-              {formatToReal(this.amount)}
-            </p>
-            <p>
-              <strong>Vencimento: </strong>
-              {this.getExpirationDateFormatted()}
-            </p>
+            {this.expirationTime && (
+              <Fragment>
+                <div>
+                  <p>
+                    Seu código
+                    <strong> expira em:</strong>
+                  </p>
+                  <checkout-countdown expirationTime={this.expirationTime} />
+                </div>
+
+                <p>
+                  <strong>Valor a pagar: </strong>
+                  {formatToReal(this.amount)}
+                </p>
+              </Fragment>
+            )}
+
+            {!this.expirationTime && (
+              <Fragment>
+                <p>
+                  <strong>Valor a pagar: </strong>
+                  {formatToReal(this.amount)}
+                </p>
+                <p>
+                  <strong>Vencimento: </strong>
+                  {this.getExpirationDateFormatted()}
+                </p>
+              </Fragment>
+            )}
           </div>
           <div
             class={{
@@ -75,20 +105,40 @@ export class CheckoutModalPix {
               tag="h5"
               color="darkness"
               variation="field"
-              content="Informações Importantes"
+              content={this.getListTitle()}
             />
 
-            <ul>
-              <li>
-                Vamos avisar por e-mail quando o banco identificar o depósito.
-                Esse processo é automático.
-              </li>
-              <li>
-                Caso o PIX não seja pago em até{' '}
-                {this.getExpirationDateFormatted()}, seu pedido será cancelado
-                automaticamente. Não pague após este horário.
-              </li>
-            </ul>
+            {this.expirationTime && (
+              <ol>
+                <li>
+                  Abra o aplicativo do seu banco e selecione o{' '}
+                  <strong>ambiente do PIX.</strong>
+                </li>
+                <li>
+                  Escolha a opção <strong>pagar com QR Code</strong> e escaneie
+                  o código acima ou copie e cole a chave PIX para efetuar o
+                  pagamento.
+                </li>
+                <li>
+                  Confirme as informações e finalize a compra{' '}
+                  <strong>antes que o código expire.</strong>
+                </li>
+              </ol>
+            )}
+
+            {!this.expirationTime && (
+              <ul>
+                <li>
+                  Vamos avisar por e-mail quando o banco identificar o depósito.
+                  Esse processo é automático.
+                </li>
+                <li>
+                  Caso o PIX não seja pago em até{' '}
+                  {this.getExpirationDateFormatted()}, seu pedido será cancelado
+                  automaticamente. Não pague após este horário.
+                </li>
+              </ul>
+            )}
           </div>
         </section>
       </Host>

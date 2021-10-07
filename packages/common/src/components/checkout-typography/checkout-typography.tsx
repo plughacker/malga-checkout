@@ -14,6 +14,7 @@ export class CheckoutTypography implements ComponentInterface {
   @Prop() variation: CheckoutTypographyVariation = 'body1'
   @Prop() color: CheckoutTypographyColor = 'dark'
   @Prop() content: string
+  @Prop() styles = {}
 
   static PREFIX_CLASS = 'checkout-typography'
   static VARIATIONS = [
@@ -62,7 +63,7 @@ export class CheckoutTypography implements ComponentInterface {
 
     return (
       <Host>
-        <Tag class={this.generateClass()}>
+        <Tag style={this.styles} class={this.generateClass()}>
           {this.content}
           <slot name="content" />
         </Tag>

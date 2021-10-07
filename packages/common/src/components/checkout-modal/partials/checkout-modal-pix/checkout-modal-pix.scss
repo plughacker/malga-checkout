@@ -70,7 +70,7 @@
 .checkout-modal-pix__payment-informations {
   margin-bottom: var(--plug-checkout-spacing-default);
 
-  & > p {
+  p {
     @extend %typography-field;
     padding: 0;
     margin: 0;
@@ -81,6 +81,24 @@
       font-weight: bold;
     }
   }
+
+  &--countdown {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--plug-checkout-spacing-default);
+
+    & > div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      & > checkout-countdown {
+        margin-left: var(--plug-checkout-spacing-xs);
+      }
+    }
+  }
 }
 
 .checkout-modal-pix__informations {
@@ -89,11 +107,16 @@
     margin-bottom: var(--plug-checkout-spacing-sm);
   }
 
-  & > ul > li {
+  & > ul > li,
+  & > ol > li {
     @extend %typography-field;
     color: var(--plug-checkout-color-grey-darkness);
     padding: 0;
     margin: 0;
     margin-bottom: var(--plug-checkout-spacing-default);
+  }
+
+  & > ol {
+    list-style-type: decimal;
   }
 }

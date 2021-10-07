@@ -1,0 +1,11 @@
+.checkout-countdown__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  & > checkout-typography {
+    position: absolute;
+    text-align: center;
+  }
+}

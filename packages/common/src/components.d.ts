@@ -37,6 +37,11 @@ export namespace Components {
         "clipboardContent": string;
         "label": string;
     }
+    interface CheckoutCountdown {
+        "emptyProgressBarColor": string;
+        "expirationTime"?: number;
+        "filledProgressBarColor": string;
+    }
     interface CheckoutCreditCard {
         "cvv": string;
         "expiry": string;
@@ -193,6 +198,7 @@ export namespace Components {
     interface CheckoutTypography {
         "color": CheckoutTypographyColor;
         "content": string;
+        "styles": {};
         "tag": string;
         "variation": CheckoutTypographyVariation;
     }
@@ -215,6 +221,12 @@ declare global {
     var HTMLCheckoutClipboardButtonElement: {
         prototype: HTMLCheckoutClipboardButtonElement;
         new (): HTMLCheckoutClipboardButtonElement;
+    };
+    interface HTMLCheckoutCountdownElement extends Components.CheckoutCountdown, HTMLStencilElement {
+    }
+    var HTMLCheckoutCountdownElement: {
+        prototype: HTMLCheckoutCountdownElement;
+        new (): HTMLCheckoutCountdownElement;
     };
     interface HTMLCheckoutCreditCardElement extends Components.CheckoutCreditCard, HTMLStencilElement {
     }
@@ -316,6 +328,7 @@ declare global {
         "checkout-accordion": HTMLCheckoutAccordionElement;
         "checkout-button": HTMLCheckoutButtonElement;
         "checkout-clipboard-button": HTMLCheckoutClipboardButtonElement;
+        "checkout-countdown": HTMLCheckoutCountdownElement;
         "checkout-credit-card": HTMLCheckoutCreditCardElement;
         "checkout-error-message": HTMLCheckoutErrorMessageElement;
         "checkout-icon": HTMLCheckoutIconElement;
@@ -358,6 +371,11 @@ declare namespace LocalJSX {
     interface CheckoutClipboardButton {
         "clipboardContent"?: string;
         "label"?: string;
+    }
+    interface CheckoutCountdown {
+        "emptyProgressBarColor"?: string;
+        "expirationTime"?: number;
+        "filledProgressBarColor"?: string;
     }
     interface CheckoutCreditCard {
         "cvv"?: string;
@@ -539,6 +557,7 @@ declare namespace LocalJSX {
     interface CheckoutTypography {
         "color"?: CheckoutTypographyColor;
         "content"?: string;
+        "styles"?: {};
         "tag"?: string;
         "variation"?: CheckoutTypographyVariation;
     }
@@ -546,6 +565,7 @@ declare namespace LocalJSX {
         "checkout-accordion": CheckoutAccordion;
         "checkout-button": CheckoutButton;
         "checkout-clipboard-button": CheckoutClipboardButton;
+        "checkout-countdown": CheckoutCountdown;
         "checkout-credit-card": CheckoutCreditCard;
         "checkout-error-message": CheckoutErrorMessage;
         "checkout-icon": CheckoutIcon;
@@ -571,6 +591,7 @@ declare module "@stencil/core" {
             "checkout-accordion": LocalJSX.CheckoutAccordion & JSXBase.HTMLAttributes<HTMLCheckoutAccordionElement>;
             "checkout-button": LocalJSX.CheckoutButton & JSXBase.HTMLAttributes<HTMLCheckoutButtonElement>;
             "checkout-clipboard-button": LocalJSX.CheckoutClipboardButton & JSXBase.HTMLAttributes<HTMLCheckoutClipboardButtonElement>;
+            "checkout-countdown": LocalJSX.CheckoutCountdown & JSXBase.HTMLAttributes<HTMLCheckoutCountdownElement>;
             "checkout-credit-card": LocalJSX.CheckoutCreditCard & JSXBase.HTMLAttributes<HTMLCheckoutCreditCardElement>;
             "checkout-error-message": LocalJSX.CheckoutErrorMessage & JSXBase.HTMLAttributes<HTMLCheckoutErrorMessageElement>;
             "checkout-icon": LocalJSX.CheckoutIcon & JSXBase.HTMLAttributes<HTMLCheckoutIconElement>;

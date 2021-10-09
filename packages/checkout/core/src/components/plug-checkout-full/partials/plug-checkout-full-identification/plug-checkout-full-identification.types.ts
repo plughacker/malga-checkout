@@ -10,3 +10,17 @@ export interface ZipCodeResponse {
   ddd: string
   siafi: string
 }
+
+export interface PlugCheckoutFullIdentificationFormValues {
+  name: string
+  email: string
+  identification: string
+  zipCode: string
+  street: string
+  number: string
+  complement: string
+  neighborhood: string
+  city: string
+  state: string
+  country: string
+}

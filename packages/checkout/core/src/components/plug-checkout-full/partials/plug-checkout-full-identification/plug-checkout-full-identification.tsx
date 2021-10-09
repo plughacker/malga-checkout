@@ -1,6 +1,6 @@
 import { Component, Host, h, Event, EventEmitter, State } from '@stencil/core'
 
-import { countries } from './plug-checkout-full-identification.utils'
+import { countries } from '../../../../data/countries'
 
 import { PlugCheckoutFullIdentificationService } from './plug-checkout-full-identification.service'
 

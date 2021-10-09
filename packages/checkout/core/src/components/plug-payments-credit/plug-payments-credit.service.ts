@@ -1,6 +1,7 @@
 import { Card } from '../../providers/Card'
 import { Api } from '../../services/api'
 import { Charges, ICreateChargeData } from '../../services/charges'
+import { Customers } from '../../services/customers'
 import { cleanObjectProperties } from '../../utils'
 
 import {
@@ -13,6 +14,7 @@ import {
 
 export class PlugPaymentsCreditService {
   readonly charge: Charges
+  readonly customer: Customers
   readonly data: PlugPaymentsCreditChargePayload
   readonly showDialog: boolean
   readonly onPaymentSuccess: (
@@ -36,6 +38,10 @@ export class PlugPaymentsCreditService {
     this.charge = new Charges({
       api: new Api(clientId, publicKey, sandbox),
       provider: new Card({ card: data.card }),
+    })
+    this.customer = new Customers({
+      api: new Api(clientId, publicKey, sandbox),
+      customer: null,
     })
     this.onPaymentSuccess = onPaymentSuccess
     this.onPaymentFailed = onPaymentFailed
@@ -69,10 +75,20 @@ export class PlugPaymentsCreditService {
     this.onPaymentFailed(error)
   }
 
+  private async handleCustomerId() {
+    if (this.data.customerId) {
+      return this.data.customerId
+    }
+
+    return this.customer.create()
+  }
+
   public async pay() {
     try {
+      const customerId = await this.handleCustomerId()
+
       const payload = cleanObjectProperties({
-        customerId: this.data.customerId,
+        customerId,
         currency: this.data.currency,
         orderId: this.data.orderId,
         description: this.data.description,

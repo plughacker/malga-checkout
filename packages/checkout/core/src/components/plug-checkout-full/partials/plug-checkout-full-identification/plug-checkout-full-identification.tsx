@@ -2,6 +2,8 @@ import { Component, Host, h, Event, EventEmitter, State } from '@stencil/core'
 
 import { countries } from './plug-checkout-full-identification.utils'
 
+import { PlugCheckoutFullIdentificationService } from './plug-checkout-full-identification.service'
+
 @Component({
   tag: 'plug-checkout-full-identification',
   styleUrl: 'plug-checkout-full-identification.scss',
@@ -18,25 +20,23 @@ export class PlugCheckoutFullIdentification {
 
   @Event() submitForm: EventEmitter<void>
 
+  identificationService = new PlugCheckoutFullIdentificationService()
+
   private handleSubmitForm = () => {
     this.submitForm.emit()
   }
 
   private handleZipCodeChange = async (event) => {
     if (event.target.value.length === 8) {
-      const viacepResponse = await fetch(
-        `https://viacep.com.br/ws/${event.target.value}/json/`,
-      )
-      const addressData = await viacepResponse.json()
+      const address =
+        await this.identificationService.getInformationsAboutZipCode(
+          event.target.value,
+        )
 
       this.customer = {
         ...this.customer,
+        ...address,
         zipCode: event.target.value,
-        state: addressData.uf,
-        street: addressData.logradouro,
-        city: addressData.localidade,
-        neighborhood: addressData.bairro,
-        complement: addressData.complemento,
       }
 
       return

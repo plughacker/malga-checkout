@@ -28,12 +28,6 @@ export interface IBaseProviderConstructor {
   customer?: ICustomer
 }
 
-export interface IProvider {
-  customerId?: string
-  customer?: ICustomer
-  getPaymentSource(): void
-}
-
 export type ICustomerMethod = ICustomerId | { customer: ICustomer }
 
 export interface IPaymentSourceCustomerId {

@@ -1,13 +1,12 @@
 import { Api } from '../api'
 
 import {
-  ICharges,
   IProvider,
   IChargeConstructor,
   ICreateChargeData,
 } from './Charges.types'
 
-export class Charges implements ICharges {
+export class Charges {
   readonly api: Api
   readonly provider: IProvider
 

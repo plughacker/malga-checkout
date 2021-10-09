@@ -1,12 +1,11 @@
 import {
-  IProvider,
   ICustomerMethod,
   ICustomer,
   IBaseProviderConstructor,
   IPaymentSource,
 } from './BaseProvider.types'
 
-export class BaseProvider implements IProvider {
+export class BaseProvider {
   readonly customerId?: string
   readonly customer?: ICustomer
 

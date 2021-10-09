@@ -7,5 +7,4 @@ export {
   ICustomerMethod,
   IPaymentSource,
   IPaymentSourceCustomerId,
-  IProvider,
 } from './BaseProvider.types'

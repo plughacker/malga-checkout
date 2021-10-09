@@ -1,8 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosInstance } from 'axios'
 
-import { IApi, CreateParams } from './Api.types'
+import { CreateParams } from './Api.types'
 
-export class Api implements IApi {
+export class Api {
   readonly axiosConfig: AxiosRequestConfig
   readonly api: AxiosInstance
 

@@ -20,9 +20,3 @@ export interface ICreateChargeData {
   capture?: boolean
   description?: string
 }
-
-export interface ICharges {
-  api: Api
-  provider: IProvider
-  create(data: ICreateChargeData): void
-}

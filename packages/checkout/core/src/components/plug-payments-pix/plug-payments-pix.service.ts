@@ -1,6 +1,6 @@
 import { Pix } from '../../providers/pix'
 import { Api } from '../../services/api'
-import { Charges, ICreateChargeData } from '../../services/charges'
+import { Charges, CreateChargeData } from '../../services/charges'
 import { cleanObjectProperties } from '../../utils'
 
 import {
@@ -89,7 +89,7 @@ export class PlugPaymentsPixService {
       })
 
       const checkoutResponse = await this.charge.create(
-        payload as ICreateChargeData,
+        payload as CreateChargeData,
       )
 
       if (checkoutResponse.hasError) {

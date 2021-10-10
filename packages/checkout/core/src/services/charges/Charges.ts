@@ -1,21 +1,17 @@
 import { Api } from '../api'
 
-import {
-  IProvider,
-  IChargeConstructor,
-  ICreateChargeData,
-} from './charges.types'
+import { Provider, ChargeConstructor, CreateChargeData } from './charges.types'
 
 export class Charges {
   readonly api: Api
-  readonly provider: IProvider
+  readonly provider: Provider
 
-  constructor({ api, provider }: IChargeConstructor) {
+  constructor({ api, provider }: ChargeConstructor) {
     this.api = api
     this.provider = provider
   }
 
-  public async create(data: ICreateChargeData) {
+  public async create(data: CreateChargeData) {
     const errorStatus = ['failed', 'charged_back', 'canceled', 'voided']
 
     const payload = {

@@ -1,10 +1,10 @@
 export { BaseProvider } from './base-provider'
 export {
-  ICustomer,
-  IBaseProviderConstructor,
-  ICustomerId,
-  IPaymentSourceCustomer,
-  ICustomerMethod,
-  IPaymentSource,
-  IPaymentSourceCustomerId,
+  Customer,
+  BaseProviderConstructor,
+  CustomerId,
+  PaymentSourceCustomer,
+  CustomerMethod,
+  PaymentSource,
+  PaymentSourceCustomerId,
 } from './base-provider.types'

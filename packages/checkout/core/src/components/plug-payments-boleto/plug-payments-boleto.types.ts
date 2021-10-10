@@ -1,8 +1,8 @@
-import { ICustomer } from '../../providers/base-provider'
-import { IBoleto } from '../../providers/boleto'
+import { Customer } from '../../providers/base-provider'
+import { BoletoAttributes } from '../../providers/boleto'
 
 export interface PlugPaymentsBoletoChargePayload {
-  boleto: IBoleto
+  boleto: BoletoAttributes
   merchantId: string
   amount: number
   statementDescriptor: string
@@ -10,7 +10,7 @@ export interface PlugPaymentsBoletoChargePayload {
   orderId: string
   description: string
   customerId: string
-  customer: ICustomer
+  customer: Customer
   currency: string
 }
 

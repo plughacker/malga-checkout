@@ -1,11 +1,11 @@
-export interface ICardFields {
+export interface CardFields {
   cardNumber: string
   cardCvv: string
   cardExpirationDate: string
   cardHolderName: string
 }
 
-export interface ICard {
+export interface CardAttributes {
   cardNumber: string
   expirationDate: string
   cvv: string
@@ -13,12 +13,12 @@ export interface ICard {
   installments: string
 }
 
-export interface IPaymentSourceCard {
+export interface PaymentSourceCard {
   sourceType: 'card'
-  card: ICardFields
+  card: CardFields
 }
 
-export interface IPaymentMethodCard {
+export interface PaymentMethodCard {
   paymentType: 'credit' | 'debit'
   installments: number
 }

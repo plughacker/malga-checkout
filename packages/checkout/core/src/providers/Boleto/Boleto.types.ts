@@ -1,6 +1,6 @@
-import { ICustomer } from '../base-provider/base-provider.types'
+import { Customer } from '../base-provider/base-provider.types'
 
-export interface IBoleto {
+export interface BoletoAttributes {
   expiresDate: string
   instructions: string
   interest: {
@@ -15,12 +15,12 @@ export interface IBoleto {
   }
 }
 
-export interface IPaymentMethodBoleto extends IBoleto {
+export interface PaymentMethodBoleto extends BoletoAttributes {
   paymentType: 'boleto'
 }
 
 export interface BoletoConstructor {
   customerId?: string
-  customer?: ICustomer
-  boleto: IBoleto
+  customer?: Customer
+  boleto: BoletoAttributes
 }

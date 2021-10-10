@@ -3,14 +3,14 @@ import { Boleto } from '../../providers/boleto'
 import { Pix } from '../../providers/pix'
 import { Card } from '../../providers/card'
 
-export type IProvider = Boleto | Card | Pix
+export type Provider = Boleto | Card | Pix
 
-export interface IChargeConstructor {
+export interface ChargeConstructor {
   api: Api
-  provider: IProvider
+  provider: Provider
 }
 
-export interface ICreateChargeData {
+export interface CreateChargeData {
   merchantId: string
   amount: number
   customerId?: string

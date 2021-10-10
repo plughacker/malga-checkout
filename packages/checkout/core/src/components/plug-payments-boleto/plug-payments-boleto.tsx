@@ -7,7 +7,7 @@ import {
   Event,
   EventEmitter,
 } from '@stencil/core'
-import { IBoleto } from '../../providers/boleto'
+import { BoletoAttributes } from '../../providers/boleto'
 import {
   PlugPaymentsBoletoChargeSuccess,
   PlugPaymentsBoletoChargeError,
@@ -15,7 +15,7 @@ import {
 } from './plug-payments-boleto.types'
 
 import { PlugPaymentsBoletoService } from './plug-payments-boleto.service'
-import { ICustomer } from '../../providers/base-provider'
+import { Customer } from '../../providers/base-provider'
 
 @Component({
   tag: 'plug-payments-boleto',
@@ -27,8 +27,8 @@ export class PlugPaymentsBoleto {
   @Prop() merchantId: string
   @Prop() statementDescriptor: string
   @Prop() amount: number
-  @Prop() boleto: IBoleto
-  @Prop() customer?: ICustomer
+  @Prop() boleto: BoletoAttributes
+  @Prop() customer?: Customer
   @Prop() description?: string
   @Prop() orderId?: string
   @Prop() customerId?: string

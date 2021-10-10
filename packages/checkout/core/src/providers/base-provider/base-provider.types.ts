@@ -1,8 +1,8 @@
-export interface ICustomerId {
+export interface CustomerId {
   customerId: string
 }
 
-export interface ICustomer {
+export interface Customer {
   name: string
   email: string
   identification: string
@@ -37,24 +37,24 @@ export interface CustomerPayload {
   }
 }
 
-export interface IBaseProviderConstructor {
+export interface BaseProviderConstructor {
   customerId?: string
-  customer?: ICustomer
+  customer?: Customer
 }
 
-export type ICustomerMethod = ICustomerId | { customer: CustomerPayload }
+export type CustomerMethod = CustomerId | { customer: CustomerPayload }
 
-export interface IPaymentSourceCustomerId {
+export interface PaymentSourceCustomerId {
   sourceType: string
   customerId: string
 }
 
-export interface IPaymentSourceCustomer {
+export interface PaymentSourceCustomer {
   sourceType: string
-  customer: ICustomer
+  customer: Customer
 }
 
-export type IPaymentSource =
-  | IPaymentSourceCustomerId
-  | IPaymentSourceCustomer
+export type PaymentSource =
+  | PaymentSourceCustomerId
+  | PaymentSourceCustomer
   | unknown

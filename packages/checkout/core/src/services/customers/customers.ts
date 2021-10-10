@@ -1,4 +1,4 @@
-import { ICustomer } from '../../providers/base-provider'
+import { Customer } from '../../providers/base-provider'
 import { Api } from '../api'
 import { cleanTextOnlyNumbers } from '../../utils'
 
@@ -6,7 +6,7 @@ import { CustomerConstructor } from './customers.types'
 
 export class Customers {
   readonly api: Api
-  readonly customer: ICustomer
+  readonly customer: Customer
 
   constructor({ api, customer }: CustomerConstructor) {
     this.api = api

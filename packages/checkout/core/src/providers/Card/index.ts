@@ -1,7 +1,7 @@
 export { Card } from './card'
 export {
-  ICard,
-  ICardFields,
-  IPaymentSourceCard,
-  IPaymentMethodCard,
+  CardAttributes,
+  CardFields,
+  PaymentSourceCard,
+  PaymentMethodCard,
 } from './card.types'

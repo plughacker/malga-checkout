@@ -6,28 +6,28 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { PaymentMethods, PlugPaymentsChargeError, PlugPaymentsChargeSuccess } from "./components/plug-payments/plug-payments.types";
-import { IPix } from "./providers/pix";
-import { IBoleto } from "./providers/boleto";
+import { PixAttributes } from "./providers/pix";
+import { BoletoAttributes } from "./providers/boleto";
 import { PlugPaymentsCreditChargeError, PlugPaymentsCreditChargeSuccess, PlugPaymentsCreditFormCustomStyleFormClasses, PlugPaymentsCreditFormValues, PlugPaymentsCreditInstallmentsConfig } from "./components/plug-payments-credit/plug-payments-credit.types";
-import { ICustomer } from "./providers/base-provider";
+import { Customer } from "./providers/base-provider";
 import { PlugCheckoutFullIdentificationFormValues } from "./components/plug-checkout-full/partials/plug-checkout-full-identification/plug-checkout-full-identification.types";
 import { PlugPaymentsBoletoChargeError, PlugPaymentsBoletoChargeSuccess } from "./components/plug-payments-boleto/plug-payments-boleto.types";
 import { PlugPaymentsPixChargeError, PlugPaymentsPixChargeSuccess } from "./components/plug-payments-pix/plug-payments-pix.types";
 export namespace Components {
     interface PlugCheckout {
         "amount": number;
-        "boleto"?: IBoleto;
+        "boleto"?: BoletoAttributes;
         "capture": boolean;
         "clientId": string;
         "currency": string;
-        "customer"?: ICustomer;
+        "customer"?: Customer;
         "customerId"?: string;
         "description"?: string;
         "installments"?: PlugPaymentsCreditInstallmentsConfig;
         "merchantId": string;
         "orderId"?: string;
         "paymentMethods": PaymentMethods;
-        "pix"?: IPix;
+        "pix"?: PixAttributes;
         "publicKey": string;
         "sandbox": boolean;
         "showCreditCard": boolean;
@@ -36,12 +36,12 @@ export namespace Components {
     }
     interface PlugCheckoutFull {
         "amount": number;
-        "boleto"?: IBoleto;
+        "boleto"?: BoletoAttributes;
         "brandUrl": string;
         "capture": boolean;
         "clientId": string;
         "currency": string;
-        "customer"?: ICustomer;
+        "customer"?: Customer;
         "customerId"?: string;
         "delivery"?: number;
         "description"?: string;
@@ -51,7 +51,7 @@ export namespace Components {
         "merchantId": string;
         "orderId"?: string;
         "paymentMethods": PaymentMethods;
-        "pix"?: IPix;
+        "pix"?: PixAttributes;
         "products"?: {
     name: string
     amount: number
@@ -76,18 +76,18 @@ export namespace Components {
     }
     interface PlugPayments {
         "amount": number;
-        "boleto"?: IBoleto;
+        "boleto"?: BoletoAttributes;
         "capture": boolean;
         "clientId": string;
         "currency": string;
-        "customer"?: ICustomer;
+        "customer"?: Customer;
         "customerId"?: string;
         "description"?: string;
         "installments"?: PlugPaymentsCreditInstallmentsConfig;
         "merchantId": string;
         "orderId"?: string;
         "paymentMethods": PaymentMethods;
-        "pix"?: IPix;
+        "pix"?: PixAttributes;
         "publicKey": string;
         "sandbox": boolean;
         "showCreditCard": boolean;
@@ -96,11 +96,11 @@ export namespace Components {
     }
     interface PlugPaymentsBoleto {
         "amount": number;
-        "boleto": IBoleto;
+        "boleto": BoletoAttributes;
         "capture": boolean;
         "clientId": string;
         "currency": string;
-        "customer"?: ICustomer;
+        "customer"?: Customer;
         "customerId"?: string;
         "description"?: string;
         "merchantId": string;
@@ -116,7 +116,7 @@ export namespace Components {
         "clientId": string;
         "currency": string;
         "customFormStyleClasses"?: PlugPaymentsCreditFormCustomStyleFormClasses;
-        "customer"?: ICustomer;
+        "customer"?: Customer;
         "customerId"?: string;
         "description"?: string;
         "installmentsConfig": PlugPaymentsCreditInstallmentsConfig;
@@ -140,12 +140,12 @@ export namespace Components {
         "capture": boolean;
         "clientId": string;
         "currency": string;
-        "customer"?: ICustomer;
+        "customer"?: Customer;
         "customerId"?: string;
         "description"?: string;
         "merchantId": string;
         "orderId"?: string;
-        "pix": IPix;
+        "pix": PixAttributes;
         "publicKey": string;
         "sandbox": boolean;
         "showDialog": boolean;
@@ -236,11 +236,11 @@ declare global {
 declare namespace LocalJSX {
     interface PlugCheckout {
         "amount"?: number;
-        "boleto"?: IBoleto;
+        "boleto"?: BoletoAttributes;
         "capture"?: boolean;
         "clientId"?: string;
         "currency"?: string;
-        "customer"?: ICustomer;
+        "customer"?: Customer;
         "customerId"?: string;
         "description"?: string;
         "installments"?: PlugPaymentsCreditInstallmentsConfig;
@@ -253,7 +253,7 @@ declare namespace LocalJSX {
   }>) => void;
         "orderId"?: string;
         "paymentMethods"?: PaymentMethods;
-        "pix"?: IPix;
+        "pix"?: PixAttributes;
         "publicKey"?: string;
         "sandbox"?: boolean;
         "showCreditCard"?: boolean;
@@ -262,12 +262,12 @@ declare namespace LocalJSX {
     }
     interface PlugCheckoutFull {
         "amount"?: number;
-        "boleto"?: IBoleto;
+        "boleto"?: BoletoAttributes;
         "brandUrl"?: string;
         "capture"?: boolean;
         "clientId"?: string;
         "currency"?: string;
-        "customer"?: ICustomer;
+        "customer"?: Customer;
         "customerId"?: string;
         "delivery"?: number;
         "description"?: string;
@@ -283,7 +283,7 @@ declare namespace LocalJSX {
   }>) => void;
         "orderId"?: string;
         "paymentMethods"?: PaymentMethods;
-        "pix"?: IPix;
+        "pix"?: PixAttributes;
         "products"?: {
     name: string
     amount: number
@@ -313,11 +313,11 @@ declare namespace LocalJSX {
     }
     interface PlugPayments {
         "amount"?: number;
-        "boleto"?: IBoleto;
+        "boleto"?: BoletoAttributes;
         "capture"?: boolean;
         "clientId"?: string;
         "currency"?: string;
-        "customer"?: ICustomer;
+        "customer"?: Customer;
         "customerId"?: string;
         "description"?: string;
         "installments"?: PlugPaymentsCreditInstallmentsConfig;
@@ -330,7 +330,7 @@ declare namespace LocalJSX {
   }>) => void;
         "orderId"?: string;
         "paymentMethods"?: PaymentMethods;
-        "pix"?: IPix;
+        "pix"?: PixAttributes;
         "publicKey"?: string;
         "sandbox"?: boolean;
         "showCreditCard"?: boolean;
@@ -339,11 +339,11 @@ declare namespace LocalJSX {
     }
     interface PlugPaymentsBoleto {
         "amount"?: number;
-        "boleto"?: IBoleto;
+        "boleto"?: BoletoAttributes;
         "capture"?: boolean;
         "clientId"?: string;
         "currency"?: string;
-        "customer"?: ICustomer;
+        "customer"?: Customer;
         "customerId"?: string;
         "description"?: string;
         "merchantId"?: string;
@@ -365,7 +365,7 @@ declare namespace LocalJSX {
         "clientId"?: string;
         "currency"?: string;
         "customFormStyleClasses"?: PlugPaymentsCreditFormCustomStyleFormClasses;
-        "customer"?: ICustomer;
+        "customer"?: Customer;
         "customerId"?: string;
         "description"?: string;
         "installmentsConfig"?: PlugPaymentsCreditInstallmentsConfig;
@@ -397,7 +397,7 @@ declare namespace LocalJSX {
         "capture"?: boolean;
         "clientId"?: string;
         "currency"?: string;
-        "customer"?: ICustomer;
+        "customer"?: Customer;
         "customerId"?: string;
         "description"?: string;
         "merchantId"?: string;
@@ -408,7 +408,7 @@ declare namespace LocalJSX {
     data: PlugPaymentsPixChargeSuccess
   }>) => void;
         "orderId"?: string;
-        "pix"?: IPix;
+        "pix"?: PixAttributes;
         "publicKey"?: string;
         "sandbox"?: boolean;
         "showDialog"?: boolean;

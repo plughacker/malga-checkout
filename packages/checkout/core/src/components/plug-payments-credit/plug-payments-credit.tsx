@@ -18,7 +18,7 @@ import {
   PlugPaymentsCreditDialogState,
 } from './plug-payments-credit.types'
 import { PlugPaymentsCreditService } from './plug-payments-credit.service'
-import { ICustomer } from '../../providers/base-provider'
+import { Customer } from '../../providers/base-provider'
 
 @Component({
   tag: 'plug-payments-credit',
@@ -32,7 +32,7 @@ export class PlugPaymentsCredit {
   @Prop() description?: string
   @Prop() orderId?: string
   @Prop() customerId?: string
-  @Prop() customer?: ICustomer
+  @Prop() customer?: Customer
   @Prop() currency = 'BRL'
   @Prop() sandbox = false
   @Prop() capture = false

@@ -1,4 +1,4 @@
-import { ICustomer } from './base-provider.types'
+import { Customer } from './base-provider.types'
 
 import { cleanTextOnlyNumbers } from '../../utils'
 
@@ -8,7 +8,7 @@ export const getDocumentType = (identification: string) => {
   return 'cnpj'
 }
 
-export const formatCustomerPayload = (customer: ICustomer) => {
+export const formatCustomerPayload = (customer: Customer) => {
   const identification = cleanTextOnlyNumbers(customer.identification)
 
   return {

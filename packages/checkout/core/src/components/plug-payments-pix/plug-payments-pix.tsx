@@ -7,7 +7,7 @@ import {
   State,
   EventEmitter,
 } from '@stencil/core'
-import { IPix } from '../../providers/pix'
+import { PixAttributes } from '../../providers/pix'
 import {
   PlugPaymentsPixChargeSuccess,
   PlugPaymentsPixChargeError,
@@ -15,7 +15,7 @@ import {
 } from './plug-payments-pix.types'
 
 import { PlugPaymentsPixService } from './plug-payments-pix.service'
-import { ICustomer } from '../../providers/base-provider'
+import { Customer } from '../../providers/base-provider'
 
 @Component({
   tag: 'plug-payments-pix',
@@ -27,8 +27,8 @@ export class PlugPaymentsPix {
   @Prop() merchantId: string
   @Prop() statementDescriptor: string
   @Prop() amount: number
-  @Prop() pix: IPix
-  @Prop() customer?: ICustomer
+  @Prop() pix: PixAttributes
+  @Prop() customer?: Customer
   @Prop() description?: string
   @Prop() orderId?: string
   @Prop() customerId?: string

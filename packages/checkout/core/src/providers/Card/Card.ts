@@ -6,24 +6,28 @@ import {
   transformExpirationDate,
 } from '../../utils'
 
-import { ICard, IPaymentSourceCard, IPaymentMethodCard } from './card.types'
+import {
+  CardAttributes,
+  PaymentSourceCard,
+  PaymentMethodCard,
+} from './card.types'
 
 export class Card extends BaseProvider {
-  readonly card: ICard
+  readonly card: CardAttributes
 
   constructor({ card }) {
     super({ customer: null, customerId: null })
     this.card = card
   }
 
-  public getPaymentMethod(): IPaymentMethodCard {
+  public getPaymentMethod(): PaymentMethodCard {
     return {
       paymentType: 'credit',
       installments: parseInstallments(this.card.installments),
     }
   }
 
-  public getPaymentSource(): IPaymentSourceCard {
+  public getPaymentSource(): PaymentSourceCard {
     return {
       sourceType: 'card',
       card: {

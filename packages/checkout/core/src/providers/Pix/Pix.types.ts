@@ -1,16 +1,16 @@
-import { ICustomer } from '../base-provider/base-provider.types'
+import { Customer } from '../base-provider/base-provider.types'
 
-export interface IPix {
+export interface PixAttributes {
   expiresIn: number
 }
 
-export interface IPaymentMethodPix {
+export interface PaymentMethodPix {
   paymentType: 'pix'
   expiresIn: number
 }
 
 export interface PixConstructor {
   customerId?: string
-  customer?: ICustomer
-  pix: IPix
+  customer?: Customer
+  pix: PixAttributes
 }

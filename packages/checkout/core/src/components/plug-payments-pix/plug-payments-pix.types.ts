@@ -1,8 +1,8 @@
-import { ICustomer } from '../../providers/base-provider'
-import { IPix } from '../../providers/pix'
+import { Customer } from '../../providers/base-provider'
+import { PixAttributes } from '../../providers/pix'
 
 export interface PlugPaymentsPixChargePayload {
-  pix: IPix
+  pix: PixAttributes
   merchantId: string
   amount: number
   statementDescriptor: string
@@ -10,7 +10,7 @@ export interface PlugPaymentsPixChargePayload {
   orderId: string
   description: string
   customerId: string
-  customer: ICustomer
+  customer: Customer
   currency: string
 }
 

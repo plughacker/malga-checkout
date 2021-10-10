@@ -1,7 +1,7 @@
 import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
-import { ICustomer } from '../../providers/base-provider'
-import { IBoleto } from '../../providers/boleto'
-import { IPix } from '../../providers/pix'
+import { Customer } from '../../providers/base-provider'
+import { BoletoAttributes } from '../../providers/boleto'
+import { PixAttributes } from '../../providers/pix'
 import { PlugPaymentsCreditInstallmentsConfig } from '../plug-payments-credit/plug-payments-credit.types'
 import {
   PaymentMethods,
@@ -22,10 +22,10 @@ export class PlugCheckout {
   @Prop() merchantId: string
   @Prop() statementDescriptor: string
   @Prop() amount: number
-  @Prop() pix?: IPix
-  @Prop() boleto?: IBoleto
+  @Prop() pix?: PixAttributes
+  @Prop() boleto?: BoletoAttributes
   @Prop() installments?: PlugPaymentsCreditInstallmentsConfig
-  @Prop() customer?: ICustomer
+  @Prop() customer?: Customer
   @Prop() description?: string
   @Prop() orderId?: string
   @Prop() customerId?: string

@@ -1,19 +1,19 @@
 import { BaseProvider } from '../base-provider'
 import {
-  IBoleto,
-  IPaymentMethodBoleto,
+  BoletoAttributes,
+  PaymentMethodBoleto,
   BoletoConstructor,
 } from './boleto.types'
 
 export class Boleto extends BaseProvider {
-  readonly boleto: IBoleto
+  readonly boleto: BoletoAttributes
 
   constructor({ customer, customerId, boleto }: BoletoConstructor) {
     super({ customer, customerId })
     this.boleto = boleto
   }
 
-  public getPaymentMethod(): IPaymentMethodBoleto {
+  public getPaymentMethod(): PaymentMethodBoleto {
     return {
       paymentType: 'boleto',
       expiresDate: this.boleto.expiresDate,

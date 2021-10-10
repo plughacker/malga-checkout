@@ -1,4 +1,6 @@
-# plug-payments
+# plug-checkout
+
+
 
 <!-- Auto Generated Below -->
 
@@ -39,11 +41,11 @@
 
 ### Used by
 
- - [plug-checkout](../plug-checkout)
+ - [plug-checkout-full](../plug-checkout-full)
 
 ### Depends on
 
-- checkout-radio-field
+- [plug-payments](../plug-payments)
 - [plug-payments-boleto](../plug-payments-boleto)
 - [plug-payments-pix](../plug-payments-pix)
 - [plug-payments-credit](../plug-payments-credit)
@@ -51,6 +53,10 @@
 ### Graph
 ```mermaid
 graph TD;
+  plug-checkout --> plug-payments
+  plug-checkout --> plug-payments-boleto
+  plug-checkout --> plug-payments-pix
+  plug-checkout --> plug-payments-credit
   plug-payments --> checkout-radio-field
   plug-payments --> plug-payments-boleto
   plug-payments --> plug-payments-pix
@@ -96,8 +102,8 @@ graph TD;
   checkout-error-message --> checkout-typography
   checkout-select-field --> checkout-typography
   checkout-select-field --> checkout-icon
-  plug-checkout --> plug-payments
-  style plug-payments fill:#f9f,stroke:#333,stroke-width:4px
+  plug-checkout-full --> plug-checkout
+  style plug-checkout fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

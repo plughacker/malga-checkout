@@ -1,22 +1,22 @@
 import {
-  ICustomerMethod,
-  ICustomer,
-  IBaseProviderConstructor,
-  IPaymentSource,
+  CustomerMethod,
+  Customer,
+  BaseProviderConstructor,
+  PaymentSource,
 } from './base-provider.types'
 
 import { formatCustomerPayload } from './base-provider.utils'
 
 export class BaseProvider {
   readonly customerId?: string
-  readonly customer?: ICustomer
+  readonly customer?: Customer
 
-  constructor({ customerId, customer }: IBaseProviderConstructor) {
+  constructor({ customerId, customer }: BaseProviderConstructor) {
     this.customerId = customerId
     this.customer = customer
   }
 
-  public getCustomerMethod(): ICustomerMethod {
+  public getCustomerMethod(): CustomerMethod {
     if (this.customerId) {
       return {
         customerId: this.customerId,
@@ -28,7 +28,7 @@ export class BaseProvider {
     }
   }
 
-  public getPaymentSource(): IPaymentSource {
+  public getPaymentSource(): PaymentSource {
     const customer = this.getCustomerMethod()
 
     return {

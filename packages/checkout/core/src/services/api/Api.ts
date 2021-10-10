@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosInstance } from 'axios'
 
-import { CreateParams } from './Api.types'
+import { CreateParams } from './api.types'
 
 export class Api {
   readonly axiosConfig: AxiosRequestConfig

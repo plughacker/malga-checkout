@@ -4,7 +4,7 @@ import {
   IProvider,
   IChargeConstructor,
   ICreateChargeData,
-} from './Charges.types'
+} from './charges.types'
 
 export class Charges {
   readonly api: Api

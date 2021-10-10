@@ -1,2 +1,2 @@
-export { Api } from './Api'
-export { CreateParams } from './Api.types'
+export { Api } from './api'
+export { CreateParams } from './api.types'

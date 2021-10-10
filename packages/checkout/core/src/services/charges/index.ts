@@ -1,6 +1,6 @@
-export { Charges } from './Charges'
+export { Charges } from './charges'
 export {
   IProvider,
   IChargeConstructor,
   ICreateChargeData,
-} from './Charges.types'
+} from './charges.types'

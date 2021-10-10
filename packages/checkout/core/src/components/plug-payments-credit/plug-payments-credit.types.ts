@@ -1,3 +1,5 @@
+import { ICustomer } from '../../providers/BaseProvider'
+
 export interface PlugPaymentsCreditFormCustomStyleFormClasses {
   formContainer?: string
   formContent?: string
@@ -47,7 +49,8 @@ export interface PlugPaymentsCreditChargePayload {
   capture: boolean
   orderId: string
   description: string
-  customerId: string
+  customerId?: string
+  customer?: ICustomer
   currency: string
 }
 

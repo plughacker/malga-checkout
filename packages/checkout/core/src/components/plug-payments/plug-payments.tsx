@@ -161,6 +161,7 @@ export class PlugPayments implements ComponentInterface {
                   statementDescriptor={this.statementDescriptor}
                   amount={this.amount}
                   customerId={this.customerId}
+                  customer={this.customer}
                   orderId={this.orderId}
                   currency={this.currency}
                   description={this.description}

@@ -41,7 +41,7 @@ export class PlugPaymentsCreditService {
     })
     this.customer = new Customers({
       api: new Api(clientId, publicKey, sandbox),
-      customer: null,
+      customer: data.customer,
     })
     this.onPaymentSuccess = onPaymentSuccess
     this.onPaymentFailed = onPaymentFailed
@@ -80,7 +80,7 @@ export class PlugPaymentsCreditService {
       return this.data.customerId
     }
 
-    return this.customer.create()
+    return await this.customer.create()
   }
 
   public async pay() {

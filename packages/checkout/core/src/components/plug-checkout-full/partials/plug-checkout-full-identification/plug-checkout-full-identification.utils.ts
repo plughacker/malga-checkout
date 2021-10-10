@@ -1,4 +1,5 @@
 import { ValidationError } from 'yup'
+import { cleanTextOnlyNumbers } from '../../../../utils'
 
 export const normalizeValidationErrors = (errors: ValidationError[]) => {
   const normalizedErrors = errors.reduce(
@@ -13,7 +14,7 @@ export const normalizeValidationErrors = (errors: ValidationError[]) => {
 }
 
 export const getIdentificationMask = (identification?: string) => {
-  const normalizedIdentification = identification.replace(/\D/g, '').trim()
+  const normalizedIdentification = cleanTextOnlyNumbers(identification)
 
   if (!normalizedIdentification) return ''
 

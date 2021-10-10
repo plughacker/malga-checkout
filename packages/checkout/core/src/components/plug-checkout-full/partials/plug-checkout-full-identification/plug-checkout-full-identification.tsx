@@ -17,6 +17,7 @@ import {
 } from './plug-checkout-full-identification.types'
 import { validateCustomer } from './plug-checkout-full-identification.schema'
 import { getIdentificationMask } from './plug-checkout-full-identification.utils'
+import { cleanTextOnlyNumbers } from '../../../../utils'
 
 @Component({
   tag: 'plug-checkout-full-identification',
@@ -58,7 +59,7 @@ export class PlugCheckoutFullIdentification {
 
   private handleFieldBlurred = (field: string) => async (event) => {
     const isMaskedField = ['identification', 'zipCode'].includes(field)
-    const normalizedValue = event.target.value.replace(/\D/g, '').trim()
+    const normalizedValue = cleanTextOnlyNumbers(event.target.value)
 
     const validation = await validateCustomer({
       ...this.formValues,

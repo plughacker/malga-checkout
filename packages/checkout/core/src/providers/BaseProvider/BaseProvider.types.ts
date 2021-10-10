@@ -5,6 +5,20 @@ export interface ICustomerId {
 export interface ICustomer {
   name: string
   email: string
+  identification: string
+  zipCode: string
+  street: string
+  number: string
+  complement: string
+  neighborhood: string
+  city: string
+  state: string
+  country: string
+}
+
+export interface CustomerPayload {
+  name: string
+  email: string
   phoneNumber: string
   document: {
     type: string
@@ -28,7 +42,7 @@ export interface IBaseProviderConstructor {
   customer?: ICustomer
 }
 
-export type ICustomerMethod = ICustomerId | { customer: ICustomer }
+export type ICustomerMethod = ICustomerId | { customer: CustomerPayload }
 
 export interface IPaymentSourceCustomerId {
   sourceType: string

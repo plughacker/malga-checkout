@@ -18,6 +18,7 @@ import {
   PlugPaymentsCreditDialogState,
 } from './plug-payments-credit.types'
 import { PlugPaymentsCreditService } from './plug-payments-credit.service'
+import { ICustomer } from '../../providers/BaseProvider'
 
 @Component({
   tag: 'plug-payments-credit',
@@ -31,6 +32,7 @@ export class PlugPaymentsCredit {
   @Prop() description?: string
   @Prop() orderId?: string
   @Prop() customerId?: string
+  @Prop() customer?: ICustomer
   @Prop() currency = 'BRL'
   @Prop() sandbox = false
   @Prop() capture = false
@@ -84,6 +86,7 @@ export class PlugPaymentsCredit {
       statementDescriptor: this.statementDescriptor,
       capture: this.capture,
       orderId: this.orderId,
+      customer: this.customer,
       customerId: this.customerId,
       description: this.description,
       currency: this.currency,

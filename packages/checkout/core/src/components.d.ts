@@ -96,6 +96,7 @@ export namespace Components {
         "clientId": string;
         "currency": string;
         "customFormStyleClasses"?: PlugPaymentsCreditFormCustomStyleFormClasses;
+        "customer"?: ICustomer;
         "customerId"?: string;
         "description"?: string;
         "installmentsConfig": PlugPaymentsCreditInstallmentsConfig;
@@ -311,6 +312,7 @@ declare namespace LocalJSX {
         "clientId"?: string;
         "currency"?: string;
         "customFormStyleClasses"?: PlugPaymentsCreditFormCustomStyleFormClasses;
+        "customer"?: ICustomer;
         "customerId"?: string;
         "description"?: string;
         "installmentsConfig"?: PlugPaymentsCreditInstallmentsConfig;

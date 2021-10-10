@@ -140,6 +140,7 @@ export class PlugCheckoutFull {
                 publicKey={this.publicKey}
                 clientId={this.clientId}
                 merchantId={this.merchantId}
+                customer={this.customerFormFields}
                 customerId={this.customerId}
                 statementDescriptor={this.statementDescriptor}
                 amount={this.amount}

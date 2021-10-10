@@ -5,6 +5,8 @@ import {
   IPaymentSource,
 } from './BaseProvider.types'
 
+import { formatCustomerPayload } from './base-provider.utils'
+
 export class BaseProvider {
   readonly customerId?: string
   readonly customer?: ICustomer
@@ -22,7 +24,7 @@ export class BaseProvider {
     }
 
     return {
-      customer: this.customer,
+      customer: formatCustomerPayload(this.customer),
     }
   }
 

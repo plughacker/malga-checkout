@@ -34,7 +34,7 @@ export class PlugCheckoutFullIdentification {
     customerFormValues: PlugCheckoutFullIdentificationFormValues
   }>
 
-  @State() allFieldIsBlank = false
+  @State() allFieldIsValidated = false
   @State() validFields: PlugCheckoutFullIdentificationFormValidFields = {
     name: null,
     email: null,
@@ -49,12 +49,23 @@ export class PlugCheckoutFullIdentification {
     country: null,
   }
 
-  private handleFieldFocused = (field: string) => () => {
-    if (this.allFieldIsBlank) {
-      this.allFieldIsBlank = false
-    }
+  private checkValidatedField = () => {
+    const validFieldValues = Object.values(this.validFields)
 
+    const filteredValidFieldValues = validFieldValues.filter(
+      (validFieldValue) => {
+        if (validFieldValue === undefined) return false
+
+        return validFieldValue === null || !!validFieldValue.length
+      },
+    )
+
+    this.allFieldIsValidated = !filteredValidFieldValues.length
+  }
+
+  private handleFieldFocused = (field: string) => () => {
     this.validFields = { ...this.validFields, [field]: null }
+    this.checkValidatedField()
   }
 
   private handleFieldBlurred = (field: string) => async (event) => {
@@ -70,10 +81,13 @@ export class PlugCheckoutFullIdentification {
       ...this.validFields,
       [field]: validation.errors ? validation.errors[field] : '',
     }
+
+    this.checkValidatedField()
   }
 
   private handleFieldChange = (field: string) => (event) => {
     this.fieldChange.emit({ field, value: event.target.value })
+    this.checkValidatedField()
   }
 
   private handleZipCodeFieldChange = async (event) => {
@@ -89,10 +103,13 @@ export class PlugCheckoutFullIdentification {
         customerFormValues: { ...this.formValues, ...address },
       })
 
+      this.checkValidatedField()
+
       return
     }
 
     this.fieldChange.emit({ field: 'zipCode', value: event.target.value })
+    this.checkValidatedField()
   }
 
   private handleSubmitForm = () => {
@@ -332,6 +349,7 @@ export class PlugCheckoutFullIdentification {
         <checkout-button
           type="submit"
           label="Próximo"
+          disabled={!this.allFieldIsValidated}
           onClick={this.handleSubmitForm}
         />
       </Host>

@@ -14,6 +14,26 @@ import { PlugCheckoutFullIdentificationFormValues } from "./components/plug-chec
 import { PlugPaymentsBoletoChargeError, PlugPaymentsBoletoChargeSuccess } from "./components/plug-payments-boleto/plug-payments-boleto.types";
 import { PlugPaymentsPixChargeError, PlugPaymentsPixChargeSuccess } from "./components/plug-payments-pix/plug-payments-pix.types";
 export namespace Components {
+    interface PlugCheckout {
+        "amount": number;
+        "boleto"?: IBoleto;
+        "capture": boolean;
+        "clientId": string;
+        "currency": string;
+        "customer"?: ICustomer;
+        "customerId"?: string;
+        "description"?: string;
+        "installments"?: PlugPaymentsCreditInstallmentsConfig;
+        "merchantId": string;
+        "orderId"?: string;
+        "paymentMethods": PaymentMethods;
+        "pix"?: IPix;
+        "publicKey": string;
+        "sandbox": boolean;
+        "showCreditCard": boolean;
+        "showDialog": boolean;
+        "statementDescriptor": string;
+    }
     interface PlugCheckoutFull {
         "amount": number;
         "boleto"?: IBoleto;
@@ -133,6 +153,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLPlugCheckoutElement extends Components.PlugCheckout, HTMLStencilElement {
+    }
+    var HTMLPlugCheckoutElement: {
+        prototype: HTMLPlugCheckoutElement;
+        new (): HTMLPlugCheckoutElement;
+    };
     interface HTMLPlugCheckoutFullElement extends Components.PlugCheckoutFull, HTMLStencilElement {
     }
     var HTMLPlugCheckoutFullElement: {
@@ -194,6 +220,7 @@ declare global {
         new (): HTMLPlugPaymentsPixElement;
     };
     interface HTMLElementTagNameMap {
+        "plug-checkout": HTMLPlugCheckoutElement;
         "plug-checkout-full": HTMLPlugCheckoutFullElement;
         "plug-checkout-full-content": HTMLPlugCheckoutFullContentElement;
         "plug-checkout-full-footer": HTMLPlugCheckoutFullFooterElement;
@@ -207,6 +234,32 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface PlugCheckout {
+        "amount"?: number;
+        "boleto"?: IBoleto;
+        "capture"?: boolean;
+        "clientId"?: string;
+        "currency"?: string;
+        "customer"?: ICustomer;
+        "customerId"?: string;
+        "description"?: string;
+        "installments"?: PlugPaymentsCreditInstallmentsConfig;
+        "merchantId"?: string;
+        "onPaymentFailed"?: (event: CustomEvent<{
+    error: PlugPaymentsChargeError
+  }>) => void;
+        "onPaymentSuccess"?: (event: CustomEvent<{
+    data: PlugPaymentsChargeSuccess
+  }>) => void;
+        "orderId"?: string;
+        "paymentMethods"?: PaymentMethods;
+        "pix"?: IPix;
+        "publicKey"?: string;
+        "sandbox"?: boolean;
+        "showCreditCard"?: boolean;
+        "showDialog"?: boolean;
+        "statementDescriptor"?: string;
+    }
     interface PlugCheckoutFull {
         "amount"?: number;
         "boleto"?: IBoleto;
@@ -362,6 +415,7 @@ declare namespace LocalJSX {
         "statementDescriptor"?: string;
     }
     interface IntrinsicElements {
+        "plug-checkout": PlugCheckout;
         "plug-checkout-full": PlugCheckoutFull;
         "plug-checkout-full-content": PlugCheckoutFullContent;
         "plug-checkout-full-footer": PlugCheckoutFullFooter;
@@ -378,6 +432,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "plug-checkout": LocalJSX.PlugCheckout & JSXBase.HTMLAttributes<HTMLPlugCheckoutElement>;
             "plug-checkout-full": LocalJSX.PlugCheckoutFull & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullElement>;
             "plug-checkout-full-content": LocalJSX.PlugCheckoutFullContent & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullContentElement>;
             "plug-checkout-full-footer": LocalJSX.PlugCheckoutFullFooter & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullFooterElement>;

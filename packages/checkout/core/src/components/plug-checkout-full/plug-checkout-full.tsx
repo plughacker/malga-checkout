@@ -136,7 +136,7 @@ export class PlugCheckoutFull {
               opened={this.currentSection === 'payments'}
               onExpandClick={() => this.handleChangeSection('payments')}
             >
-              <plug-payments
+              <plug-checkout
                 publicKey={this.publicKey}
                 clientId={this.clientId}
                 merchantId={this.merchantId}

@@ -109,21 +109,32 @@ export class PlugCheckoutFullIdentification {
           onChanged={this.handleFieldChange('name')}
           onBlurred={this.handleFieldBlurred('name')}
           onFocused={this.handleFieldFocused('name')}
+          hasValidation={this.validFields.name !== null}
+          hasError={!!this.validFields.name}
           fullWidth
           inputmode="text"
           name="name"
           label="Nome completo *"
         />
+        {!!this.validFields.name && (
+          <checkout-error-message message={this.validFields.name} />
+        )}
+
         <checkout-text-field
           value={this.formValues.email}
           onChanged={this.handleFieldChange('email')}
           onBlurred={this.handleFieldBlurred('email')}
           onFocused={this.handleFieldFocused('email')}
+          hasValidation={this.validFields.email !== null}
+          hasError={!!this.validFields.email}
           fullWidth
           inputmode="email"
           name="email"
           label="E-mail *"
         />
+        {!!this.validFields.email && (
+          <checkout-error-message message={this.validFields.email} />
+        )}
 
         <checkout-typography
           tag="h4"
@@ -135,12 +146,17 @@ export class PlugCheckoutFullIdentification {
           onChanged={this.handleFieldChange('identification')}
           onBlurred={this.handleFieldBlurred('identification')}
           onFocused={this.handleFieldFocused('identification')}
+          hasValidation={this.validFields.identification !== null}
+          hasError={!!this.validFields.identification}
           fullWidth
           inputmode="numeric"
           name="identification"
           label="CPF/CNPJ *"
           mask={getIdentificationMask(this.formValues.identification)}
         />
+        {!!this.validFields.identification && (
+          <checkout-error-message message={this.validFields.identification} />
+        )}
 
         <checkout-typography
           tag="h4"
@@ -150,17 +166,27 @@ export class PlugCheckoutFullIdentification {
         <fieldset
           class={{ 'plug-checkout-full-identification__row-fields': true }}
         >
-          <checkout-text-field
-            value={this.formValues.zipCode}
-            onChanged={this.handleZipCodeFieldChange}
-            onBlurred={this.handleFieldBlurred('zipCode')}
-            onFocused={this.handleFieldFocused('zipCode')}
-            fullWidth
-            inputmode="numeric"
-            name="zipCode"
-            label="CEP *"
-            mask="99999-999"
-          />
+          <div
+            class={{ 'plug-checkout-full-identification__error-message': true }}
+          >
+            <checkout-text-field
+              value={this.formValues.zipCode}
+              onChanged={this.handleZipCodeFieldChange}
+              onBlurred={this.handleFieldBlurred('zipCode')}
+              onFocused={this.handleFieldFocused('zipCode')}
+              hasValidation={this.validFields.zipCode !== null}
+              hasError={!!this.validFields.zipCode}
+              fullWidth
+              inputmode="numeric"
+              name="zipCode"
+              label="CEP *"
+              mask="99999-999"
+            />
+            {!!this.validFields.zipCode && (
+              <checkout-error-message message={this.validFields.zipCode} />
+            )}
+          </div>
+
           <a
             href="https://buscacepinter.correios.com.br/app/endereco/index.php"
             target="_blank"
@@ -174,35 +200,55 @@ export class PlugCheckoutFullIdentification {
           onChanged={this.handleFieldChange('street')}
           onBlurred={this.handleFieldBlurred('street')}
           onFocused={this.handleFieldFocused('street')}
+          hasValidation={this.validFields.street !== null}
+          hasError={!!this.validFields.street}
           fullWidth
           inputmode="text"
           name="street"
           label="Endereço *"
         />
+        {!!this.validFields.street && (
+          <checkout-error-message message={this.validFields.street} />
+        )}
 
         <fieldset
           class={{ 'plug-checkout-full-identification__row-fields': true }}
         >
-          <checkout-text-field
-            value={this.formValues.number}
-            onChanged={this.handleFieldChange('number')}
-            onBlurred={this.handleFieldBlurred('number')}
-            onFocused={this.handleFieldFocused('number')}
-            fullWidth
-            inputmode="text"
-            name="number"
-            label="Número *"
-          />
+          <div
+            class={{ 'plug-checkout-full-identification__error-message': true }}
+          >
+            <checkout-text-field
+              value={this.formValues.number}
+              onChanged={this.handleFieldChange('number')}
+              onBlurred={this.handleFieldBlurred('number')}
+              onFocused={this.handleFieldFocused('number')}
+              hasValidation={this.validFields.number !== null}
+              hasError={!!this.validFields.number}
+              fullWidth
+              inputmode="text"
+              name="number"
+              label="Número *"
+            />
+            {!!this.validFields.number && (
+              <checkout-error-message message={this.validFields.number} />
+            )}
+          </div>
+
           <checkout-text-field
             value={this.formValues.complement}
             onChanged={this.handleFieldChange('complement')}
             onBlurred={this.handleFieldBlurred('complement')}
             onFocused={this.handleFieldFocused('complement')}
+            hasValidation={this.validFields.complement !== null}
+            hasError={!!this.validFields.complement}
             fullWidth
             inputmode="text"
             name="complement"
             label="Complemento"
           />
+          {!!this.validFields.complement && (
+            <checkout-error-message message={this.validFields.complement} />
+          )}
         </fieldset>
 
         <checkout-text-field
@@ -210,35 +256,59 @@ export class PlugCheckoutFullIdentification {
           onChanged={this.handleFieldChange('neighborhood')}
           onBlurred={this.handleFieldBlurred('neighborhood')}
           onFocused={this.handleFieldFocused('neighborhood')}
+          hasValidation={this.validFields.neighborhood !== null}
+          hasError={!!this.validFields.neighborhood}
           fullWidth
           inputmode="text"
           name="neighborhood"
           label="Bairro"
         />
+        {!!this.validFields.neighborhood && (
+          <checkout-error-message message={this.validFields.neighborhood} />
+        )}
 
         <fieldset
           class={{ 'plug-checkout-full-identification__row-fields': true }}
         >
-          <checkout-text-field
-            value={this.formValues.city}
-            onChanged={this.handleFieldChange('city')}
-            onBlurred={this.handleFieldBlurred('city')}
-            onFocused={this.handleFieldFocused('city')}
-            fullWidth
-            inputmode="text"
-            name="city"
-            label="Cidade *"
-          />
-          <checkout-text-field
-            value={this.formValues.state}
-            onChanged={this.handleFieldChange('state')}
-            onBlurred={this.handleFieldBlurred('state')}
-            onFocused={this.handleFieldFocused('state')}
-            fullWidth
-            inputmode="text"
-            name="state"
-            label="Estado *"
-          />
+          <div
+            class={{ 'plug-checkout-full-identification__error-message': true }}
+          >
+            <checkout-text-field
+              value={this.formValues.city}
+              onChanged={this.handleFieldChange('city')}
+              onBlurred={this.handleFieldBlurred('city')}
+              onFocused={this.handleFieldFocused('city')}
+              hasValidation={this.validFields.city !== null}
+              hasError={!!this.validFields.city}
+              fullWidth
+              inputmode="text"
+              name="city"
+              label="Cidade *"
+            />
+            {!!this.validFields.city && (
+              <checkout-error-message message={this.validFields.city} />
+            )}
+          </div>
+
+          <div
+            class={{ 'plug-checkout-full-identification__error-message': true }}
+          >
+            <checkout-text-field
+              value={this.formValues.state}
+              onChanged={this.handleFieldChange('state')}
+              onBlurred={this.handleFieldBlurred('state')}
+              onFocused={this.handleFieldFocused('state')}
+              hasValidation={this.validFields.state !== null}
+              hasError={!!this.validFields.state}
+              fullWidth
+              inputmode="text"
+              name="state"
+              label="Estado *"
+            />
+            {!!this.validFields.state && (
+              <checkout-error-message message={this.validFields.state} />
+            )}
+          </div>
         </fieldset>
 
         <checkout-select-field
@@ -246,11 +316,15 @@ export class PlugCheckoutFullIdentification {
           onChanged={this.handleFieldChange('country')}
           onBlurred={this.handleFieldBlurred('country')}
           onFocused={this.handleFieldFocused('country')}
+          hasError={!!this.validFields.country}
           options={countries}
           fullWidth
           name="country"
           label="País *"
         />
+        {!!this.validFields.country && (
+          <checkout-error-message message={this.validFields.country} />
+        )}
 
         <checkout-button
           type="submit"

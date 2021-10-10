@@ -22,7 +22,7 @@ export const schema = Yup.object().shape({
   neighborhood: Yup.string().required('Bairro é obrigatório.'),
   city: Yup.string().required('Cidade é obrigatório.'),
   state: Yup.string().required('Estado é obrigatório.'),
-  zipcode: Yup.string().required('CEP é obrigatório.'),
+  zipCode: Yup.string().required('CEP é obrigatório.'),
   country: Yup.string().test(
     'isValidCountry',
     'Selecione um país para continuar.',

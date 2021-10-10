@@ -77,10 +77,12 @@ export class PlugCheckoutFullIdentification {
   }
 
   private handleZipCodeFieldChange = async (event) => {
-    if (event.target.value.length === 8) {
+    const zipCodeValue = cleanTextOnlyNumbers(event.target.value)
+
+    if (zipCodeValue.length === 8) {
       const address =
         await this.identificationService.getInformationsAboutZipCode(
-          event.target.value,
+          zipCodeValue,
         )
 
       this.manyFieldsChange.emit({

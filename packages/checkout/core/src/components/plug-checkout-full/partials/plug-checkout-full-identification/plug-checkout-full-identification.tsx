@@ -16,6 +16,7 @@ import {
   PlugCheckoutFullIdentificationFormValidFields,
 } from './plug-checkout-full-identification.types'
 import { validateCustomer } from './plug-checkout-full-identification.schema'
+import { getIdentificationMask } from './plug-checkout-full-identification.utils'
 
 @Component({
   tag: 'plug-checkout-full-identification',
@@ -56,7 +57,7 @@ export class PlugCheckoutFullIdentification {
   }
 
   private handleFieldBlurred = (field: string) => async (event) => {
-    const isMaskedField = ['cvv'].includes(field)
+    const isMaskedField = ['identification', 'zipCode'].includes(field)
     const normalizedValue = event.target.value.replace(/\D/g, '').trim()
 
     const validation = await validateCustomer({
@@ -138,6 +139,7 @@ export class PlugCheckoutFullIdentification {
           inputmode="numeric"
           name="identification"
           label="CPF/CNPJ *"
+          mask={getIdentificationMask(this.formValues.identification)}
         />
 
         <checkout-typography
@@ -157,6 +159,7 @@ export class PlugCheckoutFullIdentification {
             inputmode="numeric"
             name="zipCode"
             label="CEP *"
+            mask="99999-999"
           />
           <a
             href="https://buscacepinter.correios.com.br/app/endereco/index.php"

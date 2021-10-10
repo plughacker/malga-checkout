@@ -7,6 +7,7 @@ import {
   Event,
   EventEmitter,
 } from '@stencil/core'
+
 import { ICustomer } from '../../providers/BaseProvider'
 import { IBoleto } from '../../providers/Boleto'
 import { IPix } from '../../providers/Pix'
@@ -16,6 +17,7 @@ import {
   PlugPaymentsChargeError,
   PlugPaymentsChargeSuccess,
 } from '../plug-payments/plug-payments.types'
+import { PlugCheckoutFullIdentificationFormValues } from './partials/plug-checkout-full-identification/plug-checkout-full-identification.types'
 
 @Component({
   tag: 'plug-checkout-full',
@@ -51,6 +53,19 @@ export class PlugCheckoutFull {
   @Prop() hasIdentificationSection = true
 
   @State() currentSection: string
+  @State() customerFormFields: PlugCheckoutFullIdentificationFormValues = {
+    name: '',
+    email: '',
+    identification: '',
+    zipCode: '',
+    street: '',
+    number: '',
+    complement: '',
+    neighborhood: '',
+    city: '',
+    state: '',
+    country: '',
+  }
 
   @Event() paymentSuccess!: EventEmitter<{
     data: PlugPaymentsChargeSuccess
@@ -61,6 +76,19 @@ export class PlugCheckoutFull {
 
   private handleChangeSection = (section: string) => {
     this.currentSection = section
+  }
+
+  private handleSetCustomerFormValues = (field: string, value: string) => {
+    this.customerFormFields = { ...this.customerFormFields, [field]: value }
+  }
+
+  private handleSetManyCustomerFormValues = (
+    currentCustomerField?: PlugCheckoutFullIdentificationFormValues,
+  ) => {
+    this.customerFormFields = {
+      ...this.customerFormFields,
+      ...currentCustomerField,
+    }
   }
 
   render() {
@@ -85,6 +113,15 @@ export class PlugCheckoutFull {
                 onExpandClick={() => this.handleChangeSection('identification')}
               >
                 <plug-checkout-full-identification
+                  formValues={this.customerFormFields}
+                  onFieldChange={({ detail }) => {
+                    this.handleSetCustomerFormValues(detail.field, detail.value)
+                  }}
+                  onManyFieldsChange={({ detail }) => {
+                    this.handleSetManyCustomerFormValues(
+                      detail.customerFormValues,
+                    )
+                  }}
                   onSubmitForm={() => this.handleChangeSection('payments')}
                 />
               </checkout-accordion>

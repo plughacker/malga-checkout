@@ -1,55 +1,98 @@
-import { Component, Host, h, Event, EventEmitter, State } from '@stencil/core'
+import {
+  Component,
+  Host,
+  h,
+  Event,
+  EventEmitter,
+  State,
+  Prop,
+} from '@stencil/core'
 
 import { countries } from '../../../../data/countries'
 
 import { PlugCheckoutFullIdentificationService } from './plug-checkout-full-identification.service'
+import {
+  PlugCheckoutFullIdentificationFormValues,
+  PlugCheckoutFullIdentificationFormValidFields,
+} from './plug-checkout-full-identification.types'
+import { validateCustomer } from './plug-checkout-full-identification.schema'
 
 @Component({
   tag: 'plug-checkout-full-identification',
   styleUrl: 'plug-checkout-full-identification.scss',
 })
 export class PlugCheckoutFullIdentification {
-  @State() customer = {
-    zipCode: '',
-    state: '',
-    street: '',
-    city: '',
-    neighborhood: '',
-    complement: '',
-  }
-
-  @Event() submitForm: EventEmitter<void>
-
   identificationService = new PlugCheckoutFullIdentificationService()
 
-  private handleSubmitForm = () => {
-    this.submitForm.emit()
+  @Prop() formValues: PlugCheckoutFullIdentificationFormValues
+
+  @Event() submitForm: EventEmitter<void>
+  @Event() fieldChange: EventEmitter<{ field: string; value: string }>
+  @Event() manyFieldsChange: EventEmitter<{
+    customerFormValues: PlugCheckoutFullIdentificationFormValues
+  }>
+
+  @State() allFieldIsBlank = false
+  @State() validFields: PlugCheckoutFullIdentificationFormValidFields = {
+    name: null,
+    email: null,
+    identification: null,
+    zipCode: null,
+    street: null,
+    number: null,
+    complement: null,
+    neighborhood: null,
+    city: null,
+    state: null,
+    country: null,
   }
 
-  private handleZipCodeChange = async (event) => {
+  private handleFieldFocused = (field: string) => () => {
+    if (this.allFieldIsBlank) {
+      this.allFieldIsBlank = false
+    }
+
+    this.validFields = { ...this.validFields, [field]: null }
+  }
+
+  private handleFieldBlurred = (field: string) => async (event) => {
+    const isMaskedField = ['cvv'].includes(field)
+    const normalizedValue = event.target.value.replace(/\D/g, '').trim()
+
+    const validation = await validateCustomer({
+      ...this.formValues,
+      [field]: isMaskedField ? normalizedValue : event.target.value,
+    })
+
+    this.validFields = {
+      ...this.validFields,
+      [field]: validation.errors ? validation.errors[field] : '',
+    }
+  }
+
+  private handleFieldChange = (field: string) => (event) => {
+    this.fieldChange.emit({ field, value: event.target.value })
+  }
+
+  private handleZipCodeFieldChange = async (event) => {
     if (event.target.value.length === 8) {
       const address =
         await this.identificationService.getInformationsAboutZipCode(
           event.target.value,
         )
 
-      this.customer = {
-        ...this.customer,
-        ...address,
-        zipCode: event.target.value,
-      }
+      this.manyFieldsChange.emit({
+        customerFormValues: { ...this.formValues, ...address },
+      })
 
       return
     }
 
-    this.customer = {
-      ...this.customer,
-      zipCode: event.target.value,
-    }
+    this.fieldChange.emit({ field: 'zipCode', value: event.target.value })
   }
 
-  private handleFieldChange = (field: string) => (event) => {
-    this.customer = { ...this.customer, [field]: event.target.value }
+  private handleSubmitForm = () => {
+    this.submitForm.emit()
   }
 
   render() {
@@ -61,12 +104,20 @@ export class PlugCheckoutFullIdentification {
           content="Dados pessoais"
         />
         <checkout-text-field
+          value={this.formValues.name}
+          onChanged={this.handleFieldChange('name')}
+          onBlurred={this.handleFieldBlurred('name')}
+          onFocused={this.handleFieldFocused('name')}
           fullWidth
           inputmode="text"
-          name="fullName"
+          name="name"
           label="Nome completo *"
         />
         <checkout-text-field
+          value={this.formValues.email}
+          onChanged={this.handleFieldChange('email')}
+          onBlurred={this.handleFieldBlurred('email')}
+          onFocused={this.handleFieldFocused('email')}
           fullWidth
           inputmode="email"
           name="email"
@@ -79,8 +130,12 @@ export class PlugCheckoutFullIdentification {
           content="Documento"
         />
         <checkout-text-field
+          value={this.formValues.identification}
+          onChanged={this.handleFieldChange('identification')}
+          onBlurred={this.handleFieldBlurred('identification')}
+          onFocused={this.handleFieldFocused('identification')}
           fullWidth
-          inputmode="text"
+          inputmode="numeric"
           name="identification"
           label="CPF/CNPJ *"
         />
@@ -94,12 +149,14 @@ export class PlugCheckoutFullIdentification {
           class={{ 'plug-checkout-full-identification__row-fields': true }}
         >
           <checkout-text-field
+            value={this.formValues.zipCode}
+            onChanged={this.handleZipCodeFieldChange}
+            onBlurred={this.handleFieldBlurred('zipCode')}
+            onFocused={this.handleFieldFocused('zipCode')}
             fullWidth
-            inputmode="text"
+            inputmode="numeric"
             name="zipCode"
             label="CEP *"
-            value={this.customer.zipCode}
-            onChanged={this.handleZipCodeChange}
           />
           <a
             href="https://buscacepinter.correios.com.br/app/endereco/index.php"
@@ -110,64 +167,82 @@ export class PlugCheckoutFullIdentification {
         </fieldset>
 
         <checkout-text-field
+          value={this.formValues.street}
+          onChanged={this.handleFieldChange('street')}
+          onBlurred={this.handleFieldBlurred('street')}
+          onFocused={this.handleFieldFocused('street')}
           fullWidth
           inputmode="text"
-          name="address"
+          name="street"
           label="Endereço *"
-          value={this.customer.street}
-          onChanged={this.handleFieldChange('street')}
         />
 
         <fieldset
           class={{ 'plug-checkout-full-identification__row-fields': true }}
         >
           <checkout-text-field
+            value={this.formValues.number}
+            onChanged={this.handleFieldChange('number')}
+            onBlurred={this.handleFieldBlurred('number')}
+            onFocused={this.handleFieldFocused('number')}
             fullWidth
             inputmode="text"
             name="number"
             label="Número *"
           />
           <checkout-text-field
+            value={this.formValues.complement}
+            onChanged={this.handleFieldChange('complement')}
+            onBlurred={this.handleFieldBlurred('complement')}
+            onFocused={this.handleFieldFocused('complement')}
             fullWidth
             inputmode="text"
             name="complement"
             label="Complemento"
-            value={this.customer.complement}
-            onChanged={this.handleFieldChange('complement')}
           />
         </fieldset>
 
         <checkout-text-field
+          value={this.formValues.neighborhood}
+          onChanged={this.handleFieldChange('neighborhood')}
+          onBlurred={this.handleFieldBlurred('neighborhood')}
+          onFocused={this.handleFieldFocused('neighborhood')}
           fullWidth
           inputmode="text"
           name="neighborhood"
           label="Bairro"
-          value={this.customer.neighborhood}
-          onChanged={this.handleFieldChange('neighborhood')}
         />
 
         <fieldset
           class={{ 'plug-checkout-full-identification__row-fields': true }}
         >
           <checkout-text-field
+            value={this.formValues.city}
+            onChanged={this.handleFieldChange('city')}
+            onBlurred={this.handleFieldBlurred('city')}
+            onFocused={this.handleFieldFocused('city')}
             fullWidth
             inputmode="text"
             name="city"
             label="Cidade *"
-            value={this.customer.city}
-            onChanged={this.handleFieldChange('city')}
           />
           <checkout-text-field
+            value={this.formValues.state}
+            onChanged={this.handleFieldChange('state')}
+            onBlurred={this.handleFieldBlurred('state')}
+            onFocused={this.handleFieldFocused('state')}
             fullWidth
             inputmode="text"
             name="state"
             label="Estado *"
-            value={this.customer.state}
-            onChanged={this.handleFieldChange('state')}
           />
         </fieldset>
 
         <checkout-select-field
+          value={this.formValues.country}
+          onChanged={this.handleFieldChange('country')}
+          onBlurred={this.handleFieldBlurred('country')}
+          onFocused={this.handleFieldFocused('country')}
           options={countries}
           fullWidth
           name="country"

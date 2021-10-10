@@ -10,6 +10,7 @@ import { IPix } from "./providers/Pix";
 import { IBoleto } from "./providers/Boleto";
 import { PlugPaymentsCreditChargeError, PlugPaymentsCreditChargeSuccess, PlugPaymentsCreditFormCustomStyleFormClasses, PlugPaymentsCreditFormValues, PlugPaymentsCreditInstallmentsConfig } from "./components/plug-payments-credit/plug-payments-credit.types";
 import { ICustomer } from "./providers/BaseProvider";
+import { PlugCheckoutFullIdentificationFormValues } from "./components/plug-checkout-full/partials/plug-checkout-full-identification/plug-checkout-full-identification.types";
 import { PlugPaymentsBoletoChargeError, PlugPaymentsBoletoChargeSuccess } from "./components/plug-payments-boleto/plug-payments-boleto.types";
 import { PlugPaymentsPixChargeError, PlugPaymentsPixChargeSuccess } from "./components/plug-payments-pix/plug-payments-pix.types";
 export namespace Components {
@@ -51,6 +52,7 @@ export namespace Components {
         "brand": string;
     }
     interface PlugCheckoutFullIdentification {
+        "formValues": PlugCheckoutFullIdentificationFormValues;
     }
     interface PlugPayments {
         "amount": number;
@@ -248,6 +250,11 @@ declare namespace LocalJSX {
         "brand"?: string;
     }
     interface PlugCheckoutFullIdentification {
+        "formValues"?: PlugCheckoutFullIdentificationFormValues;
+        "onFieldChange"?: (event: CustomEvent<{ field: string; value: string }>) => void;
+        "onManyFieldsChange"?: (event: CustomEvent<{
+    customerFormValues: PlugCheckoutFullIdentificationFormValues
+  }>) => void;
         "onSubmitForm"?: (event: CustomEvent<void>) => void;
     }
     interface PlugPayments {

@@ -24,3 +24,17 @@ export interface PlugCheckoutFullIdentificationFormValues {
   state: string
   country: string
 }
+
+export interface PlugCheckoutFullIdentificationFormValidFields {
+  name: string | null
+  email: string | null
+  identification: string | null
+  zipCode: string | null
+  street: string | null
+  number: string | null
+  complement: string | null
+  neighborhood: string | null
+  city: string | null
+  state: string | null
+  country: string | null
+}

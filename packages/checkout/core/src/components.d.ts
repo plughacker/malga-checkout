@@ -9,7 +9,7 @@ import { PaymentMethods, PlugPaymentsChargeError, PlugPaymentsChargeSuccess } fr
 import { IPix } from "./providers/Pix";
 import { IBoleto } from "./providers/Boleto";
 import { PlugPaymentsCreditChargeError, PlugPaymentsCreditChargeSuccess, PlugPaymentsCreditFormCustomStyleFormClasses, PlugPaymentsCreditFormValues, PlugPaymentsCreditInstallmentsConfig } from "./components/plug-payments-credit/plug-payments-credit.types";
-import { ICustomer } from "./providers/BaseProvider";
+import { ICustomer } from "./providers/base-provider";
 import { PlugCheckoutFullIdentificationFormValues } from "./components/plug-checkout-full/partials/plug-checkout-full-identification/plug-checkout-full-identification.types";
 import { PlugPaymentsBoletoChargeError, PlugPaymentsBoletoChargeSuccess } from "./components/plug-payments-boleto/plug-payments-boleto.types";
 import { PlugPaymentsPixChargeError, PlugPaymentsPixChargeSuccess } from "./components/plug-payments-pix/plug-payments-pix.types";

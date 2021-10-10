@@ -1,4 +1,4 @@
-import { ICustomer } from '../../providers/BaseProvider'
+import { ICustomer } from '../../providers/base-provider'
 import { IPix } from '../../providers/Pix'
 
 export interface PlugPaymentsPixChargePayload {

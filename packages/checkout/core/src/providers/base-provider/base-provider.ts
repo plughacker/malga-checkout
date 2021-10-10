@@ -3,7 +3,7 @@ import {
   ICustomer,
   IBaseProviderConstructor,
   IPaymentSource,
-} from './BaseProvider.types'
+} from './base-provider.types'
 
 import { formatCustomerPayload } from './base-provider.utils'
 

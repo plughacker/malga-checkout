@@ -1,4 +1,4 @@
-import { ICustomer } from '../../providers/BaseProvider'
+import { ICustomer } from '../../providers/base-provider'
 import { IBoleto } from '../../providers/Boleto'
 
 export interface PlugPaymentsBoletoChargePayload {

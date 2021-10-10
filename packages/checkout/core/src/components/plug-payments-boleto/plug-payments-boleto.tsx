@@ -15,7 +15,7 @@ import {
 } from './plug-payments-boleto.types'
 
 import { PlugPaymentsBoletoService } from './plug-payments-boleto.service'
-import { ICustomer } from '../../providers/BaseProvider'
+import { ICustomer } from '../../providers/base-provider'
 
 @Component({
   tag: 'plug-payments-boleto',

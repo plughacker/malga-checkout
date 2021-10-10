@@ -1,4 +1,4 @@
-export { BaseProvider } from './BaseProvider'
+export { BaseProvider } from './base-provider'
 export {
   ICustomer,
   IBaseProviderConstructor,
@@ -7,4 +7,4 @@ export {
   ICustomerMethod,
   IPaymentSource,
   IPaymentSourceCustomerId,
-} from './BaseProvider.types'
+} from './base-provider.types'

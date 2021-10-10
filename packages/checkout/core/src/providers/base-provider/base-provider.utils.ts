@@ -1,4 +1,4 @@
-import { ICustomer } from './BaseProvider.types'
+import { ICustomer } from './base-provider.types'
 
 import { cleanTextOnlyNumbers } from '../../utils'
 

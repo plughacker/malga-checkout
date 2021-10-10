@@ -1,4 +1,4 @@
-import { ICustomer } from '../BaseProvider/BaseProvider.types'
+import { ICustomer } from '../base-provider/base-provider.types'
 
 export interface IBoleto {
   expiresDate: string

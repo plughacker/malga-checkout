@@ -8,7 +8,7 @@ import {
   EventEmitter,
 } from '@stencil/core'
 
-import { ICustomer } from '../../providers/BaseProvider'
+import { ICustomer } from '../../providers/base-provider'
 import { IBoleto } from '../../providers/Boleto'
 import { IPix } from '../../providers/Pix'
 import { PlugPaymentsCreditInstallmentsConfig } from '../plug-payments-credit/plug-payments-credit.types'

@@ -18,7 +18,7 @@ import {
   PlugPaymentsCreditDialogState,
 } from './plug-payments-credit.types'
 import { PlugPaymentsCreditService } from './plug-payments-credit.service'
-import { ICustomer } from '../../providers/BaseProvider'
+import { ICustomer } from '../../providers/base-provider'
 
 @Component({
   tag: 'plug-payments-credit',

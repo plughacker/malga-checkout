@@ -3,7 +3,7 @@ import {
   IBoleto,
   IPaymentMethodBoleto,
   BoletoConstructor,
-} from './Boleto.types'
+} from './boleto.types'
 
 export class Boleto extends BaseProvider {
   readonly boleto: IBoleto

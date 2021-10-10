@@ -11,8 +11,8 @@ import {
 } from '@stencil/core'
 
 import { ICustomer } from '../../providers/base-provider'
-import { IBoleto } from '../../providers/Boleto'
-import { IPix } from '../../providers/Pix'
+import { IBoleto } from '../../providers/boleto'
+import { IPix } from '../../providers/pix'
 
 import { PlugPaymentsCreditInstallmentsConfig } from '../plug-payments-credit/plug-payments-credit.types'
 

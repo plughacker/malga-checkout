@@ -1,5 +1,5 @@
 import { BaseProvider } from '../base-provider'
-import { IPix, IPaymentMethodPix, PixConstructor } from './Pix.types'
+import { IPix, IPaymentMethodPix, PixConstructor } from './pix.types'
 
 export class Pix extends BaseProvider {
   readonly pix: IPix

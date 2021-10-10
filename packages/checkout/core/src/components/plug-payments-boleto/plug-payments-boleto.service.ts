@@ -1,4 +1,4 @@
-import { Boleto } from '../../providers/Boleto'
+import { Boleto } from '../../providers/boleto'
 import { Api } from '../../services/api'
 import { Charges, ICreateChargeData } from '../../services/charges'
 import { cleanObjectProperties } from '../../utils'

@@ -7,7 +7,7 @@ import {
   Event,
   EventEmitter,
 } from '@stencil/core'
-import { IBoleto } from '../../providers/Boleto'
+import { IBoleto } from '../../providers/boleto'
 import {
   PlugPaymentsBoletoChargeSuccess,
   PlugPaymentsBoletoChargeError,

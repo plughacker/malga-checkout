@@ -1,4 +1,4 @@
-import { Pix } from '../../providers/Pix'
+import { Pix } from '../../providers/pix'
 import { Api } from '../../services/api'
 import { Charges, ICreateChargeData } from '../../services/charges'
 import { cleanObjectProperties } from '../../utils'

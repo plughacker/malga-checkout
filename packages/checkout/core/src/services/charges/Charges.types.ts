@@ -1,7 +1,7 @@
 import { Api } from '../api'
-import { Boleto } from '../../providers/Boleto'
-import { Pix } from '../../providers/Pix'
-import { Card } from '../../providers/Card'
+import { Boleto } from '../../providers/boleto'
+import { Pix } from '../../providers/pix'
+import { Card } from '../../providers/card'
 
 export type IProvider = Boleto | Card | Pix
 

@@ -1,4 +1,4 @@
-import { Card } from '../../providers/Card'
+import { Card } from '../../providers/card'
 import { Api } from '../../services/api'
 import { Charges, ICreateChargeData } from '../../services/charges'
 import { Customers } from '../../services/customers'

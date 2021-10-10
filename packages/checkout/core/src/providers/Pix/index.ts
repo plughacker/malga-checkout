@@ -1,2 +1,2 @@
-export { Pix } from './Pix'
-export { IPaymentMethodPix, PixConstructor, IPix } from './Pix.types'
+export { Pix } from './pix'
+export { IPaymentMethodPix, PixConstructor, IPix } from './pix.types'

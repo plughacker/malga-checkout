@@ -1,7 +1,7 @@
-export { Card } from './Card'
+export { Card } from './card'
 export {
   ICard,
   ICardFields,
   IPaymentSourceCard,
   IPaymentMethodCard,
-} from './Card.types'
+} from './card.types'

@@ -7,7 +7,7 @@ import {
   State,
   EventEmitter,
 } from '@stencil/core'
-import { IPix } from '../../providers/Pix'
+import { IPix } from '../../providers/pix'
 import {
   PlugPaymentsPixChargeSuccess,
   PlugPaymentsPixChargeError,

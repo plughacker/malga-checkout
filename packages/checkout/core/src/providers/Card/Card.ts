@@ -6,7 +6,7 @@ import {
   transformExpirationDate,
 } from '../../utils'
 
-import { ICard, IPaymentSourceCard, IPaymentMethodCard } from './Card.types'
+import { ICard, IPaymentSourceCard, IPaymentMethodCard } from './card.types'
 
 export class Card extends BaseProvider {
   readonly card: ICard

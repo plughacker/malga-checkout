@@ -1,5 +1,5 @@
 import { ICustomer } from '../../providers/base-provider'
-import { IBoleto } from '../../providers/Boleto'
+import { IBoleto } from '../../providers/boleto'
 
 export interface PlugPaymentsBoletoChargePayload {
   boleto: IBoleto

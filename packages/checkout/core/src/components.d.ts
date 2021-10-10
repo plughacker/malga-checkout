@@ -6,8 +6,8 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { PaymentMethods, PlugPaymentsChargeError, PlugPaymentsChargeSuccess } from "./components/plug-payments/plug-payments.types";
-import { IPix } from "./providers/Pix";
-import { IBoleto } from "./providers/Boleto";
+import { IPix } from "./providers/pix";
+import { IBoleto } from "./providers/boleto";
 import { PlugPaymentsCreditChargeError, PlugPaymentsCreditChargeSuccess, PlugPaymentsCreditFormCustomStyleFormClasses, PlugPaymentsCreditFormValues, PlugPaymentsCreditInstallmentsConfig } from "./components/plug-payments-credit/plug-payments-credit.types";
 import { ICustomer } from "./providers/base-provider";
 import { PlugCheckoutFullIdentificationFormValues } from "./components/plug-checkout-full/partials/plug-checkout-full-identification/plug-checkout-full-identification.types";

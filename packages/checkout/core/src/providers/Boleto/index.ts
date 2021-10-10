@@ -1,6 +1,6 @@
-export { Boleto } from './Boleto'
+export { Boleto } from './boleto'
 export {
   IBoleto,
   IPaymentMethodBoleto,
   BoletoConstructor,
-} from './Boleto.types'
+} from './boleto.types'

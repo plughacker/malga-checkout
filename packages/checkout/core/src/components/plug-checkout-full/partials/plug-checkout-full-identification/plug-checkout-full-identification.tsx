@@ -8,7 +8,7 @@ import {
   Prop,
 } from '@stencil/core'
 
-import { countries } from '../../../../data/countries'
+import { countries } from '../../../../utils/countries'
 
 import { PlugCheckoutFullIdentificationService } from './plug-checkout-full-identification.service'
 import {

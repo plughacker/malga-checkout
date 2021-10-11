@@ -3,11 +3,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 585px;
-  height: 625px;
+  width: 100%;
+  height: 100%;
   position: relative;
   background: var(--plug-checkout-color-success);
-  border-radius: var(--plug-checkout-border-radius-lg);
+
+  @include md {
+    width: 585px;
+    height: 625px;
+    border-radius: var(--plug-checkout-border-radius-lg);
+  }
 
   & > checkout-typography {
     & > h3 {

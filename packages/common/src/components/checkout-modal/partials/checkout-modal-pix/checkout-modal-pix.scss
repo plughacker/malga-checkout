@@ -132,10 +132,22 @@
 
   &--countdown {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
     margin-bottom: var(--plug-checkout-spacing-default);
+
+    @include md {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    & > p {
+      margin-top: calc(-1 * var(--plug-checkout-spacing-default));
+
+      @include md {
+        margin-top: 0;
+      }
+    }
 
     & > div {
       display: flex;
@@ -143,7 +155,11 @@
       align-items: center;
 
       & > checkout-countdown {
-        margin-left: var(--plug-checkout-spacing-xs);
+        margin-left: var(--plug-checkout-spacing-default);
+
+        @include md {
+          margin-left: var(--plug-checkout-spacing-xs);
+        }
       }
     }
   }

@@ -6,11 +6,29 @@
   top: 0;
   left: 0;
   z-index: 30;
-  background: var(--plug-checkout-color-accent-light);
+  background: transparent;
 
   @include md {
     justify-content: center;
     align-items: center;
     background: rgba(29, 31, 42, 0.8);
+  }
+}
+
+.checkout-modal__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  animation: moveUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+@keyframes moveUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0px);
   }
 }

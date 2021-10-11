@@ -27,30 +27,32 @@ export class CheckoutModal {
 
     return (
       <Host class={{ 'checkout-modal__container': true }}>
-        {this.mode === 'success' && <checkout-modal-success />}
-        {this.mode === 'error' && (
-          <checkout-modal-error
-            errorTitle={this.errorTitle}
-            errorDescription={this.errorDescription}
-          />
-        )}
-        {this.mode === 'pix' && (
-          <checkout-modal-pix
-            qrCodeIdentificator={this.paymentCode}
-            qrCodeImageUrl={this.paymentImageUrl}
-            amount={this.amount}
-            expirationDate={this.expirationDate}
-            expirationTime={this.expirationTime}
-          />
-        )}
-        {this.mode === 'boleto' && (
-          <checkout-modal-boleto
-            boletoCode={this.paymentCode}
-            boletoImageUrl={this.paymentImageUrl}
-            amount={this.amount}
-            expirationDate={this.expirationDate}
-          />
-        )}
+        <div class={{ 'checkout-modal__content': true }}>
+          {this.mode === 'success' && <checkout-modal-success />}
+          {this.mode === 'error' && (
+            <checkout-modal-error
+              errorTitle={this.errorTitle}
+              errorDescription={this.errorDescription}
+            />
+          )}
+          {this.mode === 'pix' && (
+            <checkout-modal-pix
+              qrCodeIdentificator={this.paymentCode}
+              qrCodeImageUrl={this.paymentImageUrl}
+              amount={this.amount}
+              expirationDate={this.expirationDate}
+              expirationTime={this.expirationTime}
+            />
+          )}
+          {this.mode === 'boleto' && (
+            <checkout-modal-boleto
+              boletoCode={this.paymentCode}
+              boletoImageUrl={this.paymentImageUrl}
+              amount={this.amount}
+              expirationDate={this.expirationDate}
+            />
+          )}
+        </div>
       </Host>
     )
   }

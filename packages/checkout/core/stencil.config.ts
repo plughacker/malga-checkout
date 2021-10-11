@@ -15,6 +15,7 @@ export const config: Config = {
         '../../common/src/assets/styles/theme.scss',
         '../../common/src/assets/styles/typography.scss',
         '../../common/src/assets/styles/utils.scss',
+        '../../common/src/assets/styles/breakpoints.scss',
       ],
     }),
   ],

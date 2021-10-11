@@ -12,6 +12,7 @@ export const config: Config = {
         'src/assets/styles/theme.scss',
         'src/assets/styles/typography.scss',
         'src/assets/styles/utils.scss',
+        'src/assets/styles/breakpoints.scss',
       ],
     }),
   ],

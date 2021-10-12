@@ -184,7 +184,7 @@ export class PlugCheckoutFullIdentification {
           content="Endereço"
         />
         <fieldset
-          class={{ 'plug-checkout-full-identification__row-fields': true }}
+          class={{ 'plug-checkout-full-identification__zipcode': true }}
         >
           <div
             class={{ 'plug-checkout-full-identification__error-message': true }}

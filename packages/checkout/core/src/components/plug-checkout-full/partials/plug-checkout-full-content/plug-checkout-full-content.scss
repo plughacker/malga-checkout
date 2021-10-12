@@ -6,23 +6,37 @@
 
 .plug-checkout-full-content__main {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   height: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 var(--plug-checkout-spacing-sm);
+
+  @include md {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 .plug-checkout-full-content__section {
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-bottom: var(--plug-checkout-spacing-sm);
+
+  @include md {
+    margin-bottom: 0;
+  }
 
   &:first-child {
-    margin-right: var(--plug-checkout-spacing-md);
+    @include md {
+      margin-right: var(--plug-checkout-spacing-md);
+    }
   }
 
   &:nth-child(2) {
-    margin-left: var(--plug-checkout-spacing-md);
+    @include md {
+      margin-left: var(--plug-checkout-spacing-md);
+    }
   }
 }

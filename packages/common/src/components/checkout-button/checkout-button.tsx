@@ -57,7 +57,7 @@ export class CheckoutButton implements ComponentInterface {
           onFocus={this.onFocus}
           onBlur={this.onBlur}
         >
-          {!!this.icon && (
+          {(!!this.icon || this.isLoading) && (
             <checkout-icon
               icon={this.isLoading ? 'spinner' : this.icon}
               class={this.isLoading ? 'icon icon-loading' : 'icon'}

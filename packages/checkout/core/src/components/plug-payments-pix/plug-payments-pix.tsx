@@ -100,6 +100,7 @@ export class PlugPaymentsPix {
         <checkout-manual-payment
           fullWidth
           paymentMethod="pix"
+          isLoading={this.isLoading}
           onPaymentClick={() => this.handleFormSubmit()}
         />
         {this.showDialog && this.dialog.open && (

@@ -99,6 +99,7 @@ export class PlugPaymentsBoleto {
         <checkout-manual-payment
           fullWidth
           paymentMethod="boleto"
+          isLoading={this.isLoading}
           onPaymentClick={() => this.handleFormSubmit()}
         />
         {this.showDialog && this.dialog.open && (

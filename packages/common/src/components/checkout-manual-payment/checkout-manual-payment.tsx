@@ -17,6 +17,7 @@ import { CheckoutManualPaymentDescriptions } from './checkout-manual-payment.typ
 export class CheckoutManualPayment implements ComponentInterface {
   @Prop() fullWidth: boolean
   @Prop() paymentMethod: CheckoutManualPaymentDescriptions = 'pix'
+  @Prop() isLoading: boolean
 
   @Event() paymentClick!: EventEmitter<void>
 
@@ -58,7 +59,11 @@ export class CheckoutManualPayment implements ComponentInterface {
           {CheckoutManualPayment.DESCRIPTIONS[this.paymentMethod]}
         </checkout-typography>
         <div class={{ 'checkout-manual-paymnet__content': true }}>
-          <checkout-button label="Pagar" onClick={this.onClick} />
+          <checkout-button
+            isLoading={this.isLoading}
+            label="Pagar"
+            onClick={this.onClick}
+          />
           <checkout-icon icon="poweredByPlug" />
         </div>
       </Host>

@@ -10,6 +10,7 @@
 | Property        | Attribute        | Description | Type                                  | Default     |
 | --------------- | ---------------- | ----------- | ------------------------------------- | ----------- |
 | `fullWidth`     | `full-width`     |             | `boolean`                             | `undefined` |
+| `isLoading`     | `is-loading`     |             | `boolean`                             | `undefined` |
 | `paymentMethod` | `payment-method` |             | `"boleto" \| "pix" \| "pixWithTimer"` | `'pix'`     |
 
 

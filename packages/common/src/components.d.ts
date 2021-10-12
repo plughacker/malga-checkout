@@ -61,6 +61,7 @@ export namespace Components {
     }
     interface CheckoutManualPayment {
         "fullWidth": boolean;
+        "isLoading": boolean;
         "paymentMethod": CheckoutManualPaymentDescriptions;
     }
     interface CheckoutModal {
@@ -341,6 +342,7 @@ declare namespace LocalJSX {
     }
     interface CheckoutManualPayment {
         "fullWidth"?: boolean;
+        "isLoading"?: boolean;
         "onPaymentClick"?: (event: CustomEvent<void>) => void;
         "paymentMethod"?: CheckoutManualPaymentDescriptions;
     }

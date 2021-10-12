@@ -4,6 +4,7 @@
   padding: var(--plug-checkout-spacing-sm);
   border-radius: var(--plug-checkout-spacing-xs);
   background: var(--plug-checkout-color-accent-light);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
 
   &--full-width {
     width: 100%;
@@ -31,6 +32,24 @@
     opacity: 0;
     transition: opacity 0.5s ease;
     padding: 0;
+
+    & > checkout-icon > i > svg {
+      color: var(--plug-checkout-color-brand-middle);
+    }
+  }
+
+  & > span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    @extend %typography-label;
+    color: var(--plug-checkout-color-grey-light);
+    fill: var(--plug-checkout-color-grey-light);
+
+    & > checkout-icon {
+      margin-right: var(--plug-checkout-spacing-xs);
+    }
   }
 
   &--editable {

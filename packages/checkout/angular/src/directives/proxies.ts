@@ -150,35 +150,6 @@ export class CheckoutIcon {
   }
 }
 
-import { CheckoutInput as ICheckoutInput } from '@plug-checkout/core/Users/leonardorpr/dev/plug/plug-checkout/packages/common/dist/collection/components/checkout-input/checkout-input';
-export declare interface CheckoutInput extends Components.CheckoutInput {}
-@ProxyCmp({
-  inputs: ['autofocus', 'customContainerClass', 'customInputClass', 'customLabelClass', 'disabled', 'fullWidth', 'hasError', 'hasValidation', 'inputmode', 'label', 'mask', 'max', 'maxlength', 'min', 'minlength', 'multiple', 'name', 'placeholder', 'readonly', 'required', 'startIcon', 'type', 'value']
-})
-@Component({
-  selector: 'checkout-input',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  inputs: ['autofocus', 'customContainerClass', 'customInputClass', 'customLabelClass', 'disabled', 'fullWidth', 'hasError', 'hasValidation', 'inputmode', 'label', 'mask', 'max', 'maxlength', 'min', 'minlength', 'multiple', 'name', 'placeholder', 'readonly', 'required', 'startIcon', 'type', 'value'],
-  outputs: ['inputed', 'changed', 'blurred', 'focused']
-})
-export class CheckoutInput {
-  /**  */
-  inputed!: ICheckoutInput['inputed'];
-  /**  */
-  changed!: ICheckoutInput['changed'];
-  /**  */
-  blurred!: ICheckoutInput['blurred'];
-  /**  */
-  focused!: ICheckoutInput['focused'];
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['inputed', 'changed', 'blurred', 'focused']);
-  }
-}
-
 import { CheckoutManualPayment as ICheckoutManualPayment } from '@plug-checkout/core/Users/leonardorpr/dev/plug/plug-checkout/packages/common/dist/collection/components/checkout-manual-payment/checkout-manual-payment';
 export declare interface CheckoutManualPayment extends Components.CheckoutManualPayment {}
 @ProxyCmp({
@@ -351,35 +322,6 @@ export class CheckoutRadioField {
     c.detach();
     this.el = r.nativeElement;
     proxyOutputs(this, this.el, ['inputed', 'clicked', 'changed']);
-  }
-}
-
-import { CheckoutSelect as ICheckoutSelect } from '@plug-checkout/core/Users/leonardorpr/dev/plug/plug-checkout/packages/common/dist/collection/components/checkout-select/checkout-select';
-export declare interface CheckoutSelect extends Components.CheckoutSelect {}
-@ProxyCmp({
-  inputs: ['autofocus', 'customContainerClass', 'customLabelClass', 'customSelectClass', 'disabled', 'fullWidth', 'hasError', 'hasValidation', 'label', 'name', 'options', 'placeholder', 'readonly', 'required', 'startIcon', 'value']
-})
-@Component({
-  selector: 'checkout-select',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  inputs: ['autofocus', 'customContainerClass', 'customLabelClass', 'customSelectClass', 'disabled', 'fullWidth', 'hasError', 'hasValidation', 'label', 'name', 'options', 'placeholder', 'readonly', 'required', 'startIcon', 'value'],
-  outputs: ['inputed', 'changed', 'blurred', 'focused']
-})
-export class CheckoutSelect {
-  /**  */
-  inputed!: ICheckoutSelect['inputed'];
-  /**  */
-  changed!: ICheckoutSelect['changed'];
-  /**  */
-  blurred!: ICheckoutSelect['blurred'];
-  /**  */
-  focused!: ICheckoutSelect['focused'];
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['inputed', 'changed', 'blurred', 'focused']);
   }
 }
 

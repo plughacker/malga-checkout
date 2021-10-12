@@ -50,6 +50,7 @@
 - checkout-order-summary
 - checkout-accordion
 - [plug-checkout-full-identification](./partials/plug-checkout-full-identification)
+- checkout-icon
 - [plug-checkout](../plug-checkout)
 - [plug-checkout-full-footer](./partials/plug-checkout-full-footer)
 
@@ -61,6 +62,7 @@ graph TD;
   plug-checkout-full --> checkout-order-summary
   plug-checkout-full --> checkout-accordion
   plug-checkout-full --> plug-checkout-full-identification
+  plug-checkout-full --> checkout-icon
   plug-checkout-full --> plug-checkout
   plug-checkout-full --> plug-checkout-full-footer
   plug-checkout-full-header --> checkout-icon

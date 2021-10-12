@@ -48,10 +48,14 @@ export class CheckoutAccordion {
         >
           {this.label}
 
-          {this.isEditable && (
+          {!this.opened && this.isEditable && (
             <button type="button" onClick={this.handleExpandClick}>
               <checkout-icon icon="edit" />
             </button>
+          )}
+
+          {this.opened && (
+            <slot name="accordion-header-additional-information" />
           )}
         </header>
         <div

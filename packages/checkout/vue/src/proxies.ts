@@ -70,37 +70,6 @@ export const CheckoutIcon = /*@__PURE__*/ defineContainer<JSX.CheckoutIcon>('che
 ]);
 
 
-export const CheckoutInput = /*@__PURE__*/ defineContainer<JSX.CheckoutInput>('checkout-input', undefined, [
-  'customContainerClass',
-  'customLabelClass',
-  'customInputClass',
-  'mask',
-  'startIcon',
-  'hasValidation',
-  'hasError',
-  'max',
-  'maxlength',
-  'min',
-  'minlength',
-  'multiple',
-  'placeholder',
-  'label',
-  'name',
-  'fullWidth',
-  'readonly',
-  'required',
-  'autofocus',
-  'disabled',
-  'inputmode',
-  'type',
-  'value',
-  'inputed',
-  'changed',
-  'blurred',
-  'focused'
-]);
-
-
 export const CheckoutManualPayment = /*@__PURE__*/ defineContainer<JSX.CheckoutManualPayment>('checkout-manual-payment', undefined, [
   'fullWidth',
   'paymentMethod',
@@ -172,30 +141,6 @@ export const CheckoutRadioField = /*@__PURE__*/ defineContainer<JSX.CheckoutRadi
   'inputed',
   'clicked',
   'changed'
-]);
-
-
-export const CheckoutSelect = /*@__PURE__*/ defineContainer<JSX.CheckoutSelect>('checkout-select', undefined, [
-  'customContainerClass',
-  'customLabelClass',
-  'customSelectClass',
-  'startIcon',
-  'hasError',
-  'placeholder',
-  'label',
-  'name',
-  'options',
-  'hasValidation',
-  'fullWidth',
-  'readonly',
-  'required',
-  'autofocus',
-  'disabled',
-  'value',
-  'inputed',
-  'changed',
-  'blurred',
-  'focused'
 ]);
 
 

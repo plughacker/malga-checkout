@@ -137,6 +137,11 @@ export class PlugCheckoutFull {
               opened={this.currentSection === 'payments'}
               onExpandClick={() => this.handleChangeSection('payments')}
             >
+              <span slot="accordion-header-additional-information">
+                <checkout-icon icon="lock" />
+                Seguro e encriptado
+              </span>
+
               <plug-checkout
                 publicKey={this.publicKey}
                 clientId={this.clientId}

@@ -79,7 +79,11 @@ export class CheckoutOrderSummary {
             </ul>
             {this.delivery && (
               <div class={{ 'checkout-order-summary__delivery': true }}>
-                <checkout-typography variation="subtitle1" content="Frete" />
+                <checkout-typography
+                  color="darkness"
+                  variation="subtitle1"
+                  content="Frete"
+                />
                 <checkout-typography
                   tag="span"
                   variation="body1"

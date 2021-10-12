@@ -7,12 +7,10 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { CheckoutIconNames } from "./components/checkout-icon/checkout-icon.types";
 import { CheckoutButtonType } from "./components/checkout-button/checkout-button.types";
-import { CheckoutInputChangeEvent, CheckoutInputMode, CheckoutInputType, CheckoutInputValue } from "./components/checkout-input/checkout-input.types";
 import { CheckoutManualPaymentDescriptions } from "./components/checkout-manual-payment/checkout-manual-payment.types";
 import { CheckoutModalMode } from "./components/checkout-modal/checkout-modal.types";
 import { Product } from "./components/checkout-order-summary/checkout-order-summary.types";
 import { CheckoutRadioFieldChangeEvent, CheckoutRadioFieldValue } from "./components/checkout-radio-field/checkout-radio-field.types";
-import { CheckoutSelectChangeEvent, CheckoutSelectOptions, CheckoutSelectValue } from "./components/checkout-select/checkout-select.types";
 import { CheckoutSelectFieldChangeEvent, CheckoutSelectFieldOptions, CheckoutSelectFieldValue } from "./components/checkout-select-field/checkout-select-field.types";
 import { CheckoutTextFieldChangeEvent, CheckoutTextFieldMode, CheckoutTextFieldType, CheckoutTextFieldValue } from "./components/checkout-text-field/checkout-text-field.types";
 import { CheckoutTypographyColor, CheckoutTypographyVariation } from "./components/checkout-typography/checkout-typography.types";
@@ -60,31 +58,6 @@ export namespace Components {
     interface CheckoutIcon {
         "class"?: string;
         "icon": CheckoutIconNames;
-    }
-    interface CheckoutInput {
-        "autofocus": boolean;
-        "customContainerClass"?: string;
-        "customInputClass"?: string;
-        "customLabelClass"?: string;
-        "disabled": boolean;
-        "fullWidth": boolean;
-        "hasError"?: boolean;
-        "hasValidation"?: boolean;
-        "inputmode": CheckoutInputMode;
-        "label"?: string;
-        "mask"?: string;
-        "max"?: string;
-        "maxlength"?: number;
-        "min"?: string;
-        "minlength"?: number;
-        "multiple"?: boolean;
-        "name": string;
-        "placeholder"?: string;
-        "readonly": boolean;
-        "required": boolean;
-        "startIcon"?: CheckoutIconNames;
-        "type": CheckoutInputType;
-        "value"?: CheckoutInputValue;
     }
     interface CheckoutManualPayment {
         "fullWidth": boolean;
@@ -135,24 +108,6 @@ export namespace Components {
         "isChecked": boolean;
         "label": string;
         "value"?: CheckoutRadioFieldValue;
-    }
-    interface CheckoutSelect {
-        "autofocus": boolean;
-        "customContainerClass"?: string;
-        "customLabelClass"?: string;
-        "customSelectClass"?: string;
-        "disabled": boolean;
-        "fullWidth": boolean;
-        "hasError"?: boolean;
-        "hasValidation": boolean;
-        "label"?: string;
-        "name": string;
-        "options": CheckoutSelectOptions[];
-        "placeholder"?: string;
-        "readonly": boolean;
-        "required": boolean;
-        "startIcon"?: CheckoutIconNames;
-        "value"?: CheckoutSelectValue;
     }
     interface CheckoutSelectField {
         "autofocus": boolean;
@@ -247,12 +202,6 @@ declare global {
         prototype: HTMLCheckoutIconElement;
         new (): HTMLCheckoutIconElement;
     };
-    interface HTMLCheckoutInputElement extends Components.CheckoutInput, HTMLStencilElement {
-    }
-    var HTMLCheckoutInputElement: {
-        prototype: HTMLCheckoutInputElement;
-        new (): HTMLCheckoutInputElement;
-    };
     interface HTMLCheckoutManualPaymentElement extends Components.CheckoutManualPayment, HTMLStencilElement {
     }
     var HTMLCheckoutManualPaymentElement: {
@@ -301,12 +250,6 @@ declare global {
         prototype: HTMLCheckoutRadioFieldElement;
         new (): HTMLCheckoutRadioFieldElement;
     };
-    interface HTMLCheckoutSelectElement extends Components.CheckoutSelect, HTMLStencilElement {
-    }
-    var HTMLCheckoutSelectElement: {
-        prototype: HTMLCheckoutSelectElement;
-        new (): HTMLCheckoutSelectElement;
-    };
     interface HTMLCheckoutSelectFieldElement extends Components.CheckoutSelectField, HTMLStencilElement {
     }
     var HTMLCheckoutSelectFieldElement: {
@@ -333,7 +276,6 @@ declare global {
         "checkout-credit-card": HTMLCheckoutCreditCardElement;
         "checkout-error-message": HTMLCheckoutErrorMessageElement;
         "checkout-icon": HTMLCheckoutIconElement;
-        "checkout-input": HTMLCheckoutInputElement;
         "checkout-manual-payment": HTMLCheckoutManualPaymentElement;
         "checkout-modal": HTMLCheckoutModalElement;
         "checkout-modal-boleto": HTMLCheckoutModalBoletoElement;
@@ -342,7 +284,6 @@ declare global {
         "checkout-modal-success": HTMLCheckoutModalSuccessElement;
         "checkout-order-summary": HTMLCheckoutOrderSummaryElement;
         "checkout-radio-field": HTMLCheckoutRadioFieldElement;
-        "checkout-select": HTMLCheckoutSelectElement;
         "checkout-select-field": HTMLCheckoutSelectFieldElement;
         "checkout-text-field": HTMLCheckoutTextFieldElement;
         "checkout-typography": HTMLCheckoutTypographyElement;
@@ -396,35 +337,6 @@ declare namespace LocalJSX {
     interface CheckoutIcon {
         "class"?: string;
         "icon"?: CheckoutIconNames;
-    }
-    interface CheckoutInput {
-        "autofocus"?: boolean;
-        "customContainerClass"?: string;
-        "customInputClass"?: string;
-        "customLabelClass"?: string;
-        "disabled"?: boolean;
-        "fullWidth"?: boolean;
-        "hasError"?: boolean;
-        "hasValidation"?: boolean;
-        "inputmode"?: CheckoutInputMode;
-        "label"?: string;
-        "mask"?: string;
-        "max"?: string;
-        "maxlength"?: number;
-        "min"?: string;
-        "minlength"?: number;
-        "multiple"?: boolean;
-        "name"?: string;
-        "onBlurred"?: (event: CustomEvent<FocusEvent>) => void;
-        "onChanged"?: (event: CustomEvent<CheckoutInputChangeEvent>) => void;
-        "onFocused"?: (event: CustomEvent<FocusEvent>) => void;
-        "onInputed"?: (event: CustomEvent<KeyboardEvent>) => void;
-        "placeholder"?: string;
-        "readonly"?: boolean;
-        "required"?: boolean;
-        "startIcon"?: CheckoutIconNames;
-        "type"?: CheckoutInputType;
-        "value"?: CheckoutInputValue;
     }
     interface CheckoutManualPayment {
         "fullWidth"?: boolean;
@@ -483,28 +395,6 @@ declare namespace LocalJSX {
         "onClicked"?: (event: CustomEvent<MouseEvent>) => void;
         "onInputed"?: (event: CustomEvent<KeyboardEvent>) => void;
         "value"?: CheckoutRadioFieldValue;
-    }
-    interface CheckoutSelect {
-        "autofocus"?: boolean;
-        "customContainerClass"?: string;
-        "customLabelClass"?: string;
-        "customSelectClass"?: string;
-        "disabled"?: boolean;
-        "fullWidth"?: boolean;
-        "hasError"?: boolean;
-        "hasValidation"?: boolean;
-        "label"?: string;
-        "name"?: string;
-        "onBlurred"?: (event: CustomEvent<void>) => void;
-        "onChanged"?: (event: CustomEvent<CheckoutSelectChangeEvent>) => void;
-        "onFocused"?: (event: CustomEvent<void>) => void;
-        "onInputed"?: (event: CustomEvent<KeyboardEvent>) => void;
-        "options"?: CheckoutSelectOptions[];
-        "placeholder"?: string;
-        "readonly"?: boolean;
-        "required"?: boolean;
-        "startIcon"?: CheckoutIconNames;
-        "value"?: CheckoutSelectValue;
     }
     interface CheckoutSelectField {
         "autofocus"?: boolean;
@@ -571,7 +461,6 @@ declare namespace LocalJSX {
         "checkout-credit-card": CheckoutCreditCard;
         "checkout-error-message": CheckoutErrorMessage;
         "checkout-icon": CheckoutIcon;
-        "checkout-input": CheckoutInput;
         "checkout-manual-payment": CheckoutManualPayment;
         "checkout-modal": CheckoutModal;
         "checkout-modal-boleto": CheckoutModalBoleto;
@@ -580,7 +469,6 @@ declare namespace LocalJSX {
         "checkout-modal-success": CheckoutModalSuccess;
         "checkout-order-summary": CheckoutOrderSummary;
         "checkout-radio-field": CheckoutRadioField;
-        "checkout-select": CheckoutSelect;
         "checkout-select-field": CheckoutSelectField;
         "checkout-text-field": CheckoutTextField;
         "checkout-typography": CheckoutTypography;
@@ -597,7 +485,6 @@ declare module "@stencil/core" {
             "checkout-credit-card": LocalJSX.CheckoutCreditCard & JSXBase.HTMLAttributes<HTMLCheckoutCreditCardElement>;
             "checkout-error-message": LocalJSX.CheckoutErrorMessage & JSXBase.HTMLAttributes<HTMLCheckoutErrorMessageElement>;
             "checkout-icon": LocalJSX.CheckoutIcon & JSXBase.HTMLAttributes<HTMLCheckoutIconElement>;
-            "checkout-input": LocalJSX.CheckoutInput & JSXBase.HTMLAttributes<HTMLCheckoutInputElement>;
             "checkout-manual-payment": LocalJSX.CheckoutManualPayment & JSXBase.HTMLAttributes<HTMLCheckoutManualPaymentElement>;
             "checkout-modal": LocalJSX.CheckoutModal & JSXBase.HTMLAttributes<HTMLCheckoutModalElement>;
             "checkout-modal-boleto": LocalJSX.CheckoutModalBoleto & JSXBase.HTMLAttributes<HTMLCheckoutModalBoletoElement>;
@@ -606,7 +493,6 @@ declare module "@stencil/core" {
             "checkout-modal-success": LocalJSX.CheckoutModalSuccess & JSXBase.HTMLAttributes<HTMLCheckoutModalSuccessElement>;
             "checkout-order-summary": LocalJSX.CheckoutOrderSummary & JSXBase.HTMLAttributes<HTMLCheckoutOrderSummaryElement>;
             "checkout-radio-field": LocalJSX.CheckoutRadioField & JSXBase.HTMLAttributes<HTMLCheckoutRadioFieldElement>;
-            "checkout-select": LocalJSX.CheckoutSelect & JSXBase.HTMLAttributes<HTMLCheckoutSelectElement>;
             "checkout-select-field": LocalJSX.CheckoutSelectField & JSXBase.HTMLAttributes<HTMLCheckoutSelectFieldElement>;
             "checkout-text-field": LocalJSX.CheckoutTextField & JSXBase.HTMLAttributes<HTMLCheckoutTextFieldElement>;
             "checkout-typography": LocalJSX.CheckoutTypography & JSXBase.HTMLAttributes<HTMLCheckoutTypographyElement>;

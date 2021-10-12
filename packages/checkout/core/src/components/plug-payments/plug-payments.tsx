@@ -112,6 +112,7 @@ export class PlugPayments implements ComponentInterface {
                 fullWidth
                 label="PIX"
                 value="pix"
+                endIcon="pix"
                 isChecked={this.currentPayment === 'pix'}
                 onClicked={() => this.handlePaymentChange('pix')}
               />

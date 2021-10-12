@@ -104,6 +104,7 @@ export namespace Components {
         "customContainerClass"?: string;
         "customInputClass"?: string;
         "customLabelClass"?: string;
+        "endIcon"?: CheckoutIconNames;
         "fullWidth": boolean;
         "isChecked": boolean;
         "label": string;
@@ -388,6 +389,7 @@ declare namespace LocalJSX {
         "customContainerClass"?: string;
         "customInputClass"?: string;
         "customLabelClass"?: string;
+        "endIcon"?: CheckoutIconNames;
         "fullWidth"?: boolean;
         "isChecked"?: boolean;
         "label"?: string;

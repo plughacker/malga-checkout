@@ -20,8 +20,9 @@ import WarningIcon from '../../assets/icons/warning.svg'
 import EyeIcon from '../../assets/icons/eye.svg'
 import EyeSlashIcon from '../../assets/icons/eye-slash.svg'
 import PoweredByPlug from '../../assets/icons/powered-by-plug.svg'
+import PixIcon from '../../assets/icons/pix.svg'
 
-@Component({ tag: 'checkout-icon' })
+@Component({ tag: 'checkout-icon', styleUrl: 'checkout-icon.scss' })
 export class CheckoutIcon implements ComponentInterface {
   @Prop() icon: CheckoutIconNames
   @Prop() class?: string
@@ -46,6 +47,7 @@ export class CheckoutIcon implements ComponentInterface {
       error: ErrorIcon,
       checkLarge: CheckLargeIcon,
       clipboard: ClipboardIcon,
+      pix: PixIcon,
     }
 
     return icons[this.icon]
@@ -53,7 +55,9 @@ export class CheckoutIcon implements ComponentInterface {
 
   render() {
     return (
-      <Host class={{ [this.class]: !!this.class }}>
+      <Host
+        class={{ 'checkout-icon__container': true, [this.class]: !!this.class }}
+      >
         <i innerHTML={this.renderCurrentIcon()} />
       </Host>
     )

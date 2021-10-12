@@ -9,6 +9,8 @@ import {
   EventEmitter,
 } from '@stencil/core'
 
+import { CheckoutIconNames } from '../checkout-icon/checkout-icon.types'
+
 import {
   CheckoutRadioFieldValue,
   CheckoutRadioFieldChangeEvent,
@@ -22,6 +24,7 @@ export class CheckoutRadioField implements ComponentInterface {
   @Prop() customContainerClass?: string
   @Prop() customLabelClass?: string
   @Prop() customInputClass?: string
+  @Prop() endIcon?: CheckoutIconNames
   @Prop() fullWidth = false
   @Prop() isChecked = false
   @Prop() label: string
@@ -79,7 +82,10 @@ export class CheckoutRadioField implements ComponentInterface {
               [this.customInputClass]: !!this.customInputClass,
             }}
           />
+
           {this.label}
+
+          {this.endIcon && <checkout-icon icon={this.endIcon} />}
         </label>
       </Host>
     )

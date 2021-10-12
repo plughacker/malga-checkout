@@ -30,6 +30,10 @@
   transition: all var(--plug-checkout-transition-default) ease;
   cursor: pointer;
 
+  & > checkout-icon {
+    margin-left: auto;
+  }
+
   &:hover {
     @extend %field-is-filled;
   }

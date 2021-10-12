@@ -1,0 +1,7 @@
+.checkout-icon__container {
+  @extend %centralized;
+
+  & > i {
+    @extend %centralized;
+  }
+}

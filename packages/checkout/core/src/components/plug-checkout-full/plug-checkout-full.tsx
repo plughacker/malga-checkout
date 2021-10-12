@@ -95,6 +95,7 @@ export class PlugCheckoutFull {
     return (
       <Host class={{ 'plug-checkout-full__container': true }}>
         <plug-checkout-full-header brand={this.brandUrl} />
+
         <plug-checkout-full-content>
           <checkout-order-summary
             slot="order"

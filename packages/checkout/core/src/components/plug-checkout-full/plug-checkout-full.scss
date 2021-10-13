@@ -6,6 +6,10 @@
   width: 100%;
   height: 100vh;
   background-color: var(--plug-checkout-color-accent-normal);
+
+  &--full-height {
+    height: 100%;
+  }
 }
 
 .plug-checkout-full__informations {

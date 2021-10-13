@@ -93,7 +93,13 @@ export class PlugCheckoutFull {
 
   render() {
     return (
-      <Host class={{ 'plug-checkout-full__container': true }}>
+      <Host
+        class={{
+          'plug-checkout-full__container': true,
+          'plug-checkout-full__container--full-height':
+            this.currentSection === 'identification',
+        }}
+      >
         <plug-checkout-full-header brand={this.brandUrl} />
 
         <plug-checkout-full-content>
@@ -131,9 +137,6 @@ export class PlugCheckoutFull {
             <checkout-accordion
               label="Pagamento"
               isEditable={this.currentSection !== 'payments'}
-              contentHeight={
-                this.currentSection === 'payments' ? '100%' : '0px'
-              }
               opened={this.currentSection === 'payments'}
               onExpandClick={() => this.handleChangeSection('payments')}
             >

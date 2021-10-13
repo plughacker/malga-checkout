@@ -1,12 +1,4 @@
-import {
-  Component,
-  Host,
-  h,
-  Prop,
-  State,
-  Event,
-  EventEmitter,
-} from '@stencil/core'
+import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
 
 @Component({
   tag: 'checkout-accordion',
@@ -17,9 +9,6 @@ export class CheckoutAccordion {
   @Prop() label: string
   @Prop() isEditable: boolean
   @Prop() fullWidth = false
-  @Prop() contentHeight?: string
-
-  @State() contentScrollHeight = 0
 
   @Event() expandClick!: EventEmitter<void>
 
@@ -28,10 +17,6 @@ export class CheckoutAccordion {
   }
 
   render() {
-    const contentMaxHeight = this.opened
-      ? `calc(${this.contentScrollHeight}px + 70px)`
-      : '0px'
-
     return (
       <Host
         aria-expanded={this.opened}
@@ -59,12 +44,10 @@ export class CheckoutAccordion {
           )}
         </header>
         <div
-          ref={(element) => (this.contentScrollHeight = element.scrollHeight)}
           class={{
             'checkout-accordion__content': true,
             'checkout-accordion__content--opened': this.opened,
           }}
-          style={{ maxHeight: this.contentHeight || contentMaxHeight }}
           aria-hidden={this.opened}
         >
           <slot />

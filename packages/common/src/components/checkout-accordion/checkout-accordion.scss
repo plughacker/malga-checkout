@@ -60,12 +60,12 @@
 }
 
 .checkout-accordion__content {
-  max-height: 0;
+  height: 0px;
   overflow: hidden;
-  transition: max-height 0.5s ease;
   margin-top: 0;
 
   &--opened {
+    height: 100%;
     margin-top: var(--plug-checkout-spacing-sm);
   }
 }

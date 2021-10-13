@@ -16,7 +16,6 @@ import { CheckoutTextFieldChangeEvent, CheckoutTextFieldMode, CheckoutTextFieldT
 import { CheckoutTypographyColor, CheckoutTypographyVariation } from "./components/checkout-typography/checkout-typography.types";
 export namespace Components {
     interface CheckoutAccordion {
-        "contentHeight"?: string;
         "fullWidth": boolean;
         "isEditable": boolean;
         "label": string;
@@ -293,7 +292,6 @@ declare global {
 }
 declare namespace LocalJSX {
     interface CheckoutAccordion {
-        "contentHeight"?: string;
         "fullWidth"?: boolean;
         "isEditable"?: boolean;
         "label"?: string;

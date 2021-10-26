@@ -1,4 +1,12 @@
-import { Component, Host, h, Prop, Fragment } from '@stencil/core'
+import {
+  Component,
+  Host,
+  h,
+  Prop,
+  Fragment,
+  Event,
+  EventEmitter,
+} from '@stencil/core'
 
 import { formatToReal } from '../../../../utils/currency'
 import { formatDate } from '../../../../utils/date'
@@ -13,6 +21,10 @@ export class CheckoutModalPix {
   @Prop() amount: number
   @Prop() expirationDate: string
   @Prop() expirationTime: number
+  @Prop() actionButtonLabel = 'Continuar'
+
+  @Event() countdownIsFinished: EventEmitter<void>
+  @Event() pixActionButtonIsClicked: EventEmitter<void>
 
   private getExpirationDateFormatted = () => formatDate(new Date())
 
@@ -73,7 +85,10 @@ export class CheckoutModalPix {
                     Seu código
                     <strong> expira em:</strong>
                   </p>
-                  <checkout-countdown expirationTime={this.expirationTime} />
+                  <checkout-countdown
+                    expirationTime={this.expirationTime}
+                    onCountdownFinished={() => this.countdownIsFinished.emit()}
+                  />
                 </div>
 
                 <p>
@@ -139,6 +154,16 @@ export class CheckoutModalPix {
                 </li>
               </ul>
             )}
+          </div>
+          <div
+            class={{
+              'checkout-modal-pix__action-button': true,
+            }}
+          >
+            <checkout-button
+              label={this.actionButtonLabel}
+              onClicked={() => this.pixActionButtonIsClicked.emit()}
+            />
           </div>
         </section>
       </Host>

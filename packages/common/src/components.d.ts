@@ -73,6 +73,7 @@ export namespace Components {
         "open": boolean;
         "paymentCode": string;
         "paymentImageUrl": string;
+        "pixActionButtonLabel"?: string;
     }
     interface CheckoutModalBoleto {
         "amount": number;
@@ -359,6 +360,7 @@ declare namespace LocalJSX {
         "open"?: boolean;
         "paymentCode"?: string;
         "paymentImageUrl"?: string;
+        "pixActionButtonLabel"?: string;
     }
     interface CheckoutModalBoleto {
         "amount"?: number;
@@ -377,6 +379,7 @@ declare namespace LocalJSX {
         "expirationDate"?: string;
         "expirationTime"?: number;
         "onCountdownIsFinished"?: (event: CustomEvent<void>) => void;
+        "onPixActionButtonIsClicked"?: (event: CustomEvent<void>) => void;
         "qrCodeIdentificator"?: string;
         "qrCodeImageUrl"?: string;
     }

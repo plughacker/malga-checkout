@@ -185,3 +185,9 @@
     list-style-type: decimal;
   }
 }
+
+.checkout-modal-pix__action-button {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--plug-checkout-spacing-sm);
+}

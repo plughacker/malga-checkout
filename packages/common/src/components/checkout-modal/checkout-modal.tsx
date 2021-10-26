@@ -16,6 +16,11 @@ export class CheckoutModal {
   @Prop() amount: number
   @Prop() expirationDate?: string
   @Prop() expirationTime?: number
+  @Prop() boletoActionButtonLabel?: string
+  @Prop() pixActionButtonLabel?: string
+  @Prop() successActionButtonLabel?: string
+  @Prop() errorActionButtonLabel?: string
+  @Prop() successDescription?: string
 
   @Event() successButtonClicked: EventEmitter<void>
   @Event() errorButtonClicked: EventEmitter<void>
@@ -29,11 +34,21 @@ export class CheckoutModal {
     return (
       <Host class={{ 'checkout-modal__container': true }}>
         <div class={{ 'checkout-modal__content': true }}>
-          {this.mode === 'success' && <checkout-modal-success />}
+          {this.mode === 'success' && (
+            <checkout-modal-success
+              successDescription={this.successDescription}
+              successActionButtonLabel={this.successActionButtonLabel}
+              onSuccessActionButtonClicked={() =>
+                this.successButtonClicked.emit()
+              }
+            />
+          )}
           {this.mode === 'error' && (
             <checkout-modal-error
               errorTitle={this.errorTitle}
               errorDescription={this.errorDescription}
+              errorActionButtonLabel={this.errorActionButtonLabel}
+              onErrorActionButtonClicked={() => this.errorButtonClicked.emit()}
             />
           )}
           {this.mode === 'pix' && (
@@ -43,7 +58,11 @@ export class CheckoutModal {
               amount={this.amount}
               expirationDate={this.expirationDate}
               expirationTime={this.expirationTime}
+              actionButtonLabel={this.pixActionButtonLabel}
               onCountdownIsFinished={() => this.pixCountdownIsFinished.emit()}
+              onPixActionButtonIsClicked={() =>
+                this.successButtonClicked.emit()
+              }
             />
           )}
           {this.mode === 'boleto' && (
@@ -52,6 +71,10 @@ export class CheckoutModal {
               boletoImageUrl={this.paymentImageUrl}
               amount={this.amount}
               expirationDate={this.expirationDate}
+              actionButtonLabel={this.boletoActionButtonLabel}
+              onBoletoActionButtonIsClicked={() =>
+                this.successButtonClicked.emit()
+              }
             />
           )}
         </div>

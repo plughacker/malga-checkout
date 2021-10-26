@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop } from '@stencil/core'
+import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
 import { formatDate } from '../../../../utils/date'
 import { formatToReal } from '../../../../utils/currency'
 
@@ -11,6 +11,9 @@ export class CheckoutModalBoleto {
   @Prop() boletoImageUrl: string
   @Prop() amount: number
   @Prop() expirationDate: string
+  @Prop() actionButtonLabel = 'Continuar'
+
+  @Event() boletoActionButtonIsClicked: EventEmitter<void>
 
   private getExpirationDateFormatted = () => formatDate(new Date())
 
@@ -81,6 +84,16 @@ export class CheckoutModalBoleto {
                 automaticamente. Não pague após esta data.
               </li>
             </ul>
+          </div>
+          <div
+            class={{
+              'checkout-modal-boleto__action-button': true,
+            }}
+          >
+            <checkout-button
+              label={this.actionButtonLabel}
+              onClicked={() => this.boletoActionButtonIsClicked.emit()}
+            />
           </div>
         </section>
       </Host>

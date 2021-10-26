@@ -65,6 +65,7 @@ export namespace Components {
     }
     interface CheckoutModal {
         "amount": number;
+        "boletoActionButtonLabel"?: string;
         "errorActionButtonLabel"?: string;
         "errorDescription"?: string;
         "errorTitle"?: string;
@@ -79,6 +80,7 @@ export namespace Components {
         "successDescription"?: string;
     }
     interface CheckoutModalBoleto {
+        "actionButtonLabel": string;
         "amount": number;
         "boletoCode": string;
         "boletoImageUrl": string;
@@ -355,6 +357,7 @@ declare namespace LocalJSX {
     }
     interface CheckoutModal {
         "amount"?: number;
+        "boletoActionButtonLabel"?: string;
         "errorActionButtonLabel"?: string;
         "errorDescription"?: string;
         "errorTitle"?: string;
@@ -372,10 +375,12 @@ declare namespace LocalJSX {
         "successDescription"?: string;
     }
     interface CheckoutModalBoleto {
+        "actionButtonLabel"?: string;
         "amount"?: number;
         "boletoCode"?: string;
         "boletoImageUrl"?: string;
         "expirationDate"?: string;
+        "onBoletoActionButtonIsClicked"?: (event: CustomEvent<void>) => void;
     }
     interface CheckoutModalError {
         "errorActionButtonLabel"?: string;

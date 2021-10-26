@@ -1,6 +1,6 @@
 import { Customer } from './base-provider.types'
 
-import { cleanTextOnlyNumbers } from '../../utils'
+import { cleanTextOnlyNumbers } from '@plug-checkout/utils'
 
 export const getDocumentType = (identification: string) => {
   if (identification.length === 11) return 'cpf'

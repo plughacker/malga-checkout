@@ -1,6 +1,5 @@
 import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
-import { formatDate } from '../../../../utils/date'
-import { formatToReal } from '../../../../utils/currency'
+import { formatDate, formatToReal } from '@plug-checkout/utils'
 
 @Component({
   tag: 'checkout-modal-boleto',

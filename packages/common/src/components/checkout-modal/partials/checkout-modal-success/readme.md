@@ -5,11 +5,19 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property                   | Attribute                     | Description | Type     | Default                          |
+| -------------------------- | ----------------------------- | ----------- | -------- | -------------------------------- |
+| `successActionButtonLabel` | `success-action-button-label` |             | `string` | `'Continuar'`                    |
+| `successDescription`       | `success-description`         |             | `string` | `'Pedido recebido com sucesso!'` |
+
+
 ## Events
 
-| Event                  | Description | Type                |
-| ---------------------- | ----------- | ------------------- |
-| `successButtonClicked` |             | `CustomEvent<void>` |
+| Event                        | Description | Type                |
+| ---------------------------- | ----------- | ------------------- |
+| `successActionButtonClicked` |             | `CustomEvent<void>` |
 
 
 ## Dependencies

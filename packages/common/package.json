@@ -57,7 +57,9 @@
     "clipboard": "^2.0.8",
     "easytimer.js": "^4.5.1",
     "inputmask": "^5.0.6",
-    "payment": "^2.4.6"
+    "payment": "^2.4.6",
+    "@plug-checkout/utils": "*",
+    "@plug-checkout/types": "*"
   },
   "homepage": "https://github.com/plughacker/plug-checkout#readme"
 }

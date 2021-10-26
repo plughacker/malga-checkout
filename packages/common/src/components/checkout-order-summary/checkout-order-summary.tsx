@@ -2,7 +2,7 @@ import { Component, Host, h, Prop, State, Fragment } from '@stencil/core'
 
 import { Product } from './checkout-order-summary.types'
 
-import { formatToReal } from './checkout-order-summary.utils'
+import { formatToReal } from '@plug-checkout/utils'
 
 @Component({
   tag: 'checkout-order-summary',

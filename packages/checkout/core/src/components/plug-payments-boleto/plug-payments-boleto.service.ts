@@ -1,7 +1,7 @@
 import { Boleto } from '../../providers/boleto'
 import { Api } from '../../services/api'
 import { Charges, CreateChargeData } from '../../services/charges'
-import { cleanObjectProperties } from '../../utils'
+import { cleanObjectProperties } from '@plug-checkout/utils'
 
 import {
   PlugPaymentsBoletoChargeRequest,

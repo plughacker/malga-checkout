@@ -7,17 +7,18 @@
 
 ## Properties
 
-| Property           | Attribute           | Description | Type     | Default     |
-| ------------------ | ------------------- | ----------- | -------- | ----------- |
-| `errorDescription` | `error-description` |             | `string` | `undefined` |
-| `errorTitle`       | `error-title`       |             | `string` | `undefined` |
+| Property                 | Attribute                   | Description | Type     | Default              |
+| ------------------------ | --------------------------- | ----------- | -------- | -------------------- |
+| `errorActionButtonLabel` | `error-action-button-label` |             | `string` | `'Tentar Novamente'` |
+| `errorDescription`       | `error-description`         |             | `string` | `undefined`          |
+| `errorTitle`             | `error-title`               |             | `string` | `undefined`          |
 
 
 ## Events
 
-| Event                | Description | Type                |
-| -------------------- | ----------- | ------------------- |
-| `errorButtonClicked` |             | `CustomEvent<void>` |
+| Event                      | Description | Type                |
+| -------------------------- | ----------- | ------------------- |
+| `errorActionButtonClicked` |             | `CustomEvent<void>` |
 
 
 ## Dependencies

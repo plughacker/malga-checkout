@@ -4,7 +4,7 @@ import {
   cleanTextOnlyNumbers,
   parseInstallments,
   transformExpirationDate,
-} from '../../utils'
+} from '@plug-checkout/utils'
 
 import {
   CardAttributes,

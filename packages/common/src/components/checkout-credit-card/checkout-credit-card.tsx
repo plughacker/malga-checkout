@@ -8,7 +8,7 @@ import {
   ComponentInterface,
 } from '@stencil/core'
 
-import { getCurrentIssuer, getMaxLengthPerIssuer } from '../../utils/issuer'
+import { getCurrentIssuer, getMaxLengthPerIssuer } from '@plug-checkout/utils'
 
 @Component({
   tag: 'checkout-credit-card',

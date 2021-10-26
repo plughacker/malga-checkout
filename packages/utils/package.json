@@ -1,0 +1,29 @@
+{
+  "name": "@plug-checkout/utils",
+  "version": "0.0.1",
+  "description": "Utility functions for Plug Checkout",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plughacker/plug-checkout.git",
+    "directory": "packages/utils"
+  },
+  "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
+  "bugs": {
+    "url": "https://github.com/plughacker/plug-checkout/issues"
+  },
+  "keywords": [
+    "payments",
+    "plug",
+    "checkout",
+    "utils"
+  ],
+  "license": "MIT",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc --outdir build"
+  },
+  "dependencies": {
+    "payment": "^2.4.6"
+  },
+  "homepage": "https://github.com/plughacker/plug-checkout#readme"
+}

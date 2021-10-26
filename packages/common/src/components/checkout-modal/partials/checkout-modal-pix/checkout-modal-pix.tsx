@@ -8,8 +8,7 @@ import {
   EventEmitter,
 } from '@stencil/core'
 
-import { formatToReal } from '../../../../utils/currency'
-import { formatDate } from '../../../../utils/date'
+import { formatToReal, formatDate } from '@plug-checkout/utils'
 
 @Component({
   tag: 'checkout-modal-pix',

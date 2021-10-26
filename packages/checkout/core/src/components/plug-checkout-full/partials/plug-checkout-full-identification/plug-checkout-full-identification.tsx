@@ -8,7 +8,7 @@ import {
   Prop,
 } from '@stencil/core'
 
-import { countries } from '../../../../utils/countries'
+import { countries, cleanTextOnlyNumbers } from '@plug-checkout/utils'
 
 import { PlugCheckoutFullIdentificationService } from './plug-checkout-full-identification.service'
 import {
@@ -17,7 +17,6 @@ import {
 } from './plug-checkout-full-identification.types'
 import { validateCustomer } from './plug-checkout-full-identification.schema'
 import { getIdentificationMask } from './plug-checkout-full-identification.utils'
-import { cleanTextOnlyNumbers } from '../../../../utils'
 
 @Component({
   tag: 'plug-checkout-full-identification',

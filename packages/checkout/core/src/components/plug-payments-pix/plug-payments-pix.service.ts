@@ -1,7 +1,7 @@
 import { Pix } from '../../providers/pix'
 import { Api } from '../../services/api'
 import { Charges, CreateChargeData } from '../../services/charges'
-import { cleanObjectProperties } from '../../utils'
+import { cleanObjectProperties } from '@plug-checkout/utils'
 
 import {
   PlugPaymentsPixChargeRequest,

@@ -2,7 +2,7 @@ import { Card } from '../../providers/card'
 import { Api } from '../../services/api'
 import { Charges, CreateChargeData } from '../../services/charges'
 import { Customers } from '../../services/customers'
-import { cleanObjectProperties } from '../../utils'
+import { cleanObjectProperties } from '@plug-checkout/utils'
 
 import {
   PlugPaymentsCreditChargeRequest,

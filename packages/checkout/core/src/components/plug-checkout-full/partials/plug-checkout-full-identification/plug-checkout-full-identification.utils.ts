@@ -1,5 +1,5 @@
 import { ValidationError } from 'yup'
-import { cleanTextOnlyNumbers } from '../../../../utils'
+import { cleanTextOnlyNumbers } from '@plug-checkout/utils'
 
 export const normalizeValidationErrors = (errors: ValidationError[]) => {
   const normalizedErrors = errors.reduce(

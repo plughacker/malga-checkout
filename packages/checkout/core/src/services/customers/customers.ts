@@ -1,6 +1,6 @@
 import { Customer } from '../../providers/base-provider'
 import { Api } from '../api'
-import { cleanTextOnlyNumbers } from '../../utils'
+import { cleanTextOnlyNumbers } from '@plug-checkout/utils'
 
 import { CustomerConstructor } from './customers.types'
 

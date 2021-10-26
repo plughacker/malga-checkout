@@ -7,25 +7,31 @@
 
 ## Properties
 
-| Property           | Attribute           | Description | Type                                        | Default     |
-| ------------------ | ------------------- | ----------- | ------------------------------------------- | ----------- |
-| `amount`           | `amount`            |             | `number`                                    | `undefined` |
-| `errorDescription` | `error-description` |             | `string`                                    | `undefined` |
-| `errorTitle`       | `error-title`       |             | `string`                                    | `undefined` |
-| `expirationDate`   | `expiration-date`   |             | `string`                                    | `undefined` |
-| `expirationTime`   | `expiration-time`   |             | `number`                                    | `undefined` |
-| `mode`             | `mode`              |             | `"boleto" \| "error" \| "pix" \| "success"` | `undefined` |
-| `open`             | `open`              |             | `boolean`                                   | `undefined` |
-| `paymentCode`      | `payment-code`      |             | `string`                                    | `undefined` |
-| `paymentImageUrl`  | `payment-image-url` |             | `string`                                    | `undefined` |
+| Property                   | Attribute                     | Description | Type                                        | Default     |
+| -------------------------- | ----------------------------- | ----------- | ------------------------------------------- | ----------- |
+| `amount`                   | `amount`                      |             | `number`                                    | `undefined` |
+| `boletoActionButtonLabel`  | `boleto-action-button-label`  |             | `string`                                    | `undefined` |
+| `errorActionButtonLabel`   | `error-action-button-label`   |             | `string`                                    | `undefined` |
+| `errorDescription`         | `error-description`           |             | `string`                                    | `undefined` |
+| `errorTitle`               | `error-title`                 |             | `string`                                    | `undefined` |
+| `expirationDate`           | `expiration-date`             |             | `string`                                    | `undefined` |
+| `expirationTime`           | `expiration-time`             |             | `number`                                    | `undefined` |
+| `mode`                     | `mode`                        |             | `"boleto" \| "error" \| "pix" \| "success"` | `undefined` |
+| `open`                     | `open`                        |             | `boolean`                                   | `undefined` |
+| `paymentCode`              | `payment-code`                |             | `string`                                    | `undefined` |
+| `paymentImageUrl`          | `payment-image-url`           |             | `string`                                    | `undefined` |
+| `pixActionButtonLabel`     | `pix-action-button-label`     |             | `string`                                    | `undefined` |
+| `successActionButtonLabel` | `success-action-button-label` |             | `string`                                    | `undefined` |
+| `successDescription`       | `success-description`         |             | `string`                                    | `undefined` |
 
 
 ## Events
 
-| Event                  | Description | Type               |
-| ---------------------- | ----------- | ------------------ |
-| `errorButtonClicked`   |             | `CustomEvent<any>` |
-| `successButtonClicked` |             | `CustomEvent<any>` |
+| Event                    | Description | Type                |
+| ------------------------ | ----------- | ------------------- |
+| `errorButtonClicked`     |             | `CustomEvent<void>` |
+| `pixCountdownIsFinished` |             | `CustomEvent<void>` |
+| `successButtonClicked`   |             | `CustomEvent<void>` |
 
 
 ## Dependencies
@@ -55,12 +61,14 @@ graph TD;
   checkout-modal-pix --> checkout-typography
   checkout-modal-pix --> checkout-clipboard-button
   checkout-modal-pix --> checkout-countdown
+  checkout-modal-pix --> checkout-button
   checkout-clipboard-button --> checkout-icon
   checkout-clipboard-button --> checkout-typography
   checkout-countdown --> checkout-typography
   checkout-modal-boleto --> checkout-icon
   checkout-modal-boleto --> checkout-typography
   checkout-modal-boleto --> checkout-clipboard-button
+  checkout-modal-boleto --> checkout-button
   style checkout-modal fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

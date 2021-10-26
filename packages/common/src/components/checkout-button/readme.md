@@ -32,7 +32,9 @@
 ### Used by
 
  - [checkout-manual-payment](../checkout-manual-payment)
+ - [checkout-modal-boleto](../checkout-modal/partials/checkout-modal-boleto)
  - [checkout-modal-error](../checkout-modal/partials/checkout-modal-error)
+ - [checkout-modal-pix](../checkout-modal/partials/checkout-modal-pix)
  - [checkout-modal-success](../checkout-modal/partials/checkout-modal-success)
 
 ### Depends on
@@ -44,7 +46,9 @@
 graph TD;
   checkout-button --> checkout-icon
   checkout-manual-payment --> checkout-button
+  checkout-modal-boleto --> checkout-button
   checkout-modal-error --> checkout-button
+  checkout-modal-pix --> checkout-button
   checkout-modal-success --> checkout-button
   style checkout-button fill:#f9f,stroke:#333,stroke-width:4px
 ```

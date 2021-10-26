@@ -14,6 +14,13 @@
 | `filledProgressBarColor` | `filled-progress-bar-color` |             | `string` | `'#344383'` |
 
 
+## Events
+
+| Event               | Description | Type                |
+| ------------------- | ----------- | ------------------- |
+| `countdownFinished` |             | `CustomEvent<void>` |
+
+
 ## Dependencies
 
 ### Used by

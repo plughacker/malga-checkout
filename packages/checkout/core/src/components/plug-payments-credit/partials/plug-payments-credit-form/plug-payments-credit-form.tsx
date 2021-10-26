@@ -22,7 +22,7 @@ import {
   checkIfAllFieldsIsBlank,
 } from './plug-payments-credit-form.utils'
 import { validateCheckout } from './plug-payments-credit-form.schema'
-import { getCurrentMaskPerIssuer } from '@plug-checkout/common'
+import { getCurrentMaskPerIssuer } from '@plug-checkout/utils'
 
 @Component({
   tag: 'plug-payments-credit-form',

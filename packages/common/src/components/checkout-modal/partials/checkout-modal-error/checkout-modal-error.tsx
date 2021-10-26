@@ -7,8 +7,9 @@ import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
 export class CheckoutModalError {
   @Prop() errorTitle?: string
   @Prop() errorDescription?: string
+  @Prop() errorActionButtonLabel = 'Tentar Novamente'
 
-  @Event() errorButtonClicked: EventEmitter<void>
+  @Event() errorActionButtonClicked: EventEmitter<void>
 
   render() {
     return (
@@ -36,8 +37,8 @@ export class CheckoutModalError {
           content={this.errorDescription}
         />
         <checkout-button
-          label="Tentar Novamente"
-          onClick={() => this.errorButtonClicked.emit()}
+          label={this.errorActionButtonLabel}
+          onClick={() => this.errorActionButtonClicked.emit()}
         />
       </Host>
     )

@@ -85,6 +85,7 @@ export namespace Components {
         "errorTitle"?: string;
     }
     interface CheckoutModalPix {
+        "actionButtonLabel": string;
         "amount": number;
         "expirationDate": string;
         "expirationTime": number;
@@ -318,6 +319,7 @@ declare namespace LocalJSX {
         "emptyProgressBarColor"?: string;
         "expirationTime"?: number;
         "filledProgressBarColor"?: string;
+        "onCountdownFinished"?: (event: CustomEvent<void>) => void;
     }
     interface CheckoutCreditCard {
         "cvv"?: string;
@@ -351,8 +353,9 @@ declare namespace LocalJSX {
         "expirationDate"?: string;
         "expirationTime"?: number;
         "mode"?: CheckoutModalMode;
-        "onErrorButtonClicked"?: (event: CustomEvent<any>) => void;
-        "onSuccessButtonClicked"?: (event: CustomEvent<any>) => void;
+        "onErrorButtonClicked"?: (event: CustomEvent<void>) => void;
+        "onPixCountdownIsFinished"?: (event: CustomEvent<void>) => void;
+        "onSuccessButtonClicked"?: (event: CustomEvent<void>) => void;
         "open"?: boolean;
         "paymentCode"?: string;
         "paymentImageUrl"?: string;
@@ -369,9 +372,11 @@ declare namespace LocalJSX {
         "onErrorButtonClicked"?: (event: CustomEvent<void>) => void;
     }
     interface CheckoutModalPix {
+        "actionButtonLabel"?: string;
         "amount"?: number;
         "expirationDate"?: string;
         "expirationTime"?: number;
+        "onCountdownIsFinished"?: (event: CustomEvent<void>) => void;
         "qrCodeIdentificator"?: string;
         "qrCodeImageUrl"?: string;
     }

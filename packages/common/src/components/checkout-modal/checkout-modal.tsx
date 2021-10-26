@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Event } from '@stencil/core'
+import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
 
 import { CheckoutModalMode } from './checkout-modal.types'
 
@@ -17,8 +17,9 @@ export class CheckoutModal {
   @Prop() expirationDate?: string
   @Prop() expirationTime?: number
 
-  @Event() successButtonClicked: CustomEvent<void>
-  @Event() errorButtonClicked: CustomEvent<void>
+  @Event() successButtonClicked: EventEmitter<void>
+  @Event() errorButtonClicked: EventEmitter<void>
+  @Event() pixCountdownIsFinished: EventEmitter<void>
 
   render() {
     if (!this.open) {
@@ -42,6 +43,7 @@ export class CheckoutModal {
               amount={this.amount}
               expirationDate={this.expirationDate}
               expirationTime={this.expirationTime}
+              onCountdownIsFinished={() => this.pixCountdownIsFinished.emit()}
             />
           )}
           {this.mode === 'boleto' && (

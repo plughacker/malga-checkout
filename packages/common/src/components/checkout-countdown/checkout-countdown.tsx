@@ -1,4 +1,12 @@
-import { Component, Host, h, Prop, State } from '@stencil/core'
+import {
+  Component,
+  Host,
+  h,
+  Prop,
+  State,
+  Event,
+  EventEmitter,
+} from '@stencil/core'
 
 import CanvasCircularCountdown from 'canvas-circular-countdown'
 import { Timer } from 'easytimer.js'
@@ -16,6 +24,8 @@ export class CheckoutCountdown {
   @Prop() emptyProgressBarColor = '#D8DFF0'
 
   @State() countdown: string
+
+  @Event() countdownFinished: EventEmitter<void>
 
   private startCountdown = () => {
     this.timer.start({
@@ -45,7 +55,11 @@ export class CheckoutCountdown {
           progressBarOffset: 1,
           showCaption: false,
         },
-        () => {
+        (_, time) => {
+          if (time.remaining === 0) {
+            this.countdownFinished.emit()
+          }
+
           this.countdown = this.timer.getTimeValues().toString()
         },
       ).start()

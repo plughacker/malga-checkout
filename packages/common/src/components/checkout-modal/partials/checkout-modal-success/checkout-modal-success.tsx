@@ -1,11 +1,14 @@
-import { Component, Host, h, Event, EventEmitter } from '@stencil/core'
+import { Component, Host, h, Event, EventEmitter, Prop } from '@stencil/core'
 
 @Component({
   tag: 'checkout-modal-success',
   styleUrl: 'checkout-modal-success.scss',
 })
 export class CheckoutModalSuccess {
-  @Event() successButtonClicked: EventEmitter<void>
+  @Prop() successDescription = 'Pedido recebido com sucesso!'
+  @Prop() successActionButtonLabel = 'Continuar'
+
+  @Event() successActionButtonClicked: EventEmitter<void>
 
   render() {
     return (
@@ -15,11 +18,11 @@ export class CheckoutModalSuccess {
           tag="h3"
           variation="header5"
           color="white"
-          content="Pedido recebido com sucesso!"
+          content={this.successDescription}
         />
         <checkout-button
-          label="Continuar"
-          onClick={() => this.successButtonClicked.emit()}
+          label={this.successActionButtonLabel}
+          onClicked={() => this.successActionButtonClicked.emit()}
         />
       </Host>
     )

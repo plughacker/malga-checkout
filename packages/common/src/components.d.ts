@@ -74,6 +74,8 @@ export namespace Components {
         "paymentCode": string;
         "paymentImageUrl": string;
         "pixActionButtonLabel"?: string;
+        "successActionButtonLabel"?: string;
+        "successDescription"?: string;
     }
     interface CheckoutModalBoleto {
         "amount": number;
@@ -94,6 +96,8 @@ export namespace Components {
         "qrCodeImageUrl": string;
     }
     interface CheckoutModalSuccess {
+        "successActionButtonLabel": string;
+        "successDescription": string;
     }
     interface CheckoutOrderSummary {
         "amount": number;
@@ -361,6 +365,8 @@ declare namespace LocalJSX {
         "paymentCode"?: string;
         "paymentImageUrl"?: string;
         "pixActionButtonLabel"?: string;
+        "successActionButtonLabel"?: string;
+        "successDescription"?: string;
     }
     interface CheckoutModalBoleto {
         "amount"?: number;
@@ -384,7 +390,9 @@ declare namespace LocalJSX {
         "qrCodeImageUrl"?: string;
     }
     interface CheckoutModalSuccess {
-        "onSuccessButtonClicked"?: (event: CustomEvent<void>) => void;
+        "onSuccessActionButtonClicked"?: (event: CustomEvent<void>) => void;
+        "successActionButtonLabel"?: string;
+        "successDescription"?: string;
     }
     interface CheckoutOrderSummary {
         "amount"?: number;

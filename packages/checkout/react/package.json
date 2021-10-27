@@ -52,8 +52,7 @@
   },
   "dependencies": {
     "@plug-checkout/core": "0.0.4",
-    "@plug-checkout/utils": "*",
-    "@plug-checkout/types": "*"
+    "@plug-checkout/utils": "*"
   },
   "peerDependencies": {
     "react": "^16.7.0",

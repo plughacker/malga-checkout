@@ -58,7 +58,6 @@
   "dependencies": {
     "@plug-checkout/common": "*",
     "@plug-checkout/utils": "*",
-    "@plug-checkout/types": "*",
     "axios": "^0.21.1",
     "brazilian-values": "^0.10.1",
     "inputmask": "^5.0.6",

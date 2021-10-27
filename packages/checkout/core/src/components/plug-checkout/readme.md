@@ -39,10 +39,6 @@
 
 ## Dependencies
 
-### Used by
-
- - [plug-checkout-full](../plug-checkout-full)
-
 ### Depends on
 
 - [plug-payments](../plug-payments)
@@ -61,6 +57,7 @@ graph TD;
   plug-payments --> plug-payments-boleto
   plug-payments --> plug-payments-pix
   plug-payments --> plug-payments-credit
+  checkout-radio-field --> checkout-icon
   plug-payments-boleto --> checkout-manual-payment
   plug-payments-boleto --> checkout-modal
   checkout-manual-payment --> checkout-typography
@@ -81,12 +78,14 @@ graph TD;
   checkout-modal-pix --> checkout-typography
   checkout-modal-pix --> checkout-clipboard-button
   checkout-modal-pix --> checkout-countdown
+  checkout-modal-pix --> checkout-button
   checkout-clipboard-button --> checkout-icon
   checkout-clipboard-button --> checkout-typography
   checkout-countdown --> checkout-typography
   checkout-modal-boleto --> checkout-icon
   checkout-modal-boleto --> checkout-typography
   checkout-modal-boleto --> checkout-clipboard-button
+  checkout-modal-boleto --> checkout-button
   plug-payments-pix --> checkout-manual-payment
   plug-payments-pix --> checkout-modal
   plug-payments-credit --> checkout-credit-card
@@ -102,7 +101,6 @@ graph TD;
   checkout-error-message --> checkout-typography
   checkout-select-field --> checkout-typography
   checkout-select-field --> checkout-icon
-  plug-checkout-full --> plug-checkout
   style plug-checkout fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

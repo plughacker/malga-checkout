@@ -43,7 +43,8 @@
     "dist/"
   ],
   "dependencies": {
-    "@plug-checkout/core": "0.0.4",
+    "@plug-checkout/core": "*",
+    "@plug-checkout-full/core": "*",
     "tslib": "^1.9.3"
   },
   "peerDependencies": {

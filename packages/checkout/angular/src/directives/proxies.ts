@@ -8,13 +8,13 @@ import { Components } from '@plug-checkout/core';
 import { CheckoutAccordion as ICheckoutAccordion } from '@plug-checkout/core/Users/leonardorpr/dev/plug/plug-checkout/packages/common/dist/collection/components/checkout-accordion/checkout-accordion';
 export declare interface CheckoutAccordion extends Components.CheckoutAccordion {}
 @ProxyCmp({
-  inputs: ['contentHeight', 'fullWidth', 'isEditable', 'label', 'opened']
+  inputs: ['fullWidth', 'isEditable', 'label', 'opened']
 })
 @Component({
   selector: 'checkout-accordion',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['contentHeight', 'fullWidth', 'isEditable', 'label', 'opened'],
+  inputs: ['fullWidth', 'isEditable', 'label', 'opened'],
   outputs: ['expandClick']
 })
 export class CheckoutAccordion {
@@ -74,7 +74,7 @@ export class CheckoutClipboardButton {
   }
 }
 
-
+import { CheckoutCountdown as ICheckoutCountdown } from '@plug-checkout/core/Users/leonardorpr/dev/plug/plug-checkout/packages/common/dist/collection/components/checkout-countdown/checkout-countdown';
 export declare interface CheckoutCountdown extends Components.CheckoutCountdown {}
 @ProxyCmp({
   inputs: ['emptyProgressBarColor', 'expirationTime', 'filledProgressBarColor']
@@ -83,13 +83,17 @@ export declare interface CheckoutCountdown extends Components.CheckoutCountdown 
   selector: 'checkout-countdown',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['emptyProgressBarColor', 'expirationTime', 'filledProgressBarColor']
+  inputs: ['emptyProgressBarColor', 'expirationTime', 'filledProgressBarColor'],
+  outputs: ['countdownFinished']
 })
 export class CheckoutCountdown {
+  /**  */
+  countdownFinished!: ICheckoutCountdown['countdownFinished'];
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['countdownFinished']);
   }
 }
 
@@ -153,13 +157,13 @@ export class CheckoutIcon {
 import { CheckoutManualPayment as ICheckoutManualPayment } from '@plug-checkout/core/Users/leonardorpr/dev/plug/plug-checkout/packages/common/dist/collection/components/checkout-manual-payment/checkout-manual-payment';
 export declare interface CheckoutManualPayment extends Components.CheckoutManualPayment {}
 @ProxyCmp({
-  inputs: ['fullWidth', 'paymentMethod']
+  inputs: ['fullWidth', 'isLoading', 'paymentMethod']
 })
 @Component({
   selector: 'checkout-manual-payment',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['fullWidth', 'paymentMethod'],
+  inputs: ['fullWidth', 'isLoading', 'paymentMethod'],
   outputs: ['paymentClick']
 })
 export class CheckoutManualPayment {
@@ -176,106 +180,121 @@ export class CheckoutManualPayment {
 import { CheckoutModal as ICheckoutModal } from '@plug-checkout/core/Users/leonardorpr/dev/plug/plug-checkout/packages/common/dist/collection/components/checkout-modal/checkout-modal';
 export declare interface CheckoutModal extends Components.CheckoutModal {}
 @ProxyCmp({
-  inputs: ['amount', 'errorDescription', 'errorTitle', 'expirationDate', 'expirationTime', 'mode', 'open', 'paymentCode', 'paymentImageUrl']
+  inputs: ['amount', 'boletoActionButtonLabel', 'errorActionButtonLabel', 'errorDescription', 'errorTitle', 'expirationDate', 'expirationTime', 'mode', 'open', 'paymentCode', 'paymentImageUrl', 'pixActionButtonLabel', 'successActionButtonLabel', 'successDescription']
 })
 @Component({
   selector: 'checkout-modal',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['amount', 'errorDescription', 'errorTitle', 'expirationDate', 'expirationTime', 'mode', 'open', 'paymentCode', 'paymentImageUrl'],
-  outputs: ['successButtonClicked', 'errorButtonClicked']
+  inputs: ['amount', 'boletoActionButtonLabel', 'errorActionButtonLabel', 'errorDescription', 'errorTitle', 'expirationDate', 'expirationTime', 'mode', 'open', 'paymentCode', 'paymentImageUrl', 'pixActionButtonLabel', 'successActionButtonLabel', 'successDescription'],
+  outputs: ['successButtonClicked', 'errorButtonClicked', 'pixCountdownIsFinished']
 })
 export class CheckoutModal {
   /**  */
   successButtonClicked!: ICheckoutModal['successButtonClicked'];
   /**  */
   errorButtonClicked!: ICheckoutModal['errorButtonClicked'];
+  /**  */
+  pixCountdownIsFinished!: ICheckoutModal['pixCountdownIsFinished'];
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['successButtonClicked', 'errorButtonClicked']);
+    proxyOutputs(this, this.el, ['successButtonClicked', 'errorButtonClicked', 'pixCountdownIsFinished']);
   }
 }
 
-
+import { CheckoutModalBoleto as ICheckoutModalBoleto } from '@plug-checkout/core/Users/leonardorpr/dev/plug/plug-checkout/packages/common/dist/collection/components/checkout-modal/partials/checkout-modal-boleto/checkout-modal-boleto';
 export declare interface CheckoutModalBoleto extends Components.CheckoutModalBoleto {}
 @ProxyCmp({
-  inputs: ['amount', 'boletoCode', 'boletoImageUrl', 'expirationDate']
+  inputs: ['actionButtonLabel', 'amount', 'boletoCode', 'boletoImageUrl', 'expirationDate']
 })
 @Component({
   selector: 'checkout-modal-boleto',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['amount', 'boletoCode', 'boletoImageUrl', 'expirationDate']
+  inputs: ['actionButtonLabel', 'amount', 'boletoCode', 'boletoImageUrl', 'expirationDate'],
+  outputs: ['boletoActionButtonIsClicked']
 })
 export class CheckoutModalBoleto {
+  /**  */
+  boletoActionButtonIsClicked!: ICheckoutModalBoleto['boletoActionButtonIsClicked'];
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['boletoActionButtonIsClicked']);
   }
 }
 
 import { CheckoutModalError as ICheckoutModalError } from '@plug-checkout/core/Users/leonardorpr/dev/plug/plug-checkout/packages/common/dist/collection/components/checkout-modal/partials/checkout-modal-error/checkout-modal-error';
 export declare interface CheckoutModalError extends Components.CheckoutModalError {}
 @ProxyCmp({
-  inputs: ['errorDescription', 'errorTitle']
+  inputs: ['errorActionButtonLabel', 'errorDescription', 'errorTitle']
 })
 @Component({
   selector: 'checkout-modal-error',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['errorDescription', 'errorTitle'],
-  outputs: ['errorButtonClicked']
+  inputs: ['errorActionButtonLabel', 'errorDescription', 'errorTitle'],
+  outputs: ['errorActionButtonClicked']
 })
 export class CheckoutModalError {
   /**  */
-  errorButtonClicked!: ICheckoutModalError['errorButtonClicked'];
+  errorActionButtonClicked!: ICheckoutModalError['errorActionButtonClicked'];
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['errorButtonClicked']);
+    proxyOutputs(this, this.el, ['errorActionButtonClicked']);
   }
 }
 
-
+import { CheckoutModalPix as ICheckoutModalPix } from '@plug-checkout/core/Users/leonardorpr/dev/plug/plug-checkout/packages/common/dist/collection/components/checkout-modal/partials/checkout-modal-pix/checkout-modal-pix';
 export declare interface CheckoutModalPix extends Components.CheckoutModalPix {}
 @ProxyCmp({
-  inputs: ['amount', 'expirationDate', 'expirationTime', 'qrCodeIdentificator', 'qrCodeImageUrl']
+  inputs: ['actionButtonLabel', 'amount', 'expirationDate', 'expirationTime', 'qrCodeIdentificator', 'qrCodeImageUrl']
 })
 @Component({
   selector: 'checkout-modal-pix',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['amount', 'expirationDate', 'expirationTime', 'qrCodeIdentificator', 'qrCodeImageUrl']
+  inputs: ['actionButtonLabel', 'amount', 'expirationDate', 'expirationTime', 'qrCodeIdentificator', 'qrCodeImageUrl'],
+  outputs: ['countdownIsFinished', 'pixActionButtonIsClicked']
 })
 export class CheckoutModalPix {
+  /**  */
+  countdownIsFinished!: ICheckoutModalPix['countdownIsFinished'];
+  /**  */
+  pixActionButtonIsClicked!: ICheckoutModalPix['pixActionButtonIsClicked'];
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['countdownIsFinished', 'pixActionButtonIsClicked']);
   }
 }
 
 import { CheckoutModalSuccess as ICheckoutModalSuccess } from '@plug-checkout/core/Users/leonardorpr/dev/plug/plug-checkout/packages/common/dist/collection/components/checkout-modal/partials/checkout-modal-success/checkout-modal-success';
 export declare interface CheckoutModalSuccess extends Components.CheckoutModalSuccess {}
-
+@ProxyCmp({
+  inputs: ['successActionButtonLabel', 'successDescription']
+})
 @Component({
   selector: 'checkout-modal-success',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  outputs: ['successButtonClicked']
+  inputs: ['successActionButtonLabel', 'successDescription'],
+  outputs: ['successActionButtonClicked']
 })
 export class CheckoutModalSuccess {
   /**  */
-  successButtonClicked!: ICheckoutModalSuccess['successButtonClicked'];
+  successActionButtonClicked!: ICheckoutModalSuccess['successActionButtonClicked'];
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['successButtonClicked']);
+    proxyOutputs(this, this.el, ['successActionButtonClicked']);
   }
 }
 
@@ -301,13 +320,13 @@ export class CheckoutOrderSummary {
 import { CheckoutRadioField as ICheckoutRadioField } from '@plug-checkout/core/Users/leonardorpr/dev/plug/plug-checkout/packages/common/dist/collection/components/checkout-radio-field/checkout-radio-field';
 export declare interface CheckoutRadioField extends Components.CheckoutRadioField {}
 @ProxyCmp({
-  inputs: ['customContainerClass', 'customInputClass', 'customLabelClass', 'fullWidth', 'isChecked', 'label', 'value']
+  inputs: ['customContainerClass', 'customInputClass', 'customLabelClass', 'endIcon', 'fullWidth', 'isChecked', 'label', 'value']
 })
 @Component({
   selector: 'checkout-radio-field',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['customContainerClass', 'customInputClass', 'customLabelClass', 'fullWidth', 'isChecked', 'label', 'value'],
+  inputs: ['customContainerClass', 'customInputClass', 'customLabelClass', 'endIcon', 'fullWidth', 'isChecked', 'label', 'value'],
   outputs: ['inputed', 'clicked', 'changed']
 })
 export class CheckoutRadioField {
@@ -424,112 +443,6 @@ export class PlugCheckout {
     c.detach();
     this.el = r.nativeElement;
     proxyOutputs(this, this.el, ['paymentSuccess', 'paymentFailed']);
-  }
-}
-
-import { PlugCheckoutFull as IPlugCheckoutFull } from '@plug-checkout/core/dist/types/components/plug-checkout-full/plug-checkout-full';
-export declare interface PlugCheckoutFull extends Components.PlugCheckoutFull {}
-@ProxyCmp({
-  inputs: ['amount', 'boleto', 'brandUrl', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'delivery', 'description', 'footerDescription', 'hasIdentificationSection', 'installments', 'merchantId', 'orderId', 'paymentMethods', 'pix', 'products', 'publicKey', 'sandbox', 'showCreditCard', 'statementDescriptor']
-})
-@Component({
-  selector: 'plug-checkout-full',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  inputs: ['amount', 'boleto', 'brandUrl', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'delivery', 'description', 'footerDescription', 'hasIdentificationSection', 'installments', 'merchantId', 'orderId', 'paymentMethods', 'pix', 'products', 'publicKey', 'sandbox', 'showCreditCard', 'statementDescriptor'],
-  outputs: ['paymentSuccess', 'paymentFailed']
-})
-export class PlugCheckoutFull {
-  /**  */
-  paymentSuccess!: IPlugCheckoutFull['paymentSuccess'];
-  /**  */
-  paymentFailed!: IPlugCheckoutFull['paymentFailed'];
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['paymentSuccess', 'paymentFailed']);
-  }
-}
-
-
-export declare interface PlugCheckoutFullContent extends Components.PlugCheckoutFullContent {}
-
-@Component({
-  selector: 'plug-checkout-full-content',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>'
-})
-export class PlugCheckoutFullContent {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface PlugCheckoutFullFooter extends Components.PlugCheckoutFullFooter {}
-@ProxyCmp({
-  inputs: ['description']
-})
-@Component({
-  selector: 'plug-checkout-full-footer',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  inputs: ['description']
-})
-export class PlugCheckoutFullFooter {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface PlugCheckoutFullHeader extends Components.PlugCheckoutFullHeader {}
-@ProxyCmp({
-  inputs: ['brand']
-})
-@Component({
-  selector: 'plug-checkout-full-header',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  inputs: ['brand']
-})
-export class PlugCheckoutFullHeader {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-import { PlugCheckoutFullIdentification as IPlugCheckoutFullIdentification } from '@plug-checkout/core/dist/types/components/plug-checkout-full/partials/plug-checkout-full-identification/plug-checkout-full-identification';
-export declare interface PlugCheckoutFullIdentification extends Components.PlugCheckoutFullIdentification {}
-@ProxyCmp({
-  inputs: ['formValues']
-})
-@Component({
-  selector: 'plug-checkout-full-identification',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  inputs: ['formValues'],
-  outputs: ['submitForm', 'fieldChange', 'manyFieldsChange']
-})
-export class PlugCheckoutFullIdentification {
-  /**  */
-  submitForm!: IPlugCheckoutFullIdentification['submitForm'];
-  /**  */
-  fieldChange!: IPlugCheckoutFullIdentification['fieldChange'];
-  /**  */
-  manyFieldsChange!: IPlugCheckoutFullIdentification['manyFieldsChange'];
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['submitForm', 'fieldChange', 'manyFieldsChange']);
   }
 }
 

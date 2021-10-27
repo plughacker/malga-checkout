@@ -5,21 +5,158 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { BoletoAttributes, Customer, PaymentMethods, PixAttributes, PlugPaymentsChargeError, PlugPaymentsChargeSuccess, PlugPaymentsCreditInstallmentsConfig } from "./components/plug-checkout-full/plug-checkout-full.types";
+import { PlugCheckoutFullIdentificationFormValues } from "./components/plug-checkout-full/partials/plug-checkout-full-identification/plug-checkout-full-identification.types";
 export namespace Components {
-
+    interface PlugCheckoutFull {
+        "amount": number;
+        "boleto"?: BoletoAttributes;
+        "brandUrl": string;
+        "capture": boolean;
+        "clientId": string;
+        "currency": string;
+        "customer"?: Customer;
+        "customerId"?: string;
+        "delivery"?: number;
+        "description"?: string;
+        "footerDescription"?: string;
+        "hasIdentificationSection": boolean;
+        "installments"?: PlugPaymentsCreditInstallmentsConfig;
+        "merchantId": string;
+        "orderId"?: string;
+        "paymentMethods": PaymentMethods;
+        "pix"?: PixAttributes;
+        "products"?: {
+    name: string
+    amount: number
+    quantity: number
+    description: string
+  }[];
+        "publicKey": string;
+        "sandbox": boolean;
+        "showCreditCard": boolean;
+        "statementDescriptor": string;
+    }
+    interface PlugCheckoutFullContent {
+    }
+    interface PlugCheckoutFullFooter {
+        "description": string;
+    }
+    interface PlugCheckoutFullHeader {
+        "brand": string;
+    }
+    interface PlugCheckoutFullIdentification {
+        "formValues": PlugCheckoutFullIdentificationFormValues;
+    }
 }
 declare global {
+    interface HTMLPlugCheckoutFullElement extends Components.PlugCheckoutFull, HTMLStencilElement {
+    }
+    var HTMLPlugCheckoutFullElement: {
+        prototype: HTMLPlugCheckoutFullElement;
+        new (): HTMLPlugCheckoutFullElement;
+    };
+    interface HTMLPlugCheckoutFullContentElement extends Components.PlugCheckoutFullContent, HTMLStencilElement {
+    }
+    var HTMLPlugCheckoutFullContentElement: {
+        prototype: HTMLPlugCheckoutFullContentElement;
+        new (): HTMLPlugCheckoutFullContentElement;
+    };
+    interface HTMLPlugCheckoutFullFooterElement extends Components.PlugCheckoutFullFooter, HTMLStencilElement {
+    }
+    var HTMLPlugCheckoutFullFooterElement: {
+        prototype: HTMLPlugCheckoutFullFooterElement;
+        new (): HTMLPlugCheckoutFullFooterElement;
+    };
+    interface HTMLPlugCheckoutFullHeaderElement extends Components.PlugCheckoutFullHeader, HTMLStencilElement {
+    }
+    var HTMLPlugCheckoutFullHeaderElement: {
+        prototype: HTMLPlugCheckoutFullHeaderElement;
+        new (): HTMLPlugCheckoutFullHeaderElement;
+    };
+    interface HTMLPlugCheckoutFullIdentificationElement extends Components.PlugCheckoutFullIdentification, HTMLStencilElement {
+    }
+    var HTMLPlugCheckoutFullIdentificationElement: {
+        prototype: HTMLPlugCheckoutFullIdentificationElement;
+        new (): HTMLPlugCheckoutFullIdentificationElement;
+    };
     interface HTMLElementTagNameMap {
+        "plug-checkout-full": HTMLPlugCheckoutFullElement;
+        "plug-checkout-full-content": HTMLPlugCheckoutFullContentElement;
+        "plug-checkout-full-footer": HTMLPlugCheckoutFullFooterElement;
+        "plug-checkout-full-header": HTMLPlugCheckoutFullHeaderElement;
+        "plug-checkout-full-identification": HTMLPlugCheckoutFullIdentificationElement;
     }
 }
 declare namespace LocalJSX {
+    interface PlugCheckoutFull {
+        "amount"?: number;
+        "boleto"?: BoletoAttributes;
+        "brandUrl"?: string;
+        "capture"?: boolean;
+        "clientId"?: string;
+        "currency"?: string;
+        "customer"?: Customer;
+        "customerId"?: string;
+        "delivery"?: number;
+        "description"?: string;
+        "footerDescription"?: string;
+        "hasIdentificationSection"?: boolean;
+        "installments"?: PlugPaymentsCreditInstallmentsConfig;
+        "merchantId"?: string;
+        "onPaymentFailed"?: (event: CustomEvent<{
+    error: PlugPaymentsChargeError
+  }>) => void;
+        "onPaymentSuccess"?: (event: CustomEvent<{
+    data: PlugPaymentsChargeSuccess
+  }>) => void;
+        "orderId"?: string;
+        "paymentMethods"?: PaymentMethods;
+        "pix"?: PixAttributes;
+        "products"?: {
+    name: string
+    amount: number
+    quantity: number
+    description: string
+  }[];
+        "publicKey"?: string;
+        "sandbox"?: boolean;
+        "showCreditCard"?: boolean;
+        "statementDescriptor"?: string;
+    }
+    interface PlugCheckoutFullContent {
+    }
+    interface PlugCheckoutFullFooter {
+        "description"?: string;
+    }
+    interface PlugCheckoutFullHeader {
+        "brand"?: string;
+    }
+    interface PlugCheckoutFullIdentification {
+        "formValues"?: PlugCheckoutFullIdentificationFormValues;
+        "onFieldChange"?: (event: CustomEvent<{ field: string; value: string }>) => void;
+        "onManyFieldsChange"?: (event: CustomEvent<{
+    customerFormValues: PlugCheckoutFullIdentificationFormValues
+  }>) => void;
+        "onSubmitForm"?: (event: CustomEvent<void>) => void;
+    }
     interface IntrinsicElements {
+        "plug-checkout-full": PlugCheckoutFull;
+        "plug-checkout-full-content": PlugCheckoutFullContent;
+        "plug-checkout-full-footer": PlugCheckoutFullFooter;
+        "plug-checkout-full-header": PlugCheckoutFullHeader;
+        "plug-checkout-full-identification": PlugCheckoutFullIdentification;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "plug-checkout-full": LocalJSX.PlugCheckoutFull & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullElement>;
+            "plug-checkout-full-content": LocalJSX.PlugCheckoutFullContent & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullContentElement>;
+            "plug-checkout-full-footer": LocalJSX.PlugCheckoutFullFooter & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullFooterElement>;
+            "plug-checkout-full-header": LocalJSX.PlugCheckoutFullHeader & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullHeaderElement>;
+            "plug-checkout-full-identification": LocalJSX.PlugCheckoutFullIdentification & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullIdentificationElement>;
         }
     }
 }

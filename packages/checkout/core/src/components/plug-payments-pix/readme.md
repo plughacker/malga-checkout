@@ -66,12 +66,14 @@ graph TD;
   checkout-modal-pix --> checkout-typography
   checkout-modal-pix --> checkout-clipboard-button
   checkout-modal-pix --> checkout-countdown
+  checkout-modal-pix --> checkout-button
   checkout-clipboard-button --> checkout-icon
   checkout-clipboard-button --> checkout-typography
   checkout-countdown --> checkout-typography
   checkout-modal-boleto --> checkout-icon
   checkout-modal-boleto --> checkout-typography
   checkout-modal-boleto --> checkout-clipboard-button
+  checkout-modal-boleto --> checkout-button
   plug-checkout --> plug-payments-pix
   plug-payments --> plug-payments-pix
   style plug-payments-pix fill:#f9f,stroke:#333,stroke-width:4px

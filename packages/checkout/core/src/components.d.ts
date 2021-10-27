@@ -10,7 +10,6 @@ import { PixAttributes } from "./providers/pix";
 import { BoletoAttributes } from "./providers/boleto";
 import { PlugPaymentsCreditChargeError, PlugPaymentsCreditChargeSuccess, PlugPaymentsCreditFormCustomStyleFormClasses, PlugPaymentsCreditFormValues, PlugPaymentsCreditInstallmentsConfig } from "./components/plug-payments-credit/plug-payments-credit.types";
 import { Customer } from "./providers/base-provider";
-import { PlugCheckoutFullIdentificationFormValues } from "./components/plug-checkout-full/partials/plug-checkout-full-identification/plug-checkout-full-identification.types";
 import { PlugPaymentsBoletoChargeError, PlugPaymentsBoletoChargeSuccess } from "./components/plug-payments-boleto/plug-payments-boleto.types";
 import { PlugPaymentsPixChargeError, PlugPaymentsPixChargeSuccess } from "./components/plug-payments-pix/plug-payments-pix.types";
 export namespace Components {
@@ -33,46 +32,6 @@ export namespace Components {
         "showCreditCard": boolean;
         "showDialog": boolean;
         "statementDescriptor": string;
-    }
-    interface PlugCheckoutFull {
-        "amount": number;
-        "boleto"?: BoletoAttributes;
-        "brandUrl": string;
-        "capture": boolean;
-        "clientId": string;
-        "currency": string;
-        "customer"?: Customer;
-        "customerId"?: string;
-        "delivery"?: number;
-        "description"?: string;
-        "footerDescription"?: string;
-        "hasIdentificationSection": boolean;
-        "installments"?: PlugPaymentsCreditInstallmentsConfig;
-        "merchantId": string;
-        "orderId"?: string;
-        "paymentMethods": PaymentMethods;
-        "pix"?: PixAttributes;
-        "products"?: {
-    name: string
-    amount: number
-    quantity: number
-    description: string
-  }[];
-        "publicKey": string;
-        "sandbox": boolean;
-        "showCreditCard": boolean;
-        "statementDescriptor": string;
-    }
-    interface PlugCheckoutFullContent {
-    }
-    interface PlugCheckoutFullFooter {
-        "description": string;
-    }
-    interface PlugCheckoutFullHeader {
-        "brand": string;
-    }
-    interface PlugCheckoutFullIdentification {
-        "formValues": PlugCheckoutFullIdentificationFormValues;
     }
     interface PlugPayments {
         "amount": number;
@@ -159,36 +118,6 @@ declare global {
         prototype: HTMLPlugCheckoutElement;
         new (): HTMLPlugCheckoutElement;
     };
-    interface HTMLPlugCheckoutFullElement extends Components.PlugCheckoutFull, HTMLStencilElement {
-    }
-    var HTMLPlugCheckoutFullElement: {
-        prototype: HTMLPlugCheckoutFullElement;
-        new (): HTMLPlugCheckoutFullElement;
-    };
-    interface HTMLPlugCheckoutFullContentElement extends Components.PlugCheckoutFullContent, HTMLStencilElement {
-    }
-    var HTMLPlugCheckoutFullContentElement: {
-        prototype: HTMLPlugCheckoutFullContentElement;
-        new (): HTMLPlugCheckoutFullContentElement;
-    };
-    interface HTMLPlugCheckoutFullFooterElement extends Components.PlugCheckoutFullFooter, HTMLStencilElement {
-    }
-    var HTMLPlugCheckoutFullFooterElement: {
-        prototype: HTMLPlugCheckoutFullFooterElement;
-        new (): HTMLPlugCheckoutFullFooterElement;
-    };
-    interface HTMLPlugCheckoutFullHeaderElement extends Components.PlugCheckoutFullHeader, HTMLStencilElement {
-    }
-    var HTMLPlugCheckoutFullHeaderElement: {
-        prototype: HTMLPlugCheckoutFullHeaderElement;
-        new (): HTMLPlugCheckoutFullHeaderElement;
-    };
-    interface HTMLPlugCheckoutFullIdentificationElement extends Components.PlugCheckoutFullIdentification, HTMLStencilElement {
-    }
-    var HTMLPlugCheckoutFullIdentificationElement: {
-        prototype: HTMLPlugCheckoutFullIdentificationElement;
-        new (): HTMLPlugCheckoutFullIdentificationElement;
-    };
     interface HTMLPlugPaymentsElement extends Components.PlugPayments, HTMLStencilElement {
     }
     var HTMLPlugPaymentsElement: {
@@ -221,11 +150,6 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "plug-checkout": HTMLPlugCheckoutElement;
-        "plug-checkout-full": HTMLPlugCheckoutFullElement;
-        "plug-checkout-full-content": HTMLPlugCheckoutFullContentElement;
-        "plug-checkout-full-footer": HTMLPlugCheckoutFullFooterElement;
-        "plug-checkout-full-header": HTMLPlugCheckoutFullHeaderElement;
-        "plug-checkout-full-identification": HTMLPlugCheckoutFullIdentificationElement;
         "plug-payments": HTMLPlugPaymentsElement;
         "plug-payments-boleto": HTMLPlugPaymentsBoletoElement;
         "plug-payments-credit": HTMLPlugPaymentsCreditElement;
@@ -259,57 +183,6 @@ declare namespace LocalJSX {
         "showCreditCard"?: boolean;
         "showDialog"?: boolean;
         "statementDescriptor"?: string;
-    }
-    interface PlugCheckoutFull {
-        "amount"?: number;
-        "boleto"?: BoletoAttributes;
-        "brandUrl"?: string;
-        "capture"?: boolean;
-        "clientId"?: string;
-        "currency"?: string;
-        "customer"?: Customer;
-        "customerId"?: string;
-        "delivery"?: number;
-        "description"?: string;
-        "footerDescription"?: string;
-        "hasIdentificationSection"?: boolean;
-        "installments"?: PlugPaymentsCreditInstallmentsConfig;
-        "merchantId"?: string;
-        "onPaymentFailed"?: (event: CustomEvent<{
-    error: PlugPaymentsChargeError
-  }>) => void;
-        "onPaymentSuccess"?: (event: CustomEvent<{
-    data: PlugPaymentsChargeSuccess
-  }>) => void;
-        "orderId"?: string;
-        "paymentMethods"?: PaymentMethods;
-        "pix"?: PixAttributes;
-        "products"?: {
-    name: string
-    amount: number
-    quantity: number
-    description: string
-  }[];
-        "publicKey"?: string;
-        "sandbox"?: boolean;
-        "showCreditCard"?: boolean;
-        "statementDescriptor"?: string;
-    }
-    interface PlugCheckoutFullContent {
-    }
-    interface PlugCheckoutFullFooter {
-        "description"?: string;
-    }
-    interface PlugCheckoutFullHeader {
-        "brand"?: string;
-    }
-    interface PlugCheckoutFullIdentification {
-        "formValues"?: PlugCheckoutFullIdentificationFormValues;
-        "onFieldChange"?: (event: CustomEvent<{ field: string; value: string }>) => void;
-        "onManyFieldsChange"?: (event: CustomEvent<{
-    customerFormValues: PlugCheckoutFullIdentificationFormValues
-  }>) => void;
-        "onSubmitForm"?: (event: CustomEvent<void>) => void;
     }
     interface PlugPayments {
         "amount"?: number;
@@ -416,11 +289,6 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "plug-checkout": PlugCheckout;
-        "plug-checkout-full": PlugCheckoutFull;
-        "plug-checkout-full-content": PlugCheckoutFullContent;
-        "plug-checkout-full-footer": PlugCheckoutFullFooter;
-        "plug-checkout-full-header": PlugCheckoutFullHeader;
-        "plug-checkout-full-identification": PlugCheckoutFullIdentification;
         "plug-payments": PlugPayments;
         "plug-payments-boleto": PlugPaymentsBoleto;
         "plug-payments-credit": PlugPaymentsCredit;
@@ -433,11 +301,6 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "plug-checkout": LocalJSX.PlugCheckout & JSXBase.HTMLAttributes<HTMLPlugCheckoutElement>;
-            "plug-checkout-full": LocalJSX.PlugCheckoutFull & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullElement>;
-            "plug-checkout-full-content": LocalJSX.PlugCheckoutFullContent & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullContentElement>;
-            "plug-checkout-full-footer": LocalJSX.PlugCheckoutFullFooter & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullFooterElement>;
-            "plug-checkout-full-header": LocalJSX.PlugCheckoutFullHeader & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullHeaderElement>;
-            "plug-checkout-full-identification": LocalJSX.PlugCheckoutFullIdentification & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullIdentificationElement>;
             "plug-payments": LocalJSX.PlugPayments & JSXBase.HTMLAttributes<HTMLPlugPaymentsElement>;
             "plug-payments-boleto": LocalJSX.PlugPaymentsBoleto & JSXBase.HTMLAttributes<HTMLPlugPaymentsBoletoElement>;
             "plug-payments-credit": LocalJSX.PlugPaymentsCredit & JSXBase.HTMLAttributes<HTMLPlugPaymentsCreditElement>;

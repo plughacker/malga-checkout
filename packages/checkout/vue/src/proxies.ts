@@ -13,7 +13,6 @@ export const CheckoutAccordion = /*@__PURE__*/ defineContainer<JSX.CheckoutAccor
   'label',
   'isEditable',
   'fullWidth',
-  'contentHeight',
   'expandClick'
 ]);
 
@@ -41,7 +40,8 @@ export const CheckoutClipboardButton = /*@__PURE__*/ defineContainer<JSX.Checkou
 export const CheckoutCountdown = /*@__PURE__*/ defineContainer<JSX.CheckoutCountdown>('checkout-countdown', undefined, [
   'expirationTime',
   'filledProgressBarColor',
-  'emptyProgressBarColor'
+  'emptyProgressBarColor',
+  'countdownFinished'
 ]);
 
 
@@ -73,6 +73,7 @@ export const CheckoutIcon = /*@__PURE__*/ defineContainer<JSX.CheckoutIcon>('che
 export const CheckoutManualPayment = /*@__PURE__*/ defineContainer<JSX.CheckoutManualPayment>('checkout-manual-payment', undefined, [
   'fullWidth',
   'paymentMethod',
+  'isLoading',
   'paymentClick'
 ]);
 
@@ -87,8 +88,14 @@ export const CheckoutModal = /*@__PURE__*/ defineContainer<JSX.CheckoutModal>('c
   'amount',
   'expirationDate',
   'expirationTime',
+  'boletoActionButtonLabel',
+  'pixActionButtonLabel',
+  'successActionButtonLabel',
+  'errorActionButtonLabel',
+  'successDescription',
   'successButtonClicked',
-  'errorButtonClicked'
+  'errorButtonClicked',
+  'pixCountdownIsFinished'
 ]);
 
 
@@ -96,14 +103,17 @@ export const CheckoutModalBoleto = /*@__PURE__*/ defineContainer<JSX.CheckoutMod
   'boletoCode',
   'boletoImageUrl',
   'amount',
-  'expirationDate'
+  'expirationDate',
+  'actionButtonLabel',
+  'boletoActionButtonIsClicked'
 ]);
 
 
 export const CheckoutModalError = /*@__PURE__*/ defineContainer<JSX.CheckoutModalError>('checkout-modal-error', undefined, [
   'errorTitle',
   'errorDescription',
-  'errorButtonClicked'
+  'errorActionButtonLabel',
+  'errorActionButtonClicked'
 ]);
 
 
@@ -112,12 +122,17 @@ export const CheckoutModalPix = /*@__PURE__*/ defineContainer<JSX.CheckoutModalP
   'qrCodeImageUrl',
   'amount',
   'expirationDate',
-  'expirationTime'
+  'expirationTime',
+  'actionButtonLabel',
+  'countdownIsFinished',
+  'pixActionButtonIsClicked'
 ]);
 
 
 export const CheckoutModalSuccess = /*@__PURE__*/ defineContainer<JSX.CheckoutModalSuccess>('checkout-modal-success', undefined, [
-  'successButtonClicked'
+  'successDescription',
+  'successActionButtonLabel',
+  'successActionButtonClicked'
 ]);
 
 
@@ -134,6 +149,7 @@ export const CheckoutRadioField = /*@__PURE__*/ defineContainer<JSX.CheckoutRadi
   'customContainerClass',
   'customLabelClass',
   'customInputClass',
+  'endIcon',
   'fullWidth',
   'isChecked',
   'label',
@@ -228,55 +244,6 @@ export const PlugCheckout = /*@__PURE__*/ defineContainer<JSX.PlugCheckout>('plu
   'showDialog',
   'paymentSuccess',
   'paymentFailed'
-]);
-
-
-export const PlugCheckoutFull = /*@__PURE__*/ defineContainer<JSX.PlugCheckoutFull>('plug-checkout-full', undefined, [
-  'paymentMethods',
-  'showCreditCard',
-  'brandUrl',
-  'clientId',
-  'publicKey',
-  'merchantId',
-  'statementDescriptor',
-  'amount',
-  'delivery',
-  'products',
-  'pix',
-  'boleto',
-  'installments',
-  'customer',
-  'description',
-  'orderId',
-  'customerId',
-  'footerDescription',
-  'currency',
-  'sandbox',
-  'capture',
-  'hasIdentificationSection',
-  'paymentSuccess',
-  'paymentFailed'
-]);
-
-
-export const PlugCheckoutFullContent = /*@__PURE__*/ defineContainer<JSX.PlugCheckoutFullContent>('plug-checkout-full-content', undefined);
-
-
-export const PlugCheckoutFullFooter = /*@__PURE__*/ defineContainer<JSX.PlugCheckoutFullFooter>('plug-checkout-full-footer', undefined, [
-  'description'
-]);
-
-
-export const PlugCheckoutFullHeader = /*@__PURE__*/ defineContainer<JSX.PlugCheckoutFullHeader>('plug-checkout-full-header', undefined, [
-  'brand'
-]);
-
-
-export const PlugCheckoutFullIdentification = /*@__PURE__*/ defineContainer<JSX.PlugCheckoutFullIdentification>('plug-checkout-full-identification', undefined, [
-  'formValues',
-  'submitForm',
-  'fieldChange',
-  'manyFieldsChange'
 ]);
 
 

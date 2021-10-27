@@ -9,8 +9,8 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-bottom: var(--plug-checkout-spacing-md);
   color: var(--plug-checkout-color-grey-darkness);
+  margin: var(--plug-checkout-spacing-md) 0;
 
   @extend %typography-label;
 }

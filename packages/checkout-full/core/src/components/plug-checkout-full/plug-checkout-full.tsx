@@ -53,6 +53,13 @@ export class PlugCheckoutFull {
   @Prop() capture = false
   @Prop() hasIdentificationSection = true
 
+  @Event() paymentSuccess!: EventEmitter<{
+    data: PlugPaymentsChargeSuccess
+  }>
+  @Event() paymentFailed!: EventEmitter<{
+    error: PlugPaymentsChargeError
+  }>
+
   @State() currentSection: string
   @State() customerFormFields: PlugCheckoutFullIdentificationFormValues = {
     name: '',
@@ -67,13 +74,6 @@ export class PlugCheckoutFull {
     state: '',
     country: '',
   }
-
-  @Event() paymentSuccess!: EventEmitter<{
-    data: PlugPaymentsChargeSuccess
-  }>
-  @Event() paymentFailed!: EventEmitter<{
-    error: PlugPaymentsChargeError
-  }>
 
   private handleChangeSection = (section: string) => {
     this.currentSection = section
@@ -160,12 +160,6 @@ export class PlugCheckoutFull {
                 installments={this.installments}
                 sandbox={this.sandbox}
                 paymentMethods={this.paymentMethods}
-                onPaymentSuccess={({ detail: { data } }) =>
-                  this.paymentSuccess.emit({ data })
-                }
-                onPaymentFailed={({ detail: { error } }) =>
-                  this.paymentFailed.emit({ error })
-                }
               />
             </checkout-accordion>
           </div>

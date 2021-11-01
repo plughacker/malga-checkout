@@ -113,8 +113,6 @@ export class PlugPaymentsCredit {
   }
 
   render() {
-    console.log(this.installmentsConfig);
-
     return (
       <Host>
         {this.showCreditCard && (

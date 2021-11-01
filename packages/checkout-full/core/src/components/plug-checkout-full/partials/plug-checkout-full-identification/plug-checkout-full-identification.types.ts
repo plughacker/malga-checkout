@@ -11,6 +11,14 @@ export interface ZipCodeResponse {
   siafi: string
 }
 
+export interface ZipCodeAutoComplete {
+  street: string
+  complement: string
+  neighborhood: string
+  state: string
+  city: string
+}
+
 export interface PlugCheckoutFullIdentificationFormValues {
   name: string
   email: string

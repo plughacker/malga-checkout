@@ -16,7 +16,10 @@ import {
   PlugCheckoutFullIdentificationFormValidFields,
 } from './plug-checkout-full-identification.types'
 import { validateCustomer } from './plug-checkout-full-identification.schema'
-import { getIdentificationMask } from './plug-checkout-full-identification.utils'
+import {
+  getIdentificationMask,
+  validAddressAutocomplete,
+} from './plug-checkout-full-identification.utils'
 
 @Component({
   tag: 'plug-checkout-full-identification',
@@ -49,15 +52,16 @@ export class PlugCheckoutFullIdentification {
   }
 
   private checkValidatedField = () => {
-    const validFieldValues = Object.values(this.validFields)
+    const optionalField = ['complement', 'neighborhood']
+    const validFieldValues = Object.entries(this.validFields)
 
-    const filteredValidFieldValues = validFieldValues.filter(
-      (validFieldValue) => {
+    const filteredValidFieldValues = validFieldValues
+      .filter(([validField]) => !optionalField.includes(validField))
+      .filter(([, validFieldValue]) => {
         if (validFieldValue === undefined) return false
 
         return validFieldValue === null || !!validFieldValue.length
-      },
-    )
+      })
 
     this.allFieldIsValidated = !filteredValidFieldValues.length
   }
@@ -98,9 +102,16 @@ export class PlugCheckoutFullIdentification {
           zipCodeValue,
         )
 
+      const validAddress = validAddressAutocomplete(address)
+
       this.manyFieldsChange.emit({
         customerFormValues: { ...this.formValues, ...address },
       })
+
+      this.validFields = {
+        ...this.validFields,
+        ...validAddress,
+      }
 
       this.checkValidatedField()
 

@@ -6,6 +6,7 @@ import {
   State,
   Event,
   EventEmitter,
+  ComponentInterface
 } from '@stencil/core'
 
 import {
@@ -23,7 +24,7 @@ import { PlugCheckoutFullIdentificationFormValues } from './partials/plug-checko
   tag: 'plug-checkout-full',
   styleUrl: 'plug-checkout-full.scss',
 })
-export class PlugCheckoutFull {
+export class PlugCheckoutFull implements ComponentInterface {
   @Prop() clientId: string
   @Prop() publicKey: string
   @Prop() merchantId: string
@@ -62,7 +63,7 @@ export class PlugCheckoutFull {
     error: PlugCheckoutFullChargeError
   }>
 
-  @State() currentSection: string
+  @State() currentSection = 'identification'
   @State() customerFormFields: PlugCheckoutFullIdentificationFormValues = {
     name: '',
     email: '',
@@ -91,6 +92,12 @@ export class PlugCheckoutFull {
     this.customerFormFields = {
       ...this.customerFormFields,
       ...currentCustomerField,
+    }
+  }
+
+  componentWillLoad() {
+    if (this.transactionConfig.customerId) {
+      this.currentSection = 'payments'
     }
   }
 
@@ -139,14 +146,15 @@ export class PlugCheckoutFull {
 
             <checkout-accordion
               label="Pagamento"
-              isEditable={this.currentSection !== 'payments'}
               opened={this.currentSection === 'payments'}
               onExpandClick={() => this.handleChangeSection('payments')}
             >
-              <span slot="accordion-header-additional-information">
-                <checkout-icon icon="lock" />
-                Seguro e encriptado
-              </span>
+              {this.currentSection === 'payments' && (
+                <span slot="accordion-header-additional-information">
+                  <checkout-icon icon="lock" />
+                  Seguro e encriptado
+                </span>
+              )}
 
               <plug-checkout
                 publicKey={this.publicKey}

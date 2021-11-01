@@ -45,10 +45,10 @@ export class PlugPaymentsCredit {
   @Prop()
   customFormStyleClasses?: PlugPaymentsCreditFormCustomStyleFormClasses = defaultCustomStyles
 
-  @Event() paymentSuccess!: EventEmitter<{
+  @Event() creditPaymentSuccess!: EventEmitter<{
     data: PlugPaymentsCreditChargeSuccess
   }>
-  @Event() paymentFailed!: EventEmitter<{
+  @Event() creditPaymentFailed!: EventEmitter<{
     error: PlugPaymentsCreditChargeError
   }>
 
@@ -99,9 +99,9 @@ export class PlugPaymentsCredit {
       showDialog: this.showDialog,
       data,
       onPaymentSuccess: (data: PlugPaymentsCreditChargeSuccess) =>
-        this.paymentSuccess.emit({ data }),
+        this.creditPaymentSuccess.emit({ data }),
       onPaymentFailed: (error: PlugPaymentsCreditChargeError) =>
-        this.paymentFailed.emit({ error }),
+        this.creditPaymentFailed.emit({ error }),
       onShowDialog: (dialogData: PlugPaymentsCreditDialogState) =>
         this.handleShowDialog(dialogData),
     })

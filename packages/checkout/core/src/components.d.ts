@@ -195,10 +195,10 @@ declare namespace LocalJSX {
         "description"?: string;
         "installments"?: PlugPaymentsCreditInstallmentsConfig;
         "merchantId"?: string;
-        "onPaymentFailed"?: (event: CustomEvent<{
+        "onCheckoutPaymentFailed"?: (event: CustomEvent<{
     error: PlugPaymentsChargeError
   }>) => void;
-        "onPaymentSuccess"?: (event: CustomEvent<{
+        "onCheckoutPaymentSuccess"?: (event: CustomEvent<{
     data: PlugPaymentsChargeSuccess
   }>) => void;
         "orderId"?: string;
@@ -220,10 +220,10 @@ declare namespace LocalJSX {
         "customerId"?: string;
         "description"?: string;
         "merchantId"?: string;
-        "onPaymentFailed"?: (event: CustomEvent<{
+        "onBoletoPaymentFailed"?: (event: CustomEvent<{
     error: PlugPaymentsBoletoChargeError
   }>) => void;
-        "onPaymentSuccess"?: (event: CustomEvent<{
+        "onBoletoPaymentSuccess"?: (event: CustomEvent<{
     data: PlugPaymentsBoletoChargeSuccess
   }>) => void;
         "orderId"?: string;
@@ -243,10 +243,10 @@ declare namespace LocalJSX {
         "description"?: string;
         "installmentsConfig"?: PlugPaymentsCreditInstallmentsConfig;
         "merchantId"?: string;
-        "onPaymentFailed"?: (event: CustomEvent<{
+        "onCreditPaymentFailed"?: (event: CustomEvent<{
     error: PlugPaymentsCreditChargeError
   }>) => void;
-        "onPaymentSuccess"?: (event: CustomEvent<{
+        "onCreditPaymentSuccess"?: (event: CustomEvent<{
     data: PlugPaymentsCreditChargeSuccess
   }>) => void;
         "orderId"?: string;
@@ -274,10 +274,10 @@ declare namespace LocalJSX {
         "customerId"?: string;
         "description"?: string;
         "merchantId"?: string;
-        "onPaymentFailed"?: (event: CustomEvent<{
+        "onPixPaymentFailed"?: (event: CustomEvent<{
     error: PlugPaymentsPixChargeError
   }>) => void;
-        "onPaymentSuccess"?: (event: CustomEvent<{
+        "onPixPaymentSuccess"?: (event: CustomEvent<{
     data: PlugPaymentsPixChargeSuccess
   }>) => void;
         "orderId"?: string;

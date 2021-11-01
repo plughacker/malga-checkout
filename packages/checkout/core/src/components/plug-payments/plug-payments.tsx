@@ -47,10 +47,10 @@ export class PlugPayments implements ComponentInterface {
   @Prop() capture = false
   @Prop() showDialog = true
 
-  @Event() paymentSuccess!: EventEmitter<{
+  @Event() checkoutPaymentSuccess!: EventEmitter<{
     data: PlugPaymentsChargeSuccess
   }>
-  @Event() paymentFailed!: EventEmitter<{
+  @Event() checkoutPaymentFailed!: EventEmitter<{
     error: PlugPaymentsChargeError
   }>
 
@@ -95,11 +95,11 @@ export class PlugPayments implements ComponentInterface {
                   sandbox={this.sandbox}
                   capture={this.capture}
                   boleto={this.boleto}
-                  onPaymentSuccess={({ detail: { data } }) =>
-                    this.paymentSuccess.emit({ data })
+                  onBoletoPaymentSuccess={({ detail: { data } }) =>
+                    this.checkoutPaymentSuccess.emit({ data })
                   }
-                  onPaymentFailed={({ detail: { error } }) =>
-                    this.paymentFailed.emit({ error })
+                  onBoletoPaymentFailed={({ detail: { error } }) =>
+                    this.checkoutPaymentFailed.emit({ error })
                   }
                 />
               )}
@@ -132,11 +132,11 @@ export class PlugPayments implements ComponentInterface {
                   sandbox={this.sandbox}
                   capture={this.capture}
                   pix={this.pix}
-                  onPaymentSuccess={({ detail: { data } }) =>
-                    this.paymentSuccess.emit({ data })
+                  onPixPaymentSuccess={({ detail: { data } }) =>
+                    this.checkoutPaymentSuccess.emit({ data })
                   }
-                  onPaymentFailed={({ detail: { error } }) =>
-                    this.paymentFailed.emit({ error })
+                  onPixPaymentFailed={({ detail: { error } }) =>
+                    this.checkoutPaymentFailed.emit({ error })
                   }
                 />
               )}
@@ -169,11 +169,11 @@ export class PlugPayments implements ComponentInterface {
                   sandbox={this.sandbox}
                   capture={this.capture}
                   installmentsConfig={this.installments}
-                  onPaymentSuccess={({ detail: { data } }) =>
-                    this.paymentSuccess.emit({ data })
+                  onCreditPaymentSuccess={({ detail: { data } }) =>
+                    this.checkoutPaymentSuccess.emit({ data })
                   }
-                  onPaymentFailed={({ detail: { error } }) =>
-                    this.paymentFailed.emit({ error })
+                  onCreditPaymentFailed={({ detail: { error } }) =>
+                    this.checkoutPaymentFailed.emit({ error })
                   }
                 />
               )}

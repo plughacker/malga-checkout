@@ -37,10 +37,10 @@ export class PlugPaymentsPix {
   @Prop() capture = false
   @Prop() showDialog = true
 
-  @Event() paymentSuccess!: EventEmitter<{
+  @Event() pixPaymentSuccess!: EventEmitter<{
     data: PlugPaymentsPixChargeSuccess
   }>
-  @Event() paymentFailed!: EventEmitter<{
+  @Event() pixPaymentFailed!: EventEmitter<{
     error: PlugPaymentsPixChargeError
   }>
 
@@ -82,9 +82,9 @@ export class PlugPaymentsPix {
       showDialog: this.showDialog,
       data,
       onPaymentSuccess: (data: PlugPaymentsPixChargeSuccess) =>
-        this.paymentSuccess.emit({ data }),
+        this.pixPaymentSuccess.emit({ data }),
       onPaymentFailed: (error: PlugPaymentsPixChargeError) =>
-        this.paymentFailed.emit({ error }),
+        this.pixPaymentFailed.emit({ error }),
       onShowDialog: (dialogData: PlugPaymentsPixDialogState) =>
         this.handleShowDialog(dialogData),
     })

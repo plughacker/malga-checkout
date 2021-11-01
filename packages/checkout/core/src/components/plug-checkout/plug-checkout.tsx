@@ -66,10 +66,10 @@ export class PlugCheckout {
               installments={this.installments}
               sandbox={this.sandbox}
               paymentMethods={this.paymentMethods}
-              onPaymentSuccess={({ detail: { data } }) =>
+              onCheckoutPaymentSuccess={({ detail: { data } }) =>
                 this.paymentSuccess.emit({ data })
               }
-              onPaymentFailed={({ detail: { error } }) =>
+              onCheckoutPaymentFailed={({ detail: { error } }) =>
                 this.paymentFailed.emit({ error })
               }
             />
@@ -91,10 +91,10 @@ export class PlugCheckout {
               sandbox={this.sandbox}
               capture={this.capture}
               boleto={this.boleto}
-              onPaymentSuccess={({ detail: { data } }) =>
+              onBoletoPaymentSuccess={({ detail: { data } }) =>
                 this.paymentSuccess.emit({ data })
               }
-              onPaymentFailed={({ detail: { error } }) =>
+              onBoletoPaymentFailed={({ detail: { error } }) =>
                 this.paymentFailed.emit({ error })
               }
             />
@@ -116,10 +116,10 @@ export class PlugCheckout {
               sandbox={this.sandbox}
               capture={this.capture}
               pix={this.pix}
-              onPaymentSuccess={({ detail: { data } }) =>
+              onPixPaymentSuccess={({ detail: { data } }) =>
                 this.paymentSuccess.emit({ data })
               }
-              onPaymentFailed={({ detail: { error } }) =>
+              onPixPaymentFailed={({ detail: { error } }) =>
                 this.paymentFailed.emit({ error })
               }
             />
@@ -142,10 +142,10 @@ export class PlugCheckout {
               sandbox={this.sandbox}
               capture={this.capture}
               installmentsConfig={this.installments}
-              onPaymentSuccess={({ detail: { data } }) =>
+              onCreditPaymentSuccess={({ detail: { data } }) =>
                 this.paymentSuccess.emit({ data })
               }
-              onPaymentFailed={({ detail: { error } }) =>
+              onCreditPaymentFailed={({ detail: { error } }) =>
                 this.paymentFailed.emit({ error })
               }
             />

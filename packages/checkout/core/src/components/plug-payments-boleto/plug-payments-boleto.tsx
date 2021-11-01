@@ -37,10 +37,10 @@ export class PlugPaymentsBoleto {
   @Prop() capture = false
   @Prop() showDialog = true
 
-  @Event() paymentSuccess!: EventEmitter<{
+  @Event() boletoPaymentSuccess!: EventEmitter<{
     data: PlugPaymentsBoletoChargeSuccess
   }>
-  @Event() paymentFailed!: EventEmitter<{
+  @Event() boletoPaymentFailed!: EventEmitter<{
     error: PlugPaymentsBoletoChargeError
   }>
 
@@ -81,9 +81,9 @@ export class PlugPaymentsBoleto {
       showDialog: this.showDialog,
       data,
       onPaymentSuccess: (data: PlugPaymentsBoletoChargeSuccess) =>
-        this.paymentSuccess.emit({ data }),
+        this.boletoPaymentSuccess.emit({ data }),
       onPaymentFailed: (error: PlugPaymentsBoletoChargeError) =>
-        this.paymentFailed.emit({ error }),
+        this.boletoPaymentFailed.emit({ error }),
       onShowDialog: (dialogData: PlugPaymentsBoletoDialogState) =>
         this.handleShowDialog(dialogData),
     })

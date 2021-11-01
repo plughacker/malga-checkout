@@ -64,8 +64,8 @@ export namespace Components {
         "paymentMethod": CheckoutManualPaymentDescriptions;
     }
     interface CheckoutModal {
+        "actionButtonLabel"?: string;
         "amount": number;
-        "boletoActionButtonLabel"?: string;
         "errorActionButtonLabel"?: string;
         "errorDescription"?: string;
         "errorTitle"?: string;
@@ -75,7 +75,6 @@ export namespace Components {
         "open": boolean;
         "paymentCode": string;
         "paymentImageUrl": string;
-        "pixActionButtonLabel"?: string;
         "successActionButtonLabel"?: string;
         "successDescription"?: string;
     }
@@ -356,8 +355,8 @@ declare namespace LocalJSX {
         "paymentMethod"?: CheckoutManualPaymentDescriptions;
     }
     interface CheckoutModal {
+        "actionButtonLabel"?: string;
         "amount"?: number;
-        "boletoActionButtonLabel"?: string;
         "errorActionButtonLabel"?: string;
         "errorDescription"?: string;
         "errorTitle"?: string;
@@ -370,7 +369,6 @@ declare namespace LocalJSX {
         "open"?: boolean;
         "paymentCode"?: string;
         "paymentImageUrl"?: string;
-        "pixActionButtonLabel"?: string;
         "successActionButtonLabel"?: string;
         "successDescription"?: string;
     }

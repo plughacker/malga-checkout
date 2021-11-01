@@ -9,8 +9,8 @@
 
 | Property                   | Attribute                     | Description | Type                                        | Default     |
 | -------------------------- | ----------------------------- | ----------- | ------------------------------------------- | ----------- |
+| `actionButtonLabel`        | `action-button-label`         |             | `string`                                    | `undefined` |
 | `amount`                   | `amount`                      |             | `number`                                    | `undefined` |
-| `boletoActionButtonLabel`  | `boleto-action-button-label`  |             | `string`                                    | `undefined` |
 | `errorActionButtonLabel`   | `error-action-button-label`   |             | `string`                                    | `undefined` |
 | `errorDescription`         | `error-description`           |             | `string`                                    | `undefined` |
 | `errorTitle`               | `error-title`                 |             | `string`                                    | `undefined` |
@@ -20,7 +20,6 @@
 | `open`                     | `open`                        |             | `boolean`                                   | `undefined` |
 | `paymentCode`              | `payment-code`                |             | `string`                                    | `undefined` |
 | `paymentImageUrl`          | `payment-image-url`           |             | `string`                                    | `undefined` |
-| `pixActionButtonLabel`     | `pix-action-button-label`     |             | `string`                                    | `undefined` |
 | `successActionButtonLabel` | `success-action-button-label` |             | `string`                                    | `undefined` |
 | `successDescription`       | `success-description`         |             | `string`                                    | `undefined` |
 

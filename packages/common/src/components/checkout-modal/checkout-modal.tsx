@@ -16,8 +16,7 @@ export class CheckoutModal {
   @Prop() amount: number
   @Prop() expirationDate?: string
   @Prop() expirationTime?: number
-  @Prop() boletoActionButtonLabel?: string
-  @Prop() pixActionButtonLabel?: string
+  @Prop() actionButtonLabel?: string
   @Prop() successActionButtonLabel?: string
   @Prop() errorActionButtonLabel?: string
   @Prop() successDescription?: string
@@ -58,7 +57,7 @@ export class CheckoutModal {
               amount={this.amount}
               expirationDate={this.expirationDate}
               expirationTime={this.expirationTime}
-              actionButtonLabel={this.pixActionButtonLabel}
+              actionButtonLabel={this.actionButtonLabel}
               onCountdownIsFinished={() => this.pixCountdownIsFinished.emit()}
               onPixActionButtonIsClicked={() =>
                 this.successButtonClicked.emit()
@@ -71,7 +70,7 @@ export class CheckoutModal {
               boletoImageUrl={this.paymentImageUrl}
               amount={this.amount}
               expirationDate={this.expirationDate}
-              actionButtonLabel={this.boletoActionButtonLabel}
+              actionButtonLabel={this.actionButtonLabel}
               onBoletoActionButtonIsClicked={() =>
                 this.successButtonClicked.emit()
               }

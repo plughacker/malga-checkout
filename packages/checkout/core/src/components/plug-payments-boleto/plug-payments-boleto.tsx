@@ -16,6 +16,7 @@ import {
 
 import { PlugPaymentsBoletoService } from './plug-payments-boleto.service'
 import { Customer } from '../../providers/base-provider'
+import { PlugCheckoutDialog } from '../plug-checkout/plug-checkout.types'
 
 @Component({
   tag: 'plug-payments-boleto',
@@ -35,7 +36,7 @@ export class PlugPaymentsBoleto {
   @Prop() currency = 'BRL'
   @Prop() sandbox = false
   @Prop() capture = false
-  @Prop() showDialog = true
+  @Prop() dialogConfig: PlugCheckoutDialog
 
   @Event() boletoPaymentSuccess!: EventEmitter<{
     data: PlugPaymentsBoletoChargeSuccess
@@ -78,7 +79,7 @@ export class PlugPaymentsBoleto {
       publicKey: this.publicKey,
       clientId: this.clientId,
       sandbox: this.sandbox,
-      showDialog: this.showDialog,
+      showDialog: this.dialogConfig.show,
       data,
       onPaymentSuccess: (data: PlugPaymentsBoletoChargeSuccess) =>
         this.boletoPaymentSuccess.emit({ data }),
@@ -102,7 +103,7 @@ export class PlugPaymentsBoleto {
           isLoading={this.isLoading}
           onPaymentClick={() => this.handleFormSubmit()}
         />
-        {this.showDialog && this.dialog.open && (
+        {this.dialogConfig.show && this.dialog.open && (
           <checkout-modal
             mode={this.dialog.mode}
             open={this.dialog.open}
@@ -111,6 +112,9 @@ export class PlugPaymentsBoleto {
             paymentImageUrl={this.dialog.paymentImageUrl}
             expirationDate={this.dialog.expirationDate}
             errorDescription={this.dialog.errorMessage}
+            actionButtonLabel={this.dialogConfig.actionButtonLabel}
+            successActionButtonLabel={this.dialogConfig.successActionButtonLabel}
+            errorActionButtonLabel={this.dialogConfig.errorActionButtonLabel}
           />
         )}
       </Host>

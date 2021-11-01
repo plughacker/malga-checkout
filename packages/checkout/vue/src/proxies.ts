@@ -88,8 +88,7 @@ export const CheckoutModal = /*@__PURE__*/ defineContainer<JSX.CheckoutModal>('c
   'amount',
   'expirationDate',
   'expirationTime',
-  'boletoActionButtonLabel',
-  'pixActionButtonLabel',
+  'actionButtonLabel',
   'successActionButtonLabel',
   'errorActionButtonLabel',
   'successDescription',
@@ -224,24 +223,13 @@ export const CheckoutTypography = /*@__PURE__*/ defineContainer<JSX.CheckoutTypo
 
 
 export const PlugCheckout = /*@__PURE__*/ defineContainer<JSX.PlugCheckout>('plug-checkout', undefined, [
-  'paymentMethods',
-  'showCreditCard',
   'clientId',
   'publicKey',
   'merchantId',
-  'statementDescriptor',
-  'amount',
-  'pix',
-  'boleto',
-  'installments',
-  'customer',
-  'description',
-  'orderId',
-  'customerId',
-  'currency',
   'sandbox',
-  'capture',
-  'showDialog',
+  'dialogConfig',
+  'paymentMethods',
+  'transactionConfig',
   'paymentSuccess',
   'paymentFailed'
 ]);
@@ -265,7 +253,7 @@ export const PlugPayments = /*@__PURE__*/ defineContainer<JSX.PlugPayments>('plu
   'currency',
   'sandbox',
   'capture',
-  'showDialog',
+  'dialogConfig',
   'checkoutPaymentSuccess',
   'checkoutPaymentFailed'
 ]);
@@ -285,7 +273,7 @@ export const PlugPaymentsBoleto = /*@__PURE__*/ defineContainer<JSX.PlugPayments
   'currency',
   'sandbox',
   'capture',
-  'showDialog',
+  'dialogConfig',
   'boletoPaymentSuccess',
   'boletoPaymentFailed'
 ]);
@@ -305,7 +293,7 @@ export const PlugPaymentsCredit = /*@__PURE__*/ defineContainer<JSX.PlugPayments
   'sandbox',
   'capture',
   'showCreditCard',
-  'showDialog',
+  'dialogConfig',
   'installmentsConfig',
   'customFormStyleClasses',
   'creditPaymentSuccess',
@@ -338,7 +326,7 @@ export const PlugPaymentsPix = /*@__PURE__*/ defineContainer<JSX.PlugPaymentsPix
   'currency',
   'sandbox',
   'capture',
-  'showDialog',
+  'dialogConfig',
   'pixPaymentSuccess',
   'pixPaymentFailed'
 ]);

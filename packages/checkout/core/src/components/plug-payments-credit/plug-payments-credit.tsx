@@ -17,6 +17,7 @@ import {
   PlugPaymentsCreditChargeSuccess,
   PlugPaymentsCreditDialogState,
 } from './plug-payments-credit.types'
+import { PlugCheckoutDialog } from '../plug-checkout/plug-checkout.types'
 import { PlugPaymentsCreditService } from './plug-payments-credit.service'
 import { Customer } from '../../providers/base-provider'
 
@@ -37,7 +38,7 @@ export class PlugPaymentsCredit {
   @Prop() sandbox = false
   @Prop() capture = false
   @Prop() showCreditCard = true
-  @Prop() showDialog = true
+  @Prop() dialogConfig: PlugCheckoutDialog
   @Prop() installmentsConfig: PlugPaymentsCreditInstallmentsConfig = {
     show: true,
     quantity: 1,
@@ -96,7 +97,7 @@ export class PlugPaymentsCredit {
       publicKey: this.publicKey,
       clientId: this.clientId,
       sandbox: this.sandbox,
-      showDialog: this.showDialog,
+      showDialog: this.dialogConfig.show,
       data,
       onPaymentSuccess: (data: PlugPaymentsCreditChargeSuccess) =>
         this.creditPaymentSuccess.emit({ data }),
@@ -112,6 +113,8 @@ export class PlugPaymentsCredit {
   }
 
   render() {
+    console.log(this.installmentsConfig);
+
     return (
       <Host>
         {this.showCreditCard && (
@@ -137,12 +140,15 @@ export class PlugPaymentsCredit {
             ...this.customFormStyleClasses,
           }}
         />
-        {this.showDialog && this.dialog.open && (
+        {this.dialogConfig.show && this.dialog.open && (
           <checkout-modal
             mode={this.dialog.mode}
             open={this.dialog.open}
             amount={this.dialog.amount}
             errorDescription={this.dialog.errorMessage}
+            actionButtonLabel={this.dialogConfig.actionButtonLabel}
+            successActionButtonLabel={this.dialogConfig.successActionButtonLabel}
+            errorActionButtonLabel={this.dialogConfig.errorActionButtonLabel}
           />
         )}
       </Host>

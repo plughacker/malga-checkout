@@ -11,7 +11,7 @@ import {
   PlugPaymentsPixChargeError,
 } from '../plug-payments-pix/plug-payments-pix.types'
 
-export type PaymentMethodsType = 'card' | 'boleto' | 'pix'
+export type PaymentMethodsType = 'credit' | 'boleto' | 'pix'
 
 export type PaymentMethods = PaymentMethodsType[]
 

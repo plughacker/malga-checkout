@@ -13,6 +13,7 @@ import {
   PlugPaymentsPixChargeError,
   PlugPaymentsPixDialogState,
 } from './plug-payments-pix.types'
+import { PlugCheckoutDialog } from '../plug-checkout/plug-checkout.types'
 
 import { PlugPaymentsPixService } from './plug-payments-pix.service'
 import { Customer } from '../../providers/base-provider'
@@ -35,7 +36,7 @@ export class PlugPaymentsPix {
   @Prop() currency = 'BRL'
   @Prop() sandbox = false
   @Prop() capture = false
-  @Prop() showDialog = true
+  @Prop() dialogConfig: PlugCheckoutDialog
 
   @Event() pixPaymentSuccess!: EventEmitter<{
     data: PlugPaymentsPixChargeSuccess
@@ -79,7 +80,7 @@ export class PlugPaymentsPix {
       publicKey: this.publicKey,
       clientId: this.clientId,
       sandbox: this.sandbox,
-      showDialog: this.showDialog,
+      showDialog: this.dialogConfig.show,
       data,
       onPaymentSuccess: (data: PlugPaymentsPixChargeSuccess) =>
         this.pixPaymentSuccess.emit({ data }),
@@ -103,7 +104,7 @@ export class PlugPaymentsPix {
           isLoading={this.isLoading}
           onPaymentClick={() => this.handleFormSubmit()}
         />
-        {this.showDialog && this.dialog.open && (
+        {this.dialogConfig.show && this.dialog.open && (
           <checkout-modal
             mode={this.dialog.mode}
             open={this.dialog.open}
@@ -113,6 +114,9 @@ export class PlugPaymentsPix {
             expirationDate={this.dialog.expirationDate}
             expirationTime={this.dialog.expirationTime}
             errorDescription={this.dialog.errorMessage}
+            actionButtonLabel={this.dialogConfig.actionButtonLabel}
+            successActionButtonLabel={this.dialogConfig.successActionButtonLabel}
+            errorActionButtonLabel={this.dialogConfig.errorActionButtonLabel}
           />
         )}
       </Host>

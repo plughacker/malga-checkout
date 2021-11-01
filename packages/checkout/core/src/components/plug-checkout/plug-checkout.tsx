@@ -1,8 +1,5 @@
 import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
-import { Customer } from '../../providers/base-provider'
-import { BoletoAttributes } from '../../providers/boleto'
-import { PixAttributes } from '../../providers/pix'
-import { PlugPaymentsCreditInstallmentsConfig } from '../plug-payments-credit/plug-payments-credit.types'
+
 import {
   PaymentMethods,
   PaymentMethodsType,
@@ -10,29 +7,38 @@ import {
   PlugPaymentsChargeSuccess,
 } from '../plug-payments/plug-payments.types'
 
+import { PlugCheckoutPaymentMethods, PlugCheckoutTransaction, PlugCheckoutDialog } from './plug-checkout.types'
+
 @Component({
   tag: 'plug-checkout',
   styleUrl: 'plug-checkout.scss',
 })
 export class PlugCheckout {
-  @Prop() paymentMethods: PaymentMethods = ['card', 'pix', 'boleto']
-  @Prop() showCreditCard = false
   @Prop() clientId: string
   @Prop() publicKey: string
   @Prop() merchantId: string
-  @Prop() statementDescriptor: string
-  @Prop() amount: number
-  @Prop() pix?: PixAttributes
-  @Prop() boleto?: BoletoAttributes
-  @Prop() installments?: PlugPaymentsCreditInstallmentsConfig
-  @Prop() customer?: Customer
-  @Prop() description?: string
-  @Prop() orderId?: string
-  @Prop() customerId?: string
-  @Prop() currency = 'BRL'
   @Prop() sandbox = false
-  @Prop() capture = false
-  @Prop() showDialog = true
+  @Prop() dialogConfig: PlugCheckoutDialog = {
+    show: true,
+    actionButtonLabel: 'Continuar',
+    successActionButtonLabel: 'Continuar',
+    errorActionButtonLabel: 'Tentar Novamente',
+  }
+  @Prop() paymentMethods: PlugCheckoutPaymentMethods = {
+    pix: undefined,
+    credit: undefined,
+    boleto: undefined
+  }
+  @Prop() transactionConfig: PlugCheckoutTransaction = {
+    statementDescriptor: '',
+    amount: 0,
+    description: '',
+    orderId: '',
+    customerId: '',
+    currency: 'BRL',
+    capture: false,
+    customer: null,
+  }
 
   @Event() paymentSuccess!: EventEmitter<{
     data: PlugPaymentsChargeSuccess
@@ -42,30 +48,35 @@ export class PlugCheckout {
   }>
 
   private showCurrentPaymentMethod = (paymentMethod: PaymentMethodsType) => {
-    const showPaymentMethod = this.paymentMethods.includes(paymentMethod)
+    const paymentMethods = Object.keys(this.paymentMethods)
 
-    return this.paymentMethods.length === 1 && showPaymentMethod
+    const showPaymentMethod = paymentMethods.includes(paymentMethod)
+
+    return paymentMethods.length === 1 && showPaymentMethod
   }
 
   render() {
+    const paymentMethods = Object.keys(this.paymentMethods)
+
     return (
       <Host class={{ 'plug-checkout__container': true }}>
         <section class={{ 'plug-checkout__content': true }}>
-          {this.paymentMethods.length > 1 && (
+          {paymentMethods.length > 1 && (
             <plug-payments
               publicKey={this.publicKey}
               clientId={this.clientId}
               merchantId={this.merchantId}
-              customer={this.customer}
-              customerId={this.customerId}
-              statementDescriptor={this.statementDescriptor}
-              amount={this.amount}
-              showCreditCard={this.showCreditCard}
-              boleto={this.boleto}
-              pix={this.pix}
-              installments={this.installments}
+              customer={this.transactionConfig.customer}
+              customerId={this.transactionConfig.customerId}
+              statementDescriptor={this.transactionConfig.statementDescriptor}
+              amount={this.transactionConfig.amount}
+              showCreditCard={this.paymentMethods.credit ? this.paymentMethods.credit.showCreditCard : false}
+              boleto={this.paymentMethods.boleto}
+              pix={this.paymentMethods.pix}
+              installments={this.paymentMethods.credit}
               sandbox={this.sandbox}
-              paymentMethods={this.paymentMethods}
+              paymentMethods={paymentMethods as PaymentMethods}
+              dialogConfig={this.dialogConfig}
               onCheckoutPaymentSuccess={({ detail: { data } }) =>
                 this.paymentSuccess.emit({ data })
               }
@@ -77,20 +88,20 @@ export class PlugCheckout {
 
           {this.showCurrentPaymentMethod('boleto') && (
             <plug-payments-boleto
-              showDialog={this.showDialog}
+              dialogConfig={this.dialogConfig}
               clientId={this.clientId}
               publicKey={this.publicKey}
               merchantId={this.merchantId}
-              statementDescriptor={this.statementDescriptor}
-              amount={this.amount}
-              customer={this.customer}
-              customerId={this.customerId}
-              orderId={this.orderId}
-              currency={this.currency}
-              description={this.description}
+              statementDescriptor={this.transactionConfig.statementDescriptor}
+              amount={this.transactionConfig.amount}
+              customer={this.transactionConfig.customer}
+              customerId={this.transactionConfig.customerId}
+              orderId={this.transactionConfig.orderId}
+              currency={this.transactionConfig.currency}
+              description={this.transactionConfig.description}
               sandbox={this.sandbox}
-              capture={this.capture}
-              boleto={this.boleto}
+              capture={this.transactionConfig.capture}
+              boleto={this.paymentMethods.boleto}
               onBoletoPaymentSuccess={({ detail: { data } }) =>
                 this.paymentSuccess.emit({ data })
               }
@@ -102,20 +113,20 @@ export class PlugCheckout {
 
           {this.showCurrentPaymentMethod('pix') && (
             <plug-payments-pix
-              showDialog={this.showDialog}
+              dialogConfig={this.dialogConfig}
               clientId={this.clientId}
               publicKey={this.publicKey}
               merchantId={this.merchantId}
-              statementDescriptor={this.statementDescriptor}
-              amount={this.amount}
-              customer={this.customer}
-              customerId={this.customerId}
-              orderId={this.orderId}
-              currency={this.currency}
-              description={this.description}
+              statementDescriptor={this.transactionConfig.statementDescriptor}
+              amount={this.transactionConfig.amount}
+              customer={this.transactionConfig.customer}
+              customerId={this.transactionConfig.customerId}
+              orderId={this.transactionConfig.orderId}
+              currency={this.transactionConfig.currency}
+              description={this.transactionConfig.description}
               sandbox={this.sandbox}
-              capture={this.capture}
-              pix={this.pix}
+              capture={this.transactionConfig.capture}
+              pix={this.paymentMethods.pix}
               onPixPaymentSuccess={({ detail: { data } }) =>
                 this.paymentSuccess.emit({ data })
               }
@@ -125,23 +136,23 @@ export class PlugCheckout {
             />
           )}
 
-          {this.showCurrentPaymentMethod('card') && (
+          {this.showCurrentPaymentMethod('credit') && (
             <plug-payments-credit
-              showDialog={this.showDialog}
-              showCreditCard={this.showCreditCard}
+              dialogConfig={this.dialogConfig}
+              showCreditCard={this.paymentMethods.credit ? this.paymentMethods.credit.showCreditCard : false}
               clientId={this.clientId}
               publicKey={this.publicKey}
               merchantId={this.merchantId}
-              statementDescriptor={this.statementDescriptor}
-              amount={this.amount}
-              customerId={this.customerId}
-              customer={this.customer}
-              orderId={this.orderId}
-              currency={this.currency}
-              description={this.description}
+              statementDescriptor={this.transactionConfig.statementDescriptor}
+              amount={this.transactionConfig.amount}
+              customerId={this.transactionConfig.customerId}
+              customer={this.transactionConfig.customer}
+              orderId={this.transactionConfig.orderId}
+              currency={this.transactionConfig.currency}
+              description={this.transactionConfig.description}
               sandbox={this.sandbox}
-              capture={this.capture}
-              installmentsConfig={this.installments}
+              capture={this.transactionConfig.capture}
+              installmentsConfig={this.paymentMethods.credit}
               onCreditPaymentSuccess={({ detail: { data } }) =>
                 this.paymentSuccess.emit({ data })
               }

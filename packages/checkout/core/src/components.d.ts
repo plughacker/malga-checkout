@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { PlugCheckoutDialog, PlugCheckoutPaymentMethods, PlugCheckoutTransaction } from "./components/plug-checkout/plug-checkout.types";
 import { PaymentMethods, PlugPaymentsChargeError, PlugPaymentsChargeSuccess } from "./components/plug-payments/plug-payments.types";
 import { PixAttributes } from "./providers/pix";
 import { BoletoAttributes } from "./providers/boleto";
@@ -14,24 +15,13 @@ import { PlugPaymentsBoletoChargeError, PlugPaymentsBoletoChargeSuccess } from "
 import { PlugPaymentsPixChargeError, PlugPaymentsPixChargeSuccess } from "./components/plug-payments-pix/plug-payments-pix.types";
 export namespace Components {
     interface PlugCheckout {
-        "amount": number;
-        "boleto"?: BoletoAttributes;
-        "capture": boolean;
         "clientId": string;
-        "currency": string;
-        "customer"?: Customer;
-        "customerId"?: string;
-        "description"?: string;
-        "installments"?: PlugPaymentsCreditInstallmentsConfig;
+        "dialogConfig": PlugCheckoutDialog;
         "merchantId": string;
-        "orderId"?: string;
-        "paymentMethods": PaymentMethods;
-        "pix"?: PixAttributes;
+        "paymentMethods": PlugCheckoutPaymentMethods;
         "publicKey": string;
         "sandbox": boolean;
-        "showCreditCard": boolean;
-        "showDialog": boolean;
-        "statementDescriptor": string;
+        "transactionConfig": PlugCheckoutTransaction;
     }
     interface PlugPayments {
         "amount": number;
@@ -42,6 +32,7 @@ export namespace Components {
         "customer"?: Customer;
         "customerId"?: string;
         "description"?: string;
+        "dialogConfig": PlugCheckoutDialog;
         "installments"?: PlugPaymentsCreditInstallmentsConfig;
         "merchantId": string;
         "orderId"?: string;
@@ -50,7 +41,6 @@ export namespace Components {
         "publicKey": string;
         "sandbox": boolean;
         "showCreditCard": boolean;
-        "showDialog": boolean;
         "statementDescriptor": string;
     }
     interface PlugPaymentsBoleto {
@@ -62,11 +52,11 @@ export namespace Components {
         "customer"?: Customer;
         "customerId"?: string;
         "description"?: string;
+        "dialogConfig": PlugCheckoutDialog;
         "merchantId": string;
         "orderId"?: string;
         "publicKey": string;
         "sandbox": boolean;
-        "showDialog": boolean;
         "statementDescriptor": string;
     }
     interface PlugPaymentsCredit {
@@ -78,13 +68,13 @@ export namespace Components {
         "customer"?: Customer;
         "customerId"?: string;
         "description"?: string;
+        "dialogConfig": PlugCheckoutDialog;
         "installmentsConfig": PlugPaymentsCreditInstallmentsConfig;
         "merchantId": string;
         "orderId"?: string;
         "publicKey": string;
         "sandbox": boolean;
         "showCreditCard": boolean;
-        "showDialog": boolean;
         "statementDescriptor": string;
     }
     interface PlugPaymentsCreditForm {
@@ -102,12 +92,12 @@ export namespace Components {
         "customer"?: Customer;
         "customerId"?: string;
         "description"?: string;
+        "dialogConfig": PlugCheckoutDialog;
         "merchantId": string;
         "orderId"?: string;
         "pix": PixAttributes;
         "publicKey": string;
         "sandbox": boolean;
-        "showDialog": boolean;
         "statementDescriptor": string;
     }
 }
@@ -159,15 +149,8 @@ declare global {
 }
 declare namespace LocalJSX {
     interface PlugCheckout {
-        "amount"?: number;
-        "boleto"?: BoletoAttributes;
-        "capture"?: boolean;
         "clientId"?: string;
-        "currency"?: string;
-        "customer"?: Customer;
-        "customerId"?: string;
-        "description"?: string;
-        "installments"?: PlugPaymentsCreditInstallmentsConfig;
+        "dialogConfig"?: PlugCheckoutDialog;
         "merchantId"?: string;
         "onPaymentFailed"?: (event: CustomEvent<{
     error: PlugPaymentsChargeError
@@ -175,14 +158,10 @@ declare namespace LocalJSX {
         "onPaymentSuccess"?: (event: CustomEvent<{
     data: PlugPaymentsChargeSuccess
   }>) => void;
-        "orderId"?: string;
-        "paymentMethods"?: PaymentMethods;
-        "pix"?: PixAttributes;
+        "paymentMethods"?: PlugCheckoutPaymentMethods;
         "publicKey"?: string;
         "sandbox"?: boolean;
-        "showCreditCard"?: boolean;
-        "showDialog"?: boolean;
-        "statementDescriptor"?: string;
+        "transactionConfig"?: PlugCheckoutTransaction;
     }
     interface PlugPayments {
         "amount"?: number;
@@ -193,6 +172,7 @@ declare namespace LocalJSX {
         "customer"?: Customer;
         "customerId"?: string;
         "description"?: string;
+        "dialogConfig"?: PlugCheckoutDialog;
         "installments"?: PlugPaymentsCreditInstallmentsConfig;
         "merchantId"?: string;
         "onCheckoutPaymentFailed"?: (event: CustomEvent<{
@@ -207,7 +187,6 @@ declare namespace LocalJSX {
         "publicKey"?: string;
         "sandbox"?: boolean;
         "showCreditCard"?: boolean;
-        "showDialog"?: boolean;
         "statementDescriptor"?: string;
     }
     interface PlugPaymentsBoleto {
@@ -219,6 +198,7 @@ declare namespace LocalJSX {
         "customer"?: Customer;
         "customerId"?: string;
         "description"?: string;
+        "dialogConfig"?: PlugCheckoutDialog;
         "merchantId"?: string;
         "onBoletoPaymentFailed"?: (event: CustomEvent<{
     error: PlugPaymentsBoletoChargeError
@@ -229,7 +209,6 @@ declare namespace LocalJSX {
         "orderId"?: string;
         "publicKey"?: string;
         "sandbox"?: boolean;
-        "showDialog"?: boolean;
         "statementDescriptor"?: string;
     }
     interface PlugPaymentsCredit {
@@ -241,6 +220,7 @@ declare namespace LocalJSX {
         "customer"?: Customer;
         "customerId"?: string;
         "description"?: string;
+        "dialogConfig"?: PlugCheckoutDialog;
         "installmentsConfig"?: PlugPaymentsCreditInstallmentsConfig;
         "merchantId"?: string;
         "onCreditPaymentFailed"?: (event: CustomEvent<{
@@ -253,7 +233,6 @@ declare namespace LocalJSX {
         "publicKey"?: string;
         "sandbox"?: boolean;
         "showCreditCard"?: boolean;
-        "showDialog"?: boolean;
         "statementDescriptor"?: string;
     }
     interface PlugPaymentsCreditForm {
@@ -273,6 +252,7 @@ declare namespace LocalJSX {
         "customer"?: Customer;
         "customerId"?: string;
         "description"?: string;
+        "dialogConfig"?: PlugCheckoutDialog;
         "merchantId"?: string;
         "onPixPaymentFailed"?: (event: CustomEvent<{
     error: PlugPaymentsPixChargeError
@@ -284,7 +264,6 @@ declare namespace LocalJSX {
         "pix"?: PixAttributes;
         "publicKey"?: string;
         "sandbox"?: boolean;
-        "showDialog"?: boolean;
         "statementDescriptor"?: string;
     }
     interface IntrinsicElements {

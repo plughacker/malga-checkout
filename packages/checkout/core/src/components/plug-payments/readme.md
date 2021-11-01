@@ -5,26 +5,26 @@
 
 ## Properties
 
-| Property              | Attribute              | Description | Type                                   | Default                     |
-| --------------------- | ---------------------- | ----------- | -------------------------------------- | --------------------------- |
-| `amount`              | `amount`               |             | `number`                               | `undefined`                 |
-| `boleto`              | --                     |             | `BoletoAttributes`                     | `undefined`                 |
-| `capture`             | `capture`              |             | `boolean`                              | `false`                     |
-| `clientId`            | `client-id`            |             | `string`                               | `undefined`                 |
-| `currency`            | `currency`             |             | `string`                               | `'BRL'`                     |
-| `customer`            | --                     |             | `Customer`                             | `undefined`                 |
-| `customerId`          | `customer-id`          |             | `string`                               | `undefined`                 |
-| `description`         | `description`          |             | `string`                               | `undefined`                 |
-| `installments`        | --                     |             | `PlugPaymentsCreditInstallmentsConfig` | `undefined`                 |
-| `merchantId`          | `merchant-id`          |             | `string`                               | `undefined`                 |
-| `orderId`             | `order-id`             |             | `string`                               | `undefined`                 |
-| `paymentMethods`      | --                     |             | `PaymentMethodsType[]`                 | `['card', 'pix', 'boleto']` |
-| `pix`                 | --                     |             | `PixAttributes`                        | `undefined`                 |
-| `publicKey`           | `public-key`           |             | `string`                               | `undefined`                 |
-| `sandbox`             | `sandbox`              |             | `boolean`                              | `false`                     |
-| `showCreditCard`      | `show-credit-card`     |             | `boolean`                              | `false`                     |
-| `showDialog`          | `show-dialog`          |             | `boolean`                              | `true`                      |
-| `statementDescriptor` | `statement-descriptor` |             | `string`                               | `undefined`                 |
+| Property              | Attribute              | Description | Type                                   | Default                       |
+| --------------------- | ---------------------- | ----------- | -------------------------------------- | ----------------------------- |
+| `amount`              | `amount`               |             | `number`                               | `undefined`                   |
+| `boleto`              | --                     |             | `BoletoAttributes`                     | `undefined`                   |
+| `capture`             | `capture`              |             | `boolean`                              | `false`                       |
+| `clientId`            | `client-id`            |             | `string`                               | `undefined`                   |
+| `currency`            | `currency`             |             | `string`                               | `'BRL'`                       |
+| `customer`            | --                     |             | `Customer`                             | `undefined`                   |
+| `customerId`          | `customer-id`          |             | `string`                               | `undefined`                   |
+| `description`         | `description`          |             | `string`                               | `undefined`                   |
+| `dialogConfig`        | --                     |             | `PlugCheckoutDialog`                   | `undefined`                   |
+| `installments`        | --                     |             | `PlugPaymentsCreditInstallmentsConfig` | `undefined`                   |
+| `merchantId`          | `merchant-id`          |             | `string`                               | `undefined`                   |
+| `orderId`             | `order-id`             |             | `string`                               | `undefined`                   |
+| `paymentMethods`      | --                     |             | `PaymentMethodsType[]`                 | `['credit', 'pix', 'boleto']` |
+| `pix`                 | --                     |             | `PixAttributes`                        | `undefined`                   |
+| `publicKey`           | `public-key`           |             | `string`                               | `undefined`                   |
+| `sandbox`             | `sandbox`              |             | `boolean`                              | `false`                       |
+| `showCreditCard`      | `show-credit-card`     |             | `boolean`                              | `false`                       |
+| `statementDescriptor` | `statement-descriptor` |             | `string`                               | `undefined`                   |
 
 
 ## Events

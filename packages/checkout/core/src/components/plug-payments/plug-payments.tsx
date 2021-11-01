@@ -16,6 +16,8 @@ import { PixAttributes } from '../../providers/pix'
 
 import { PlugPaymentsCreditInstallmentsConfig } from '../plug-payments-credit/plug-payments-credit.types'
 
+import { PlugCheckoutDialog } from '../plug-checkout/plug-checkout.types'
+
 import {
   PaymentMethods,
   PaymentMethodsType,
@@ -28,7 +30,7 @@ import {
   styleUrl: 'plug-payments.scss',
 })
 export class PlugPayments implements ComponentInterface {
-  @Prop() paymentMethods: PaymentMethods = ['card', 'pix', 'boleto']
+  @Prop() paymentMethods: PaymentMethods = ['credit', 'pix', 'boleto']
   @Prop() showCreditCard = false
   @Prop() clientId: string
   @Prop() publicKey: string
@@ -45,7 +47,7 @@ export class PlugPayments implements ComponentInterface {
   @Prop() currency = 'BRL'
   @Prop() sandbox = false
   @Prop() capture = false
-  @Prop() showDialog = true
+  @Prop() dialogConfig: PlugCheckoutDialog
 
   @Event() checkoutPaymentSuccess!: EventEmitter<{
     data: PlugPaymentsChargeSuccess
@@ -81,7 +83,7 @@ export class PlugPayments implements ComponentInterface {
               />
               {this.currentPayment === 'boleto' && (
                 <plug-payments-boleto
-                  showDialog={this.showDialog}
+                  dialogConfig={this.dialogConfig}
                   clientId={this.clientId}
                   publicKey={this.publicKey}
                   merchantId={this.merchantId}
@@ -118,7 +120,7 @@ export class PlugPayments implements ComponentInterface {
               />
               {this.currentPayment === 'pix' && (
                 <plug-payments-pix
-                  showDialog={this.showDialog}
+                  dialogConfig={this.dialogConfig}
                   clientId={this.clientId}
                   publicKey={this.publicKey}
                   merchantId={this.merchantId}
@@ -143,7 +145,7 @@ export class PlugPayments implements ComponentInterface {
             </Fragment>
           )}
 
-          {this.showCurrentPaymentMethod('card') && (
+          {this.showCurrentPaymentMethod('credit') && (
             <Fragment>
               <checkout-radio-field
                 fullWidth
@@ -154,7 +156,7 @@ export class PlugPayments implements ComponentInterface {
               />
               {this.currentPayment === 'credit' && (
                 <plug-payments-credit
-                  showDialog={this.showDialog}
+                  dialogConfig={this.dialogConfig}
                   showCreditCard={this.showCreditCard}
                   clientId={this.clientId}
                   publicKey={this.publicKey}

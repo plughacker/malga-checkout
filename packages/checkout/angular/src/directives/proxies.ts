@@ -180,13 +180,13 @@ export class CheckoutManualPayment {
 import { CheckoutModal as ICheckoutModal } from '@plug-checkout/core/Users/leonardorpr/dev/plug/plug-checkout/packages/common/dist/collection/components/checkout-modal/checkout-modal';
 export declare interface CheckoutModal extends Components.CheckoutModal {}
 @ProxyCmp({
-  inputs: ['amount', 'boletoActionButtonLabel', 'errorActionButtonLabel', 'errorDescription', 'errorTitle', 'expirationDate', 'expirationTime', 'mode', 'open', 'paymentCode', 'paymentImageUrl', 'pixActionButtonLabel', 'successActionButtonLabel', 'successDescription']
+  inputs: ['actionButtonLabel', 'amount', 'errorActionButtonLabel', 'errorDescription', 'errorTitle', 'expirationDate', 'expirationTime', 'mode', 'open', 'paymentCode', 'paymentImageUrl', 'successActionButtonLabel', 'successDescription']
 })
 @Component({
   selector: 'checkout-modal',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['amount', 'boletoActionButtonLabel', 'errorActionButtonLabel', 'errorDescription', 'errorTitle', 'expirationDate', 'expirationTime', 'mode', 'open', 'paymentCode', 'paymentImageUrl', 'pixActionButtonLabel', 'successActionButtonLabel', 'successDescription'],
+  inputs: ['actionButtonLabel', 'amount', 'errorActionButtonLabel', 'errorDescription', 'errorTitle', 'expirationDate', 'expirationTime', 'mode', 'open', 'paymentCode', 'paymentImageUrl', 'successActionButtonLabel', 'successDescription'],
   outputs: ['successButtonClicked', 'errorButtonClicked', 'pixCountdownIsFinished']
 })
 export class CheckoutModal {
@@ -424,13 +424,13 @@ export class CheckoutTypography {
 import { PlugCheckout as IPlugCheckout } from '@plug-checkout/core/dist/types/components/plug-checkout/plug-checkout';
 export declare interface PlugCheckout extends Components.PlugCheckout {}
 @ProxyCmp({
-  inputs: ['amount', 'boleto', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'installments', 'merchantId', 'orderId', 'paymentMethods', 'pix', 'publicKey', 'sandbox', 'showCreditCard', 'showDialog', 'statementDescriptor']
+  inputs: ['clientId', 'dialogConfig', 'merchantId', 'paymentMethods', 'publicKey', 'sandbox', 'transactionConfig']
 })
 @Component({
   selector: 'plug-checkout',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['amount', 'boleto', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'installments', 'merchantId', 'orderId', 'paymentMethods', 'pix', 'publicKey', 'sandbox', 'showCreditCard', 'showDialog', 'statementDescriptor'],
+  inputs: ['clientId', 'dialogConfig', 'merchantId', 'paymentMethods', 'publicKey', 'sandbox', 'transactionConfig'],
   outputs: ['paymentSuccess', 'paymentFailed']
 })
 export class PlugCheckout {
@@ -449,13 +449,13 @@ export class PlugCheckout {
 import { PlugPayments as IPlugPayments } from '@plug-checkout/core/dist/types/components/plug-payments/plug-payments';
 export declare interface PlugPayments extends Components.PlugPayments {}
 @ProxyCmp({
-  inputs: ['amount', 'boleto', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'installments', 'merchantId', 'orderId', 'paymentMethods', 'pix', 'publicKey', 'sandbox', 'showCreditCard', 'showDialog', 'statementDescriptor']
+  inputs: ['amount', 'boleto', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'dialogConfig', 'installments', 'merchantId', 'orderId', 'paymentMethods', 'pix', 'publicKey', 'sandbox', 'showCreditCard', 'statementDescriptor']
 })
 @Component({
   selector: 'plug-payments',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['amount', 'boleto', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'installments', 'merchantId', 'orderId', 'paymentMethods', 'pix', 'publicKey', 'sandbox', 'showCreditCard', 'showDialog', 'statementDescriptor'],
+  inputs: ['amount', 'boleto', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'dialogConfig', 'installments', 'merchantId', 'orderId', 'paymentMethods', 'pix', 'publicKey', 'sandbox', 'showCreditCard', 'statementDescriptor'],
   outputs: ['checkoutPaymentSuccess', 'checkoutPaymentFailed']
 })
 export class PlugPayments {
@@ -474,13 +474,13 @@ export class PlugPayments {
 import { PlugPaymentsBoleto as IPlugPaymentsBoleto } from '@plug-checkout/core/dist/types/components/plug-payments-boleto/plug-payments-boleto';
 export declare interface PlugPaymentsBoleto extends Components.PlugPaymentsBoleto {}
 @ProxyCmp({
-  inputs: ['amount', 'boleto', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'merchantId', 'orderId', 'publicKey', 'sandbox', 'showDialog', 'statementDescriptor']
+  inputs: ['amount', 'boleto', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'dialogConfig', 'merchantId', 'orderId', 'publicKey', 'sandbox', 'statementDescriptor']
 })
 @Component({
   selector: 'plug-payments-boleto',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['amount', 'boleto', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'merchantId', 'orderId', 'publicKey', 'sandbox', 'showDialog', 'statementDescriptor'],
+  inputs: ['amount', 'boleto', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'dialogConfig', 'merchantId', 'orderId', 'publicKey', 'sandbox', 'statementDescriptor'],
   outputs: ['boletoPaymentSuccess', 'boletoPaymentFailed']
 })
 export class PlugPaymentsBoleto {
@@ -499,13 +499,13 @@ export class PlugPaymentsBoleto {
 import { PlugPaymentsCredit as IPlugPaymentsCredit } from '@plug-checkout/core/dist/types/components/plug-payments-credit/plug-payments-credit';
 export declare interface PlugPaymentsCredit extends Components.PlugPaymentsCredit {}
 @ProxyCmp({
-  inputs: ['amount', 'capture', 'clientId', 'currency', 'customFormStyleClasses', 'customer', 'customerId', 'description', 'installmentsConfig', 'merchantId', 'orderId', 'publicKey', 'sandbox', 'showCreditCard', 'showDialog', 'statementDescriptor']
+  inputs: ['amount', 'capture', 'clientId', 'currency', 'customFormStyleClasses', 'customer', 'customerId', 'description', 'dialogConfig', 'installmentsConfig', 'merchantId', 'orderId', 'publicKey', 'sandbox', 'showCreditCard', 'statementDescriptor']
 })
 @Component({
   selector: 'plug-payments-credit',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['amount', 'capture', 'clientId', 'currency', 'customFormStyleClasses', 'customer', 'customerId', 'description', 'installmentsConfig', 'merchantId', 'orderId', 'publicKey', 'sandbox', 'showCreditCard', 'showDialog', 'statementDescriptor'],
+  inputs: ['amount', 'capture', 'clientId', 'currency', 'customFormStyleClasses', 'customer', 'customerId', 'description', 'dialogConfig', 'installmentsConfig', 'merchantId', 'orderId', 'publicKey', 'sandbox', 'showCreditCard', 'statementDescriptor'],
   outputs: ['creditPaymentSuccess', 'creditPaymentFailed']
 })
 export class PlugPaymentsCredit {
@@ -549,13 +549,13 @@ export class PlugPaymentsCreditForm {
 import { PlugPaymentsPix as IPlugPaymentsPix } from '@plug-checkout/core/dist/types/components/plug-payments-pix/plug-payments-pix';
 export declare interface PlugPaymentsPix extends Components.PlugPaymentsPix {}
 @ProxyCmp({
-  inputs: ['amount', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'merchantId', 'orderId', 'pix', 'publicKey', 'sandbox', 'showDialog', 'statementDescriptor']
+  inputs: ['amount', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'dialogConfig', 'merchantId', 'orderId', 'pix', 'publicKey', 'sandbox', 'statementDescriptor']
 })
 @Component({
   selector: 'plug-payments-pix',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['amount', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'merchantId', 'orderId', 'pix', 'publicKey', 'sandbox', 'showDialog', 'statementDescriptor'],
+  inputs: ['amount', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'dialogConfig', 'merchantId', 'orderId', 'pix', 'publicKey', 'sandbox', 'statementDescriptor'],
   outputs: ['pixPaymentSuccess', 'pixPaymentFailed']
 })
 export class PlugPaymentsPix {

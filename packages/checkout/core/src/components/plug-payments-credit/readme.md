@@ -15,13 +15,13 @@
 | `customer`               | --                     |             | `Customer`                                     | `undefined`                              |
 | `customerId`             | `customer-id`          |             | `string`                                       | `undefined`                              |
 | `description`            | `description`          |             | `string`                                       | `undefined`                              |
+| `dialogConfig`           | --                     |             | `PlugCheckoutDialog`                           | `undefined`                              |
 | `installmentsConfig`     | --                     |             | `PlugPaymentsCreditInstallmentsConfig`         | `{     show: true,     quantity: 1,   }` |
 | `merchantId`             | `merchant-id`          |             | `string`                                       | `undefined`                              |
 | `orderId`                | `order-id`             |             | `string`                                       | `undefined`                              |
 | `publicKey`              | `public-key`           |             | `string`                                       | `undefined`                              |
 | `sandbox`                | `sandbox`              |             | `boolean`                                      | `false`                                  |
 | `showCreditCard`         | `show-credit-card`     |             | `boolean`                                      | `true`                                   |
-| `showDialog`             | `show-dialog`          |             | `boolean`                                      | `true`                                   |
 | `statementDescriptor`    | `statement-descriptor` |             | `string`                                       | `undefined`                              |
 
 

@@ -6,7 +6,7 @@ import {
   State,
   Event,
   EventEmitter,
-  ComponentInterface
+  ComponentInterface,
 } from '@stencil/core'
 
 import {
@@ -32,7 +32,7 @@ export class PlugCheckoutFull implements ComponentInterface {
   @Prop() paymentMethods: PlugCheckoutFullPaymentMethods = {
     pix: undefined,
     credit: undefined,
-    boleto: undefined
+    boleto: undefined,
   }
   @Prop() pageConfig: PlugCheckoutFullPage = {
     brandUrl: '',
@@ -56,10 +56,10 @@ export class PlugCheckoutFull implements ComponentInterface {
     errorActionButtonLabel: 'Tentar Novamente',
   }
 
-  @Event() checkoutSuccess!: EventEmitter<{
+  @Event() transactionSuccess!: EventEmitter<{
     data: PlugCheckoutFullChargeSuccess
   }>
-  @Event() checkoutFailed!: EventEmitter<{
+  @Event() transactionFailed!: EventEmitter<{
     error: PlugCheckoutFullChargeError
   }>
 
@@ -161,14 +161,17 @@ export class PlugCheckoutFull implements ComponentInterface {
                 clientId={this.clientId}
                 merchantId={this.merchantId}
                 sandbox={this.sandbox}
-                transactionConfig={{ ...this.transactionConfig, customer: this.customerFormFields }}
+                transactionConfig={{
+                  ...this.transactionConfig,
+                  customer: this.customerFormFields,
+                }}
                 paymentMethods={this.paymentMethods}
                 dialogConfig={this.dialogConfig}
                 onPaymentSuccess={({ detail: { data } }) =>
-                  this.checkoutSuccess.emit({ data })
+                  this.transactionSuccess.emit({ data })
                 }
                 onPaymentFailed={({ detail: { error } }) =>
-                  this.checkoutFailed.emit({ error })
+                  this.transactionFailed.emit({ error })
                 }
               />
             </checkout-accordion>
@@ -176,7 +179,9 @@ export class PlugCheckoutFull implements ComponentInterface {
         </plug-checkout-full-content>
 
         {this.pageConfig.footerDescription && (
-          <plug-checkout-full-footer description={this.pageConfig.footerDescription} />
+          <plug-checkout-full-footer
+            description={this.pageConfig.footerDescription}
+          />
         )}
       </Host>
     )

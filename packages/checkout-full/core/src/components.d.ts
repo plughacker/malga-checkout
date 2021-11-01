@@ -74,10 +74,10 @@ declare namespace LocalJSX {
         "clientId"?: string;
         "dialogConfig"?: PlugCheckoutFullDialog;
         "merchantId"?: string;
-        "onCheckoutFailed"?: (event: CustomEvent<{
+        "onTransactionFailed"?: (event: CustomEvent<{
     error: PlugCheckoutFullChargeError
   }>) => void;
-        "onCheckoutSuccess"?: (event: CustomEvent<{
+        "onTransactionSuccess"?: (event: CustomEvent<{
     data: PlugCheckoutFullChargeSuccess
   }>) => void;
         "pageConfig"?: PlugCheckoutFullPage;

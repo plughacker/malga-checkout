@@ -1,42 +1,4 @@
-export interface Customer {
-  name: string
-  email: string
-  identification: string
-  zipCode: string
-  street: string
-  number: string
-  complement: string
-  neighborhood: string
-  city: string
-  state: string
-  country: string
-}
-
-export interface BoletoAttributes {
-  expiresDate: string
-  instructions: string
-  interest: {
-    days: number
-    amount?: number
-    percentage?: number
-  }
-  fine: {
-    days: number
-    amount?: number
-    percentage?: number
-  }
-}
-
-export interface PixAttributes {
-  expiresIn: number
-}
-
-export interface PlugPaymentsCreditInstallmentsConfig {
-  show: boolean
-  quantity: number
-}
-
-export interface PlugPaymentsBoletoChargeSuccess {
+export interface PlugCheckoutFullBoletoChargeSuccess {
   id: string
   clientId: string
   createdAt: string
@@ -74,12 +36,12 @@ export interface PlugPaymentsBoletoChargeSuccess {
   }[]
 }
 
-export interface PlugPaymentsBoletoChargeError {
+export interface PlugCheckoutFullBoletoChargeError {
   type: string
   message: string
 }
 
-export interface PlugPaymentsCreditChargeSuccess {
+export interface PlugCheckoutFullCreditChargeSuccess {
   id: string
   clientId: string
   createdAt: string
@@ -112,14 +74,14 @@ export interface PlugPaymentsCreditChargeSuccess {
   }[]
 }
 
-export interface PlugPaymentsCreditChargeError {
+export interface PlugCheckoutFullCreditChargeError {
   type: string
   message: string
   code?: number
   declined_code?: string
 }
 
-export interface PlugPaymentsPixChargeSuccess {
+export interface PlugCheckoutFullPixChargeSuccess {
   id: string
   clientId: string
   createdAt: string
@@ -162,21 +124,79 @@ export interface PlugPaymentsPixChargeSuccess {
   }[]
 }
 
-export interface PlugPaymentsPixChargeError {
+export interface PlugCheckoutFullPixChargeError {
   type: string
   message: string
 }
 
-export type PaymentMethodsType = 'card' | 'boleto' | 'pix'
+export interface Boleto {
+  expiresDate: string
+  instructions: string
+  interest: {
+    days: number
+    amount?: number
+    percentage?: number
+  }
+  fine: {
+    days: number
+    amount?: number
+    percentage?: number
+  }
+}
 
-export type PaymentMethods = PaymentMethodsType[]
+export interface Pix {
+  expiresIn: number
+}
 
-export type PlugPaymentsChargeSuccess =
-  | PlugPaymentsBoletoChargeSuccess
-  | PlugPaymentsCreditChargeSuccess
-  | PlugPaymentsPixChargeSuccess
+export interface Credit {
+  show: boolean
+  quantity: number
+  showCreditCard: boolean
+}
 
-export type PlugPaymentsChargeError =
-  | PlugPaymentsBoletoChargeError
-  | PlugPaymentsCreditChargeError
-  | PlugPaymentsPixChargeError
+export interface Product {
+  name: string
+  amount: number
+  quantity: number
+  description: string
+}
+
+export interface PlugCheckoutFullPaymentMethods {
+  pix?: Pix
+  credit?: Credit
+  boleto?: Boleto
+}
+
+export interface PlugCheckoutFullPage {
+  brandUrl: string
+  footerDescription: string
+  delivery: number
+  products: Product[]
+}
+
+export interface PlugCheckoutFullTransaction {
+  statementDescriptor: string
+  amount: number
+  capture: boolean
+  description?: string
+  orderId?: string
+  customerId?: string
+  currency?: string
+}
+
+export interface PlugCheckoutFullDialog {
+  show: boolean
+  actionButtonLabel: string
+  successActionButtonLabel: string
+  errorActionButtonLabel: string
+}
+
+export type PlugCheckoutFullChargeSuccess =
+  | PlugCheckoutFullBoletoChargeSuccess
+  | PlugCheckoutFullCreditChargeSuccess
+  | PlugCheckoutFullPixChargeSuccess
+
+export type PlugCheckoutFullChargeError =
+  | PlugCheckoutFullBoletoChargeError
+  | PlugCheckoutFullCreditChargeError
+  | PlugCheckoutFullPixChargeError

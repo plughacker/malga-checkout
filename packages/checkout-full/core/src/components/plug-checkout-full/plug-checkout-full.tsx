@@ -9,13 +9,12 @@ import {
 } from '@stencil/core'
 
 import {
-  Customer,
-  BoletoAttributes,
-  PixAttributes,
-  PlugPaymentsCreditInstallmentsConfig,
-  PaymentMethods,
-  PlugPaymentsChargeError,
-  PlugPaymentsChargeSuccess,
+  PlugCheckoutFullPaymentMethods,
+  PlugCheckoutFullPage,
+  PlugCheckoutFullTransaction,
+  PlugCheckoutFullDialog,
+  PlugCheckoutFullChargeError,
+  PlugCheckoutFullChargeSuccess,
 } from './plug-checkout-full.types'
 
 import { PlugCheckoutFullIdentificationFormValues } from './partials/plug-checkout-full-identification/plug-checkout-full-identification.types'
@@ -25,39 +24,42 @@ import { PlugCheckoutFullIdentificationFormValues } from './partials/plug-checko
   styleUrl: 'plug-checkout-full.scss',
 })
 export class PlugCheckoutFull {
-  @Prop() paymentMethods: PaymentMethods = ['card', 'pix', 'boleto']
-  @Prop() showCreditCard = false
-  @Prop() brandUrl: string
   @Prop() clientId: string
   @Prop() publicKey: string
   @Prop() merchantId: string
-  @Prop() statementDescriptor: string
-  @Prop() amount: number
-  @Prop() delivery?: number
-  @Prop() products?: {
-    name: string
-    amount: number
-    quantity: number
-    description: string
-  }[]
-  @Prop() pix?: PixAttributes
-  @Prop() boleto?: BoletoAttributes
-  @Prop() installments?: PlugPaymentsCreditInstallmentsConfig
-  @Prop() customer?: Customer
-  @Prop() description?: string
-  @Prop() orderId?: string
-  @Prop() customerId?: string
-  @Prop() footerDescription?: string
-  @Prop() currency = 'BRL'
   @Prop() sandbox = false
-  @Prop() capture = false
-  @Prop() hasIdentificationSection = true
+  @Prop() paymentMethods: PlugCheckoutFullPaymentMethods = {
+    pix: undefined,
+    credit: undefined,
+    boleto: undefined
+  }
+  @Prop() pageConfig: PlugCheckoutFullPage = {
+    brandUrl: '',
+    footerDescription: '',
+    delivery: 0,
+    products: [],
+  }
+  @Prop() transactionConfig: PlugCheckoutFullTransaction = {
+    statementDescriptor: '',
+    amount: 0,
+    description: '',
+    orderId: '',
+    customerId: '',
+    currency: 'BRL',
+    capture: false,
+  }
+  @Prop() dialogConfig: PlugCheckoutFullDialog = {
+    show: true,
+    actionButtonLabel: 'Continuar',
+    successActionButtonLabel: 'Continuar',
+    errorActionButtonLabel: 'Tentar Novamente',
+  }
 
-  @Event() paymentSuccess!: EventEmitter<{
-    data: PlugPaymentsChargeSuccess
+  @Event() checkoutSuccess!: EventEmitter<{
+    data: PlugCheckoutFullChargeSuccess
   }>
-  @Event() paymentFailed!: EventEmitter<{
-    error: PlugPaymentsChargeError
+  @Event() checkoutFailed!: EventEmitter<{
+    error: PlugCheckoutFullChargeError
   }>
 
   @State() currentSection: string
@@ -101,19 +103,19 @@ export class PlugCheckoutFull {
             this.currentSection === 'identification',
         }}
       >
-        <plug-checkout-full-header brand={this.brandUrl} />
+        <plug-checkout-full-header brand={this.pageConfig.brandUrl} />
 
         <plug-checkout-full-content>
           <checkout-order-summary
             slot="order"
             label="Pedido"
-            amount={this.amount}
-            products={this.products}
-            delivery={this.delivery}
+            amount={this.transactionConfig.amount}
+            products={this.pageConfig.products}
+            delivery={this.pageConfig.delivery}
           />
 
           <div slot="informations" class="plug-checkout-full__informations">
-            {this.hasIdentificationSection && (
+            {!this.transactionConfig.customerId && (
               <checkout-accordion
                 label="Identificação"
                 isEditable={this.currentSection !== 'identification'}
@@ -150,23 +152,23 @@ export class PlugCheckoutFull {
                 publicKey={this.publicKey}
                 clientId={this.clientId}
                 merchantId={this.merchantId}
-                customer={this.customerFormFields}
-                customerId={this.customerId}
-                statementDescriptor={this.statementDescriptor}
-                amount={this.amount}
-                showCreditCard={this.showCreditCard}
-                boleto={this.boleto}
-                pix={this.pix}
-                installments={this.installments}
                 sandbox={this.sandbox}
+                transactionConfig={{ ...this.transactionConfig, customer: this.customerFormFields }}
                 paymentMethods={this.paymentMethods}
+                dialogConfig={this.dialogConfig}
+                onPaymentSuccess={({ detail: { data } }) =>
+                  this.checkoutSuccess.emit({ data })
+                }
+                onPaymentFailed={({ detail: { error } }) =>
+                  this.checkoutFailed.emit({ error })
+                }
               />
             </checkout-accordion>
           </div>
         </plug-checkout-full-content>
 
-        {this.footerDescription && (
-          <plug-checkout-full-footer description={this.footerDescription} />
+        {this.pageConfig.footerDescription && (
+          <plug-checkout-full-footer description={this.pageConfig.footerDescription} />
         )}
       </Host>
     )

@@ -5,37 +5,18 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { BoletoAttributes, Customer, PaymentMethods, PixAttributes, PlugPaymentsChargeError, PlugPaymentsChargeSuccess, PlugPaymentsCreditInstallmentsConfig } from "./components/plug-checkout-full/plug-checkout-full.types";
+import { PlugCheckoutFullChargeError, PlugCheckoutFullChargeSuccess, PlugCheckoutFullDialog, PlugCheckoutFullPage, PlugCheckoutFullPaymentMethods, PlugCheckoutFullTransaction } from "./components/plug-checkout-full/plug-checkout-full.types";
 import { PlugCheckoutFullIdentificationFormValues } from "./components/plug-checkout-full/partials/plug-checkout-full-identification/plug-checkout-full-identification.types";
 export namespace Components {
     interface PlugCheckoutFull {
-        "amount": number;
-        "boleto"?: BoletoAttributes;
-        "brandUrl": string;
-        "capture": boolean;
         "clientId": string;
-        "currency": string;
-        "customer"?: Customer;
-        "customerId"?: string;
-        "delivery"?: number;
-        "description"?: string;
-        "footerDescription"?: string;
-        "hasIdentificationSection": boolean;
-        "installments"?: PlugPaymentsCreditInstallmentsConfig;
+        "dialogConfig": PlugCheckoutFullDialog;
         "merchantId": string;
-        "orderId"?: string;
-        "paymentMethods": PaymentMethods;
-        "pix"?: PixAttributes;
-        "products"?: {
-    name: string
-    amount: number
-    quantity: number
-    description: string
-  }[];
+        "pageConfig": PlugCheckoutFullPage;
+        "paymentMethods": PlugCheckoutFullPaymentMethods;
         "publicKey": string;
         "sandbox": boolean;
-        "showCreditCard": boolean;
-        "statementDescriptor": string;
+        "transactionConfig": PlugCheckoutFullTransaction;
     }
     interface PlugCheckoutFullContent {
     }
@@ -90,39 +71,20 @@ declare global {
 }
 declare namespace LocalJSX {
     interface PlugCheckoutFull {
-        "amount"?: number;
-        "boleto"?: BoletoAttributes;
-        "brandUrl"?: string;
-        "capture"?: boolean;
         "clientId"?: string;
-        "currency"?: string;
-        "customer"?: Customer;
-        "customerId"?: string;
-        "delivery"?: number;
-        "description"?: string;
-        "footerDescription"?: string;
-        "hasIdentificationSection"?: boolean;
-        "installments"?: PlugPaymentsCreditInstallmentsConfig;
+        "dialogConfig"?: PlugCheckoutFullDialog;
         "merchantId"?: string;
-        "onPaymentFailed"?: (event: CustomEvent<{
-    error: PlugPaymentsChargeError
+        "onCheckoutFailed"?: (event: CustomEvent<{
+    error: PlugCheckoutFullChargeError
   }>) => void;
-        "onPaymentSuccess"?: (event: CustomEvent<{
-    data: PlugPaymentsChargeSuccess
+        "onCheckoutSuccess"?: (event: CustomEvent<{
+    data: PlugCheckoutFullChargeSuccess
   }>) => void;
-        "orderId"?: string;
-        "paymentMethods"?: PaymentMethods;
-        "pix"?: PixAttributes;
-        "products"?: {
-    name: string
-    amount: number
-    quantity: number
-    description: string
-  }[];
+        "pageConfig"?: PlugCheckoutFullPage;
+        "paymentMethods"?: PlugCheckoutFullPaymentMethods;
         "publicKey"?: string;
         "sandbox"?: boolean;
-        "showCreditCard"?: boolean;
-        "statementDescriptor"?: string;
+        "transactionConfig"?: PlugCheckoutFullTransaction;
     }
     interface PlugCheckoutFullContent {
     }

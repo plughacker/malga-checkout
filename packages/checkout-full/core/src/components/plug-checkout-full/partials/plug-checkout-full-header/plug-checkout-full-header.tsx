@@ -6,12 +6,25 @@ import { Component, Host, h, Prop } from '@stencil/core'
 })
 export class PlugCheckoutFullHeader {
   @Prop() brand: string
+  @Prop() backRoute: string
+
+  private handleNavigation = () => {
+    if (this.backRoute) {
+      location.assign(this.backRoute)
+      return
+    }
+
+    history.back()
+  }
 
   render() {
     return (
       <Host class={{ 'plug-checkout-full-header__container': true }}>
         <header class={{ 'plug-checkout-full-header__content': true }}>
-          <button class={{ 'plug-checkout-full-header__navigation': true }}>
+          <button
+            class={{ 'plug-checkout-full-header__navigation': true }}
+            onClick={this.handleNavigation}
+          >
             <checkout-icon icon="arrowLeft" />
           </button>
           <img

@@ -37,6 +37,7 @@ export class PlugCheckoutFull implements ComponentInterface {
   @Prop() pageConfig: PlugCheckoutFullPage = {
     brandUrl: '',
     footerDescription: '',
+    backRoute: '',
     delivery: 0,
     products: [],
   }
@@ -110,7 +111,10 @@ export class PlugCheckoutFull implements ComponentInterface {
             this.currentSection === 'identification',
         }}
       >
-        <plug-checkout-full-header brand={this.pageConfig.brandUrl} />
+        <plug-checkout-full-header
+          brand={this.pageConfig.brandUrl}
+          backRoute={this.pageConfig.backRoute}
+        />
 
         <plug-checkout-full-content>
           <checkout-order-summary

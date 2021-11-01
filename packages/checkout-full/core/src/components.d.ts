@@ -24,6 +24,7 @@ export namespace Components {
         "description": string;
     }
     interface PlugCheckoutFullHeader {
+        "backRoute": string;
         "brand": string;
     }
     interface PlugCheckoutFullIdentification {
@@ -92,6 +93,7 @@ declare namespace LocalJSX {
         "description"?: string;
     }
     interface PlugCheckoutFullHeader {
+        "backRoute"?: string;
         "brand"?: string;
     }
     interface PlugCheckoutFullIdentification {

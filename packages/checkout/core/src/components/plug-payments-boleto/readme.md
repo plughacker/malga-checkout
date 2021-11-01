@@ -25,10 +25,10 @@
 
 ## Events
 
-| Event            | Description | Type                                                      |
-| ---------------- | ----------- | --------------------------------------------------------- |
-| `paymentFailed`  |             | `CustomEvent<{ error: PlugPaymentsBoletoChargeError; }>`  |
-| `paymentSuccess` |             | `CustomEvent<{ data: PlugPaymentsBoletoChargeSuccess; }>` |
+| Event                  | Description | Type                                                      |
+| ---------------------- | ----------- | --------------------------------------------------------- |
+| `boletoPaymentFailed`  |             | `CustomEvent<{ error: PlugPaymentsBoletoChargeError; }>`  |
+| `boletoPaymentSuccess` |             | `CustomEvent<{ data: PlugPaymentsBoletoChargeSuccess; }>` |
 
 
 ## Dependencies

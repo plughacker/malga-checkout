@@ -29,10 +29,10 @@
 
 ## Events
 
-| Event            | Description | Type                                                |
-| ---------------- | ----------- | --------------------------------------------------- |
-| `paymentFailed`  |             | `CustomEvent<{ error: PlugPaymentsChargeError; }>`  |
-| `paymentSuccess` |             | `CustomEvent<{ data: PlugPaymentsChargeSuccess; }>` |
+| Event                    | Description | Type                                                |
+| ------------------------ | ----------- | --------------------------------------------------- |
+| `checkoutPaymentFailed`  |             | `CustomEvent<{ error: PlugPaymentsChargeError; }>`  |
+| `checkoutPaymentSuccess` |             | `CustomEvent<{ data: PlugPaymentsChargeSuccess; }>` |
 
 
 ## Dependencies

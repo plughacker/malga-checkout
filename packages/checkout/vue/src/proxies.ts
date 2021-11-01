@@ -266,8 +266,8 @@ export const PlugPayments = /*@__PURE__*/ defineContainer<JSX.PlugPayments>('plu
   'sandbox',
   'capture',
   'showDialog',
-  'paymentSuccess',
-  'paymentFailed'
+  'checkoutPaymentSuccess',
+  'checkoutPaymentFailed'
 ]);
 
 
@@ -286,8 +286,8 @@ export const PlugPaymentsBoleto = /*@__PURE__*/ defineContainer<JSX.PlugPayments
   'sandbox',
   'capture',
   'showDialog',
-  'paymentSuccess',
-  'paymentFailed'
+  'boletoPaymentSuccess',
+  'boletoPaymentFailed'
 ]);
 
 
@@ -308,8 +308,8 @@ export const PlugPaymentsCredit = /*@__PURE__*/ defineContainer<JSX.PlugPayments
   'showDialog',
   'installmentsConfig',
   'customFormStyleClasses',
-  'paymentSuccess',
-  'paymentFailed'
+  'creditPaymentSuccess',
+  'creditPaymentFailed'
 ]);
 
 
@@ -339,7 +339,7 @@ export const PlugPaymentsPix = /*@__PURE__*/ defineContainer<JSX.PlugPaymentsPix
   'sandbox',
   'capture',
   'showDialog',
-  'paymentSuccess',
-  'paymentFailed'
+  'pixPaymentSuccess',
+  'pixPaymentFailed'
 ]);
 

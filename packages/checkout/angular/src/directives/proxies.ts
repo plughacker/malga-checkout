@@ -456,18 +456,18 @@ export declare interface PlugPayments extends Components.PlugPayments {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['amount', 'boleto', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'installments', 'merchantId', 'orderId', 'paymentMethods', 'pix', 'publicKey', 'sandbox', 'showCreditCard', 'showDialog', 'statementDescriptor'],
-  outputs: ['paymentSuccess', 'paymentFailed']
+  outputs: ['checkoutPaymentSuccess', 'checkoutPaymentFailed']
 })
 export class PlugPayments {
   /**  */
-  paymentSuccess!: IPlugPayments['paymentSuccess'];
+  checkoutPaymentSuccess!: IPlugPayments['checkoutPaymentSuccess'];
   /**  */
-  paymentFailed!: IPlugPayments['paymentFailed'];
+  checkoutPaymentFailed!: IPlugPayments['checkoutPaymentFailed'];
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['paymentSuccess', 'paymentFailed']);
+    proxyOutputs(this, this.el, ['checkoutPaymentSuccess', 'checkoutPaymentFailed']);
   }
 }
 
@@ -481,18 +481,18 @@ export declare interface PlugPaymentsBoleto extends Components.PlugPaymentsBolet
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['amount', 'boleto', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'merchantId', 'orderId', 'publicKey', 'sandbox', 'showDialog', 'statementDescriptor'],
-  outputs: ['paymentSuccess', 'paymentFailed']
+  outputs: ['boletoPaymentSuccess', 'boletoPaymentFailed']
 })
 export class PlugPaymentsBoleto {
   /**  */
-  paymentSuccess!: IPlugPaymentsBoleto['paymentSuccess'];
+  boletoPaymentSuccess!: IPlugPaymentsBoleto['boletoPaymentSuccess'];
   /**  */
-  paymentFailed!: IPlugPaymentsBoleto['paymentFailed'];
+  boletoPaymentFailed!: IPlugPaymentsBoleto['boletoPaymentFailed'];
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['paymentSuccess', 'paymentFailed']);
+    proxyOutputs(this, this.el, ['boletoPaymentSuccess', 'boletoPaymentFailed']);
   }
 }
 
@@ -506,18 +506,18 @@ export declare interface PlugPaymentsCredit extends Components.PlugPaymentsCredi
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['amount', 'capture', 'clientId', 'currency', 'customFormStyleClasses', 'customer', 'customerId', 'description', 'installmentsConfig', 'merchantId', 'orderId', 'publicKey', 'sandbox', 'showCreditCard', 'showDialog', 'statementDescriptor'],
-  outputs: ['paymentSuccess', 'paymentFailed']
+  outputs: ['creditPaymentSuccess', 'creditPaymentFailed']
 })
 export class PlugPaymentsCredit {
   /**  */
-  paymentSuccess!: IPlugPaymentsCredit['paymentSuccess'];
+  creditPaymentSuccess!: IPlugPaymentsCredit['creditPaymentSuccess'];
   /**  */
-  paymentFailed!: IPlugPaymentsCredit['paymentFailed'];
+  creditPaymentFailed!: IPlugPaymentsCredit['creditPaymentFailed'];
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['paymentSuccess', 'paymentFailed']);
+    proxyOutputs(this, this.el, ['creditPaymentSuccess', 'creditPaymentFailed']);
   }
 }
 
@@ -556,17 +556,17 @@ export declare interface PlugPaymentsPix extends Components.PlugPaymentsPix {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['amount', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'merchantId', 'orderId', 'pix', 'publicKey', 'sandbox', 'showDialog', 'statementDescriptor'],
-  outputs: ['paymentSuccess', 'paymentFailed']
+  outputs: ['pixPaymentSuccess', 'pixPaymentFailed']
 })
 export class PlugPaymentsPix {
   /**  */
-  paymentSuccess!: IPlugPaymentsPix['paymentSuccess'];
+  pixPaymentSuccess!: IPlugPaymentsPix['pixPaymentSuccess'];
   /**  */
-  paymentFailed!: IPlugPaymentsPix['paymentFailed'];
+  pixPaymentFailed!: IPlugPaymentsPix['pixPaymentFailed'];
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['paymentSuccess', 'paymentFailed']);
+    proxyOutputs(this, this.el, ['pixPaymentSuccess', 'pixPaymentFailed']);
   }
 }

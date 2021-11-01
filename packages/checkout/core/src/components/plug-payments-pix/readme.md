@@ -25,10 +25,10 @@
 
 ## Events
 
-| Event            | Description | Type                                                   |
-| ---------------- | ----------- | ------------------------------------------------------ |
-| `paymentFailed`  |             | `CustomEvent<{ error: PlugPaymentsPixChargeError; }>`  |
-| `paymentSuccess` |             | `CustomEvent<{ data: PlugPaymentsPixChargeSuccess; }>` |
+| Event               | Description | Type                                                   |
+| ------------------- | ----------- | ------------------------------------------------------ |
+| `pixPaymentFailed`  |             | `CustomEvent<{ error: PlugPaymentsPixChargeError; }>`  |
+| `pixPaymentSuccess` |             | `CustomEvent<{ data: PlugPaymentsPixChargeSuccess; }>` |
 
 
 ## Dependencies

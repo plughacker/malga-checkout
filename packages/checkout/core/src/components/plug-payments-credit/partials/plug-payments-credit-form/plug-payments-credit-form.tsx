@@ -10,7 +10,6 @@ import {
 } from '@stencil/core'
 
 import {
-  PlugPaymentsCreditFormCustomStyleFormClasses,
   PlugPaymentsCreditFormValues,
   PlugPaymentsCreditInstallmentsConfig,
 } from '../../plug-payments-credit.types'
@@ -32,7 +31,6 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
   @Prop() formValues: PlugPaymentsCreditFormValues
   @Prop() amount: number
   @Prop() installmentsConfig: PlugPaymentsCreditInstallmentsConfig
-  @Prop() customFormStyleClasses: PlugPaymentsCreditFormCustomStyleFormClasses
   @Prop() isLoading: boolean
 
   @Event() formSubmit: EventEmitter<void>
@@ -131,15 +129,11 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
       <Host
         class={{
           'plug-payments-credit-form__container': true,
-          [this.customFormStyleClasses.formContainer]:
-            !!this.customFormStyleClasses.formContainer,
         }}
       >
         <form
           class={{
             'plug-payments-credit-form__form': true,
-            [this.customFormStyleClasses.formContent]:
-              !!this.customFormStyleClasses.formContent,
           }}
           onSubmit={this.handleFormSubmit}
         >
@@ -155,15 +149,6 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
             hasError={!!this.validFields.cardNumber}
             name="cardNumber"
             label="Número do cartão *"
-            customContainerClass={
-              this.customFormStyleClasses.creditCardFieldContainer
-            }
-            customInputClass={
-              this.customFormStyleClasses.creditCardFieldInputContainer
-            }
-            customLabelClass={
-              this.customFormStyleClasses.creditCardFieldLabelContainer
-            }
           />
           {!this.allFieldIsBlank && !!this.validFields.cardNumber && (
             <checkout-error-message message={this.validFields.cardNumber} />
@@ -182,15 +167,6 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
               name="expirationDate"
               label="Data de expiração (MM/AA) *"
               mask="99/99"
-              customContainerClass={
-                this.customFormStyleClasses.expirationDateFieldContainer
-              }
-              customInputClass={
-                this.customFormStyleClasses.expirationDateFieldInputContainer
-              }
-              customLabelClass={
-                this.customFormStyleClasses.expirationDateFieldLabelContainer
-              }
             />
 
             <checkout-text-field
@@ -205,15 +181,6 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
               name="cvv"
               label="Código de segurança (CVV) *"
               mask="999"
-              customContainerClass={
-                this.customFormStyleClasses.cvvFieldContainer
-              }
-              customInputClass={
-                this.customFormStyleClasses.cvvFieldInputContainer
-              }
-              customLabelClass={
-                this.customFormStyleClasses.cvvFieldLabelContainer
-              }
             />
           </fieldset>
           {!this.allFieldIsBlank && !!this.validFields.expirationDate && (
@@ -234,15 +201,6 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
             hasError={!!this.validFields.name}
             name="name"
             label="Nome no cartão *"
-            customContainerClass={
-              this.customFormStyleClasses.nameFieldContainer
-            }
-            customInputClass={
-              this.customFormStyleClasses.nameFieldInputContainer
-            }
-            customLabelClass={
-              this.customFormStyleClasses.nameFieldLabelContainer
-            }
           />
           {!this.allFieldIsBlank && !!this.validFields.name && (
             <checkout-error-message message={this.validFields.name} />
@@ -259,15 +217,6 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
               hasError={!!this.validFields.installments}
               name="installments"
               label="Parcelamento *"
-              customContainerClass={
-                this.customFormStyleClasses.installmentsFieldContainer
-              }
-              customSelectClass={
-                this.customFormStyleClasses.installmentsFieldSelectContainer
-              }
-              customLabelClass={
-                this.customFormStyleClasses.installmentsFieldLabelContainer
-              }
             />
           )}
 
@@ -283,7 +232,6 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
 
           <div class="plug-payments-credit-form__submit">
             <checkout-button
-              customClass={this.customFormStyleClasses.submitButton}
               isLoading={this.isLoading}
               type="submit"
               label="Pagar"

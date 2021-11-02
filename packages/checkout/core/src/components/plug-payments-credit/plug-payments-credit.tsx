@@ -8,9 +8,7 @@ import {
   EventEmitter,
 } from '@stencil/core'
 
-import { defaultCustomStyles } from './plug-payments-credit.utils'
 import {
-  PlugPaymentsCreditFormCustomStyleFormClasses,
   PlugPaymentsCreditFormValues,
   PlugPaymentsCreditInstallmentsConfig,
   PlugPaymentsCreditChargeError,
@@ -43,8 +41,6 @@ export class PlugPaymentsCredit {
     show: true,
     quantity: 1,
   }
-  @Prop()
-  customFormStyleClasses?: PlugPaymentsCreditFormCustomStyleFormClasses = defaultCustomStyles
 
   @Event() creditPaymentSuccess!: EventEmitter<{
     data: PlugPaymentsCreditChargeSuccess
@@ -133,10 +129,6 @@ export class PlugPaymentsCredit {
           onFieldChange={({ detail }) => {
             this.handleSetFormValues(detail.field, detail.value)
           }}
-          customFormStyleClasses={{
-            ...defaultCustomStyles,
-            ...this.customFormStyleClasses,
-          }}
         />
         {this.dialogConfig.show && this.dialog.open && (
           <checkout-modal
@@ -145,7 +137,9 @@ export class PlugPaymentsCredit {
             amount={this.dialog.amount}
             errorDescription={this.dialog.errorMessage}
             actionButtonLabel={this.dialogConfig.actionButtonLabel}
-            successActionButtonLabel={this.dialogConfig.successActionButtonLabel}
+            successActionButtonLabel={
+              this.dialogConfig.successActionButtonLabel
+            }
             errorActionButtonLabel={this.dialogConfig.errorActionButtonLabel}
           />
         )}

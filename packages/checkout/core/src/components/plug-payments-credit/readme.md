@@ -5,24 +5,23 @@
 
 ## Properties
 
-| Property                 | Attribute              | Description | Type                                           | Default                                  |
-| ------------------------ | ---------------------- | ----------- | ---------------------------------------------- | ---------------------------------------- |
-| `amount`                 | `amount`               |             | `number`                                       | `undefined`                              |
-| `capture`                | `capture`              |             | `boolean`                                      | `false`                                  |
-| `clientId`               | `client-id`            |             | `string`                                       | `undefined`                              |
-| `currency`               | `currency`             |             | `string`                                       | `'BRL'`                                  |
-| `customFormStyleClasses` | --                     |             | `PlugPaymentsCreditFormCustomStyleFormClasses` | `defaultCustomStyles`                    |
-| `customer`               | --                     |             | `Customer`                                     | `undefined`                              |
-| `customerId`             | `customer-id`          |             | `string`                                       | `undefined`                              |
-| `description`            | `description`          |             | `string`                                       | `undefined`                              |
-| `dialogConfig`           | --                     |             | `PlugCheckoutDialog`                           | `undefined`                              |
-| `installmentsConfig`     | --                     |             | `PlugPaymentsCreditInstallmentsConfig`         | `{     show: true,     quantity: 1,   }` |
-| `merchantId`             | `merchant-id`          |             | `string`                                       | `undefined`                              |
-| `orderId`                | `order-id`             |             | `string`                                       | `undefined`                              |
-| `publicKey`              | `public-key`           |             | `string`                                       | `undefined`                              |
-| `sandbox`                | `sandbox`              |             | `boolean`                                      | `false`                                  |
-| `showCreditCard`         | `show-credit-card`     |             | `boolean`                                      | `true`                                   |
-| `statementDescriptor`    | `statement-descriptor` |             | `string`                                       | `undefined`                              |
+| Property              | Attribute              | Description | Type                                   | Default                                  |
+| --------------------- | ---------------------- | ----------- | -------------------------------------- | ---------------------------------------- |
+| `amount`              | `amount`               |             | `number`                               | `undefined`                              |
+| `capture`             | `capture`              |             | `boolean`                              | `false`                                  |
+| `clientId`            | `client-id`            |             | `string`                               | `undefined`                              |
+| `currency`            | `currency`             |             | `string`                               | `'BRL'`                                  |
+| `customer`            | --                     |             | `Customer`                             | `undefined`                              |
+| `customerId`          | `customer-id`          |             | `string`                               | `undefined`                              |
+| `description`         | `description`          |             | `string`                               | `undefined`                              |
+| `dialogConfig`        | --                     |             | `PlugCheckoutDialog`                   | `undefined`                              |
+| `installmentsConfig`  | --                     |             | `PlugPaymentsCreditInstallmentsConfig` | `{     show: true,     quantity: 1,   }` |
+| `merchantId`          | `merchant-id`          |             | `string`                               | `undefined`                              |
+| `orderId`             | `order-id`             |             | `string`                               | `undefined`                              |
+| `publicKey`           | `public-key`           |             | `string`                               | `undefined`                              |
+| `sandbox`             | `sandbox`              |             | `boolean`                              | `false`                                  |
+| `showCreditCard`      | `show-credit-card`     |             | `boolean`                              | `true`                                   |
+| `statementDescriptor` | `statement-descriptor` |             | `string`                               | `undefined`                              |
 
 
 ## Events

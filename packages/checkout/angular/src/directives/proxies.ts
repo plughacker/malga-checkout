@@ -499,13 +499,13 @@ export class PlugPaymentsBoleto {
 import { PlugPaymentsCredit as IPlugPaymentsCredit } from '@plug-checkout/core/dist/types/components/plug-payments-credit/plug-payments-credit';
 export declare interface PlugPaymentsCredit extends Components.PlugPaymentsCredit {}
 @ProxyCmp({
-  inputs: ['amount', 'capture', 'clientId', 'currency', 'customFormStyleClasses', 'customer', 'customerId', 'description', 'dialogConfig', 'installmentsConfig', 'merchantId', 'orderId', 'publicKey', 'sandbox', 'showCreditCard', 'statementDescriptor']
+  inputs: ['amount', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'dialogConfig', 'installmentsConfig', 'merchantId', 'orderId', 'publicKey', 'sandbox', 'showCreditCard', 'statementDescriptor']
 })
 @Component({
   selector: 'plug-payments-credit',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['amount', 'capture', 'clientId', 'currency', 'customFormStyleClasses', 'customer', 'customerId', 'description', 'dialogConfig', 'installmentsConfig', 'merchantId', 'orderId', 'publicKey', 'sandbox', 'showCreditCard', 'statementDescriptor'],
+  inputs: ['amount', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'dialogConfig', 'installmentsConfig', 'merchantId', 'orderId', 'publicKey', 'sandbox', 'showCreditCard', 'statementDescriptor'],
   outputs: ['creditPaymentSuccess', 'creditPaymentFailed']
 })
 export class PlugPaymentsCredit {
@@ -524,13 +524,13 @@ export class PlugPaymentsCredit {
 import { PlugPaymentsCreditForm as IPlugPaymentsCreditForm } from '@plug-checkout/core/dist/types/components/plug-payments-credit/partials/plug-payments-credit-form/plug-payments-credit-form';
 export declare interface PlugPaymentsCreditForm extends Components.PlugPaymentsCreditForm {}
 @ProxyCmp({
-  inputs: ['amount', 'customFormStyleClasses', 'formValues', 'installmentsConfig', 'isLoading']
+  inputs: ['amount', 'formValues', 'installmentsConfig', 'isLoading']
 })
 @Component({
   selector: 'plug-payments-credit-form',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['amount', 'customFormStyleClasses', 'formValues', 'installmentsConfig', 'isLoading'],
+  inputs: ['amount', 'formValues', 'installmentsConfig', 'isLoading'],
   outputs: ['formSubmit', 'fieldChange']
 })
 export class PlugPaymentsCreditForm {

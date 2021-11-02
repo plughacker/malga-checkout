@@ -5,13 +5,12 @@
 
 ## Properties
 
-| Property                 | Attribute    | Description | Type                                           | Default     |
-| ------------------------ | ------------ | ----------- | ---------------------------------------------- | ----------- |
-| `amount`                 | `amount`     |             | `number`                                       | `undefined` |
-| `customFormStyleClasses` | --           |             | `PlugPaymentsCreditFormCustomStyleFormClasses` | `undefined` |
-| `formValues`             | --           |             | `PlugPaymentsCreditFormValues`                 | `undefined` |
-| `installmentsConfig`     | --           |             | `PlugPaymentsCreditInstallmentsConfig`         | `undefined` |
-| `isLoading`              | `is-loading` |             | `boolean`                                      | `undefined` |
+| Property             | Attribute    | Description | Type                                   | Default     |
+| -------------------- | ------------ | ----------- | -------------------------------------- | ----------- |
+| `amount`             | `amount`     |             | `number`                               | `undefined` |
+| `formValues`         | --           |             | `PlugPaymentsCreditFormValues`         | `undefined` |
+| `installmentsConfig` | --           |             | `PlugPaymentsCreditInstallmentsConfig` | `undefined` |
+| `isLoading`          | `is-loading` |             | `boolean`                              | `undefined` |
 
 
 ## Events

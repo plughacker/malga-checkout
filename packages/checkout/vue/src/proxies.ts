@@ -295,7 +295,6 @@ export const PlugPaymentsCredit = /*@__PURE__*/ defineContainer<JSX.PlugPayments
   'showCreditCard',
   'dialogConfig',
   'installmentsConfig',
-  'customFormStyleClasses',
   'creditPaymentSuccess',
   'creditPaymentFailed'
 ]);
@@ -305,7 +304,6 @@ export const PlugPaymentsCreditForm = /*@__PURE__*/ defineContainer<JSX.PlugPaym
   'formValues',
   'amount',
   'installmentsConfig',
-  'customFormStyleClasses',
   'isLoading',
   'formSubmit',
   'fieldChange'

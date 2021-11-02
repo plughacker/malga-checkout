@@ -9,7 +9,7 @@ import { PlugCheckoutDialog, PlugCheckoutPaymentMethods, PlugCheckoutTransaction
 import { PaymentMethods, PlugPaymentsChargeError, PlugPaymentsChargeSuccess } from "./components/plug-payments/plug-payments.types";
 import { PixAttributes } from "./providers/pix";
 import { BoletoAttributes } from "./providers/boleto";
-import { PlugPaymentsCreditChargeError, PlugPaymentsCreditChargeSuccess, PlugPaymentsCreditFormCustomStyleFormClasses, PlugPaymentsCreditFormValues, PlugPaymentsCreditInstallmentsConfig } from "./components/plug-payments-credit/plug-payments-credit.types";
+import { PlugPaymentsCreditChargeError, PlugPaymentsCreditChargeSuccess, PlugPaymentsCreditFormValues, PlugPaymentsCreditInstallmentsConfig } from "./components/plug-payments-credit/plug-payments-credit.types";
 import { Customer } from "./providers/base-provider";
 import { PlugPaymentsBoletoChargeError, PlugPaymentsBoletoChargeSuccess } from "./components/plug-payments-boleto/plug-payments-boleto.types";
 import { PlugPaymentsPixChargeError, PlugPaymentsPixChargeSuccess } from "./components/plug-payments-pix/plug-payments-pix.types";
@@ -64,7 +64,6 @@ export namespace Components {
         "capture": boolean;
         "clientId": string;
         "currency": string;
-        "customFormStyleClasses"?: PlugPaymentsCreditFormCustomStyleFormClasses;
         "customer"?: Customer;
         "customerId"?: string;
         "description"?: string;
@@ -79,7 +78,6 @@ export namespace Components {
     }
     interface PlugPaymentsCreditForm {
         "amount": number;
-        "customFormStyleClasses": PlugPaymentsCreditFormCustomStyleFormClasses;
         "formValues": PlugPaymentsCreditFormValues;
         "installmentsConfig": PlugPaymentsCreditInstallmentsConfig;
         "isLoading": boolean;
@@ -216,7 +214,6 @@ declare namespace LocalJSX {
         "capture"?: boolean;
         "clientId"?: string;
         "currency"?: string;
-        "customFormStyleClasses"?: PlugPaymentsCreditFormCustomStyleFormClasses;
         "customer"?: Customer;
         "customerId"?: string;
         "description"?: string;
@@ -237,7 +234,6 @@ declare namespace LocalJSX {
     }
     interface PlugPaymentsCreditForm {
         "amount"?: number;
-        "customFormStyleClasses"?: PlugPaymentsCreditFormCustomStyleFormClasses;
         "formValues"?: PlugPaymentsCreditFormValues;
         "installmentsConfig"?: PlugPaymentsCreditInstallmentsConfig;
         "isLoading"?: boolean;

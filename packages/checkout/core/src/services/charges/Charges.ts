@@ -30,4 +30,21 @@ export class Charges {
       data: response.data,
     }
   }
+
+  public async find(chargeId: string) {
+    const errorStatus = [
+      'failed',
+      'charged_back',
+      'canceled',
+      'voided',
+      'pending',
+    ]
+
+    const response = await this.api.fetch({ endpoint: `/charges/${chargeId}` })
+
+    return {
+      hasError: errorStatus.includes(response.data.status),
+      data: response.data,
+    }
+  }
 }

@@ -1,4 +1,4 @@
 export interface CreateParams {
   endpoint: string
-  data: unknown
+  data?: unknown
 }

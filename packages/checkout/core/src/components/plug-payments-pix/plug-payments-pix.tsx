@@ -45,6 +45,7 @@ export class PlugPaymentsPix {
     error: PlugPaymentsPixChargeError
   }>
 
+  @State() chargeId: string
   @State() isLoading = false
   @State() dialog: PlugPaymentsPixDialogState = {
     open: false,
@@ -56,13 +57,15 @@ export class PlugPaymentsPix {
     expirationTime: 3600,
   }
 
+  private handleSaveChargeId = (chargeId: string) => {
+    this.chargeId = chargeId
+  }
+
   private handleShowDialog = (dialogData: PlugPaymentsPixDialogState) => {
     this.dialog = { ...this.dialog, ...dialogData }
   }
 
-  private handleFormSubmit = async () => {
-    this.isLoading = true
-
+  private getPixService = () => {
     const data = {
       pix: this.pix,
       merchantId: this.merchantId,
@@ -82,6 +85,7 @@ export class PlugPaymentsPix {
       sandbox: this.sandbox,
       showDialog: this.dialogConfig.show,
       data,
+      onSaveChargeId: (chargeId: string) => this.handleSaveChargeId(chargeId),
       onPaymentSuccess: (data: PlugPaymentsPixChargeSuccess) =>
         this.pixPaymentSuccess.emit({ data }),
       onPaymentFailed: (error: PlugPaymentsPixChargeError) =>
@@ -90,9 +94,23 @@ export class PlugPaymentsPix {
         this.handleShowDialog(dialogData),
     })
 
+    return pixService
+  }
+
+  private handleFormSubmit = async () => {
+    this.isLoading = true
+
+    const pixService = this.getPixService()
+
     await pixService.pay()
 
     this.isLoading = false
+  }
+
+  private checkIfPixIsPayed = async () => {
+    const pixService = this.getPixService()
+
+    await pixService.findCharge(this.chargeId)
   }
 
   render() {
@@ -113,10 +131,15 @@ export class PlugPaymentsPix {
             paymentImageUrl={this.dialog.paymentImageUrl}
             expirationDate={this.dialog.expirationDate}
             expirationTime={this.dialog.expirationTime}
+            errorTitle={this.dialog.errorTitle}
             errorDescription={this.dialog.errorMessage}
+            successDescription={this.dialog.successMessage}
             actionButtonLabel={this.dialogConfig.actionButtonLabel}
-            successActionButtonLabel={this.dialogConfig.successActionButtonLabel}
+            successActionButtonLabel={
+              this.dialogConfig.successActionButtonLabel
+            }
             errorActionButtonLabel={this.dialogConfig.errorActionButtonLabel}
+            onPixCountdownIsFinished={this.checkIfPixIsPayed}
           />
         )}
       </Host>

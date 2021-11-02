@@ -15,6 +15,7 @@ export class PlugPaymentsPixService {
   readonly charge: Charges
   readonly data: PlugPaymentsPixChargePayload
   readonly showDialog: boolean
+  readonly onSaveChargeId: (chargeId: string) => void
   readonly onPaymentSuccess: (
     data: PlugPaymentsPixChargeSuccess,
   ) => CustomEvent<{ data: unknown }>
@@ -30,6 +31,7 @@ export class PlugPaymentsPixService {
     onPaymentSuccess,
     onPaymentFailed,
     onShowDialog,
+    onSaveChargeId,
     showDialog,
     data,
   }: PlugPaymentsPixChargeRequest) {
@@ -41,6 +43,7 @@ export class PlugPaymentsPixService {
         pix: data.pix,
       }),
     })
+    this.onSaveChargeId = onSaveChargeId
     this.onPaymentSuccess = onPaymentSuccess
     this.onPaymentFailed = onPaymentFailed
     this.onShowDialog = onShowDialog
@@ -49,6 +52,8 @@ export class PlugPaymentsPixService {
   }
 
   private handlePaymentSuccess(data: PlugPaymentsPixChargeSuccess) {
+    this.onSaveChargeId(data.id)
+
     if (this.showDialog) {
       this.onShowDialog({
         mode: 'pix',
@@ -106,6 +111,37 @@ export class PlugPaymentsPixService {
       this.handlePaymentFailed({
         type: error.response.status,
         message: 'Your transaction cannot be completed',
+      })
+    }
+  }
+
+  public async findCharge(chargeId: string) {
+    try {
+      const chargeResponse = await this.charge.find(chargeId)
+
+      if (chargeResponse.hasError) {
+        this.onShowDialog({
+          open: true,
+          mode: 'error',
+          errorTitle: 'O código PIX expirou',
+          errorMessage:
+            'Caso já tenha feito o pagamento, aguarde o e-mail de confirmação. Se não fez o pagamento ainda, faça um novo pedido.',
+        })
+
+        return
+      }
+
+      this.onShowDialog({
+        mode: 'success',
+        open: true,
+        successMessage: 'Pagamento feito com sucesso',
+      })
+    } catch (error) {
+      this.onShowDialog({
+        open: true,
+        mode: 'error',
+        errorMessage:
+          'Não foi possível concluir sua transação, tente novamente.',
       })
     }
   }

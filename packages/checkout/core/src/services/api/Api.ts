@@ -29,4 +29,8 @@ export class Api {
   public async create({ endpoint, data }: CreateParams) {
     return this.api.post(endpoint, data)
   }
+
+  public async fetch({ endpoint }: CreateParams) {
+    return this.api.get(endpoint)
+  }
 }

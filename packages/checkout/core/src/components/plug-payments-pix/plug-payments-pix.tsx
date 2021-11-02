@@ -107,7 +107,7 @@ export class PlugPaymentsPix {
     this.isLoading = false
   }
 
-  private checkIfPixIsPayed = async () => {
+  private checkIfPixIsPaid = async () => {
     const pixService = this.getPixService()
 
     await pixService.findCharge(this.chargeId)
@@ -139,7 +139,7 @@ export class PlugPaymentsPix {
               this.dialogConfig.successActionButtonLabel
             }
             errorActionButtonLabel={this.dialogConfig.errorActionButtonLabel}
-            onPixCountdownIsFinished={this.checkIfPixIsPayed}
+            onPixCountdownIsFinished={this.checkIfPixIsPaid}
           />
         )}
       </Host>

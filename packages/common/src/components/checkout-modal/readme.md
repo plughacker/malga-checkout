@@ -13,6 +13,7 @@
 | `amount`                   | `amount`                      |             | `number`                                    | `undefined` |
 | `errorActionButtonLabel`   | `error-action-button-label`   |             | `string`                                    | `undefined` |
 | `errorDescription`         | `error-description`           |             | `string`                                    | `undefined` |
+| `errorSubtitle`            | `error-subtitle`              |             | `string`                                    | `undefined` |
 | `errorTitle`               | `error-title`                 |             | `string`                                    | `undefined` |
 | `expirationDate`           | `expiration-date`             |             | `string`                                    | `undefined` |
 | `expirationTime`           | `expiration-time`             |             | `number`                                    | `undefined` |

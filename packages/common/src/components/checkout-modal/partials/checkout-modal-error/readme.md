@@ -11,6 +11,7 @@
 | ------------------------ | --------------------------- | ----------- | -------- | -------------------- |
 | `errorActionButtonLabel` | `error-action-button-label` |             | `string` | `'Tentar Novamente'` |
 | `errorDescription`       | `error-description`         |             | `string` | `undefined`          |
+| `errorSubtitle`          | `error-subtitle`            |             | `string` | `undefined`          |
 | `errorTitle`             | `error-title`               |             | `string` | `undefined`          |
 
 

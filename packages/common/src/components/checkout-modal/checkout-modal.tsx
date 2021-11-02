@@ -10,6 +10,7 @@ export class CheckoutModal {
   @Prop() open: boolean
   @Prop() mode: CheckoutModalMode
   @Prop() errorTitle?: string
+  @Prop() errorSubtitle?: string
   @Prop() errorDescription?: string
   @Prop() paymentCode: string
   @Prop() paymentImageUrl: string
@@ -45,6 +46,7 @@ export class CheckoutModal {
           {this.mode === 'error' && (
             <checkout-modal-error
               errorTitle={this.errorTitle}
+              errorSubtitle={this.errorSubtitle}
               errorDescription={this.errorDescription}
               errorActionButtonLabel={this.errorActionButtonLabel}
               onErrorActionButtonClicked={() => this.errorButtonClicked.emit()}

@@ -68,6 +68,7 @@ export namespace Components {
         "amount": number;
         "errorActionButtonLabel"?: string;
         "errorDescription"?: string;
+        "errorSubtitle"?: string;
         "errorTitle"?: string;
         "expirationDate"?: string;
         "expirationTime"?: number;
@@ -88,6 +89,7 @@ export namespace Components {
     interface CheckoutModalError {
         "errorActionButtonLabel": string;
         "errorDescription"?: string;
+        "errorSubtitle"?: string;
         "errorTitle"?: string;
     }
     interface CheckoutModalPix {
@@ -359,6 +361,7 @@ declare namespace LocalJSX {
         "amount"?: number;
         "errorActionButtonLabel"?: string;
         "errorDescription"?: string;
+        "errorSubtitle"?: string;
         "errorTitle"?: string;
         "expirationDate"?: string;
         "expirationTime"?: number;
@@ -383,6 +386,7 @@ declare namespace LocalJSX {
     interface CheckoutModalError {
         "errorActionButtonLabel"?: string;
         "errorDescription"?: string;
+        "errorSubtitle"?: string;
         "errorTitle"?: string;
         "onErrorActionButtonClicked"?: (event: CustomEvent<void>) => void;
     }

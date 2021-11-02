@@ -6,6 +6,7 @@ import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
 })
 export class CheckoutModalError {
   @Prop() errorTitle?: string
+  @Prop() errorSubtitle?: string
   @Prop() errorDescription?: string
   @Prop() errorActionButtonLabel = 'Tentar Novamente'
 
@@ -19,7 +20,7 @@ export class CheckoutModalError {
           tag="h3"
           variation="header5"
           color="white"
-          content="Transação não aprovada"
+          content={this.errorTitle}
         />
 
         {this.errorTitle && (
@@ -27,7 +28,7 @@ export class CheckoutModalError {
             tag="h4"
             variation="field"
             color="white"
-            content={this.errorTitle}
+            content={this.errorSubtitle}
           />
         )}
 

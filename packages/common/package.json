@@ -30,7 +30,7 @@
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/plug-checkout/plug-checkout.esm.js",
+  "unpkg": "dist/plug-checkout-common/plug-checkout-common.esm.js",
   "files": [
     "dist/",
     "loader/"

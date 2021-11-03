@@ -3,3 +3,10 @@ export const formatDate = (currentDate: Date) => {
 
   return formattedDate.format(currentDate)
 }
+
+export const parseDate = (currentDate: string) => {
+  const [year, month, day] = currentDate.split('-')
+  const currentMonth = parseInt(month) - 1
+
+  return [year, currentMonth, day]
+}

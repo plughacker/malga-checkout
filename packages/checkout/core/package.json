@@ -53,11 +53,11 @@
     "jest": "26.6.3",
     "jest-cli": "26.6.3",
     "puppeteer": "5.5.0",
-    "stencil-inline-svg": "^1.1.0"
+    "stencil-inline-svg": "^1.1.0",
+    "@plug-checkout/common": "*",
+    "@plug-checkout/utils": "*"
   },
   "dependencies": {
-    "@plug-checkout/common": "*",
-    "@plug-checkout/utils": "*",
     "axios": "^0.21.1",
     "brazilian-values": "^0.10.1",
     "inputmask": "^5.0.6",

@@ -180,13 +180,13 @@ export class CheckoutManualPayment {
 import { CheckoutModal as ICheckoutModal } from '@plug-checkout-full/core/Users/leonardorpr/dev/plug/plug-checkout/packages/common/dist/collection/components/checkout-modal/checkout-modal';
 export declare interface CheckoutModal extends Components.CheckoutModal {}
 @ProxyCmp({
-  inputs: ['actionButtonLabel', 'amount', 'errorActionButtonLabel', 'errorDescription', 'errorTitle', 'expirationDate', 'expirationTime', 'mode', 'open', 'paymentCode', 'paymentImageUrl', 'successActionButtonLabel', 'successDescription']
+  inputs: ['actionButtonLabel', 'amount', 'errorActionButtonLabel', 'errorDescription', 'errorSubtitle', 'errorTitle', 'expirationDate', 'expirationTime', 'mode', 'open', 'paymentCode', 'paymentImageUrl', 'successActionButtonLabel', 'successDescription']
 })
 @Component({
   selector: 'checkout-modal',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['actionButtonLabel', 'amount', 'errorActionButtonLabel', 'errorDescription', 'errorTitle', 'expirationDate', 'expirationTime', 'mode', 'open', 'paymentCode', 'paymentImageUrl', 'successActionButtonLabel', 'successDescription'],
+  inputs: ['actionButtonLabel', 'amount', 'errorActionButtonLabel', 'errorDescription', 'errorSubtitle', 'errorTitle', 'expirationDate', 'expirationTime', 'mode', 'open', 'paymentCode', 'paymentImageUrl', 'successActionButtonLabel', 'successDescription'],
   outputs: ['successButtonClicked', 'errorButtonClicked', 'pixCountdownIsFinished']
 })
 export class CheckoutModal {
@@ -230,13 +230,13 @@ export class CheckoutModalBoleto {
 import { CheckoutModalError as ICheckoutModalError } from '@plug-checkout-full/core/Users/leonardorpr/dev/plug/plug-checkout/packages/common/dist/collection/components/checkout-modal/partials/checkout-modal-error/checkout-modal-error';
 export declare interface CheckoutModalError extends Components.CheckoutModalError {}
 @ProxyCmp({
-  inputs: ['errorActionButtonLabel', 'errorDescription', 'errorTitle']
+  inputs: ['errorActionButtonLabel', 'errorDescription', 'errorSubtitle', 'errorTitle']
 })
 @Component({
   selector: 'checkout-modal-error',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['errorActionButtonLabel', 'errorDescription', 'errorTitle'],
+  inputs: ['errorActionButtonLabel', 'errorDescription', 'errorSubtitle', 'errorTitle'],
   outputs: ['errorActionButtonClicked']
 })
 export class CheckoutModalError {
@@ -421,6 +421,31 @@ export class CheckoutTypography {
   }
 }
 
+import { PlugCheckout as IPlugCheckout } from '@plug-checkout-full/core/Users/leonardorpr/dev/plug/plug-checkout/packages/checkout/core/dist/collection/components/plug-checkout/plug-checkout';
+export declare interface PlugCheckout extends Components.PlugCheckout {}
+@ProxyCmp({
+  inputs: ['clientId', 'dialogConfig', 'merchantId', 'paymentMethods', 'publicKey', 'sandbox', 'transactionConfig']
+})
+@Component({
+  selector: 'plug-checkout',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['clientId', 'dialogConfig', 'merchantId', 'paymentMethods', 'publicKey', 'sandbox', 'transactionConfig'],
+  outputs: ['paymentSuccess', 'paymentFailed']
+})
+export class PlugCheckout {
+  /**  */
+  paymentSuccess!: IPlugCheckout['paymentSuccess'];
+  /**  */
+  paymentFailed!: IPlugCheckout['paymentFailed'];
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['paymentSuccess', 'paymentFailed']);
+  }
+}
+
 import { PlugCheckoutFull as IPlugCheckoutFull } from '@plug-checkout-full/core/dist/types/components/plug-checkout-full/plug-checkout-full';
 export declare interface PlugCheckoutFull extends Components.PlugCheckoutFull {}
 @ProxyCmp({
@@ -431,18 +456,18 @@ export declare interface PlugCheckoutFull extends Components.PlugCheckoutFull {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['clientId', 'dialogConfig', 'merchantId', 'pageConfig', 'paymentMethods', 'publicKey', 'sandbox', 'transactionConfig'],
-  outputs: ['checkoutSuccess', 'checkoutFailed']
+  outputs: ['transactionSuccess', 'transactionFailed']
 })
 export class PlugCheckoutFull {
   /**  */
-  checkoutSuccess!: IPlugCheckoutFull['checkoutSuccess'];
+  transactionSuccess!: IPlugCheckoutFull['transactionSuccess'];
   /**  */
-  checkoutFailed!: IPlugCheckoutFull['checkoutFailed'];
+  transactionFailed!: IPlugCheckoutFull['transactionFailed'];
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['checkoutSuccess', 'checkoutFailed']);
+    proxyOutputs(this, this.el, ['transactionSuccess', 'transactionFailed']);
   }
 }
 
@@ -484,13 +509,13 @@ export class PlugCheckoutFullFooter {
 
 export declare interface PlugCheckoutFullHeader extends Components.PlugCheckoutFullHeader {}
 @ProxyCmp({
-  inputs: ['brand']
+  inputs: ['backRoute', 'brand']
 })
 @Component({
   selector: 'plug-checkout-full-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['brand']
+  inputs: ['backRoute', 'brand']
 })
 export class PlugCheckoutFullHeader {
   protected el: HTMLElement;
@@ -524,5 +549,130 @@ export class PlugCheckoutFullIdentification {
     c.detach();
     this.el = r.nativeElement;
     proxyOutputs(this, this.el, ['submitForm', 'fieldChange', 'manyFieldsChange']);
+  }
+}
+
+import { PlugPayments as IPlugPayments } from '@plug-checkout-full/core/Users/leonardorpr/dev/plug/plug-checkout/packages/checkout/core/dist/collection/components/plug-payments/plug-payments';
+export declare interface PlugPayments extends Components.PlugPayments {}
+@ProxyCmp({
+  inputs: ['amount', 'boleto', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'dialogConfig', 'installments', 'merchantId', 'orderId', 'paymentMethods', 'pix', 'publicKey', 'sandbox', 'showCreditCard', 'statementDescriptor']
+})
+@Component({
+  selector: 'plug-payments',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['amount', 'boleto', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'dialogConfig', 'installments', 'merchantId', 'orderId', 'paymentMethods', 'pix', 'publicKey', 'sandbox', 'showCreditCard', 'statementDescriptor'],
+  outputs: ['checkoutPaymentSuccess', 'checkoutPaymentFailed']
+})
+export class PlugPayments {
+  /**  */
+  checkoutPaymentSuccess!: IPlugPayments['checkoutPaymentSuccess'];
+  /**  */
+  checkoutPaymentFailed!: IPlugPayments['checkoutPaymentFailed'];
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['checkoutPaymentSuccess', 'checkoutPaymentFailed']);
+  }
+}
+
+import { PlugPaymentsBoleto as IPlugPaymentsBoleto } from '@plug-checkout-full/core/Users/leonardorpr/dev/plug/plug-checkout/packages/checkout/core/dist/collection/components/plug-payments-boleto/plug-payments-boleto';
+export declare interface PlugPaymentsBoleto extends Components.PlugPaymentsBoleto {}
+@ProxyCmp({
+  inputs: ['amount', 'boleto', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'dialogConfig', 'merchantId', 'orderId', 'publicKey', 'sandbox', 'statementDescriptor']
+})
+@Component({
+  selector: 'plug-payments-boleto',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['amount', 'boleto', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'dialogConfig', 'merchantId', 'orderId', 'publicKey', 'sandbox', 'statementDescriptor'],
+  outputs: ['boletoPaymentSuccess', 'boletoPaymentFailed']
+})
+export class PlugPaymentsBoleto {
+  /**  */
+  boletoPaymentSuccess!: IPlugPaymentsBoleto['boletoPaymentSuccess'];
+  /**  */
+  boletoPaymentFailed!: IPlugPaymentsBoleto['boletoPaymentFailed'];
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['boletoPaymentSuccess', 'boletoPaymentFailed']);
+  }
+}
+
+import { PlugPaymentsCredit as IPlugPaymentsCredit } from '@plug-checkout-full/core/Users/leonardorpr/dev/plug/plug-checkout/packages/checkout/core/dist/collection/components/plug-payments-credit/plug-payments-credit';
+export declare interface PlugPaymentsCredit extends Components.PlugPaymentsCredit {}
+@ProxyCmp({
+  inputs: ['amount', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'dialogConfig', 'installmentsConfig', 'merchantId', 'orderId', 'publicKey', 'sandbox', 'showCreditCard', 'statementDescriptor']
+})
+@Component({
+  selector: 'plug-payments-credit',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['amount', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'dialogConfig', 'installmentsConfig', 'merchantId', 'orderId', 'publicKey', 'sandbox', 'showCreditCard', 'statementDescriptor'],
+  outputs: ['creditPaymentSuccess', 'creditPaymentFailed']
+})
+export class PlugPaymentsCredit {
+  /**  */
+  creditPaymentSuccess!: IPlugPaymentsCredit['creditPaymentSuccess'];
+  /**  */
+  creditPaymentFailed!: IPlugPaymentsCredit['creditPaymentFailed'];
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['creditPaymentSuccess', 'creditPaymentFailed']);
+  }
+}
+
+import { PlugPaymentsCreditForm as IPlugPaymentsCreditForm } from '@plug-checkout-full/core/Users/leonardorpr/dev/plug/plug-checkout/packages/checkout/core/dist/collection/components/plug-payments-credit/partials/plug-payments-credit-form/plug-payments-credit-form';
+export declare interface PlugPaymentsCreditForm extends Components.PlugPaymentsCreditForm {}
+@ProxyCmp({
+  inputs: ['amount', 'formValues', 'installmentsConfig', 'isLoading']
+})
+@Component({
+  selector: 'plug-payments-credit-form',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['amount', 'formValues', 'installmentsConfig', 'isLoading'],
+  outputs: ['formSubmit', 'fieldChange']
+})
+export class PlugPaymentsCreditForm {
+  /**  */
+  formSubmit!: IPlugPaymentsCreditForm['formSubmit'];
+  /**  */
+  fieldChange!: IPlugPaymentsCreditForm['fieldChange'];
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['formSubmit', 'fieldChange']);
+  }
+}
+
+import { PlugPaymentsPix as IPlugPaymentsPix } from '@plug-checkout-full/core/Users/leonardorpr/dev/plug/plug-checkout/packages/checkout/core/dist/collection/components/plug-payments-pix/plug-payments-pix';
+export declare interface PlugPaymentsPix extends Components.PlugPaymentsPix {}
+@ProxyCmp({
+  inputs: ['amount', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'dialogConfig', 'merchantId', 'orderId', 'pix', 'publicKey', 'sandbox', 'statementDescriptor']
+})
+@Component({
+  selector: 'plug-payments-pix',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['amount', 'capture', 'clientId', 'currency', 'customer', 'customerId', 'description', 'dialogConfig', 'merchantId', 'orderId', 'pix', 'publicKey', 'sandbox', 'statementDescriptor'],
+  outputs: ['pixPaymentSuccess', 'pixPaymentFailed']
+})
+export class PlugPaymentsPix {
+  /**  */
+  pixPaymentSuccess!: IPlugPaymentsPix['pixPaymentSuccess'];
+  /**  */
+  pixPaymentFailed!: IPlugPaymentsPix['pixPaymentFailed'];
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['pixPaymentSuccess', 'pixPaymentFailed']);
   }
 }

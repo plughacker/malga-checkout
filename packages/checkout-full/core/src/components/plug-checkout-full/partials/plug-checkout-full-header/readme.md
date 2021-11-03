@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default     |
-| -------- | --------- | ----------- | -------- | ----------- |
-| `brand`  | `brand`   |             | `string` | `undefined` |
+| Property    | Attribute    | Description | Type     | Default     |
+| ----------- | ------------ | ----------- | -------- | ----------- |
+| `backRoute` | `back-route` |             | `string` | `undefined` |
+| `brand`     | `brand`      |             | `string` | `undefined` |
 
 
 ## Dependencies

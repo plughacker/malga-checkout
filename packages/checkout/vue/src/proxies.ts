@@ -82,6 +82,7 @@ export const CheckoutModal = /*@__PURE__*/ defineContainer<JSX.CheckoutModal>('c
   'open',
   'mode',
   'errorTitle',
+  'errorSubtitle',
   'errorDescription',
   'paymentCode',
   'paymentImageUrl',
@@ -110,6 +111,7 @@ export const CheckoutModalBoleto = /*@__PURE__*/ defineContainer<JSX.CheckoutMod
 
 export const CheckoutModalError = /*@__PURE__*/ defineContainer<JSX.CheckoutModalError>('checkout-modal-error', undefined, [
   'errorTitle',
+  'errorSubtitle',
   'errorDescription',
   'errorActionButtonLabel',
   'errorActionButtonClicked'

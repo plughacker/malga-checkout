@@ -180,13 +180,13 @@ export class CheckoutManualPayment {
 import { CheckoutModal as ICheckoutModal } from '@plug-checkout/core/Users/leonardorpr/dev/plug/plug-checkout/packages/common/dist/collection/components/checkout-modal/checkout-modal';
 export declare interface CheckoutModal extends Components.CheckoutModal {}
 @ProxyCmp({
-  inputs: ['actionButtonLabel', 'amount', 'errorActionButtonLabel', 'errorDescription', 'errorTitle', 'expirationDate', 'expirationTime', 'mode', 'open', 'paymentCode', 'paymentImageUrl', 'successActionButtonLabel', 'successDescription']
+  inputs: ['actionButtonLabel', 'amount', 'errorActionButtonLabel', 'errorDescription', 'errorSubtitle', 'errorTitle', 'expirationDate', 'expirationTime', 'mode', 'open', 'paymentCode', 'paymentImageUrl', 'successActionButtonLabel', 'successDescription']
 })
 @Component({
   selector: 'checkout-modal',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['actionButtonLabel', 'amount', 'errorActionButtonLabel', 'errorDescription', 'errorTitle', 'expirationDate', 'expirationTime', 'mode', 'open', 'paymentCode', 'paymentImageUrl', 'successActionButtonLabel', 'successDescription'],
+  inputs: ['actionButtonLabel', 'amount', 'errorActionButtonLabel', 'errorDescription', 'errorSubtitle', 'errorTitle', 'expirationDate', 'expirationTime', 'mode', 'open', 'paymentCode', 'paymentImageUrl', 'successActionButtonLabel', 'successDescription'],
   outputs: ['successButtonClicked', 'errorButtonClicked', 'pixCountdownIsFinished']
 })
 export class CheckoutModal {
@@ -230,13 +230,13 @@ export class CheckoutModalBoleto {
 import { CheckoutModalError as ICheckoutModalError } from '@plug-checkout/core/Users/leonardorpr/dev/plug/plug-checkout/packages/common/dist/collection/components/checkout-modal/partials/checkout-modal-error/checkout-modal-error';
 export declare interface CheckoutModalError extends Components.CheckoutModalError {}
 @ProxyCmp({
-  inputs: ['errorActionButtonLabel', 'errorDescription', 'errorTitle']
+  inputs: ['errorActionButtonLabel', 'errorDescription', 'errorSubtitle', 'errorTitle']
 })
 @Component({
   selector: 'checkout-modal-error',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['errorActionButtonLabel', 'errorDescription', 'errorTitle'],
+  inputs: ['errorActionButtonLabel', 'errorDescription', 'errorSubtitle', 'errorTitle'],
   outputs: ['errorActionButtonClicked']
 })
 export class CheckoutModalError {

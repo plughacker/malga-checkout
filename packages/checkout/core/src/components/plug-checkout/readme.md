@@ -7,15 +7,15 @@
 
 ## Properties
 
-| Property            | Attribute     | Description | Type                         | Default                                                                                                                                                                    |
-| ------------------- | ------------- | ----------- | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `clientId`          | `client-id`   |             | `string`                     | `undefined`                                                                                                                                                                |
-| `dialogConfig`      | --            |             | `PlugCheckoutDialog`         | `{     show: true,     actionButtonLabel: 'Continuar',     successActionButtonLabel: 'Continuar',     errorActionButtonLabel: 'Tentar Novamente',   }`                     |
-| `merchantId`        | `merchant-id` |             | `string`                     | `undefined`                                                                                                                                                                |
-| `paymentMethods`    | --            |             | `PlugCheckoutPaymentMethods` | `{     pix: undefined,     credit: undefined,     boleto: undefined   }`                                                                                                   |
-| `publicKey`         | `public-key`  |             | `string`                     | `undefined`                                                                                                                                                                |
-| `sandbox`           | `sandbox`     |             | `boolean`                    | `false`                                                                                                                                                                    |
-| `transactionConfig` | --            |             | `PlugCheckoutTransaction`    | `{     statementDescriptor: '',     amount: 0,     description: '',     orderId: '',     customerId: '',     currency: 'BRL',     capture: false,     customer: null,   }` |
+| Property            | Attribute     | Description | Type                         | Default                                                                                                                                                                            |
+| ------------------- | ------------- | ----------- | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `clientId`          | `client-id`   |             | `string`                     | `undefined`                                                                                                                                                                        |
+| `dialogConfig`      | --            |             | `PlugCheckoutDialog`         | `{     show: true,     actionButtonLabel: 'Continuar',     successActionButtonLabel: 'Continuar',     errorActionButtonLabel: 'Tentar Novamente',     successRedirectUrl: '',   }` |
+| `merchantId`        | `merchant-id` |             | `string`                     | `undefined`                                                                                                                                                                        |
+| `paymentMethods`    | --            |             | `PlugCheckoutPaymentMethods` | `{     pix: undefined,     credit: undefined,     boleto: undefined,   }`                                                                                                          |
+| `publicKey`         | `public-key`  |             | `string`                     | `undefined`                                                                                                                                                                        |
+| `sandbox`           | `sandbox`     |             | `boolean`                    | `false`                                                                                                                                                                            |
+| `transactionConfig` | --            |             | `PlugCheckoutTransaction`    | `{     statementDescriptor: '',     amount: 0,     description: '',     orderId: '',     customerId: '',     currency: 'BRL',     capture: false,     customer: null,   }`         |
 
 
 ## Events

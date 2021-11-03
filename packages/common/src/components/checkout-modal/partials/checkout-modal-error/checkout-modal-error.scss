@@ -6,7 +6,7 @@
   width: 100%;
   height: 100%;
   position: relative;
-  background: var(--plug-checkout-color-error);
+  background: var(--plug-checkout-color-modal-error);
 
   @include md {
     width: 585px;
@@ -39,5 +39,16 @@
   & > checkout-button {
     position: absolute;
     bottom: 75px;
+
+    & > button {
+      background-color: var(--plug-checkout-color-modal-action-button-error);
+      color: var(--plug-checkout-color-modal-action-button-error-font-color);
+
+      &:hover {
+        background-color: var(
+          --plug-checkout-color-modal-action-button-error-hover
+        );
+      }
+    }
   }
 }

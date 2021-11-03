@@ -16,7 +16,7 @@
   align-items: center;
   width: 100%;
   padding: var(--plug-checkout-spacing-default) 0;
-  background: var(--plug-checkout-color-success);
+  background: var(--plug-checkout-color-modal-success);
 
   @include md {
     flex-direction: row;

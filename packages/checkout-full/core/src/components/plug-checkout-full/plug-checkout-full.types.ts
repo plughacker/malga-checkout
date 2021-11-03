@@ -39,6 +39,7 @@ export interface PlugCheckoutFullBoletoChargeSuccess {
 export interface PlugCheckoutFullBoletoChargeError {
   type: string
   message: string
+  errorStack: unknown
 }
 
 export interface PlugCheckoutFullCreditChargeSuccess {
@@ -78,7 +79,8 @@ export interface PlugCheckoutFullCreditChargeError {
   type: string
   message: string
   code?: number
-  declined_code?: string
+  declinedCode?: string
+  errorStack: unknown
 }
 
 export interface PlugCheckoutFullPixChargeSuccess {
@@ -127,6 +129,7 @@ export interface PlugCheckoutFullPixChargeSuccess {
 export interface PlugCheckoutFullPixChargeError {
   type: string
   message: string
+  errorStack: unknown
 }
 
 export interface Boleto {

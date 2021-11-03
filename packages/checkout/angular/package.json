@@ -1,12 +1,12 @@
 {
   "name": "@plug-checkout/angular",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "Angular specific wrapper for Plug Checkout core components",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/plughacker/plug-checkout.git",
-    "directory": "packages/angular"
+    "directory": "packages/checkout/angular"
   },
   "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
   "bugs": {
@@ -43,7 +43,7 @@
     "dist/"
   ],
   "dependencies": {
-    "@plug-checkout/core": "0.0.4",
+    "@plug-checkout/core": "*",
     "tslib": "^1.9.3"
   },
   "peerDependencies": {

@@ -1,12 +1,12 @@
 {
   "name": "@plug-checkout-full/react",
   "sideEffects": false,
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "React specific wrapper for Plug Checkout Full core components",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/plughacker/plug-checkout.git",
-    "directory": "packages/react"
+    "directory": "packages/checkout-full/react"
   },
   "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
   "bugs": {

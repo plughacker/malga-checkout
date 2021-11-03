@@ -1,12 +1,12 @@
 {
   "name": "@plug-checkout-full/angular",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "Angular specific wrapper for Plug Checkout Full core components",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/plughacker/plug-checkout.git",
-    "directory": "packages/angular"
+    "directory": "packages/checkout-full/angular"
   },
   "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
   "bugs": {

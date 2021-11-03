@@ -1,13 +1,13 @@
 {
   "name": "@plug-checkout-full/vue",
   "sideEffects": false,
-  "version": "0.0.4",
+  "version": "1.0.0",
   "license": "MIT",
   "description": "Vue specific wrapper for Plug Checkout Full core components",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/plughacker/plug-checkout.git",
-    "directory": "packages/vue"
+    "directory": "packages/checkout-full/vue"
   },
   "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
   "bugs": {

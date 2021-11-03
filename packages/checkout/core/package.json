@@ -1,11 +1,11 @@
 {
   "name": "@plug-checkout/core",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "Core components for Plug Checkout",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/plughacker/plug-checkout.git",
-    "directory": "packages/core"
+    "directory": "packages/checkout/core"
   },
   "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
   "bugs": {

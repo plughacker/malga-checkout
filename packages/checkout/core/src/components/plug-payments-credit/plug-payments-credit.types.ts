@@ -70,7 +70,8 @@ export interface PlugPaymentsCreditChargeError {
   type: string
   message: string
   code?: number
-  declined_code?: string
+  declinedCode?: string
+  errorStack: unknown
 }
 
 export interface PlugPaymentsCreditChargeRequest {

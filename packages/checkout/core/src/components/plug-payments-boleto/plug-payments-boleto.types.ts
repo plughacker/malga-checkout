@@ -65,6 +65,7 @@ export interface PlugPaymentsBoletoDialogState {
 export interface PlugPaymentsBoletoChargeError {
   type: string
   message: string
+  errorStack: unknown
 }
 
 export interface PlugPaymentsBoletoChargeRequest {

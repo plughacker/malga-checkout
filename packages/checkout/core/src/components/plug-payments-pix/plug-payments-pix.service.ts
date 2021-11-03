@@ -101,6 +101,7 @@ export class PlugPaymentsPixService {
         this.handlePaymentFailed({
           type: checkoutResponse.data.status,
           message: 'Your transaction cannot be completed',
+          errorStack: checkoutResponse.data,
         })
 
         return
@@ -111,6 +112,7 @@ export class PlugPaymentsPixService {
       this.handlePaymentFailed({
         type: error.response.status,
         message: 'Your transaction cannot be completed',
+        errorStack: error.response.data,
       })
     }
   }

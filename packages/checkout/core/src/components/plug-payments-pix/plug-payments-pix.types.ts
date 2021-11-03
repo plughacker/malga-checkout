@@ -73,6 +73,7 @@ export interface PlugPaymentsPixChargeSuccess {
 export interface PlugPaymentsPixChargeError {
   type: string
   message: string
+  errorStack: unknown
 }
 
 export interface PlugPaymentsPixChargeRequest {

@@ -8,7 +8,7 @@ import {
   EventEmitter,
 } from '@stencil/core'
 
-import { formatToReal, formatDate } from '@plug-checkout/utils'
+import { formatToReal, formatDate, parseDate } from '@plug-checkout/utils'
 
 @Component({
   tag: 'checkout-modal-pix',
@@ -25,7 +25,13 @@ export class CheckoutModalPix {
   @Event() countdownIsFinished: EventEmitter<void>
   @Event() pixActionButtonIsClicked: EventEmitter<void>
 
-  private getExpirationDateFormatted = () => formatDate(new Date())
+  private getExpirationDateFormatted = () => {
+    const [year, month, day] = parseDate(this.expirationDate)
+    const currentDate = new Date(year, month, day)
+    const formattedDate = formatDate(currentDate)
+
+    return formattedDate
+  }
 
   private getListTitle = () => {
     if (this.expirationTime) return 'Instruções para pagamento'

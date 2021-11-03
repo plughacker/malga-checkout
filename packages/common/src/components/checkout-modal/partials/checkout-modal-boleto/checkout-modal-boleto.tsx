@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
-import { formatDate, formatToReal } from '@plug-checkout/utils'
+import { formatDate, formatToReal, parseDate } from '@plug-checkout/utils'
 
 @Component({
   tag: 'checkout-modal-boleto',
@@ -14,7 +14,13 @@ export class CheckoutModalBoleto {
 
   @Event() boletoActionButtonIsClicked: EventEmitter<void>
 
-  private getExpirationDateFormatted = () => formatDate(new Date())
+  private getExpirationDateFormatted = () => {
+    const [year, month, day] = parseDate(this.expirationDate)
+    const currentDate = new Date(year, month, day)
+    const formattedDate = formatDate(currentDate)
+
+    return formattedDate
+  }
 
   render() {
     return (

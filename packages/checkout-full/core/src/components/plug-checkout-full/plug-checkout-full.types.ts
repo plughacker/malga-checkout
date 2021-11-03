@@ -190,6 +190,7 @@ export interface PlugCheckoutFullDialog {
   actionButtonLabel: string
   successActionButtonLabel: string
   errorActionButtonLabel: string
+  successRedirectUrl: string
 }
 
 export type PlugCheckoutFullChargeSuccess =

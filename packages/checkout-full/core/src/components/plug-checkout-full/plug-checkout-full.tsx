@@ -55,6 +55,7 @@ export class PlugCheckoutFull implements ComponentInterface {
     actionButtonLabel: 'Continuar',
     successActionButtonLabel: 'Continuar',
     errorActionButtonLabel: 'Tentar Novamente',
+    successRedirectUrl: '',
   }
 
   @Event() transactionSuccess!: EventEmitter<{

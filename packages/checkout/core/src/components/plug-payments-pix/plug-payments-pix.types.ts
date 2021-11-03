@@ -16,7 +16,7 @@ export interface PlugPaymentsPixChargePayload {
 
 export interface PlugPaymentsPixDialogState {
   open: boolean
-  mode: 'pix' | 'boleto' | 'success' | 'error'
+  mode?: 'pix' | 'boleto' | 'success' | 'error'
   amount?: number
   paymentCode?: string
   paymentImageUrl?: string

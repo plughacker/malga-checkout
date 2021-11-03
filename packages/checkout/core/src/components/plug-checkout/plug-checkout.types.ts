@@ -29,4 +29,5 @@ export interface PlugCheckoutDialog {
   actionButtonLabel: string
   successActionButtonLabel: string
   errorActionButtonLabel: string
+  successRedirectUrl: string
 }

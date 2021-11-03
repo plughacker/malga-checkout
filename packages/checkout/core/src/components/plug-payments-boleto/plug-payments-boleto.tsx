@@ -94,6 +94,14 @@ export class PlugPaymentsBoleto {
     this.isLoading = false
   }
 
+  private handleErrorModalButtonClicked = () => {
+    this.handleShowDialog({ open: false })
+  }
+
+  private handleSuccessModalButtonClicked = () => {
+    location.assign(this.dialogConfig.successRedirectUrl)
+  }
+
   render() {
     return (
       <Host>
@@ -113,8 +121,12 @@ export class PlugPaymentsBoleto {
             expirationDate={this.dialog.expirationDate}
             errorDescription={this.dialog.errorMessage}
             actionButtonLabel={this.dialogConfig.actionButtonLabel}
-            successActionButtonLabel={this.dialogConfig.successActionButtonLabel}
+            successActionButtonLabel={
+              this.dialogConfig.successActionButtonLabel
+            }
             errorActionButtonLabel={this.dialogConfig.errorActionButtonLabel}
+            onSuccessButtonClicked={this.handleSuccessModalButtonClicked}
+            onErrorButtonClicked={this.handleErrorModalButtonClicked}
           />
         )}
       </Host>

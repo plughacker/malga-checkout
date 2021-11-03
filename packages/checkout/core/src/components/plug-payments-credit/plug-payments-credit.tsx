@@ -108,6 +108,14 @@ export class PlugPaymentsCredit {
     this.isLoading = false
   }
 
+  private handleErrorModalButtonClicked = () => {
+    this.handleShowDialog({ open: false })
+  }
+
+  private handleSuccessModalButtonClicked = () => {
+    location.assign(this.dialogConfig.successRedirectUrl)
+  }
+
   render() {
     return (
       <Host>
@@ -141,6 +149,8 @@ export class PlugPaymentsCredit {
               this.dialogConfig.successActionButtonLabel
             }
             errorActionButtonLabel={this.dialogConfig.errorActionButtonLabel}
+            onSuccessButtonClicked={this.handleSuccessModalButtonClicked}
+            onErrorButtonClicked={this.handleErrorModalButtonClicked}
           />
         )}
       </Host>

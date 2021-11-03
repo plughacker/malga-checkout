@@ -7,7 +7,11 @@ import {
   PlugPaymentsChargeSuccess,
 } from '../plug-payments/plug-payments.types'
 
-import { PlugCheckoutPaymentMethods, PlugCheckoutTransaction, PlugCheckoutDialog } from './plug-checkout.types'
+import {
+  PlugCheckoutPaymentMethods,
+  PlugCheckoutTransaction,
+  PlugCheckoutDialog,
+} from './plug-checkout.types'
 
 @Component({
   tag: 'plug-checkout',
@@ -23,11 +27,12 @@ export class PlugCheckout {
     actionButtonLabel: 'Continuar',
     successActionButtonLabel: 'Continuar',
     errorActionButtonLabel: 'Tentar Novamente',
+    successRedirectUrl: '',
   }
   @Prop() paymentMethods: PlugCheckoutPaymentMethods = {
     pix: undefined,
     credit: undefined,
-    boleto: undefined
+    boleto: undefined,
   }
   @Prop() transactionConfig: PlugCheckoutTransaction = {
     statementDescriptor: '',
@@ -70,7 +75,11 @@ export class PlugCheckout {
               customerId={this.transactionConfig.customerId}
               statementDescriptor={this.transactionConfig.statementDescriptor}
               amount={this.transactionConfig.amount}
-              showCreditCard={this.paymentMethods.credit ? this.paymentMethods.credit.showCreditCard : false}
+              showCreditCard={
+                this.paymentMethods.credit
+                  ? this.paymentMethods.credit.showCreditCard
+                  : false
+              }
               boleto={this.paymentMethods.boleto}
               pix={this.paymentMethods.pix}
               installments={this.paymentMethods.credit}
@@ -139,7 +148,11 @@ export class PlugCheckout {
           {this.showCurrentPaymentMethod('credit') && (
             <plug-payments-credit
               dialogConfig={this.dialogConfig}
-              showCreditCard={this.paymentMethods.credit ? this.paymentMethods.credit.showCreditCard : false}
+              showCreditCard={
+                this.paymentMethods.credit
+                  ? this.paymentMethods.credit.showCreditCard
+                  : false
+              }
               clientId={this.clientId}
               publicKey={this.publicKey}
               merchantId={this.merchantId}

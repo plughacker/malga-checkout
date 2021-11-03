@@ -2,7 +2,7 @@ import { Customer } from '../../providers/base-provider'
 
 export interface PlugPaymentsCreditDialogState {
   open: boolean
-  mode: 'pix' | 'boleto' | 'success' | 'error'
+  mode?: 'pix' | 'boleto' | 'success' | 'error'
   amount?: number
   errorMessage?: string
 }

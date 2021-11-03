@@ -113,6 +113,14 @@ export class PlugPaymentsPix {
     await pixService.findCharge(this.chargeId)
   }
 
+  private handleErrorModalButtonClicked = () => {
+    this.handleShowDialog({ open: false })
+  }
+
+  private handleSuccessModalButtonClicked = () => {
+    location.assign(this.dialogConfig.successRedirectUrl)
+  }
+
   render() {
     return (
       <Host>
@@ -140,6 +148,8 @@ export class PlugPaymentsPix {
             }
             errorActionButtonLabel={this.dialogConfig.errorActionButtonLabel}
             onPixCountdownIsFinished={this.checkIfPixIsPaid}
+            onSuccessButtonClicked={this.handleSuccessModalButtonClicked}
+            onErrorButtonClicked={this.handleErrorModalButtonClicked}
           />
         )}
       </Host>

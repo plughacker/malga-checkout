@@ -1,6 +1,6 @@
 {
   "name": "@plug-checkout-full/core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Core components for Plug Checkout Full",
   "repository": {
     "type": "git",
@@ -53,14 +53,14 @@
     "jest-cli": "26.6.3",
     "puppeteer": "5.5.0",
     "@plug-checkout/common": "*",
-    "@plug-checkout/core": "*",
     "@plug-checkout/utils": "*"
   },
   "dependencies": {
     "axios": "^0.21.1",
     "inputmask": "^5.0.6",
     "payment": "2.3.0",
-    "yup": "^0.32.9"
+    "yup": "^0.32.9",
+    "@plug-checkout/core": "*"
   },
   "homepage": "https://github.com/plughacker/plug-checkout#readme"
 }

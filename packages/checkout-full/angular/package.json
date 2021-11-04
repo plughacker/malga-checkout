@@ -1,6 +1,6 @@
 {
   "name": "@plug-checkout-full/angular",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Angular specific wrapper for Plug Checkout Full core components",
   "license": "MIT",
   "repository": {
@@ -43,7 +43,8 @@
     "dist/"
   ],
   "dependencies": {
-    "tslib": "^1.9.3"
+    "tslib": "^1.9.3",
+    "@plug-checkout-full/core": "*"
   },
   "peerDependencies": {
     "@angular-devkit/core": "^7.2.1",
@@ -83,8 +84,7 @@
     "tslint": "^5.12.1",
     "tslint-ionic-rules": "0.0.21",
     "typescript": "3.2.4",
-    "zone.js": "^0.8.28",
-    "@plug-checkout-full/core": "*"
+    "zone.js": "^0.8.28"
   },
   "jest": {
     "preset": "jest-preset-angular",

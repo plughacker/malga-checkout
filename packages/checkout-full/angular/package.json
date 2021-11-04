@@ -43,8 +43,6 @@
     "dist/"
   ],
   "dependencies": {
-    "@plug-checkout/core": "*",
-    "@plug-checkout-full/core": "*",
     "tslib": "^1.9.3"
   },
   "peerDependencies": {
@@ -85,7 +83,8 @@
     "tslint": "^5.12.1",
     "tslint-ionic-rules": "0.0.21",
     "typescript": "3.2.4",
-    "zone.js": "^0.8.28"
+    "zone.js": "^0.8.28",
+    "@plug-checkout-full/core": "*"
   },
   "jest": {
     "preset": "jest-preset-angular",

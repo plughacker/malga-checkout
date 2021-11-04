@@ -1,2 +1,2 @@
 export * from './proxies'
-export { PlugCheckout as default } from './proxies'
+export { PlugCheckoutFull as default } from './proxies'

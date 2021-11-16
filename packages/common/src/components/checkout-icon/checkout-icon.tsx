@@ -21,6 +21,7 @@ import EyeIcon from '../../assets/icons/eye.svg'
 import EyeSlashIcon from '../../assets/icons/eye-slash.svg'
 import PoweredByPlug from '../../assets/icons/powered-by-plug.svg'
 import PixIcon from '../../assets/icons/pix.svg'
+import NewTabIcon from '../../assets/icons/new-tab.svg'
 
 @Component({ tag: 'checkout-icon', styleUrl: 'checkout-icon.scss' })
 export class CheckoutIcon implements ComponentInterface {
@@ -48,6 +49,7 @@ export class CheckoutIcon implements ComponentInterface {
       checkLarge: CheckLargeIcon,
       clipboard: ClipboardIcon,
       pix: PixIcon,
+      newTab: NewTabIcon,
     }
 
     return icons[this.icon]

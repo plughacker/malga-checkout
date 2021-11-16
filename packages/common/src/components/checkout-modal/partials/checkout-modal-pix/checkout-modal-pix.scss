@@ -53,7 +53,7 @@
   background: var(--plug-checkout-color-accent-light);
 
   @include md {
-    max-height: 450px;
+    max-height: 500px;
     overflow: auto;
     border-radius: 0 0 var(--plug-checkout-border-radius-lg)
       var(--plug-checkout-border-radius-lg);

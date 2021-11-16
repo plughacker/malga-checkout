@@ -82,7 +82,7 @@ export class PlugCheckout {
               }
               boleto={this.paymentMethods.boleto}
               pix={this.paymentMethods.pix}
-              installments={this.paymentMethods.credit}
+              installments={this.paymentMethods.credit.installments}
               sandbox={this.sandbox}
               paymentMethods={paymentMethods as PaymentMethods}
               dialogConfig={this.dialogConfig}
@@ -165,7 +165,7 @@ export class PlugCheckout {
               description={this.transactionConfig.description}
               sandbox={this.sandbox}
               capture={this.transactionConfig.capture}
-              installmentsConfig={this.paymentMethods.credit}
+              installmentsConfig={this.paymentMethods.credit.installments}
               onCreditPaymentSuccess={({ detail: { data } }) =>
                 this.paymentSuccess.emit({ data })
               }

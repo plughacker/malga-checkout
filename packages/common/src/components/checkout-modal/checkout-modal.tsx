@@ -21,6 +21,8 @@ export class CheckoutModal {
   @Prop() successActionButtonLabel?: string
   @Prop() errorActionButtonLabel?: string
   @Prop() successDescription?: string
+  @Prop() pixFilledProgressBarColor?: string
+  @Prop() pixEmptyProgressBarColor?: string
 
   @Event() successButtonClicked: EventEmitter<void>
   @Event() errorButtonClicked: EventEmitter<void>
@@ -60,6 +62,8 @@ export class CheckoutModal {
               expirationDate={this.expirationDate}
               expirationTime={this.expirationTime}
               actionButtonLabel={this.actionButtonLabel}
+              countdownFilledProgressBarColor={this.pixFilledProgressBarColor}
+              countdownEmptyProgressBarColor={this.pixEmptyProgressBarColor}
               onCountdownIsFinished={() => this.pixCountdownIsFinished.emit()}
               onPixActionButtonIsClicked={() =>
                 this.successButtonClicked.emit()

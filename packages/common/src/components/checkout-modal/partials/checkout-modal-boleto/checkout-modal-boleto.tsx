@@ -46,7 +46,6 @@ export class CheckoutModalBoleto {
               variation="field"
               content={this.boletoCode}
             />
-            <img src={this.boletoImageUrl} alt="Código de Barras" />
             <checkout-clipboard-button
               label="Escaneie ou clique para copiar o código para pagar no aplicativo do seu banco."
               clipboardContent={this.boletoCode}
@@ -95,6 +94,16 @@ export class CheckoutModalBoleto {
               'checkout-modal-boleto__action-button': true,
             }}
           >
+            <a href={this.boletoImageUrl} target="_blank">
+              <checkout-typography
+                tag="span"
+                color="white"
+                variation="button"
+                content="Exibir Boleto"
+              />
+              <checkout-icon icon="newTab" />
+            </a>
+
             <checkout-button
               label={this.actionButtonLabel}
               onClicked={() => this.boletoActionButtonIsClicked.emit()}

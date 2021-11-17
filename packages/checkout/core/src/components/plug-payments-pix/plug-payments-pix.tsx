@@ -143,6 +143,12 @@ export class PlugPaymentsPix {
             errorDescription={this.dialog.errorMessage}
             successDescription={this.dialog.successMessage}
             actionButtonLabel={this.dialogConfig.actionButtonLabel}
+            pixFilledProgressBarColor={
+              this.dialogConfig.pixFilledProgressBarColor
+            }
+            pixEmptyProgressBarColor={
+              this.dialogConfig.pixEmptyProgressBarColor
+            }
             successActionButtonLabel={
               this.dialogConfig.successActionButtonLabel
             }

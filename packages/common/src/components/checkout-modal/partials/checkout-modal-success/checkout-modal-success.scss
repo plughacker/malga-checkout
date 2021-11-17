@@ -41,12 +41,12 @@
     bottom: 75px;
 
     & > button {
-      background-color: var(--plug-checkout-color-modal-action-button-error);
-      color: var(--plug-checkout-color-modal-action-button-error-font-color);
+      background-color: var(--plug-checkout-color-modal-action-button-success);
+      color: var(--plug-checkout-color-modal-action-button-success-font-color);
 
       &:hover {
         background-color: var(
-          --plug-checkout-color-modal-action-button-error-hover
+          --plug-checkout-color-modal-action-button-success-hover
         );
       }
     }

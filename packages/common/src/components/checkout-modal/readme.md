@@ -7,22 +7,24 @@
 
 ## Properties
 
-| Property                   | Attribute                     | Description | Type                                        | Default     |
-| -------------------------- | ----------------------------- | ----------- | ------------------------------------------- | ----------- |
-| `actionButtonLabel`        | `action-button-label`         |             | `string`                                    | `undefined` |
-| `amount`                   | `amount`                      |             | `number`                                    | `undefined` |
-| `errorActionButtonLabel`   | `error-action-button-label`   |             | `string`                                    | `undefined` |
-| `errorDescription`         | `error-description`           |             | `string`                                    | `undefined` |
-| `errorSubtitle`            | `error-subtitle`              |             | `string`                                    | `undefined` |
-| `errorTitle`               | `error-title`                 |             | `string`                                    | `undefined` |
-| `expirationDate`           | `expiration-date`             |             | `string`                                    | `undefined` |
-| `expirationTime`           | `expiration-time`             |             | `number`                                    | `undefined` |
-| `mode`                     | `mode`                        |             | `"boleto" \| "error" \| "pix" \| "success"` | `undefined` |
-| `open`                     | `open`                        |             | `boolean`                                   | `undefined` |
-| `paymentCode`              | `payment-code`                |             | `string`                                    | `undefined` |
-| `paymentImageUrl`          | `payment-image-url`           |             | `string`                                    | `undefined` |
-| `successActionButtonLabel` | `success-action-button-label` |             | `string`                                    | `undefined` |
-| `successDescription`       | `success-description`         |             | `string`                                    | `undefined` |
+| Property                    | Attribute                       | Description | Type                                        | Default     |
+| --------------------------- | ------------------------------- | ----------- | ------------------------------------------- | ----------- |
+| `actionButtonLabel`         | `action-button-label`           |             | `string`                                    | `undefined` |
+| `amount`                    | `amount`                        |             | `number`                                    | `undefined` |
+| `errorActionButtonLabel`    | `error-action-button-label`     |             | `string`                                    | `undefined` |
+| `errorDescription`          | `error-description`             |             | `string`                                    | `undefined` |
+| `errorSubtitle`             | `error-subtitle`                |             | `string`                                    | `undefined` |
+| `errorTitle`                | `error-title`                   |             | `string`                                    | `undefined` |
+| `expirationDate`            | `expiration-date`               |             | `string`                                    | `undefined` |
+| `expirationTime`            | `expiration-time`               |             | `number`                                    | `undefined` |
+| `mode`                      | `mode`                          |             | `"boleto" \| "error" \| "pix" \| "success"` | `undefined` |
+| `open`                      | `open`                          |             | `boolean`                                   | `undefined` |
+| `paymentCode`               | `payment-code`                  |             | `string`                                    | `undefined` |
+| `paymentImageUrl`           | `payment-image-url`             |             | `string`                                    | `undefined` |
+| `pixEmptyProgressBarColor`  | `pix-empty-progress-bar-color`  |             | `string`                                    | `undefined` |
+| `pixFilledProgressBarColor` | `pix-filled-progress-bar-color` |             | `string`                                    | `undefined` |
+| `successActionButtonLabel`  | `success-action-button-label`   |             | `string`                                    | `undefined` |
+| `successDescription`        | `success-description`           |             | `string`                                    | `undefined` |
 
 
 ## Events

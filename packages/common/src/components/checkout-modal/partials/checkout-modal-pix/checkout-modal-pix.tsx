@@ -21,6 +21,8 @@ export class CheckoutModalPix {
   @Prop() expirationDate: string
   @Prop() expirationTime: number
   @Prop() actionButtonLabel = 'Continuar'
+  @Prop() countdownFilledProgressBarColor?: string
+  @Prop() countdownEmptyProgressBarColor?: string
 
   @Event() countdownIsFinished: EventEmitter<void>
   @Event() pixActionButtonIsClicked: EventEmitter<void>
@@ -91,6 +93,10 @@ export class CheckoutModalPix {
                     <strong> expira em:</strong>
                   </p>
                   <checkout-countdown
+                    filledProgressBarColor={
+                      this.countdownFilledProgressBarColor
+                    }
+                    emptyProgressBarColor={this.countdownEmptyProgressBarColor}
                     expirationTime={this.expirationTime}
                     onCountdownFinished={() => this.countdownIsFinished.emit()}
                   />

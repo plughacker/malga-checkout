@@ -7,14 +7,16 @@
 
 ## Properties
 
-| Property              | Attribute               | Description | Type     | Default       |
-| --------------------- | ----------------------- | ----------- | -------- | ------------- |
-| `actionButtonLabel`   | `action-button-label`   |             | `string` | `'Continuar'` |
-| `amount`              | `amount`                |             | `number` | `undefined`   |
-| `expirationDate`      | `expiration-date`       |             | `string` | `undefined`   |
-| `expirationTime`      | `expiration-time`       |             | `number` | `undefined`   |
-| `qrCodeIdentificator` | `qr-code-identificator` |             | `string` | `undefined`   |
-| `qrCodeImageUrl`      | `qr-code-image-url`     |             | `string` | `undefined`   |
+| Property                          | Attribute                             | Description | Type     | Default       |
+| --------------------------------- | ------------------------------------- | ----------- | -------- | ------------- |
+| `actionButtonLabel`               | `action-button-label`                 |             | `string` | `'Continuar'` |
+| `amount`                          | `amount`                              |             | `number` | `undefined`   |
+| `countdownEmptyProgressBarColor`  | `countdown-empty-progress-bar-color`  |             | `string` | `undefined`   |
+| `countdownFilledProgressBarColor` | `countdown-filled-progress-bar-color` |             | `string` | `undefined`   |
+| `expirationDate`                  | `expiration-date`                     |             | `string` | `undefined`   |
+| `expirationTime`                  | `expiration-time`                     |             | `number` | `undefined`   |
+| `qrCodeIdentificator`             | `qr-code-identificator`               |             | `string` | `undefined`   |
+| `qrCodeImageUrl`                  | `qr-code-image-url`                   |             | `string` | `undefined`   |
 
 
 ## Events

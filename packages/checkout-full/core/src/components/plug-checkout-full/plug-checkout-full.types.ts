@@ -152,8 +152,10 @@ export interface Pix {
 }
 
 export interface Credit {
-  show: boolean
-  quantity: number
+  installments: {
+    show: boolean
+    quantity: number
+  }
   showCreditCard: boolean
 }
 
@@ -194,6 +196,8 @@ export interface PlugCheckoutFullDialog {
   successActionButtonLabel: string
   errorActionButtonLabel: string
   successRedirectUrl: string
+  pixFilledProgressBarColor?: string
+  pixEmptyProgressBarColor?: string
 }
 
 export type PlugCheckoutFullChargeSuccess =

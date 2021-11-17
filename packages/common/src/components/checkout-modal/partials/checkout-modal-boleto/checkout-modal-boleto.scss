@@ -52,7 +52,7 @@
   background: var(--plug-checkout-color-accent-light);
 
   @include md {
-    max-height: 450px;
+    max-height: 500px;
     overflow: auto;
     border-radius: 0 0 var(--plug-checkout-border-radius-lg)
       var(--plug-checkout-border-radius-lg);
@@ -72,8 +72,6 @@
   border-radius: var(--plug-checkout-border-radius-md);
   background: var(--plug-checkout-color-accent-normal);
   margin-bottom: var(--plug-checkout-spacing-md);
-  word-wrap: break-word;
-  overflow: hidden;
 
   & > checkout-typography > p {
     display: -webkit-box;
@@ -83,12 +81,6 @@
     text-overflow: ellipsis;
     font-weight: bold;
     text-align: center;
-    margin-bottom: var(--plug-checkout-spacing-xs);
-  }
-
-  & > img {
-    width: auto;
-    height: 55px;
     margin-bottom: var(--plug-checkout-spacing-xs);
   }
 
@@ -133,5 +125,50 @@
 .checkout-modal-boleto__action-button {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-top: var(--plug-checkout-spacing-sm);
+
+  & > a {
+    @extend %reset;
+    @extend %centralized;
+    @include transition($element: background);
+
+    flex-direction: row;
+    cursor: pointer;
+    outline: none;
+
+    height: 45px;
+    padding: 0 var(--plug-checkout-spacing-sm);
+    border: 0;
+    border-radius: var(--plug-checkout-border-radius-default);
+    background: var(--plug-checkout-color-brand-middle);
+
+    letter-spacing: 1.25px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--plug-checkout-color-accent-light);
+    margin-right: var(--plug-checkout-spacing-sm);
+
+    & > checkout-typography {
+      margin-right: var(--plug-checkout-spacing-xs);
+    }
+
+    &:hover {
+      background: var(--plug-checkout-color-brand-normal);
+    }
+  }
+
+  & > checkout-button > button {
+    background: transparent;
+    color: var(--plug-checkout-color-brand-middle);
+    border: 0;
+
+    &:hover {
+      background: transparent;
+    }
+
+    &:focus {
+      border: none;
+    }
+  }
 }

@@ -18,5 +18,6 @@ export type CheckoutIconNames =
   | 'checkLarge'
   | 'clipboard'
   | 'pix'
+  | 'newTab'
 
 export type CheckoutIconsObject = Record<CheckoutIconNames, string>

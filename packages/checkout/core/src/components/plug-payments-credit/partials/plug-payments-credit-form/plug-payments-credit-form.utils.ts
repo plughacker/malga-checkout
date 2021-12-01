@@ -1,4 +1,5 @@
 import { ValidationError } from 'yup'
+import { formatToReal } from '@plug-checkout/utils'
 import { PlugPaymentsCreditFormValues } from '../../plug-payments-credit.types'
 
 export const normalizeValidationErrors = (errors: ValidationError[]) => {
@@ -33,11 +34,5 @@ export const centsToReal = (amount: number) => {
     return 'R$00,00'
   }
 
-  const parseToReal = amount / 100
-  const [real, cents] = parseToReal.toString().split('.')
-
-  const centsPossibilities = ['00', `${cents}0`, cents]
-  const parsedCents = centsPossibilities[cents ? cents.length : 0]
-
-  return `R$${real},${parsedCents}`
+  return formatToReal(amount)
 }

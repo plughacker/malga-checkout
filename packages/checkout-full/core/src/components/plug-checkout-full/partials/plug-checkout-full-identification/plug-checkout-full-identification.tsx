@@ -137,6 +137,7 @@ export class PlugCheckoutFullIdentification {
         />
         <checkout-text-field
           value={this.formValues.name}
+          onInputed={this.handleFieldBlurred('name')}
           onChanged={this.handleFieldChange('name')}
           onBlurred={this.handleFieldBlurred('name')}
           onFocused={this.handleFieldFocused('name')}
@@ -153,6 +154,7 @@ export class PlugCheckoutFullIdentification {
 
         <checkout-text-field
           value={this.formValues.email}
+          onInputed={this.handleFieldBlurred('email')}
           onChanged={this.handleFieldChange('email')}
           onBlurred={this.handleFieldBlurred('email')}
           onFocused={this.handleFieldFocused('email')}
@@ -174,6 +176,7 @@ export class PlugCheckoutFullIdentification {
         />
         <checkout-text-field
           value={this.formValues.identification}
+          onInputed={this.handleFieldBlurred('identification')}
           onChanged={this.handleFieldChange('identification')}
           onBlurred={this.handleFieldBlurred('identification')}
           onFocused={this.handleFieldFocused('identification')}
@@ -203,6 +206,7 @@ export class PlugCheckoutFullIdentification {
             <checkout-text-field
               value={this.formValues.zipCode}
               onChanged={this.handleZipCodeFieldChange}
+              onInputed={this.handleFieldBlurred('zipCode')}
               onBlurred={this.handleFieldBlurred('zipCode')}
               onFocused={this.handleFieldFocused('zipCode')}
               hasValidation={this.validFields.zipCode !== null}
@@ -229,6 +233,7 @@ export class PlugCheckoutFullIdentification {
         <checkout-text-field
           value={this.formValues.street}
           onChanged={this.handleFieldChange('street')}
+          onInputed={this.handleFieldBlurred('street')}
           onBlurred={this.handleFieldBlurred('street')}
           onFocused={this.handleFieldFocused('street')}
           hasValidation={this.validFields.street !== null}
@@ -251,6 +256,7 @@ export class PlugCheckoutFullIdentification {
             <checkout-text-field
               value={this.formValues.number}
               onChanged={this.handleFieldChange('number')}
+              onInputed={this.handleFieldBlurred('number')}
               onBlurred={this.handleFieldBlurred('number')}
               onFocused={this.handleFieldFocused('number')}
               hasValidation={this.validFields.number !== null}
@@ -268,6 +274,7 @@ export class PlugCheckoutFullIdentification {
           <checkout-text-field
             value={this.formValues.complement}
             onChanged={this.handleFieldChange('complement')}
+            onInputed={this.handleFieldBlurred('complement')}
             onBlurred={this.handleFieldBlurred('complement')}
             onFocused={this.handleFieldFocused('complement')}
             hasValidation={this.validFields.complement !== null}
@@ -285,6 +292,7 @@ export class PlugCheckoutFullIdentification {
         <checkout-text-field
           value={this.formValues.neighborhood}
           onChanged={this.handleFieldChange('neighborhood')}
+          onInputed={this.handleFieldBlurred('neighborhood')}
           onBlurred={this.handleFieldBlurred('neighborhood')}
           onFocused={this.handleFieldFocused('neighborhood')}
           hasValidation={this.validFields.neighborhood !== null}
@@ -307,6 +315,7 @@ export class PlugCheckoutFullIdentification {
             <checkout-text-field
               value={this.formValues.city}
               onChanged={this.handleFieldChange('city')}
+              onInputed={this.handleFieldBlurred('city')}
               onBlurred={this.handleFieldBlurred('city')}
               onFocused={this.handleFieldFocused('city')}
               hasValidation={this.validFields.city !== null}
@@ -327,6 +336,7 @@ export class PlugCheckoutFullIdentification {
             <checkout-text-field
               value={this.formValues.state}
               onChanged={this.handleFieldChange('state')}
+              onInputed={this.handleFieldBlurred('state')}
               onBlurred={this.handleFieldBlurred('state')}
               onFocused={this.handleFieldFocused('state')}
               hasValidation={this.validFields.state !== null}
@@ -345,6 +355,7 @@ export class PlugCheckoutFullIdentification {
         <checkout-select-field
           value={this.formValues.country}
           onChanged={this.handleFieldChange('country')}
+          onInputed={this.handleFieldBlurred('country')}
           onBlurred={this.handleFieldBlurred('country')}
           onFocused={this.handleFieldFocused('country')}
           hasError={!!this.validFields.country}

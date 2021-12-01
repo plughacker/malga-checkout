@@ -76,6 +76,10 @@ export class PlugPaymentsCreditService {
   }
 
   private async handleCustomerId() {
+    if (!this.data.customer && !this.data.customerId) {
+      return null
+    }
+
     if (this.data.customerId) {
       return this.data.customerId
     }

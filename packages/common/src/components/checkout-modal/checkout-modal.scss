@@ -7,8 +7,10 @@
   left: 0;
   z-index: 30;
   background: transparent;
+  overflow: auto;
 
   @include md {
+    overflow: hidden;
     justify-content: center;
     align-items: center;
     background: rgba(29, 31, 42, 0.8);

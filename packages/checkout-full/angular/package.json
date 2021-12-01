@@ -1,6 +1,6 @@
 {
   "name": "@plug-checkout-full/angular",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Angular specific wrapper for Plug Checkout Full core components",
   "license": "MIT",
   "repository": {

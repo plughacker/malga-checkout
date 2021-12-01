@@ -110,14 +110,14 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
     const installmentOptions = Array.from({
       length: this.installmentsConfig.quantity,
     }).map((_, index) => {
-      const currentInstalment = index + 1
-      const installmentValue = this.amount / currentInstalment
+      const currentInstallment = index + 1
+      const installmentValue = this.amount / currentInstallment
 
       return {
-        label: `${currentInstalment}x ${centsToReal(
+        label: `${currentInstallment}x ${centsToReal(
           installmentValue,
         )}, total ${centsToReal(this.amount)}`,
-        value: currentInstalment,
+        value: currentInstallment,
       }
     })
 
@@ -139,6 +139,7 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
         >
           <checkout-text-field
             value={this.formValues.cardNumber}
+            onInputed={this.handleFieldBlurred('cardNumber')}
             onChanged={this.handleFieldChange('cardNumber')}
             onBlurred={this.handleFieldBlurred('cardNumber')}
             onFocused={this.handleFieldFocused('cardNumber')}
@@ -157,6 +158,7 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
           <fieldset class="plug-payments-credit-form__row-fields">
             <checkout-text-field
               value={this.formValues.expirationDate}
+              onInputed={this.handleFieldBlurred('expirationDate')}
               onChanged={this.handleFieldChange('expirationDate')}
               onBlurred={this.handleFieldBlurred('expirationDate')}
               onFocused={this.handleFieldFocused('expirationDate')}
@@ -171,6 +173,7 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
 
             <checkout-text-field
               value={this.formValues.cvv}
+              onInputed={this.handleFieldBlurred('cvv')}
               onChanged={this.handleFieldChange('cvv')}
               onBlurred={this.handleFieldBlurred('cvv')}
               onFocused={this.handleFieldFocused('cvv')}
@@ -193,6 +196,7 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
 
           <checkout-text-field
             value={this.formValues.name.toUpperCase()}
+            onInputed={this.handleFieldBlurred('name')}
             onChanged={this.handleFieldChange('name')}
             onBlurred={this.handleFieldBlurred('name')}
             onFocused={this.handleFieldFocused('name')}

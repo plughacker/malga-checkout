@@ -58,6 +58,8 @@ export class CheckoutTextField implements ComponentInterface {
 
   @Watch('value')
   protected valueChanged() {
+    console.log('watched value', this.value)
+
     this.changed.emit({
       value: this.value == null ? this.value : this.value.toString(),
     })
@@ -75,6 +77,14 @@ export class CheckoutTextField implements ComponentInterface {
 
   private onBlur = (event: FocusEvent) => {
     this.blurred.emit(event)
+  }
+
+  private onChange = (event: Event) => {
+    const input = event.target as HTMLInputElement | null
+    const value = input.value || ''
+
+    this.onInput(event as KeyboardEvent)
+    this.changed.emit({ value })
   }
 
   private onFocus = (event: FocusEvent) => {
@@ -150,6 +160,7 @@ export class CheckoutTextField implements ComponentInterface {
               onInput={this.onInput}
               onBlur={this.onBlur}
               onFocus={this.onFocus}
+              onChange={this.onChange}
             />
             <checkout-typography
               tag="label"

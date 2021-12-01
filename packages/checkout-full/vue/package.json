@@ -1,7 +1,7 @@
 {
   "name": "@plug-checkout-full/vue",
   "sideEffects": false,
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "MIT",
   "description": "Vue specific wrapper for Plug Checkout Full core components",
   "repository": {
@@ -24,14 +24,14 @@
   ],
   "scripts": {
     "test": "jest",
-    "build": "yarn clean && yarn compile",
-    "clean": "rimraf dist",
-    "compile": "yarn tsc",
-    "tsc": "tsc -p ."
+    "build": "yarn clean && yarn build:cjs && yarn build:esm",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "build:esm": "tsc --module es6 --outDir dist/esm",
+    "clean": "rimraf dist"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist/"
   ],

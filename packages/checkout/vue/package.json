@@ -1,7 +1,7 @@
 {
   "name": "@plug-checkout/vue",
   "sideEffects": false,
-  "version": "1.0.8",
+  "version": "1.0.9",
   "license": "MIT",
   "description": "Vue specific wrapper for Plug Checkout core components",
   "repository": {

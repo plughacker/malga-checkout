@@ -62,6 +62,7 @@ export class PlugCheckout {
 
   render() {
     const paymentMethods = Object.keys(this.paymentMethods)
+    console.log(this.transactionConfig.capture)
 
     return (
       <Host class={{ 'plug-checkout__container': true }}>
@@ -75,6 +76,7 @@ export class PlugCheckout {
               customerId={this.transactionConfig.customerId}
               statementDescriptor={this.transactionConfig.statementDescriptor}
               amount={this.transactionConfig.amount}
+              capture={this.transactionConfig.capture}
               showCreditCard={
                 this.paymentMethods.credit
                   ? this.paymentMethods.credit.showCreditCard

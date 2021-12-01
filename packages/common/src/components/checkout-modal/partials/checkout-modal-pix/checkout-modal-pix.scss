@@ -2,10 +2,12 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
   overflow: auto;
 
   @include md {
     width: 585px;
+    height: auto;
   }
 }
 

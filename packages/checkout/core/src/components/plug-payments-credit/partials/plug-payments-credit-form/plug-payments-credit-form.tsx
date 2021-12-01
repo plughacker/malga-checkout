@@ -110,14 +110,14 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
     const installmentOptions = Array.from({
       length: this.installmentsConfig.quantity,
     }).map((_, index) => {
-      const currentInstalment = index + 1
-      const installmentValue = this.amount / currentInstalment
+      const currentInstallment = index + 1
+      const installmentValue = this.amount / currentInstallment
 
       return {
-        label: `${currentInstalment}x ${centsToReal(
+        label: `${currentInstallment}x ${centsToReal(
           installmentValue,
         )}, total ${centsToReal(this.amount)}`,
-        value: currentInstalment,
+        value: currentInstallment,
       }
     })
 

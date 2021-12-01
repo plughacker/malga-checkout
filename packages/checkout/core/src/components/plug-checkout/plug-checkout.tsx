@@ -62,7 +62,6 @@ export class PlugCheckout {
 
   render() {
     const paymentMethods = Object.keys(this.paymentMethods)
-    console.log(this.transactionConfig.capture)
 
     return (
       <Host class={{ 'plug-checkout__container': true }}>

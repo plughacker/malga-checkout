@@ -81,7 +81,6 @@ export class PlugCheckoutFull implements ComponentInterface {
   }
 
   private handleChangeSection = (section: string) => {
-    console.log(this.customerFormFields)
     this.currentSection = section
   }
 

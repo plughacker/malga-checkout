@@ -76,6 +76,9 @@ export class PlugCheckout {
               statementDescriptor={this.transactionConfig.statementDescriptor}
               amount={this.transactionConfig.amount}
               capture={this.transactionConfig.capture}
+              orderId={this.transactionConfig.orderId}
+              currency={this.transactionConfig.currency}
+              description={this.transactionConfig.description}
               showCreditCard={
                 this.paymentMethods.credit
                   ? this.paymentMethods.credit.showCreditCard

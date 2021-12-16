@@ -20,6 +20,8 @@ import {
 
 import { PlugCheckoutFullIdentificationFormValues } from './partials/plug-checkout-full-identification/plug-checkout-full-identification.types'
 
+import { formatCustomer } from './plug-checkout-full.utils'
+
 @Component({
   tag: 'plug-checkout-full',
   styleUrl: 'plug-checkout-full.scss',
@@ -168,7 +170,7 @@ export class PlugCheckoutFull implements ComponentInterface {
                 sandbox={this.sandbox}
                 transactionConfig={{
                   ...this.transactionConfig,
-                  customer: this.customerFormFields,
+                  customer: formatCustomer(this.customerFormFields),
                 }}
                 paymentMethods={this.paymentMethods}
                 dialogConfig={this.dialogConfig}

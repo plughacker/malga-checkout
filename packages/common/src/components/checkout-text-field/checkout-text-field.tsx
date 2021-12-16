@@ -58,8 +58,6 @@ export class CheckoutTextField implements ComponentInterface {
 
   @Watch('value')
   protected valueChanged() {
-    console.log('watched value', this.value)
-
     this.changed.emit({
       value: this.value == null ? this.value : this.value.toString(),
     })

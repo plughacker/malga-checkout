@@ -3,6 +3,7 @@ import { Api } from '../api'
 import { cleanTextOnlyNumbers } from '@plug-checkout/utils'
 
 import { CustomerConstructor } from './customers.types'
+import { formatCustomerAddress } from './customers.utils'
 
 export class Customers {
   readonly api: Api
@@ -16,25 +17,20 @@ export class Customers {
   private formatPayload() {
     const identification = cleanTextOnlyNumbers(this.customer.identification)
     const documentType = identification.length === 11 ? 'cpf' : 'cnpj'
+    const address = formatCustomerAddress(this.customer.address)
+    const phoneNumber = this.customer.phoneNumber
+      ? cleanTextOnlyNumbers(this.customer.phoneNumber)
+      : ' '
 
     return {
+      ...address,
       name: this.customer.name,
       email: this.customer.email,
-      phoneNumber: ' ',
+      phoneNumber,
       document: {
         type: documentType,
         number: identification,
         country: 'BR',
-      },
-      address: {
-        country: this.customer.country,
-        state: this.customer.state,
-        city: this.customer.city,
-        district: this.customer.neighborhood,
-        zipCode: cleanTextOnlyNumbers(this.customer.zipCode),
-        street: this.customer.street,
-        streetNumber: this.customer.number,
-        complement: this.customer.complement,
       },
     }
   }

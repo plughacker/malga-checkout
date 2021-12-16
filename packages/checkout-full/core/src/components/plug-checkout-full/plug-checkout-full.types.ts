@@ -159,6 +159,23 @@ export interface Credit {
   showCreditCard: boolean
 }
 
+export interface Customer {
+  name: string
+  email: string
+  identification: string
+  phoneNumber: string
+  address: {
+    zipCode: string
+    street: string
+    number: string
+    complement: string
+    neighborhood: string
+    city: string
+    state: string
+    country: string
+  }
+}
+
 export interface Product {
   name: string
   amount: number

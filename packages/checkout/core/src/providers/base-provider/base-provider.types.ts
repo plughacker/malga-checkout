@@ -6,14 +6,17 @@ export interface Customer {
   name: string
   email: string
   identification: string
-  zipCode: string
-  street: string
-  number: string
-  complement: string
-  neighborhood: string
-  city: string
-  state: string
-  country: string
+  phoneNumber: string
+  address?: {
+    zipCode: string
+    street: string
+    number: string
+    complement: string
+    neighborhood: string
+    city: string
+    state: string
+    country: string
+  }
 }
 
 export interface CustomerPayload {
@@ -25,7 +28,7 @@ export interface CustomerPayload {
     number: string
     country: string
   }
-  address: {
+  address?: {
     country: string
     state: string
     city: string

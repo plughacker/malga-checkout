@@ -113,7 +113,11 @@ export class PlugPaymentsCredit {
   }
 
   private handleSuccessModalButtonClicked = () => {
-    location.assign(this.dialogConfig.successRedirectUrl)
+    if (this.dialogConfig.successRedirectUrl) {
+      location.assign(this.dialogConfig.successRedirectUrl)
+    }
+
+    this.handleShowDialog({ open: false })
   }
 
   render() {

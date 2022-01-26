@@ -1,7 +1,7 @@
 import { Api } from '../api'
 
 import { TokenConstructor, Data } from './tokens.types'
-import { formatCardPayload } from './tokens.utils'
+import { formatPayload } from './tokens.utils'
 
 export class Tokens {
   readonly api: Api
@@ -12,18 +12,10 @@ export class Tokens {
     this.data = data
   }
 
-  private formatPayload() {
-    const types = {
-      card: formatCardPayload,
-    }
-
-    return types[this.data.type](this.data)
-  }
-
   public async create() {
     const response = await this.api.create({
       endpoint: '/tokens',
-      data: this.formatPayload(),
+      data: formatPayload(this.data),
     })
 
     const tokenId = response.data.id

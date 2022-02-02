@@ -30,6 +30,10 @@ export namespace Components {
         "label": string;
         "type"?: CheckoutButtonType;
     }
+    interface CheckoutCardBrand {
+        "class"?: string;
+        "firstCardNumbers": string | number;
+    }
     interface CheckoutClipboardButton {
         "clipboardContent": string;
         "label": string;
@@ -192,6 +196,12 @@ declare global {
         prototype: HTMLCheckoutButtonElement;
         new (): HTMLCheckoutButtonElement;
     };
+    interface HTMLCheckoutCardBrandElement extends Components.CheckoutCardBrand, HTMLStencilElement {
+    }
+    var HTMLCheckoutCardBrandElement: {
+        prototype: HTMLCheckoutCardBrandElement;
+        new (): HTMLCheckoutCardBrandElement;
+    };
     interface HTMLCheckoutClipboardButtonElement extends Components.CheckoutClipboardButton, HTMLStencilElement {
     }
     var HTMLCheckoutClipboardButtonElement: {
@@ -297,6 +307,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "checkout-accordion": HTMLCheckoutAccordionElement;
         "checkout-button": HTMLCheckoutButtonElement;
+        "checkout-card-brand": HTMLCheckoutCardBrandElement;
         "checkout-clipboard-button": HTMLCheckoutClipboardButtonElement;
         "checkout-countdown": HTMLCheckoutCountdownElement;
         "checkout-credit-card": HTMLCheckoutCreditCardElement;
@@ -335,6 +346,10 @@ declare namespace LocalJSX {
         "onClicked"?: (event: CustomEvent<void>) => void;
         "onFocused"?: (event: CustomEvent<void>) => void;
         "type"?: CheckoutButtonType;
+    }
+    interface CheckoutCardBrand {
+        "class"?: string;
+        "firstCardNumbers"?: string | number;
     }
     interface CheckoutClipboardButton {
         "clipboardContent"?: string;
@@ -509,6 +524,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "checkout-accordion": CheckoutAccordion;
         "checkout-button": CheckoutButton;
+        "checkout-card-brand": CheckoutCardBrand;
         "checkout-clipboard-button": CheckoutClipboardButton;
         "checkout-countdown": CheckoutCountdown;
         "checkout-credit-card": CheckoutCreditCard;
@@ -534,6 +550,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "checkout-accordion": LocalJSX.CheckoutAccordion & JSXBase.HTMLAttributes<HTMLCheckoutAccordionElement>;
             "checkout-button": LocalJSX.CheckoutButton & JSXBase.HTMLAttributes<HTMLCheckoutButtonElement>;
+            "checkout-card-brand": LocalJSX.CheckoutCardBrand & JSXBase.HTMLAttributes<HTMLCheckoutCardBrandElement>;
             "checkout-clipboard-button": LocalJSX.CheckoutClipboardButton & JSXBase.HTMLAttributes<HTMLCheckoutClipboardButtonElement>;
             "checkout-countdown": LocalJSX.CheckoutCountdown & JSXBase.HTMLAttributes<HTMLCheckoutCountdownElement>;
             "checkout-credit-card": LocalJSX.CheckoutCreditCard & JSXBase.HTMLAttributes<HTMLCheckoutCreditCardElement>;

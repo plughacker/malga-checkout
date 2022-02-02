@@ -1,0 +1,7 @@
+.checkout-card-brand__container {
+  @extend %centralized;
+
+  & > i {
+    @extend %centralized;
+  }
+}

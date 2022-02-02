@@ -142,20 +142,6 @@ export class PlugCheckout {
 
           {this.showCurrentPaymentMethod('pix') && (
             <plug-payments-pix
-              dialogConfig={this.dialogConfig}
-              clientId={this.clientId}
-              publicKey={this.publicKey}
-              merchantId={this.merchantId}
-              statementDescriptor={this.transactionConfig.statementDescriptor}
-              amount={this.transactionConfig.amount}
-              customer={this.transactionConfig.customer}
-              customerId={this.transactionConfig.customerId}
-              orderId={this.transactionConfig.orderId}
-              currency={this.transactionConfig.currency}
-              description={this.transactionConfig.description}
-              sandbox={this.sandbox}
-              capture={this.transactionConfig.capture}
-              pix={this.paymentMethods.pix}
               onPixPaymentSuccess={({ detail: { data } }) =>
                 this.paymentSuccess.emit({ data })
               }

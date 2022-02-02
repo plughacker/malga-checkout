@@ -140,20 +140,6 @@ export class PlugPayments implements ComponentInterface {
               />
               {this.currentPayment === 'pix' && (
                 <plug-payments-pix
-                  dialogConfig={this.dialogConfig}
-                  clientId={this.clientId}
-                  publicKey={this.publicKey}
-                  merchantId={this.merchantId}
-                  statementDescriptor={this.statementDescriptor}
-                  amount={this.amount}
-                  customer={this.customer}
-                  customerId={this.customerId}
-                  orderId={this.orderId}
-                  currency={this.currency}
-                  description={this.description}
-                  sandbox={this.sandbox}
-                  capture={this.capture}
-                  pix={this.pix}
                   onPixPaymentSuccess={({ detail: { data } }) =>
                     this.checkoutPaymentSuccess.emit({ data })
                   }

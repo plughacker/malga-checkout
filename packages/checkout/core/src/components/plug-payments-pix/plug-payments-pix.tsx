@@ -1,43 +1,19 @@
-import {
-  Component,
-  Host,
-  h,
-  Prop,
-  Event,
-  State,
-  EventEmitter,
-} from '@stencil/core'
-import { PixAttributes } from '../../providers/pix'
+import { Component, Host, h, Event, State, EventEmitter } from '@stencil/core'
+
+import settings from '../../stores/settings'
+
 import {
   PlugPaymentsPixChargeSuccess,
   PlugPaymentsPixChargeError,
   PlugPaymentsPixDialogState,
 } from './plug-payments-pix.types'
-import { PlugCheckoutDialog } from '../plug-checkout/plug-checkout.types'
 
 import { PlugPaymentsPixService } from './plug-payments-pix.service'
-import { Customer } from '../../providers/base-provider'
-
 @Component({
   tag: 'plug-payments-pix',
   styleUrl: 'plug-payments-pix.scss',
 })
 export class PlugPaymentsPix {
-  @Prop() clientId: string
-  @Prop() publicKey: string
-  @Prop() merchantId: string
-  @Prop() statementDescriptor: string
-  @Prop() amount: number
-  @Prop() pix: PixAttributes
-  @Prop() customer?: Customer
-  @Prop() description?: string
-  @Prop() orderId?: string
-  @Prop() customerId?: string
-  @Prop() currency = 'BRL'
-  @Prop() sandbox = false
-  @Prop() capture = false
-  @Prop() dialogConfig: PlugCheckoutDialog
-
   @Event() pixPaymentSuccess!: EventEmitter<{
     data: PlugPaymentsPixChargeSuccess
   }>
@@ -67,23 +43,23 @@ export class PlugPaymentsPix {
 
   private getPixService = () => {
     const data = {
-      pix: this.pix,
-      merchantId: this.merchantId,
-      amount: this.amount,
-      statementDescriptor: this.statementDescriptor,
-      capture: this.capture,
-      orderId: this.orderId,
-      customer: this.customer,
-      customerId: this.customerId,
-      description: this.description,
-      currency: this.currency,
+      pix: settings.paymentMethods.pix,
+      merchantId: settings.merchantId,
+      amount: settings.transactionConfig.amount,
+      statementDescriptor: settings.transactionConfig.statementDescriptor,
+      capture: settings.transactionConfig.capture,
+      orderId: settings.transactionConfig.orderId,
+      customer: settings.transactionConfig.customer,
+      customerId: settings.transactionConfig.customerId,
+      description: settings.transactionConfig.description,
+      currency: settings.transactionConfig.currency,
     }
 
     const pixService = new PlugPaymentsPixService({
-      publicKey: this.publicKey,
-      clientId: this.clientId,
-      sandbox: this.sandbox,
-      showDialog: this.dialogConfig.show,
+      publicKey: settings.publicKey,
+      clientId: settings.clientId,
+      sandbox: settings.sandbox,
+      showDialog: settings.dialogConfig.show,
       data,
       onSaveChargeId: (chargeId: string) => this.handleSaveChargeId(chargeId),
       onPaymentSuccess: (data: PlugPaymentsPixChargeSuccess) =>
@@ -118,8 +94,8 @@ export class PlugPaymentsPix {
   }
 
   private handleSuccessModalButtonClicked = () => {
-    if (this.dialogConfig.successRedirectUrl) {
-      location.assign(this.dialogConfig.successRedirectUrl)
+    if (settings.dialogConfig.successRedirectUrl) {
+      location.assign(settings.dialogConfig.successRedirectUrl)
     }
 
     this.handleShowDialog({ open: false })
@@ -134,7 +110,7 @@ export class PlugPaymentsPix {
           isLoading={this.isLoading}
           onPaymentClick={() => this.handleFormSubmit()}
         />
-        {this.dialogConfig.show && this.dialog.open && (
+        {settings.dialogConfig.show && this.dialog.open && (
           <checkout-modal
             mode={this.dialog.mode}
             open={this.dialog.open}
@@ -146,17 +122,19 @@ export class PlugPaymentsPix {
             errorTitle={this.dialog.errorTitle}
             errorDescription={this.dialog.errorMessage}
             successDescription={this.dialog.successMessage}
-            actionButtonLabel={this.dialogConfig.actionButtonLabel}
+            actionButtonLabel={settings.dialogConfig.actionButtonLabel}
             pixFilledProgressBarColor={
-              this.dialogConfig.pixFilledProgressBarColor
+              settings.dialogConfig.pixFilledProgressBarColor
             }
             pixEmptyProgressBarColor={
-              this.dialogConfig.pixEmptyProgressBarColor
+              settings.dialogConfig.pixEmptyProgressBarColor
             }
             successActionButtonLabel={
-              this.dialogConfig.successActionButtonLabel
+              settings.dialogConfig.successActionButtonLabel
             }
-            errorActionButtonLabel={this.dialogConfig.errorActionButtonLabel}
+            errorActionButtonLabel={
+              settings.dialogConfig.errorActionButtonLabel
+            }
             onPixCountdownIsFinished={this.checkIfPixIsPaid}
             onSuccessButtonClicked={this.handleSuccessModalButtonClicked}
             onErrorButtonClicked={this.handleErrorModalButtonClicked}

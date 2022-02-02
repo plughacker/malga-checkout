@@ -64,20 +64,6 @@ export namespace Components {
     interface PlugPaymentsCreditForm {
     }
     interface PlugPaymentsPix {
-        "amount": number;
-        "capture": boolean;
-        "clientId": string;
-        "currency": string;
-        "customer"?: Customer;
-        "customerId"?: string;
-        "description"?: string;
-        "dialogConfig": PlugCheckoutDialog;
-        "merchantId": string;
-        "orderId"?: string;
-        "pix": PixAttributes;
-        "publicKey": string;
-        "sandbox": boolean;
-        "statementDescriptor": string;
     }
 }
 declare global {
@@ -202,26 +188,12 @@ declare namespace LocalJSX {
         "onCurrentFieldChange"?: (event: CustomEvent<{ field: string }>) => void;
     }
     interface PlugPaymentsPix {
-        "amount"?: number;
-        "capture"?: boolean;
-        "clientId"?: string;
-        "currency"?: string;
-        "customer"?: Customer;
-        "customerId"?: string;
-        "description"?: string;
-        "dialogConfig"?: PlugCheckoutDialog;
-        "merchantId"?: string;
         "onPixPaymentFailed"?: (event: CustomEvent<{
     error: PlugPaymentsPixChargeError
   }>) => void;
         "onPixPaymentSuccess"?: (event: CustomEvent<{
     data: PlugPaymentsPixChargeSuccess
   }>) => void;
-        "orderId"?: string;
-        "pix"?: PixAttributes;
-        "publicKey"?: string;
-        "sandbox"?: boolean;
-        "statementDescriptor"?: string;
     }
     interface IntrinsicElements {
         "plug-checkout": PlugCheckout;

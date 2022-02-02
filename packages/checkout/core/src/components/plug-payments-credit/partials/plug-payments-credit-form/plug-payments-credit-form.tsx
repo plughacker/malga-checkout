@@ -183,7 +183,7 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
               hasError={!!this.validFields.cvv}
               name="cvv"
               label="Código de segurança (CVV) *"
-              mask="999"
+              mask="9999"
             />
           </fieldset>
           {!this.allFieldIsBlank && !!this.validFields.expirationDate && (

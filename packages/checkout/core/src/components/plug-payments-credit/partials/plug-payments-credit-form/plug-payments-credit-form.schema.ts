@@ -51,7 +51,7 @@ export const schema = Yup.object().shape({
   cvv: Yup.string()
     .required('CVV é obrigatório.')
     .min(3, 'Formato inválido, verifique os dados do cartão.')
-    .max(3, 'Formato inválido, verifique os dados do cartão.'),
+    .max(4, 'Formato inválido, verifique os dados do cartão.'),
   name: Yup.string()
     .required('Portador do cartão é obrigatório.')
     .test(

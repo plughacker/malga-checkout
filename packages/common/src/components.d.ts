@@ -142,6 +142,10 @@ export namespace Components {
         "required": boolean;
         "value"?: CheckoutSelectFieldValue;
     }
+    interface CheckoutSwitch {
+        "checked"?: boolean;
+        "class"?: string;
+    }
     interface CheckoutTextField {
         "autofocus": boolean;
         "customContainerClass"?: string;
@@ -272,6 +276,12 @@ declare global {
         prototype: HTMLCheckoutSelectFieldElement;
         new (): HTMLCheckoutSelectFieldElement;
     };
+    interface HTMLCheckoutSwitchElement extends Components.CheckoutSwitch, HTMLStencilElement {
+    }
+    var HTMLCheckoutSwitchElement: {
+        prototype: HTMLCheckoutSwitchElement;
+        new (): HTMLCheckoutSwitchElement;
+    };
     interface HTMLCheckoutTextFieldElement extends Components.CheckoutTextField, HTMLStencilElement {
     }
     var HTMLCheckoutTextFieldElement: {
@@ -301,6 +311,7 @@ declare global {
         "checkout-order-summary": HTMLCheckoutOrderSummaryElement;
         "checkout-radio-field": HTMLCheckoutRadioFieldElement;
         "checkout-select-field": HTMLCheckoutSelectFieldElement;
+        "checkout-switch": HTMLCheckoutSwitchElement;
         "checkout-text-field": HTMLCheckoutTextFieldElement;
         "checkout-typography": HTMLCheckoutTypographyElement;
     }
@@ -454,6 +465,11 @@ declare namespace LocalJSX {
         "required"?: boolean;
         "value"?: CheckoutSelectFieldValue;
     }
+    interface CheckoutSwitch {
+        "checked"?: boolean;
+        "class"?: string;
+        "onChanged"?: (event: CustomEvent<boolean>) => void;
+    }
     interface CheckoutTextField {
         "autofocus"?: boolean;
         "customContainerClass"?: string;
@@ -507,6 +523,7 @@ declare namespace LocalJSX {
         "checkout-order-summary": CheckoutOrderSummary;
         "checkout-radio-field": CheckoutRadioField;
         "checkout-select-field": CheckoutSelectField;
+        "checkout-switch": CheckoutSwitch;
         "checkout-text-field": CheckoutTextField;
         "checkout-typography": CheckoutTypography;
     }
@@ -531,6 +548,7 @@ declare module "@stencil/core" {
             "checkout-order-summary": LocalJSX.CheckoutOrderSummary & JSXBase.HTMLAttributes<HTMLCheckoutOrderSummaryElement>;
             "checkout-radio-field": LocalJSX.CheckoutRadioField & JSXBase.HTMLAttributes<HTMLCheckoutRadioFieldElement>;
             "checkout-select-field": LocalJSX.CheckoutSelectField & JSXBase.HTMLAttributes<HTMLCheckoutSelectFieldElement>;
+            "checkout-switch": LocalJSX.CheckoutSwitch & JSXBase.HTMLAttributes<HTMLCheckoutSwitchElement>;
             "checkout-text-field": LocalJSX.CheckoutTextField & JSXBase.HTMLAttributes<HTMLCheckoutTextFieldElement>;
             "checkout-typography": LocalJSX.CheckoutTypography & JSXBase.HTMLAttributes<HTMLCheckoutTypographyElement>;
         }

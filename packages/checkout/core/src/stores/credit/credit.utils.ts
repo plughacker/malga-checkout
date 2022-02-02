@@ -1,7 +1,31 @@
 import { ValidationError } from 'yup'
 
 import { schema } from './credit.schema'
-import { CreditForm } from './credit.types'
+import { CreditState, CreditForm } from './credit.types'
+
+export const handleSubmitValidation = async (
+  state: CreditState,
+  hasInstallments: boolean,
+) => {
+  const validation = await validateCreditForm(state.form, {
+    hasInstallments,
+  })
+
+  if (!validation.isValid) {
+    state.validations.fields = {
+      ...state.validations.fields,
+      ...validation.errors,
+    }
+
+    const checkedIfAllFieldsIsBlank = checkIfAllFieldsIsBlank(state.form)
+
+    if (checkedIfAllFieldsIsBlank) {
+      state.validations.allFieldsIsBlank = true
+    }
+  }
+
+  return validation.isValid
+}
 
 export const normalizeValidationErrors = (errors: ValidationError[]) => {
   const normalizedErrors = errors.reduce(

@@ -1,2 +1,2 @@
-export { state as default, state, handleSubmitValidation } from './credit'
-export { validateCreditForm } from './credit.utils'
+export { state as default, state } from './credit'
+export { validateCreditForm, handleSubmitValidation } from './credit.utils'

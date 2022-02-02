@@ -15,11 +15,6 @@ export interface PlugPaymentsCreditFormValues {
   installments: string
 }
 
-export interface PlugPaymentsCreditInstallmentsConfig {
-  show: boolean
-  quantity: number
-}
-
 export interface PlugPaymentsCreditChargePayload {
   card: PlugPaymentsCreditFormValues
   merchantId: string

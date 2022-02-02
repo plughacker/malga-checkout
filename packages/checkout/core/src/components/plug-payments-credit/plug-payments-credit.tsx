@@ -1,48 +1,19 @@
-import {
-  Component,
-  Host,
-  h,
-  State,
-  Prop,
-  Event,
-  EventEmitter,
-} from '@stencil/core'
+import { Component, Host, h, State, Event, EventEmitter } from '@stencil/core'
+
+import credit from '../../stores/credit'
+import settings from '../../stores/settings'
 
 import {
-  PlugPaymentsCreditFormValues,
-  PlugPaymentsCreditInstallmentsConfig,
   PlugPaymentsCreditChargeError,
   PlugPaymentsCreditChargeSuccess,
   PlugPaymentsCreditDialogState,
 } from './plug-payments-credit.types'
-import { PlugCheckoutDialog } from '../plug-checkout/plug-checkout.types'
 import { PlugPaymentsCreditService } from './plug-payments-credit.service'
-import { Customer } from '../../providers/base-provider'
-import credit from '../../stores/credit'
 
 @Component({
   tag: 'plug-payments-credit',
 })
 export class PlugPaymentsCredit {
-  @Prop() clientId: string
-  @Prop() publicKey: string
-  @Prop() merchantId: string
-  @Prop() statementDescriptor: string
-  @Prop() amount: number
-  @Prop() description?: string
-  @Prop() orderId?: string
-  @Prop() customerId?: string
-  @Prop() customer?: Customer
-  @Prop() currency = 'BRL'
-  @Prop() sandbox = false
-  @Prop() capture = false
-  @Prop() showCreditCard = true
-  @Prop() dialogConfig: PlugCheckoutDialog
-  @Prop() installmentsConfig: PlugPaymentsCreditInstallmentsConfig = {
-    show: true,
-    quantity: 1,
-  }
-
   @Event() creditPaymentSuccess!: EventEmitter<{
     data: PlugPaymentsCreditChargeSuccess
   }>
@@ -69,22 +40,22 @@ export class PlugPaymentsCredit {
   private handleFormSubmit = async () => {
     const data = {
       card: credit.form,
-      merchantId: this.merchantId,
-      amount: this.amount,
-      statementDescriptor: this.statementDescriptor,
-      capture: this.capture,
-      orderId: this.orderId,
-      customer: this.customer,
-      customerId: this.customerId,
-      description: this.description,
-      currency: this.currency,
+      merchantId: settings.merchantId,
+      amount: settings.transactionConfig.amount,
+      statementDescriptor: settings.transactionConfig.statementDescriptor,
+      capture: settings.transactionConfig.capture,
+      orderId: settings.transactionConfig.orderId,
+      customer: settings.transactionConfig.customer,
+      customerId: settings.transactionConfig.customerId,
+      description: settings.transactionConfig.description,
+      currency: settings.transactionConfig.currency,
     }
 
     const creditService = new PlugPaymentsCreditService({
-      publicKey: this.publicKey,
-      clientId: this.clientId,
-      sandbox: this.sandbox,
-      showDialog: this.dialogConfig.show,
+      publicKey: settings.publicKey,
+      clientId: settings.clientId,
+      sandbox: settings.sandbox,
+      showDialog: settings.dialogConfig.show,
       data,
       onPaymentSuccess: (data: PlugPaymentsCreditChargeSuccess) =>
         this.creditPaymentSuccess.emit({ data }),
@@ -102,8 +73,8 @@ export class PlugPaymentsCredit {
   }
 
   private handleSuccessModalButtonClicked = () => {
-    if (this.dialogConfig.successRedirectUrl) {
-      location.assign(this.dialogConfig.successRedirectUrl)
+    if (settings.dialogConfig.successRedirectUrl) {
+      location.assign(settings.dialogConfig.successRedirectUrl)
     }
 
     this.handleShowDialog({ open: false })
@@ -112,7 +83,7 @@ export class PlugPaymentsCredit {
   render() {
     return (
       <Host>
-        {this.showCreditCard && (
+        {settings.paymentMethods.credit.showCreditCard && (
           <checkout-credit-card
             focused={this.currentFieldFocused}
             cvv={credit.form.cvv}
@@ -122,23 +93,23 @@ export class PlugPaymentsCredit {
           />
         )}
         <plug-payments-credit-form
-          amount={this.amount}
-          installmentsConfig={this.installmentsConfig}
           onCurrentFieldChange={({ detail: { field } }) =>
             this.handleSetFocusedField(field)
           }
         />
-        {this.dialogConfig.show && this.dialog.open && (
+        {settings.dialogConfig.show && this.dialog.open && (
           <checkout-modal
             mode={this.dialog.mode}
             open={this.dialog.open}
             amount={this.dialog.amount}
             errorDescription={this.dialog.errorMessage}
-            actionButtonLabel={this.dialogConfig.actionButtonLabel}
+            actionButtonLabel={settings.dialogConfig.actionButtonLabel}
             successActionButtonLabel={
-              this.dialogConfig.successActionButtonLabel
+              settings.dialogConfig.successActionButtonLabel
             }
-            errorActionButtonLabel={this.dialogConfig.errorActionButtonLabel}
+            errorActionButtonLabel={
+              settings.dialogConfig.errorActionButtonLabel
+            }
             onSuccessButtonClicked={this.handleSuccessModalButtonClicked}
             onErrorButtonClicked={this.handleErrorModalButtonClicked}
           />

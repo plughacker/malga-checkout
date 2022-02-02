@@ -9,9 +9,9 @@ import { PlugCheckoutDialog, PlugCheckoutPaymentMethods, PlugCheckoutTransaction
 import { PaymentMethods, PlugPaymentsChargeError, PlugPaymentsChargeSuccess } from "./components/plug-payments/plug-payments.types";
 import { PixAttributes } from "./providers/pix";
 import { BoletoAttributes } from "./providers/boleto";
-import { PlugPaymentsCreditChargeError, PlugPaymentsCreditChargeSuccess, PlugPaymentsCreditInstallmentsConfig } from "./components/plug-payments-credit/plug-payments-credit.types";
 import { Customer } from "./providers/base-provider";
 import { PlugPaymentsBoletoChargeError, PlugPaymentsBoletoChargeSuccess } from "./components/plug-payments-boleto/plug-payments-boleto.types";
+import { PlugPaymentsCreditChargeError, PlugPaymentsCreditChargeSuccess } from "./components/plug-payments-credit/plug-payments-credit.types";
 import { PlugPaymentsPixChargeError, PlugPaymentsPixChargeSuccess } from "./components/plug-payments-pix/plug-payments-pix.types";
 export namespace Components {
     interface PlugCheckout {
@@ -33,7 +33,7 @@ export namespace Components {
         "customerId"?: string;
         "description"?: string;
         "dialogConfig": PlugCheckoutDialog;
-        "installments"?: PlugPaymentsCreditInstallmentsConfig;
+        "installments"?: any;
         "merchantId": string;
         "orderId"?: string;
         "paymentMethods": PaymentMethods;
@@ -60,25 +60,8 @@ export namespace Components {
         "statementDescriptor": string;
     }
     interface PlugPaymentsCredit {
-        "amount": number;
-        "capture": boolean;
-        "clientId": string;
-        "currency": string;
-        "customer"?: Customer;
-        "customerId"?: string;
-        "description"?: string;
-        "dialogConfig": PlugCheckoutDialog;
-        "installmentsConfig": PlugPaymentsCreditInstallmentsConfig;
-        "merchantId": string;
-        "orderId"?: string;
-        "publicKey": string;
-        "sandbox": boolean;
-        "showCreditCard": boolean;
-        "statementDescriptor": string;
     }
     interface PlugPaymentsCreditForm {
-        "amount": number;
-        "installmentsConfig": PlugPaymentsCreditInstallmentsConfig;
     }
     interface PlugPaymentsPix {
         "amount": number;
@@ -169,7 +152,7 @@ declare namespace LocalJSX {
         "customerId"?: string;
         "description"?: string;
         "dialogConfig"?: PlugCheckoutDialog;
-        "installments"?: PlugPaymentsCreditInstallmentsConfig;
+        "installments"?: any;
         "merchantId"?: string;
         "onCheckoutPaymentFailed"?: (event: CustomEvent<{
     error: PlugPaymentsChargeError
@@ -208,31 +191,14 @@ declare namespace LocalJSX {
         "statementDescriptor"?: string;
     }
     interface PlugPaymentsCredit {
-        "amount"?: number;
-        "capture"?: boolean;
-        "clientId"?: string;
-        "currency"?: string;
-        "customer"?: Customer;
-        "customerId"?: string;
-        "description"?: string;
-        "dialogConfig"?: PlugCheckoutDialog;
-        "installmentsConfig"?: PlugPaymentsCreditInstallmentsConfig;
-        "merchantId"?: string;
         "onCreditPaymentFailed"?: (event: CustomEvent<{
     error: PlugPaymentsCreditChargeError
   }>) => void;
         "onCreditPaymentSuccess"?: (event: CustomEvent<{
     data: PlugPaymentsCreditChargeSuccess
   }>) => void;
-        "orderId"?: string;
-        "publicKey"?: string;
-        "sandbox"?: boolean;
-        "showCreditCard"?: boolean;
-        "statementDescriptor"?: string;
     }
     interface PlugPaymentsCreditForm {
-        "amount"?: number;
-        "installmentsConfig"?: PlugPaymentsCreditInstallmentsConfig;
         "onCurrentFieldChange"?: (event: CustomEvent<{ field: string }>) => void;
     }
     interface PlugPaymentsPix {

@@ -2,7 +2,6 @@ import {
   Component,
   Host,
   h,
-  Prop,
   ComponentInterface,
   Event,
   EventEmitter,
@@ -11,8 +10,7 @@ import {
 import { getCurrentMaskPerIssuer } from '@plug-checkout/utils'
 
 import credit, { validateCreditForm } from '../../../../stores/credit'
-
-import { PlugPaymentsCreditInstallmentsConfig } from '../../plug-payments-credit.types'
+import settings from '../../../../stores/settings'
 
 import { centsToReal } from './plug-payments-credit-form.utils'
 @Component({
@@ -20,9 +18,6 @@ import { centsToReal } from './plug-payments-credit-form.utils'
   styleUrl: 'plug-payments-credit-form.scss',
 })
 export class PlugPaymentsCreditForm implements ComponentInterface {
-  @Prop() amount: number
-  @Prop() installmentsConfig: PlugPaymentsCreditInstallmentsConfig
-
   @Event() currentFieldChange: EventEmitter<{ field: string }>
 
   private handleFieldFocused = (field: string) => () => {
@@ -42,7 +37,7 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
         ...credit.form,
         [field]: isMaskedField ? normalizedValue : event.target.value,
       },
-      { hasInstallments: this.installmentsConfig.show },
+      { hasInstallments: settings.paymentMethods.credit.installments.show },
     )
 
     credit.validations.fields = {
@@ -58,15 +53,16 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
 
   private renderInstallmentOptions = () => {
     const installmentOptions = Array.from({
-      length: this.installmentsConfig.quantity,
+      length: settings.paymentMethods.credit.installments.quantity,
     }).map((_, index) => {
       const currentInstallment = index + 1
-      const installmentValue = this.amount / currentInstallment
+      const installmentValue =
+        settings.transactionConfig.amount / currentInstallment
 
       return {
         label: `${currentInstallment}x ${centsToReal(
           installmentValue,
-        )}, total ${centsToReal(this.amount)}`,
+        )}, total ${centsToReal(settings.transactionConfig.amount)}`,
         value: currentInstallment,
       }
     })
@@ -169,7 +165,7 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
               />
             )}
 
-          {this.installmentsConfig.show && (
+          {settings.paymentMethods.credit.installments.show && (
             <checkout-select-field
               value={credit.form.installments}
               onChanged={this.handleFieldChange('installments')}
@@ -183,7 +179,7 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
             />
           )}
 
-          {this.installmentsConfig.show &&
+          {settings.paymentMethods.credit.installments.show &&
             !credit.validations.allFieldsIsBlank &&
             !!credit.validations.fields.installments && (
               <checkout-error-message

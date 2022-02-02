@@ -1,5 +1,7 @@
 import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
 
+import settings from '../../stores/settings'
+
 import {
   PaymentMethods,
   PaymentMethodsType,
@@ -58,6 +60,20 @@ export class PlugCheckout {
     const showPaymentMethod = paymentMethods.includes(paymentMethod)
 
     return paymentMethods.length === 1 && showPaymentMethod
+  }
+
+  private handleStoreSettings = () => {
+    settings.clientId = this.clientId
+    settings.publicKey = this.publicKey
+    settings.merchantId = this.merchantId
+    settings.sandbox = this.sandbox
+    settings.dialogConfig = this.dialogConfig
+    settings.paymentMethods = this.paymentMethods
+    settings.transactionConfig = this.transactionConfig
+  }
+
+  componentWillLoad() {
+    this.handleStoreSettings()
   }
 
   render() {
@@ -151,25 +167,6 @@ export class PlugCheckout {
 
           {this.showCurrentPaymentMethod('credit') && (
             <plug-payments-credit
-              dialogConfig={this.dialogConfig}
-              showCreditCard={
-                this.paymentMethods.credit
-                  ? this.paymentMethods.credit.showCreditCard
-                  : false
-              }
-              clientId={this.clientId}
-              publicKey={this.publicKey}
-              merchantId={this.merchantId}
-              statementDescriptor={this.transactionConfig.statementDescriptor}
-              amount={this.transactionConfig.amount}
-              customerId={this.transactionConfig.customerId}
-              customer={this.transactionConfig.customer}
-              orderId={this.transactionConfig.orderId}
-              currency={this.transactionConfig.currency}
-              description={this.transactionConfig.description}
-              sandbox={this.sandbox}
-              capture={this.transactionConfig.capture}
-              installmentsConfig={this.paymentMethods.credit.installments}
               onCreditPaymentSuccess={({ detail: { data } }) =>
                 this.paymentSuccess.emit({ data })
               }

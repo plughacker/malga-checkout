@@ -18,6 +18,7 @@ import {
 import { PlugCheckoutDialog } from '../plug-checkout/plug-checkout.types'
 import { PlugPaymentsCreditService } from './plug-payments-credit.service'
 import { Customer } from '../../providers/base-provider'
+import credit from '../../stores/credit'
 
 @Component({
   tag: 'plug-payments-credit',
@@ -49,15 +50,8 @@ export class PlugPaymentsCredit {
     error: PlugPaymentsCreditChargeError
   }>
 
-  @State() isLoading = false
-  @State() currentFieldChanged = 'cardNumber'
-  @State() formValues: PlugPaymentsCreditFormValues = {
-    cardNumber: '',
-    expirationDate: '',
-    cvv: '',
-    name: '',
-    installments: 'none',
-  }
+  @State() currentFieldFocused = 'cardNumber'
+
   @State() dialog: PlugPaymentsCreditDialogState = {
     open: false,
     mode: 'success',
@@ -68,16 +62,13 @@ export class PlugPaymentsCredit {
     this.dialog = { ...this.dialog, ...dialogData }
   }
 
-  private handleSetFormValues = (field: string, value: string) => {
-    this.formValues = { ...this.formValues, [field]: value }
-    this.currentFieldChanged = field
+  private handleSetFocusedField = (field: string) => {
+    this.currentFieldFocused = field
   }
 
   private handleFormSubmit = async () => {
-    this.isLoading = true
-
     const data = {
-      card: this.formValues,
+      card: credit.form,
       merchantId: this.merchantId,
       amount: this.amount,
       statementDescriptor: this.statementDescriptor,
@@ -104,8 +95,6 @@ export class PlugPaymentsCredit {
     })
 
     await creditService.pay()
-
-    this.isLoading = false
   }
 
   private handleErrorModalButtonClicked = () => {
@@ -125,22 +114,19 @@ export class PlugPaymentsCredit {
       <Host>
         {this.showCreditCard && (
           <checkout-credit-card
-            focused={this.currentFieldChanged}
-            cvv={this.formValues.cvv}
-            expiry={this.formValues.expirationDate}
-            name={this.formValues.name}
-            number={this.formValues.cardNumber}
+            focused={this.currentFieldFocused}
+            cvv={credit.form.cvv}
+            expiry={credit.form.expirationDate}
+            name={credit.form.name}
+            number={credit.form.cardNumber}
           />
         )}
         <plug-payments-credit-form
-          isLoading={this.isLoading}
           amount={this.amount}
           installmentsConfig={this.installmentsConfig}
-          formValues={this.formValues}
-          onFormSubmit={() => this.handleFormSubmit()}
-          onFieldChange={({ detail }) => {
-            this.handleSetFormValues(detail.field, detail.value)
-          }}
+          onCurrentFieldChange={({ detail: { field } }) =>
+            this.handleSetFocusedField(field)
+          }
         />
         {this.dialogConfig.show && this.dialog.open && (
           <checkout-modal

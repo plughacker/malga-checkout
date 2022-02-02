@@ -35,15 +35,3 @@
     margin-left: var(--plug-checkout-spacing-xs);
   }
 }
-
-.plug-payments-credit-form__submit {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: var(--plug-checkout-spacing-md);
-
-  & > checkout-icon {
-    height: 30px;
-  }
-}

@@ -1,13 +1,7 @@
-import {
-  Component,
-  Host,
-  h,
-  Prop,
-  State,
-  Event,
-  EventEmitter,
-} from '@stencil/core'
-import { BoletoAttributes } from '../../providers/boleto'
+import { Component, Host, h, State, Event, EventEmitter } from '@stencil/core'
+
+import settings from '../../stores/settings'
+
 import {
   PlugPaymentsBoletoChargeSuccess,
   PlugPaymentsBoletoChargeError,
@@ -15,29 +9,12 @@ import {
 } from './plug-payments-boleto.types'
 
 import { PlugPaymentsBoletoService } from './plug-payments-boleto.service'
-import { Customer } from '../../providers/base-provider'
-import { PlugCheckoutDialog } from '../plug-checkout/plug-checkout.types'
 
 @Component({
   tag: 'plug-payments-boleto',
   styleUrl: 'plug-payments-boleto.scss',
 })
 export class PlugPaymentsBoleto {
-  @Prop() clientId: string
-  @Prop() publicKey: string
-  @Prop() merchantId: string
-  @Prop() statementDescriptor: string
-  @Prop() amount: number
-  @Prop() boleto: BoletoAttributes
-  @Prop() customer?: Customer
-  @Prop() description?: string
-  @Prop() orderId?: string
-  @Prop() customerId?: string
-  @Prop() currency = 'BRL'
-  @Prop() sandbox = false
-  @Prop() capture = false
-  @Prop() dialogConfig: PlugCheckoutDialog
-
   @Event() boletoPaymentSuccess!: EventEmitter<{
     data: PlugPaymentsBoletoChargeSuccess
   }>
@@ -63,23 +40,23 @@ export class PlugPaymentsBoleto {
     this.isLoading = true
 
     const data = {
-      boleto: this.boleto,
-      merchantId: this.merchantId,
-      amount: this.amount,
-      statementDescriptor: this.statementDescriptor,
-      capture: this.capture,
-      orderId: this.orderId,
-      customer: this.customer,
-      customerId: this.customerId,
-      description: this.description,
-      currency: this.currency,
+      boleto: settings.paymentMethods.boleto,
+      merchantId: settings.merchantId,
+      amount: settings.transactionConfig.amount,
+      statementDescriptor: settings.transactionConfig.statementDescriptor,
+      capture: settings.transactionConfig.capture,
+      orderId: settings.transactionConfig.orderId,
+      customer: settings.transactionConfig.customer,
+      customerId: settings.transactionConfig.customerId,
+      description: settings.transactionConfig.description,
+      currency: settings.transactionConfig.currency,
     }
 
     const boletoService = new PlugPaymentsBoletoService({
-      publicKey: this.publicKey,
-      clientId: this.clientId,
-      sandbox: this.sandbox,
-      showDialog: this.dialogConfig.show,
+      publicKey: settings.publicKey,
+      clientId: settings.clientId,
+      sandbox: settings.sandbox,
+      showDialog: settings.dialogConfig.show,
       data,
       onPaymentSuccess: (data: PlugPaymentsBoletoChargeSuccess) =>
         this.boletoPaymentSuccess.emit({ data }),
@@ -99,8 +76,8 @@ export class PlugPaymentsBoleto {
   }
 
   private handleSuccessModalButtonClicked = () => {
-    if (this.dialogConfig.successRedirectUrl) {
-      location.assign(this.dialogConfig.successRedirectUrl)
+    if (settings.dialogConfig.successRedirectUrl) {
+      location.assign(settings.dialogConfig.successRedirectUrl)
     }
 
     this.handleShowDialog({ open: false })
@@ -115,7 +92,7 @@ export class PlugPaymentsBoleto {
           isLoading={this.isLoading}
           onPaymentClick={() => this.handleFormSubmit()}
         />
-        {this.dialogConfig.show && this.dialog.open && (
+        {settings.dialogConfig.show && this.dialog.open && (
           <checkout-modal
             mode={this.dialog.mode}
             open={this.dialog.open}
@@ -124,11 +101,13 @@ export class PlugPaymentsBoleto {
             paymentImageUrl={this.dialog.paymentImageUrl}
             expirationDate={this.dialog.expirationDate}
             errorDescription={this.dialog.errorMessage}
-            actionButtonLabel={this.dialogConfig.actionButtonLabel}
+            actionButtonLabel={settings.dialogConfig.actionButtonLabel}
             successActionButtonLabel={
-              this.dialogConfig.successActionButtonLabel
+              settings.dialogConfig.successActionButtonLabel
             }
-            errorActionButtonLabel={this.dialogConfig.errorActionButtonLabel}
+            errorActionButtonLabel={
+              settings.dialogConfig.errorActionButtonLabel
+            }
             onSuccessButtonClicked={this.handleSuccessModalButtonClicked}
             onErrorButtonClicked={this.handleErrorModalButtonClicked}
           />

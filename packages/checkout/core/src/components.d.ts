@@ -7,9 +7,6 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { PlugCheckoutDialog, PlugCheckoutPaymentMethods, PlugCheckoutTransaction } from "./components/plug-checkout/plug-checkout.types";
 import { PaymentMethods, PlugPaymentsChargeError, PlugPaymentsChargeSuccess } from "./components/plug-payments/plug-payments.types";
-import { PixAttributes } from "./providers/pix";
-import { BoletoAttributes } from "./providers/boleto";
-import { Customer } from "./providers/base-provider";
 import { PlugPaymentsBoletoChargeError, PlugPaymentsBoletoChargeSuccess } from "./components/plug-payments-boleto/plug-payments-boleto.types";
 import { PlugPaymentsCreditChargeError, PlugPaymentsCreditChargeSuccess } from "./components/plug-payments-credit/plug-payments-credit.types";
 import { PlugPaymentsPixChargeError, PlugPaymentsPixChargeSuccess } from "./components/plug-payments-pix/plug-payments-pix.types";
@@ -24,40 +21,9 @@ export namespace Components {
         "transactionConfig": PlugCheckoutTransaction;
     }
     interface PlugPayments {
-        "amount": number;
-        "boleto"?: BoletoAttributes;
-        "capture": boolean;
-        "clientId": string;
-        "currency": string;
-        "customer"?: Customer;
-        "customerId"?: string;
-        "description"?: string;
-        "dialogConfig": PlugCheckoutDialog;
-        "installments"?: any;
-        "merchantId": string;
-        "orderId"?: string;
         "paymentMethods": PaymentMethods;
-        "pix"?: PixAttributes;
-        "publicKey": string;
-        "sandbox": boolean;
-        "showCreditCard": boolean;
-        "statementDescriptor": string;
     }
     interface PlugPaymentsBoleto {
-        "amount": number;
-        "boleto": BoletoAttributes;
-        "capture": boolean;
-        "clientId": string;
-        "currency": string;
-        "customer"?: Customer;
-        "customerId"?: string;
-        "description"?: string;
-        "dialogConfig": PlugCheckoutDialog;
-        "merchantId": string;
-        "orderId"?: string;
-        "publicKey": string;
-        "sandbox": boolean;
-        "statementDescriptor": string;
     }
     interface PlugPaymentsCredit {
     }
@@ -129,52 +95,21 @@ declare namespace LocalJSX {
         "transactionConfig"?: PlugCheckoutTransaction;
     }
     interface PlugPayments {
-        "amount"?: number;
-        "boleto"?: BoletoAttributes;
-        "capture"?: boolean;
-        "clientId"?: string;
-        "currency"?: string;
-        "customer"?: Customer;
-        "customerId"?: string;
-        "description"?: string;
-        "dialogConfig"?: PlugCheckoutDialog;
-        "installments"?: any;
-        "merchantId"?: string;
         "onCheckoutPaymentFailed"?: (event: CustomEvent<{
     error: PlugPaymentsChargeError
   }>) => void;
         "onCheckoutPaymentSuccess"?: (event: CustomEvent<{
     data: PlugPaymentsChargeSuccess
   }>) => void;
-        "orderId"?: string;
         "paymentMethods"?: PaymentMethods;
-        "pix"?: PixAttributes;
-        "publicKey"?: string;
-        "sandbox"?: boolean;
-        "showCreditCard"?: boolean;
-        "statementDescriptor"?: string;
     }
     interface PlugPaymentsBoleto {
-        "amount"?: number;
-        "boleto"?: BoletoAttributes;
-        "capture"?: boolean;
-        "clientId"?: string;
-        "currency"?: string;
-        "customer"?: Customer;
-        "customerId"?: string;
-        "description"?: string;
-        "dialogConfig"?: PlugCheckoutDialog;
-        "merchantId"?: string;
         "onBoletoPaymentFailed"?: (event: CustomEvent<{
     error: PlugPaymentsBoletoChargeError
   }>) => void;
         "onBoletoPaymentSuccess"?: (event: CustomEvent<{
     data: PlugPaymentsBoletoChargeSuccess
   }>) => void;
-        "orderId"?: string;
-        "publicKey"?: string;
-        "sandbox"?: boolean;
-        "statementDescriptor"?: string;
     }
     interface PlugPaymentsCredit {
         "onCreditPaymentFailed"?: (event: CustomEvent<{

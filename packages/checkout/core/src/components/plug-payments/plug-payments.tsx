@@ -10,12 +10,6 @@ import {
   Fragment,
 } from '@stencil/core'
 
-import { Customer } from '../../providers/base-provider'
-import { BoletoAttributes } from '../../providers/boleto'
-import { PixAttributes } from '../../providers/pix'
-
-import { PlugCheckoutDialog } from '../plug-checkout/plug-checkout.types'
-
 import {
   PaymentMethods,
   PaymentMethodsType,
@@ -29,23 +23,6 @@ import {
 })
 export class PlugPayments implements ComponentInterface {
   @Prop() paymentMethods: PaymentMethods = ['credit', 'pix', 'boleto']
-  @Prop() showCreditCard = false
-  @Prop() clientId: string
-  @Prop() publicKey: string
-  @Prop() merchantId: string
-  @Prop() statementDescriptor: string
-  @Prop() amount: number
-  @Prop() pix?: PixAttributes
-  @Prop() boleto?: BoletoAttributes
-  @Prop() installments?: any
-  @Prop() customer?: Customer
-  @Prop() description?: string
-  @Prop() orderId?: string
-  @Prop() customerId?: string
-  @Prop() currency = 'BRL'
-  @Prop() sandbox = false
-  @Prop() capture = false
-  @Prop() dialogConfig: PlugCheckoutDialog
 
   @Event() checkoutPaymentSuccess!: EventEmitter<{
     data: PlugPaymentsChargeSuccess
@@ -103,20 +80,6 @@ export class PlugPayments implements ComponentInterface {
               />
               {this.currentPayment === 'boleto' && (
                 <plug-payments-boleto
-                  dialogConfig={this.dialogConfig}
-                  clientId={this.clientId}
-                  publicKey={this.publicKey}
-                  merchantId={this.merchantId}
-                  statementDescriptor={this.statementDescriptor}
-                  amount={this.amount}
-                  customer={this.customer}
-                  customerId={this.customerId}
-                  orderId={this.orderId}
-                  currency={this.currency}
-                  description={this.description}
-                  sandbox={this.sandbox}
-                  capture={this.capture}
-                  boleto={this.boleto}
                   onBoletoPaymentSuccess={({ detail: { data } }) =>
                     this.checkoutPaymentSuccess.emit({ data })
                   }

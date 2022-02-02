@@ -84,28 +84,7 @@ export class PlugCheckout {
         <section class={{ 'plug-checkout__content': true }}>
           {paymentMethods.length > 1 && (
             <plug-payments
-              publicKey={this.publicKey}
-              clientId={this.clientId}
-              merchantId={this.merchantId}
-              customer={this.transactionConfig.customer}
-              customerId={this.transactionConfig.customerId}
-              statementDescriptor={this.transactionConfig.statementDescriptor}
-              amount={this.transactionConfig.amount}
-              capture={this.transactionConfig.capture}
-              orderId={this.transactionConfig.orderId}
-              currency={this.transactionConfig.currency}
-              description={this.transactionConfig.description}
-              showCreditCard={
-                this.paymentMethods.credit
-                  ? this.paymentMethods.credit.showCreditCard
-                  : false
-              }
-              boleto={this.paymentMethods.boleto}
-              pix={this.paymentMethods.pix}
-              installments={this.paymentMethods.credit.installments}
-              sandbox={this.sandbox}
               paymentMethods={paymentMethods as PaymentMethods}
-              dialogConfig={this.dialogConfig}
               onCheckoutPaymentSuccess={({ detail: { data } }) =>
                 this.paymentSuccess.emit({ data })
               }
@@ -115,22 +94,19 @@ export class PlugCheckout {
             />
           )}
 
+          {this.showCurrentPaymentMethod('credit') && (
+            <plug-payments-credit
+              onCreditPaymentSuccess={({ detail: { data } }) =>
+                this.paymentSuccess.emit({ data })
+              }
+              onCreditPaymentFailed={({ detail: { error } }) =>
+                this.paymentFailed.emit({ error })
+              }
+            />
+          )}
+
           {this.showCurrentPaymentMethod('boleto') && (
             <plug-payments-boleto
-              dialogConfig={this.dialogConfig}
-              clientId={this.clientId}
-              publicKey={this.publicKey}
-              merchantId={this.merchantId}
-              statementDescriptor={this.transactionConfig.statementDescriptor}
-              amount={this.transactionConfig.amount}
-              customer={this.transactionConfig.customer}
-              customerId={this.transactionConfig.customerId}
-              orderId={this.transactionConfig.orderId}
-              currency={this.transactionConfig.currency}
-              description={this.transactionConfig.description}
-              sandbox={this.sandbox}
-              capture={this.transactionConfig.capture}
-              boleto={this.paymentMethods.boleto}
               onBoletoPaymentSuccess={({ detail: { data } }) =>
                 this.paymentSuccess.emit({ data })
               }
@@ -146,17 +122,6 @@ export class PlugCheckout {
                 this.paymentSuccess.emit({ data })
               }
               onPixPaymentFailed={({ detail: { error } }) =>
-                this.paymentFailed.emit({ error })
-              }
-            />
-          )}
-
-          {this.showCurrentPaymentMethod('credit') && (
-            <plug-payments-credit
-              onCreditPaymentSuccess={({ detail: { data } }) =>
-                this.paymentSuccess.emit({ data })
-              }
-              onCreditPaymentFailed={({ detail: { error } }) =>
                 this.paymentFailed.emit({ error })
               }
             />

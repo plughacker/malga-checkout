@@ -5,6 +5,7 @@ import {
   ComponentInterface,
   Event,
   EventEmitter,
+  State,
 } from '@stencil/core'
 
 import { getCurrentMaskPerIssuer } from '@plug-checkout/utils'
@@ -19,6 +20,8 @@ import { centsToReal } from './plug-payments-credit-form.utils'
 })
 export class PlugPaymentsCreditForm implements ComponentInterface {
   @Event() currentFieldChange: EventEmitter<{ field: string }>
+
+  @State() saveCard = false
 
   private handleFieldFocused = (field: string) => () => {
     if (credit.validations.allFieldsIsBlank) {
@@ -49,6 +52,13 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
     }
   }
 
+  private handleSaveCardChange = () => {
+    const value = !credit.form.saveCard
+
+    this.saveCard = value
+    credit.form.saveCard = value
+  }
+
   private handleFieldChange = (field: string) => (event) => {
     credit.form = { ...credit.form, [field]: event.target.value }
     this.currentFieldChange.emit({ field })
@@ -73,7 +83,17 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
     return installmentOptions
   }
 
+  private renderSaveCardLabel = () => {
+    if (this.saveCard) {
+      return 'Armazenar cartão para compras futuras'
+    }
+
+    return 'Não armazenar o cartão para futuras compras'
+  }
+
   render() {
+    const saveCardLabel = this.renderSaveCardLabel()
+
     return (
       <Host
         class={{
@@ -193,6 +213,18 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
           {credit.validations.allFieldsIsBlank && (
             <checkout-error-message message="Preencha todos os campos para prosseguir." />
           )}
+
+          <div class={{ 'plug-payments-credit-form__save-card': true }}>
+            <checkout-switch
+              checked={credit.form.saveCard}
+              onChanged={this.handleSaveCardChange}
+            />
+            <checkout-typography
+              variation="field"
+              color="darkness"
+              content={saveCardLabel}
+            />
+          </div>
         </form>
       </Host>
     )

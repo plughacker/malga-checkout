@@ -25,7 +25,6 @@
   border: none;
   margin: 0px;
   margin-top: var(--plug-checkout-spacing-xs);
-  margin-bottom: var(--plug-checkout-spacing-xs);
   padding: 0px;
 
   & > checkout-text-field:first-child {
@@ -34,5 +33,18 @@
 
   & > checkout-text-field:last-child {
     margin-left: var(--plug-checkout-spacing-xs);
+  }
+}
+
+.plug-payments-credit-form__save-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: var(--plug-checkout-spacing-default);
+  margin-bottom: var(--plug-checkout-spacing-xs);
+
+  & > checkout-typography {
+    font-weight: 400;
+    margin-left: var(--plug-checkout-spacing-sm);
   }
 }

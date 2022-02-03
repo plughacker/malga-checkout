@@ -1,6 +1,7 @@
 import settings from '../../stores/settings'
 import credit from '../../stores/credit'
 import payment from '../../stores/payment'
+import dialog from '../../stores/dialog'
 
 import { PlugPaymentsBoletoService } from '../plug-payments-boleto/plug-payments-boleto.service'
 import { PlugPaymentsCreditService } from '../plug-payments-credit/plug-payments-credit.service'
@@ -10,7 +11,6 @@ import {
   PlugPaymentsChargeError,
   PlugPaymentsChargeSuccess,
 } from '../plug-payments/plug-payments.types'
-import dialog from '../../stores/dialog'
 
 export class PlugCheckoutService {
   readonly onPaymentSuccess: (
@@ -47,7 +47,7 @@ export class PlugCheckoutService {
     return paymentMethodsData[payment.selectedPaymentMethod]
   }
 
-  private handlePaymentMethod = () => {
+  private handlePaymentMethod() {
     const paymentMethods = {
       pix: PlugPaymentsPixService,
       credit: PlugPaymentsCreditService,
@@ -57,7 +57,7 @@ export class PlugCheckoutService {
     return paymentMethods[payment.selectedPaymentMethod]
   }
 
-  private handleDialogConfigs = () => {
+  private handleShowDialog(dialogConfigs) {
     const initialDialogConfigs = {
       pix: {
         open: false,
@@ -83,13 +83,10 @@ export class PlugCheckoutService {
       },
     }
 
-    return initialDialogConfigs[payment.selectedPaymentMethod]
-  }
-
-  private handleShowDialog(dialogConfigs) {
-    const initialDialogConfigs = this.handleDialogConfigs()
-
-    dialog.configs = { ...initialDialogConfigs, ...dialogConfigs }
+    dialog.configs = {
+      ...initialDialogConfigs[payment.selectedPaymentMethod],
+      ...dialogConfigs,
+    }
   }
 
   public async pay() {

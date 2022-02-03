@@ -36,7 +36,7 @@ export class PlugPaymentsPix {
       data,
       onPaymentSuccess: () => null,
       onPaymentFailed: () => null,
-      onShowDialog: () => null,
+      onShowDialog: this.handleShowDialog,
     })
 
     return pixService

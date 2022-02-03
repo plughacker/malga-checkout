@@ -32,7 +32,7 @@ export class Card extends BaseProvider {
       sourceType: 'card',
       card: {
         cardNumber: cleanTextOnlyNumbers(this.card.cardNumber),
-        cardCvv: this.card.cvv,
+        cardCvv: this.card.cvv.trim(),
         cardExpirationDate: transformExpirationDate(this.card.expirationDate),
         cardHolderName: this.card.name,
       },

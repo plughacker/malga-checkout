@@ -3,37 +3,9 @@ import { Component, Host, h } from '@stencil/core'
 import { getCardBrand } from '@plug-checkout/utils'
 
 import payment from '../../../../stores/payment'
+import savedCards from '../../../../stores/saved-cards'
 
-const MOCK = [
-  {
-    id: '8724d845-efbf-409e-82d4-047415890be3',
-    status: 'pending',
-    createdAt: '2022-02-02T13:20:03.515Z',
-    clientId: '8edc08eb-0264-4c10-ba88-0d04ab40804a',
-    customerId: '52a2c1a3-bbeb-4c24-a6c2-700e6d1a3fcc',
-    brand: 'Mastercard',
-    cvvChecked: false,
-    fingerprint: 'J6PFje2wyqqoc54D5JCSjW+yaaIaHmBmx04+fTFMtcM=',
-    first6digits: '547972',
-    last4digits: '3180',
-    expirationMonth: '03',
-    expirationYear: '2023',
-  },
-  {
-    id: '6a4b5cc1-11fb-4179-8454-1871ae71b307',
-    status: 'pending',
-    createdAt: '2022-02-02T13:21:12.026Z',
-    clientId: '8edc08eb-0264-4c10-ba88-0d04ab40804a',
-    customerId: '52a2c1a3-bbeb-4c24-a6c2-700e6d1a3fcc',
-    brand: 'Mastercard',
-    cvvChecked: false,
-    fingerprint: 'J6PFje2wyqqoc54D5JCSjW+yaaIaHmBmx04+fTFMtcM=',
-    first6digits: '547972',
-    last4digits: '3180',
-    expirationMonth: '03',
-    expirationYear: '2023',
-  },
-]
+import { PlugPaymentsCreditSavedCardsService } from './plug-payments-credit-saved-cards.service'
 
 @Component({
   tag: 'plug-payments-credit-saved-cards',
@@ -48,9 +20,19 @@ export class PlugPaymentsCreditSavedCards {
     payment.cvv = event.target.value
   }
 
+  private fetchSavedCards = () => {
+    const savedCardsService = new PlugPaymentsCreditSavedCardsService()
+    savedCardsService.listSavedCards()
+  }
+
+  componentWillLoad() {
+    this.fetchSavedCards()
+  }
+
   private renderSavedCards() {
-    const mappedCards = MOCK.filter((card) => card.status !== 'failed').map(
-      (card, index) => {
+    const mappedCards = savedCards.cards
+      .filter((card) => card.status !== 'failed')
+      .map((card, index) => {
         const value = `credit-${index}`
         const isChecked = payment.selectedPaymentMethod === value
         const validation =
@@ -98,8 +80,7 @@ export class PlugPaymentsCreditSavedCards {
             )}
           </div>
         )
-      },
-    )
+      })
 
     return mappedCards
   }

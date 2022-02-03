@@ -9,6 +9,7 @@ import {
 
 import payment from '../../stores/payment'
 import settings from '../../stores/settings'
+import savedCards from '../../stores/saved-cards'
 
 import { PaymentMethods, PaymentMethodsType } from './plug-payments.types'
 
@@ -29,6 +30,14 @@ export class PlugPayments implements ComponentInterface {
     return showPaymentMethod
   }
 
+  private renderCreditCardLabel() {
+    if (savedCards.hasCards) {
+      return 'Novo cartão de crédito'
+    }
+
+    return 'Cartão de crédito'
+  }
+
   render() {
     return (
       <Host class={{ 'plug-payments__container': true }}>
@@ -41,7 +50,7 @@ export class PlugPayments implements ComponentInterface {
 
               <checkout-radio-field
                 fullWidth
-                label="Cartão de crédito"
+                label={this.renderCreditCardLabel()}
                 value="credit"
                 isChecked={payment.selectedPaymentMethod === 'credit'}
                 onClicked={() => this.handlePaymentChange('credit')}

@@ -24,7 +24,7 @@ export class CustomerCards {
     })
 
     return {
-      data: response.data.items,
+      data: response.data,
     }
   }
 }

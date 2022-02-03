@@ -37,7 +37,10 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
         ...credit.form,
         [field]: isMaskedField ? normalizedValue : event.target.value,
       },
-      { hasInstallments: settings.paymentMethods.credit.installments.show },
+      {
+        hasInstallments:
+          settings.paymentMethods.credit.installments.show || false,
+      },
     )
 
     credit.validations.fields = {
@@ -165,7 +168,7 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
               />
             )}
 
-          {settings.paymentMethods.credit.installments.show && (
+          {settings.paymentMethods?.credit?.installments?.show && (
             <checkout-select-field
               value={credit.form.installments}
               onChanged={this.handleFieldChange('installments')}
@@ -179,7 +182,7 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
             />
           )}
 
-          {settings.paymentMethods.credit.installments.show &&
+          {settings.paymentMethods?.credit?.installments?.show &&
             !credit.validations.allFieldsIsBlank &&
             !!credit.validations.fields.installments && (
               <checkout-error-message

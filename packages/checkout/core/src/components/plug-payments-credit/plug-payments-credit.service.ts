@@ -37,7 +37,7 @@ export class PlugPaymentsCreditService {
   }: PlugPaymentsCreditChargeRequest) {
     this.charge = new Charges({
       api: new Api(clientId, publicKey, sandbox),
-      provider: new Card({ card: data.card }),
+      provider: new Card({ card: data.card, clientId, publicKey, sandbox }),
     })
     this.customer = new Customers({
       api: new Api(clientId, publicKey, sandbox),

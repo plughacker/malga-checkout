@@ -18,12 +18,12 @@ export class Tokens {
       data: formatPayload(this.data),
     })
 
-    const tokenId = response.data.id
+    const tokenId = response.data.tokenId
 
     if (!tokenId) {
       return
     }
 
-    return response.data.id
+    return response.data.tokenId
   }
 }

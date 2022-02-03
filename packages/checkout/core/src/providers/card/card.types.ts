@@ -15,7 +15,8 @@ export interface CardAttributes {
 
 export interface PaymentSourceCard {
   sourceType: 'card'
-  card: CardFields
+  cardId: string
+  cardCvv: string
 }
 
 export interface PaymentMethodCard {

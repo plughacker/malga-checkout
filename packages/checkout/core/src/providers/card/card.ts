@@ -27,7 +27,7 @@ export class Card extends BaseProvider {
     }
   }
 
-  public getPaymentSource(): PaymentSourceCard {
+  public async getPaymentSource(): Promise<PaymentSourceCard> {
     return {
       sourceType: 'card',
       card: {

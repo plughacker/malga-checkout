@@ -26,6 +26,8 @@ export namespace Components {
     }
     interface PlugPaymentsCreditForm {
     }
+    interface PlugPaymentsCreditSavedCards {
+    }
     interface PlugPaymentsPix {
     }
 }
@@ -60,6 +62,12 @@ declare global {
         prototype: HTMLPlugPaymentsCreditFormElement;
         new (): HTMLPlugPaymentsCreditFormElement;
     };
+    interface HTMLPlugPaymentsCreditSavedCardsElement extends Components.PlugPaymentsCreditSavedCards, HTMLStencilElement {
+    }
+    var HTMLPlugPaymentsCreditSavedCardsElement: {
+        prototype: HTMLPlugPaymentsCreditSavedCardsElement;
+        new (): HTMLPlugPaymentsCreditSavedCardsElement;
+    };
     interface HTMLPlugPaymentsPixElement extends Components.PlugPaymentsPix, HTMLStencilElement {
     }
     var HTMLPlugPaymentsPixElement: {
@@ -72,6 +80,7 @@ declare global {
         "plug-payments-boleto": HTMLPlugPaymentsBoletoElement;
         "plug-payments-credit": HTMLPlugPaymentsCreditElement;
         "plug-payments-credit-form": HTMLPlugPaymentsCreditFormElement;
+        "plug-payments-credit-saved-cards": HTMLPlugPaymentsCreditSavedCardsElement;
         "plug-payments-pix": HTMLPlugPaymentsPixElement;
     }
 }
@@ -101,6 +110,8 @@ declare namespace LocalJSX {
     interface PlugPaymentsCreditForm {
         "onCurrentFieldChange"?: (event: CustomEvent<{ field: string }>) => void;
     }
+    interface PlugPaymentsCreditSavedCards {
+    }
     interface PlugPaymentsPix {
     }
     interface IntrinsicElements {
@@ -109,6 +120,7 @@ declare namespace LocalJSX {
         "plug-payments-boleto": PlugPaymentsBoleto;
         "plug-payments-credit": PlugPaymentsCredit;
         "plug-payments-credit-form": PlugPaymentsCreditForm;
+        "plug-payments-credit-saved-cards": PlugPaymentsCreditSavedCards;
         "plug-payments-pix": PlugPaymentsPix;
     }
 }
@@ -121,6 +133,7 @@ declare module "@stencil/core" {
             "plug-payments-boleto": LocalJSX.PlugPaymentsBoleto & JSXBase.HTMLAttributes<HTMLPlugPaymentsBoletoElement>;
             "plug-payments-credit": LocalJSX.PlugPaymentsCredit & JSXBase.HTMLAttributes<HTMLPlugPaymentsCreditElement>;
             "plug-payments-credit-form": LocalJSX.PlugPaymentsCreditForm & JSXBase.HTMLAttributes<HTMLPlugPaymentsCreditFormElement>;
+            "plug-payments-credit-saved-cards": LocalJSX.PlugPaymentsCreditSavedCards & JSXBase.HTMLAttributes<HTMLPlugPaymentsCreditSavedCardsElement>;
             "plug-payments-pix": LocalJSX.PlugPaymentsPix & JSXBase.HTMLAttributes<HTMLPlugPaymentsPixElement>;
         }
     }

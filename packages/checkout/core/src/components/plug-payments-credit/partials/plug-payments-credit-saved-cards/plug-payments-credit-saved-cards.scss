@@ -1,0 +1,30 @@
+.plug-payments-credit-saved-cards__container {
+  display: block;
+}
+
+.plug-payments-credit-saved-cards__card {
+  margin-bottom: calc(
+    var(--plug-checkout-spacing-xxs) + var(--plug-checkout-spacing-xs)
+  );
+}
+
+.plug-payments-credit-saved-cards__card {
+  margin-bottom: calc(
+    var(--plug-checkout-spacing-xxs) + var(--plug-checkout-spacing-xs)
+  );
+}
+
+.plug-payments-credit-saved-cards__content {
+  display: flex;
+  flex-direction: column;
+  padding: var(--plug-checkout-spacing-sm);
+
+  & > checkout-typography > p {
+    font-weight: 400;
+    margin-bottom: var(--plug-checkout-spacing-default);
+  }
+}
+
+.plug-payments-credit-saved-cards__cvv-container {
+  width: 250px;
+}

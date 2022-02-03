@@ -8,6 +8,7 @@ import {
 } from '@stencil/core'
 
 import payment from '../../stores/payment'
+import settings from '../../stores/settings'
 
 import { PaymentMethods, PaymentMethodsType } from './plug-payments.types'
 
@@ -34,6 +35,10 @@ export class PlugPayments implements ComponentInterface {
         <section class={{ 'plug-payments__content': true }}>
           {this.showCurrentPaymentMethod('credit') && (
             <Fragment>
+              {settings.transactionConfig.customerId && (
+                <plug-payments-credit-saved-cards />
+              )}
+
               <checkout-radio-field
                 fullWidth
                 label="Cartão de crédito"

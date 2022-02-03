@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type                                                                                                                                                                                                                                                        | Default     |
-| -------- | --------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `class`  | `class`   |             | `string`                                                                                                                                                                                                                                                    | `undefined` |
-| `icon`   | `icon`    |             | `"arrowDown" \| "arrowLeft" \| "calendar" \| "check" \| "checkLarge" \| "clipboard" \| "creditCard" \| "cvv" \| "dollar" \| "edit" \| "error" \| "eye" \| "eyeSlash" \| "lock" \| "newTab" \| "pix" \| "poweredByPlug" \| "spinner" \| "user" \| "warning"` | `undefined` |
+| Property | Attribute | Description | Type                                                                                                                                                                                                                                                                                                                                                  | Default     |
+| -------- | --------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `class`  | `class`   |             | `string`                                                                                                                                                                                                                                                                                                                                              | `undefined` |
+| `icon`   | `icon`    |             | `"arrowDown" \| "calendar" \| "check" \| "creditCard" \| "cvv" \| "dollar" \| "lock" \| "spinner" \| "user" \| "warning" \| "poweredByPlug" \| "edit" \| "eye" \| "eyeSlash" \| "arrowLeft" \| "error" \| "checkLarge" \| "clipboard" \| "pix" \| "newTab" \| "amex" \| "dinersclub" \| "discover" \| "elo" \| "hipercard" \| "mastercard" \| "visa"` | `undefined` |
 
 
 ## Dependencies

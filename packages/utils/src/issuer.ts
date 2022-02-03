@@ -34,3 +34,20 @@ export const getCurrentMaskPerIssuer = (number: string) => {
 
   return masks[issuer] || masks.unknow
 }
+
+export const getCardBrand = (firstCardNumbers: string): string => {
+  const permittedBrands = [
+    'amex',
+    'dinersclub',
+    'discover',
+    'elo',
+    'hipercard',
+    'mastercard',
+    'visa',
+  ]
+
+  const cardBrand = Payment.fns.cardType(firstCardNumbers)
+  const isPermittedBrand = permittedBrands.includes(cardBrand)
+
+  return isPermittedBrand ? cardBrand : undefined
+}

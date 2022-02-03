@@ -17,7 +17,7 @@ export class Charges {
     const payload = {
       ...data,
       paymentMethod: this.provider.getPaymentMethod(),
-      paymentSource: this.provider.getPaymentSource(),
+      paymentSource: await this.provider.getPaymentSource(),
     }
 
     const response = await this.api.create({

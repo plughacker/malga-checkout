@@ -1,71 +1,21 @@
-import { Component, Host, h, State, Event, EventEmitter } from '@stencil/core'
+import { Component, Host, h, State } from '@stencil/core'
 
 import credit from '../../stores/credit'
 import settings from '../../stores/settings'
-
-import {
-  PlugPaymentsCreditChargeError,
-  PlugPaymentsCreditChargeSuccess,
-  PlugPaymentsCreditDialogState,
-} from './plug-payments-credit.types'
-import { PlugPaymentsCreditService } from './plug-payments-credit.service'
+import dialog from '../../stores/dialog'
 
 @Component({
   tag: 'plug-payments-credit',
 })
 export class PlugPaymentsCredit {
-  @Event() creditPaymentSuccess!: EventEmitter<{
-    data: PlugPaymentsCreditChargeSuccess
-  }>
-  @Event() creditPaymentFailed!: EventEmitter<{
-    error: PlugPaymentsCreditChargeError
-  }>
-
   @State() currentFieldFocused = 'cardNumber'
 
-  @State() dialog: PlugPaymentsCreditDialogState = {
-    open: false,
-    mode: 'success',
-    amount: 0,
-  }
-
-  private handleShowDialog = (dialogData: PlugPaymentsCreditDialogState) => {
-    this.dialog = { ...this.dialog, ...dialogData }
+  private handleShowDialog = (dialogData) => {
+    dialog.configs = { ...dialog.configs, ...dialogData }
   }
 
   private handleSetFocusedField = (field: string) => {
     this.currentFieldFocused = field
-  }
-
-  private handleFormSubmit = async () => {
-    const data = {
-      card: credit.form,
-      merchantId: settings.merchantId,
-      amount: settings.transactionConfig.amount,
-      statementDescriptor: settings.transactionConfig.statementDescriptor,
-      capture: settings.transactionConfig.capture,
-      orderId: settings.transactionConfig.orderId,
-      customer: settings.transactionConfig.customer,
-      customerId: settings.transactionConfig.customerId,
-      description: settings.transactionConfig.description,
-      currency: settings.transactionConfig.currency,
-    }
-
-    const creditService = new PlugPaymentsCreditService({
-      publicKey: settings.publicKey,
-      clientId: settings.clientId,
-      sandbox: settings.sandbox,
-      showDialog: settings.dialogConfig.show,
-      data,
-      onPaymentSuccess: (data: PlugPaymentsCreditChargeSuccess) =>
-        this.creditPaymentSuccess.emit({ data }),
-      onPaymentFailed: (error: PlugPaymentsCreditChargeError) =>
-        this.creditPaymentFailed.emit({ error }),
-      onShowDialog: (dialogData: PlugPaymentsCreditDialogState) =>
-        this.handleShowDialog(dialogData),
-    })
-
-    await creditService.pay()
   }
 
   private handleErrorModalButtonClicked = () => {
@@ -97,12 +47,12 @@ export class PlugPaymentsCredit {
             this.handleSetFocusedField(field)
           }
         />
-        {settings.dialogConfig.show && this.dialog.open && (
+        {settings.dialogConfig.show && dialog.configs.open && (
           <checkout-modal
-            mode={this.dialog.mode}
-            open={this.dialog.open}
-            amount={this.dialog.amount}
-            errorDescription={this.dialog.errorMessage}
+            mode={dialog.configs.mode}
+            open={dialog.configs.open}
+            amount={dialog.configs.amount}
+            errorDescription={dialog.configs.errorMessage}
             actionButtonLabel={settings.dialogConfig.actionButtonLabel}
             successActionButtonLabel={
               settings.dialogConfig.successActionButtonLabel

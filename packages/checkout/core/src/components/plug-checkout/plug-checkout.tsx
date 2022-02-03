@@ -1,4 +1,12 @@
-import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
+import {
+  Component,
+  Host,
+  h,
+  Prop,
+  State,
+  Event,
+  EventEmitter,
+} from '@stencil/core'
 
 import settings from '../../stores/settings'
 
@@ -8,6 +16,8 @@ import {
   PlugPaymentsChargeError,
   PlugPaymentsChargeSuccess,
 } from '../plug-payments/plug-payments.types'
+
+import { PlugCheckoutService } from './plug-checkout.service'
 
 import {
   PlugCheckoutPaymentMethods,
@@ -54,12 +64,23 @@ export class PlugCheckout {
     error: PlugPaymentsChargeError
   }>
 
+  @State() isLoading = false
+
   private showCurrentPaymentMethod = (paymentMethod: PaymentMethodsType) => {
     const paymentMethods = Object.keys(this.paymentMethods)
 
     const showPaymentMethod = paymentMethods.includes(paymentMethod)
 
     return paymentMethods.length === 1 && showPaymentMethod
+  }
+
+  private handlePay = async () => {
+    const plugCheckoutService = new PlugCheckoutService({
+      onPaymentSuccess: (data) => this.paymentSuccess.emit({ data }),
+      onPaymentFailed: (error) => this.paymentFailed.emit({ error }),
+    })
+
+    await plugCheckoutService.pay()
   }
 
   private handleStoreSettings = () => {
@@ -83,49 +104,23 @@ export class PlugCheckout {
       <Host class={{ 'plug-checkout__container': true }}>
         <section class={{ 'plug-checkout__content': true }}>
           {paymentMethods.length > 1 && (
-            <plug-payments
-              paymentMethods={paymentMethods as PaymentMethods}
-              onCheckoutPaymentSuccess={({ detail: { data } }) =>
-                this.paymentSuccess.emit({ data })
-              }
-              onCheckoutPaymentFailed={({ detail: { error } }) =>
-                this.paymentFailed.emit({ error })
-              }
-            />
+            <plug-payments paymentMethods={paymentMethods as PaymentMethods} />
           )}
 
-          {this.showCurrentPaymentMethod('credit') && (
-            <plug-payments-credit
-              onCreditPaymentSuccess={({ detail: { data } }) =>
-                this.paymentSuccess.emit({ data })
-              }
-              onCreditPaymentFailed={({ detail: { error } }) =>
-                this.paymentFailed.emit({ error })
-              }
-            />
-          )}
+          {this.showCurrentPaymentMethod('credit') && <plug-payments-credit />}
 
-          {this.showCurrentPaymentMethod('boleto') && (
-            <plug-payments-boleto
-              onBoletoPaymentSuccess={({ detail: { data } }) =>
-                this.paymentSuccess.emit({ data })
-              }
-              onBoletoPaymentFailed={({ detail: { error } }) =>
-                this.paymentFailed.emit({ error })
-              }
-            />
-          )}
+          {this.showCurrentPaymentMethod('boleto') && <plug-payments-boleto />}
 
-          {this.showCurrentPaymentMethod('pix') && (
-            <plug-payments-pix
-              onPixPaymentSuccess={({ detail: { data } }) =>
-                this.paymentSuccess.emit({ data })
-              }
-              onPixPaymentFailed={({ detail: { error } }) =>
-                this.paymentFailed.emit({ error })
-              }
+          {this.showCurrentPaymentMethod('pix') && <plug-payments-pix />}
+
+          <div class={{ 'plug-checkout__submit': true }}>
+            <checkout-button
+              isLoading={this.isLoading}
+              label="Pagar"
+              onClick={this.handlePay}
             />
-          )}
+            <checkout-icon icon="poweredByPlug" />
+          </div>
         </section>
       </Host>
     )

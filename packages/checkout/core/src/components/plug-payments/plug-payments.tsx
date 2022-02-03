@@ -3,19 +3,13 @@ import {
   Host,
   h,
   ComponentInterface,
-  State,
   Prop,
-  Event,
-  EventEmitter,
   Fragment,
 } from '@stencil/core'
 
-import {
-  PaymentMethods,
-  PaymentMethodsType,
-  PlugPaymentsChargeSuccess,
-  PlugPaymentsChargeError,
-} from './plug-payments.types'
+import payment from '../../stores/payment'
+
+import { PaymentMethods, PaymentMethodsType } from './plug-payments.types'
 
 @Component({
   tag: 'plug-payments',
@@ -24,17 +18,8 @@ import {
 export class PlugPayments implements ComponentInterface {
   @Prop() paymentMethods: PaymentMethods = ['credit', 'pix', 'boleto']
 
-  @Event() checkoutPaymentSuccess!: EventEmitter<{
-    data: PlugPaymentsChargeSuccess
-  }>
-  @Event() checkoutPaymentFailed!: EventEmitter<{
-    error: PlugPaymentsChargeError
-  }>
-
-  @State() currentPayment: string
-
   private handlePaymentChange = (value: string) => {
-    this.currentPayment = value
+    payment.selectedPaymentMethod = value
   }
 
   private showCurrentPaymentMethod = (paymentMethod: PaymentMethodsType) => {
@@ -53,18 +38,11 @@ export class PlugPayments implements ComponentInterface {
                 fullWidth
                 label="Cartão de crédito"
                 value="credit"
-                isChecked={this.currentPayment === 'credit'}
+                isChecked={payment.selectedPaymentMethod === 'credit'}
                 onClicked={() => this.handlePaymentChange('credit')}
               />
-              {this.currentPayment === 'credit' && (
-                <plug-payments-credit
-                  onCreditPaymentSuccess={({ detail: { data } }) =>
-                    this.checkoutPaymentSuccess.emit({ data })
-                  }
-                  onCreditPaymentFailed={({ detail: { error } }) =>
-                    this.checkoutPaymentFailed.emit({ error })
-                  }
-                />
+              {payment.selectedPaymentMethod === 'credit' && (
+                <plug-payments-credit />
               )}
             </Fragment>
           )}
@@ -75,18 +53,11 @@ export class PlugPayments implements ComponentInterface {
                 fullWidth
                 label="Boleto"
                 value="boleto"
-                isChecked={this.currentPayment === 'boleto'}
+                isChecked={payment.selectedPaymentMethod === 'boleto'}
                 onClicked={() => this.handlePaymentChange('boleto')}
               />
-              {this.currentPayment === 'boleto' && (
-                <plug-payments-boleto
-                  onBoletoPaymentSuccess={({ detail: { data } }) =>
-                    this.checkoutPaymentSuccess.emit({ data })
-                  }
-                  onBoletoPaymentFailed={({ detail: { error } }) =>
-                    this.checkoutPaymentFailed.emit({ error })
-                  }
-                />
+              {payment.selectedPaymentMethod === 'boleto' && (
+                <plug-payments-boleto />
               )}
             </Fragment>
           )}
@@ -98,19 +69,10 @@ export class PlugPayments implements ComponentInterface {
                 label="PIX"
                 value="pix"
                 endIcon="pix"
-                isChecked={this.currentPayment === 'pix'}
+                isChecked={payment.selectedPaymentMethod === 'pix'}
                 onClicked={() => this.handlePaymentChange('pix')}
               />
-              {this.currentPayment === 'pix' && (
-                <plug-payments-pix
-                  onPixPaymentSuccess={({ detail: { data } }) =>
-                    this.checkoutPaymentSuccess.emit({ data })
-                  }
-                  onPixPaymentFailed={({ detail: { error } }) =>
-                    this.checkoutPaymentFailed.emit({ error })
-                  }
-                />
-              )}
+              {payment.selectedPaymentMethod === 'pix' && <plug-payments-pix />}
             </Fragment>
           )}
         </section>

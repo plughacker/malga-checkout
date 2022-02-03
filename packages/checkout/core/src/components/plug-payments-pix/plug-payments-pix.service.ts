@@ -1,7 +1,10 @@
+import { cleanObjectProperties } from '@plug-checkout/utils'
+
+import payment from '../../stores/payment'
+
 import { Pix } from '../../providers/pix'
 import { Api } from '../../services/api'
 import { Charges, CreateChargeData } from '../../services/charges'
-import { cleanObjectProperties } from '@plug-checkout/utils'
 
 import {
   PlugPaymentsPixChargeRequest,
@@ -15,7 +18,6 @@ export class PlugPaymentsPixService {
   readonly charge: Charges
   readonly data: PlugPaymentsPixChargePayload
   readonly showDialog: boolean
-  readonly onSaveChargeId: (chargeId: string) => void
   readonly onPaymentSuccess: (
     data: PlugPaymentsPixChargeSuccess,
   ) => CustomEvent<{ data: unknown }>
@@ -31,7 +33,6 @@ export class PlugPaymentsPixService {
     onPaymentSuccess,
     onPaymentFailed,
     onShowDialog,
-    onSaveChargeId,
     showDialog,
     data,
   }: PlugPaymentsPixChargeRequest) {
@@ -43,7 +44,6 @@ export class PlugPaymentsPixService {
         pix: data.pix,
       }),
     })
-    this.onSaveChargeId = onSaveChargeId
     this.onPaymentSuccess = onPaymentSuccess
     this.onPaymentFailed = onPaymentFailed
     this.onShowDialog = onShowDialog
@@ -52,7 +52,7 @@ export class PlugPaymentsPixService {
   }
 
   private handlePaymentSuccess(data: PlugPaymentsPixChargeSuccess) {
-    this.onSaveChargeId(data.id)
+    payment.chargeId = data.id
 
     if (this.showDialog) {
       this.onShowDialog({

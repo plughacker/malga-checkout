@@ -7,9 +7,6 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { PlugCheckoutDialog, PlugCheckoutPaymentMethods, PlugCheckoutTransaction } from "./components/plug-checkout/plug-checkout.types";
 import { PaymentMethods, PlugPaymentsChargeError, PlugPaymentsChargeSuccess } from "./components/plug-payments/plug-payments.types";
-import { PlugPaymentsBoletoChargeError, PlugPaymentsBoletoChargeSuccess } from "./components/plug-payments-boleto/plug-payments-boleto.types";
-import { PlugPaymentsCreditChargeError, PlugPaymentsCreditChargeSuccess } from "./components/plug-payments-credit/plug-payments-credit.types";
-import { PlugPaymentsPixChargeError, PlugPaymentsPixChargeSuccess } from "./components/plug-payments-pix/plug-payments-pix.types";
 export namespace Components {
     interface PlugCheckout {
         "clientId": string;
@@ -95,40 +92,16 @@ declare namespace LocalJSX {
         "transactionConfig"?: PlugCheckoutTransaction;
     }
     interface PlugPayments {
-        "onCheckoutPaymentFailed"?: (event: CustomEvent<{
-    error: PlugPaymentsChargeError
-  }>) => void;
-        "onCheckoutPaymentSuccess"?: (event: CustomEvent<{
-    data: PlugPaymentsChargeSuccess
-  }>) => void;
         "paymentMethods"?: PaymentMethods;
     }
     interface PlugPaymentsBoleto {
-        "onBoletoPaymentFailed"?: (event: CustomEvent<{
-    error: PlugPaymentsBoletoChargeError
-  }>) => void;
-        "onBoletoPaymentSuccess"?: (event: CustomEvent<{
-    data: PlugPaymentsBoletoChargeSuccess
-  }>) => void;
     }
     interface PlugPaymentsCredit {
-        "onCreditPaymentFailed"?: (event: CustomEvent<{
-    error: PlugPaymentsCreditChargeError
-  }>) => void;
-        "onCreditPaymentSuccess"?: (event: CustomEvent<{
-    data: PlugPaymentsCreditChargeSuccess
-  }>) => void;
     }
     interface PlugPaymentsCreditForm {
         "onCurrentFieldChange"?: (event: CustomEvent<{ field: string }>) => void;
     }
     interface PlugPaymentsPix {
-        "onPixPaymentFailed"?: (event: CustomEvent<{
-    error: PlugPaymentsPixChargeError
-  }>) => void;
-        "onPixPaymentSuccess"?: (event: CustomEvent<{
-    data: PlugPaymentsPixChargeSuccess
-  }>) => void;
     }
     interface IntrinsicElements {
         "plug-checkout": PlugCheckout;

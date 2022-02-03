@@ -87,5 +87,4 @@ export interface PlugPaymentsPixChargeRequest {
   ) => CustomEvent<{ data }>
   onPaymentFailed: (error: PlugPaymentsPixChargeError) => CustomEvent<{ error }>
   onShowDialog: (dialogData: PlugPaymentsPixDialogState) => void
-  onSaveChargeId: (chargeId: string) => void
 }

@@ -20,7 +20,6 @@
  - [checkout-accordion](../checkout-accordion)
  - [checkout-button](../checkout-button)
  - [checkout-clipboard-button](../checkout-clipboard-button)
- - [checkout-manual-payment](../checkout-manual-payment)
  - [checkout-modal-boleto](../checkout-modal/partials/checkout-modal-boleto)
  - [checkout-modal-error](../checkout-modal/partials/checkout-modal-error)
  - [checkout-modal-pix](../checkout-modal/partials/checkout-modal-pix)
@@ -36,7 +35,6 @@ graph TD;
   checkout-accordion --> checkout-icon
   checkout-button --> checkout-icon
   checkout-clipboard-button --> checkout-icon
-  checkout-manual-payment --> checkout-icon
   checkout-modal-boleto --> checkout-icon
   checkout-modal-error --> checkout-icon
   checkout-modal-pix --> checkout-icon

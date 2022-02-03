@@ -10,18 +10,6 @@
   }
 }
 
-.checkout-manual-paymnet__content {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: var(--plug-checkout-spacing-md);
-
-  & > checkout-icon {
-    height: 30px;
-  }
-}
-
 .checkout-manual-payment__description {
   @extend %typography-field;
 }

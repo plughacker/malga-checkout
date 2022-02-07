@@ -6,6 +6,7 @@ import dialog from '../../stores/dialog'
 
 @Component({
   tag: 'plug-payments-credit',
+  styleUrl: 'plug-payments-credit.scss',
 })
 export class PlugPaymentsCredit {
   @State() currentFieldFocused = 'cardNumber'
@@ -32,7 +33,7 @@ export class PlugPaymentsCredit {
 
   render() {
     return (
-      <Host>
+      <Host class={{ 'plug-payments-credit__container': true }}>
         {settings.paymentMethods.credit.showCreditCard && (
           <checkout-credit-card
             focused={this.currentFieldFocused}

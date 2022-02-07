@@ -33,6 +33,7 @@ import {
 export class PlugCheckout {
   @Prop() clientId: string
   @Prop() publicKey: string
+  @Prop() idempotencyKey: string
   @Prop() merchantId: string
   @Prop() sandbox = false
   @Prop() dialogConfig: PlugCheckoutDialog = {
@@ -76,22 +77,27 @@ export class PlugCheckout {
   }
 
   private handlePay = async () => {
-    this.isLoading = true
+    try {
+      this.isLoading = true
 
-    const plugCheckoutService = new PlugCheckoutService({
-      onPaymentSuccess: (data) => this.paymentSuccess.emit({ data }),
-      onPaymentFailed: (error) => this.paymentFailed.emit({ error }),
-    })
+      const plugCheckoutService = new PlugCheckoutService({
+        onPaymentSuccess: (data) => this.paymentSuccess.emit({ data }),
+        onPaymentFailed: (error) => this.paymentFailed.emit({ error }),
+      })
 
-    await plugCheckoutService.pay()
+      await plugCheckoutService.pay()
 
-    this.isLoading = false
+      this.isLoading = false
+    } catch (err) {
+      this.isLoading = false
+    }
   }
 
   private handleStoreSettings = () => {
     settings.clientId = this.clientId
     settings.publicKey = this.publicKey
     settings.merchantId = this.merchantId
+    settings.idempotencyKey = this.idempotencyKey
     settings.sandbox = this.sandbox
     settings.dialogConfig = this.dialogConfig
     settings.paymentMethods = this.paymentMethods

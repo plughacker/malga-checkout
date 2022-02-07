@@ -34,9 +34,14 @@ export class Charges {
       paymentSource: await this.provider.getPaymentSource(),
     }
 
+    const headers = settings.idempotencyKey
+      ? { 'X-Idempotency-Key': settings.idempotencyKey }
+      : {}
+
     const response = await this.api.create({
       endpoint: '/charges',
       data: payload,
+      headers,
     })
 
     return {

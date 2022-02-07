@@ -28,8 +28,8 @@ export class Api {
     return 'https://api.plugpagamentos.com/v1'
   }
 
-  public async create({ endpoint, data }: CreateParams) {
-    return this.api.post(endpoint, data)
+  public async create({ endpoint, data, headers }: CreateParams) {
+    return this.api.post(endpoint, data, { headers })
   }
 
   public async fetch({ endpoint }: CreateParams) {

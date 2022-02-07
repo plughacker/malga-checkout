@@ -4,6 +4,8 @@ import { getCardBrand } from '@plug-checkout/utils'
 
 import payment from '../../../../stores/payment'
 import savedCards from '../../../../stores/saved-cards'
+import settings from '../../../../stores/settings'
+import dialog from '../../../../stores/dialog'
 
 import { PlugPaymentsCreditSavedCardsService } from './plug-payments-credit-saved-cards.service'
 
@@ -12,12 +14,13 @@ import { PlugPaymentsCreditSavedCardsService } from './plug-payments-credit-save
   styleUrl: 'plug-payments-credit-saved-cards.scss',
 })
 export class PlugPaymentsCreditSavedCards {
-  private handleSelectCard = (value: string) => {
+  private handleSelectCard = (value: string, cardId: string) => {
     payment.selectedPaymentMethod = value
+    payment.cardId = cardId
   }
 
   private handleCvvChange = (event) => {
-    payment.cvv = event.target.value
+    payment.cvv = event.target.value.trim()
   }
 
   private fetchSavedCards = () => {
@@ -46,7 +49,7 @@ export class PlugPaymentsCreditSavedCards {
               value={value}
               endIcon={getCardBrand(card.first6digits)}
               isChecked={isChecked}
-              onClicked={() => this.handleSelectCard(value)}
+              onClicked={() => this.handleSelectCard(value, card.id)}
             />
             {isChecked && (
               <div
@@ -85,10 +88,43 @@ export class PlugPaymentsCreditSavedCards {
     return mappedCards
   }
 
+  private handleShowDialog = (dialogData) => {
+    dialog.configs = { ...dialog.configs, ...dialogData }
+  }
+
+  private handleErrorModalButtonClicked = () => {
+    this.handleShowDialog({ open: false })
+  }
+
+  private handleSuccessModalButtonClicked = () => {
+    if (settings.dialogConfig.successRedirectUrl) {
+      location.assign(settings.dialogConfig.successRedirectUrl)
+    }
+
+    this.handleShowDialog({ open: false })
+  }
+
   render() {
     return (
       <Host class={{ 'plug-payments-credit-saved-cards__container': true }}>
         {this.renderSavedCards()}
+        {settings.dialogConfig.show && dialog.configs.open && (
+          <checkout-modal
+            mode={dialog.configs.mode}
+            open={dialog.configs.open}
+            amount={dialog.configs.amount}
+            errorDescription={dialog.configs.errorMessage}
+            actionButtonLabel={settings.dialogConfig.actionButtonLabel}
+            successActionButtonLabel={
+              settings.dialogConfig.successActionButtonLabel
+            }
+            errorActionButtonLabel={
+              settings.dialogConfig.errorActionButtonLabel
+            }
+            onSuccessButtonClicked={this.handleSuccessModalButtonClicked}
+            onErrorButtonClicked={this.handleErrorModalButtonClicked}
+          />
+        )}
       </Host>
     )
   }

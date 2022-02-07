@@ -210,21 +210,24 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
               />
             )}
 
+          {(settings.transactionConfig.customerId ||
+            settings.transactionConfig.customer) && (
+            <div class={{ 'plug-payments-credit-form__save-card': true }}>
+              <checkout-switch
+                checked={credit.form.saveCard}
+                onChanged={this.handleSaveCardChange}
+              />
+              <checkout-typography
+                variation="field"
+                color="darkness"
+                content={saveCardLabel}
+              />
+            </div>
+          )}
+
           {credit.validations.allFieldsIsBlank && (
             <checkout-error-message message="Preencha todos os campos para prosseguir." />
           )}
-
-          <div class={{ 'plug-payments-credit-form__save-card': true }}>
-            <checkout-switch
-              checked={credit.form.saveCard}
-              onChanged={this.handleSaveCardChange}
-            />
-            <checkout-typography
-              variation="field"
-              color="darkness"
-              content={saveCardLabel}
-            />
-          </div>
         </form>
       </Host>
     )

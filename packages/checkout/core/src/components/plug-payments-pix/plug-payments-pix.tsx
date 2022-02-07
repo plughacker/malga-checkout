@@ -14,36 +14,11 @@ export class PlugPaymentsPix {
     dialog.configs = { ...dialog.configs, ...dialogData }
   }
 
-  private getPixService = () => {
-    const data = {
-      pix: settings.paymentMethods.pix,
-      merchantId: settings.merchantId,
-      amount: settings.transactionConfig.amount,
-      statementDescriptor: settings.transactionConfig.statementDescriptor,
-      capture: settings.transactionConfig.capture,
-      orderId: settings.transactionConfig.orderId,
-      customer: settings.transactionConfig.customer,
-      customerId: settings.transactionConfig.customerId,
-      description: settings.transactionConfig.description,
-      currency: settings.transactionConfig.currency,
-    }
-
+  private checkIfPixIsPaid = async () => {
     const pixService = new PlugPaymentsPixService({
-      publicKey: settings.publicKey,
-      clientId: settings.clientId,
-      sandbox: settings.sandbox,
-      showDialog: settings.dialogConfig.show,
-      data,
-      onPaymentSuccess: () => null,
-      onPaymentFailed: () => null,
+      data: settings.paymentMethods.pix,
       onShowDialog: this.handleShowDialog,
     })
-
-    return pixService
-  }
-
-  private checkIfPixIsPaid = async () => {
-    const pixService = this.getPixService()
 
     await pixService.findCharge(payment.chargeId)
   }

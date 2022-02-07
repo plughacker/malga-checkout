@@ -3,7 +3,7 @@ import {
   transformExpirationDate,
 } from '@plug-checkout/utils'
 
-import { CardData, Data } from './tokens.types'
+import { CardData } from './tokens.types'
 
 export const formatCardPayload = (card: CardData) => ({
   cardNumber: cleanTextOnlyNumbers(card.cardNumber),
@@ -12,7 +12,7 @@ export const formatCardPayload = (card: CardData) => ({
   cardHolderName: card.name,
 })
 
-export const formatPayload = (data: Data) => {
+export const formatPayload = (data: CardData) => {
   const types = {
     card: formatCardPayload,
   }

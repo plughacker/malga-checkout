@@ -1,18 +1,4 @@
-import { Customer } from '../../providers/base-provider'
 import { PixAttributes } from '../../providers/pix'
-
-export interface PlugPaymentsPixChargePayload {
-  pix: PixAttributes
-  merchantId: string
-  amount: number
-  statementDescriptor: string
-  capture: boolean
-  orderId: string
-  description: string
-  customerId: string
-  customer: Customer
-  currency: string
-}
 
 export interface PlugPaymentsPixDialogState {
   open: boolean
@@ -76,15 +62,21 @@ export interface PlugPaymentsPixChargeError {
   errorStack: unknown
 }
 
+export type PlugPaymentsPixPaymentSuccessCallback = (
+  data: PlugPaymentsPixChargeSuccess,
+) => CustomEvent<{ data: PlugPaymentsPixChargeSuccess }>
+
+export type PlugPaymentsPixPaymentFailedCallback = (
+  error: PlugPaymentsPixChargeError,
+) => CustomEvent<{ error: PlugPaymentsPixChargeError }>
+
+export type PlugPaymentsPixDialogShowCallback = (
+  dialogData: PlugPaymentsPixDialogState,
+) => void
+
 export interface PlugPaymentsPixChargeRequest {
-  publicKey: string
-  clientId: string
-  sandbox: boolean
-  showDialog: boolean
-  data: PlugPaymentsPixChargePayload
-  onPaymentSuccess: (
-    data: PlugPaymentsPixChargeSuccess,
-  ) => CustomEvent<{ data }>
-  onPaymentFailed: (error: PlugPaymentsPixChargeError) => CustomEvent<{ error }>
-  onShowDialog: (dialogData: PlugPaymentsPixDialogState) => void
+  data?: PixAttributes
+  onPaymentSuccess?: PlugPaymentsPixPaymentSuccessCallback
+  onPaymentFailed?: PlugPaymentsPixPaymentFailedCallback
+  onShowDialog?: PlugPaymentsPixDialogShowCallback
 }

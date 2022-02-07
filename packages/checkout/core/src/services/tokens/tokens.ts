@@ -1,14 +1,14 @@
 import { Api } from '../api'
 
-import { TokenConstructor, Data } from './tokens.types'
+import { TokenConstructor, CardData } from './tokens.types'
 import { formatPayload } from './tokens.utils'
 
 export class Tokens {
   readonly api: Api
-  readonly data: Data
+  readonly data: CardData
 
-  constructor({ api, data }: TokenConstructor) {
-    this.api = api
+  constructor({ data }: TokenConstructor) {
+    this.api = new Api()
     this.data = data
   }
 

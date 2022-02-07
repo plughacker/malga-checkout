@@ -1,2 +1,2 @@
 export { Tokens } from './tokens'
-export { TokenConstructor, CardData, Data } from './tokens.types'
+export { TokenConstructor, CardData } from './tokens.types'

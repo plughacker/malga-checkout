@@ -1,17 +1,12 @@
-import { Api } from '../../../../services/api'
 import { CustomerCards } from '../../../../services/customer-cards'
 
-import settings from '../../../../stores/settings'
 import savedCards from '../../../../stores/saved-cards'
 
 export class PlugPaymentsCreditSavedCardsService {
   readonly customerCards: CustomerCards
 
   constructor() {
-    this.customerCards = new CustomerCards({
-      api: new Api(settings.clientId, settings.publicKey, settings.sandbox),
-      customerId: settings.transactionConfig.customerId,
-    })
+    this.customerCards = new CustomerCards()
   }
 
   public async listSavedCards() {

@@ -2,24 +2,26 @@ import axios, { AxiosRequestConfig, AxiosInstance } from 'axios'
 
 import { CreateParams } from './api.types'
 
+import settings from '../../stores/settings'
+
 export class Api {
   readonly axiosConfig: AxiosRequestConfig
   readonly api: AxiosInstance
 
-  constructor(clientId: string, publicKey: string, sandbox: boolean) {
+  constructor() {
     this.axiosConfig = {
-      baseURL: this.getCurrentHost(sandbox),
+      baseURL: this.getCurrentHost(),
       headers: {
         'Content-Type': 'application/json',
-        'X-Client-Id': clientId,
-        'X-Api-Key': publicKey,
+        'X-Client-Id': settings.clientId,
+        'X-Api-Key': settings.publicKey,
       },
     }
     this.api = axios.create(this.axiosConfig)
   }
 
-  private getCurrentHost(sandbox: boolean) {
-    if (sandbox) {
+  private getCurrentHost() {
+    if (settings.sandbox) {
       return 'https://sandbox-api.plugpagamentos.com/v1'
     }
 

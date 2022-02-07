@@ -1,5 +1,3 @@
-import { Api } from '../api'
-
 export interface CardData {
   type: 'card'
   cardNumber: string
@@ -8,9 +6,6 @@ export interface CardData {
   name: string
 }
 
-export type Data = CardData
-
 export interface TokenConstructor {
-  api: Api
-  data: Data
+  data: CardData
 }

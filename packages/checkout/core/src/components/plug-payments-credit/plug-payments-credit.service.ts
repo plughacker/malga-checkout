@@ -1,57 +1,50 @@
+import settings from '../../stores/settings'
+import payment from '../../stores/payment'
+import { handleSubmitValidation } from '../../stores/credit'
+
 import { Card } from '../../providers/card'
-import { Api } from '../../services/api'
-import { Charges, CreateChargeData } from '../../services/charges'
+
+import { Charges } from '../../services/charges'
 import { Customers } from '../../services/customers'
-import { cleanObjectProperties } from '@plug-checkout/utils'
+import { CustomerCards } from '../../services/customer-cards'
 
 import {
   PlugPaymentsCreditChargeRequest,
-  PlugPaymentsCreditChargePayload,
   PlugPaymentsCreditChargeSuccess,
   PlugPaymentsCreditChargeError,
-  PlugPaymentsCreditDialogState,
+  PlugPaymentsCreditFormValues,
+  PlugPaymentsCreditPaymentFailedCallback,
+  PlugPaymentsCreditPaymentSuccessCallback,
+  PlugPaymentsCreditShowDialogCallback,
+  PlugPaymentsCreditManualCard,
 } from './plug-payments-credit.types'
 
 export class PlugPaymentsCreditService {
   readonly charge: Charges
   readonly customer: Customers
-  readonly data: PlugPaymentsCreditChargePayload
-  readonly showDialog: boolean
-  readonly onPaymentSuccess: (
-    data: PlugPaymentsCreditChargeSuccess,
-  ) => CustomEvent<{ data: unknown }>
-  readonly onPaymentFailed: (
-    error: PlugPaymentsCreditChargeError,
-  ) => CustomEvent<{ error: unknown }>
-  readonly onShowDialog: (dialogData: PlugPaymentsCreditDialogState) => void
+  readonly customerCards: CustomerCards
+  readonly data: PlugPaymentsCreditFormValues
+  readonly onPaymentSuccess: PlugPaymentsCreditPaymentSuccessCallback
+  readonly onPaymentFailed: PlugPaymentsCreditPaymentFailedCallback
+  readonly onShowDialog: PlugPaymentsCreditShowDialogCallback
 
   constructor({
-    publicKey,
-    clientId,
-    sandbox,
     onPaymentSuccess,
     onPaymentFailed,
     onShowDialog,
-    showDialog,
     data,
   }: PlugPaymentsCreditChargeRequest) {
-    this.charge = new Charges({
-      api: new Api(clientId, publicKey, sandbox),
-      provider: new Card({ card: data.card, clientId, publicKey, sandbox }),
-    })
-    this.customer = new Customers({
-      api: new Api(clientId, publicKey, sandbox),
-      customer: data.customer,
-    })
+    this.charge = new Charges({ provider: new Card({ card: data }) })
+    this.customer = new Customers()
+    this.customerCards = new CustomerCards()
+    this.data = data
     this.onPaymentSuccess = onPaymentSuccess
     this.onPaymentFailed = onPaymentFailed
     this.onShowDialog = onShowDialog
-    this.showDialog = showDialog
-    this.data = data
   }
 
   private handlePaymentSuccess(data: PlugPaymentsCreditChargeSuccess) {
-    if (this.showDialog) {
+    if (settings.dialogConfig.show) {
       this.onShowDialog({
         mode: 'success',
         amount: data.amount,
@@ -63,7 +56,7 @@ export class PlugPaymentsCreditService {
   }
 
   private handlePaymentFailed(error: PlugPaymentsCreditChargeError) {
-    if (this.showDialog) {
+    if (settings.dialogConfig.show) {
       this.onShowDialog({
         open: true,
         mode: 'error',
@@ -76,35 +69,32 @@ export class PlugPaymentsCreditService {
   }
 
   private async handleCustomerId() {
-    if (!this.data.customer && !this.data.customerId) {
+    if (
+      !settings.transactionConfig.customer &&
+      !settings.transactionConfig.customerId
+    ) {
       return null
     }
 
-    if (this.data.customerId) {
-      return this.data.customerId
+    if (settings.transactionConfig.customerId) {
+      return settings.transactionConfig.customerId
     }
 
-    return await this.customer.create()
+    return this.customer.create()
   }
 
   public async pay() {
     try {
+      if (payment.selectedPaymentMethod === 'credit') {
+        const formIsValid = await handleSubmitValidation()
+
+        if (!formIsValid) return
+      }
+
+      if (payment.isSelectedSavedCard && !payment.cvv) return
+
       const customerId = await this.handleCustomerId()
-
-      const payload = cleanObjectProperties({
-        customerId,
-        currency: this.data.currency,
-        orderId: this.data.orderId,
-        description: this.data.description,
-        merchantId: this.data.merchantId,
-        amount: this.data.amount,
-        statementDescriptor: this.data.statementDescriptor,
-        capture: this.data.capture,
-      })
-
-      const checkoutResponse = await this.charge.create(
-        payload as CreateChargeData,
-      )
+      const checkoutResponse = await this.charge.create(customerId)
 
       if (checkoutResponse.hasError) {
         this.handlePaymentFailed({
@@ -114,6 +104,12 @@ export class PlugPaymentsCreditService {
         })
 
         return
+      }
+
+      if (this.data['saveCard' as keyof PlugPaymentsCreditManualCard]) {
+        await this.customerCards.create(
+          checkoutResponse.data.paymentSource.cardId,
+        )
       }
 
       this.handlePaymentSuccess(checkoutResponse.data)

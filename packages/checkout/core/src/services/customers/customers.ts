@@ -1,16 +1,17 @@
 import { Customer } from '../../providers/base-provider'
 import { Api } from '../api'
 
-import { CustomerConstructor } from './customers.types'
 import { formatPayload } from './customers.utils'
+
+import settings from '../../stores/settings'
 
 export class Customers {
   readonly api: Api
   readonly customer: Customer
 
-  constructor({ api, customer }: CustomerConstructor) {
-    this.api = api
-    this.customer = customer
+  constructor() {
+    this.api = new Api()
+    this.customer = settings.transactionConfig.customer
   }
 
   public async create() {

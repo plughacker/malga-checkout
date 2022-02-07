@@ -25,26 +25,27 @@ export class PlugCheckoutService {
     this.onPaymentFailed = onPaymentFailed
   }
 
-  private handlePaymentData = () => {
-    const commonData = {
-      merchantId: settings.merchantId,
-      amount: settings.transactionConfig.amount,
-      statementDescriptor: settings.transactionConfig.statementDescriptor,
-      capture: settings.transactionConfig.capture,
-      orderId: settings.transactionConfig.orderId,
-      description: settings.transactionConfig.description,
-      customerId: settings.transactionConfig.customerId,
-      customer: settings.transactionConfig.customer,
-      currency: settings.transactionConfig.currency,
+  private handleCreditPaymentData = () => {
+    if (payment.isSelectedSavedCard) {
+      return { cardId: payment.cardId, cardCvv: payment.cvv }
     }
+
+    return credit.form
+  }
+
+  private handlePaymentData = () => {
+    const credit = this.handleCreditPaymentData()
 
     const paymentMethodsData = {
-      pix: { ...commonData, pix: settings.paymentMethods.pix },
-      credit: { ...commonData, card: credit.form },
-      boleto: { ...commonData, boleto: settings.paymentMethods.boleto },
+      pix: settings.paymentMethods.pix,
+      boleto: settings.paymentMethods.boleto,
+      credit,
     }
 
-    return paymentMethodsData[payment.selectedPaymentMethod]
+    return (
+      paymentMethodsData[payment.selectedPaymentMethod] ||
+      paymentMethodsData.credit
+    )
   }
 
   private handlePaymentMethod() {
@@ -54,7 +55,9 @@ export class PlugCheckoutService {
       boleto: PlugPaymentsBoletoService,
     }
 
-    return paymentMethods[payment.selectedPaymentMethod]
+    return (
+      paymentMethods[payment.selectedPaymentMethod] || paymentMethods.credit
+    )
   }
 
   private handleShowDialog(dialogConfigs) {
@@ -83,8 +86,12 @@ export class PlugCheckoutService {
       },
     }
 
+    const currenInitialDialogConfigs = payment.isSelectedSavedCard
+      ? initialDialogConfigs.credit
+      : initialDialogConfigs[payment.selectedPaymentMethod]
+
     dialog.configs = {
-      ...initialDialogConfigs[payment.selectedPaymentMethod],
+      ...currenInitialDialogConfigs,
       ...dialogConfigs,
     }
   }
@@ -94,10 +101,6 @@ export class PlugCheckoutService {
     const paymentMethodData = this.handlePaymentData()
 
     const paymentMethod = new PaymentMethodClass({
-      publicKey: settings.publicKey,
-      clientId: settings.clientId,
-      sandbox: settings.sandbox,
-      showDialog: settings.dialogConfig.show,
       data: paymentMethodData,
       onPaymentSuccess: this.onPaymentSuccess,
       onPaymentFailed: this.onPaymentFailed,

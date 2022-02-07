@@ -1,14 +1,14 @@
 import { Api } from '../api'
 
-import { CustomerCardConstructor } from './customer-cards.types'
+import settings from '../../stores/settings'
 
 export class CustomerCards {
   readonly api: Api
   readonly customerId: string
 
-  constructor({ api, customerId }: CustomerCardConstructor) {
-    this.api = api
-    this.customerId = customerId
+  constructor() {
+    this.api = new Api()
+    this.customerId = settings.transactionConfig.customerId
   }
 
   public async create(cardId: string) {

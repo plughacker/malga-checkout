@@ -1,60 +1,44 @@
-import { cleanObjectProperties } from '@plug-checkout/utils'
-
 import payment from '../../stores/payment'
+import settings from '../../stores/settings'
 
 import { Pix } from '../../providers/pix'
-import { Api } from '../../services/api'
-import { Charges, CreateChargeData } from '../../services/charges'
+import { PixAttributes } from '../../providers/pix'
+
+import { Charges } from '../../services/charges'
 
 import {
   PlugPaymentsPixChargeRequest,
   PlugPaymentsPixChargeSuccess,
   PlugPaymentsPixChargeError,
-  PlugPaymentsPixChargePayload,
-  PlugPaymentsPixDialogState,
+  PlugPaymentsPixPaymentSuccessCallback,
+  PlugPaymentsPixPaymentFailedCallback,
+  PlugPaymentsPixDialogShowCallback,
 } from './plug-payments-pix.types'
 
 export class PlugPaymentsPixService {
-  readonly charge: Charges
-  readonly data: PlugPaymentsPixChargePayload
-  readonly showDialog: boolean
-  readonly onPaymentSuccess: (
-    data: PlugPaymentsPixChargeSuccess,
-  ) => CustomEvent<{ data: unknown }>
-  readonly onPaymentFailed: (
-    error: PlugPaymentsPixChargeError,
-  ) => CustomEvent<{ error: unknown }>
-  readonly onShowDialog: (dialogData: PlugPaymentsPixDialogState) => void
+  readonly charge?: Charges
+  readonly data?: PixAttributes
+  readonly onPaymentSuccess?: PlugPaymentsPixPaymentSuccessCallback
+  readonly onPaymentFailed?: PlugPaymentsPixPaymentFailedCallback
+  readonly onShowDialog?: PlugPaymentsPixDialogShowCallback
 
   constructor({
-    publicKey,
-    clientId,
-    sandbox,
     onPaymentSuccess,
     onPaymentFailed,
     onShowDialog,
-    showDialog,
     data,
   }: PlugPaymentsPixChargeRequest) {
-    this.charge = new Charges({
-      api: new Api(clientId, publicKey, sandbox),
-      provider: new Pix({
-        customer: data.customer,
-        customerId: data.customerId,
-        pix: data.pix,
-      }),
-    })
+    this.charge = new Charges({ provider: new Pix({ pix: data }) })
+    this.data = data
     this.onPaymentSuccess = onPaymentSuccess
     this.onPaymentFailed = onPaymentFailed
     this.onShowDialog = onShowDialog
-    this.showDialog = showDialog
-    this.data = data
   }
 
   private handlePaymentSuccess(data: PlugPaymentsPixChargeSuccess) {
     payment.chargeId = data.id
 
-    if (this.showDialog) {
+    if (settings.dialogConfig.show) {
       this.onShowDialog({
         mode: 'pix',
         amount: data.amount,
@@ -69,7 +53,7 @@ export class PlugPaymentsPixService {
   }
 
   private handlePaymentFailed(error: PlugPaymentsPixChargeError) {
-    if (this.showDialog) {
+    if (settings.dialogConfig.show) {
       this.onShowDialog({
         open: true,
         mode: 'error',
@@ -83,19 +67,7 @@ export class PlugPaymentsPixService {
 
   public async pay() {
     try {
-      const payload = cleanObjectProperties({
-        currency: this.data.currency,
-        orderId: this.data.orderId,
-        description: this.data.description,
-        merchantId: this.data.merchantId,
-        amount: this.data.amount,
-        statementDescriptor: this.data.statementDescriptor,
-        capture: this.data.capture,
-      })
-
-      const checkoutResponse = await this.charge.create(
-        payload as CreateChargeData,
-      )
+      const checkoutResponse = await this.charge.create()
 
       if (checkoutResponse.hasError) {
         this.handlePaymentFailed({

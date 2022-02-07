@@ -6,6 +6,7 @@ import {
   State,
   Event,
   EventEmitter,
+  Fragment,
 } from '@stencil/core'
 
 import settings from '../../stores/settings'
@@ -75,12 +76,16 @@ export class PlugCheckout {
   }
 
   private handlePay = async () => {
+    this.isLoading = true
+
     const plugCheckoutService = new PlugCheckoutService({
       onPaymentSuccess: (data) => this.paymentSuccess.emit({ data }),
       onPaymentFailed: (error) => this.paymentFailed.emit({ error }),
     })
 
     await plugCheckoutService.pay()
+
+    this.isLoading = false
   }
 
   private handleStoreSettings = () => {
@@ -107,7 +112,14 @@ export class PlugCheckout {
             <plug-payments paymentMethods={paymentMethods as PaymentMethods} />
           )}
 
-          {this.showCurrentPaymentMethod('credit') && <plug-payments-credit />}
+          {this.showCurrentPaymentMethod('credit') && (
+            <Fragment>
+              {settings.transactionConfig.customerId && (
+                <plug-payments-credit-saved-cards />
+              )}
+              <plug-payments-credit />
+            </Fragment>
+          )}
 
           {this.showCurrentPaymentMethod('boleto') && <plug-payments-boleto />}
 
@@ -117,6 +129,7 @@ export class PlugCheckout {
             <checkout-button
               isLoading={this.isLoading}
               label="Pagar"
+              disabled={this.isLoading}
               onClick={this.handlePay}
             />
             <checkout-icon icon="poweredByPlug" />

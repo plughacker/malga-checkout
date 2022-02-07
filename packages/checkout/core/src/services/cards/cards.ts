@@ -6,8 +6,8 @@ export class Cards {
   readonly api: Api
   readonly tokenId: string
 
-  constructor({ api, tokenId }: CardConstructor) {
-    this.api = api
+  constructor({ tokenId }: CardConstructor) {
+    this.api = new Api()
     this.tokenId = tokenId
   }
 

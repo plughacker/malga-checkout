@@ -91,7 +91,7 @@ export class PlugPaymentsCreditService {
         if (!formIsValid) return
       }
 
-      if (payment.isSelectedSavedCard && !payment.cvv) return
+      if (payment.isSelectedSavedCard && payment.cvv.trim().length < 3) return
 
       const customerId = await this.handleCustomerId()
       const checkoutResponse = await this.charge.create(customerId)

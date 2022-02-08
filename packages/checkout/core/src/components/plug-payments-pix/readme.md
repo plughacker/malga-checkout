@@ -3,34 +3,6 @@
 <!-- Auto Generated Below -->
 
 
-## Properties
-
-| Property              | Attribute              | Description | Type                 | Default     |
-| --------------------- | ---------------------- | ----------- | -------------------- | ----------- |
-| `amount`              | `amount`               |             | `number`             | `undefined` |
-| `capture`             | `capture`              |             | `boolean`            | `false`     |
-| `clientId`            | `client-id`            |             | `string`             | `undefined` |
-| `currency`            | `currency`             |             | `string`             | `'BRL'`     |
-| `customer`            | --                     |             | `Customer`           | `undefined` |
-| `customerId`          | `customer-id`          |             | `string`             | `undefined` |
-| `description`         | `description`          |             | `string`             | `undefined` |
-| `dialogConfig`        | --                     |             | `PlugCheckoutDialog` | `undefined` |
-| `merchantId`          | `merchant-id`          |             | `string`             | `undefined` |
-| `orderId`             | `order-id`             |             | `string`             | `undefined` |
-| `pix`                 | --                     |             | `PixAttributes`      | `undefined` |
-| `publicKey`           | `public-key`           |             | `string`             | `undefined` |
-| `sandbox`             | `sandbox`              |             | `boolean`            | `false`     |
-| `statementDescriptor` | `statement-descriptor` |             | `string`             | `undefined` |
-
-
-## Events
-
-| Event               | Description | Type                                                   |
-| ------------------- | ----------- | ------------------------------------------------------ |
-| `pixPaymentFailed`  |             | `CustomEvent<{ error: PlugPaymentsPixChargeError; }>`  |
-| `pixPaymentSuccess` |             | `CustomEvent<{ data: PlugPaymentsPixChargeSuccess; }>` |
-
-
 ## Dependencies
 
 ### Used by
@@ -49,9 +21,6 @@ graph TD;
   plug-payments-pix --> checkout-manual-payment
   plug-payments-pix --> checkout-modal
   checkout-manual-payment --> checkout-typography
-  checkout-manual-payment --> checkout-button
-  checkout-manual-payment --> checkout-icon
-  checkout-button --> checkout-icon
   checkout-modal --> checkout-modal-success
   checkout-modal --> checkout-modal-error
   checkout-modal --> checkout-modal-pix
@@ -59,6 +28,7 @@ graph TD;
   checkout-modal-success --> checkout-icon
   checkout-modal-success --> checkout-typography
   checkout-modal-success --> checkout-button
+  checkout-button --> checkout-icon
   checkout-modal-error --> checkout-icon
   checkout-modal-error --> checkout-typography
   checkout-modal-error --> checkout-button

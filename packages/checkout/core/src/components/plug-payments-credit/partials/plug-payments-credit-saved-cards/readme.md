@@ -1,4 +1,6 @@
-# plug-payments-boleto
+# plug-payments-credit-saved-cards
+
+
 
 <!-- Auto Generated Below -->
 
@@ -7,20 +9,29 @@
 
 ### Used by
 
- - [plug-checkout](../plug-checkout)
- - [plug-payments](../plug-payments)
+ - [plug-checkout](../../../plug-checkout)
+ - [plug-payments](../../../plug-payments)
 
 ### Depends on
 
-- checkout-manual-payment
+- checkout-radio-field
+- checkout-typography
+- checkout-text-field
+- checkout-error-message
 - checkout-modal
 
 ### Graph
 ```mermaid
 graph TD;
-  plug-payments-boleto --> checkout-manual-payment
-  plug-payments-boleto --> checkout-modal
-  checkout-manual-payment --> checkout-typography
+  plug-payments-credit-saved-cards --> checkout-radio-field
+  plug-payments-credit-saved-cards --> checkout-typography
+  plug-payments-credit-saved-cards --> checkout-text-field
+  plug-payments-credit-saved-cards --> checkout-error-message
+  plug-payments-credit-saved-cards --> checkout-modal
+  checkout-radio-field --> checkout-icon
+  checkout-text-field --> checkout-typography
+  checkout-text-field --> checkout-icon
+  checkout-error-message --> checkout-typography
   checkout-modal --> checkout-modal-success
   checkout-modal --> checkout-modal-error
   checkout-modal --> checkout-modal-pix
@@ -44,9 +55,9 @@ graph TD;
   checkout-modal-boleto --> checkout-typography
   checkout-modal-boleto --> checkout-clipboard-button
   checkout-modal-boleto --> checkout-button
-  plug-checkout --> plug-payments-boleto
-  plug-payments --> plug-payments-boleto
-  style plug-payments-boleto fill:#f9f,stroke:#333,stroke-width:4px
+  plug-checkout --> plug-payments-credit-saved-cards
+  plug-payments --> plug-payments-credit-saved-cards
+  style plug-payments-credit-saved-cards fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

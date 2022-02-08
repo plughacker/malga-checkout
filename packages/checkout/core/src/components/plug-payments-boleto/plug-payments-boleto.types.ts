@@ -1,18 +1,4 @@
-import { Customer } from '../../providers/base-provider'
 import { BoletoAttributes } from '../../providers/boleto'
-
-export interface PlugPaymentsBoletoChargePayload {
-  boleto: BoletoAttributes
-  merchantId: string
-  amount: number
-  statementDescriptor: string
-  capture: boolean
-  orderId: string
-  description: string
-  customerId: string
-  customer: Customer
-  currency: string
-}
 
 export interface PlugPaymentsBoletoChargeSuccess {
   id: string
@@ -68,17 +54,21 @@ export interface PlugPaymentsBoletoChargeError {
   errorStack: unknown
 }
 
+export type PlugPaymentsBoletoPaymentSuccessCallback = (
+  data: PlugPaymentsBoletoChargeSuccess,
+) => CustomEvent<{ data: PlugPaymentsBoletoChargeSuccess }>
+
+export type PlugPaymentsBoletoPaymentFailedCallback = (
+  error: PlugPaymentsBoletoChargeError,
+) => CustomEvent<{ error: PlugPaymentsBoletoChargeError }>
+
+export type PlugPaymentsBoletoShowDialogCallback = (
+  dialogData: PlugPaymentsBoletoDialogState,
+) => void
+
 export interface PlugPaymentsBoletoChargeRequest {
-  publicKey: string
-  clientId: string
-  sandbox: boolean
-  showDialog: boolean
-  data: PlugPaymentsBoletoChargePayload
-  onPaymentSuccess: (
-    data: PlugPaymentsBoletoChargeSuccess,
-  ) => CustomEvent<{ data }>
-  onPaymentFailed: (
-    error: PlugPaymentsBoletoChargeError,
-  ) => CustomEvent<{ error }>
-  onShowDialog: (dialogData: PlugPaymentsBoletoDialogState) => void
+  data: BoletoAttributes
+  onPaymentSuccess: PlugPaymentsBoletoPaymentSuccessCallback
+  onPaymentFailed: PlugPaymentsBoletoPaymentFailedCallback
+  onShowDialog: PlugPaymentsBoletoShowDialogCallback
 }

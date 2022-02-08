@@ -1,16 +1,19 @@
 import { BaseProvider } from '../base-provider'
 
-import {
-  cleanTextOnlyNumbers,
-  parseInstallments,
-  transformExpirationDate,
-} from '@plug-checkout/utils'
+import { parseInstallments } from '@plug-checkout/utils'
 
 import {
+  CardForm,
+  CardTokenized,
   CardAttributes,
   PaymentSourceCard,
   PaymentMethodCard,
 } from './card.types'
+
+import {
+  handleAlreadyTokenizedCard,
+  handleTokenizationFlow,
+} from './card.utils'
 
 export class Card extends BaseProvider {
   readonly card: CardAttributes
@@ -23,19 +26,20 @@ export class Card extends BaseProvider {
   public getPaymentMethod(): PaymentMethodCard {
     return {
       paymentType: 'credit',
-      installments: parseInstallments(this.card.installments),
+      installments: parseInstallments(
+        this.card['installments' as keyof CardForm],
+      ),
     }
   }
 
-  public getPaymentSource(): PaymentSourceCard {
-    return {
-      sourceType: 'card',
-      card: {
-        cardNumber: cleanTextOnlyNumbers(this.card.cardNumber),
-        cardCvv: this.card.cvv,
-        cardExpirationDate: transformExpirationDate(this.card.expirationDate),
-        cardHolderName: this.card.name,
-      },
+  public async getPaymentSource(): Promise<PaymentSourceCard> {
+    if (
+      this.card['cardCvv' as keyof CardTokenized] &&
+      this.card['cardId' as keyof CardTokenized]
+    ) {
+      return handleAlreadyTokenizedCard(this.card)
     }
+
+    return await handleTokenizationFlow(this.card)
   }
 }

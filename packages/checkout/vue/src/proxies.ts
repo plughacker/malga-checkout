@@ -11,6 +11,7 @@ export const PlugCheckout = /*@__PURE__*/ defineContainer<JSX.PlugCheckout>(
   [
     'clientId',
     'publicKey',
+    'idempotencyKey',
     'merchantId',
     'sandbox',
     'dialogConfig',

@@ -5,11 +5,16 @@ import {
   BoletoConstructor,
 } from './boleto.types'
 
+import settings from '../../stores/settings'
+
 export class Boleto extends BaseProvider {
   readonly boleto: BoletoAttributes
 
-  constructor({ customer, customerId, boleto }: BoletoConstructor) {
-    super({ customer, customerId })
+  constructor({ boleto }: BoletoConstructor) {
+    super({
+      customer: settings.transactionConfig.customer,
+      customerId: settings.transactionConfig.customerId,
+    })
     this.boleto = boleto
   }
 

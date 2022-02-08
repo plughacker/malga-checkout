@@ -1,55 +1,40 @@
 import { Boleto } from '../../providers/boleto'
-import { Api } from '../../services/api'
-import { Charges, CreateChargeData } from '../../services/charges'
-import { cleanObjectProperties } from '@plug-checkout/utils'
+import { Charges } from '../../services/charges'
 
 import {
   PlugPaymentsBoletoChargeRequest,
   PlugPaymentsBoletoChargeSuccess,
-  PlugPaymentsBoletoChargePayload,
   PlugPaymentsBoletoChargeError,
-  PlugPaymentsBoletoDialogState,
+  PlugPaymentsBoletoPaymentFailedCallback,
+  PlugPaymentsBoletoPaymentSuccessCallback,
+  PlugPaymentsBoletoShowDialogCallback,
 } from './plug-payments-boleto.types'
+
+import { BoletoAttributes } from '../../providers/boleto'
+import settings from '../../stores/settings'
 
 export class PlugPaymentsBoletoService {
   readonly charge: Charges
-  readonly data: PlugPaymentsBoletoChargePayload
-  readonly showDialog: boolean
-  readonly onPaymentSuccess: (
-    data: PlugPaymentsBoletoChargeSuccess,
-  ) => CustomEvent<{ data: unknown }>
-  readonly onPaymentFailed: (
-    error: PlugPaymentsBoletoChargeError,
-  ) => CustomEvent<{ error: unknown }>
-  readonly onShowDialog: (dialogData: PlugPaymentsBoletoDialogState) => void
+  readonly data: BoletoAttributes
+  readonly onPaymentSuccess: PlugPaymentsBoletoPaymentSuccessCallback
+  readonly onPaymentFailed: PlugPaymentsBoletoPaymentFailedCallback
+  readonly onShowDialog: PlugPaymentsBoletoShowDialogCallback
 
   constructor({
-    publicKey,
-    clientId,
-    sandbox,
     onPaymentSuccess,
     onPaymentFailed,
     onShowDialog,
-    showDialog,
     data,
   }: PlugPaymentsBoletoChargeRequest) {
-    this.charge = new Charges({
-      api: new Api(clientId, publicKey, sandbox),
-      provider: new Boleto({
-        customer: data.customer,
-        customerId: data.customerId,
-        boleto: data.boleto,
-      }),
-    })
+    this.charge = new Charges({ provider: new Boleto({ boleto: data }) })
+    this.data = data
     this.onPaymentSuccess = onPaymentSuccess
     this.onPaymentFailed = onPaymentFailed
     this.onShowDialog = onShowDialog
-    this.showDialog = showDialog
-    this.data = data
   }
 
   private handlePaymentSuccess(data: PlugPaymentsBoletoChargeSuccess) {
-    if (this.showDialog) {
+    if (settings.dialogConfig.show) {
       this.onShowDialog({
         mode: 'boleto',
         amount: data.amount,
@@ -64,7 +49,7 @@ export class PlugPaymentsBoletoService {
   }
 
   private handlePaymentFailed(error: PlugPaymentsBoletoChargeError) {
-    if (this.showDialog) {
+    if (settings.dialogConfig.show) {
       this.onShowDialog({
         open: true,
         mode: 'error',
@@ -78,19 +63,7 @@ export class PlugPaymentsBoletoService {
 
   public async pay() {
     try {
-      const payload = cleanObjectProperties({
-        currency: this.data.currency,
-        orderId: this.data.orderId,
-        description: this.data.description,
-        merchantId: this.data.merchantId,
-        amount: this.data.amount,
-        statementDescriptor: this.data.statementDescriptor,
-        capture: this.data.capture,
-      })
-
-      const checkoutResponse = await this.charge.create(
-        payload as CreateChargeData,
-      )
+      const checkoutResponse = await this.charge.create()
 
       if (checkoutResponse.hasError) {
         this.handlePaymentFailed({

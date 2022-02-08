@@ -22,6 +22,13 @@ import EyeSlashIcon from '../../assets/icons/eye-slash.svg'
 import PoweredByPlug from '../../assets/icons/powered-by-plug.svg'
 import PixIcon from '../../assets/icons/pix.svg'
 import NewTabIcon from '../../assets/icons/new-tab.svg'
+import VisaIcon from '../../assets/icons/visa.svg'
+import MatercardIcon from '../../assets/icons/mastercard.svg'
+import HipercardIcon from '../../assets/icons/hipercard.svg'
+import EloIcon from '../../assets/icons/elo.svg'
+import DiscoverIcon from '../../assets/icons/discover.svg'
+import AmexIcon from '../../assets/icons/amex.svg'
+import DinersclubIcon from '../../assets/icons/dinersclub.svg'
 
 @Component({ tag: 'checkout-icon', styleUrl: 'checkout-icon.scss' })
 export class CheckoutIcon implements ComponentInterface {
@@ -50,6 +57,13 @@ export class CheckoutIcon implements ComponentInterface {
       clipboard: ClipboardIcon,
       pix: PixIcon,
       newTab: NewTabIcon,
+      amex: AmexIcon,
+      dinersclub: DinersclubIcon,
+      discover: DiscoverIcon,
+      elo: EloIcon,
+      hipercard: HipercardIcon,
+      mastercard: MatercardIcon,
+      visa: VisaIcon,
     }
 
     return icons[this.icon]

@@ -5,7 +5,12 @@ export interface CardFields {
   cardHolderName: string
 }
 
-export interface CardAttributes {
+export interface CardTokenized {
+  cardId: string
+  cardCvv: string
+}
+
+export interface CardForm {
   cardNumber: string
   expirationDate: string
   cvv: string
@@ -13,9 +18,12 @@ export interface CardAttributes {
   installments: string
 }
 
+export type CardAttributes = CardTokenized | CardForm
+
 export interface PaymentSourceCard {
   sourceType: 'card'
-  card: CardFields
+  cardId: string
+  cardCvv: string
 }
 
 export interface PaymentMethodCard {

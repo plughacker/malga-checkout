@@ -1,5 +1,3 @@
-import { Customer } from '../../providers/base-provider'
-
 export interface PlugPaymentsCreditDialogState {
   open: boolean
   mode?: 'pix' | 'boleto' | 'success' | 'error'
@@ -7,31 +5,23 @@ export interface PlugPaymentsCreditDialogState {
   errorMessage?: string
 }
 
-export interface PlugPaymentsCreditFormValues {
+export interface PlugPaymentsCreditTokenizedCard {
+  cardId: string
+  cardCvv: string
+}
+
+export interface PlugPaymentsCreditManualCard {
   cardNumber: string
   expirationDate: string
   cvv: string
   name: string
   installments: string
+  saveCard: boolean
 }
 
-export interface PlugPaymentsCreditInstallmentsConfig {
-  show: boolean
-  quantity: number
-}
-
-export interface PlugPaymentsCreditChargePayload {
-  card: PlugPaymentsCreditFormValues
-  merchantId: string
-  amount: number
-  statementDescriptor: string
-  capture: boolean
-  orderId: string
-  description: string
-  customerId?: string
-  customer?: Customer
-  currency: string
-}
+export type PlugPaymentsCreditFormValues =
+  | PlugPaymentsCreditTokenizedCard
+  | PlugPaymentsCreditManualCard
 
 export interface PlugPaymentsCreditChargeSuccess {
   id: string
@@ -74,17 +64,21 @@ export interface PlugPaymentsCreditChargeError {
   errorStack: unknown
 }
 
+export type PlugPaymentsCreditPaymentSuccessCallback = (
+  data: PlugPaymentsCreditChargeSuccess,
+) => CustomEvent<{ data: PlugPaymentsCreditChargeSuccess }>
+
+export type PlugPaymentsCreditPaymentFailedCallback = (
+  error: PlugPaymentsCreditChargeError,
+) => CustomEvent<{ error: PlugPaymentsCreditChargeError }>
+
+export type PlugPaymentsCreditShowDialogCallback = (
+  dialogData: PlugPaymentsCreditDialogState,
+) => void
+
 export interface PlugPaymentsCreditChargeRequest {
-  publicKey: string
-  clientId: string
-  sandbox: boolean
-  showDialog: boolean
-  data: PlugPaymentsCreditChargePayload
-  onPaymentSuccess: (
-    data: PlugPaymentsCreditChargeSuccess,
-  ) => CustomEvent<{ data }>
-  onPaymentFailed: (
-    error: PlugPaymentsCreditChargeError,
-  ) => CustomEvent<{ error }>
-  onShowDialog: (dialogData: PlugPaymentsCreditDialogState) => void
+  data: PlugPaymentsCreditFormValues
+  onPaymentSuccess: PlugPaymentsCreditPaymentSuccessCallback
+  onPaymentFailed: PlugPaymentsCreditPaymentFailedCallback
+  onShowDialog: PlugPaymentsCreditShowDialogCallback
 }

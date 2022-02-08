@@ -7,15 +7,15 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type                                                                                                                                                                                                                                                        | Default     |
-| ------------- | -------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `customClass` | `custom-class` |             | `string`                                                                                                                                                                                                                                                    | `undefined` |
-| `disabled`    | `disabled`     |             | `boolean`                                                                                                                                                                                                                                                   | `false`     |
-| `fullWidth`   | `full-width`   |             | `boolean`                                                                                                                                                                                                                                                   | `undefined` |
-| `icon`        | `icon`         |             | `"arrowDown" \| "arrowLeft" \| "calendar" \| "check" \| "checkLarge" \| "clipboard" \| "creditCard" \| "cvv" \| "dollar" \| "edit" \| "error" \| "eye" \| "eyeSlash" \| "lock" \| "newTab" \| "pix" \| "poweredByPlug" \| "spinner" \| "user" \| "warning"` | `undefined` |
-| `isLoading`   | `is-loading`   |             | `boolean`                                                                                                                                                                                                                                                   | `undefined` |
-| `label`       | `label`        |             | `string`                                                                                                                                                                                                                                                    | `undefined` |
-| `type`        | `type`         |             | `"button" \| "reset" \| "submit"`                                                                                                                                                                                                                           | `'button'`  |
+| Property      | Attribute      | Description | Type                                                                                                                                                                                                                                                                                                                                                  | Default     |
+| ------------- | -------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `customClass` | `custom-class` |             | `string`                                                                                                                                                                                                                                                                                                                                              | `undefined` |
+| `disabled`    | `disabled`     |             | `boolean`                                                                                                                                                                                                                                                                                                                                             | `false`     |
+| `fullWidth`   | `full-width`   |             | `boolean`                                                                                                                                                                                                                                                                                                                                             | `undefined` |
+| `icon`        | `icon`         |             | `"arrowDown" \| "calendar" \| "check" \| "creditCard" \| "cvv" \| "dollar" \| "lock" \| "spinner" \| "user" \| "warning" \| "poweredByPlug" \| "edit" \| "eye" \| "eyeSlash" \| "arrowLeft" \| "error" \| "checkLarge" \| "clipboard" \| "pix" \| "newTab" \| "amex" \| "dinersclub" \| "discover" \| "elo" \| "hipercard" \| "mastercard" \| "visa"` | `undefined` |
+| `isLoading`   | `is-loading`   |             | `boolean`                                                                                                                                                                                                                                                                                                                                             | `undefined` |
+| `label`       | `label`        |             | `string`                                                                                                                                                                                                                                                                                                                                              | `undefined` |
+| `type`        | `type`         |             | `"button" \| "reset" \| "submit"`                                                                                                                                                                                                                                                                                                                     | `'button'`  |
 
 
 ## Events
@@ -31,7 +31,6 @@
 
 ### Used by
 
- - [checkout-manual-payment](../checkout-manual-payment)
  - [checkout-modal-boleto](../checkout-modal/partials/checkout-modal-boleto)
  - [checkout-modal-error](../checkout-modal/partials/checkout-modal-error)
  - [checkout-modal-pix](../checkout-modal/partials/checkout-modal-pix)
@@ -45,7 +44,6 @@
 ```mermaid
 graph TD;
   checkout-button --> checkout-icon
-  checkout-manual-payment --> checkout-button
   checkout-modal-boleto --> checkout-button
   checkout-modal-error --> checkout-button
   checkout-modal-pix --> checkout-button

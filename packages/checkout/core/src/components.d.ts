@@ -7,16 +7,11 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { PlugCheckoutDialog, PlugCheckoutPaymentMethods, PlugCheckoutTransaction } from "./components/plug-checkout/plug-checkout.types";
 import { PaymentMethods, PlugPaymentsChargeError, PlugPaymentsChargeSuccess } from "./components/plug-payments/plug-payments.types";
-import { PixAttributes } from "./providers/pix";
-import { BoletoAttributes } from "./providers/boleto";
-import { PlugPaymentsCreditChargeError, PlugPaymentsCreditChargeSuccess, PlugPaymentsCreditFormValues, PlugPaymentsCreditInstallmentsConfig } from "./components/plug-payments-credit/plug-payments-credit.types";
-import { Customer } from "./providers/base-provider";
-import { PlugPaymentsBoletoChargeError, PlugPaymentsBoletoChargeSuccess } from "./components/plug-payments-boleto/plug-payments-boleto.types";
-import { PlugPaymentsPixChargeError, PlugPaymentsPixChargeSuccess } from "./components/plug-payments-pix/plug-payments-pix.types";
 export namespace Components {
     interface PlugCheckout {
         "clientId": string;
         "dialogConfig": PlugCheckoutDialog;
+        "idempotencyKey": string;
         "merchantId": string;
         "paymentMethods": PlugCheckoutPaymentMethods;
         "publicKey": string;
@@ -24,79 +19,17 @@ export namespace Components {
         "transactionConfig": PlugCheckoutTransaction;
     }
     interface PlugPayments {
-        "amount": number;
-        "boleto"?: BoletoAttributes;
-        "capture": boolean;
-        "clientId": string;
-        "currency": string;
-        "customer"?: Customer;
-        "customerId"?: string;
-        "description"?: string;
-        "dialogConfig": PlugCheckoutDialog;
-        "installments"?: PlugPaymentsCreditInstallmentsConfig;
-        "merchantId": string;
-        "orderId"?: string;
         "paymentMethods": PaymentMethods;
-        "pix"?: PixAttributes;
-        "publicKey": string;
-        "sandbox": boolean;
-        "showCreditCard": boolean;
-        "statementDescriptor": string;
     }
     interface PlugPaymentsBoleto {
-        "amount": number;
-        "boleto": BoletoAttributes;
-        "capture": boolean;
-        "clientId": string;
-        "currency": string;
-        "customer"?: Customer;
-        "customerId"?: string;
-        "description"?: string;
-        "dialogConfig": PlugCheckoutDialog;
-        "merchantId": string;
-        "orderId"?: string;
-        "publicKey": string;
-        "sandbox": boolean;
-        "statementDescriptor": string;
     }
     interface PlugPaymentsCredit {
-        "amount": number;
-        "capture": boolean;
-        "clientId": string;
-        "currency": string;
-        "customer"?: Customer;
-        "customerId"?: string;
-        "description"?: string;
-        "dialogConfig": PlugCheckoutDialog;
-        "installmentsConfig": PlugPaymentsCreditInstallmentsConfig;
-        "merchantId": string;
-        "orderId"?: string;
-        "publicKey": string;
-        "sandbox": boolean;
-        "showCreditCard": boolean;
-        "statementDescriptor": string;
     }
     interface PlugPaymentsCreditForm {
-        "amount": number;
-        "formValues": PlugPaymentsCreditFormValues;
-        "installmentsConfig": PlugPaymentsCreditInstallmentsConfig;
-        "isLoading": boolean;
+    }
+    interface PlugPaymentsCreditSavedCards {
     }
     interface PlugPaymentsPix {
-        "amount": number;
-        "capture": boolean;
-        "clientId": string;
-        "currency": string;
-        "customer"?: Customer;
-        "customerId"?: string;
-        "description"?: string;
-        "dialogConfig": PlugCheckoutDialog;
-        "merchantId": string;
-        "orderId"?: string;
-        "pix": PixAttributes;
-        "publicKey": string;
-        "sandbox": boolean;
-        "statementDescriptor": string;
     }
 }
 declare global {
@@ -130,6 +63,12 @@ declare global {
         prototype: HTMLPlugPaymentsCreditFormElement;
         new (): HTMLPlugPaymentsCreditFormElement;
     };
+    interface HTMLPlugPaymentsCreditSavedCardsElement extends Components.PlugPaymentsCreditSavedCards, HTMLStencilElement {
+    }
+    var HTMLPlugPaymentsCreditSavedCardsElement: {
+        prototype: HTMLPlugPaymentsCreditSavedCardsElement;
+        new (): HTMLPlugPaymentsCreditSavedCardsElement;
+    };
     interface HTMLPlugPaymentsPixElement extends Components.PlugPaymentsPix, HTMLStencilElement {
     }
     var HTMLPlugPaymentsPixElement: {
@@ -142,6 +81,7 @@ declare global {
         "plug-payments-boleto": HTMLPlugPaymentsBoletoElement;
         "plug-payments-credit": HTMLPlugPaymentsCreditElement;
         "plug-payments-credit-form": HTMLPlugPaymentsCreditFormElement;
+        "plug-payments-credit-saved-cards": HTMLPlugPaymentsCreditSavedCardsElement;
         "plug-payments-pix": HTMLPlugPaymentsPixElement;
     }
 }
@@ -149,6 +89,7 @@ declare namespace LocalJSX {
     interface PlugCheckout {
         "clientId"?: string;
         "dialogConfig"?: PlugCheckoutDialog;
+        "idempotencyKey"?: string;
         "merchantId"?: string;
         "onPaymentFailed"?: (event: CustomEvent<{
     error: PlugPaymentsChargeError
@@ -162,105 +103,18 @@ declare namespace LocalJSX {
         "transactionConfig"?: PlugCheckoutTransaction;
     }
     interface PlugPayments {
-        "amount"?: number;
-        "boleto"?: BoletoAttributes;
-        "capture"?: boolean;
-        "clientId"?: string;
-        "currency"?: string;
-        "customer"?: Customer;
-        "customerId"?: string;
-        "description"?: string;
-        "dialogConfig"?: PlugCheckoutDialog;
-        "installments"?: PlugPaymentsCreditInstallmentsConfig;
-        "merchantId"?: string;
-        "onCheckoutPaymentFailed"?: (event: CustomEvent<{
-    error: PlugPaymentsChargeError
-  }>) => void;
-        "onCheckoutPaymentSuccess"?: (event: CustomEvent<{
-    data: PlugPaymentsChargeSuccess
-  }>) => void;
-        "orderId"?: string;
         "paymentMethods"?: PaymentMethods;
-        "pix"?: PixAttributes;
-        "publicKey"?: string;
-        "sandbox"?: boolean;
-        "showCreditCard"?: boolean;
-        "statementDescriptor"?: string;
     }
     interface PlugPaymentsBoleto {
-        "amount"?: number;
-        "boleto"?: BoletoAttributes;
-        "capture"?: boolean;
-        "clientId"?: string;
-        "currency"?: string;
-        "customer"?: Customer;
-        "customerId"?: string;
-        "description"?: string;
-        "dialogConfig"?: PlugCheckoutDialog;
-        "merchantId"?: string;
-        "onBoletoPaymentFailed"?: (event: CustomEvent<{
-    error: PlugPaymentsBoletoChargeError
-  }>) => void;
-        "onBoletoPaymentSuccess"?: (event: CustomEvent<{
-    data: PlugPaymentsBoletoChargeSuccess
-  }>) => void;
-        "orderId"?: string;
-        "publicKey"?: string;
-        "sandbox"?: boolean;
-        "statementDescriptor"?: string;
     }
     interface PlugPaymentsCredit {
-        "amount"?: number;
-        "capture"?: boolean;
-        "clientId"?: string;
-        "currency"?: string;
-        "customer"?: Customer;
-        "customerId"?: string;
-        "description"?: string;
-        "dialogConfig"?: PlugCheckoutDialog;
-        "installmentsConfig"?: PlugPaymentsCreditInstallmentsConfig;
-        "merchantId"?: string;
-        "onCreditPaymentFailed"?: (event: CustomEvent<{
-    error: PlugPaymentsCreditChargeError
-  }>) => void;
-        "onCreditPaymentSuccess"?: (event: CustomEvent<{
-    data: PlugPaymentsCreditChargeSuccess
-  }>) => void;
-        "orderId"?: string;
-        "publicKey"?: string;
-        "sandbox"?: boolean;
-        "showCreditCard"?: boolean;
-        "statementDescriptor"?: string;
     }
     interface PlugPaymentsCreditForm {
-        "amount"?: number;
-        "formValues"?: PlugPaymentsCreditFormValues;
-        "installmentsConfig"?: PlugPaymentsCreditInstallmentsConfig;
-        "isLoading"?: boolean;
-        "onFieldChange"?: (event: CustomEvent<{ field: string; value: string }>) => void;
-        "onFormSubmit"?: (event: CustomEvent<void>) => void;
+        "onCurrentFieldChange"?: (event: CustomEvent<{ field: string }>) => void;
+    }
+    interface PlugPaymentsCreditSavedCards {
     }
     interface PlugPaymentsPix {
-        "amount"?: number;
-        "capture"?: boolean;
-        "clientId"?: string;
-        "currency"?: string;
-        "customer"?: Customer;
-        "customerId"?: string;
-        "description"?: string;
-        "dialogConfig"?: PlugCheckoutDialog;
-        "merchantId"?: string;
-        "onPixPaymentFailed"?: (event: CustomEvent<{
-    error: PlugPaymentsPixChargeError
-  }>) => void;
-        "onPixPaymentSuccess"?: (event: CustomEvent<{
-    data: PlugPaymentsPixChargeSuccess
-  }>) => void;
-        "orderId"?: string;
-        "pix"?: PixAttributes;
-        "publicKey"?: string;
-        "sandbox"?: boolean;
-        "statementDescriptor"?: string;
     }
     interface IntrinsicElements {
         "plug-checkout": PlugCheckout;
@@ -268,6 +122,7 @@ declare namespace LocalJSX {
         "plug-payments-boleto": PlugPaymentsBoleto;
         "plug-payments-credit": PlugPaymentsCredit;
         "plug-payments-credit-form": PlugPaymentsCreditForm;
+        "plug-payments-credit-saved-cards": PlugPaymentsCreditSavedCards;
         "plug-payments-pix": PlugPaymentsPix;
     }
 }
@@ -280,6 +135,7 @@ declare module "@stencil/core" {
             "plug-payments-boleto": LocalJSX.PlugPaymentsBoleto & JSXBase.HTMLAttributes<HTMLPlugPaymentsBoletoElement>;
             "plug-payments-credit": LocalJSX.PlugPaymentsCredit & JSXBase.HTMLAttributes<HTMLPlugPaymentsCreditElement>;
             "plug-payments-credit-form": LocalJSX.PlugPaymentsCreditForm & JSXBase.HTMLAttributes<HTMLPlugPaymentsCreditFormElement>;
+            "plug-payments-credit-saved-cards": LocalJSX.PlugPaymentsCreditSavedCards & JSXBase.HTMLAttributes<HTMLPlugPaymentsCreditSavedCardsElement>;
             "plug-payments-pix": LocalJSX.PlugPaymentsPix & JSXBase.HTMLAttributes<HTMLPlugPaymentsPixElement>;
         }
     }

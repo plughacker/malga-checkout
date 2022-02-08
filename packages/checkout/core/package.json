@@ -1,6 +1,6 @@
 {
   "name": "@plug-checkout/core",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "Core components for Plug Checkout",
   "repository": {
     "type": "git",
@@ -43,6 +43,8 @@
     "generate": "stencil generate"
   },
   "devDependencies": {
+    "@plug-checkout/common": "*",
+    "@plug-checkout/utils": "*",
     "@stencil/angular-output-target": "^0.2.0",
     "@stencil/core": "^2.6.0",
     "@stencil/react-output-target": "^0.1.0",
@@ -50,18 +52,19 @@
     "@stencil/vue-output-target": "^0.5.1",
     "@types/jest": "^26.0.23",
     "@types/puppeteer": "5.4.3",
+    "@types/uuid": "^8.3.4",
     "jest": "26.6.3",
     "jest-cli": "26.6.3",
     "puppeteer": "5.5.0",
-    "stencil-inline-svg": "^1.1.0",
-    "@plug-checkout/common": "*",
-    "@plug-checkout/utils": "*"
+    "stencil-inline-svg": "^1.1.0"
   },
   "dependencies": {
+    "@stencil/store": "^1.5.0",
     "axios": "^0.21.1",
     "brazilian-values": "^0.10.1",
     "inputmask": "^5.0.6",
     "payment": "2.3.0",
+    "uuid": "^8.3.2",
     "yup": "^0.32.9"
   },
   "homepage": "https://github.com/plughacker/plug-checkout#readme"

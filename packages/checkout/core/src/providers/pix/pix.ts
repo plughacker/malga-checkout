@@ -1,11 +1,16 @@
 import { BaseProvider } from '../base-provider'
 import { PixAttributes, PaymentMethodPix, PixConstructor } from './pix.types'
 
+import settings from '../../stores/settings'
+
 export class Pix extends BaseProvider {
   readonly pix: PixAttributes
 
-  constructor({ customerId, customer, pix }: PixConstructor) {
-    super({ customerId, customer })
+  constructor({ pix }: PixConstructor) {
+    super({
+      customerId: settings.transactionConfig.customerId,
+      customer: settings.transactionConfig.customer,
+    })
     this.pix = pix
   }
 

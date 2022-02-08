@@ -19,5 +19,12 @@ export type CheckoutIconNames =
   | 'clipboard'
   | 'pix'
   | 'newTab'
+  | 'amex'
+  | 'dinersclub'
+  | 'discover'
+  | 'elo'
+  | 'hipercard'
+  | 'mastercard'
+  | 'visa'
 
 export type CheckoutIconsObject = Record<CheckoutIconNames, string>

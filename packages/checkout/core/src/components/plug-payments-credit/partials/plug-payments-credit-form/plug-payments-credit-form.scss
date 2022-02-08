@@ -1,6 +1,7 @@
 .plug-payments-credit-form__container {
   display: flex;
   margin-top: var(--plug-checkout-spacing-xs);
+  margin-bottom: var(--plug-checkout-spacing-md);
   margin-left: auto;
   margin-right: auto;
 }
@@ -24,7 +25,6 @@
   border: none;
   margin: 0px;
   margin-top: var(--plug-checkout-spacing-xs);
-  margin-bottom: var(--plug-checkout-spacing-xs);
   padding: 0px;
 
   & > checkout-text-field:first-child {
@@ -36,14 +36,15 @@
   }
 }
 
-.plug-payments-credit-form__submit {
+.plug-payments-credit-form__save-card {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  margin-top: var(--plug-checkout-spacing-md);
+  margin-top: var(--plug-checkout-spacing-default);
+  margin-bottom: var(--plug-checkout-spacing-xs);
 
-  & > checkout-icon {
-    height: 30px;
+  & > checkout-typography {
+    font-weight: 400;
+    margin-left: var(--plug-checkout-spacing-sm);
   }
 }

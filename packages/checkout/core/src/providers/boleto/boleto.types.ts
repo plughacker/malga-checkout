@@ -1,5 +1,3 @@
-import { Customer } from '../base-provider/base-provider.types'
-
 export interface BoletoAttributes {
   expiresDate: string
   instructions: string
@@ -20,7 +18,5 @@ export interface PaymentMethodBoleto extends BoletoAttributes {
 }
 
 export interface BoletoConstructor {
-  customerId?: string
-  customer?: Customer
   boleto: BoletoAttributes
 }

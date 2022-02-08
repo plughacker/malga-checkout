@@ -1,12 +1,4 @@
-import {
-  Component,
-  Host,
-  h,
-  ComponentInterface,
-  Prop,
-  Event,
-  EventEmitter,
-} from '@stencil/core'
+import { Component, Host, h, ComponentInterface, Prop } from '@stencil/core'
 
 import { CheckoutManualPaymentDescriptions } from './checkout-manual-payment.types'
 
@@ -17,13 +9,6 @@ import { CheckoutManualPaymentDescriptions } from './checkout-manual-payment.typ
 export class CheckoutManualPayment implements ComponentInterface {
   @Prop() fullWidth: boolean
   @Prop() paymentMethod: CheckoutManualPaymentDescriptions = 'pix'
-  @Prop() isLoading: boolean
-
-  @Event() paymentClick!: EventEmitter<void>
-
-  private onClick = () => {
-    this.paymentClick.emit()
-  }
 
   static DESCRIPTIONS = {
     pix: (
@@ -58,14 +43,6 @@ export class CheckoutManualPayment implements ComponentInterface {
         <checkout-typography tag="p">
           {CheckoutManualPayment.DESCRIPTIONS[this.paymentMethod]}
         </checkout-typography>
-        <div class={{ 'checkout-manual-paymnet__content': true }}>
-          <checkout-button
-            isLoading={this.isLoading}
-            label="Pagar"
-            onClick={this.onClick}
-          />
-          <checkout-icon icon="poweredByPlug" />
-        </div>
       </Host>
     )
   }

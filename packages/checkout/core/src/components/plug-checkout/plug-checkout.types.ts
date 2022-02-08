@@ -1,10 +1,12 @@
 import { Customer } from '../../providers/base-provider'
 import { BoletoAttributes } from '../../providers/boleto'
 import { PixAttributes } from '../../providers/pix'
-import { PlugPaymentsCreditInstallmentsConfig } from '../plug-payments-credit/plug-payments-credit.types'
 
 export interface Credit {
-  installments: PlugPaymentsCreditInstallmentsConfig
+  installments: {
+    show: boolean
+    quantity: number
+  }
   showCreditCard: boolean
 }
 

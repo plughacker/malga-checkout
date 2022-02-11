@@ -9,7 +9,13 @@ import {
   Fragment,
 } from '@stencil/core'
 
+import {
+  clearEmptyObjectProperties,
+  clearedObjectProperties,
+} from '@plug-checkout/utils'
+
 import settings from '../../stores/settings'
+import payment from '../../stores/payment'
 
 import {
   PaymentMethods,
@@ -104,12 +110,22 @@ export class PlugCheckout {
     settings.transactionConfig = this.transactionConfig
   }
 
+  private handleStoreCurrentPaymentMethod = () => {
+    const paymentMethods = clearEmptyObjectProperties(this.paymentMethods)
+
+    if (paymentMethods.length === 1) {
+      const [[currentPaymentMethod]] = paymentMethods
+      payment.selectedPaymentMethod = currentPaymentMethod
+    }
+  }
+
   componentWillLoad() {
     this.handleStoreSettings()
+    this.handleStoreCurrentPaymentMethod()
   }
 
   render() {
-    const paymentMethods = Object.keys(this.paymentMethods)
+    const paymentMethods = clearedObjectProperties(this.paymentMethods)
 
     return (
       <Host class={{ 'plug-checkout__container': true }}>

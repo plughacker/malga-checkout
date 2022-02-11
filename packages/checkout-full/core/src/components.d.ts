@@ -11,6 +11,7 @@ export namespace Components {
     interface PlugCheckoutFull {
         "clientId": string;
         "dialogConfig": PlugCheckoutFullDialog;
+        "idempotencyKey": string;
         "merchantId": string;
         "pageConfig": PlugCheckoutFullPage;
         "paymentMethods": PlugCheckoutFullPaymentMethods;
@@ -74,6 +75,7 @@ declare namespace LocalJSX {
     interface PlugCheckoutFull {
         "clientId"?: string;
         "dialogConfig"?: PlugCheckoutFullDialog;
+        "idempotencyKey"?: string;
         "merchantId"?: string;
         "onTransactionFailed"?: (event: CustomEvent<{
     error: PlugCheckoutFullChargeError

@@ -17,6 +17,7 @@ export declare interface PlugCheckoutFull extends Components.PlugCheckoutFull {}
 @ProxyCmp({
   inputs: [
     'clientId',
+    'idempotencyKey',
     'dialogConfig',
     'merchantId',
     'pageConfig',
@@ -33,6 +34,7 @@ export declare interface PlugCheckoutFull extends Components.PlugCheckoutFull {}
   inputs: [
     'clientId',
     'dialogConfig',
+    'idempotencyKey',
     'merchantId',
     'pageConfig',
     'paymentMethods',

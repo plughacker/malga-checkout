@@ -8,8 +8,6 @@ import {
   State,
 } from '@stencil/core'
 
-import { getCurrentMaskPerIssuer } from '@plug-checkout/utils'
-
 import credit, { validateCreditForm } from '../../../../stores/credit'
 import settings from '../../../../stores/settings'
 
@@ -83,17 +81,7 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
     return installmentOptions
   }
 
-  private renderSaveCardLabel = () => {
-    if (this.saveCard) {
-      return 'Armazenar cartão para compras futuras'
-    }
-
-    return 'Não armazenar o cartão para futuras compras'
-  }
-
   render() {
-    const saveCardLabel = this.renderSaveCardLabel()
-
     return (
       <Host
         class={{
@@ -113,7 +101,7 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
             onFocused={this.handleFieldFocused('cardNumber')}
             fullWidth
             inputmode="numeric"
-            mask={getCurrentMaskPerIssuer(credit.form.cardNumber)}
+            mask="9999 9999 9999 99999"
             hasValidation={credit.validations.fields.cardNumber !== null}
             hasError={!!credit.validations.fields.cardNumber}
             name="cardNumber"
@@ -220,7 +208,7 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
               <checkout-typography
                 variation="field"
                 color="darkness"
-                content={saveCardLabel}
+                content="Armazenar cartão para compras futuras"
               />
             </div>
           )}

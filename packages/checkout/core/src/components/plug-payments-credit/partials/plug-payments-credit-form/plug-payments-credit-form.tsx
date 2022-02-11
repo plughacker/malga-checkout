@@ -5,7 +5,6 @@ import {
   ComponentInterface,
   Event,
   EventEmitter,
-  State,
 } from '@stencil/core'
 
 import credit, { validateCreditForm } from '../../../../stores/credit'
@@ -18,8 +17,6 @@ import { centsToReal } from './plug-payments-credit-form.utils'
 })
 export class PlugPaymentsCreditForm implements ComponentInterface {
   @Event() currentFieldChange: EventEmitter<{ field: string }>
-
-  @State() saveCard = false
 
   private handleFieldFocused = (field: string) => () => {
     if (credit.validations.allFieldsIsBlank) {
@@ -51,10 +48,7 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
   }
 
   private handleSaveCardChange = () => {
-    const value = !credit.form.saveCard
-
-    this.saveCard = value
-    credit.form.saveCard = value
+    credit.form.saveCard = !credit.form.saveCard
   }
 
   private handleFieldChange = (field: string) => (event) => {
@@ -79,6 +73,16 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
     })
 
     return installmentOptions
+  }
+
+  private handleCheckedSaveCard = () => {
+    if (settings.paymentMethods.credit.checkedSaveCard) {
+      credit.form.saveCard = settings.paymentMethods.credit.checkedSaveCard
+    }
+  }
+
+  componentWillLoad() {
+    this.handleCheckedSaveCard()
   }
 
   render() {

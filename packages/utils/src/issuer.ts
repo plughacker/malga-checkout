@@ -20,21 +20,6 @@ export const getCurrentIssuer = (number: string) => {
   return issuer
 }
 
-export const getCurrentMaskPerIssuer = (number: string) => {
-  const issuer = getCurrentIssuer(number.trim())
-
-  const masks = {
-    amex: '9999 999999 99999',
-    dinersclub: '9999 9999 9999 9999',
-    hipercard: '9999 9999 9999 9999',
-    mastercard: '9999 9999 9999 9999',
-    visa: '9999 9999 9999 9999',
-    unknow: '9999 9999 9999 9999',
-  }
-
-  return masks[issuer] || masks.unknow
-}
-
 export const getCardBrand = (firstCardNumbers: string): string => {
   const permittedBrands = [
     'amex',

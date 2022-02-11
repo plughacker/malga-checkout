@@ -156,6 +156,7 @@ export interface Credit {
     show: boolean
     quantity: number
   }
+  checkedSaveCard: boolean
   showCreditCard: boolean
 }
 

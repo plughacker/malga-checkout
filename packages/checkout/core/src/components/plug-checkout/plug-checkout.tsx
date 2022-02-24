@@ -63,6 +63,7 @@ export class PlugCheckout {
     currency: 'BRL',
     capture: false,
     customer: null,
+    fraudAnalysis: null,
   }
 
   @Event() paymentSuccess!: EventEmitter<{

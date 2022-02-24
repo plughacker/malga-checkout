@@ -17,7 +17,7 @@
 | `paymentMethods`    | --                |             | `PlugCheckoutFullPaymentMethods` | `{     pix: undefined,     credit: undefined,     boleto: undefined,   }`                                                                                                          |
 | `publicKey`         | `public-key`      |             | `string`                         | `undefined`                                                                                                                                                                        |
 | `sandbox`           | `sandbox`         |             | `boolean`                        | `false`                                                                                                                                                                            |
-| `transactionConfig` | --                |             | `PlugCheckoutFullTransaction`    | `{     statementDescriptor: '',     amount: 0,     description: '',     orderId: '',     customerId: '',     currency: 'BRL',     capture: false,   }`                             |
+| `transactionConfig` | --                |             | `PlugCheckoutFullTransaction`    | `{     statementDescriptor: '',     amount: 0,     description: '',     orderId: '',     customerId: '',     currency: 'BRL',     capture: false,     fraudAnalysis: null,   }`    |
 
 
 ## Events

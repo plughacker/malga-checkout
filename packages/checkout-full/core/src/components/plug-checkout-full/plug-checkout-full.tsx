@@ -52,6 +52,7 @@ export class PlugCheckoutFull implements ComponentInterface {
     customerId: '',
     currency: 'BRL',
     capture: false,
+    fraudAnalysis: null,
   }
   @Prop() dialogConfig: PlugCheckoutFullDialog = {
     show: true,

@@ -198,6 +198,19 @@ export interface PlugCheckoutFullPage {
   products: Product[]
 }
 
+export interface PlugCheckoutFullFraudAnalysisCart {
+  name: string
+  quantity: number
+  sku: string
+  unitPrice: number
+  risk: 'Low' | 'High'
+}
+
+export interface PlugCheckoutFullFraudAnalysis {
+  customer: Customer
+  cart: PlugCheckoutFullFraudAnalysisCart[]
+}
+
 export interface PlugCheckoutFullTransaction {
   statementDescriptor: string
   amount: number
@@ -206,6 +219,7 @@ export interface PlugCheckoutFullTransaction {
   orderId?: string
   customerId?: string
   currency?: string
+  fraudAnalysis?: PlugCheckoutFullFraudAnalysis
 }
 
 export interface PlugCheckoutFullDialog {

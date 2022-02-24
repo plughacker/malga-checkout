@@ -1,6 +1,7 @@
 import { Customer } from '../../providers/base-provider'
 import { BoletoAttributes } from '../../providers/boleto'
 import { PixAttributes } from '../../providers/pix'
+import { FraudAnalysis } from '../../services/charges'
 
 export interface Credit {
   installments: {
@@ -10,7 +11,6 @@ export interface Credit {
   checkedSaveCard: boolean
   showCreditCard: boolean
 }
-
 export interface PlugCheckoutTransaction {
   statementDescriptor: string
   amount: number
@@ -20,6 +20,7 @@ export interface PlugCheckoutTransaction {
   customer?: Customer
   customerId?: string
   currency?: string
+  fraudAnalysis?: FraudAnalysis
 }
 
 export interface PlugCheckoutPaymentMethods {

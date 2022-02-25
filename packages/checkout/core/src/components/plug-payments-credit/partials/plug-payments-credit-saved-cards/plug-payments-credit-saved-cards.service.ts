@@ -1,6 +1,7 @@
 import { CustomerCards } from '../../../../services/customer-cards'
 
 import savedCards from '../../../../stores/saved-cards'
+import settings from '../../../../stores/settings'
 
 export class PlugPaymentsCreditSavedCardsService {
   readonly customerCards: CustomerCards
@@ -11,7 +12,9 @@ export class PlugPaymentsCreditSavedCardsService {
 
   public async listSavedCards() {
     try {
-      const cards = await this.customerCards.list()
+      const cards = await this.customerCards.list(
+        settings.transactionConfig.customerId,
+      )
 
       savedCards.cards = cards.data
     } catch (err) {

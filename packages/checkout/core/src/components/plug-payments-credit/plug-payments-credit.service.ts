@@ -109,6 +109,7 @@ export class PlugPaymentsCreditService {
       if (this.data['saveCard' as keyof PlugPaymentsCreditManualCard]) {
         await this.customerCards.create(
           checkoutResponse.data.paymentSource.cardId,
+          customerId,
         )
       }
 

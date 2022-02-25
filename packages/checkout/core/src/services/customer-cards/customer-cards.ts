@@ -1,26 +1,22 @@
 import { Api } from '../api'
 
-import settings from '../../stores/settings'
-
 export class CustomerCards {
   readonly api: Api
-  readonly customerId: string
 
   constructor() {
     this.api = new Api()
-    this.customerId = settings.transactionConfig.customerId
   }
 
-  public async create(cardId: string) {
+  public async create(cardId: string, customerId: string) {
     return this.api.create({
-      endpoint: `/customers/${this.customerId}/cards`,
+      endpoint: `/customers/${customerId}/cards`,
       data: { cardId },
     })
   }
 
-  public async list() {
+  public async list(customerId: string) {
     const response = await this.api.fetch({
-      endpoint: `/customers/${this.customerId}/cards`,
+      endpoint: `/customers/${customerId}/cards`,
     })
 
     return {

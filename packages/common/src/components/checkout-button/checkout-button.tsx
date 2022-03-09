@@ -8,6 +8,8 @@ import {
   Prop,
 } from '@stencil/core'
 
+import Clipboard from 'clipboard'
+
 import { CheckoutButtonType } from './checkout-button.types'
 import { CheckoutIconNames } from '../checkout-icon/checkout-icon.types'
 @Component({
@@ -19,6 +21,7 @@ export class CheckoutButton implements ComponentInterface {
   @Prop() icon?: CheckoutIconNames
   @Prop() label: string
   @Prop() fullWidth?: boolean
+  @Prop() clipboardContent?: string
   @Prop() disabled? = false
   @Prop() type?: CheckoutButtonType = 'button'
   @Prop() isLoading?: boolean
@@ -39,6 +42,20 @@ export class CheckoutButton implements ComponentInterface {
     this.blured.emit()
   }
 
+  private handleDynamicClipboardAttribute = () => {
+    if (this.clipboardContent) {
+      return { 'data-clipboard-text': this.clipboardContent }
+    }
+
+    return {}
+  }
+
+  componentDidLoad() {
+    if (this.clipboardContent) {
+      new Clipboard('#clipboard')
+    }
+  }
+
   render() {
     return (
       <Host
@@ -48,6 +65,7 @@ export class CheckoutButton implements ComponentInterface {
         <button
           disabled={this.disabled}
           type={this.type}
+          id={this.clipboardContent ? 'clipboard' : ''}
           class={{
             'checkout-button__native': true,
             'checkout-button__native--full-width': this.fullWidth,
@@ -56,6 +74,7 @@ export class CheckoutButton implements ComponentInterface {
           onClick={this.onClick}
           onFocus={this.onFocus}
           onBlur={this.onBlur}
+          {...this.handleDynamicClipboardAttribute()}
         >
           {(!!this.icon || this.isLoading) && (
             <checkout-icon

@@ -3,6 +3,7 @@ import {
   Host,
   h,
   Prop,
+  State,
   Fragment,
   Event,
   EventEmitter,
@@ -23,8 +24,24 @@ export class CheckoutModalPix {
   @Prop() countdownFilledProgressBarColor?: string
   @Prop() countdownEmptyProgressBarColor?: string
 
+  @State() clipboardIsClicked = false
+
   @Event() countdownIsFinished: EventEmitter<void>
   @Event() pixActionButtonIsClicked: EventEmitter<void>
+
+  private handleClickClipboard = () => {
+    if (!this.clipboardIsClicked) {
+      this.clipboardIsClicked = true
+    }
+  }
+
+  private handleClipboardButtonLabel = () => {
+    if (this.clipboardIsClicked) {
+      return 'Código Copiado'
+    }
+
+    return 'Copiar Código'
+  }
 
   render() {
     return (
@@ -73,8 +90,9 @@ export class CheckoutModalPix {
           </div>
           <div class={{ 'checkout-modal-pix__clipboard-button-mobile': true }}>
             <checkout-button
-              label="Copiar Código"
+              label={this.handleClipboardButtonLabel()}
               clipboardContent={this.qrCodeIdentificator}
+              onClicked={() => this.handleClickClipboard()}
             />
           </div>
           <div

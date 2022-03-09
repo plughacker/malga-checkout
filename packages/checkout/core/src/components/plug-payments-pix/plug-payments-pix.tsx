@@ -60,6 +60,10 @@ export class PlugPaymentsPix {
             errorDescription={dialog.configs.errorMessage}
             successDescription={dialog.configs.successMessage}
             actionButtonLabel={settings.dialogConfig.actionButtonLabel}
+            pixImportantMessages={settings.dialogConfig.pixImportantMessages}
+            pixWaitingPaymentMessage={
+              settings.dialogConfig.pixWaitingPaymentMessage
+            }
             pixFilledProgressBarColor={
               settings.dialogConfig.pixFilledProgressBarColor
             }

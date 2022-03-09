@@ -37,6 +37,9 @@ export class PlugPaymentsBoleto {
             expirationDate={dialog.configs.expirationDate}
             errorDescription={dialog.configs.errorMessage}
             actionButtonLabel={settings.dialogConfig.actionButtonLabel}
+            boletoWaitingPaymentMessage={
+              settings.dialogConfig.boletoWaitingPaymentMessage
+            }
             successActionButtonLabel={
               settings.dialogConfig.successActionButtonLabel
             }

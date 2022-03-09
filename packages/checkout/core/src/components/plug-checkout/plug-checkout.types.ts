@@ -36,6 +36,9 @@ export interface PlugCheckoutDialog {
   successActionButtonLabel: string
   errorActionButtonLabel: string
   successRedirectUrl: string
+  boletoWaitingPaymentMessage?: string
+  pixWaitingPaymentMessage?: string
+  pixImportantMessages?: string[]
   pixFilledProgressBarColor?: string
   pixEmptyProgressBarColor?: string
 }

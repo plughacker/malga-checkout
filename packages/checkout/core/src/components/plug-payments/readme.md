@@ -10,6 +10,13 @@
 | `paymentMethods` | --        |             | `PaymentMethodsType[]` | `['credit', 'pix', 'boleto']` |
 
 
+## Events
+
+| Event         | Description | Type                                               |
+| ------------- | ----------- | -------------------------------------------------- |
+| `paymentFail` |             | `CustomEvent<{ error: PlugPaymentsChargeError; }>` |
+
+
 ## Dependencies
 
 ### Used by

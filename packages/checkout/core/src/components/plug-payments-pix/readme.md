@@ -3,6 +3,13 @@
 <!-- Auto Generated Below -->
 
 
+## Events
+
+| Event              | Description | Type                                               |
+| ------------------ | ----------- | -------------------------------------------------- |
+| `pixPaymentFailed` |             | `CustomEvent<{ error: PlugPaymentsChargeError; }>` |
+
+
 ## Dependencies
 
 ### Used by

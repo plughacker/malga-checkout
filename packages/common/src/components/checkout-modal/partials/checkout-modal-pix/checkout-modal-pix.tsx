@@ -8,7 +8,7 @@ import {
   EventEmitter,
 } from '@stencil/core'
 
-import { formatToReal, formatDate, parseDate } from '@plug-checkout/utils'
+import { formatToReal } from '@plug-checkout/utils'
 
 @Component({
   tag: 'checkout-modal-pix',
@@ -18,7 +18,6 @@ export class CheckoutModalPix {
   @Prop() qrCodeIdentificator: string
   @Prop() qrCodeImageUrl: string
   @Prop() amount: number
-  @Prop() expirationDate: string
   @Prop() expirationTime: number
   @Prop() actionButtonLabel = 'Continuar'
   @Prop() countdownFilledProgressBarColor?: string
@@ -26,20 +25,6 @@ export class CheckoutModalPix {
 
   @Event() countdownIsFinished: EventEmitter<void>
   @Event() pixActionButtonIsClicked: EventEmitter<void>
-
-  private getExpirationDateFormatted = () => {
-    const [year, month, day] = parseDate(this.expirationDate)
-    const currentDate = new Date(year, month, day)
-    const formattedDate = formatDate(currentDate)
-
-    return formattedDate
-  }
-
-  private getListTitle = () => {
-    if (this.expirationTime) return 'Instruções para pagamento'
-
-    return 'Informações Importantes'
-  }
 
   render() {
     return (
@@ -50,14 +35,22 @@ export class CheckoutModalPix {
             tag="h3"
             variation="header5"
             color="white"
-            content="Pedido recebido com sucesso!"
+            content="Pedido aguardando pagamento!"
           />
         </header>
         <section class={{ 'checkout-modal-pix__content': true }}>
+          <span
+            class={{ 'checkout-modal-pix__content--header-detail': true }}
+          />
           <checkout-typography
             tag="h4"
             variation="header6"
             content="PIX disponível para pagamento!"
+          />
+          <checkout-typography
+            tag="h5"
+            variation="field"
+            content="Faça o pagamento do PIX abaixo para finalizar o seu pedido:"
           />
           <div class={{ 'checkout-modal-pix__qr-code-informations': true }}>
             <img src={this.qrCodeImageUrl} alt="QR Code" />
@@ -77,6 +70,12 @@ export class CheckoutModalPix {
                 clipboardContent={this.qrCodeIdentificator}
               />
             </div>
+          </div>
+          <div class={{ 'checkout-modal-pix__clipboard-button-mobile': true }}>
+            <checkout-button
+              label="Copiar Código"
+              clipboardContent={this.qrCodeIdentificator}
+            />
           </div>
           <div
             class={{
@@ -108,19 +107,6 @@ export class CheckoutModalPix {
                 </p>
               </Fragment>
             )}
-
-            {!this.expirationTime && (
-              <Fragment>
-                <p>
-                  <strong>Valor a pagar: </strong>
-                  {formatToReal(this.amount)}
-                </p>
-                <p>
-                  <strong>Vencimento: </strong>
-                  {this.getExpirationDateFormatted()}
-                </p>
-              </Fragment>
-            )}
           </div>
           <div
             class={{
@@ -131,40 +117,39 @@ export class CheckoutModalPix {
               tag="h5"
               color="darkness"
               variation="field"
-              content={this.getListTitle()}
+              content="Para fazer o pagamento"
             />
 
-            {this.expirationTime && (
-              <ol>
-                <li>
-                  Abra o aplicativo do seu banco e selecione o{' '}
-                  <strong>ambiente do PIX.</strong>
-                </li>
-                <li>
-                  Escolha a opção <strong>pagar com QR Code</strong> e escaneie
-                  o código acima ou copie e cole a chave PIX para efetuar o
-                  pagamento.
-                </li>
-                <li>
-                  Confirme as informações e finalize a compra{' '}
-                  <strong>antes que o código expire.</strong>
-                </li>
-              </ol>
-            )}
+            <ol>
+              <li>
+                Abra o aplicativo do seu banco e selecione o ambiente do PIX.
+              </li>
+              <li>Escolha a opção pagar com código e cole o código acima.</li>
+              <li>Confirme as informações e finalize a sua compra.</li>
+            </ol>
+          </div>
+          <div
+            class={{
+              'checkout-modal-pix__informations': true,
+            }}
+          >
+            <checkout-typography
+              tag="h5"
+              color="darkness"
+              variation="field"
+              content="Informações importantes"
+            />
 
-            {!this.expirationTime && (
-              <ul>
-                <li>
-                  Vamos avisar por e-mail quando o banco identificar o depósito.
-                  Esse processo é automático.
-                </li>
-                <li>
-                  Caso o PIX não seja pago em até{' '}
-                  {this.getExpirationDateFormatted()}, seu pedido será cancelado
-                  automaticamente. Não pague após este horário.
-                </li>
-              </ul>
-            )}
+            <ul>
+              <li>
+                Vamos avisar por e-mail quando o banco identificar o depósito.
+                Esse processo é automático.
+              </li>
+              <li>
+                Caso o PIX não seja pago em até 20 minutos, seu pedido será
+                cancelado automaticamente. Não pague após este horário.
+              </li>
+            </ul>
           </div>
           <div
             class={{

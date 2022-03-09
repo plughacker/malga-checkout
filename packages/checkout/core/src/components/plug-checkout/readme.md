@@ -77,8 +77,8 @@ graph TD;
   checkout-modal-pix --> checkout-icon
   checkout-modal-pix --> checkout-typography
   checkout-modal-pix --> checkout-clipboard-button
-  checkout-modal-pix --> checkout-countdown
   checkout-modal-pix --> checkout-button
+  checkout-modal-pix --> checkout-countdown
   checkout-clipboard-button --> checkout-icon
   checkout-clipboard-button --> checkout-typography
   checkout-countdown --> checkout-typography

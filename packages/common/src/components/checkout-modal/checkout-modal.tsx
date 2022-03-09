@@ -59,7 +59,6 @@ export class CheckoutModal {
               qrCodeIdentificator={this.paymentCode}
               qrCodeImageUrl={this.paymentImageUrl}
               amount={this.amount}
-              expirationDate={this.expirationDate}
               expirationTime={this.expirationTime}
               actionButtonLabel={this.actionButtonLabel}
               countdownFilledProgressBarColor={this.pixFilledProgressBarColor}

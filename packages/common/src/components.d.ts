@@ -22,6 +22,7 @@ export namespace Components {
         "opened": boolean;
     }
     interface CheckoutButton {
+        "clipboardContent"?: string;
         "customClass"?: string;
         "disabled"?: boolean;
         "fullWidth"?: boolean;
@@ -98,7 +99,6 @@ export namespace Components {
         "amount": number;
         "countdownEmptyProgressBarColor"?: string;
         "countdownFilledProgressBarColor"?: string;
-        "expirationDate": string;
         "expirationTime": number;
         "qrCodeIdentificator": string;
         "qrCodeImageUrl": string;
@@ -324,6 +324,7 @@ declare namespace LocalJSX {
         "opened"?: boolean;
     }
     interface CheckoutButton {
+        "clipboardContent"?: string;
         "customClass"?: string;
         "disabled"?: boolean;
         "fullWidth"?: boolean;
@@ -409,7 +410,6 @@ declare namespace LocalJSX {
         "amount"?: number;
         "countdownEmptyProgressBarColor"?: string;
         "countdownFilledProgressBarColor"?: string;
-        "expirationDate"?: string;
         "expirationTime"?: number;
         "onCountdownIsFinished"?: (event: CustomEvent<void>) => void;
         "onPixActionButtonIsClicked"?: (event: CustomEvent<void>) => void;

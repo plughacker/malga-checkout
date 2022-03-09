@@ -11,6 +11,7 @@ export interface Credit {
   checkedSaveCard: boolean
   showCreditCard: boolean
 }
+
 export interface PlugCheckoutTransaction {
   statementDescriptor: string
   amount: number

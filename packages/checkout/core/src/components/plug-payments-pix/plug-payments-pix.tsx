@@ -1,15 +1,22 @@
-import { Component, Host, h } from '@stencil/core'
+import { Component, Host, h, Event, EventEmitter } from '@stencil/core'
 
 import settings from '../../stores/settings'
 import payment from '../../stores/payment'
 import dialog from '../../stores/dialog'
 
 import { PlugPaymentsPixService } from './plug-payments-pix.service'
+
+import { PlugPaymentsChargeError } from '../plug-payments/plug-payments.types'
+
 @Component({
   tag: 'plug-payments-pix',
   styleUrl: 'plug-payments-pix.scss',
 })
 export class PlugPaymentsPix {
+  @Event() pixPaymentFailed!: EventEmitter<{
+    error: PlugPaymentsChargeError
+  }>
+
   private handleShowDialog = (dialogData) => {
     dialog.configs = { ...dialog.configs, ...dialogData }
   }
@@ -18,6 +25,7 @@ export class PlugPaymentsPix {
     const pixService = new PlugPaymentsPixService({
       data: settings.paymentMethods.pix,
       onShowDialog: this.handleShowDialog,
+      onPaymentFailed: (error) => this.pixPaymentFailed.emit({ error }),
     })
 
     await pixService.findCharge(payment.chargeId)

@@ -11,6 +11,7 @@ export class CheckoutModalBoleto {
   @Prop() amount: number
   @Prop() expirationDate: string
   @Prop() actionButtonLabel = 'Continuar'
+  @Prop() waitingPaymentMessage = 'Pedido aguardando pagamento!'
 
   @Event() boletoActionButtonIsClicked: EventEmitter<void>
 
@@ -31,7 +32,7 @@ export class CheckoutModalBoleto {
             tag="h3"
             variation="header5"
             color="white"
-            content="Pedido aguardando pagamento!"
+            content={this.waitingPaymentMessage}
           />
         </header>
         <section class={{ 'checkout-modal-boleto__content': true }}>

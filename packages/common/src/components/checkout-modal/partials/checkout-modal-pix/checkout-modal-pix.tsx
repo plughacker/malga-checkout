@@ -23,6 +23,12 @@ export class CheckoutModalPix {
   @Prop() actionButtonLabel = 'Continuar'
   @Prop() countdownFilledProgressBarColor?: string
   @Prop() countdownEmptyProgressBarColor?: string
+  @Prop() importantMessages = [
+    `Vamos avisar por e-mail quando o banco identificar o depósito.
+  Esse processo é automático.`,
+    `Caso o tempo de pagamento expire e o Pix não foi pago, seu pedido será cancelado automaticamente. Não pague após este horário.`,
+  ]
+  @Prop() waitingPaymentMessage = 'Pedido aguardando pagamento!'
 
   @State() clipboardIsClicked = false
 
@@ -43,6 +49,14 @@ export class CheckoutModalPix {
     return 'Copiar Código'
   }
 
+  private renderListImportantMessages = () => {
+    const mappedImportantMessage = this.importantMessages.map(
+      (importantMessage) => <li>{importantMessage}</li>,
+    )
+
+    return mappedImportantMessage
+  }
+
   render() {
     return (
       <Host class={{ 'checkout-modal-pix__container': true }}>
@@ -52,7 +66,7 @@ export class CheckoutModalPix {
             tag="h3"
             variation="header5"
             color="white"
-            content="Pedido aguardando pagamento!"
+            content={this.waitingPaymentMessage}
           />
         </header>
         <section class={{ 'checkout-modal-pix__content': true }}>
@@ -158,16 +172,7 @@ export class CheckoutModalPix {
               content="Informações importantes"
             />
 
-            <ul>
-              <li>
-                Vamos avisar por e-mail quando o banco identificar o depósito.
-                Esse processo é automático.
-              </li>
-              <li>
-                Caso o PIX não seja pago em até 20 minutos, seu pedido será
-                cancelado automaticamente. Não pague após este horário.
-              </li>
-            </ul>
+            <ul>{this.renderListImportantMessages()}</ul>
           </div>
           <div
             class={{

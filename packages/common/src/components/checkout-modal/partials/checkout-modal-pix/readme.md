@@ -7,15 +7,17 @@
 
 ## Properties
 
-| Property                          | Attribute                             | Description | Type     | Default       |
-| --------------------------------- | ------------------------------------- | ----------- | -------- | ------------- |
-| `actionButtonLabel`               | `action-button-label`                 |             | `string` | `'Continuar'` |
-| `amount`                          | `amount`                              |             | `number` | `undefined`   |
-| `countdownEmptyProgressBarColor`  | `countdown-empty-progress-bar-color`  |             | `string` | `undefined`   |
-| `countdownFilledProgressBarColor` | `countdown-filled-progress-bar-color` |             | `string` | `undefined`   |
-| `expirationTime`                  | `expiration-time`                     |             | `number` | `undefined`   |
-| `qrCodeIdentificator`             | `qr-code-identificator`               |             | `string` | `undefined`   |
-| `qrCodeImageUrl`                  | `qr-code-image-url`                   |             | `string` | `undefined`   |
+| Property                          | Attribute                             | Description | Type       | Default                                                                                                                                                                                                                                           |
+| --------------------------------- | ------------------------------------- | ----------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `actionButtonLabel`               | `action-button-label`                 |             | `string`   | `'Continuar'`                                                                                                                                                                                                                                     |
+| `amount`                          | `amount`                              |             | `number`   | `undefined`                                                                                                                                                                                                                                       |
+| `countdownEmptyProgressBarColor`  | `countdown-empty-progress-bar-color`  |             | `string`   | `undefined`                                                                                                                                                                                                                                       |
+| `countdownFilledProgressBarColor` | `countdown-filled-progress-bar-color` |             | `string`   | `undefined`                                                                                                                                                                                                                                       |
+| `expirationTime`                  | `expiration-time`                     |             | `number`   | `undefined`                                                                                                                                                                                                                                       |
+| `importantMessages`               | --                                    |             | `string[]` | `[     `Vamos avisar por e-mail quando o banco identificar o depósito.   Esse processo é automático.`,     `Caso o tempo de pagamento expire e o Pix não foi pago, seu pedido será cancelado automaticamente. Não pague após este horário.`,   ]` |
+| `qrCodeIdentificator`             | `qr-code-identificator`               |             | `string`   | `undefined`                                                                                                                                                                                                                                       |
+| `qrCodeImageUrl`                  | `qr-code-image-url`                   |             | `string`   | `undefined`                                                                                                                                                                                                                                       |
+| `waitingPaymentMessage`           | `waiting-payment-message`             |             | `string`   | `'Pedido aguardando pagamento!'`                                                                                                                                                                                                                  |
 
 
 ## Events

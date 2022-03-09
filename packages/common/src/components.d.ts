@@ -66,6 +66,7 @@ export namespace Components {
     interface CheckoutModal {
         "actionButtonLabel"?: string;
         "amount": number;
+        "boletoWaitingPaymentMessage"?: string;
         "errorActionButtonLabel"?: string;
         "errorDescription"?: string;
         "errorSubtitle"?: string;
@@ -78,6 +79,8 @@ export namespace Components {
         "paymentImageUrl": string;
         "pixEmptyProgressBarColor"?: string;
         "pixFilledProgressBarColor"?: string;
+        "pixImportantMessages"?: string[];
+        "pixWaitingPaymentMessage"?: string;
         "successActionButtonLabel"?: string;
         "successDescription"?: string;
     }
@@ -87,6 +90,7 @@ export namespace Components {
         "boletoCode": string;
         "boletoImageUrl": string;
         "expirationDate": string;
+        "waitingPaymentMessage": string;
     }
     interface CheckoutModalError {
         "errorActionButtonLabel": string;
@@ -100,8 +104,10 @@ export namespace Components {
         "countdownEmptyProgressBarColor"?: string;
         "countdownFilledProgressBarColor"?: string;
         "expirationTime": number;
+        "importantMessages": string[];
         "qrCodeIdentificator": string;
         "qrCodeImageUrl": string;
+        "waitingPaymentMessage": string;
     }
     interface CheckoutModalSuccess {
         "successActionButtonLabel": string;
@@ -372,6 +378,7 @@ declare namespace LocalJSX {
     interface CheckoutModal {
         "actionButtonLabel"?: string;
         "amount"?: number;
+        "boletoWaitingPaymentMessage"?: string;
         "errorActionButtonLabel"?: string;
         "errorDescription"?: string;
         "errorSubtitle"?: string;
@@ -387,6 +394,8 @@ declare namespace LocalJSX {
         "paymentImageUrl"?: string;
         "pixEmptyProgressBarColor"?: string;
         "pixFilledProgressBarColor"?: string;
+        "pixImportantMessages"?: string[];
+        "pixWaitingPaymentMessage"?: string;
         "successActionButtonLabel"?: string;
         "successDescription"?: string;
     }
@@ -397,6 +406,7 @@ declare namespace LocalJSX {
         "boletoImageUrl"?: string;
         "expirationDate"?: string;
         "onBoletoActionButtonIsClicked"?: (event: CustomEvent<void>) => void;
+        "waitingPaymentMessage"?: string;
     }
     interface CheckoutModalError {
         "errorActionButtonLabel"?: string;
@@ -411,10 +421,12 @@ declare namespace LocalJSX {
         "countdownEmptyProgressBarColor"?: string;
         "countdownFilledProgressBarColor"?: string;
         "expirationTime"?: number;
+        "importantMessages"?: string[];
         "onCountdownIsFinished"?: (event: CustomEvent<void>) => void;
         "onPixActionButtonIsClicked"?: (event: CustomEvent<void>) => void;
         "qrCodeIdentificator"?: string;
         "qrCodeImageUrl"?: string;
+        "waitingPaymentMessage"?: string;
     }
     interface CheckoutModalSuccess {
         "onSuccessActionButtonClicked"?: (event: CustomEvent<void>) => void;

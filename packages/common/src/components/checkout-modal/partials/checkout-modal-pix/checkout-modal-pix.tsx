@@ -26,7 +26,7 @@ export class CheckoutModalPix {
   @Prop() importantMessages = [
     `Vamos avisar por e-mail quando o banco identificar o depósito.
   Esse processo é automático.`,
-    `Caso o tempo de pagamento expire e o Pix não foi pago, seu pedido será cancelado automaticamente. Não pague após este horário.`,
+    `Caso o tempo de pagamento tenha expirado e o Pix não tenha sido pago, seu pedido será cancelado automaticamente. Não pague após este horário.`,
   ]
   @Prop() waitingPaymentMessage = 'Pedido aguardando pagamento!'
 

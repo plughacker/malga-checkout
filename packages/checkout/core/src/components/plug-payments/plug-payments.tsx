@@ -4,6 +4,8 @@ import {
   h,
   ComponentInterface,
   Prop,
+  Event,
+  EventEmitter,
   Fragment,
 } from '@stencil/core'
 
@@ -13,12 +15,18 @@ import savedCards from '../../stores/saved-cards'
 
 import { PaymentMethods, PaymentMethodsType } from './plug-payments.types'
 
+import { PlugPaymentsChargeError } from './plug-payments.types'
+
 @Component({
   tag: 'plug-payments',
   styleUrl: 'plug-payments.scss',
 })
 export class PlugPayments implements ComponentInterface {
   @Prop() paymentMethods: PaymentMethods = ['credit', 'pix', 'boleto']
+
+  @Event() paymentFail!: EventEmitter<{
+    error: PlugPaymentsChargeError
+  }>
 
   private handlePaymentChange = (value: string) => {
     payment.selectedPaymentMethod = value
@@ -86,7 +94,13 @@ export class PlugPayments implements ComponentInterface {
                 isChecked={payment.selectedPaymentMethod === 'pix'}
                 onClicked={() => this.handlePaymentChange('pix')}
               />
-              {payment.selectedPaymentMethod === 'pix' && <plug-payments-pix />}
+              {payment.selectedPaymentMethod === 'pix' && (
+                <plug-payments-pix
+                  onPixPaymentFailed={({ detail: { error } }) =>
+                    this.paymentFail.emit({ error })
+                  }
+                />
+              )}
             </Fragment>
           )}
         </section>

@@ -3,6 +3,7 @@ import {
   Host,
   h,
   Prop,
+  State,
   Fragment,
   Event,
   EventEmitter,
@@ -22,9 +23,39 @@ export class CheckoutModalPix {
   @Prop() actionButtonLabel = 'Continuar'
   @Prop() countdownFilledProgressBarColor?: string
   @Prop() countdownEmptyProgressBarColor?: string
+  @Prop() importantMessages = [
+    `Vamos avisar por e-mail quando o banco identificar o depósito.
+  Esse processo é automático.`,
+    `Caso o tempo de pagamento tenha expirado e o Pix não tenha sido pago, seu pedido será cancelado automaticamente. Não pague após este horário.`,
+  ]
+  @Prop() waitingPaymentMessage = 'Pedido aguardando pagamento!'
+
+  @State() clipboardIsClicked = false
 
   @Event() countdownIsFinished: EventEmitter<void>
   @Event() pixActionButtonIsClicked: EventEmitter<void>
+
+  private handleClickClipboard = () => {
+    if (!this.clipboardIsClicked) {
+      this.clipboardIsClicked = true
+    }
+  }
+
+  private handleClipboardButtonLabel = () => {
+    if (this.clipboardIsClicked) {
+      return 'Código Copiado'
+    }
+
+    return 'Copiar Código'
+  }
+
+  private renderListImportantMessages = () => {
+    const mappedImportantMessage = this.importantMessages.map(
+      (importantMessage) => <li>{importantMessage}</li>,
+    )
+
+    return mappedImportantMessage
+  }
 
   render() {
     return (
@@ -35,7 +66,7 @@ export class CheckoutModalPix {
             tag="h3"
             variation="header5"
             color="white"
-            content="Pedido aguardando pagamento!"
+            content={this.waitingPaymentMessage}
           />
         </header>
         <section class={{ 'checkout-modal-pix__content': true }}>
@@ -73,8 +104,9 @@ export class CheckoutModalPix {
           </div>
           <div class={{ 'checkout-modal-pix__clipboard-button-mobile': true }}>
             <checkout-button
-              label="Copiar Código"
+              label={this.handleClipboardButtonLabel()}
               clipboardContent={this.qrCodeIdentificator}
+              onClicked={() => this.handleClickClipboard()}
             />
           </div>
           <div
@@ -140,16 +172,7 @@ export class CheckoutModalPix {
               content="Informações importantes"
             />
 
-            <ul>
-              <li>
-                Vamos avisar por e-mail quando o banco identificar o depósito.
-                Esse processo é automático.
-              </li>
-              <li>
-                Caso o PIX não seja pago em até 20 minutos, seu pedido será
-                cancelado automaticamente. Não pague após este horário.
-              </li>
-            </ul>
+            <ul>{this.renderListImportantMessages()}</ul>
           </div>
           <div
             class={{

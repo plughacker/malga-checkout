@@ -21,6 +21,9 @@ export class CheckoutModal {
   @Prop() successActionButtonLabel?: string
   @Prop() errorActionButtonLabel?: string
   @Prop() successDescription?: string
+  @Prop() boletoWaitingPaymentMessage?: string
+  @Prop() pixImportantMessages?: string[]
+  @Prop() pixWaitingPaymentMessage?: string
   @Prop() pixFilledProgressBarColor?: string
   @Prop() pixEmptyProgressBarColor?: string
 
@@ -63,6 +66,8 @@ export class CheckoutModal {
               actionButtonLabel={this.actionButtonLabel}
               countdownFilledProgressBarColor={this.pixFilledProgressBarColor}
               countdownEmptyProgressBarColor={this.pixEmptyProgressBarColor}
+              importantMessages={this.pixImportantMessages}
+              waitingPaymentMessage={this.pixWaitingPaymentMessage}
               onCountdownIsFinished={() => this.pixCountdownIsFinished.emit()}
               onPixActionButtonIsClicked={() =>
                 this.successButtonClicked.emit()
@@ -75,6 +80,7 @@ export class CheckoutModal {
               boletoImageUrl={this.paymentImageUrl}
               amount={this.amount}
               expirationDate={this.expirationDate}
+              waitingPaymentMessage={this.boletoWaitingPaymentMessage}
               actionButtonLabel={this.actionButtonLabel}
               onBoletoActionButtonIsClicked={() =>
                 this.successButtonClicked.emit()

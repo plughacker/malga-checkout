@@ -103,6 +103,9 @@ declare namespace LocalJSX {
         "transactionConfig"?: PlugCheckoutTransaction;
     }
     interface PlugPayments {
+        "onPaymentFail"?: (event: CustomEvent<{
+    error: PlugPaymentsChargeError
+  }>) => void;
         "paymentMethods"?: PaymentMethods;
     }
     interface PlugPaymentsBoleto {
@@ -115,6 +118,9 @@ declare namespace LocalJSX {
     interface PlugPaymentsCreditSavedCards {
     }
     interface PlugPaymentsPix {
+        "onPixPaymentFailed"?: (event: CustomEvent<{
+    error: PlugPaymentsChargeError
+  }>) => void;
     }
     interface IntrinsicElements {
         "plug-checkout": PlugCheckout;

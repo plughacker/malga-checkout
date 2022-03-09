@@ -132,7 +132,12 @@ export class PlugCheckout {
       <Host class={{ 'plug-checkout__container': true }}>
         <section class={{ 'plug-checkout__content': true }}>
           {paymentMethods.length > 1 && (
-            <plug-payments paymentMethods={paymentMethods as PaymentMethods} />
+            <plug-payments
+              paymentMethods={paymentMethods as PaymentMethods}
+              onPaymentFail={({ detail: { error } }) =>
+                this.paymentFailed.emit({ error })
+              }
+            />
           )}
 
           {this.showCurrentPaymentMethod('credit') && (
@@ -146,7 +151,13 @@ export class PlugCheckout {
 
           {this.showCurrentPaymentMethod('boleto') && <plug-payments-boleto />}
 
-          {this.showCurrentPaymentMethod('pix') && <plug-payments-pix />}
+          {this.showCurrentPaymentMethod('pix') && (
+            <plug-payments-pix
+              onPixPaymentFailed={({ detail: { error } }) =>
+                this.paymentFailed.emit({ error })
+              }
+            />
+          )}
 
           <div class={{ 'plug-checkout__submit': true }}>
             <checkout-button

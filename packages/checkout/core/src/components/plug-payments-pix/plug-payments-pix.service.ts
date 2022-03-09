@@ -102,6 +102,12 @@ export class PlugPaymentsPixService {
             'Caso já tenha feito o pagamento, aguarde o e-mail de confirmação. Se não fez o pagamento ainda, faça um novo pedido.',
         })
 
+        this.handlePaymentFailed({
+          type: '400',
+          message: 'Pix not paid',
+          errorStack: chargeResponse.data,
+        })
+
         return
       }
 
@@ -116,6 +122,12 @@ export class PlugPaymentsPixService {
         mode: 'error',
         errorMessage:
           'Não foi possível concluir sua transação, tente novamente.',
+      })
+
+      this.handlePaymentFailed({
+        type: '400',
+        message: 'Pix not paid',
+        errorStack: error.response.data,
       })
     }
   }

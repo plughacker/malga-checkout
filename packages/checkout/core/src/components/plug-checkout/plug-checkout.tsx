@@ -31,8 +31,8 @@ import {
   PlugCheckoutTransaction,
   PlugCheckoutDialog,
 } from './plug-checkout.types'
-import credit from '../../stores/credit'
 
+import { handleDisablePayButton } from './plug-checkout.utils'
 @Component({
   tag: 'plug-checkout',
   styleUrl: 'plug-checkout.scss',
@@ -75,48 +75,6 @@ export class PlugCheckout {
   }>
 
   @State() isLoading = false
-
-  private handleCreditValidations = () => {
-    const validations = Object.values(credit.validations.fields)
-    const untouchedFields = validations.filter((field) => field === null)
-    const fieldsWithoutErrors = validations.filter((field) => !!field)
-
-    if (!untouchedFields.length && !fieldsWithoutErrors.length) {
-      return false
-    }
-
-    return true
-  }
-
-  private handleSavedCardValidations = () => {
-    if (payment.cvv.length >= 3 && payment.cardId) {
-      return false
-    }
-
-    return true
-  }
-
-  private handlePixValidations = () => false
-
-  private handleBoletoValidations = () => false
-
-  private handleUnselectPaymentMethodValidations = () => true
-
-  private handleDisablePayButton = () => {
-    const paymentMethodsOptions = {
-      credit: this.handleCreditValidations,
-      savedCard: this.handleSavedCardValidations,
-      pix: this.handlePixValidations,
-      boleto: this.handleBoletoValidations,
-      default: this.handleUnselectPaymentMethodValidations,
-    }
-
-    if (payment.isSelectedSavedCard) {
-      return paymentMethodsOptions.savedCard()
-    }
-
-    return paymentMethodsOptions[payment.selectedPaymentMethod || 'default']()
-  }
 
   private showCurrentPaymentMethod = (paymentMethod: PaymentMethodsType) => {
     const paymentMethods = Object.keys(this.paymentMethods)
@@ -206,7 +164,7 @@ export class PlugCheckout {
             <checkout-button
               isLoading={this.isLoading}
               label="Pagar"
-              disabled={this.handleDisablePayButton()}
+              disabled={handleDisablePayButton()}
               onClicked={this.handlePay}
             />
             <checkout-icon icon="poweredByPlug" />

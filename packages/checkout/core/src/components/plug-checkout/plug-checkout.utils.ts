@@ -1,8 +1,14 @@
 import credit from '../../stores/credit'
 import payment from '../../stores/payment'
+import settings from '../../stores/settings'
 
 const handleCreditValidations = () => {
-  const validations = Object.values(credit.validations.fields)
+  const hasInstallments = settings.paymentMethods.credit.installments.show
+  const fields = { ...credit.validations.fields }
+
+  if (!hasInstallments) delete fields.installments
+
+  const validations = Object.values(fields)
   const untouchedFields = validations.filter((field) => field === null)
   const fieldsWithoutErrors = validations.filter((field) => !!field)
 

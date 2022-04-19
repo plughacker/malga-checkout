@@ -32,6 +32,7 @@ import {
   PlugCheckoutDialog,
 } from './plug-checkout.types'
 
+import { handleDisablePayButton } from './plug-checkout.utils'
 @Component({
   tag: 'plug-checkout',
   styleUrl: 'plug-checkout.scss',
@@ -163,8 +164,8 @@ export class PlugCheckout {
             <checkout-button
               isLoading={this.isLoading}
               label="Pagar"
-              disabled={this.isLoading}
-              onClick={this.handlePay}
+              disabled={handleDisablePayButton()}
+              onClicked={this.handlePay}
             />
             <checkout-icon icon="poweredByPlug" />
           </div>

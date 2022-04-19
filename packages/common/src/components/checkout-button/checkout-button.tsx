@@ -31,6 +31,10 @@ export class CheckoutButton implements ComponentInterface {
   @Event() blured!: EventEmitter<void>
 
   private onClick = () => {
+    if (this.isLoading || this.disabled) {
+      return
+    }
+
     this.clicked.emit()
   }
 

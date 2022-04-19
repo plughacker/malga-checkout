@@ -20,10 +20,13 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
 
   private handleFieldFocused = (field: string) => () => {
     if (credit.validations.allFieldsIsBlank) {
-      credit.validations.allFieldsIsBlank = false
+      credit.validations = { ...credit.validations, allFieldsIsBlank: false }
     }
 
-    credit.validations.fields = { ...credit.validations.fields, [field]: null }
+    credit.validations = {
+      ...credit.validations,
+      fields: { ...credit.validations.fields, [field]: null },
+    }
   }
 
   private handleFieldBlurred = (field: string) => async (event) => {
@@ -41,14 +44,17 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
       },
     )
 
-    credit.validations.fields = {
-      ...credit.validations.fields,
-      [field]: validation.errors ? validation.errors[field] : '',
+    credit.validations = {
+      ...credit.validations,
+      fields: {
+        ...credit.validations.fields,
+        [field]: validation.errors ? validation.errors[field] : '',
+      },
     }
   }
 
   private handleSaveCardChange = () => {
-    credit.form.saveCard = !credit.form.saveCard
+    credit.form = { ...credit.form, saveCard: !credit.form.saveCard }
   }
 
   private handleFieldChange = (field: string) => (event) => {
@@ -77,7 +83,10 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
 
   private handleCheckedSaveCard = () => {
     if (settings.paymentMethods.credit.checkedSaveCard) {
-      credit.form.saveCard = settings.paymentMethods.credit.checkedSaveCard
+      credit.form = {
+        ...credit.form,
+        saveCard: settings.paymentMethods.credit.checkedSaveCard,
+      }
     }
   }
 

@@ -8,7 +8,7 @@ export const formatCustomer = (
     name: customer.name,
     email: customer.email,
     identification: customer.identification,
-    phoneNumber: ' ',
+    phoneNumber: null,
     address: {
       zipCode: customer.zipCode,
       street: customer.street,

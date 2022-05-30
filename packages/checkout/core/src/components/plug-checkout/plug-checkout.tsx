@@ -7,6 +7,7 @@ import {
   Event,
   EventEmitter,
   Fragment,
+  Watch,
 } from '@stencil/core'
 
 import {
@@ -75,6 +76,11 @@ export class PlugCheckout {
   }>
 
   @State() isLoading = false
+
+  @Watch('transactionConfig')
+  protected handleWatchTransactionConfig() {
+    settings.transactionConfig = this.transactionConfig
+  }
 
   private showCurrentPaymentMethod = (paymentMethod: PaymentMethodsType) => {
     const paymentMethods = Object.keys(this.paymentMethods)

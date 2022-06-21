@@ -9,14 +9,15 @@ import { PlugCheckoutDialog, PlugCheckoutPaymentMethods, PlugCheckoutTransaction
 import { PaymentMethods, PlugPaymentsChargeError, PlugPaymentsChargeSuccess } from "./components/plug-payments/plug-payments.types";
 export namespace Components {
     interface PlugCheckout {
-        "clientId": string;
+        "clientId"?: string;
         "dialogConfig": PlugCheckoutDialog;
         "idempotencyKey": string;
-        "merchantId": string;
-        "paymentMethods": PlugCheckoutPaymentMethods;
-        "publicKey": string;
+        "merchantId"?: string;
+        "paymentMethods"?: PlugCheckoutPaymentMethods;
+        "paymentSessionKey"?: string;
+        "publicKey"?: string;
         "sandbox": boolean;
-        "transactionConfig": PlugCheckoutTransaction;
+        "transactionConfig"?: PlugCheckoutTransaction;
     }
     interface PlugPayments {
         "paymentMethods": PaymentMethods;
@@ -98,6 +99,7 @@ declare namespace LocalJSX {
     data: PlugPaymentsChargeSuccess
   }>) => void;
         "paymentMethods"?: PlugCheckoutPaymentMethods;
+        "paymentSessionKey"?: string;
         "publicKey"?: string;
         "sandbox"?: boolean;
         "transactionConfig"?: PlugCheckoutTransaction;

@@ -39,10 +39,13 @@ import { handleDisablePayButton } from './plug-checkout.utils'
   styleUrl: 'plug-checkout.scss',
 })
 export class PlugCheckout {
-  @Prop() clientId: string
-  @Prop() publicKey: string
+  readonly plugCheckoutService: PlugCheckoutService
+
+  @Prop() clientId?: string
+  @Prop() publicKey?: string
   @Prop() idempotencyKey: string
-  @Prop() merchantId: string
+  @Prop() paymentSessionKey?: string
+  @Prop() merchantId?: string
   @Prop() sandbox = false
   @Prop() dialogConfig: PlugCheckoutDialog = {
     show: true,
@@ -51,12 +54,12 @@ export class PlugCheckout {
     errorActionButtonLabel: 'Tentar Novamente',
     successRedirectUrl: '',
   }
-  @Prop() paymentMethods: PlugCheckoutPaymentMethods = {
+  @Prop() paymentMethods?: PlugCheckoutPaymentMethods = {
     pix: undefined,
     credit: undefined,
     boleto: undefined,
   }
-  @Prop() transactionConfig: PlugCheckoutTransaction = {
+  @Prop() transactionConfig?: PlugCheckoutTransaction = {
     statementDescriptor: '',
     amount: 0,
     description: '',
@@ -75,15 +78,24 @@ export class PlugCheckout {
     error: PlugPaymentsChargeError
   }>
 
-  @State() isLoading = false
+  @State() isButtonLoading = false
+
+  @State() isLoading = true
 
   @Watch('transactionConfig')
   protected handleWatchTransactionConfig() {
     settings.transactionConfig = this.transactionConfig
   }
 
+  constructor() {
+    this.plugCheckoutService = new PlugCheckoutService({
+      onPaymentSuccess: (data) => this.paymentSuccess.emit({ data }),
+      onPaymentFailed: (error) => this.paymentFailed.emit({ error }),
+    })
+  }
+
   private showCurrentPaymentMethod = (paymentMethod: PaymentMethodsType) => {
-    const paymentMethods = Object.keys(this.paymentMethods)
+    const paymentMethods = Object.keys(settings.paymentMethods)
 
     const showPaymentMethod = paymentMethods.includes(paymentMethod)
 
@@ -92,34 +104,35 @@ export class PlugCheckout {
 
   private handlePay = async () => {
     try {
-      this.isLoading = true
+      this.isButtonLoading = true
 
-      const plugCheckoutService = new PlugCheckoutService({
-        onPaymentSuccess: (data) => this.paymentSuccess.emit({ data }),
-        onPaymentFailed: (error) => this.paymentFailed.emit({ error }),
-      })
+      await this.plugCheckoutService.pay()
 
-      await plugCheckoutService.pay()
-
-      this.isLoading = false
+      this.isButtonLoading = false
     } catch (err) {
-      this.isLoading = false
+      this.isButtonLoading = false
     }
   }
 
-  private handleStoreSettings = () => {
+  private handleStoreSettings = async () => {
+    settings.paymentSessionKey = this.paymentSessionKey
+    settings.dialogConfig = this.dialogConfig
+    settings.sandbox = this.sandbox
+    settings.idempotencyKey = this.idempotencyKey
     settings.clientId = this.clientId
     settings.publicKey = this.publicKey
     settings.merchantId = this.merchantId
-    settings.idempotencyKey = this.idempotencyKey
-    settings.sandbox = this.sandbox
-    settings.dialogConfig = this.dialogConfig
     settings.paymentMethods = this.paymentMethods
     settings.transactionConfig = this.transactionConfig
+
+    await this.plugCheckoutService.getPaymentSession()
+
+    this.isLoading = false
+    this.handleStoreCurrentPaymentMethod()
   }
 
   private handleStoreCurrentPaymentMethod = () => {
-    const paymentMethods = clearEmptyObjectProperties(this.paymentMethods)
+    const paymentMethods = clearEmptyObjectProperties(settings.paymentMethods)
 
     if (paymentMethods.length === 1) {
       const [[currentPaymentMethod]] = paymentMethods
@@ -129,11 +142,14 @@ export class PlugCheckout {
 
   componentWillLoad() {
     this.handleStoreSettings()
-    this.handleStoreCurrentPaymentMethod()
   }
 
   render() {
-    const paymentMethods = clearedObjectProperties(this.paymentMethods)
+    const paymentMethods = clearedObjectProperties(settings.paymentMethods)
+
+    if (this.isLoading) {
+      return <p>Carregando...</p>
+    }
 
     return (
       <Host class={{ 'plug-checkout__container': true }}>
@@ -168,7 +184,7 @@ export class PlugCheckout {
 
           <div class={{ 'plug-checkout__submit': true }}>
             <checkout-button
-              isLoading={this.isLoading}
+              isLoading={this.isButtonLoading}
               label="Pagar"
               disabled={handleDisablePayButton()}
               onClicked={this.handlePay}

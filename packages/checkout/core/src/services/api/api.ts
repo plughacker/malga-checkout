@@ -13,11 +13,21 @@ export class Api {
       baseURL: this.getCurrentHost(),
       headers: {
         'Content-Type': 'application/json',
-        'X-Client-Id': settings.clientId,
-        'X-Api-Key': settings.publicKey,
+        ...this.getCurrentHeaders(),
       },
     }
     this.api = axios.create(this.axiosConfig)
+  }
+
+  private getCurrentHeaders() {
+    if (settings.paymentSessionKey) {
+      return {}
+    }
+
+    return {
+      'X-Client-Id': settings.clientId,
+      'X-Api-Key': settings.publicKey,
+    }
   }
 
   private getCurrentHost() {

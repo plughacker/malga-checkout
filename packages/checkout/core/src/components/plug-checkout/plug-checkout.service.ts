@@ -11,8 +11,10 @@ import {
   PlugPaymentsChargeError,
   PlugPaymentsChargeSuccess,
 } from '../plug-payments/plug-payments.types'
+import { PaymentSession } from '../../services/payment-session/payment-session'
 
 export class PlugCheckoutService {
+  readonly paymentSession: PaymentSession
   readonly onPaymentSuccess: (
     data: PlugPaymentsChargeSuccess,
   ) => CustomEvent<{ data: PlugPaymentsChargeSuccess }>
@@ -21,6 +23,7 @@ export class PlugCheckoutService {
   ) => CustomEvent<{ error: PlugPaymentsChargeError }>
 
   constructor({ onPaymentSuccess, onPaymentFailed }) {
+    this.paymentSession = new PaymentSession()
     this.onPaymentSuccess = onPaymentSuccess
     this.onPaymentFailed = onPaymentFailed
   }
@@ -94,6 +97,52 @@ export class PlugCheckoutService {
       ...currenInitialDialogConfigs,
       ...dialogConfigs,
     }
+  }
+
+  public async getPaymentSession() {
+    if (!settings.paymentSessionKey) {
+      return
+    }
+
+    const paymentSession = await this.paymentSession.find(
+      settings.paymentSessionKey,
+    )
+
+    settings.transactionConfig = {
+      statementDescriptor: paymentSession.statementDescriptor,
+      amount: paymentSession.amount,
+      capture: paymentSession.capture,
+      description: paymentSession.description,
+      orderId: paymentSession.orderId,
+      currency: paymentSession.currency,
+    }
+
+    settings.paymentMethods = paymentSession.paymentMethods.reduce(
+      (previousPaymentMethods, currentPaymentMethods) => {
+        if (currentPaymentMethods.paymentType == 'pix') {
+          previousPaymentMethods.pix = {
+            expiresIn: currentPaymentMethods.expiresIn,
+          }
+        } else if (currentPaymentMethods.paymentType == 'boleto') {
+          previousPaymentMethods.boleto = {
+            expiresDate: currentPaymentMethods.expiresDate,
+            instructions: currentPaymentMethods.instructions,
+            interest: currentPaymentMethods.interest,
+            fine: currentPaymentMethods.fine,
+          }
+        } else {
+          previousPaymentMethods.credit = {
+            installments: currentPaymentMethods.installments,
+          }
+        }
+
+        return previousPaymentMethods
+      }, {
+        pix: null,
+        boleto: null,
+        credit: null,
+      }
+    )
   }
 
   public async pay() {

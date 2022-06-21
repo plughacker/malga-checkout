@@ -27,12 +27,13 @@ import { formatCustomer } from './plug-checkout-full.utils'
   styleUrl: 'plug-checkout-full.scss',
 })
 export class PlugCheckoutFull implements ComponentInterface {
-  @Prop() clientId: string
-  @Prop() publicKey: string
-  @Prop() merchantId: string
+  @Prop() clientId?: string
+  @Prop() publicKey?: string
+  @Prop() merchantId?: string
   @Prop() idempotencyKey: string
+  @Prop() paymentSessionKey?: string
   @Prop() sandbox = false
-  @Prop() paymentMethods: PlugCheckoutFullPaymentMethods = {
+  @Prop() paymentMethods?: PlugCheckoutFullPaymentMethods = {
     pix: undefined,
     credit: undefined,
     boleto: undefined,
@@ -44,7 +45,7 @@ export class PlugCheckoutFull implements ComponentInterface {
     delivery: 0,
     products: [],
   }
-  @Prop() transactionConfig: PlugCheckoutFullTransaction = {
+  @Prop() transactionConfig?: PlugCheckoutFullTransaction = {
     statementDescriptor: '',
     amount: 0,
     description: '',
@@ -170,6 +171,7 @@ export class PlugCheckoutFull implements ComponentInterface {
                 clientId={this.clientId}
                 merchantId={this.merchantId}
                 idempotencyKey={this.idempotencyKey}
+                paymentSessionKey={this.paymentSessionKey}
                 sandbox={this.sandbox}
                 transactionConfig={{
                   ...this.transactionConfig,

@@ -9,15 +9,16 @@ import { PlugCheckoutFullChargeError, PlugCheckoutFullChargeSuccess, PlugCheckou
 import { PlugCheckoutFullIdentificationFormValues } from "./components/plug-checkout-full/partials/plug-checkout-full-identification/plug-checkout-full-identification.types";
 export namespace Components {
     interface PlugCheckoutFull {
-        "clientId": string;
+        "clientId"?: string;
         "dialogConfig": PlugCheckoutFullDialog;
         "idempotencyKey": string;
-        "merchantId": string;
+        "merchantId"?: string;
         "pageConfig": PlugCheckoutFullPage;
-        "paymentMethods": PlugCheckoutFullPaymentMethods;
-        "publicKey": string;
+        "paymentMethods"?: PlugCheckoutFullPaymentMethods;
+        "paymentSessionKey"?: string;
+        "publicKey"?: string;
         "sandbox": boolean;
-        "transactionConfig": PlugCheckoutFullTransaction;
+        "transactionConfig"?: PlugCheckoutFullTransaction;
     }
     interface PlugCheckoutFullContent {
     }
@@ -85,6 +86,7 @@ declare namespace LocalJSX {
   }>) => void;
         "pageConfig"?: PlugCheckoutFullPage;
         "paymentMethods"?: PlugCheckoutFullPaymentMethods;
+        "paymentSessionKey"?: string;
         "publicKey"?: string;
         "sandbox"?: boolean;
         "transactionConfig"?: PlugCheckoutFullTransaction;

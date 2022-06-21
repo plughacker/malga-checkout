@@ -8,6 +8,7 @@ export interface SettingsState {
   clientId: string
   publicKey: string
   idempotencyKey: string
+  paymentSessionKey: string
   merchantId: string
   sandbox: boolean
   dialogConfig: PlugCheckoutDialog

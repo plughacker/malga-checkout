@@ -8,6 +8,7 @@ export const { state, onChange } = createStore<SettingsState>({
   publicKey: '',
   merchantId: '',
   idempotencyKey: '',
+  paymentSessionKey: '',
   sandbox: false,
   dialogConfig: {
     show: true,

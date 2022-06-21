@@ -16,6 +16,8 @@ export class PaymentSession {
     //   },
     // })
 
+    console.log(paymentSessionKey)
+
     return {
       id: '565b783a-23ed-4f2e-a57b-6c95a5e9cdcd',
       name: 'Pedido Plug',

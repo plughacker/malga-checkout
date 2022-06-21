@@ -39,6 +39,7 @@ export declare interface PlugCheckout extends Components.PlugCheckout {}
     'sandbox',
     'transactionConfig',
     'idempotencyKey',
+    'paymentSessionKey',
   ],
   outputs: ['paymentSuccess', 'paymentFailed'],
 })

@@ -40,7 +40,7 @@ export declare interface PlugCheckout extends Components.PlugCheckout {}
     'transactionConfig',
     'idempotencyKey',
   ],
-  outputs: ['paymentSuccess', 'paymentFailed'],
+  outputs: ['paymentSuccess', 'paymentFailed', 'customizationSuccess'],
 })
 export class PlugCheckout {
   /**  */
@@ -51,6 +51,10 @@ export class PlugCheckout {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach()
     this.el = r.nativeElement
-    proxyOutputs(this, this.el, ['paymentSuccess', 'paymentFailed'])
+    proxyOutputs(this, this.el, [
+      'paymentSuccess',
+      'paymentFailed',
+      'customizationSuccess',
+    ])
   }
 }

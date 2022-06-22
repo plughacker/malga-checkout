@@ -21,10 +21,11 @@
 
 ## Events
 
-| Event            | Description | Type                                                |
-| ---------------- | ----------- | --------------------------------------------------- |
-| `paymentFailed`  |             | `CustomEvent<{ error: PlugPaymentsChargeError; }>`  |
-| `paymentSuccess` |             | `CustomEvent<{ data: PlugPaymentsChargeSuccess; }>` |
+| Event                  | Description | Type                                                |
+| ---------------------- | ----------- | --------------------------------------------------- |
+| `customizationSuccess` |             | `CustomEvent<{ data: CustomizationData; }>`         |
+| `paymentFailed`        |             | `CustomEvent<{ error: PlugPaymentsChargeError; }>`  |
+| `paymentSuccess`       |             | `CustomEvent<{ data: PlugPaymentsChargeSuccess; }>` |
 
 
 ## Dependencies

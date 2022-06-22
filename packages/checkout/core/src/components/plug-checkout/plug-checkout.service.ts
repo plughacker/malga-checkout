@@ -8,21 +8,36 @@ import { PlugPaymentsCreditService } from '../plug-payments-credit/plug-payments
 import { PlugPaymentsPixService } from '../plug-payments-pix/plug-payments-pix.service'
 
 import {
+  setThemePrimaryColors,
+  setThemeWarningColors,
+  setThemeErrorColors,
+  setThemeSuccessColors,
+  setThemeBackgroundColor,
+} from './plug-checkout.utils'
+
+import {
   PlugPaymentsChargeError,
   PlugPaymentsChargeSuccess,
 } from '../plug-payments/plug-payments.types'
+import { Customization, CustomizationData } from '../../services/customization'
 
 export class PlugCheckoutService {
+  readonly customization: Customization
   readonly onPaymentSuccess: (
     data: PlugPaymentsChargeSuccess,
   ) => CustomEvent<{ data: PlugPaymentsChargeSuccess }>
   readonly onPaymentFailed: (
     error: PlugPaymentsChargeError,
   ) => CustomEvent<{ error: PlugPaymentsChargeError }>
+  readonly onCustomizationSuccess: (
+    data: CustomizationData,
+  ) => CustomEvent<{ data: CustomizationData }>
 
-  constructor({ onPaymentSuccess, onPaymentFailed }) {
+  constructor({ onPaymentSuccess, onPaymentFailed, onCustomizationSuccess }) {
+    this.customization = new Customization()
     this.onPaymentSuccess = onPaymentSuccess
     this.onPaymentFailed = onPaymentFailed
+    this.onCustomizationSuccess = onCustomizationSuccess
   }
 
   private handleCreditPaymentData = () => {
@@ -108,5 +123,19 @@ export class PlugCheckoutService {
     })
 
     await paymentMethod.pay()
+  }
+
+  public async customize() {
+    const customization = await this.customization.find()
+
+    if (customization.hasError) return
+
+    this.onCustomizationSuccess(customization.data)
+
+    setThemePrimaryColors(customization.data.primaryColor)
+    setThemeWarningColors(customization.data.warningColor)
+    setThemeErrorColors(customization.data.errorColor)
+    setThemeSuccessColors(customization.data.successColor)
+    setThemeBackgroundColor(customization.data.backgroundColor)
   }
 }

@@ -8,6 +8,7 @@ import {
   EventEmitter,
   Fragment,
   Watch,
+  ComponentInterface,
 } from '@stencil/core'
 
 import {
@@ -27,6 +28,8 @@ import {
 
 import { PlugCheckoutService } from './plug-checkout.service'
 
+import { CustomizationData } from '../../services/customization'
+
 import {
   PlugCheckoutPaymentMethods,
   PlugCheckoutTransaction,
@@ -38,7 +41,9 @@ import { handleDisablePayButton } from './plug-checkout.utils'
   tag: 'plug-checkout',
   styleUrl: 'plug-checkout.scss',
 })
-export class PlugCheckout {
+export class PlugCheckout implements ComponentInterface {
+  readonly plugCheckoutService: PlugCheckoutService
+
   @Prop() clientId: string
   @Prop() publicKey: string
   @Prop() idempotencyKey: string
@@ -68,6 +73,9 @@ export class PlugCheckout {
     fraudAnalysis: null,
   }
 
+  @Event() customizationSuccess?: EventEmitter<{
+    data: CustomizationData
+  }>
   @Event() paymentSuccess!: EventEmitter<{
     data: PlugPaymentsChargeSuccess
   }>
@@ -82,6 +90,15 @@ export class PlugCheckout {
     settings.transactionConfig = this.transactionConfig
   }
 
+  constructor() {
+    this.plugCheckoutService = new PlugCheckoutService({
+      onPaymentSuccess: (data) => this.paymentSuccess.emit({ data }),
+      onPaymentFailed: (error) => this.paymentFailed.emit({ error }),
+      onCustomizationSuccess: (data) =>
+        this.customizationSuccess.emit({ data }),
+    })
+  }
+
   private showCurrentPaymentMethod = (paymentMethod: PaymentMethodsType) => {
     const paymentMethods = Object.keys(this.paymentMethods)
 
@@ -94,12 +111,7 @@ export class PlugCheckout {
     try {
       this.isLoading = true
 
-      const plugCheckoutService = new PlugCheckoutService({
-        onPaymentSuccess: (data) => this.paymentSuccess.emit({ data }),
-        onPaymentFailed: (error) => this.paymentFailed.emit({ error }),
-      })
-
-      await plugCheckoutService.pay()
+      await this.plugCheckoutService.pay()
 
       this.isLoading = false
     } catch (err) {
@@ -127,9 +139,14 @@ export class PlugCheckout {
     }
   }
 
+  private handleCustomize = () => {
+    this.plugCheckoutService.customize()
+  }
+
   componentWillLoad() {
     this.handleStoreSettings()
     this.handleStoreCurrentPaymentMethod()
+    this.handleCustomize()
   }
 
   render() {

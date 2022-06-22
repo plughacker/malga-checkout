@@ -22,10 +22,10 @@ export class Api {
 
   private getCurrentHost() {
     if (settings.sandbox) {
-      return 'https://sandbox-api.plugpagamentos.com/v1'
+      return 'https://api.dev.plugpagamentos.com/v1'
     }
 
-    return 'https://api.plugpagamentos.com/v1'
+    return 'https://api.dev.plugpagamentos.com/v1'
   }
 
   public async create({ endpoint, data, headers }: CreateParams) {

@@ -13,7 +13,7 @@ export namespace Components {
         "dialogConfig": PlugCheckoutFullDialog;
         "idempotencyKey": string;
         "merchantId"?: string;
-        "pageConfig": PlugCheckoutFullPage;
+        "pageConfig"?: PlugCheckoutFullPage;
         "paymentMethods"?: PlugCheckoutFullPaymentMethods;
         "paymentSessionKey"?: string;
         "publicKey"?: string;
@@ -28,6 +28,7 @@ export namespace Components {
     interface PlugCheckoutFullHeader {
         "backRoute": string;
         "brand": string;
+        "isLoading": boolean;
     }
     interface PlugCheckoutFullIdentification {
         "formValues": PlugCheckoutFullIdentificationFormValues;
@@ -99,6 +100,7 @@ declare namespace LocalJSX {
     interface PlugCheckoutFullHeader {
         "backRoute"?: string;
         "brand"?: string;
+        "isLoading"?: boolean;
     }
     interface PlugCheckoutFullIdentification {
         "formValues"?: PlugCheckoutFullIdentificationFormValues;

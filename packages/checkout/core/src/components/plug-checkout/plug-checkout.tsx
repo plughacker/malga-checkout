@@ -131,6 +131,7 @@ export class PlugCheckout {
     settings.transactionConfig = this.transactionConfig
 
     const paymentSession = await this.plugCheckoutService.getPaymentSession()
+    console.log(paymentSession)
     this.paymentSessionFetch.emit({ paymentSession })
 
     this.isLoading = false

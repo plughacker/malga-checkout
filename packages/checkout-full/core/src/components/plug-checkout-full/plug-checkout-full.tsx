@@ -227,10 +227,9 @@ export class PlugCheckoutFull implements ComponentInterface {
                 onPaymentFailed={({ detail: { error } }) =>
                   this.transactionFailed.emit({ error })
                 }
-                onPaymentSessionFetch={({ detail: { paymentSession } }) => {
-                  console.log(paymentSession)
+                onPaymentSessionFetch={({ detail: { paymentSession } }) =>
                   this.handleSetPaymentSessionData(paymentSession)
-                }}
+                }
               />
             </checkout-accordion>
           </div>

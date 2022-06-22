@@ -49,6 +49,8 @@ export class PlugCheckout {
   paymentSuccess!: EventEmitter<CustomEvent<{ data: unknown }>>
   /**  */
   paymentFailed!: EventEmitter<CustomEvent<{ error: unknown }>>
+  /**  */
+  paymentSessionFetch!: EventEmitter<CustomEvent<{ error: unknown }>>
   protected el: HTMLElement
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach()

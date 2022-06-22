@@ -14,6 +14,7 @@ export const PlugCheckoutFull =
       'publicKey',
       'merchantId',
       'idempotencyKey',
+      'paymentSessionKey',
       'sandbox',
       'paymentMethods',
       'pageConfig',
@@ -21,5 +22,6 @@ export const PlugCheckoutFull =
       'dialogConfig',
       'transactionSuccess',
       'transactionFailed',
+      'paymentSessionFetch',
     ],
   )

@@ -7,6 +7,7 @@ import { Component, Host, h, Prop } from '@stencil/core'
 export class PlugCheckoutFullHeader {
   @Prop() brand: string
   @Prop() backRoute: string
+  @Prop() isLoading: boolean = false
 
   private handleNavigation = () => {
     if (this.backRoute) {
@@ -20,6 +21,15 @@ export class PlugCheckoutFullHeader {
   render() {
     return (
       <Host class={{ 'plug-checkout-full-header__container': true }}>
+        {this.isLoading && (
+          <div
+            class={{ 'plug-checkout-full-header__progress-horizontal': true }}
+          >
+            <div
+              class={{ 'plug-checkout-full-header__bar-horizontal': true }}
+            />
+          </div>
+        )}
         <header class={{ 'plug-checkout-full-header__content': true }}>
           <button
             class={{ 'plug-checkout-full-header__navigation': true }}

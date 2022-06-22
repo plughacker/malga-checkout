@@ -143,6 +143,8 @@ export class PlugCheckoutService {
         credit: null,
       }
     )
+
+    return paymentSession
   }
 
   public async pay() {

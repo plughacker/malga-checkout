@@ -21,6 +21,7 @@ import {
 import { PlugCheckoutFullIdentificationFormValues } from './partials/plug-checkout-full-identification/plug-checkout-full-identification.types'
 
 import { formatCustomer } from './plug-checkout-full.utils'
+import { PaymentSessionData } from '@plug-checkout/core/dist/types/services/payment-session/payment-session.types'
 
 @Component({
   tag: 'plug-checkout-full',
@@ -38,7 +39,7 @@ export class PlugCheckoutFull implements ComponentInterface {
     credit: undefined,
     boleto: undefined,
   }
-  @Prop() pageConfig: PlugCheckoutFullPage = {
+  @Prop() pageConfig?: PlugCheckoutFullPage = {
     brandUrl: '',
     footerDescription: '',
     backRoute: '',
@@ -85,6 +86,10 @@ export class PlugCheckoutFull implements ComponentInterface {
     country: '',
   }
 
+  @State() isLoading = true
+
+  @State() paymentSessionData?: PaymentSessionData
+
   private handleChangeSection = (section: string) => {
     this.currentSection = section
   }
@@ -102,7 +107,43 @@ export class PlugCheckoutFull implements ComponentInterface {
     }
   }
 
+  private handleSetPaymentSessionData = (
+    paymentSessionData: PaymentSessionData,
+  ) => {
+    console.log(paymentSessionData)
+    this.paymentSessionData = paymentSessionData
+    this.isLoading = false
+    console.log(this.isLoading)
+  }
+
+  private handleGetAmount = () => {
+    if (this.paymentSessionData) {
+      return this.paymentSessionData.amount
+    }
+
+    return this.transactionConfig.amount
+  }
+
+  private handleGetProducts = () => {
+    if (this.paymentSessionData) {
+      return this.paymentSessionData.items.map((item) => {
+        return {
+          name: item.name,
+          amount: item.unitPrice,
+          quantity: item.quantity,
+          description: item.description,
+        }
+      })
+    }
+
+    return this.pageConfig.products
+  }
+
   componentWillLoad() {
+    if (!this.paymentSessionKey) {
+      this.isLoading = false
+    }
+
     if (this.transactionConfig.customerId) {
       this.currentSection = 'payments'
     }
@@ -120,14 +161,15 @@ export class PlugCheckoutFull implements ComponentInterface {
         <plug-checkout-full-header
           brand={this.pageConfig.brandUrl}
           backRoute={this.pageConfig.backRoute}
+          isLoading={this.isLoading}
         />
 
         <plug-checkout-full-content>
           <checkout-order-summary
             slot="order"
             label="Pedido"
-            amount={this.transactionConfig.amount}
-            products={this.pageConfig.products}
+            amount={this.handleGetAmount()}
+            products={this.handleGetProducts()}
             delivery={this.pageConfig.delivery}
           />
 
@@ -185,6 +227,10 @@ export class PlugCheckoutFull implements ComponentInterface {
                 onPaymentFailed={({ detail: { error } }) =>
                   this.transactionFailed.emit({ error })
                 }
+                onPaymentSessionFetch={({ detail: { paymentSession } }) => {
+                  console.log(paymentSession)
+                  this.handleSetPaymentSessionData(paymentSession)
+                }}
               />
             </checkout-accordion>
           </div>

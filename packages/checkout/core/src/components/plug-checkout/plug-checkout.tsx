@@ -34,6 +34,7 @@ import {
 } from './plug-checkout.types'
 
 import { handleDisablePayButton } from './plug-checkout.utils'
+import { PaymentSessionData } from '../../services/payment-session/payment-session.types'
 @Component({
   tag: 'plug-checkout',
   styleUrl: 'plug-checkout.scss',
@@ -76,6 +77,10 @@ export class PlugCheckout {
   }>
   @Event() paymentFailed!: EventEmitter<{
     error: PlugPaymentsChargeError
+  }>
+
+  @Event() paymentSessionFetch?: EventEmitter<{
+    paymentSession: PaymentSessionData
   }>
 
   @State() isButtonLoading = false
@@ -125,7 +130,8 @@ export class PlugCheckout {
     settings.paymentMethods = this.paymentMethods
     settings.transactionConfig = this.transactionConfig
 
-    await this.plugCheckoutService.getPaymentSession()
+    const paymentSession = await this.plugCheckoutService.getPaymentSession()
+    this.paymentSessionFetch.emit({ paymentSession })
 
     this.isLoading = false
     this.handleStoreCurrentPaymentMethod()

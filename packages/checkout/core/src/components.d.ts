@@ -7,6 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { PlugCheckoutDialog, PlugCheckoutPaymentMethods, PlugCheckoutTransaction } from "./components/plug-checkout/plug-checkout.types";
 import { PaymentMethods, PlugPaymentsChargeError, PlugPaymentsChargeSuccess } from "./components/plug-payments/plug-payments.types";
+import { PaymentSessionData } from "./services/payment-session/payment-session.types";
 export namespace Components {
     interface PlugCheckout {
         "clientId"?: string;
@@ -94,6 +95,9 @@ declare namespace LocalJSX {
         "merchantId"?: string;
         "onPaymentFailed"?: (event: CustomEvent<{
     error: PlugPaymentsChargeError
+  }>) => void;
+        "onPaymentSessionFetch"?: (event: CustomEvent<{
+    paymentSession: PaymentSessionData
   }>) => void;
         "onPaymentSuccess"?: (event: CustomEvent<{
     data: PlugPaymentsChargeSuccess

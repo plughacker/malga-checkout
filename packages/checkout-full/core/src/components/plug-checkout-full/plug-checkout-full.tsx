@@ -16,6 +16,7 @@ import {
   PlugCheckoutFullDialog,
   PlugCheckoutFullChargeError,
   PlugCheckoutFullChargeSuccess,
+  PlugCheckoutFullCustomization,
 } from './plug-checkout-full.types'
 
 import { PlugCheckoutFullIdentificationFormValues } from './partials/plug-checkout-full-identification/plug-checkout-full-identification.types'
@@ -37,7 +38,7 @@ export class PlugCheckoutFull implements ComponentInterface {
     credit: undefined,
     boleto: undefined,
   }
-  @Prop() pageConfig: PlugCheckoutFullPage = {
+  @Prop() pageConfig?: PlugCheckoutFullPage = {
     brandUrl: '',
     footerDescription: '',
     backRoute: '',
@@ -69,6 +70,7 @@ export class PlugCheckoutFull implements ComponentInterface {
     error: PlugCheckoutFullChargeError
   }>
 
+  @State() customization: PlugCheckoutFullCustomization
   @State() currentSection = 'identification'
   @State() customerFormFields: PlugCheckoutFullIdentificationFormValues = {
     name: '',
@@ -82,6 +84,12 @@ export class PlugCheckoutFull implements ComponentInterface {
     city: '',
     state: '',
     country: '',
+  }
+
+  private handleChangeCustomization = (
+    customizationData: PlugCheckoutFullCustomization,
+  ) => {
+    this.customization = customizationData
   }
 
   private handleChangeSection = (section: string) => {
@@ -101,6 +109,14 @@ export class PlugCheckoutFull implements ComponentInterface {
     }
   }
 
+  private renderBrand = () => {
+    if (this.customization && this.customization.brandUrl) {
+      return this.customization.brandUrl
+    }
+
+    return this.pageConfig.brandUrl
+  }
+
   componentWillLoad() {
     if (this.transactionConfig.customerId) {
       this.currentSection = 'payments'
@@ -117,7 +133,7 @@ export class PlugCheckoutFull implements ComponentInterface {
         }}
       >
         <plug-checkout-full-header
-          brand={this.pageConfig.brandUrl}
+          brand={this.renderBrand()}
           backRoute={this.pageConfig.backRoute}
         />
 
@@ -182,6 +198,9 @@ export class PlugCheckoutFull implements ComponentInterface {
                 }
                 onPaymentFailed={({ detail: { error } }) =>
                   this.transactionFailed.emit({ error })
+                }
+                onCustomizationSuccess={({ detail: { data } }) =>
+                  this.handleChangeCustomization(data)
                 }
               />
             </checkout-accordion>

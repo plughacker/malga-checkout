@@ -235,6 +235,24 @@ export interface PlugCheckoutFullDialog {
   pixEmptyProgressBarColor?: string
 }
 
+interface PlugCheckoutFullCustomizationColors {
+  lightest: string
+  light: string
+  medium: string
+  dark: string
+  darkest: string
+}
+
+export interface PlugCheckoutFullCustomization {
+  brandUrl: string
+  primaryColor: PlugCheckoutFullCustomizationColors
+  secondaryColor: PlugCheckoutFullCustomizationColors
+  errorColor: PlugCheckoutFullCustomizationColors
+  warningColor: PlugCheckoutFullCustomizationColors
+  successColor: PlugCheckoutFullCustomizationColors
+  backgroundColor: string
+}
+
 export type PlugCheckoutFullChargeSuccess =
   | PlugCheckoutFullBoletoChargeSuccess
   | PlugCheckoutFullCreditChargeSuccess

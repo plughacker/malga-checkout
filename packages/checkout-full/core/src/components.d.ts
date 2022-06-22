@@ -13,7 +13,7 @@ export namespace Components {
         "dialogConfig": PlugCheckoutFullDialog;
         "idempotencyKey": string;
         "merchantId": string;
-        "pageConfig": PlugCheckoutFullPage;
+        "pageConfig"?: PlugCheckoutFullPage;
         "paymentMethods": PlugCheckoutFullPaymentMethods;
         "publicKey": string;
         "sandbox": boolean;

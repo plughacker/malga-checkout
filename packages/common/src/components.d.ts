@@ -117,6 +117,7 @@ export namespace Components {
         "amount": number;
         "delivery": number;
         "fullWidth": boolean;
+        "isLoading": boolean;
         "label": string;
         "products"?: Product[];
     }
@@ -146,6 +147,10 @@ export namespace Components {
         "readonly": boolean;
         "required": boolean;
         "value"?: CheckoutSelectFieldValue;
+    }
+    interface CheckoutSkeleton {
+        "class"?: string;
+        "width"?: string;
     }
     interface CheckoutSwitch {
         "checked"?: boolean;
@@ -281,6 +286,12 @@ declare global {
         prototype: HTMLCheckoutSelectFieldElement;
         new (): HTMLCheckoutSelectFieldElement;
     };
+    interface HTMLCheckoutSkeletonElement extends Components.CheckoutSkeleton, HTMLStencilElement {
+    }
+    var HTMLCheckoutSkeletonElement: {
+        prototype: HTMLCheckoutSkeletonElement;
+        new (): HTMLCheckoutSkeletonElement;
+    };
     interface HTMLCheckoutSwitchElement extends Components.CheckoutSwitch, HTMLStencilElement {
     }
     var HTMLCheckoutSwitchElement: {
@@ -316,6 +327,7 @@ declare global {
         "checkout-order-summary": HTMLCheckoutOrderSummaryElement;
         "checkout-radio-field": HTMLCheckoutRadioFieldElement;
         "checkout-select-field": HTMLCheckoutSelectFieldElement;
+        "checkout-skeleton": HTMLCheckoutSkeletonElement;
         "checkout-switch": HTMLCheckoutSwitchElement;
         "checkout-text-field": HTMLCheckoutTextFieldElement;
         "checkout-typography": HTMLCheckoutTypographyElement;
@@ -437,6 +449,7 @@ declare namespace LocalJSX {
         "amount"?: number;
         "delivery"?: number;
         "fullWidth"?: boolean;
+        "isLoading"?: boolean;
         "label"?: string;
         "products"?: Product[];
     }
@@ -473,6 +486,10 @@ declare namespace LocalJSX {
         "readonly"?: boolean;
         "required"?: boolean;
         "value"?: CheckoutSelectFieldValue;
+    }
+    interface CheckoutSkeleton {
+        "class"?: string;
+        "width"?: string;
     }
     interface CheckoutSwitch {
         "checked"?: boolean;
@@ -532,6 +549,7 @@ declare namespace LocalJSX {
         "checkout-order-summary": CheckoutOrderSummary;
         "checkout-radio-field": CheckoutRadioField;
         "checkout-select-field": CheckoutSelectField;
+        "checkout-skeleton": CheckoutSkeleton;
         "checkout-switch": CheckoutSwitch;
         "checkout-text-field": CheckoutTextField;
         "checkout-typography": CheckoutTypography;
@@ -557,6 +575,7 @@ declare module "@stencil/core" {
             "checkout-order-summary": LocalJSX.CheckoutOrderSummary & JSXBase.HTMLAttributes<HTMLCheckoutOrderSummaryElement>;
             "checkout-radio-field": LocalJSX.CheckoutRadioField & JSXBase.HTMLAttributes<HTMLCheckoutRadioFieldElement>;
             "checkout-select-field": LocalJSX.CheckoutSelectField & JSXBase.HTMLAttributes<HTMLCheckoutSelectFieldElement>;
+            "checkout-skeleton": LocalJSX.CheckoutSkeleton & JSXBase.HTMLAttributes<HTMLCheckoutSkeletonElement>;
             "checkout-switch": LocalJSX.CheckoutSwitch & JSXBase.HTMLAttributes<HTMLCheckoutSwitchElement>;
             "checkout-text-field": LocalJSX.CheckoutTextField & JSXBase.HTMLAttributes<HTMLCheckoutTextFieldElement>;
             "checkout-typography": LocalJSX.CheckoutTypography & JSXBase.HTMLAttributes<HTMLCheckoutTypographyElement>;

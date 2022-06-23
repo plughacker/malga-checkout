@@ -131,7 +131,6 @@ export class PlugCheckout {
     settings.transactionConfig = this.transactionConfig
 
     const paymentSession = await this.plugCheckoutService.getPaymentSession()
-    console.log(paymentSession)
     this.paymentSessionFetch.emit({ paymentSession })
 
     this.isLoading = false
@@ -155,7 +154,13 @@ export class PlugCheckout {
     const paymentMethods = clearedObjectProperties(settings.paymentMethods)
 
     if (this.isLoading) {
-      return <p>Carregando...</p>
+      return (
+        <div>
+          <checkout-skeleton width="100%" />
+          <checkout-skeleton width="100%" />
+          <checkout-skeleton width="100%" />
+        </div>
+      )
     }
 
     return (

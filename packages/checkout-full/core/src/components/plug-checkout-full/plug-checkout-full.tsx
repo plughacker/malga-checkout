@@ -171,6 +171,7 @@ export class PlugCheckoutFull implements ComponentInterface {
             amount={this.handleGetAmount()}
             products={this.handleGetProducts()}
             delivery={this.pageConfig.delivery}
+            isLoading={this.isLoading}
           />
 
           <div slot="informations" class="plug-checkout-full__informations">

@@ -14,6 +14,7 @@ export class CheckoutOrderSummary {
   @Prop() amount: number
   @Prop() delivery: number
   @Prop() products?: Product[]
+  @Prop() isLoading: boolean = false
 
   @State() showDescription = true
 
@@ -52,6 +53,46 @@ export class CheckoutOrderSummary {
     return mappedProducts
   }
 
+  private renderBody = () => {
+    if (this.isLoading) {
+      return (
+        <div class={{ 'checkout-order-summary__loaders': true }}>
+          <checkout-skeleton width="36px" />
+          <checkout-skeleton width="78px" />
+        </div>
+      )
+    }
+
+    if (this.showDescription && this.products) {
+      return (
+        <Fragment>
+          <ul
+            class={{ 'checkout-order-summary__products': true }}
+            aria-hidden={this.showDescription}
+          >
+            {this.renderProductList()}
+          </ul>
+          {this.delivery && (
+            <div class={{ 'checkout-order-summary__delivery': true }}>
+              <checkout-typography
+                color="darkness"
+                variation="subtitle1"
+                content="Frete"
+              />
+              <checkout-typography
+                tag="span"
+                variation="body1"
+                content={formatToReal(this.delivery)}
+              />
+            </div>
+          )}
+        </Fragment>
+      )
+    }
+
+    return
+  }
+
   render() {
     return (
       <Host
@@ -69,35 +110,14 @@ export class CheckoutOrderSummary {
           )}
         </header>
 
-        {this.showDescription && this.products && (
-          <Fragment>
-            <ul
-              class={{ 'checkout-order-summary__products': true }}
-              aria-hidden={this.showDescription}
-            >
-              {this.renderProductList()}
-            </ul>
-            {this.delivery && (
-              <div class={{ 'checkout-order-summary__delivery': true }}>
-                <checkout-typography
-                  color="darkness"
-                  variation="subtitle1"
-                  content="Frete"
-                />
-                <checkout-typography
-                  tag="span"
-                  variation="body1"
-                  content={formatToReal(this.delivery)}
-                />
-              </div>
-            )}
-          </Fragment>
-        )}
+        {this.renderBody()}
 
-        <section class={{ 'checkout-order-summary__total': true }}>
-          <p>Total</p>
-          <p>{formatToReal(this.amount)}</p>
-        </section>
+        {!this.isLoading && (
+          <section class={{ 'checkout-order-summary__total': true }}>
+            <p>Total</p>
+            <p>{formatToReal(this.amount)}</p>
+          </section>
+        )}
       </Host>
     )
   }

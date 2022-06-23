@@ -155,7 +155,7 @@ export class PlugCheckout {
 
     if (this.isLoading) {
       return (
-        <div>
+        <div class={{ 'plug-checkout__loaders': true }}>
           <checkout-skeleton width="100%" />
           <checkout-skeleton width="100%" />
           <checkout-skeleton width="100%" />

@@ -110,10 +110,8 @@ export class PlugCheckoutFull implements ComponentInterface {
   private handleSetPaymentSessionData = (
     paymentSessionData: PaymentSessionData,
   ) => {
-    console.log(paymentSessionData)
     this.paymentSessionData = paymentSessionData
     this.isLoading = false
-    console.log(this.isLoading)
   }
 
   private handleGetAmount = () => {

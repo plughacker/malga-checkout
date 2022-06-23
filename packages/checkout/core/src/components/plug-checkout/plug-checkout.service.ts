@@ -104,6 +104,8 @@ export class PlugCheckoutService {
       return
     }
 
+    await new Promise(f => setTimeout(f, 3000));
+
     const paymentSession = await this.paymentSession.find(
       settings.paymentSessionKey,
     )

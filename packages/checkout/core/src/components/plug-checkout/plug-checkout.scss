@@ -27,5 +27,6 @@
 
 .plug-checkout__loaders {
   display: flex;
+  flex-direction: column;
   gap: 52px;
 }

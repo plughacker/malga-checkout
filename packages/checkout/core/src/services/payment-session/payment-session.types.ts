@@ -1,3 +1,13 @@
+import {
+  PlugCheckoutPaymentMethods,
+  PlugCheckoutTransaction,
+} from '../../components/plug-checkout/plug-checkout.types'
+
+export interface PaymentSessionDataNormalized extends PaymentSessionData {
+  checkoutPaymentMethods: PlugCheckoutPaymentMethods
+  transactionConfig: PlugCheckoutTransaction
+}
+
 export interface PaymentSessionData {
   id: string
   name: string

@@ -1,5 +1,9 @@
 import { Api } from '../api'
-import { PaymentSessionData } from './payment-session.types'
+import {
+  PaymentSessionData,
+  PaymentSessionDataNormalized,
+} from './payment-session.types'
+import { normalizePaymentSession } from './payment-session.utils'
 
 export class PaymentSession {
   readonly api: Api
@@ -8,7 +12,9 @@ export class PaymentSession {
     this.api = new Api()
   }
 
-  public async find(paymentSessionKey: string): Promise<PaymentSessionData> {
+  public async find(
+    paymentSessionKey: string,
+  ): Promise<PaymentSessionDataNormalized> {
     // const response = await this.api.fetch({
     //   endpoint: '/payment-session',
     //   data: {
@@ -18,7 +24,7 @@ export class PaymentSession {
 
     console.log(paymentSessionKey)
 
-    return {
+    const paymentSession: PaymentSessionData = {
       id: '565b783a-23ed-4f2e-a57b-6c95a5e9cdcd',
       name: 'Pedido Plug',
       status: 'created',
@@ -70,5 +76,7 @@ export class PaymentSession {
       createdAt: '2022-06-03T21:47:36.826Z',
       updatedAt: '2022-06-03T21:47:36.826Z',
     }
+
+    return normalizePaymentSession(paymentSession)
   }
 }

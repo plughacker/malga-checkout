@@ -7,6 +7,7 @@ import {
   Event,
   EventEmitter,
   ComponentInterface,
+  Fragment,
 } from '@stencil/core'
 
 import {
@@ -159,31 +160,33 @@ export class PlugCheckoutFull implements ComponentInterface {
               onExpandClick={() => this.handleChangeSection('payments')}
             >
               {this.currentSection === 'payments' && (
-                <span slot="accordion-header-additional-information">
-                  <checkout-icon icon="lock" />
-                  Seguro e encriptado
-                </span>
-              )}
+                <Fragment>
+                  <span slot="accordion-header-additional-information">
+                    <checkout-icon icon="lock" />
+                    Seguro e encriptado
+                  </span>
 
-              <plug-checkout
-                publicKey={this.publicKey}
-                clientId={this.clientId}
-                merchantId={this.merchantId}
-                idempotencyKey={this.idempotencyKey}
-                sandbox={this.sandbox}
-                transactionConfig={{
-                  ...this.transactionConfig,
-                  customer: formatCustomer(this.customerFormFields),
-                }}
-                paymentMethods={this.paymentMethods}
-                dialogConfig={this.dialogConfig}
-                onPaymentSuccess={({ detail: { data } }) =>
-                  this.transactionSuccess.emit({ data })
-                }
-                onPaymentFailed={({ detail: { error } }) =>
-                  this.transactionFailed.emit({ error })
-                }
-              />
+                  <plug-checkout
+                    publicKey={this.publicKey}
+                    clientId={this.clientId}
+                    merchantId={this.merchantId}
+                    idempotencyKey={this.idempotencyKey}
+                    sandbox={this.sandbox}
+                    transactionConfig={{
+                      ...this.transactionConfig,
+                      customer: formatCustomer(this.customerFormFields),
+                    }}
+                    paymentMethods={this.paymentMethods}
+                    dialogConfig={this.dialogConfig}
+                    onPaymentSuccess={({ detail: { data } }) =>
+                      this.transactionSuccess.emit({ data })
+                    }
+                    onPaymentFailed={({ detail: { error } }) =>
+                      this.transactionFailed.emit({ error })
+                    }
+                  />
+                </Fragment>
+              )}
             </checkout-accordion>
           </div>
         </plug-checkout-full-content>

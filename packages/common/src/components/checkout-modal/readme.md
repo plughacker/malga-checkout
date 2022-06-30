@@ -12,6 +12,7 @@
 | `actionButtonLabel`           | `action-button-label`            |             | `string`                                    | `undefined` |
 | `amount`                      | `amount`                         |             | `number`                                    | `undefined` |
 | `boletoWaitingPaymentMessage` | `boleto-waiting-payment-message` |             | `string`                                    | `undefined` |
+| `currency`                    | `currency`                       |             | `string`                                    | `undefined` |
 | `errorActionButtonLabel`      | `error-action-button-label`      |             | `string`                                    | `undefined` |
 | `errorDescription`            | `error-description`              |             | `string`                                    | `undefined` |
 | `errorSubtitle`               | `error-subtitle`                 |             | `string`                                    | `undefined` |

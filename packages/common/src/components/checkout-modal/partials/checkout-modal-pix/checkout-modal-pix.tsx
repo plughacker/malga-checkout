@@ -9,7 +9,7 @@ import {
   EventEmitter,
 } from '@stencil/core'
 
-import { formatToReal } from '@plug-checkout/utils'
+import { formatCurrency } from '@plug-checkout/utils'
 
 @Component({
   tag: 'checkout-modal-pix',
@@ -19,6 +19,7 @@ export class CheckoutModalPix {
   @Prop() qrCodeIdentificator: string
   @Prop() qrCodeImageUrl: string
   @Prop() amount: number
+  @Prop() currency: string
   @Prop() expirationTime: number
   @Prop() actionButtonLabel = 'Continuar'
   @Prop() countdownFilledProgressBarColor?: string
@@ -135,7 +136,7 @@ export class CheckoutModalPix {
 
                 <p>
                   <strong>Valor a pagar: </strong>
-                  {formatToReal(this.amount)}
+                  {formatCurrency(this.amount, this.currency)}
                 </p>
               </Fragment>
             )}

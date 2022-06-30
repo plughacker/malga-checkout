@@ -67,6 +67,7 @@ export namespace Components {
         "actionButtonLabel"?: string;
         "amount": number;
         "boletoWaitingPaymentMessage"?: string;
+        "currency": string;
         "errorActionButtonLabel"?: string;
         "errorDescription"?: string;
         "errorSubtitle"?: string;
@@ -89,6 +90,7 @@ export namespace Components {
         "amount": number;
         "boletoCode": string;
         "boletoImageUrl": string;
+        "currency": string;
         "expirationDate": string;
         "waitingPaymentMessage": string;
     }
@@ -103,6 +105,7 @@ export namespace Components {
         "amount": number;
         "countdownEmptyProgressBarColor"?: string;
         "countdownFilledProgressBarColor"?: string;
+        "currency": string;
         "expirationTime": number;
         "importantMessages": string[];
         "qrCodeIdentificator": string;
@@ -115,6 +118,7 @@ export namespace Components {
     }
     interface CheckoutOrderSummary {
         "amount": number;
+        "currency": string;
         "delivery": number;
         "fullWidth": boolean;
         "label": string;
@@ -379,6 +383,7 @@ declare namespace LocalJSX {
         "actionButtonLabel"?: string;
         "amount"?: number;
         "boletoWaitingPaymentMessage"?: string;
+        "currency"?: string;
         "errorActionButtonLabel"?: string;
         "errorDescription"?: string;
         "errorSubtitle"?: string;
@@ -404,6 +409,7 @@ declare namespace LocalJSX {
         "amount"?: number;
         "boletoCode"?: string;
         "boletoImageUrl"?: string;
+        "currency"?: string;
         "expirationDate"?: string;
         "onBoletoActionButtonIsClicked"?: (event: CustomEvent<void>) => void;
         "waitingPaymentMessage"?: string;
@@ -420,6 +426,7 @@ declare namespace LocalJSX {
         "amount"?: number;
         "countdownEmptyProgressBarColor"?: string;
         "countdownFilledProgressBarColor"?: string;
+        "currency"?: string;
         "expirationTime"?: number;
         "importantMessages"?: string[];
         "onCountdownIsFinished"?: (event: CustomEvent<void>) => void;
@@ -435,6 +442,7 @@ declare namespace LocalJSX {
     }
     interface CheckoutOrderSummary {
         "amount"?: number;
+        "currency"?: string;
         "delivery"?: number;
         "fullWidth"?: boolean;
         "label"?: string;

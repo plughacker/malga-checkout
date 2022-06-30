@@ -131,6 +131,7 @@ export class PlugCheckoutFull implements ComponentInterface {
             amount={this.transactionConfig.amount}
             products={this.pageConfig.products}
             delivery={this.pageConfig.delivery}
+            currency={this.transactionConfig.currency}
           />
 
           <div slot="informations" class="plug-checkout-full__informations">

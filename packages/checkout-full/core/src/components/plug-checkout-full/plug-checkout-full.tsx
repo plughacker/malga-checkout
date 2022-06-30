@@ -74,6 +74,8 @@ export class PlugCheckoutFull implements ComponentInterface {
   @State() customerFormFields: PlugCheckoutFullIdentificationFormValues = {
     name: '',
     email: '',
+    documentCountry: '',
+    documentType: '',
     identification: '',
     zipCode: '',
     street: '',
@@ -140,6 +142,7 @@ export class PlugCheckoutFull implements ComponentInterface {
                 onExpandClick={() => this.handleChangeSection('identification')}
               >
                 <plug-checkout-full-identification
+                  currency={this.transactionConfig.currency}
                   formValues={this.customerFormFields}
                   onFieldChange={({ detail }) => {
                     this.handleSetCustomerFormValues(detail.field, detail.value)

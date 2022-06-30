@@ -7,8 +7,12 @@ export const formatCustomer = (
   return {
     name: customer.name,
     email: customer.email,
-    identification: customer.identification,
     phoneNumber: null,
+    document: {
+      type: customer.documentType,
+      country: customer.documentCountry,
+      number: customer.identification,
+    },
     address: {
       zipCode: customer.zipCode,
       street: customer.street,

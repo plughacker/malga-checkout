@@ -22,6 +22,8 @@ export interface ZipCodeAutoComplete {
 export interface PlugCheckoutFullIdentificationFormValues {
   name: string
   email: string
+  documentCountry: string
+  documentType: string
   identification: string
   zipCode: string
   street: string
@@ -36,6 +38,8 @@ export interface PlugCheckoutFullIdentificationFormValues {
 export interface PlugCheckoutFullIdentificationFormValidFields {
   name: string | null
   email: string | null
+  documentCountry: string | null
+  documentType: string | null
   identification: string | null
   zipCode: string | null
   street: string | null

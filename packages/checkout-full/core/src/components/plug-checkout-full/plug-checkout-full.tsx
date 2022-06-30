@@ -177,7 +177,10 @@ export class PlugCheckoutFull implements ComponentInterface {
                     sandbox={this.sandbox}
                     transactionConfig={{
                       ...this.transactionConfig,
-                      customer: formatCustomer(this.customerFormFields),
+                      customer: formatCustomer(
+                        this.customerFormFields,
+                        this.transactionConfig.currency,
+                      ),
                     }}
                     paymentMethods={this.paymentMethods}
                     dialogConfig={this.dialogConfig}

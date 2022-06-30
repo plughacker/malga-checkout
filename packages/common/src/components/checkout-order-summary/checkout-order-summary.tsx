@@ -2,7 +2,7 @@ import { Component, Host, h, Prop, State, Fragment } from '@stencil/core'
 
 import { Product } from './checkout-order-summary.types'
 
-import { formatToReal } from '@plug-checkout/utils'
+import { formatCurrency } from '@plug-checkout/utils'
 
 @Component({
   tag: 'checkout-order-summary',
@@ -12,6 +12,7 @@ export class CheckoutOrderSummary {
   @Prop() label: string
   @Prop() fullWidth = false
   @Prop() amount: number
+  @Prop() currency: string
   @Prop() delivery: number
   @Prop() products?: Product[]
 
@@ -44,7 +45,7 @@ export class CheckoutOrderSummary {
         <checkout-typography
           tag="span"
           variation="body1"
-          content={formatToReal(product.amount)}
+          content={formatCurrency(product.amount, this.currency)}
         />
       </li>
     ))
@@ -87,7 +88,7 @@ export class CheckoutOrderSummary {
                 <checkout-typography
                   tag="span"
                   variation="body1"
-                  content={formatToReal(this.delivery)}
+                  content={formatCurrency(this.delivery, this.currency)}
                 />
               </div>
             )}
@@ -96,7 +97,7 @@ export class CheckoutOrderSummary {
 
         <section class={{ 'checkout-order-summary__total': true }}>
           <p>Total</p>
-          <p>{formatToReal(this.amount)}</p>
+          <p>{formatCurrency(this.amount, this.currency)}</p>
         </section>
       </Host>
     )

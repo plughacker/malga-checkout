@@ -49,6 +49,7 @@ export class PlugPaymentsPix {
         <checkout-manual-payment fullWidth paymentMethod="pix" />
         {settings.dialogConfig.show && dialog.configs.open && (
           <checkout-modal
+            currency={settings.transactionConfig.currency}
             mode={dialog.configs.mode}
             open={dialog.configs.open}
             amount={dialog.configs.amount}

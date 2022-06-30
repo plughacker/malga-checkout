@@ -163,8 +163,12 @@ export interface Credit {
 export interface Customer {
   name: string
   email: string
-  identification: string
   phoneNumber: string
+  document: {
+    country: string
+    type: string
+    number: string
+  }
   address: {
     zipCode: string
     street: string
@@ -182,6 +186,8 @@ export interface Product {
   amount: number
   quantity: number
   description: string
+  sku: string
+  risk: 'Low' | 'High'
 }
 
 export interface PlugCheckoutFullPaymentMethods {

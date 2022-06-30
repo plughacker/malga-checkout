@@ -10,6 +10,7 @@ import { formatCustomerPayload } from './base-provider.utils'
 export class BaseProvider {
   readonly customerId?: string
   readonly customer?: Customer
+  readonly currency: string
 
   constructor({ customerId, customer }: BaseProviderConstructor) {
     this.customerId = customerId

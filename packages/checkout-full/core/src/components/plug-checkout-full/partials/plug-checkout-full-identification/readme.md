@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property     | Attribute | Description | Type                                       | Default     |
-| ------------ | --------- | ----------- | ------------------------------------------ | ----------- |
-| `formValues` | --        |             | `PlugCheckoutFullIdentificationFormValues` | `undefined` |
+| Property     | Attribute  | Description | Type                                       | Default     |
+| ------------ | ---------- | ----------- | ------------------------------------------ | ----------- |
+| `currency`   | `currency` |             | `string`                                   | `undefined` |
+| `formValues` | --         |             | `PlugCheckoutFullIdentificationFormValues` | `undefined` |
 
 
 ## Events

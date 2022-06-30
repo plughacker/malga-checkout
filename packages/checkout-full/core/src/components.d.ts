@@ -29,6 +29,7 @@ export namespace Components {
         "brand": string;
     }
     interface PlugCheckoutFullIdentification {
+        "currency": string;
         "formValues": PlugCheckoutFullIdentificationFormValues;
     }
 }
@@ -99,6 +100,7 @@ declare namespace LocalJSX {
         "brand"?: string;
     }
     interface PlugCheckoutFullIdentification {
+        "currency"?: string;
         "formValues"?: PlugCheckoutFullIdentificationFormValues;
         "onFieldChange"?: (event: CustomEvent<{ field: string; value: string }>) => void;
         "onManyFieldsChange"?: (event: CustomEvent<{

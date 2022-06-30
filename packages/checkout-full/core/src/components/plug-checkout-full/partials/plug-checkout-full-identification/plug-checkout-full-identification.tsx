@@ -6,9 +6,15 @@ import {
   EventEmitter,
   State,
   Prop,
+  Fragment,
 } from '@stencil/core'
 
-import { countries, cleanTextOnlyNumbers } from '@plug-checkout/utils'
+import {
+  countries,
+  cleanTextOnlyNumbers,
+  documentCountries,
+  documentTypesByCountry,
+} from '@plug-checkout/utils'
 
 import { PlugCheckoutFullIdentificationService } from './plug-checkout-full-identification.service'
 import {
@@ -29,6 +35,7 @@ export class PlugCheckoutFullIdentification {
   identificationService = new PlugCheckoutFullIdentificationService()
 
   @Prop() formValues: PlugCheckoutFullIdentificationFormValues
+  @Prop() currency: string
 
   @Event() submitForm: EventEmitter<void>
   @Event() fieldChange: EventEmitter<{ field: string; value: string }>
@@ -40,6 +47,8 @@ export class PlugCheckoutFullIdentification {
   @State() validFields: PlugCheckoutFullIdentificationFormValidFields = {
     name: null,
     email: null,
+    documentCountry: null,
+    documentType: null,
     identification: null,
     zipCode: null,
     street: null,
@@ -52,7 +61,10 @@ export class PlugCheckoutFullIdentification {
   }
 
   private checkValidatedField = () => {
-    const optionalField = ['complement', 'neighborhood']
+    const optionalField =
+      this.currency !== 'BRL'
+        ? ['complement', 'neighborhood']
+        : ['complement', 'neighborhood', 'documentCountry', 'documentType']
     const validFieldValues = Object.entries(this.validFields)
 
     const filteredValidFieldValues = validFieldValues
@@ -75,10 +87,13 @@ export class PlugCheckoutFullIdentification {
     const isMaskedField = ['identification', 'zipCode'].includes(field)
     const normalizedValue = cleanTextOnlyNumbers(event.target.value)
 
-    const validation = await validateCustomer({
-      ...this.formValues,
-      [field]: isMaskedField ? normalizedValue : event.target.value,
-    })
+    const validation = await validateCustomer(
+      {
+        ...this.formValues,
+        [field]: isMaskedField ? normalizedValue : event.target.value,
+      },
+      { currency: this.currency },
+    )
 
     this.validFields = {
       ...this.validFields,
@@ -174,6 +189,65 @@ export class PlugCheckoutFullIdentification {
           variation="subtitle1"
           content="Documento"
         />
+
+        {this.currency !== 'BRL' && (
+          <Fragment>
+            <fieldset
+              class={{ 'plug-checkout-full-identification__row-fields': true }}
+            >
+              <div
+                class={{
+                  'plug-checkout-full-identification__error-message': true,
+                }}
+              >
+                <checkout-select-field
+                  value={this.formValues.documentCountry}
+                  onChanged={this.handleFieldChange('documentCountry')}
+                  onInputed={this.handleFieldBlurred('documentCountry')}
+                  onBlurred={this.handleFieldBlurred('documentCountry')}
+                  onFocused={this.handleFieldFocused('documentCountry')}
+                  hasError={!!this.validFields.documentCountry}
+                  options={documentCountries}
+                  fullWidth
+                  name="documentCountry"
+                  label="País do documento *"
+                />
+                {!!this.validFields.documentCountry && (
+                  <checkout-error-message
+                    message={this.validFields.documentCountry}
+                  />
+                )}
+              </div>
+
+              <div
+                class={{
+                  'plug-checkout-full-identification__error-message': true,
+                }}
+              >
+                <checkout-select-field
+                  value={this.formValues.documentType}
+                  onChanged={this.handleFieldChange('documentType')}
+                  onInputed={this.handleFieldBlurred('documentType')}
+                  onBlurred={this.handleFieldBlurred('documentType')}
+                  onFocused={this.handleFieldFocused('documentType')}
+                  hasError={!!this.validFields.documentType}
+                  options={
+                    documentTypesByCountry[this.formValues.documentCountry]
+                  }
+                  fullWidth
+                  name="documentType"
+                  label="Tipo do documento *"
+                />
+                {!!this.validFields.documentType && (
+                  <checkout-error-message
+                    message={this.validFields.documentType}
+                  />
+                )}
+              </div>
+            </fieldset>
+          </Fragment>
+        )}
+
         <checkout-text-field
           value={this.formValues.identification}
           onInputed={this.handleFieldBlurred('identification')}
@@ -185,8 +259,14 @@ export class PlugCheckoutFullIdentification {
           fullWidth
           inputmode="numeric"
           name="identification"
-          label="CPF/CNPJ *"
-          mask={getIdentificationMask(this.formValues.identification)}
+          label={
+            this.currency === 'BRL' ? 'CPF/CNPJ *' : 'Número do documento *'
+          }
+          mask={
+            this.currency === 'BRL'
+              ? getIdentificationMask(this.formValues.identification)
+              : null
+          }
         />
         {!!this.validFields.identification && (
           <checkout-error-message message={this.validFields.identification} />
@@ -197,38 +277,64 @@ export class PlugCheckoutFullIdentification {
           variation="subtitle1"
           content="Endereço"
         />
-        <fieldset
-          class={{ 'plug-checkout-full-identification__zipcode': true }}
-        >
-          <div
-            class={{ 'plug-checkout-full-identification__error-message': true }}
+
+        {this.currency === 'BRL' && (
+          <fieldset
+            class={{ 'plug-checkout-full-identification__zipcode': true }}
           >
+            <div
+              class={{
+                'plug-checkout-full-identification__error-message': true,
+              }}
+            >
+              <checkout-text-field
+                value={this.formValues.zipCode}
+                onChanged={this.handleZipCodeFieldChange}
+                onInputed={this.handleFieldBlurred('zipCode')}
+                onBlurred={this.handleFieldBlurred('zipCode')}
+                onFocused={this.handleFieldFocused('zipCode')}
+                hasValidation={this.validFields.zipCode !== null}
+                hasError={!!this.validFields.zipCode}
+                fullWidth
+                inputmode="numeric"
+                name="zipCode"
+                label="CEP *"
+                mask="99999-999"
+              />
+              {!!this.validFields.zipCode && (
+                <checkout-error-message message={this.validFields.zipCode} />
+              )}
+            </div>
+
+            <a
+              href="https://buscacepinter.correios.com.br/app/endereco/index.php"
+              target="_blank"
+            >
+              Não sei meu CEP
+            </a>
+          </fieldset>
+        )}
+
+        {this.currency !== 'BRL' && (
+          <Fragment>
             <checkout-text-field
               value={this.formValues.zipCode}
-              onChanged={this.handleZipCodeFieldChange}
+              onChanged={this.handleFieldChange('zipCode')}
               onInputed={this.handleFieldBlurred('zipCode')}
               onBlurred={this.handleFieldBlurred('zipCode')}
               onFocused={this.handleFieldFocused('zipCode')}
               hasValidation={this.validFields.zipCode !== null}
               hasError={!!this.validFields.zipCode}
               fullWidth
-              inputmode="numeric"
+              inputmode="text"
               name="zipCode"
-              label="CEP *"
-              mask="99999-999"
+              label="Código postal *"
             />
             {!!this.validFields.zipCode && (
               <checkout-error-message message={this.validFields.zipCode} />
             )}
-          </div>
-
-          <a
-            href="https://buscacepinter.correios.com.br/app/endereco/index.php"
-            target="_blank"
-          >
-            Não sei meu CEP
-          </a>
-        </fieldset>
+          </Fragment>
+        )}
 
         <checkout-text-field
           value={this.formValues.street}

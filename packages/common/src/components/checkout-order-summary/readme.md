@@ -10,6 +10,7 @@
 | Property    | Attribute    | Description | Type        | Default     |
 | ----------- | ------------ | ----------- | ----------- | ----------- |
 | `amount`    | `amount`     |             | `number`    | `undefined` |
+| `currency`  | `currency`   |             | `string`    | `undefined` |
 | `delivery`  | `delivery`   |             | `number`    | `undefined` |
 | `fullWidth` | `full-width` |             | `boolean`   | `false`     |
 | `label`     | `label`      |             | `string`    | `undefined` |

@@ -7,6 +7,7 @@ import {
   Event,
   EventEmitter,
   ComponentInterface,
+  Fragment,
 } from '@stencil/core'
 
 import {
@@ -16,11 +17,16 @@ import {
   PlugCheckoutFullDialog,
   PlugCheckoutFullChargeError,
   PlugCheckoutFullChargeSuccess,
+  Customer,
 } from './plug-checkout-full.types'
 
 import { PlugCheckoutFullIdentificationFormValues } from './partials/plug-checkout-full-identification/plug-checkout-full-identification.types'
 
-import { formatCustomer } from './plug-checkout-full.utils'
+import {
+  formatCustomer,
+  formatFraudAnalysis,
+  formatFraudAnalysisWithCustomerId,
+} from './plug-checkout-full.utils'
 
 @Component({
   tag: 'plug-checkout-full',
@@ -73,6 +79,8 @@ export class PlugCheckoutFull implements ComponentInterface {
   @State() customerFormFields: PlugCheckoutFullIdentificationFormValues = {
     name: '',
     email: '',
+    documentCountry: '',
+    documentType: '',
     identification: '',
     zipCode: '',
     street: '',
@@ -101,6 +109,24 @@ export class PlugCheckoutFull implements ComponentInterface {
     }
   }
 
+  private handleFraudAnalysis = (customer: Customer) => {
+    if (
+      this.transactionConfig.customerId &&
+      !this.transactionConfig.fraudAnalysis
+    ) {
+      return null
+    }
+
+    if (this.transactionConfig.customerId) {
+      return formatFraudAnalysisWithCustomerId(
+        this.transactionConfig.fraudAnalysis,
+        this.pageConfig.products,
+      )
+    }
+
+    return formatFraudAnalysis(customer, this.pageConfig.products)
+  }
+
   componentWillLoad() {
     if (this.transactionConfig.customerId) {
       this.currentSection = 'payments'
@@ -108,6 +134,13 @@ export class PlugCheckoutFull implements ComponentInterface {
   }
 
   render() {
+    const customer = formatCustomer(
+      this.customerFormFields,
+      this.transactionConfig.currency,
+    )
+
+    const fraudAnalysis = this.handleFraudAnalysis(customer)
+
     return (
       <Host
         class={{
@@ -128,6 +161,7 @@ export class PlugCheckoutFull implements ComponentInterface {
             amount={this.transactionConfig.amount}
             products={this.pageConfig.products}
             delivery={this.pageConfig.delivery}
+            currency={this.transactionConfig.currency}
           />
 
           <div slot="informations" class="plug-checkout-full__informations">
@@ -139,6 +173,7 @@ export class PlugCheckoutFull implements ComponentInterface {
                 onExpandClick={() => this.handleChangeSection('identification')}
               >
                 <plug-checkout-full-identification
+                  currency={this.transactionConfig.currency}
                   formValues={this.customerFormFields}
                   onFieldChange={({ detail }) => {
                     this.handleSetCustomerFormValues(detail.field, detail.value)
@@ -159,31 +194,34 @@ export class PlugCheckoutFull implements ComponentInterface {
               onExpandClick={() => this.handleChangeSection('payments')}
             >
               {this.currentSection === 'payments' && (
-                <span slot="accordion-header-additional-information">
-                  <checkout-icon icon="lock" />
-                  Seguro e encriptado
-                </span>
-              )}
+                <Fragment>
+                  <span slot="accordion-header-additional-information">
+                    <checkout-icon icon="lock" />
+                    Seguro e encriptado
+                  </span>
 
-              <plug-checkout
-                publicKey={this.publicKey}
-                clientId={this.clientId}
-                merchantId={this.merchantId}
-                idempotencyKey={this.idempotencyKey}
-                sandbox={this.sandbox}
-                transactionConfig={{
-                  ...this.transactionConfig,
-                  customer: formatCustomer(this.customerFormFields),
-                }}
-                paymentMethods={this.paymentMethods}
-                dialogConfig={this.dialogConfig}
-                onPaymentSuccess={({ detail: { data } }) =>
-                  this.transactionSuccess.emit({ data })
-                }
-                onPaymentFailed={({ detail: { error } }) =>
-                  this.transactionFailed.emit({ error })
-                }
-              />
+                  <plug-checkout
+                    publicKey={this.publicKey}
+                    clientId={this.clientId}
+                    merchantId={this.merchantId}
+                    idempotencyKey={this.idempotencyKey}
+                    sandbox={this.sandbox}
+                    transactionConfig={{
+                      ...this.transactionConfig,
+                      customer,
+                      fraudAnalysis,
+                    }}
+                    paymentMethods={this.paymentMethods}
+                    dialogConfig={this.dialogConfig}
+                    onPaymentSuccess={({ detail: { data } }) =>
+                      this.transactionSuccess.emit({ data })
+                    }
+                    onPaymentFailed={({ detail: { error } }) =>
+                      this.transactionFailed.emit({ error })
+                    }
+                  />
+                </Fragment>
+              )}
             </checkout-accordion>
           </div>
         </plug-checkout-full-content>

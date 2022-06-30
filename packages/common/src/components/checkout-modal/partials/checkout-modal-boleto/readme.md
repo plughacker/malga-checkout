@@ -13,6 +13,7 @@
 | `amount`                | `amount`                  |             | `number` | `undefined`                      |
 | `boletoCode`            | `boleto-code`             |             | `string` | `undefined`                      |
 | `boletoImageUrl`        | `boleto-image-url`        |             | `string` | `undefined`                      |
+| `currency`              | `currency`                |             | `string` | `undefined`                      |
 | `expirationDate`        | `expiration-date`         |             | `string` | `undefined`                      |
 | `waitingPaymentMessage` | `waiting-payment-message` |             | `string` | `'Pedido aguardando pagamento!'` |
 

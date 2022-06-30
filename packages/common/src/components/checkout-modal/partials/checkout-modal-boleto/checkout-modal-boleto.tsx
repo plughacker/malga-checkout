@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
-import { formatDate, formatToReal, parseDate } from '@plug-checkout/utils'
+import { formatDate, formatCurrency, parseDate } from '@plug-checkout/utils'
 
 @Component({
   tag: 'checkout-modal-boleto',
@@ -9,6 +9,7 @@ export class CheckoutModalBoleto {
   @Prop() boletoCode: string
   @Prop() boletoImageUrl: string
   @Prop() amount: number
+  @Prop() currency: string
   @Prop() expirationDate: string
   @Prop() actionButtonLabel = 'Continuar'
   @Prop() waitingPaymentMessage = 'Pedido aguardando pagamento!'
@@ -75,7 +76,7 @@ export class CheckoutModalBoleto {
           >
             <p>
               <strong>Valor a pagar: </strong>
-              {formatToReal(this.amount)}
+              {formatCurrency(this.amount, this.currency)}
             </p>
             <p>
               <strong>Vencimento: </strong>

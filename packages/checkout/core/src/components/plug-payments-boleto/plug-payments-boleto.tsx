@@ -29,6 +29,7 @@ export class PlugPaymentsBoleto {
         <checkout-manual-payment fullWidth paymentMethod="boleto" />
         {settings.dialogConfig.show && dialog.configs.open && (
           <checkout-modal
+            currency={settings.transactionConfig.currency}
             mode={dialog.configs.mode}
             open={dialog.configs.open}
             amount={dialog.configs.amount}

@@ -5,8 +5,12 @@ export interface CustomerId {
 export interface Customer {
   name: string
   email: string
-  identification: string
   phoneNumber: string
+  document: {
+    type: string
+    number: string
+    country: string
+  }
   address?: {
     zipCode: string
     street: string

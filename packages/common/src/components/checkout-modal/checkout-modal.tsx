@@ -15,6 +15,7 @@ export class CheckoutModal {
   @Prop() paymentCode: string
   @Prop() paymentImageUrl: string
   @Prop() amount: number
+  @Prop() currency: string
   @Prop() expirationDate?: string
   @Prop() expirationTime?: number
   @Prop() actionButtonLabel?: string
@@ -59,6 +60,7 @@ export class CheckoutModal {
           )}
           {this.mode === 'pix' && (
             <checkout-modal-pix
+              currency={this.currency}
               qrCodeIdentificator={this.paymentCode}
               qrCodeImageUrl={this.paymentImageUrl}
               amount={this.amount}
@@ -76,6 +78,7 @@ export class CheckoutModal {
           )}
           {this.mode === 'boleto' && (
             <checkout-modal-boleto
+              currency={this.currency}
               boletoCode={this.paymentCode}
               boletoImageUrl={this.paymentImageUrl}
               amount={this.amount}

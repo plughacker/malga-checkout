@@ -17,11 +17,16 @@ import {
   PlugCheckoutFullDialog,
   PlugCheckoutFullChargeError,
   PlugCheckoutFullChargeSuccess,
+  Customer,
 } from './plug-checkout-full.types'
 
 import { PlugCheckoutFullIdentificationFormValues } from './partials/plug-checkout-full-identification/plug-checkout-full-identification.types'
 
-import { formatCustomer } from './plug-checkout-full.utils'
+import {
+  formatCustomer,
+  formatFraudAnalysis,
+  formatFraudAnalysisWithCustomerId,
+} from './plug-checkout-full.utils'
 
 @Component({
   tag: 'plug-checkout-full',
@@ -104,6 +109,24 @@ export class PlugCheckoutFull implements ComponentInterface {
     }
   }
 
+  private handleFraudAnalysis = (customer: Customer) => {
+    if (
+      this.transactionConfig.customerId &&
+      !this.transactionConfig.fraudAnalysis
+    ) {
+      return null
+    }
+
+    if (this.transactionConfig.customerId) {
+      return formatFraudAnalysisWithCustomerId(
+        this.transactionConfig.fraudAnalysis,
+        this.pageConfig.products,
+      )
+    }
+
+    return formatFraudAnalysis(customer, this.pageConfig.products)
+  }
+
   componentWillLoad() {
     if (this.transactionConfig.customerId) {
       this.currentSection = 'payments'
@@ -111,6 +134,13 @@ export class PlugCheckoutFull implements ComponentInterface {
   }
 
   render() {
+    const customer = formatCustomer(
+      this.customerFormFields,
+      this.transactionConfig.currency,
+    )
+
+    const fraudAnalysis = this.handleFraudAnalysis(customer)
+
     return (
       <Host
         class={{
@@ -178,10 +208,8 @@ export class PlugCheckoutFull implements ComponentInterface {
                     sandbox={this.sandbox}
                     transactionConfig={{
                       ...this.transactionConfig,
-                      customer: formatCustomer(
-                        this.customerFormFields,
-                        this.transactionConfig.currency,
-                      ),
+                      customer,
+                      fraudAnalysis,
                     }}
                     paymentMethods={this.paymentMethods}
                     dialogConfig={this.dialogConfig}

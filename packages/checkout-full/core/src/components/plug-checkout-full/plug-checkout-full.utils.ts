@@ -1,4 +1,8 @@
-import { Customer } from './plug-checkout-full.types'
+import {
+  Customer,
+  PlugCheckoutFullFraudAnalysis,
+  Product,
+} from './plug-checkout-full.types'
 import { PlugCheckoutFullIdentificationFormValues } from './partials/plug-checkout-full-identification/plug-checkout-full-identification.types'
 
 import { cleanTextOnlyNumbers } from '@plug-checkout/utils'
@@ -55,3 +59,31 @@ export const formatCustomer = (
     },
   }
 }
+
+const formatCart = (products: Product[]) => {
+  const cart = products.map((product) => ({
+    name: product.name,
+    quantity: product.quantity,
+    sku: product.sku,
+    unitPrice: product.amount,
+    risk: product.risk,
+  }))
+
+  return cart
+}
+
+export const formatFraudAnalysis = (
+  customer: Customer,
+  products: Product[],
+) => ({
+  customer,
+  cart: formatCart(products),
+})
+
+export const formatFraudAnalysisWithCustomerId = (
+  fraudAnalysis: PlugCheckoutFullFraudAnalysis,
+  products: Product[],
+) => ({
+  customer: fraudAnalysis.customer,
+  cart: formatCart(products),
+})

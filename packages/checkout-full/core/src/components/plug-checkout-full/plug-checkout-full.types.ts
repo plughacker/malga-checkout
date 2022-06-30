@@ -186,6 +186,8 @@ export interface Product {
   amount: number
   quantity: number
   description: string
+  sku: string
+  risk: 'Low' | 'High'
 }
 
 export interface PlugCheckoutFullPaymentMethods {

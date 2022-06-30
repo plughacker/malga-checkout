@@ -73,7 +73,11 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
       return {
         label: `${currentInstallment}x ${centsToReal(
           installmentValue,
-        )}, total ${centsToReal(settings.transactionConfig.amount)}`,
+          settings.transactionConfig.currency,
+        )}, total ${centsToReal(
+          settings.transactionConfig.amount,
+          settings.transactionConfig.currency,
+        )}`,
         value: currentInstallment,
       }
     })

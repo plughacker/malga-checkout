@@ -1,9 +1,9 @@
-import { formatToReal } from '@plug-checkout/utils'
+import { formatCurrency } from '@plug-checkout/utils'
 
-export const centsToReal = (amount: number) => {
+export const centsToReal = (amount: number, currency: string) => {
   if (!amount) {
     return 'R$00,00'
   }
 
-  return formatToReal(amount)
+  return formatCurrency(amount, currency)
 }

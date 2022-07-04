@@ -24,30 +24,26 @@ export const normalizePaymentSession = (
   paymentSessionNormalized.checkoutPaymentMethods =
     paymentSession.paymentMethods.reduce(
       (previousPaymentMethods, currentPaymentMethods) => {
-        if (currentPaymentMethods.paymentType == 'pix') {
-          previousPaymentMethods.pix = {
+        if (currentPaymentMethods.paymentType === 'pix') {
+          previousPaymentMethods['pix'] = {
             expiresIn: currentPaymentMethods.expiresIn,
           }
-        } else if (currentPaymentMethods.paymentType == 'boleto') {
-          previousPaymentMethods.boleto = {
+        } else if (currentPaymentMethods.paymentType === 'boleto') {
+          previousPaymentMethods['boleto'] = {
             expiresDate: currentPaymentMethods.expiresDate,
             instructions: currentPaymentMethods.instructions,
             interest: currentPaymentMethods.interest,
             fine: currentPaymentMethods.fine,
           }
         } else {
-          previousPaymentMethods.credit = {
+          previousPaymentMethods['credit'] = {
             installments: currentPaymentMethods.installments,
           }
         }
 
         return previousPaymentMethods
       },
-      {
-        pix: null,
-        boleto: null,
-        credit: null,
-      },
+      {},
     )
 
   return paymentSessionNormalized

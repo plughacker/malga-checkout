@@ -1,4 +1,5 @@
 import * as Yup from 'yup'
+import Payment from 'payment'
 
 export const schema = Yup.object().shape({
   cardNumber: Yup.string()
@@ -13,7 +14,7 @@ export const schema = Yup.object().shape({
           return true
         }
 
-        return !!parseInt(value)
+        return Payment.fns.validateCardNumber(value)
       },
     ),
   expirationDate: Yup.string()
@@ -69,7 +70,7 @@ export const schema = Yup.object().shape({
         return true
       }
 
-      return value !== 'none'
+      return !!value && value !== 'none'
     },
   ),
 })

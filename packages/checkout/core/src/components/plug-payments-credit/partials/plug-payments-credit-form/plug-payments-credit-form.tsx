@@ -29,7 +29,7 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
     }
   }
 
-  private handleFieldBlurred = (field: string) => async (event) => {
+  private handleValidationField = (field: string) => async (event) => {
     const isMaskedField = ['cvv'].includes(field)
     const normalizedValue = event.target.value.replace(/\D/g, '').trim()
 
@@ -60,6 +60,7 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
   private handleFieldChange = (field: string) => (event) => {
     credit.form = { ...credit.form, [field]: event.target.value }
     this.currentFieldChange.emit({ field })
+    this.handleValidationField(field)(event)
   }
 
   private renderInstallmentOptions = () => {
@@ -112,10 +113,10 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
         >
           <checkout-text-field
             value={credit.form.cardNumber}
-            onInputed={this.handleFieldBlurred('cardNumber')}
             onChanged={this.handleFieldChange('cardNumber')}
-            onBlurred={this.handleFieldBlurred('cardNumber')}
+            onBlurred={this.handleValidationField('cardNumber')}
             onFocused={this.handleFieldFocused('cardNumber')}
+            onPaste={this.handleFieldChange('cardNumber')}
             fullWidth
             inputmode="numeric"
             mask="9999 9999 9999 99999"
@@ -134,10 +135,10 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
           <fieldset class="plug-payments-credit-form__row-fields">
             <checkout-text-field
               value={credit.form.expirationDate}
-              onInputed={this.handleFieldBlurred('expirationDate')}
               onChanged={this.handleFieldChange('expirationDate')}
-              onBlurred={this.handleFieldBlurred('expirationDate')}
+              onBlurred={this.handleValidationField('expirationDate')}
               onFocused={this.handleFieldFocused('expirationDate')}
+              onPaste={this.handleFieldChange('expirationDate')}
               fullWidth
               inputmode="numeric"
               hasValidation={credit.validations.fields.expirationDate !== null}
@@ -149,10 +150,10 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
 
             <checkout-text-field
               value={credit.form.cvv}
-              onInputed={this.handleFieldBlurred('cvv')}
               onChanged={this.handleFieldChange('cvv')}
-              onBlurred={this.handleFieldBlurred('cvv')}
+              onBlurred={this.handleValidationField('cvv')}
               onFocused={this.handleFieldFocused('cvv')}
+              onPaste={this.handleFieldChange('cvv')}
               fullWidth
               inputmode="numeric"
               hasValidation={credit.validations.fields.cvv !== null}
@@ -176,10 +177,10 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
 
           <checkout-text-field
             value={credit.form.name.toUpperCase()}
-            onInputed={this.handleFieldBlurred('name')}
             onChanged={this.handleFieldChange('name')}
-            onBlurred={this.handleFieldBlurred('name')}
+            onBlurred={this.handleValidationField('name')}
             onFocused={this.handleFieldFocused('name')}
+            onPaste={this.handleFieldChange('name')}
             fullWidth
             hasValidation={credit.validations.fields.name !== null}
             hasError={!!credit.validations.fields.name}
@@ -197,7 +198,7 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
             <checkout-select-field
               value={credit.form.installments}
               onChanged={this.handleFieldChange('installments')}
-              onBlurred={this.handleFieldBlurred('installments')}
+              onBlurred={this.handleValidationField('installments')}
               onFocused={this.handleFieldFocused('installments')}
               options={this.renderInstallmentOptions()}
               fullWidth

@@ -12,9 +12,9 @@
 
 ## Events
 
-| Event         | Description | Type                                               |
-| ------------- | ----------- | -------------------------------------------------- |
-| `paymentFail` |             | `CustomEvent<{ error: PlugPaymentsChargeError; }>` |
+| Event         | Description | Type                                         |
+| ------------- | ----------- | -------------------------------------------- |
+| `paymentFail` |             | `CustomEvent<{ error: PlugPaymentsError; }>` |
 
 
 ## Dependencies

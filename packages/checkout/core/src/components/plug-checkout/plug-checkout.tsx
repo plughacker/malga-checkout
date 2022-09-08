@@ -21,8 +21,6 @@ import payment from '../../stores/payment'
 import {
   PaymentMethods,
   PaymentMethodsType,
-  PlugPaymentsChargeError,
-  PlugPaymentsChargeSuccess,
 } from '../plug-payments/plug-payments.types'
 
 import { PlugCheckoutService } from './plug-checkout.service'
@@ -34,6 +32,8 @@ import {
 } from './plug-checkout.types'
 
 import { handleDisablePayButton } from './plug-checkout.utils'
+import { PlugPaymentsSuccess } from '../../types/plug-payments-success.types'
+import { PlugPaymentsError } from '../../types/plug-payments-error.types'
 @Component({
   tag: 'plug-checkout',
   styleUrl: 'plug-checkout.scss',
@@ -41,6 +41,7 @@ import { handleDisablePayButton } from './plug-checkout.utils'
 export class PlugCheckout {
   @Prop() clientId: string
   @Prop() publicKey: string
+  @Prop() sessionId?: string
   @Prop() idempotencyKey: string
   @Prop() merchantId: string
   @Prop() sandbox = false
@@ -69,21 +70,30 @@ export class PlugCheckout {
   }
 
   @Event() paymentSuccess!: EventEmitter<{
-    data: PlugPaymentsChargeSuccess
+    data: PlugPaymentsSuccess
   }>
   @Event() paymentFailed!: EventEmitter<{
-    error: PlugPaymentsChargeError
+    error: PlugPaymentsError
   }>
 
-  @State() isLoading = false
+  @State() isLoading = true
 
   @Watch('transactionConfig')
   protected handleWatchTransactionConfig() {
     settings.transactionConfig = this.transactionConfig
   }
 
+  protected plugCheckoutService: PlugCheckoutService
+
+  constructor() {
+    this.plugCheckoutService = new PlugCheckoutService({
+      onPaymentSuccess: (data) => this.paymentSuccess.emit({ data }),
+      onPaymentFailed: (error) => this.paymentFailed.emit({ error }),
+    })
+  }
+
   private showCurrentPaymentMethod = (paymentMethod: PaymentMethodsType) => {
-    const paymentMethods = Object.keys(this.paymentMethods)
+    const paymentMethods = Object.keys(settings.paymentMethods)
 
     const showPaymentMethod = paymentMethods.includes(paymentMethod)
 
@@ -94,12 +104,7 @@ export class PlugCheckout {
     try {
       this.isLoading = true
 
-      const plugCheckoutService = new PlugCheckoutService({
-        onPaymentSuccess: (data) => this.paymentSuccess.emit({ data }),
-        onPaymentFailed: (error) => this.paymentFailed.emit({ error }),
-      })
-
-      await plugCheckoutService.pay()
+      await this.plugCheckoutService.pay()
 
       this.isLoading = false
     } catch (err) {
@@ -110,6 +115,7 @@ export class PlugCheckout {
   private handleStoreSettings = () => {
     settings.clientId = this.clientId
     settings.publicKey = this.publicKey
+    settings.sessionId = this.sessionId
     settings.merchantId = this.merchantId
     settings.idempotencyKey = this.idempotencyKey
     settings.sandbox = this.sandbox
@@ -119,7 +125,7 @@ export class PlugCheckout {
   }
 
   private handleStoreCurrentPaymentMethod = () => {
-    const paymentMethods = clearEmptyObjectProperties(this.paymentMethods)
+    const paymentMethods = clearEmptyObjectProperties(settings.paymentMethods)
 
     if (paymentMethods.length === 1) {
       const [[currentPaymentMethod]] = paymentMethods
@@ -127,13 +133,19 @@ export class PlugCheckout {
     }
   }
 
-  componentWillLoad() {
-    this.handleStoreSettings()
+  private async handleSession() {
+    await this.plugCheckoutService.handleSession(this.sessionId)
+
     this.handleStoreCurrentPaymentMethod()
   }
 
+  componentWillLoad() {
+    this.handleStoreSettings()
+    this.handleSession()
+  }
+
   render() {
-    const paymentMethods = clearedObjectProperties(this.paymentMethods)
+    const paymentMethods = clearedObjectProperties(settings.paymentMethods)
 
     return (
       <Host class={{ 'plug-checkout__container': true }}>

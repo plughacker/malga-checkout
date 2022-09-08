@@ -5,9 +5,9 @@
 
 ## Events
 
-| Event              | Description | Type                                               |
-| ------------------ | ----------- | -------------------------------------------------- |
-| `pixPaymentFailed` |             | `CustomEvent<{ error: PlugPaymentsChargeError; }>` |
+| Event              | Description | Type                                         |
+| ------------------ | ----------- | -------------------------------------------- |
+| `pixPaymentFailed` |             | `CustomEvent<{ error: PlugPaymentsError; }>` |
 
 
 ## Dependencies

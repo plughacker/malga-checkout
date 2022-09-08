@@ -7,6 +7,7 @@ import {
 export interface SettingsState {
   clientId: string
   publicKey: string
+  sessionId?: string
   idempotencyKey: string
   merchantId: string
   sandbox: boolean

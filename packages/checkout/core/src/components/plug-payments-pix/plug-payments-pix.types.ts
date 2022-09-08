@@ -1,4 +1,6 @@
 import { PixAttributes } from '../../providers/pix'
+import { PlugPaymentsError } from '../../types/plug-payments-error.types'
+import { PlugPaymentsSuccess } from '../../types/plug-payments-success.types'
 
 export interface PlugPaymentsPixDialogState {
   open: boolean
@@ -13,49 +15,6 @@ export interface PlugPaymentsPixDialogState {
   successMessage?: string
 }
 
-export interface PlugPaymentsPixChargeSuccess {
-  id: string
-  clientId: string
-  createdAt: string
-  amount: number
-  statementDescriptor: string
-  capture: boolean
-  status: string
-  currency: string
-  description: string | null
-  orderId: string | null
-  paymentMethod: {
-    expiresIn: number
-    paymentType: string
-    qrCodeData: string
-    qrCodeImageUrl: string
-  }
-  paymentSource: {
-    sourceType: string
-    customerId: string
-  }
-  transactionRequests: {
-    id: string
-    updatedAt: string
-    createdAt: string
-    idempotencyKey: string
-    requestId: string | null
-    providerId: string
-    amount: number
-    authorizationCode: string
-    authorizationNsu: string
-    responseCode: string
-    requestStatus: string
-    requestType: string
-    responseTs: string
-    pix: {
-      expiresIn: number
-      qrCodeData: string
-      qrCodeImageUrl: string
-    }
-  }[]
-}
-
 export interface PlugPaymentsPixChargeError {
   type: string
   message: string
@@ -63,12 +22,12 @@ export interface PlugPaymentsPixChargeError {
 }
 
 export type PlugPaymentsPixPaymentSuccessCallback = (
-  data: PlugPaymentsPixChargeSuccess,
-) => CustomEvent<{ data: PlugPaymentsPixChargeSuccess }>
+  data: PlugPaymentsSuccess,
+) => CustomEvent<{ data: PlugPaymentsSuccess }>
 
 export type PlugPaymentsPixPaymentFailedCallback = (
-  error: PlugPaymentsPixChargeError,
-) => CustomEvent<{ error: PlugPaymentsPixChargeError }>
+  error: PlugPaymentsError,
+) => CustomEvent<{ error: PlugPaymentsError }>
 
 export type PlugPaymentsPixDialogShowCallback = (
   dialogData: PlugPaymentsPixDialogState,

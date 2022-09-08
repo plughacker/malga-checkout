@@ -6,7 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { PlugCheckoutDialog, PlugCheckoutPaymentMethods, PlugCheckoutTransaction } from "./components/plug-checkout/plug-checkout.types";
-import { PaymentMethods, PlugPaymentsChargeError, PlugPaymentsChargeSuccess } from "./components/plug-payments/plug-payments.types";
+import { PlugPaymentsSuccess } from "./types/plug-payments-success.types";
+import { PlugPaymentsError } from "./types/plug-payments-error.types";
+import { PaymentMethods } from "./components/plug-payments/plug-payments.types";
 export namespace Components {
     interface PlugCheckout {
         "clientId": string;
@@ -16,6 +18,7 @@ export namespace Components {
         "paymentMethods": PlugCheckoutPaymentMethods;
         "publicKey": string;
         "sandbox": boolean;
+        "sessionId"?: string;
         "transactionConfig": PlugCheckoutTransaction;
     }
     interface PlugPayments {
@@ -92,19 +95,20 @@ declare namespace LocalJSX {
         "idempotencyKey"?: string;
         "merchantId"?: string;
         "onPaymentFailed"?: (event: CustomEvent<{
-    error: PlugPaymentsChargeError
+    error: PlugPaymentsError
   }>) => void;
         "onPaymentSuccess"?: (event: CustomEvent<{
-    data: PlugPaymentsChargeSuccess
+    data: PlugPaymentsSuccess
   }>) => void;
         "paymentMethods"?: PlugCheckoutPaymentMethods;
         "publicKey"?: string;
         "sandbox"?: boolean;
+        "sessionId"?: string;
         "transactionConfig"?: PlugCheckoutTransaction;
     }
     interface PlugPayments {
         "onPaymentFail"?: (event: CustomEvent<{
-    error: PlugPaymentsChargeError
+    error: PlugPaymentsError
   }>) => void;
         "paymentMethods"?: PaymentMethods;
     }
@@ -119,7 +123,7 @@ declare namespace LocalJSX {
     }
     interface PlugPaymentsPix {
         "onPixPaymentFailed"?: (event: CustomEvent<{
-    error: PlugPaymentsChargeError
+    error: PlugPaymentsError
   }>) => void;
     }
     interface IntrinsicElements {

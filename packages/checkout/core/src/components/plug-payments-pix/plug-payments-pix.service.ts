@@ -8,14 +8,18 @@ import { Charges } from '../../services/charges'
 
 import {
   PlugPaymentsPixChargeRequest,
-  PlugPaymentsPixChargeSuccess,
-  PlugPaymentsPixChargeError,
+  // PlugPaymentsPixChargeSuccess,
+  // PlugPaymentsPixChargeError,
   PlugPaymentsPixPaymentSuccessCallback,
   PlugPaymentsPixPaymentFailedCallback,
   PlugPaymentsPixDialogShowCallback,
 } from './plug-payments-pix.types'
+import { PlugPayments } from '../../types/plug-payments.types'
+import { PlugPaymentsSuccess } from '../../types/plug-payments-success.types'
+import { PlugPaymentsError } from '../../types/plug-payments-error.types'
+import { PlugPaymentsPaymentMethodPix } from '../../types/plug-payments-payment-methods.types'
 
-export class PlugPaymentsPixService {
+export class PlugPaymentsPixService implements PlugPayments {
   readonly charge?: Charges
   readonly data?: PixAttributes
   readonly onPaymentSuccess?: PlugPaymentsPixPaymentSuccessCallback
@@ -35,24 +39,26 @@ export class PlugPaymentsPixService {
     this.onShowDialog = onShowDialog
   }
 
-  private handlePaymentSuccess(data: PlugPaymentsPixChargeSuccess) {
+  handlePaymentSuccess(data: PlugPaymentsSuccess) {
     payment.chargeId = data.id
+
+    const paymentMethod = data.paymentMethod as PlugPaymentsPaymentMethodPix
 
     if (settings.dialogConfig.show) {
       this.onShowDialog({
         mode: 'pix',
         amount: data.amount,
         open: true,
-        paymentCode: data.paymentMethod.qrCodeData,
-        paymentImageUrl: data.paymentMethod.qrCodeImageUrl,
-        expirationTime: data.paymentMethod.expiresIn,
+        paymentCode: paymentMethod.qrCodeData,
+        paymentImageUrl: paymentMethod.qrCodeImageUrl,
+        expirationTime: paymentMethod.expiresIn,
       })
     }
 
     this.onPaymentSuccess(data)
   }
 
-  private handlePaymentFailed(error: PlugPaymentsPixChargeError) {
+  handlePaymentFailed(error: PlugPaymentsError) {
     if (settings.dialogConfig.show) {
       this.onShowDialog({
         open: true,

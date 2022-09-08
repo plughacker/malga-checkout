@@ -6,19 +6,17 @@ import dialog from '../../stores/dialog'
 import { PlugPaymentsBoletoService } from '../plug-payments-boleto/plug-payments-boleto.service'
 import { PlugPaymentsCreditService } from '../plug-payments-credit/plug-payments-credit.service'
 import { PlugPaymentsPixService } from '../plug-payments-pix/plug-payments-pix.service'
-
-import {
-  PlugPaymentsChargeError,
-  PlugPaymentsChargeSuccess,
-} from '../plug-payments/plug-payments.types'
+import { PlugPaymentsSuccess } from '../../types/plug-payments-success.types'
+import { PlugPaymentsError } from '../../types/plug-payments-error.types'
+import { PlugPaymentsSessionService } from '../plug-payments-session/plug-payments-session.service'
 
 export class PlugCheckoutService {
   readonly onPaymentSuccess: (
-    data: PlugPaymentsChargeSuccess,
-  ) => CustomEvent<{ data: PlugPaymentsChargeSuccess }>
+    data: PlugPaymentsSuccess,
+  ) => CustomEvent<{ data: PlugPaymentsSuccess }>
   readonly onPaymentFailed: (
-    error: PlugPaymentsChargeError,
-  ) => CustomEvent<{ error: PlugPaymentsChargeError }>
+    error: PlugPaymentsError,
+  ) => CustomEvent<{ error: PlugPaymentsError }>
 
   constructor({ onPaymentSuccess, onPaymentFailed }) {
     this.onPaymentSuccess = onPaymentSuccess
@@ -55,9 +53,28 @@ export class PlugCheckoutService {
       boleto: PlugPaymentsBoletoService,
     }
 
+    if (settings.sessionId) {
+      return PlugPaymentsSessionService
+    }
+
     return (
       paymentMethods[payment.selectedPaymentMethod] || paymentMethods.credit
     )
+  }
+
+  public async handleSession(sessionId: string) {
+    if (!settings.sessionId) {
+      return
+    }
+
+    const PaymentMethodClass = this.handlePaymentMethod()
+    const sessionService =
+      new PaymentMethodClass() as PlugPaymentsSessionService
+
+    const session = await sessionService.findSession(sessionId)
+
+    settings.transactionConfig = session.transactionConfig
+    settings.paymentMethods = session.checkoutPaymentMethods
   }
 
   private handleShowDialog(dialogConfigs) {

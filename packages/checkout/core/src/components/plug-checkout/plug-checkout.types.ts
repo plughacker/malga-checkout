@@ -13,7 +13,7 @@ export interface Credit {
 }
 
 export interface PlugCheckoutTransaction {
-  statementDescriptor: string
+  statementDescriptor?: string
   amount: number
   capture: boolean
   description?: string

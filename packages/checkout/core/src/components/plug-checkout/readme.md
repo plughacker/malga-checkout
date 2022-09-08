@@ -16,15 +16,16 @@
 | `paymentMethods`    | --                |             | `PlugCheckoutPaymentMethods` | `{     pix: undefined,     credit: undefined,     boleto: undefined,   }`                                                                                                                           |
 | `publicKey`         | `public-key`      |             | `string`                     | `undefined`                                                                                                                                                                                         |
 | `sandbox`           | `sandbox`         |             | `boolean`                    | `false`                                                                                                                                                                                             |
+| `sessionId`         | `session-id`      |             | `string`                     | `undefined`                                                                                                                                                                                         |
 | `transactionConfig` | --                |             | `PlugCheckoutTransaction`    | `{     statementDescriptor: '',     amount: 0,     description: '',     orderId: '',     customerId: '',     currency: 'BRL',     capture: false,     customer: null,     fraudAnalysis: null,   }` |
 
 
 ## Events
 
-| Event            | Description | Type                                                |
-| ---------------- | ----------- | --------------------------------------------------- |
-| `paymentFailed`  |             | `CustomEvent<{ error: PlugPaymentsChargeError; }>`  |
-| `paymentSuccess` |             | `CustomEvent<{ data: PlugPaymentsChargeSuccess; }>` |
+| Event            | Description | Type                                          |
+| ---------------- | ----------- | --------------------------------------------- |
+| `paymentFailed`  |             | `CustomEvent<{ error: PlugPaymentsError; }>`  |
+| `paymentSuccess` |             | `CustomEvent<{ data: PlugPaymentsSuccess; }>` |
 
 
 ## Dependencies

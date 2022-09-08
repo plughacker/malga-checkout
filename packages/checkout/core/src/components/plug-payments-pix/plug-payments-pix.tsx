@@ -5,8 +5,7 @@ import payment from '../../stores/payment'
 import dialog from '../../stores/dialog'
 
 import { PlugPaymentsPixService } from './plug-payments-pix.service'
-
-import { PlugPaymentsChargeError } from '../plug-payments/plug-payments.types'
+import { PlugPaymentsError } from '../../types/plug-payments-error.types'
 
 @Component({
   tag: 'plug-payments-pix',
@@ -14,7 +13,7 @@ import { PlugPaymentsChargeError } from '../plug-payments/plug-payments.types'
 })
 export class PlugPaymentsPix {
   @Event() pixPaymentFailed!: EventEmitter<{
-    error: PlugPaymentsChargeError
+    error: PlugPaymentsError
   }>
 
   private handleShowDialog = (dialogData) => {

@@ -11,15 +11,15 @@ import { PlugPaymentsError } from "./types/plug-payments-error.types";
 import { PaymentMethods } from "./components/plug-payments/plug-payments.types";
 export namespace Components {
     interface PlugCheckout {
-        "clientId": string;
+        "clientId"?: string;
         "dialogConfig": PlugCheckoutDialog;
         "idempotencyKey": string;
         "merchantId": string;
-        "paymentMethods": PlugCheckoutPaymentMethods;
+        "paymentMethods"?: PlugCheckoutPaymentMethods;
         "publicKey": string;
         "sandbox": boolean;
         "sessionId"?: string;
-        "transactionConfig": PlugCheckoutTransaction;
+        "transactionConfig"?: PlugCheckoutTransaction;
     }
     interface PlugPayments {
         "paymentMethods": PaymentMethods;

@@ -35,13 +35,13 @@ export class PlugPaymentsBoletoService implements PlugPayments {
     this.onShowDialog = onShowDialog
   }
 
-  handlePaymentSuccess(data: PlugPaymentsSuccess) {
-    const paymentMethod = data.paymentMethod as PlugPaymentsPaymentMethodBoleto
+  handlePaymentSuccess(boletoData: PlugPaymentsSuccess) {
+    const paymentMethod = boletoData.paymentMethod as PlugPaymentsPaymentMethodBoleto
 
     if (settings.dialogConfig.show) {
       this.onShowDialog({
         mode: 'boleto',
-        amount: data.amount,
+        amount: boletoData.amount,
         open: true,
         paymentCode: paymentMethod.barcodeData,
         paymentImageUrl: paymentMethod.barcodeImageUrl,
@@ -49,7 +49,7 @@ export class PlugPaymentsBoletoService implements PlugPayments {
       })
     }
 
-    this.onPaymentSuccess(data)
+    this.onPaymentSuccess(boletoData)
   }
 
   handlePaymentFailed(error: PlugPaymentsError) {

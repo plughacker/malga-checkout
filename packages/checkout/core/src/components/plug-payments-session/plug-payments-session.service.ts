@@ -1,4 +1,5 @@
 import { Sessions } from '../../services/sessions'
+import settings from '../../stores/settings'
 import { PlugPaymentsError } from '../../types/plug-payments-error.types'
 import { PlugPaymentsSuccess } from '../../types/plug-payments-success.types'
 import { PlugPayments } from '../../types/plug-payments.types'
@@ -26,7 +27,10 @@ export class PlugPaymentsSessionService implements PlugPayments {
 
   public async findSession(sessionId: string) {
     try {
-      return await this.session.find(sessionId)
+      const session = await this.session.find(sessionId)
+
+      settings.transactionConfig = session.transactionConfig
+      settings.paymentMethods = session.checkoutPaymentMethods
     } catch (error) {
       this.handlePaymentFailed({
         type: '400',

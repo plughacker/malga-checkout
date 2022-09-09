@@ -8,8 +8,6 @@ import { Charges } from '../../services/charges'
 
 import {
   PlugPaymentsPixChargeRequest,
-  // PlugPaymentsPixChargeSuccess,
-  // PlugPaymentsPixChargeError,
   PlugPaymentsPixPaymentSuccessCallback,
   PlugPaymentsPixPaymentFailedCallback,
   PlugPaymentsPixDialogShowCallback,

@@ -39,7 +39,7 @@ import { PlugPaymentsError } from '../../types/plug-payments-error.types'
   styleUrl: 'plug-checkout.scss',
 })
 export class PlugCheckout {
-  @Prop() clientId: string
+  @Prop() clientId?: string
   @Prop() publicKey: string
   @Prop() sessionId?: string
   @Prop() idempotencyKey: string
@@ -52,12 +52,12 @@ export class PlugCheckout {
     errorActionButtonLabel: 'Tentar Novamente',
     successRedirectUrl: '',
   }
-  @Prop() paymentMethods: PlugCheckoutPaymentMethods = {
+  @Prop() paymentMethods?: PlugCheckoutPaymentMethods = {
     pix: undefined,
     credit: undefined,
     boleto: undefined,
   }
-  @Prop() transactionConfig: PlugCheckoutTransaction = {
+  @Prop() transactionConfig?: PlugCheckoutTransaction = {
     statementDescriptor: '',
     amount: 0,
     description: '',

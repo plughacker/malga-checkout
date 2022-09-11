@@ -44,6 +44,10 @@ export const config: Config = {
       type: 'dist-custom-elements-bundle',
     },
     {
+      type: 'dist-hydrate-script',
+      dir: 'dist/hydrate',
+    },
+    {
       type: 'docs-readme',
     },
     {

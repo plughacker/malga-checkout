@@ -1,3 +1,6 @@
+import { PlugPaymentsError } from "../../types/plug-payments-error.types"
+import { PlugPaymentsSuccess } from "../../types/plug-payments-success.types"
+
 export interface PlugPaymentsCreditDialogState {
   open: boolean
   mode?: 'pix' | 'boleto' | 'success' | 'error'
@@ -22,55 +25,14 @@ export interface PlugPaymentsCreditManualCard {
 export type PlugPaymentsCreditFormValues =
   | PlugPaymentsCreditTokenizedCard
   | PlugPaymentsCreditManualCard
-
-export interface PlugPaymentsCreditChargeSuccess {
-  id: string
-  clientId: string
-  createdAt: string
-  amount: number
-  statementDescriptor: string
-  capture: boolean
-  status: string
-  paymentMethod: {
-    installments: number
-    paymentType: string
-  }
-  paymentSource: {
-    sourceType: string
-    cardId: string
-  }
-  transactionRequests: {
-    id: string
-    updatedAt: string
-    createdAt: string
-    idempotencyKey: string
-    requestId: string | null
-    providerId: string
-    amount: number
-    authorizationCode: string
-    authorizationNsu: string
-    responseCode: string
-    requestStatus: string
-    requestType: string
-    responseTs: string
-  }[]
-}
-
-export interface PlugPaymentsCreditChargeError {
-  type: string
-  message: string
-  code?: number
-  declinedCode?: string
-  errorStack: unknown
-}
-
+  
 export type PlugPaymentsCreditPaymentSuccessCallback = (
-  data: PlugPaymentsCreditChargeSuccess,
-) => CustomEvent<{ data: PlugPaymentsCreditChargeSuccess }>
+  data: PlugPaymentsSuccess,
+) => CustomEvent<{ data: PlugPaymentsSuccess }>
 
 export type PlugPaymentsCreditPaymentFailedCallback = (
-  error: PlugPaymentsCreditChargeError,
-) => CustomEvent<{ error: PlugPaymentsCreditChargeError }>
+  error: PlugPaymentsError,
+) => CustomEvent<{ error: PlugPaymentsError }>
 
 export type PlugPaymentsCreditShowDialogCallback = (
   dialogData: PlugPaymentsCreditDialogState,

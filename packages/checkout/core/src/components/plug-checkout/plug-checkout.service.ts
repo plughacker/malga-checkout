@@ -6,19 +6,17 @@ import dialog from '../../stores/dialog'
 import { PlugPaymentsBoletoService } from '../plug-payments-boleto/plug-payments-boleto.service'
 import { PlugPaymentsCreditService } from '../plug-payments-credit/plug-payments-credit.service'
 import { PlugPaymentsPixService } from '../plug-payments-pix/plug-payments-pix.service'
-
-import {
-  PlugPaymentsChargeError,
-  PlugPaymentsChargeSuccess,
-} from '../plug-payments/plug-payments.types'
+import { PlugPaymentsSuccess } from '../../types/plug-payments-success.types'
+import { PlugPaymentsError } from '../../types/plug-payments-error.types'
+import { PlugPaymentsSessionService } from '../plug-payments-session/plug-payments-session.service'
 
 export class PlugCheckoutService {
   readonly onPaymentSuccess: (
-    data: PlugPaymentsChargeSuccess,
-  ) => CustomEvent<{ data: PlugPaymentsChargeSuccess }>
+    data: PlugPaymentsSuccess,
+  ) => CustomEvent<{ data: PlugPaymentsSuccess }>
   readonly onPaymentFailed: (
-    error: PlugPaymentsChargeError,
-  ) => CustomEvent<{ error: PlugPaymentsChargeError }>
+    error: PlugPaymentsError,
+  ) => CustomEvent<{ error: PlugPaymentsError }>
 
   constructor({ onPaymentSuccess, onPaymentFailed }) {
     this.onPaymentSuccess = onPaymentSuccess
@@ -49,15 +47,27 @@ export class PlugCheckoutService {
   }
 
   private handlePaymentMethod() {
+    const currentPaymentMethod = settings.sessionId
+      ? 'session'
+      : payment.selectedPaymentMethod
+
     const paymentMethods = {
       pix: PlugPaymentsPixService,
       credit: PlugPaymentsCreditService,
       boleto: PlugPaymentsBoletoService,
+      session: PlugPaymentsSessionService,
     }
 
-    return (
-      paymentMethods[payment.selectedPaymentMethod] || paymentMethods.credit
-    )
+    return paymentMethods[currentPaymentMethod] || paymentMethods.credit
+  }
+
+  public async handleSession(sessionId: string) {
+    if (!sessionId) {
+      return
+    }
+
+    const sessionService = new PlugPaymentsSessionService()
+    return sessionService.findSession(sessionId)
   }
 
   private handleShowDialog(dialogConfigs) {

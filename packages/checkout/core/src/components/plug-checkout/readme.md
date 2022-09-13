@@ -22,16 +22,18 @@
 
 ## Events
 
-| Event            | Description | Type                                          |
-| ---------------- | ----------- | --------------------------------------------- |
-| `paymentFailed`  |             | `CustomEvent<{ error: PlugPaymentsError; }>`  |
-| `paymentSuccess` |             | `CustomEvent<{ data: PlugPaymentsSuccess; }>` |
+| Event                 | Description | Type                                                  |
+| --------------------- | ----------- | ----------------------------------------------------- |
+| `paymentFailed`       |             | `CustomEvent<{ error: PlugPaymentsError; }>`          |
+| `paymentSessionFetch` |             | `CustomEvent<{ paymentSession: SessionNormalized; }>` |
+| `paymentSuccess`      |             | `CustomEvent<{ data: PlugPaymentsSuccess; }>`         |
 
 
 ## Dependencies
 
 ### Depends on
 
+- checkout-skeleton
 - [plug-payments](../plug-payments)
 - [plug-payments-credit-saved-cards](../plug-payments-credit/partials/plug-payments-credit-saved-cards)
 - [plug-payments-credit](../plug-payments-credit)
@@ -43,6 +45,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  plug-checkout --> checkout-skeleton
   plug-checkout --> plug-payments
   plug-checkout --> plug-payments-credit-saved-cards
   plug-checkout --> plug-payments-credit

@@ -34,6 +34,7 @@ import {
 import { handleDisablePayButton } from './plug-checkout.utils'
 import { PlugPaymentsSuccess } from '../../types/plug-payments-success.types'
 import { PlugPaymentsError } from '../../types/plug-payments-error.types'
+import { SessionNormalized } from '../../services/sessions/sessions.types'
 @Component({
   tag: 'plug-checkout',
   styleUrl: 'plug-checkout.scss',
@@ -69,6 +70,10 @@ export class PlugCheckout {
     fraudAnalysis: null,
   }
 
+  @Event() paymentSessionFetch?: EventEmitter<{
+    paymentSession: SessionNormalized
+  }>
+
   @Event() paymentSuccess!: EventEmitter<{
     data: PlugPaymentsSuccess
   }>
@@ -77,6 +82,8 @@ export class PlugCheckout {
   }>
 
   @State() isLoading = true
+
+  @State() isButtonLoading = false
 
   @Watch('transactionConfig')
   protected handleWatchTransactionConfig() {
@@ -102,13 +109,13 @@ export class PlugCheckout {
 
   private handlePay = async () => {
     try {
-      this.isLoading = true
+      this.isButtonLoading = true
 
       await this.plugCheckoutService.pay()
 
-      this.isLoading = false
+      this.isButtonLoading = false
     } catch (err) {
-      this.isLoading = false
+      this.isButtonLoading = false
     }
   }
 
@@ -134,9 +141,13 @@ export class PlugCheckout {
   }
 
   private async handleSession() {
-    await this.plugCheckoutService.handleSession(this.sessionId)
+    const paymentSession = await this.plugCheckoutService.handleSession(
+      this.sessionId,
+    )
+    this.paymentSessionFetch.emit({ paymentSession })
 
     this.handleStoreCurrentPaymentMethod()
+    this.isLoading = false
   }
 
   componentWillLoad() {
@@ -146,6 +157,16 @@ export class PlugCheckout {
 
   render() {
     const paymentMethods = clearedObjectProperties(settings.paymentMethods)
+
+    if (this.isLoading) {
+      return (
+        <div class={{ 'plug-checkout__loaders': true }}>
+          <checkout-skeleton width="100%" />
+          <checkout-skeleton width="100%" />
+          <checkout-skeleton width="100%" />
+        </div>
+      )
+    }
 
     return (
       <Host class={{ 'plug-checkout__container': true }}>
@@ -180,7 +201,7 @@ export class PlugCheckout {
 
           <div class={{ 'plug-checkout__submit': true }}>
             <checkout-button
-              isLoading={this.isLoading}
+              isLoading={this.isButtonLoading}
               label="Pagar"
               disabled={handleDisablePayButton()}
               onClicked={this.handlePay}

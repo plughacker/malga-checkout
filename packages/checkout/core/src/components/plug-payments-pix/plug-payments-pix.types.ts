@@ -1,24 +1,15 @@
 import { PixAttributes } from '../../providers/pix'
+import { PlugPaymentsDialogState } from '../../types/plug-payments-dialog-state.types'
 import { PlugPaymentsError } from '../../types/plug-payments-error.types'
 import { PlugPaymentsSuccess } from '../../types/plug-payments-success.types'
 
-export interface PlugPaymentsPixDialogState {
-  open: boolean
-  mode?: 'pix' | 'boleto' | 'success' | 'error'
-  amount?: number
+export interface PlugPaymentsPixDialogState extends PlugPaymentsDialogState {
   paymentCode?: string
   paymentImageUrl?: string
   expirationDate?: string
   expirationTime?: number
   errorTitle?: string
-  errorMessage?: string
   successMessage?: string
-}
-
-export interface PlugPaymentsPixChargeError {
-  type: string
-  message: string
-  errorStack: unknown
 }
 
 export type PlugPaymentsPixPaymentSuccessCallback = (

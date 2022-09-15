@@ -1,15 +1,12 @@
 import { BoletoAttributes } from '../../providers/boleto'
+import { PlugPaymentsDialogState } from '../../types/plug-payments-dialog-state.types'
 import { PlugPaymentsError } from '../../types/plug-payments-error.types'
 import { PlugPaymentsSuccess } from '../../types/plug-payments-success.types'
 
-export interface PlugPaymentsBoletoDialogState {
-  open: boolean
-  mode?: 'pix' | 'boleto' | 'success' | 'error'
-  amount?: number
+export interface PlugPaymentsBoletoDialogState extends PlugPaymentsDialogState {
   paymentCode?: string
   paymentImageUrl?: string
   expirationDate?: string
-  errorMessage?: string
 }
 
 export type PlugPaymentsBoletoPaymentSuccessCallback = (

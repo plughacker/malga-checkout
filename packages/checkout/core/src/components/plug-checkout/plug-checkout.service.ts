@@ -47,18 +47,13 @@ export class PlugCheckoutService {
   }
 
   private handlePaymentMethod() {
-    const currentPaymentMethod = settings.sessionId
-      ? 'session'
-      : payment.selectedPaymentMethod
-
     const paymentMethods = {
       pix: PlugPaymentsPixService,
       credit: PlugPaymentsCreditService,
       boleto: PlugPaymentsBoletoService,
-      session: PlugPaymentsSessionService,
     }
 
-    return paymentMethods[currentPaymentMethod] || paymentMethods.credit
+    return paymentMethods[payment.selectedPaymentMethod] || paymentMethods.credit
   }
 
   public async handleSession(sessionId: string) {
@@ -66,7 +61,9 @@ export class PlugCheckoutService {
       return
     }
 
-    const sessionService = new PlugPaymentsSessionService()
+    const sessionService = new PlugPaymentsSessionService({
+      onShowDialog: this.handleShowDialog,
+    })
     return sessionService.findSession(sessionId)
   }
 

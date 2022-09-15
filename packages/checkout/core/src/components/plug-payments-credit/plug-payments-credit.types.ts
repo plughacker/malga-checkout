@@ -1,12 +1,8 @@
-import { PlugPaymentsError } from "../../types/plug-payments-error.types"
-import { PlugPaymentsSuccess } from "../../types/plug-payments-success.types"
+import { PlugPaymentsDialogState } from '../../types/plug-payments-dialog-state.types'
+import { PlugPaymentsError } from '../../types/plug-payments-error.types'
+import { PlugPaymentsSuccess } from '../../types/plug-payments-success.types'
 
-export interface PlugPaymentsCreditDialogState {
-  open: boolean
-  mode?: 'pix' | 'boleto' | 'success' | 'error'
-  amount?: number
-  errorMessage?: string
-}
+export type PlugPaymentsCreditDialogState = PlugPaymentsDialogState
 
 export interface PlugPaymentsCreditTokenizedCard {
   cardId: string
@@ -25,7 +21,7 @@ export interface PlugPaymentsCreditManualCard {
 export type PlugPaymentsCreditFormValues =
   | PlugPaymentsCreditTokenizedCard
   | PlugPaymentsCreditManualCard
-  
+
 export type PlugPaymentsCreditPaymentSuccessCallback = (
   data: PlugPaymentsSuccess,
 ) => CustomEvent<{ data: PlugPaymentsSuccess }>

@@ -1,9 +1,5 @@
-import { Boleto } from '../../providers/boleto'
-import { Pix } from '../../providers/pix'
-import { Card } from '../../providers/card'
 import { Customer } from '../../providers/base-provider'
-
-export type Provider = Boleto | Card | Pix
+import { Provider } from '../payments'
 
 export interface ChargeConstructor {
   provider: Provider

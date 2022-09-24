@@ -15,7 +15,7 @@ export namespace Components {
         "clientId"?: string;
         "dialogConfig": PlugCheckoutDialog;
         "idempotencyKey": string;
-        "merchantId": string;
+        "merchantId"?: string;
         "paymentMethods"?: PlugCheckoutPaymentMethods;
         "publicKey": string;
         "sandbox": boolean;

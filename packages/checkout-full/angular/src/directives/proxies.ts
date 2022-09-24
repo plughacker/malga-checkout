@@ -17,6 +17,7 @@ export declare interface PlugCheckoutFull extends Components.PlugCheckoutFull {}
 @ProxyCmp({
   inputs: [
     'clientId',
+    'sessionId',
     'idempotencyKey',
     'dialogConfig',
     'merchantId',
@@ -33,6 +34,7 @@ export declare interface PlugCheckoutFull extends Components.PlugCheckoutFull {}
   template: '<ng-content></ng-content>',
   inputs: [
     'clientId',
+    'sessionId',
     'dialogConfig',
     'idempotencyKey',
     'merchantId',

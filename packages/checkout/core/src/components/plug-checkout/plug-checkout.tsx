@@ -44,7 +44,7 @@ export class PlugCheckout {
   @Prop() publicKey: string
   @Prop() sessionId?: string
   @Prop() idempotencyKey: string
-  @Prop() merchantId: string
+  @Prop() merchantId?: string
   @Prop() sandbox = false
   @Prop() dialogConfig: PlugCheckoutDialog = {
     show: true,

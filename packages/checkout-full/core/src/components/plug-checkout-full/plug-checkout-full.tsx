@@ -250,46 +250,42 @@ export class PlugCheckoutFull implements ComponentInterface {
               opened={this.currentSection === 'payments'}
               onExpandClick={() => this.handleChangeSection('payments')}
             >
-              {this.currentSection === 'payments' && (
-                <Fragment>
-                  <span slot="accordion-header-additional-information">
-                    <checkout-icon icon="lock" />
-                    Seguro e encriptado
-                  </span>
+              <Fragment>
+                <span slot="accordion-header-additional-information">
+                  <checkout-icon icon="lock" />
+                  Seguro e encriptado
+                </span>
 
-                  <plug-checkout
-                    publicKey={this.publicKey}
-                    clientId={this.clientId}
-                    sessionId={this.sessionId}
-                    merchantId={this.merchantId}
-                    idempotencyKey={this.idempotencyKey}
-                    sandbox={this.sandbox}
-                    transactionConfig={{
-                      ...this.transactionConfig,
-                      customer,
-                      fraudAnalysis,
-                    }}
-                    paymentMethods={this.paymentMethods}
-                    dialogConfig={this.dialogConfig}
-                    onPaymentSuccess={({ detail: { data } }) =>
-                      this.transactionSuccess.emit({
-                        data: formatSuccess(data),
-                      })
-                    }
-                    onPaymentFailed={({ detail: { error } }) =>
-                      this.transactionFailed.emit({ error })
-                    }
-                    onPaymentSessionFetch={({ detail: { paymentSession } }) => {
-                      this.handleChangeCustomization(
-                        paymentSession.customization,
-                      )
-                      this.handleSetPaymentSessionData(
-                        formatPaymentSession(paymentSession),
-                      )
-                    }}
-                  />
-                </Fragment>
-              )}
+                <plug-checkout
+                  publicKey={this.publicKey}
+                  clientId={this.clientId}
+                  sessionId={this.sessionId}
+                  merchantId={this.merchantId}
+                  idempotencyKey={this.idempotencyKey}
+                  sandbox={this.sandbox}
+                  transactionConfig={{
+                    ...this.transactionConfig,
+                    customer,
+                    fraudAnalysis,
+                  }}
+                  paymentMethods={this.paymentMethods}
+                  dialogConfig={this.dialogConfig}
+                  onPaymentSuccess={({ detail: { data } }) =>
+                    this.transactionSuccess.emit({
+                      data: formatSuccess(data),
+                    })
+                  }
+                  onPaymentFailed={({ detail: { error } }) =>
+                    this.transactionFailed.emit({ error })
+                  }
+                  onPaymentSessionFetch={({ detail: { paymentSession } }) => {
+                    this.handleChangeCustomization(paymentSession.customization)
+                    this.handleSetPaymentSessionData(
+                      formatPaymentSession(paymentSession),
+                    )
+                  }}
+                />
+              </Fragment>
             </checkout-accordion>
           </div>
         </plug-checkout-full-content>

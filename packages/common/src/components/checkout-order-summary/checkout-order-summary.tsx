@@ -43,7 +43,7 @@ export class CheckoutOrderSummary {
           >
             {this.renderProductList()}
           </ul>
-          {this.delivery && (
+          {!!this.delivery && (
             <div class={{ 'checkout-order-summary__delivery': true }}>
               <checkout-typography
                 color="darkness"

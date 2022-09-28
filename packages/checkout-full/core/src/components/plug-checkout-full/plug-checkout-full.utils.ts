@@ -1,6 +1,8 @@
 import {
   Customer,
+  PlugCheckoutFullChargeSuccess,
   PlugCheckoutFullFraudAnalysis,
+  PlugCheckoutFullSessionNormalized,
   Product,
 } from './plug-checkout-full.types'
 import { PlugCheckoutFullIdentificationFormValues } from './partials/plug-checkout-full-identification/plug-checkout-full-identification.types'
@@ -86,4 +88,15 @@ export const formatFraudAnalysisWithCustomerId = (
 ) => ({
   customer: fraudAnalysis.customer,
   cart: formatCart(products),
+})
+
+export const formatPaymentSession = (paymentSession): PlugCheckoutFullSessionNormalized => ({
+  ...paymentSession,
+  checkoutPaymentMethods: paymentSession.checkoutPaymentMethods,
+  transactionConfig: paymentSession.transactionConfig,
+  customization: paymentSession.customization,
+})
+
+export const formatSuccess = (plugPaymentsSuccess) : PlugCheckoutFullChargeSuccess => ({
+  ...plugPaymentsSuccess,
 })

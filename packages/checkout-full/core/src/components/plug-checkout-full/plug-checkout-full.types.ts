@@ -250,3 +250,79 @@ export type PlugCheckoutFullChargeError =
   | PlugCheckoutFullBoletoChargeError
   | PlugCheckoutFullCreditChargeError
   | PlugCheckoutFullPixChargeError
+
+interface PlugCheckoutFullCustomizationColors {
+  lightest: string
+  light: string
+  medium: string
+  dark: string
+  darkest: string
+}
+
+export interface PlugCheckoutFullCustomization {
+  brandUrl: string
+  primaryColor: PlugCheckoutFullCustomizationColors
+  secondaryColor: PlugCheckoutFullCustomizationColors
+  errorColor: PlugCheckoutFullCustomizationColors
+  warningColor: PlugCheckoutFullCustomizationColors
+  successColor: PlugCheckoutFullCustomizationColors
+  backgroundColor: string
+}
+
+export interface PlugCheckoutFullSessionNormalized extends PlugCheckoutFullSession {
+  checkoutPaymentMethods: PlugCheckoutFullPaymentMethods;
+  transactionConfig: PlugCheckoutFullTransaction;
+  customization: PlugCheckoutFullCustomization;
+}
+
+export interface PlugCheckoutFullSession {
+  id: string
+  name: string
+  status: string
+  isActive: boolean
+  clientId: string
+  orderId?: string
+  amount: number
+  currency: string
+  capture: boolean
+  merchantId: string
+  dueDate: string
+  description?: string
+  statementDescriptor?: string
+  items: {
+    name: string
+    description?: string
+    unitPrice: number
+    quantity: number
+    tangible?: boolean
+  }[]
+  paymentLink: string
+  paymentMethods: PaymentMethod[]
+  createdAt: string
+  updatedAt?: string
+  publicKey?: string
+  settings: PlugCheckoutFullUserSettings
+}
+
+export type PaymentMethod =
+  | Boleto
+  | Credit
+  | Pix
+
+export interface PlugCheckoutFullUserSettings {
+  id: string
+  email: string
+  phone: string
+  statementDescription: string
+  logo: string
+  mainColor: string
+  secondaryColor?: string
+  attentionColor?: string
+  errorColor?: string
+  successColor?: string
+  backgroundColor?: string
+  companyName: string
+  clientId: string
+  documentNumber: string
+  language: string
+}

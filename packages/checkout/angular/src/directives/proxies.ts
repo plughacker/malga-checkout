@@ -36,6 +36,7 @@ export declare interface PlugCheckout extends Components.PlugCheckout {}
     'dialogConfig',
     'merchantId',
     'paymentMethods',
+    'sessionId',
     'publicKey',
     'sandbox',
     'transactionConfig',

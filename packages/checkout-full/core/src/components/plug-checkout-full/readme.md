@@ -53,6 +53,7 @@ graph TD;
   plug-checkout-full --> plug-checkout
   plug-checkout-full --> plug-checkout-full-footer
   plug-checkout-full-header --> checkout-icon
+  checkout-order-summary --> checkout-skeleton
   checkout-order-summary --> checkout-typography
   checkout-order-summary --> checkout-icon
   checkout-accordion --> checkout-icon
@@ -83,6 +84,7 @@ graph TD;
   plug-payments-credit-saved-cards --> checkout-typography
   plug-payments-credit-saved-cards --> checkout-text-field
   plug-payments-credit-saved-cards --> checkout-error-message
+  plug-payments-credit-saved-cards --> checkout-select-field
   plug-payments-credit-saved-cards --> checkout-modal
   checkout-radio-field --> checkout-icon
   checkout-modal --> checkout-modal-success

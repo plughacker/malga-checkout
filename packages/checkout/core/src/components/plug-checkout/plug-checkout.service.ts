@@ -27,7 +27,11 @@ export class PlugCheckoutService {
 
   private handleCreditPaymentData = () => {
     if (payment.isSelectedSavedCard) {
-      return { cardId: payment.cardId, cardCvv: payment.cvv }
+      return {
+        cardId: payment.cardId,
+        cardCvv: payment.cvv,
+        installments: payment.installments,
+      }
     }
 
     return credit.form

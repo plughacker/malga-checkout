@@ -12,5 +12,6 @@ export const { state, onChange } = createStore({
 onChange('selectedPaymentMethod', (value) => {
   state.cvv = ''
   state.cardId = ''
+  state.installments = ''
   state.isSelectedSavedCard = value.includes('credit-')
 })

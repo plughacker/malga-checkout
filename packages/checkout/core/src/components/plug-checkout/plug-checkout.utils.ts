@@ -20,7 +20,12 @@ const handleCreditValidations = () => {
 }
 
 const handleSavedCardValidations = () => {
-  if (payment.cvv.length >= 3 && payment.cardId) {
+  if (
+    payment.cvv.length >= 3 &&
+    payment.cardId &&
+    payment.installments &&
+    payment.installments !== 'none'
+  ) {
     return false
   }
 

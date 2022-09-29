@@ -4,6 +4,7 @@ export const { state, onChange } = createStore({
   selectedPaymentMethod: '',
   isSelectedSavedCard: false,
   cvv: '',
+  installments: '',
   cardId: '',
   chargeId: '',
 })

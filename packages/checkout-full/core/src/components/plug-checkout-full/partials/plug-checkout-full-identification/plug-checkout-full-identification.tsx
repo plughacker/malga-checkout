@@ -36,6 +36,7 @@ export class PlugCheckoutFullIdentification {
 
   @Prop() formValues: PlugCheckoutFullIdentificationFormValues
   @Prop() currency: string
+  @Prop() isLoading = false
 
   @Event() submitForm: EventEmitter<void>
   @Event() fieldChange: EventEmitter<{ field: string; value: string }>
@@ -143,6 +144,14 @@ export class PlugCheckoutFullIdentification {
   }
 
   render() {
+    if (this.isLoading) {
+      return (
+        <Host class={{ 'plug-checkout-full-identification__loader': true }}>
+          <checkout-loader />
+        </Host>
+      )
+    }
+
     return (
       <Host class={{ 'plug-checkout-full-identification__container': true }}>
         <checkout-typography

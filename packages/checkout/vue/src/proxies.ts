@@ -21,5 +21,6 @@ export const PlugCheckout = /*@__PURE__*/ defineContainer<JSX.PlugCheckout>(
     'paymentSessionFetch',
     'paymentSuccess',
     'paymentFailed',
+    'isLoading',
   ],
 )

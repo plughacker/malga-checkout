@@ -53,7 +53,9 @@ export class PlugCheckoutService {
       boleto: PlugPaymentsBoletoService,
     }
 
-    return paymentMethods[payment.selectedPaymentMethod] || paymentMethods.credit
+    return (
+      paymentMethods[payment.selectedPaymentMethod] || paymentMethods.credit
+    )
   }
 
   public async handleSession(sessionId: string) {

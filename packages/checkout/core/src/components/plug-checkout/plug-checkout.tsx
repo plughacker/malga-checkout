@@ -69,6 +69,7 @@ export class PlugCheckout {
     customer: null,
     fraudAnalysis: null,
   }
+  @Prop() isLoading = false
 
   @Event() paymentSessionFetch?: EventEmitter<{
     paymentSession: SessionNormalized
@@ -81,7 +82,7 @@ export class PlugCheckout {
     error: PlugPaymentsError
   }>
 
-  @State() isLoading = true
+  @State() isInternallyLoading = true
 
   @State() isButtonLoading = false
 
@@ -147,7 +148,7 @@ export class PlugCheckout {
     this.paymentSessionFetch.emit({ paymentSession })
 
     this.handleStoreCurrentPaymentMethod()
-    this.isLoading = false
+    this.isInternallyLoading = false
   }
 
   componentWillLoad() {
@@ -158,12 +159,10 @@ export class PlugCheckout {
   render() {
     const paymentMethods = clearedObjectProperties(settings.paymentMethods)
 
-    if (this.isLoading) {
+    if (this.isInternallyLoading || this.isLoading) {
       return (
         <div class={{ 'plug-checkout__loaders': true }}>
-          <checkout-skeleton width="100%" />
-          <checkout-skeleton width="100%" />
-          <checkout-skeleton width="100%" />
+          <checkout-loader />
         </div>
       )
     }

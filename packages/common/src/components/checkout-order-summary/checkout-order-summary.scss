@@ -93,12 +93,8 @@
 }
 
 .checkout-order-summary__loaders {
-  margin-top: var(--plug-checkout-spacing-sm);
-  border-top: 1px solid black;
-  padding-top: var(--plug-checkout-spacing-sm);
-  padding-left: var(--plug-checkout-spacing-xs);
-  padding-right: var(--plug-checkout-spacing-xs);
   display: flex;
-  gap: 16px;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
 }

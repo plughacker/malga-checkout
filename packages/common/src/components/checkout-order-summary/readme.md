@@ -22,16 +22,17 @@
 
 ### Depends on
 
-- [checkout-skeleton](../checkout-skeleton)
+- [checkout-loader](../checkout-loader)
 - [checkout-typography](../checkout-typography)
 - [checkout-icon](../checkout-icon)
 
 ### Graph
 ```mermaid
 graph TD;
-  checkout-order-summary --> checkout-skeleton
+  checkout-order-summary --> checkout-loader
   checkout-order-summary --> checkout-typography
   checkout-order-summary --> checkout-icon
+  checkout-loader --> checkout-icon
   style checkout-order-summary fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

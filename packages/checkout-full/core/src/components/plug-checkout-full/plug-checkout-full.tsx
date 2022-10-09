@@ -110,7 +110,7 @@ export class PlugCheckoutFull implements ComponentInterface {
     paymentSession: PlugCheckoutFullSessionNormalized,
   ) => {
     this.paymentSession = paymentSession
-    this.isLoading = false
+    this.isLoading = true
   }
 
   private handleChangeSection = (section: string) => {
@@ -241,13 +241,14 @@ export class PlugCheckoutFull implements ComponentInterface {
                     )
                   }}
                   onSubmitForm={() => this.handleChangeSection('payments')}
+                  isLoading={this.isLoading}
                 />
               </checkout-accordion>
             )}
 
             <checkout-accordion
               label="Pagamento"
-              opened={this.currentSection === 'payments'}
+              opened={this.currentSection === 'payments' || this.isLoading}
               onExpandClick={() => this.handleChangeSection('payments')}
             >
               <Fragment>
@@ -284,6 +285,7 @@ export class PlugCheckoutFull implements ComponentInterface {
                       formatPaymentSession(paymentSession),
                     )
                   }}
+                  isLoading={this.isLoading}
                 />
               </Fragment>
             </checkout-accordion>

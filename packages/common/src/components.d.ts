@@ -59,6 +59,8 @@ export namespace Components {
         "class"?: string;
         "icon": CheckoutIconNames;
     }
+    interface CheckoutLoader {
+    }
     interface CheckoutManualPayment {
         "fullWidth": boolean;
         "paymentMethod": CheckoutManualPaymentDescriptions;
@@ -236,6 +238,12 @@ declare global {
         prototype: HTMLCheckoutIconElement;
         new (): HTMLCheckoutIconElement;
     };
+    interface HTMLCheckoutLoaderElement extends Components.CheckoutLoader, HTMLStencilElement {
+    }
+    var HTMLCheckoutLoaderElement: {
+        prototype: HTMLCheckoutLoaderElement;
+        new (): HTMLCheckoutLoaderElement;
+    };
     interface HTMLCheckoutManualPaymentElement extends Components.CheckoutManualPayment, HTMLStencilElement {
     }
     var HTMLCheckoutManualPaymentElement: {
@@ -322,6 +330,7 @@ declare global {
         "checkout-credit-card": HTMLCheckoutCreditCardElement;
         "checkout-error-message": HTMLCheckoutErrorMessageElement;
         "checkout-icon": HTMLCheckoutIconElement;
+        "checkout-loader": HTMLCheckoutLoaderElement;
         "checkout-manual-payment": HTMLCheckoutManualPaymentElement;
         "checkout-modal": HTMLCheckoutModalElement;
         "checkout-modal-boleto": HTMLCheckoutModalBoletoElement;
@@ -386,6 +395,8 @@ declare namespace LocalJSX {
     interface CheckoutIcon {
         "class"?: string;
         "icon"?: CheckoutIconNames;
+    }
+    interface CheckoutLoader {
     }
     interface CheckoutManualPayment {
         "fullWidth"?: boolean;
@@ -548,6 +559,7 @@ declare namespace LocalJSX {
         "checkout-credit-card": CheckoutCreditCard;
         "checkout-error-message": CheckoutErrorMessage;
         "checkout-icon": CheckoutIcon;
+        "checkout-loader": CheckoutLoader;
         "checkout-manual-payment": CheckoutManualPayment;
         "checkout-modal": CheckoutModal;
         "checkout-modal-boleto": CheckoutModalBoleto;
@@ -574,6 +586,7 @@ declare module "@stencil/core" {
             "checkout-credit-card": LocalJSX.CheckoutCreditCard & JSXBase.HTMLAttributes<HTMLCheckoutCreditCardElement>;
             "checkout-error-message": LocalJSX.CheckoutErrorMessage & JSXBase.HTMLAttributes<HTMLCheckoutErrorMessageElement>;
             "checkout-icon": LocalJSX.CheckoutIcon & JSXBase.HTMLAttributes<HTMLCheckoutIconElement>;
+            "checkout-loader": LocalJSX.CheckoutLoader & JSXBase.HTMLAttributes<HTMLCheckoutLoaderElement>;
             "checkout-manual-payment": LocalJSX.CheckoutManualPayment & JSXBase.HTMLAttributes<HTMLCheckoutManualPaymentElement>;
             "checkout-modal": LocalJSX.CheckoutModal & JSXBase.HTMLAttributes<HTMLCheckoutModalElement>;
             "checkout-modal-boleto": LocalJSX.CheckoutModalBoleto & JSXBase.HTMLAttributes<HTMLCheckoutModalBoletoElement>;

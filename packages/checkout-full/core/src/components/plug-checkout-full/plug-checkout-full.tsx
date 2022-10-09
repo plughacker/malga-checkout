@@ -110,7 +110,7 @@ export class PlugCheckoutFull implements ComponentInterface {
     paymentSession: PlugCheckoutFullSessionNormalized,
   ) => {
     this.paymentSession = paymentSession
-    this.isLoading = true
+    this.isLoading = false
   }
 
   private handleChangeSection = (section: string) => {

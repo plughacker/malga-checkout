@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property     | Attribute  | Description | Type                                       | Default     |
-| ------------ | ---------- | ----------- | ------------------------------------------ | ----------- |
-| `currency`   | `currency` |             | `string`                                   | `undefined` |
-| `formValues` | --         |             | `PlugCheckoutFullIdentificationFormValues` | `undefined` |
+| Property     | Attribute    | Description | Type                                       | Default     |
+| ------------ | ------------ | ----------- | ------------------------------------------ | ----------- |
+| `currency`   | `currency`   |             | `string`                                   | `undefined` |
+| `formValues` | --           |             | `PlugCheckoutFullIdentificationFormValues` | `undefined` |
+| `isLoading`  | `is-loading` |             | `boolean`                                  | `false`     |
 
 
 ## Events
@@ -30,6 +31,7 @@
 
 ### Depends on
 
+- checkout-loader
 - checkout-typography
 - checkout-text-field
 - checkout-error-message
@@ -39,11 +41,13 @@
 ### Graph
 ```mermaid
 graph TD;
+  plug-checkout-full-identification --> checkout-loader
   plug-checkout-full-identification --> checkout-typography
   plug-checkout-full-identification --> checkout-text-field
   plug-checkout-full-identification --> checkout-error-message
   plug-checkout-full-identification --> checkout-select-field
   plug-checkout-full-identification --> checkout-button
+  checkout-loader --> checkout-icon
   checkout-text-field --> checkout-typography
   checkout-text-field --> checkout-icon
   checkout-error-message --> checkout-typography

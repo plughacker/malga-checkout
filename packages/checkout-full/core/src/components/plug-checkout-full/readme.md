@@ -54,10 +54,12 @@ graph TD;
   plug-checkout-full --> plug-checkout
   plug-checkout-full --> plug-checkout-full-footer
   plug-checkout-full-header --> checkout-icon
-  checkout-order-summary --> checkout-skeleton
+  checkout-order-summary --> checkout-loader
   checkout-order-summary --> checkout-typography
   checkout-order-summary --> checkout-icon
+  checkout-loader --> checkout-icon
   checkout-accordion --> checkout-icon
+  plug-checkout-full-identification --> checkout-loader
   plug-checkout-full-identification --> checkout-typography
   plug-checkout-full-identification --> checkout-text-field
   plug-checkout-full-identification --> checkout-error-message
@@ -69,7 +71,7 @@ graph TD;
   checkout-select-field --> checkout-typography
   checkout-select-field --> checkout-icon
   checkout-button --> checkout-icon
-  plug-checkout --> checkout-skeleton
+  plug-checkout --> checkout-loader
   plug-checkout --> plug-payments
   plug-checkout --> plug-payments-credit-saved-cards
   plug-checkout --> plug-payments-credit

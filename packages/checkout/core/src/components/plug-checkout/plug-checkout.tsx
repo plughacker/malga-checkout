@@ -43,10 +43,10 @@ export class PlugCheckout {
   @Prop() clientId?: string
   @Prop() publicKey: string
   @Prop() sessionId?: string
-  @Prop() idempotencyKey: string
+  @Prop() idempotencyKey?: string
   @Prop() merchantId?: string
   @Prop() sandbox = false
-  @Prop() dialogConfig: PlugCheckoutDialog = {
+  @Prop() dialogConfig?: PlugCheckoutDialog = {
     show: true,
     actionButtonLabel: 'Continuar',
     successActionButtonLabel: 'Continuar',

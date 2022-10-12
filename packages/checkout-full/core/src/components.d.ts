@@ -11,7 +11,7 @@ export namespace Components {
     interface PlugCheckoutFull {
         "clientId"?: string;
         "dialogConfig": PlugCheckoutFullDialog;
-        "idempotencyKey": string;
+        "idempotencyKey"?: string;
         "merchantId"?: string;
         "pageConfig"?: PlugCheckoutFullPage;
         "paymentMethods"?: PlugCheckoutFullPaymentMethods;

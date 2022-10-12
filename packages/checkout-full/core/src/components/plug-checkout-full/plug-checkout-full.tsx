@@ -41,7 +41,7 @@ export class PlugCheckoutFull implements ComponentInterface {
   @Prop() publicKey?: string
   @Prop() sessionId?: string
   @Prop() merchantId?: string
-  @Prop() idempotencyKey: string
+  @Prop() idempotencyKey?: string
   @Prop() sandbox = false
   @Prop() paymentMethods?: PlugCheckoutFullPaymentMethods = {
     pix: undefined,

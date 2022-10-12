@@ -12,6 +12,7 @@ export const PlugCheckoutFull =
     [
       'clientId',
       'publicKey',
+      'sessionId',
       'merchantId',
       'idempotencyKey',
       'sandbox',

@@ -1,3 +1,4 @@
+import Matercolors from 'matercolors'
 import { Session, SessionNormalized } from './sessions.types'
 
 export const normalizePaymentSession = (
@@ -7,6 +8,7 @@ export const normalizePaymentSession = (
     ...paymentSession,
     transactionConfig: normalizeTransactionConfig(paymentSession),
     checkoutPaymentMethods: normalizePaymentMethods(paymentSession),
+    customization: normalizeCustomization(paymentSession),
   }
 
   return paymentSessionNormalized
@@ -51,3 +53,39 @@ const normalizeTransactionConfig = (paymentSession: Session) => ({
   orderId: paymentSession.orderId,
   currency: paymentSession.currency,
 })
+
+const getColorPalette = (color: string) => {
+  const Color = new Matercolors(color)
+
+  const colorPalette = {
+    lightest: Color[50],
+    light: Color[300],
+    medium: Color[500],
+    dark: Color[700],
+    darkest: Color[900],
+  }
+
+  return colorPalette
+}
+
+export const normalizeCustomization = (data: Session) => {
+  const settings = data.settings
+
+  const primaryColor = getColorPalette(settings.mainColor ?? '#34C759')
+  const secondaryColor = getColorPalette(settings.secondaryColor ?? '#34C759')
+  const errorColor = getColorPalette(settings.errorColor ?? '#DD183C')
+  const warningColor = getColorPalette(settings.attentionColor ?? '#FAC30E')
+  const successColor = getColorPalette(settings.successColor ?? '#32C000')
+  const backgroundColor = settings.backgroundColor ?? '#FFFFFF'
+  const brandUrl = settings.logo
+
+  return {
+    brandUrl,
+    primaryColor,
+    secondaryColor,
+    errorColor,
+    warningColor,
+    successColor,
+    backgroundColor,
+  }
+}

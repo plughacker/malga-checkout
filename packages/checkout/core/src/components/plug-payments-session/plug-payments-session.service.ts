@@ -1,28 +1,36 @@
 import { Sessions } from '../../services/sessions'
+import { CustomizationData } from '../../services/sessions/sessions.types'
 import settings from '../../stores/settings'
-import { PlugPaymentsError } from '../../types/plug-payments-error.types'
-import { PlugPaymentsSuccess } from '../../types/plug-payments-success.types'
-import { PlugPayments } from '../../types/plug-payments.types'
+import {
+  setThemeBackgroundColor,
+  setThemeErrorColors,
+  setThemePrimaryColors,
+  setThemeSuccessColors,
+  setThemeWarningColors,
+} from '../plug-checkout/plug-checkout.utils'
+import {
+  PlugPaymentsSessionDialogShowCallback,
+  PlugPaymentsSessionRequest,
+} from './plug-payments-session.types'
 
-export class PlugPaymentsSessionService implements PlugPayments {
+export class PlugPaymentsSessionService {
   readonly session?: Sessions
+  readonly onShowDialog?: PlugPaymentsSessionDialogShowCallback
 
-  constructor() {
+  constructor({ onShowDialog }: PlugPaymentsSessionRequest) {
     this.session = new Sessions()
+    this.onShowDialog = onShowDialog
   }
 
-  public pay(): void {
-    throw new Error('Method not implemented.')
-  }
-
-  public handlePaymentSuccess(data: PlugPaymentsSuccess): void {
-    console.log(data)
-    throw new Error('Method not implemented.')
-  }
-
-  public handlePaymentFailed(error: PlugPaymentsError): void {
-    console.log(error)
-    throw new Error('Method not implemented.')
+  public handleFailed(): void {
+    if (settings.dialogConfig.show) {
+      this.onShowDialog({
+        open: true,
+        mode: 'error',
+        errorMessage:
+          'Não foi possível concluir sua transação, tente novamente.',
+      })
+    }
   }
 
   public async findSession(sessionId: string) {
@@ -31,12 +39,19 @@ export class PlugPaymentsSessionService implements PlugPayments {
 
       settings.transactionConfig = session.transactionConfig
       settings.paymentMethods = session.checkoutPaymentMethods
+      this.customize(session.customization)
+
+      return session
     } catch (error) {
-      this.handlePaymentFailed({
-        type: '400',
-        message: 'Session not found',
-        errorStack: error.response.data,
-      })
+      this.handleFailed()
     }
+  }
+
+  private customize(customization: CustomizationData) {
+    setThemePrimaryColors(customization.primaryColor)
+    setThemeWarningColors(customization.warningColor)
+    setThemeErrorColors(customization.errorColor)
+    setThemeSuccessColors(customization.successColor)
+    setThemeBackgroundColor(customization.backgroundColor)
   }
 }

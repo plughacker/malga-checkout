@@ -12,6 +12,7 @@
 | `clientId`          | `client-id`       |             | `string`                     | `undefined`                                                                                                                                                                                         |
 | `dialogConfig`      | --                |             | `PlugCheckoutDialog`         | `{     show: true,     actionButtonLabel: 'Continuar',     successActionButtonLabel: 'Continuar',     errorActionButtonLabel: 'Tentar Novamente',     successRedirectUrl: '',   }`                  |
 | `idempotencyKey`    | `idempotency-key` |             | `string`                     | `undefined`                                                                                                                                                                                         |
+| `isLoading`         | `is-loading`      |             | `boolean`                    | `false`                                                                                                                                                                                             |
 | `merchantId`        | `merchant-id`     |             | `string`                     | `undefined`                                                                                                                                                                                         |
 | `paymentMethods`    | --                |             | `PlugCheckoutPaymentMethods` | `{     pix: undefined,     credit: undefined,     boleto: undefined,   }`                                                                                                                           |
 | `publicKey`         | `public-key`      |             | `string`                     | `undefined`                                                                                                                                                                                         |
@@ -33,7 +34,7 @@
 
 ### Depends on
 
-- checkout-skeleton
+- checkout-loader
 - [plug-payments](../plug-payments)
 - [plug-payments-credit-saved-cards](../plug-payments-credit/partials/plug-payments-credit-saved-cards)
 - [plug-payments-credit](../plug-payments-credit)
@@ -45,7 +46,7 @@
 ### Graph
 ```mermaid
 graph TD;
-  plug-checkout --> checkout-skeleton
+  plug-checkout --> checkout-loader
   plug-checkout --> plug-payments
   plug-checkout --> plug-payments-credit-saved-cards
   plug-checkout --> plug-payments-credit
@@ -53,6 +54,7 @@ graph TD;
   plug-checkout --> plug-payments-pix
   plug-checkout --> checkout-button
   plug-checkout --> checkout-icon
+  checkout-loader --> checkout-icon
   plug-payments --> plug-payments-credit-saved-cards
   plug-payments --> checkout-radio-field
   plug-payments --> plug-payments-credit

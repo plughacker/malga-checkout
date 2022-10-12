@@ -25,6 +25,7 @@ export declare interface PlugCheckout extends Components.PlugCheckout {}
     'sandbox',
     'transactionConfig',
     'idempotencyKey',
+    'isLoading',
   ],
 })
 @Component({
@@ -41,6 +42,7 @@ export declare interface PlugCheckout extends Components.PlugCheckout {}
     'sandbox',
     'transactionConfig',
     'idempotencyKey',
+    'isLoading',
   ],
   outputs: ['paymentSessionFetch', 'paymentSuccess', 'paymentFailed'],
 })

@@ -11,7 +11,7 @@ export class Sessions {
 
   public async find(sessionId: string): Promise<SessionNormalized> {
     console.log(sessionId)
-    // const response = await this.api.fetch({ endpoint: `/sessions/${sessionId}` })
+    // const response = await this.api.fetch({ endpoint: `/sessions/${sessionId}/external` })
 
     // return response.data
 

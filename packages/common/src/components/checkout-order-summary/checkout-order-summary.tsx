@@ -27,8 +27,7 @@ export class CheckoutOrderSummary {
     if (this.isLoading) {
       return (
         <div class={{ 'checkout-order-summary__loaders': true }}>
-          <checkout-skeleton width="36px" />
-          <checkout-skeleton width="78px" />
+          <checkout-loader />
         </div>
       )
     }
@@ -43,7 +42,7 @@ export class CheckoutOrderSummary {
           >
             {this.renderProductList()}
           </ul>
-          {this.delivery && (
+          {!!this.delivery && (
             <div class={{ 'checkout-order-summary__delivery': true }}>
               <checkout-typography
                 color="darkness"

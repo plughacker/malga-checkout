@@ -13,8 +13,8 @@ import { PaymentMethods } from "./components/plug-payments/plug-payments.types";
 export namespace Components {
     interface PlugCheckout {
         "clientId"?: string;
-        "dialogConfig": PlugCheckoutDialog;
-        "idempotencyKey": string;
+        "dialogConfig"?: PlugCheckoutDialog;
+        "idempotencyKey"?: string;
         "isLoading": boolean;
         "merchantId"?: string;
         "paymentMethods"?: PlugCheckoutPaymentMethods;

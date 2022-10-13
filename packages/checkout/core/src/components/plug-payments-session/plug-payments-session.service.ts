@@ -37,7 +37,11 @@ export class PlugPaymentsSessionService {
     try {
       const session = await this.session.find(sessionId)
 
-      settings.transactionConfig = session.transactionConfig
+      settings.merchantId = session.merchantId
+      settings.transactionConfig = {
+        ...settings.transactionConfig,
+        ...session.transactionConfig,
+      }
       settings.paymentMethods = session.checkoutPaymentMethods
       this.customize(session.customization)
 

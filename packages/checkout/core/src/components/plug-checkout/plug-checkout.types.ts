@@ -14,8 +14,8 @@ export interface Credit {
 
 export interface PlugCheckoutTransaction {
   statementDescriptor?: string
-  amount: number
-  capture: boolean
+  amount?: number
+  capture?: boolean
   description?: string
   orderId?: string
   customer?: Customer

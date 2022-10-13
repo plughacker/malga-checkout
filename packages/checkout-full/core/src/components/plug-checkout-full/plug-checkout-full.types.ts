@@ -218,9 +218,9 @@ export interface PlugCheckoutFullFraudAnalysis {
 }
 
 export interface PlugCheckoutFullTransaction {
-  statementDescriptor: string
-  amount: number
-  capture: boolean
+  statementDescriptor?: string
+  amount?: number
+  capture?: boolean
   description?: string
   orderId?: string
   customerId?: string
@@ -269,10 +269,11 @@ export interface PlugCheckoutFullCustomization {
   backgroundColor: string
 }
 
-export interface PlugCheckoutFullSessionNormalized extends PlugCheckoutFullSession {
-  checkoutPaymentMethods: PlugCheckoutFullPaymentMethods;
-  transactionConfig: PlugCheckoutFullTransaction;
-  customization: PlugCheckoutFullCustomization;
+export interface PlugCheckoutFullSessionNormalized
+  extends PlugCheckoutFullSession {
+  checkoutPaymentMethods: PlugCheckoutFullPaymentMethods
+  transactionConfig: PlugCheckoutFullTransaction
+  customization: PlugCheckoutFullCustomization
 }
 
 export interface PlugCheckoutFullSession {
@@ -304,10 +305,7 @@ export interface PlugCheckoutFullSession {
   settings: PlugCheckoutFullUserSettings
 }
 
-export type PaymentMethod =
-  | Boleto
-  | Credit
-  | Pix
+export type PaymentMethod = Boleto | Credit | Pix
 
 export interface PlugCheckoutFullUserSettings {
   id: string

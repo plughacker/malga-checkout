@@ -66,6 +66,7 @@ export class PlugCheckoutService {
     const sessionService = new PlugPaymentsSessionService({
       onShowDialog: this.handleShowDialog,
     })
+
     return sessionService.findSession(sessionId)
   }
 

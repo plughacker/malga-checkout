@@ -15,7 +15,9 @@ export class Payments {
   public async pay({ headers, payload }: PaymentsPay) {
     const errorStatus = ['failed', 'charged_back', 'canceled', 'voided']
 
-    const endpoint = settings.sessionId ? '/sessions' : '/charges'
+    const endpoint = settings.sessionId
+      ? `/sessions/${settings.sessionId}/charge`
+      : '/charges'
 
     const response = await this.api.create({
       endpoint: endpoint,

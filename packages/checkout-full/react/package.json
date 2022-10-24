@@ -1,7 +1,7 @@
 {
   "name": "@plug-checkout-full/react",
   "sideEffects": false,
-  "version": "1.4.6",
+  "version": "1.4.7",
   "description": "React specific wrapper for Plug Checkout Full core components",
   "repository": {
     "type": "git",

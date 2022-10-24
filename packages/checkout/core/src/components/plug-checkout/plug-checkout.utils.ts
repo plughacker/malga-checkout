@@ -20,12 +20,16 @@ const handleCreditValidations = () => {
 }
 
 const handleSavedCardValidations = () => {
-  if (
-    payment.cvv.length >= 3 &&
-    payment.cardId &&
-    payment.installments &&
-    payment.installments !== 'none'
-  ) {
+  const hasInstallments = settings.paymentMethods.credit.installments.show
+  const validCard = payment.cvv.length >= 3 && payment.cardId
+  const validInstallments =
+    payment.installments && payment.installments !== 'none'
+
+  if (validCard && validInstallments && hasInstallments) {
+    return false
+  }
+
+  if (validCard && !hasInstallments) {
     return false
   }
 

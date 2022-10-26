@@ -20,7 +20,7 @@ export class Payments {
       : '/charges'
 
     const response = await this.api.create({
-      endpoint: endpoint,
+      endpoint,
       data: payload,
       headers,
     })

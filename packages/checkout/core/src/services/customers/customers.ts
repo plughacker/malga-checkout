@@ -16,7 +16,9 @@ export class Customers {
 
   public async create() {
     const response = await this.api.create({
-      endpoint: '/customers?force=true',
+      endpoint: settings.sessionId
+        ? '/sessions/customers?force=true'
+        : '/customers?force=true',
       data: formatPayload(this.customer),
     })
 

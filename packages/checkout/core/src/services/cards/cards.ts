@@ -1,4 +1,5 @@
 import { Api } from '../api'
+import settings from '../../stores/settings'
 
 import { CardConstructor } from './cards.types'
 
@@ -13,7 +14,7 @@ export class Cards {
 
   public async create() {
     const response = await this.api.create({
-      endpoint: '/cards',
+      endpoint: settings.sessionId ? '/sessions/cards' : '/cards',
       data: { tokenId: this.tokenId },
     })
 

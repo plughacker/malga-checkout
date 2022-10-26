@@ -1,3 +1,4 @@
+import settings from '../../stores/settings'
 import { Api } from '../api'
 
 import { TokenConstructor, CardData } from './tokens.types'
@@ -14,7 +15,7 @@ export class Tokens {
 
   public async create() {
     const response = await this.api.create({
-      endpoint: '/tokens',
+      endpoint: settings.sessionId ? '/sessions/tokens' : '/tokens',
       data: formatPayload(this.data),
     })
 

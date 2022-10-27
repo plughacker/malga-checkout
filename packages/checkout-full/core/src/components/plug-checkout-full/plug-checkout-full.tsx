@@ -30,6 +30,7 @@ import {
   formatFraudAnalysisWithCustomerId,
   formatPaymentSession,
   formatSuccess,
+  formatProducts,
 } from './plug-checkout-full.utils'
 
 @Component({
@@ -131,21 +132,17 @@ export class PlugCheckoutFull implements ComponentInterface {
   }
 
   private handleFraudAnalysis = (customer: Customer) => {
-    if (
-      this.transactionConfig.customerId &&
-      !this.transactionConfig.fraudAnalysis
-    ) {
-      return null
-    }
+    const products = formatProducts(
+      !!this.paymentSession,
+      this.paymentSession.items,
+      this.pageConfig.products,
+    )
 
     if (this.transactionConfig.customerId) {
-      return formatFraudAnalysisWithCustomerId(
-        this.transactionConfig.fraudAnalysis,
-        this.pageConfig.products,
-      )
+      return formatFraudAnalysisWithCustomerId(products)
     }
 
-    return formatFraudAnalysis(customer, this.pageConfig.products)
+    return formatFraudAnalysis(customer, products)
   }
 
   private renderBrand = () => {

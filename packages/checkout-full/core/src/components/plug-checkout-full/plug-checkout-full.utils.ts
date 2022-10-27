@@ -1,9 +1,10 @@
 import {
   Customer,
   PlugCheckoutFullChargeSuccess,
-  PlugCheckoutFullFraudAnalysis,
   PlugCheckoutFullSessionNormalized,
+  PlugCheckoutSessionItems,
   Product,
+  PlugCheckoutFullFraudAnalysisCart,
 } from './plug-checkout-full.types'
 import { PlugCheckoutFullIdentificationFormValues } from './partials/plug-checkout-full-identification/plug-checkout-full-identification.types'
 
@@ -62,41 +63,55 @@ export const formatCustomer = (
   }
 }
 
-const formatCart = (products: Product[]) => {
-  const cart = products.map((product) => ({
+export const formatProducts = (
+  isSession: boolean,
+  items?: PlugCheckoutSessionItems[],
+  products?: Product[],
+) => {
+  if (isSession) {
+    return items.map((item) => ({
+      name: item.name,
+      unitPrice: item.unitPrice,
+      quantity: item.quantity,
+      sku: item.name,
+      risk: 'Low',
+    }))
+  }
+
+  return products.map((product) => ({
     name: product.name,
     quantity: product.quantity,
     sku: product.sku,
     unitPrice: product.amount,
     risk: product.risk,
   }))
-
-  return cart
 }
 
 export const formatFraudAnalysis = (
   customer: Customer,
-  products: Product[],
+  products: PlugCheckoutFullFraudAnalysisCart[],
 ) => ({
   customer,
-  cart: formatCart(products),
+  cart: products,
 })
 
 export const formatFraudAnalysisWithCustomerId = (
-  fraudAnalysis: PlugCheckoutFullFraudAnalysis,
-  products: Product[],
+  products: PlugCheckoutFullFraudAnalysisCart[],
 ) => ({
-  customer: fraudAnalysis.customer,
-  cart: formatCart(products),
+  cart: products,
 })
 
-export const formatPaymentSession = (paymentSession): PlugCheckoutFullSessionNormalized => ({
+export const formatPaymentSession = (
+  paymentSession,
+): PlugCheckoutFullSessionNormalized => ({
   ...paymentSession,
   checkoutPaymentMethods: paymentSession.checkoutPaymentMethods,
   transactionConfig: paymentSession.transactionConfig,
   customization: paymentSession.customization,
 })
 
-export const formatSuccess = (plugPaymentsSuccess) : PlugCheckoutFullChargeSuccess => ({
+export const formatSuccess = (
+  plugPaymentsSuccess,
+): PlugCheckoutFullChargeSuccess => ({
   ...plugPaymentsSuccess,
 })

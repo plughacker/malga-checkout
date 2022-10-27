@@ -190,6 +190,15 @@ export interface Product {
   risk: string
 }
 
+export interface Product {
+  name: string
+  amount: number
+  quantity: number
+  description: string
+  sku: string
+  risk: string
+}
+
 export interface PlugCheckoutFullPaymentMethods {
   pix?: Pix
   credit?: Credit
@@ -213,8 +222,8 @@ export interface PlugCheckoutFullFraudAnalysisCart {
 }
 
 export interface PlugCheckoutFullFraudAnalysis {
-  customer: Customer
-  cart: PlugCheckoutFullFraudAnalysisCart[]
+  customer?: Customer
+  cart?: PlugCheckoutFullFraudAnalysisCart[]
 }
 
 export interface PlugCheckoutFullTransaction {
@@ -276,6 +285,14 @@ export interface PlugCheckoutFullSessionNormalized
   customization: PlugCheckoutFullCustomization
 }
 
+export interface PlugCheckoutSessionItems {
+  name: string
+  description?: string
+  unitPrice: number
+  quantity: number
+  tangible?: boolean
+}
+
 export interface PlugCheckoutFullSession {
   id: string
   name: string
@@ -290,13 +307,7 @@ export interface PlugCheckoutFullSession {
   dueDate: string
   description?: string
   statementDescriptor?: string
-  items: {
-    name: string
-    description?: string
-    unitPrice: number
-    quantity: number
-    tangible?: boolean
-  }[]
+  items: PlugCheckoutSessionItems[]
   paymentLink: string
   paymentMethods: PaymentMethod[]
   createdAt: string

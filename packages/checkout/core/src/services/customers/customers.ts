@@ -30,4 +30,10 @@ export class Customers {
 
     return response.data.id
   }
+
+  public async find(customerId: string) {
+    const endpoint = settings.sessionId ? '/sessions/customers' : '/customers'
+
+    return this.api.fetch({ endpoint: `${endpoint}/${customerId}` })
+  }
 }

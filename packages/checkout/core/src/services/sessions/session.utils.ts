@@ -1,4 +1,5 @@
 import Matercolors from 'matercolors'
+import settings from '../../stores/settings'
 import { Session, SessionNormalized } from './sessions.types'
 
 export const normalizePaymentSession = (
@@ -52,6 +53,16 @@ const normalizeTransactionConfig = (paymentSession: Session) => ({
   description: paymentSession.description,
   orderId: paymentSession.orderId,
   currency: paymentSession.currency,
+  fraudAnalysis: {
+    ...settings.transactionConfig.fraudAnalysis,
+    cart: paymentSession.items.map((item) => ({
+      name: item.name,
+      unitPrice: item.unitPrice,
+      quantity: item.quantity,
+      sku: item.name,
+      risk: 'Low',
+    })),
+  },
 })
 
 const getColorPalette = (color: string) => {

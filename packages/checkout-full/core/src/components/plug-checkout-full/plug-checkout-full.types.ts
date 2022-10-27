@@ -187,7 +187,7 @@ export interface Product {
   quantity: number
   description: string
   sku: string
-  risk: 'Low' | 'High'
+  risk: string
 }
 
 export interface PlugCheckoutFullPaymentMethods {
@@ -209,7 +209,7 @@ export interface PlugCheckoutFullFraudAnalysisCart {
   quantity: number
   sku: string
   unitPrice: number
-  risk: 'Low' | 'High'
+  risk: string
 }
 
 export interface PlugCheckoutFullFraudAnalysis {

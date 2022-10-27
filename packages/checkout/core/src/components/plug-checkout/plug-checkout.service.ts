@@ -9,6 +9,7 @@ import { PlugPaymentsPixService } from '../plug-payments-pix/plug-payments-pix.s
 import { PlugPaymentsSuccess } from '../../types/plug-payments-success.types'
 import { PlugPaymentsError } from '../../types/plug-payments-error.types'
 import { PlugPaymentsSessionService } from '../plug-payments-session/plug-payments-session.service'
+import { Customers } from '../../services/customers'
 
 export class PlugCheckoutService {
   readonly onPaymentSuccess: (
@@ -68,6 +69,34 @@ export class PlugCheckoutService {
     })
 
     return sessionService.findSession(sessionId)
+  }
+
+  public async handleCustomerId(customerId: string) {
+    if (!customerId) return
+
+    const customerService = new Customers()
+    const { data: customer } = await customerService.find(customerId)
+
+    settings.transactionConfig.fraudAnalysis.customer = {
+      name: customer.name,
+      email: customer.email,
+      phoneNumber: customer.phoneNumber,
+      document: {
+        number: customer.document.number,
+        type: customer.document.type,
+        country: customer.document.country,
+      },
+      address: {
+        city: customer.address.city,
+        complement: customer.address.complement,
+        country: customer.address.country,
+        neighborhood: customer.address.district,
+        state: customer.address.state,
+        street: customer.address.street,
+        number: customer.address.streetNumber,
+        zipCode: customer.address.zipCode,
+      },
+    }
   }
 
   private handleShowDialog(dialogConfigs) {

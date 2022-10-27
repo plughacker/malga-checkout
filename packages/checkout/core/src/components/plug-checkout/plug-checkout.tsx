@@ -151,9 +151,14 @@ export class PlugCheckout {
     this.isInternallyLoading = false
   }
 
-  componentWillLoad() {
+  private async handleCustomerId() {
+    this.plugCheckoutService.handleCustomerId(this.transactionConfig.customerId)
+  }
+
+  async componentWillLoad() {
     this.handleStoreSettings()
-    this.handleSession()
+    await this.handleSession()
+    this.handleCustomerId()
   }
 
   render() {

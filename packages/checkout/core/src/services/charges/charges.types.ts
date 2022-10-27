@@ -21,10 +21,10 @@ export interface FraudAnalysisCart {
   quantity: number
   sku: string
   unitPrice: number
-  risk: 'Low' | 'High'
+  risk: string
 }
 
 export interface FraudAnalysis {
-  customer: Customer
-  cart: FraudAnalysisCart[]
+  customer?: Customer
+  cart?: FraudAnalysisCart[]
 }

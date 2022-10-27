@@ -192,6 +192,7 @@ export class PlugCheckoutFull implements ComponentInterface {
       this.customerFormFields,
       this.transactionConfig.currency,
     )
+    const checkoutCustomer = this.transactionConfig.customerId ? null : customer
 
     const fraudAnalysis = this.handleFraudAnalysis(customer)
 
@@ -264,7 +265,7 @@ export class PlugCheckoutFull implements ComponentInterface {
                   sandbox={this.sandbox}
                   transactionConfig={{
                     ...this.transactionConfig,
-                    customer,
+                    customer: checkoutCustomer,
                     fraudAnalysis,
                   }}
                   paymentMethods={this.paymentMethods}

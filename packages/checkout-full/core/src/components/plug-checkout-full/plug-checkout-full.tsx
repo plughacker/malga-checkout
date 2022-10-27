@@ -193,6 +193,12 @@ export class PlugCheckoutFull implements ComponentInterface {
       this.transactionConfig.currency,
     )
     const checkoutCustomer = this.transactionConfig.customerId ? null : customer
+    const transactionConfig = this.paymentSession
+      ? this.paymentSession.transactionConfig
+      : this.transactionConfig
+    const paymentMethods = this.paymentSession
+      ? this.paymentSession.checkoutPaymentMethods
+      : this.paymentMethods
 
     const fraudAnalysis = this.handleFraudAnalysis(customer)
 
@@ -264,11 +270,12 @@ export class PlugCheckoutFull implements ComponentInterface {
                   idempotencyKey={this.idempotencyKey}
                   sandbox={this.sandbox}
                   transactionConfig={{
-                    ...this.transactionConfig,
+                    ...transactionConfig,
+                    customerId: this.transactionConfig.customerId,
                     customer: checkoutCustomer,
                     fraudAnalysis,
                   }}
-                  paymentMethods={this.paymentMethods}
+                  paymentMethods={paymentMethods}
                   dialogConfig={this.dialogConfig}
                   onPaymentSuccess={({ detail: { data } }) =>
                     this.transactionSuccess.emit({

@@ -101,10 +101,10 @@ export class PlugCheckoutFull implements ComponentInterface {
     country: '',
   }
 
-  private handleChangeCustomization = (
-    customizationData: PlugCheckoutFullCustomization,
-  ) => {
-    this.customization = customizationData
+  private handleChangeCustomization = (paymentSession) => {
+    if (paymentSession && paymentSession.customization) {
+      this.customization = paymentSession.customization
+    }
   }
 
   private handleSetPaymentSessionData = (
@@ -132,9 +132,10 @@ export class PlugCheckoutFull implements ComponentInterface {
   }
 
   private handleFraudAnalysis = (customer: Customer) => {
+    const items = this.paymentSession && this.paymentSession.items
     const products = formatProducts(
       !!this.paymentSession,
-      this.paymentSession.items,
+      items,
       this.pageConfig.products,
     )
 
@@ -277,7 +278,7 @@ export class PlugCheckoutFull implements ComponentInterface {
                     this.transactionFailed.emit({ error })
                   }
                   onPaymentSessionFetch={({ detail: { paymentSession } }) => {
-                    this.handleChangeCustomization(paymentSession.customization)
+                    this.handleChangeCustomization(paymentSession)
                     this.handleSetPaymentSessionData(
                       formatPaymentSession(paymentSession),
                     )

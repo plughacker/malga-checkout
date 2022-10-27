@@ -103,12 +103,16 @@ export const formatFraudAnalysisWithCustomerId = (
 
 export const formatPaymentSession = (
   paymentSession,
-): PlugCheckoutFullSessionNormalized => ({
-  ...paymentSession,
-  checkoutPaymentMethods: paymentSession.checkoutPaymentMethods,
-  transactionConfig: paymentSession.transactionConfig,
-  customization: paymentSession.customization,
-})
+): PlugCheckoutFullSessionNormalized => {
+  if (!paymentSession) return
+
+  return {
+    ...paymentSession,
+    checkoutPaymentMethods: paymentSession.checkoutPaymentMethods,
+    transactionConfig: paymentSession.transactionConfig,
+    customization: paymentSession.customization,
+  }
+}
 
 export const formatSuccess = (
   plugPaymentsSuccess,

@@ -32,6 +32,7 @@ export class Charges {
       amount: settings.transactionConfig.amount,
       statementDescriptor: settings.transactionConfig.statementDescriptor,
       capture: settings.transactionConfig.capture,
+      sessionId: settings.sessionId,
       fraudAnalysis,
     })
 

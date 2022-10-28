@@ -11,6 +11,7 @@ export interface SettingsState {
   idempotencyKey: string
   merchantId: string
   sandbox: boolean
+  debug: boolean
   dialogConfig: PlugCheckoutDialog
   paymentMethods: PlugCheckoutPaymentMethods
   transactionConfig: PlugCheckoutTransaction

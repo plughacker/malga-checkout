@@ -46,6 +46,7 @@ export class PlugCheckout {
   @Prop() idempotencyKey?: string
   @Prop() merchantId?: string
   @Prop() sandbox = false
+  @Prop() debug = false
   @Prop() dialogConfig?: PlugCheckoutDialog = {
     show: true,
     actionButtonLabel: 'Continuar',
@@ -127,6 +128,7 @@ export class PlugCheckout {
     settings.merchantId = this.merchantId
     settings.idempotencyKey = this.idempotencyKey
     settings.sandbox = this.sandbox
+    settings.debug = this.debug
     settings.dialogConfig = this.dialogConfig
     settings.paymentMethods = this.paymentMethods
     settings.transactionConfig = this.transactionConfig

@@ -21,6 +21,10 @@ export class Api {
   }
 
   private getCurrentHost() {
+    if (settings.debug) {
+      return 'https://api.dev.plugpagamentos.com/v1'
+    }
+
     if (settings.sandbox) {
       return 'https://sandbox-api.plugpagamentos.com/v1'
     }

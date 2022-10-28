@@ -44,6 +44,7 @@ export class PlugCheckoutFull implements ComponentInterface {
   @Prop() merchantId?: string
   @Prop() idempotencyKey?: string
   @Prop() sandbox = false
+  @Prop() debug = false
   @Prop() paymentMethods?: PlugCheckoutFullPaymentMethods = {
     pix: undefined,
     credit: undefined,
@@ -269,6 +270,7 @@ export class PlugCheckoutFull implements ComponentInterface {
                   merchantId={this.merchantId}
                   idempotencyKey={this.idempotencyKey}
                   sandbox={this.sandbox}
+                  debug={this.debug}
                   transactionConfig={{
                     ...transactionConfig,
                     customerId: this.transactionConfig.customerId,

@@ -36,7 +36,7 @@ const normalizePaymentMethods = (paymentSession: Session) => {
             show: true,
           },
           checkedSaveCard: false,
-          showCreditCard: false,
+          showCreditCard: true,
         }
       }
 

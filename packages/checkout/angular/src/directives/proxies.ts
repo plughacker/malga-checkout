@@ -18,6 +18,7 @@ export declare interface PlugCheckout extends Components.PlugCheckout {}
   inputs: [
     'clientId',
     'sessionId',
+    'debug',
     'dialogConfig',
     'merchantId',
     'paymentMethods',
@@ -40,6 +41,7 @@ export declare interface PlugCheckout extends Components.PlugCheckout {}
     'sessionId',
     'publicKey',
     'sandbox',
+    'debug',
     'transactionConfig',
     'idempotencyKey',
     'isLoading',

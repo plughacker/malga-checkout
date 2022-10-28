@@ -13,6 +13,7 @@ import { PaymentMethods } from "./components/plug-payments/plug-payments.types";
 export namespace Components {
     interface PlugCheckout {
         "clientId"?: string;
+        "debug": boolean;
         "dialogConfig"?: PlugCheckoutDialog;
         "idempotencyKey"?: string;
         "isLoading": boolean;
@@ -93,6 +94,7 @@ declare global {
 declare namespace LocalJSX {
     interface PlugCheckout {
         "clientId"?: string;
+        "debug"?: boolean;
         "dialogConfig"?: PlugCheckoutDialog;
         "idempotencyKey"?: string;
         "isLoading"?: boolean;

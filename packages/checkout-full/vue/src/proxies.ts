@@ -16,6 +16,7 @@ export const PlugCheckoutFull =
       'merchantId',
       'idempotencyKey',
       'sandbox',
+      'debug',
       'paymentMethods',
       'pageConfig',
       'transactionConfig',

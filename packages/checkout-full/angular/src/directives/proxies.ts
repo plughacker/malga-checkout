@@ -25,6 +25,7 @@ export declare interface PlugCheckoutFull extends Components.PlugCheckoutFull {}
     'paymentMethods',
     'publicKey',
     'sandbox',
+    'debug',
     'transactionConfig',
   ],
 })
@@ -42,6 +43,7 @@ export declare interface PlugCheckoutFull extends Components.PlugCheckoutFull {}
     'paymentMethods',
     'publicKey',
     'sandbox',
+    'debug',
     'transactionConfig',
   ],
   outputs: ['transactionSuccess', 'transactionFailed'],

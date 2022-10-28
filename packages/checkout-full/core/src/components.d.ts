@@ -10,6 +10,7 @@ import { PlugCheckoutFullIdentificationFormValues } from "./components/plug-chec
 export namespace Components {
     interface PlugCheckoutFull {
         "clientId"?: string;
+        "debug": boolean;
         "dialogConfig": PlugCheckoutFullDialog;
         "idempotencyKey"?: string;
         "merchantId"?: string;
@@ -78,6 +79,7 @@ declare global {
 declare namespace LocalJSX {
     interface PlugCheckoutFull {
         "clientId"?: string;
+        "debug"?: boolean;
         "dialogConfig"?: PlugCheckoutFullDialog;
         "idempotencyKey"?: string;
         "merchantId"?: string;

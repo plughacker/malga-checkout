@@ -1,7 +1,7 @@
 {
   "name": "@plug-checkout/react",
   "sideEffects": false,
-  "version": "1.5.0-beta.0",
+  "version": "1.5.0-beta.1",
   "description": "React specific wrapper for Plug Checkout core components",
   "repository": {
     "type": "git",
@@ -51,7 +51,7 @@
     "typescript": "^4.3.4"
   },
   "dependencies": {
-    "@plug-checkout/core": "*"
+    "@plug-checkout/core": "1.5.0-beta.0"
   },
   "peerDependencies": {
     "react": "^16.7.0",

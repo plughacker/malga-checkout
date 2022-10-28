@@ -65,11 +65,14 @@ graph TD;
   plug-payments-credit-saved-cards --> checkout-typography
   plug-payments-credit-saved-cards --> checkout-text-field
   plug-payments-credit-saved-cards --> checkout-error-message
+  plug-payments-credit-saved-cards --> checkout-select-field
   plug-payments-credit-saved-cards --> checkout-modal
   checkout-radio-field --> checkout-icon
   checkout-text-field --> checkout-typography
   checkout-text-field --> checkout-icon
   checkout-error-message --> checkout-typography
+  checkout-select-field --> checkout-typography
+  checkout-select-field --> checkout-icon
   checkout-modal --> checkout-modal-success
   checkout-modal --> checkout-modal-error
   checkout-modal --> checkout-modal-pix
@@ -101,8 +104,6 @@ graph TD;
   plug-payments-credit-form --> checkout-select-field
   plug-payments-credit-form --> checkout-switch
   plug-payments-credit-form --> checkout-typography
-  checkout-select-field --> checkout-typography
-  checkout-select-field --> checkout-icon
   plug-payments-boleto --> checkout-manual-payment
   plug-payments-boleto --> checkout-modal
   checkout-manual-payment --> checkout-typography

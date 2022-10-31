@@ -14,6 +14,7 @@ export interface CreateChargeData {
   statementDescriptor?: string
   capture?: boolean
   description?: string
+  fraudAnalysis?: FraudAnalysis
 }
 
 export interface FraudAnalysisCart {

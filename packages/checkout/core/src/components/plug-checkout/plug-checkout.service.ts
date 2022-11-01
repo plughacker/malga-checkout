@@ -112,8 +112,6 @@ export class PlugCheckoutService {
         },
       },
     }
-
-    console.log(settings.transactionConfig)
   }
 
   private handleShowDialog(dialogConfigs) {

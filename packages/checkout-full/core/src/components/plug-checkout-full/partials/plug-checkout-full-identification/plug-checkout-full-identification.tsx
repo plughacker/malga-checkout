@@ -62,14 +62,16 @@ export class PlugCheckoutFullIdentification {
   }
 
   private checkValidatedField = () => {
-    const optionalField =
-      this.currency !== 'BRL'
-        ? ['complement', 'neighborhood']
-        : ['complement', 'neighborhood', 'documentCountry', 'documentType']
+    const optionalFields = []
+
+    if (this.currency === 'BRL') {
+      optionalFields.push('documentCountry', 'documentType')
+    }
+
     const validFieldValues = Object.entries(this.validFields)
 
     const filteredValidFieldValues = validFieldValues
-      .filter(([validField]) => !optionalField.includes(validField))
+      .filter(([validField]) => !optionalFields.includes(validField))
       .filter(([, validFieldValue]) => {
         if (validFieldValue === undefined) return false
 

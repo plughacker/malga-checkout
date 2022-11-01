@@ -70,11 +70,13 @@ export class CheckoutOrderSummary {
             variation="subtitle1"
             content={product.name}
           />{' '}
-          <checkout-typography
-            tag="span"
-            variation="body1"
-            content={`- ${product.description}`}
-          />
+          {!!product.description && (
+            <checkout-typography
+              tag="span"
+              variation="body1"
+              content={`- ${product.description}`}
+            />
+          )}
         </p>
         <checkout-typography
           tag="span"

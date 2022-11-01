@@ -82,7 +82,6 @@ export class PlugCheckoutService {
     const { data: customer } = await customerService.find(customerId)
 
     if (!customer.address) {
-      delete settings.transactionConfig.fraudAnalysis
       return
     }
 

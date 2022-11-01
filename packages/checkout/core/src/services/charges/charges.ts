@@ -23,6 +23,7 @@ export class Charges {
       settings.transactionConfig.fraudAnalysis,
       settings.transactionConfig.customer,
     )
+
     const data: CreateChargeData = cleanObjectProperties({
       customerId: customerId || settings.transactionConfig.customerId,
       currency: settings.transactionConfig.currency,
@@ -41,7 +42,7 @@ export class Charges {
       paymentMethod: this.provider.getPaymentMethod(),
       paymentSource: await this.provider.getPaymentSource(),
     }
-
+    
     const headers = settings.idempotencyKey
       ? { 'X-Idempotency-Key': settings.idempotencyKey }
       : {}

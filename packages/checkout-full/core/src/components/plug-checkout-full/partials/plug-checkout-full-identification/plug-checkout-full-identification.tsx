@@ -386,22 +386,26 @@ export class PlugCheckoutFullIdentification {
             )}
           </div>
 
-          <checkout-text-field
-            value={this.formValues.complement}
-            onChanged={this.handleFieldChange('complement')}
-            onInputed={this.handleFieldBlurred('complement')}
-            onBlurred={this.handleFieldBlurred('complement')}
-            onFocused={this.handleFieldFocused('complement')}
-            hasValidation={this.validFields.complement !== null}
-            hasError={!!this.validFields.complement}
-            fullWidth
-            inputmode="text"
-            name="complement"
-            label="Complemento"
-          />
-          {!!this.validFields.complement && (
-            <checkout-error-message message={this.validFields.complement} />
-          )}
+          <div
+            class={{ 'plug-checkout-full-identification__error-message': true }}
+          >
+            <checkout-text-field
+              value={this.formValues.complement}
+              onChanged={this.handleFieldChange('complement')}
+              onInputed={this.handleFieldBlurred('complement')}
+              onBlurred={this.handleFieldBlurred('complement')}
+              onFocused={this.handleFieldFocused('complement')}
+              hasValidation={this.validFields.complement !== null}
+              hasError={!!this.validFields.complement}
+              fullWidth
+              inputmode="text"
+              name="complement"
+              label="Complemento *"
+            />
+            {!!this.validFields.complement && (
+              <checkout-error-message message={this.validFields.complement} />
+            )}
+          </div>
         </fieldset>
 
         <checkout-text-field
@@ -415,7 +419,7 @@ export class PlugCheckoutFullIdentification {
           fullWidth
           inputmode="text"
           name="neighborhood"
-          label="Bairro"
+          label="Bairro *"
         />
         {!!this.validFields.neighborhood && (
           <checkout-error-message message={this.validFields.neighborhood} />

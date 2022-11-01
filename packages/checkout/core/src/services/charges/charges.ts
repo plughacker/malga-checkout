@@ -42,7 +42,7 @@ export class Charges {
       paymentMethod: this.provider.getPaymentMethod(),
       paymentSource: await this.provider.getPaymentSource(),
     }
-    
+
     const headers = settings.idempotencyKey
       ? { 'X-Idempotency-Key': settings.idempotencyKey }
       : {}

@@ -7,7 +7,7 @@ import {
   setThemePrimaryColors,
   setThemeSuccessColors,
   setThemeWarningColors,
-} from '../plug-checkout/plug-checkout.utils'
+} from './plug-payments-session.utils'
 import {
   PlugPaymentsSessionDialogShowCallback,
   PlugPaymentsSessionRequest,
@@ -41,6 +41,11 @@ export class PlugPaymentsSessionService {
       settings.transactionConfig = {
         ...settings.transactionConfig,
         ...session.transactionConfig,
+      }
+      settings.dialogConfig = {
+        ...settings.dialogConfig,
+        pixFilledProgressBarColor: session.customization.primaryColor.medium,
+        pixEmptyProgressBarColor: session.customization.primaryColor.lightest,
       }
       settings.paymentMethods = session.checkoutPaymentMethods
       this.customize(session.customization)

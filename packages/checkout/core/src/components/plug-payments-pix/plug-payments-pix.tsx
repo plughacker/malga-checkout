@@ -21,6 +21,8 @@ export class PlugPaymentsPix {
   }
 
   private checkIfPixIsPaid = async () => {
+    if (settings.sessionId) return
+
     const pixService = new PlugPaymentsPixService({
       data: settings.paymentMethods.pix,
       onShowDialog: this.handleShowDialog,

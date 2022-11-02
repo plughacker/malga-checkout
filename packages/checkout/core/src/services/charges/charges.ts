@@ -61,7 +61,10 @@ export class Charges {
       'pending',
     ]
 
-    const response = await this.api.fetch({ endpoint: `/charges/${chargeId}` })
+    const endpoint = settings.sessionId
+      ? `/sessions/charges/${chargeId}`
+      : `/charges/${chargeId}`
+    const response = await this.api.fetch({ endpoint })
 
     return {
       hasError: errorStatus.includes(response.data.status),

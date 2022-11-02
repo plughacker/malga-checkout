@@ -88,7 +88,6 @@ export class PlugCheckoutService {
     settings.transactionConfig = {
       ...settings.transactionConfig,
       fraudAnalysis: {
-        ...settings.transactionConfig.fraudAnalysis,
         customer: {
           name: customer.name,
           email: customer.email,
@@ -109,6 +108,7 @@ export class PlugCheckoutService {
             zipCode: customer.address.zipCode,
           },
         },
+        ...settings.transactionConfig.fraudAnalysis,
       },
     }
   }

@@ -12,7 +12,7 @@ export const formatFraudAnalysis = (
   )
     return null
 
-  const currentCustomer = customer || fraudAnalysis.customer
+  const currentCustomer = fraudAnalysis.customer || customer
   const parsedCustomer = formatCustomer(currentCustomer)
   const address = {
     ...parsedCustomer.address,

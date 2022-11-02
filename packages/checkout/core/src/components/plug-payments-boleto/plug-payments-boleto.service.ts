@@ -36,7 +36,8 @@ export class PlugPaymentsBoletoService implements PlugPayments {
   }
 
   handlePaymentSuccess(boletoData: PlugPaymentsSuccess) {
-    const paymentMethod = boletoData.paymentMethod as PlugPaymentsPaymentMethodBoleto
+    const paymentMethod =
+      boletoData.paymentMethod as PlugPaymentsPaymentMethodBoleto
 
     if (settings.dialogConfig.show) {
       this.onShowDialog({

@@ -6,6 +6,7 @@ import {
 } from './boleto.types'
 
 import settings from '../../stores/settings'
+import { normalizeBoletoFees } from './boleto.utils'
 
 export class Boleto extends BaseProvider {
   readonly boleto: BoletoAttributes
@@ -23,16 +24,8 @@ export class Boleto extends BaseProvider {
       paymentType: 'boleto',
       expiresDate: this.boleto.expiresDate,
       instructions: this.boleto.instructions,
-      interest: {
-        days: this.boleto.interest.days,
-        amount: this.boleto.interest.amount,
-        percentage: this.boleto.interest.percentage,
-      },
-      fine: {
-        days: this.boleto.fine.days,
-        amount: this.boleto.fine.amount,
-        percentage: this.boleto.fine.percentage,
-      },
+      ...normalizeBoletoFees('interest', this.boleto.interest),
+      ...normalizeBoletoFees('fine', this.boleto.fine),
     }
   }
 }

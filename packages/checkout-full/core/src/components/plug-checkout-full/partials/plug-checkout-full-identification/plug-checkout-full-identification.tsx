@@ -62,14 +62,16 @@ export class PlugCheckoutFullIdentification {
   }
 
   private checkValidatedField = () => {
-    const optionalField =
-      this.currency !== 'BRL'
-        ? ['complement', 'neighborhood']
-        : ['complement', 'neighborhood', 'documentCountry', 'documentType']
+    const optionalFields = []
+
+    if (this.currency === 'BRL') {
+      optionalFields.push('documentCountry', 'documentType')
+    }
+
     const validFieldValues = Object.entries(this.validFields)
 
     const filteredValidFieldValues = validFieldValues
-      .filter(([validField]) => !optionalField.includes(validField))
+      .filter(([validField]) => !optionalFields.includes(validField))
       .filter(([, validFieldValue]) => {
         if (validFieldValue === undefined) return false
 
@@ -386,22 +388,26 @@ export class PlugCheckoutFullIdentification {
             )}
           </div>
 
-          <checkout-text-field
-            value={this.formValues.complement}
-            onChanged={this.handleFieldChange('complement')}
-            onInputed={this.handleFieldBlurred('complement')}
-            onBlurred={this.handleFieldBlurred('complement')}
-            onFocused={this.handleFieldFocused('complement')}
-            hasValidation={this.validFields.complement !== null}
-            hasError={!!this.validFields.complement}
-            fullWidth
-            inputmode="text"
-            name="complement"
-            label="Complemento"
-          />
-          {!!this.validFields.complement && (
-            <checkout-error-message message={this.validFields.complement} />
-          )}
+          <div
+            class={{ 'plug-checkout-full-identification__error-message': true }}
+          >
+            <checkout-text-field
+              value={this.formValues.complement}
+              onChanged={this.handleFieldChange('complement')}
+              onInputed={this.handleFieldBlurred('complement')}
+              onBlurred={this.handleFieldBlurred('complement')}
+              onFocused={this.handleFieldFocused('complement')}
+              hasValidation={this.validFields.complement !== null}
+              hasError={!!this.validFields.complement}
+              fullWidth
+              inputmode="text"
+              name="complement"
+              label="Complemento *"
+            />
+            {!!this.validFields.complement && (
+              <checkout-error-message message={this.validFields.complement} />
+            )}
+          </div>
         </fieldset>
 
         <checkout-text-field
@@ -415,7 +421,7 @@ export class PlugCheckoutFullIdentification {
           fullWidth
           inputmode="text"
           name="neighborhood"
-          label="Bairro"
+          label="Bairro *"
         />
         {!!this.validFields.neighborhood && (
           <checkout-error-message message={this.validFields.neighborhood} />

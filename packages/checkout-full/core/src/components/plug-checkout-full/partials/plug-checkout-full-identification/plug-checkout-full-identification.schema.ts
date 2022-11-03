@@ -1,15 +1,45 @@
 import * as Yup from 'yup'
+import ct from 'countries-and-timezones'
 import { isCPFOrCNPJ } from 'brazilian-values'
 import { validateTaxId } from '@plug-checkout/utils'
 
+import { PhoneNumberUtil } from 'google-libphonenumber'
+
 import { PlugCheckoutFullIdentificationFormValues } from './plug-checkout-full-identification.types'
 import { normalizeValidationErrors } from './plug-checkout-full-identification.utils'
+
+const phoneUtil = PhoneNumberUtil.getInstance()
 
 export const schema = Yup.object().shape({
   name: Yup.string().required('Nome completo é obrigatório.'),
   email: Yup.string()
     .email('Formato inválido, verifique seu e-mail.')
     .required('E-mail é obrigatório.'),
+  phoneNumber: Yup.string()
+    .test(
+      'isValidPhoneNumber',
+      'Formato inválido, verifique o seu número de telefone.',
+      (value, context) => {
+        try {
+          const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+          const { countries } = ct.getTimezone(timezone)
+          const country = context.parent.country || countries[0] || 'BR'
+          const phoneNumber = phoneUtil.parseAndKeepRawInput(value, country)
+
+          if (!phoneUtil.isPossibleNumber(phoneNumber)) return false
+
+          const isValidPhone = phoneUtil.isValidNumberForRegion(
+            phoneNumber,
+            country,
+          )
+
+          return !!isValidPhone
+        } catch (err) {
+          return false
+        }
+      },
+    )
+    .required('Telefone é obrigatório.'),
   documentType: Yup.string().when(['$currency'], {
     is: (currency: string) => currency !== 'BRL',
     then: Yup.string().test(

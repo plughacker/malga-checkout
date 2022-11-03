@@ -119,6 +119,8 @@ export class CheckoutSelectField implements ComponentInterface {
               onInput={this.onInput}
               onBlur={this.onBlur}
               onFocus={this.onFocus}
+              autoComplete="off"
+              autocomplete="off"
             >
               {this.renderOptions()}
             </select>

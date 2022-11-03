@@ -1,13 +1,13 @@
 export interface BoletoAttributes {
   expiresDate: string
   instructions: string
-  interest: {
-    days: number
+  interest?: {
+    days?: number
     amount?: number
     percentage?: number
   }
-  fine: {
-    days: number
+  fine?: {
+    days?: number
     amount?: number
     percentage?: number
   }

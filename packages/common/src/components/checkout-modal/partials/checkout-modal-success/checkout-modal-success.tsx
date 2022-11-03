@@ -7,6 +7,7 @@ import { Component, Host, h, Event, EventEmitter, Prop } from '@stencil/core'
 export class CheckoutModalSuccess {
   @Prop() successDescription = 'Pedido recebido com sucesso!'
   @Prop() successActionButtonLabel = 'Continuar'
+  @Prop() hasSuccessRedirectUrl?: boolean
 
   @Event() successActionButtonClicked: EventEmitter<void>
 
@@ -20,10 +21,12 @@ export class CheckoutModalSuccess {
           color="white"
           content={this.successDescription}
         />
-        <checkout-button
-          label={this.successActionButtonLabel}
-          onClicked={() => this.successActionButtonClicked.emit()}
-        />
+        {!!this.hasSuccessRedirectUrl && (
+          <checkout-button
+            label={this.successActionButtonLabel}
+            onClicked={() => this.successActionButtonClicked.emit()}
+          />
+        )}
       </Host>
     )
   }

@@ -48,6 +48,7 @@ export class PlugCheckoutFullIdentification {
   @State() validFields: PlugCheckoutFullIdentificationFormValidFields = {
     name: null,
     email: null,
+    phoneNumber: null,
     documentCountry: null,
     documentType: null,
     identification: null,
@@ -62,11 +63,8 @@ export class PlugCheckoutFullIdentification {
   }
 
   private checkValidatedField = () => {
-    const optionalFields = []
-
-    if (this.currency === 'BRL') {
-      optionalFields.push('documentCountry', 'documentType')
-    }
+    const optionalFields =
+      this.currency === 'BRL' ? ['documentCountry', 'documentType'] : []
 
     const validFieldValues = Object.entries(this.validFields)
 
@@ -112,9 +110,10 @@ export class PlugCheckoutFullIdentification {
   }
 
   private handleZipCodeFieldChange = async (event) => {
-    const zipCodeValue = cleanTextOnlyNumbers(event.target.value)
+    const zipCode = event.target.value
+    const zipCodeValue = cleanTextOnlyNumbers(zipCode)
 
-    this.fieldChange.emit({ field: 'zipCode', value: event.target.value })
+    this.fieldChange.emit({ field: 'zipCode', value: zipCode })
 
     if (zipCodeValue.length === 8) {
       const address =
@@ -125,7 +124,7 @@ export class PlugCheckoutFullIdentification {
       const validAddress = validAddressAutocomplete(address)
 
       this.manyFieldsChange.emit({
-        customerFormValues: { ...this.formValues, ...address },
+        customerFormValues: { ...this.formValues, ...address, zipCode },
       })
 
       this.validFields = {
@@ -193,6 +192,24 @@ export class PlugCheckoutFullIdentification {
         />
         {!!this.validFields.email && (
           <checkout-error-message message={this.validFields.email} />
+        )}
+
+        <checkout-text-field
+          value={this.formValues.phoneNumber}
+          onInputed={this.handleFieldBlurred('phoneNumber')}
+          onChanged={this.handleFieldChange('phoneNumber')}
+          onBlurred={this.handleFieldBlurred('phoneNumber')}
+          onFocused={this.handleFieldFocused('phoneNumber')}
+          hasValidation={this.validFields.phoneNumber !== null}
+          hasError={!!this.validFields.phoneNumber}
+          fullWidth
+          type="tel"
+          inputmode="tel"
+          name="phoneNumber"
+          label="Telefone *"
+        />
+        {!!this.validFields.phoneNumber && (
+          <checkout-error-message message={this.validFields.phoneNumber} />
         )}
 
         <checkout-typography

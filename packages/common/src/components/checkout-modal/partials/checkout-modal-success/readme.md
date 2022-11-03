@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property                   | Attribute                     | Description | Type     | Default                          |
-| -------------------------- | ----------------------------- | ----------- | -------- | -------------------------------- |
-| `successActionButtonLabel` | `success-action-button-label` |             | `string` | `'Continuar'`                    |
-| `successDescription`       | `success-description`         |             | `string` | `'Pedido recebido com sucesso!'` |
+| Property                   | Attribute                     | Description | Type      | Default                          |
+| -------------------------- | ----------------------------- | ----------- | --------- | -------------------------------- |
+| `hasSuccessRedirectUrl`    | `has-success-redirect-url`    |             | `boolean` | `undefined`                      |
+| `successActionButtonLabel` | `success-action-button-label` |             | `string`  | `'Continuar'`                    |
+| `successDescription`       | `success-description`         |             | `string`  | `'Pedido recebido com sucesso!'` |
 
 
 ## Events

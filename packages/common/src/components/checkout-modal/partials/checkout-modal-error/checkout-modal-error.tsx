@@ -9,6 +9,7 @@ export class CheckoutModalError {
   @Prop() errorSubtitle?: string
   @Prop() errorDescription?: string
   @Prop() errorActionButtonLabel = 'Tentar Novamente'
+  @Prop() hasSuccessRedirectUrl?: boolean
 
   @Event() errorActionButtonClicked: EventEmitter<void>
 
@@ -37,10 +38,12 @@ export class CheckoutModalError {
           color="white"
           content={this.errorDescription}
         />
-        <checkout-button
-          label={this.errorActionButtonLabel}
-          onClick={() => this.errorActionButtonClicked.emit()}
-        />
+        {!!this.hasSuccessRedirectUrl && (
+          <checkout-button
+            label={this.errorActionButtonLabel}
+            onClick={() => this.errorActionButtonClicked.emit()}
+          />
+        )}
       </Host>
     )
   }

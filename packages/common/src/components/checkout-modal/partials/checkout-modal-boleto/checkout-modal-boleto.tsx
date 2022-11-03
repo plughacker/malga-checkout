@@ -13,6 +13,8 @@ export class CheckoutModalBoleto {
   @Prop() expirationDate: string
   @Prop() actionButtonLabel = 'Continuar'
   @Prop() waitingPaymentMessage = 'Pedido aguardando pagamento!'
+  @Prop() hasSuccessRedirectUrl?: boolean
+  @Prop() isSession?: boolean
 
   @Event() boletoActionButtonIsClicked: EventEmitter<void>
 
@@ -97,10 +99,13 @@ export class CheckoutModalBoleto {
             />
 
             <ul>
-              <li>
-                Vamos avisar por e-mail quando o banco identificar o depósito.
-                Esse processo pode levar até 48h e é automático.
-              </li>
+              {!this.isSession && (
+                <li>
+                  Vamos avisar por e-mail quando o banco identificar o depósito.
+                  Esse processo pode levar até 48h e é automático.
+                </li>
+              )}
+
               <li>
                 Caso o boleto não seja pago até{' '}
                 {this.getExpirationDateFormatted()}, o pedido será cancelado
@@ -123,10 +128,12 @@ export class CheckoutModalBoleto {
               <checkout-icon icon="newTab" />
             </a>
 
-            <checkout-button
-              label={this.actionButtonLabel}
-              onClicked={() => this.boletoActionButtonIsClicked.emit()}
-            />
+            {!!this.hasSuccessRedirectUrl && (
+              <checkout-button
+                label={this.actionButtonLabel}
+                onClicked={() => this.boletoActionButtonIsClicked.emit()}
+              />
+            )}
           </div>
         </section>
       </Host>

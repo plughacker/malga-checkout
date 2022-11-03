@@ -29,6 +29,8 @@ export class PlugPaymentsBoleto {
         <checkout-manual-payment fullWidth paymentMethod="boleto" />
         {settings.dialogConfig.show && dialog.configs.open && (
           <checkout-modal
+            isSession={!!settings.sessionId}
+            hasSuccessRedirectUrl={!!settings.dialogConfig.successRedirectUrl}
             currency={settings.transactionConfig.currency}
             mode={dialog.configs.mode}
             open={dialog.configs.open}

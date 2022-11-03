@@ -76,6 +76,8 @@ export namespace Components {
         "errorTitle"?: string;
         "expirationDate"?: string;
         "expirationTime"?: number;
+        "hasSuccessRedirectUrl"?: boolean;
+        "isSession"?: boolean;
         "mode": CheckoutModalMode;
         "open": boolean;
         "paymentCode": string;
@@ -94,6 +96,8 @@ export namespace Components {
         "boletoImageUrl": string;
         "currency": string;
         "expirationDate": string;
+        "hasSuccessRedirectUrl"?: boolean;
+        "isSession"?: boolean;
         "waitingPaymentMessage": string;
     }
     interface CheckoutModalError {
@@ -101,6 +105,7 @@ export namespace Components {
         "errorDescription"?: string;
         "errorSubtitle"?: string;
         "errorTitle"?: string;
+        "hasSuccessRedirectUrl"?: boolean;
     }
     interface CheckoutModalPix {
         "actionButtonLabel": string;
@@ -109,12 +114,15 @@ export namespace Components {
         "countdownFilledProgressBarColor"?: string;
         "currency": string;
         "expirationTime": number;
+        "hasSuccessRedirectUrl"?: boolean;
         "importantMessages": string[];
+        "isSession"?: boolean;
         "qrCodeIdentificator": string;
         "qrCodeImageUrl": string;
         "waitingPaymentMessage": string;
     }
     interface CheckoutModalSuccess {
+        "hasSuccessRedirectUrl"?: boolean;
         "successActionButtonLabel": string;
         "successDescription": string;
     }
@@ -413,6 +421,8 @@ declare namespace LocalJSX {
         "errorTitle"?: string;
         "expirationDate"?: string;
         "expirationTime"?: number;
+        "hasSuccessRedirectUrl"?: boolean;
+        "isSession"?: boolean;
         "mode"?: CheckoutModalMode;
         "onErrorButtonClicked"?: (event: CustomEvent<void>) => void;
         "onPixCountdownIsFinished"?: (event: CustomEvent<void>) => void;
@@ -434,6 +444,8 @@ declare namespace LocalJSX {
         "boletoImageUrl"?: string;
         "currency"?: string;
         "expirationDate"?: string;
+        "hasSuccessRedirectUrl"?: boolean;
+        "isSession"?: boolean;
         "onBoletoActionButtonIsClicked"?: (event: CustomEvent<void>) => void;
         "waitingPaymentMessage"?: string;
     }
@@ -442,6 +454,7 @@ declare namespace LocalJSX {
         "errorDescription"?: string;
         "errorSubtitle"?: string;
         "errorTitle"?: string;
+        "hasSuccessRedirectUrl"?: boolean;
         "onErrorActionButtonClicked"?: (event: CustomEvent<void>) => void;
     }
     interface CheckoutModalPix {
@@ -451,7 +464,9 @@ declare namespace LocalJSX {
         "countdownFilledProgressBarColor"?: string;
         "currency"?: string;
         "expirationTime"?: number;
+        "hasSuccessRedirectUrl"?: boolean;
         "importantMessages"?: string[];
+        "isSession"?: boolean;
         "onCountdownIsFinished"?: (event: CustomEvent<void>) => void;
         "onPixActionButtonIsClicked"?: (event: CustomEvent<void>) => void;
         "qrCodeIdentificator"?: string;
@@ -459,6 +474,7 @@ declare namespace LocalJSX {
         "waitingPaymentMessage"?: string;
     }
     interface CheckoutModalSuccess {
+        "hasSuccessRedirectUrl"?: boolean;
         "onSuccessActionButtonClicked"?: (event: CustomEvent<void>) => void;
         "successActionButtonLabel"?: string;
         "successDescription"?: string;

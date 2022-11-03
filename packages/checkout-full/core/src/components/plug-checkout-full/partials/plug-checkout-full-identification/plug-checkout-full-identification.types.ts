@@ -22,6 +22,7 @@ export interface ZipCodeAutoComplete {
 export interface PlugCheckoutFullIdentificationFormValues {
   name: string
   email: string
+  phoneNumber: string
   documentCountry: string
   documentType: string
   identification: string
@@ -38,6 +39,7 @@ export interface PlugCheckoutFullIdentificationFormValues {
 export interface PlugCheckoutFullIdentificationFormValidFields {
   name: string | null
   email: string | null
+  phoneNumber: string | null
   documentCountry: string | null
   documentType: string | null
   identification: string | null

@@ -89,6 +89,7 @@ export class PlugCheckoutFull implements ComponentInterface {
   @State() customerFormFields: PlugCheckoutFullIdentificationFormValues = {
     name: '',
     email: '',
+    phoneNumber: '',
     documentCountry: '',
     documentType: '',
     identification: '',

@@ -48,7 +48,7 @@ export const formatCustomer = (
   return {
     name: customer.name,
     email: customer.email,
-    phoneNumber: null,
+    phoneNumber: customer.phoneNumber,
     document,
     address: {
       zipCode: customer.zipCode,

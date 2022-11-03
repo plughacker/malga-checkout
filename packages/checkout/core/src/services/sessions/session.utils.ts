@@ -82,12 +82,12 @@ const getColorPalette = (color: string) => {
 export const normalizeCustomization = (data: Session) => {
   const settings = data.settings
 
-  const primaryColor = getColorPalette(settings.mainColor ?? '#344383')
-  const secondaryColor = getColorPalette(settings.secondaryColor ?? '#344383')
-  const errorColor = getColorPalette(settings.errorColor ?? '#FF1744')
-  const warningColor = getColorPalette(settings.attentionColor ?? '#FAC30E')
-  const successColor = getColorPalette(settings.successColor ?? '#32C000')
-  const backgroundColor = settings.backgroundColor ?? '#FFFFFF'
+  const primaryColor = getColorPalette(settings.mainColor || '#344383')
+  const secondaryColor = getColorPalette(settings.secondaryColor || '#344383')
+  const errorColor = getColorPalette(settings.errorColor || '#FF1744')
+  const warningColor = getColorPalette(settings.attentionColor || '#FAC30E')
+  const successColor = getColorPalette(settings.successColor || '#32C000')
+  const backgroundColor = settings.backgroundColor || '#FFFFFF'
   const brandUrl = settings.logo
 
   return {

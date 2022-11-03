@@ -110,9 +110,10 @@ export class PlugCheckoutFullIdentification {
   }
 
   private handleZipCodeFieldChange = async (event) => {
-    const zipCodeValue = cleanTextOnlyNumbers(event.target.value)
+    const zipCode = event.target.value
+    const zipCodeValue = cleanTextOnlyNumbers(zipCode)
 
-    this.fieldChange.emit({ field: 'zipCode', value: event.target.value })
+    this.fieldChange.emit({ field: 'zipCode', value: zipCode })
 
     if (zipCodeValue.length === 8) {
       const address =
@@ -123,7 +124,7 @@ export class PlugCheckoutFullIdentification {
       const validAddress = validAddressAutocomplete(address)
 
       this.manyFieldsChange.emit({
-        customerFormValues: { ...this.formValues, ...address },
+        customerFormValues: { ...this.formValues, ...address, zipCode },
       })
 
       this.validFields = {

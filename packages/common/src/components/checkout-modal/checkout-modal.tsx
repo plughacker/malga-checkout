@@ -54,7 +54,6 @@ export class CheckoutModal {
           )}
           {this.mode === 'error' && (
             <checkout-modal-error
-              hasSuccessRedirectUrl={this.hasSuccessRedirectUrl}
               errorTitle={this.errorTitle}
               errorSubtitle={this.errorSubtitle}
               errorDescription={this.errorDescription}

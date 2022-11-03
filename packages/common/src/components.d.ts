@@ -105,7 +105,6 @@ export namespace Components {
         "errorDescription"?: string;
         "errorSubtitle"?: string;
         "errorTitle"?: string;
-        "hasSuccessRedirectUrl"?: boolean;
     }
     interface CheckoutModalPix {
         "actionButtonLabel": string;
@@ -454,7 +453,6 @@ declare namespace LocalJSX {
         "errorDescription"?: string;
         "errorSubtitle"?: string;
         "errorTitle"?: string;
-        "hasSuccessRedirectUrl"?: boolean;
         "onErrorActionButtonClicked"?: (event: CustomEvent<void>) => void;
     }
     interface CheckoutModalPix {

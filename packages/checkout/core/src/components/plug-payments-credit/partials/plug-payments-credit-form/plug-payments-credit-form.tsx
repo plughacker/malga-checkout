@@ -25,7 +25,10 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
 
     credit.validations = {
       ...credit.validations,
-      fields: { ...credit.validations.fields, [field]: null },
+      fields: {
+        ...credit.validations.fields,
+        [field]: credit.form[field] ? '' : null,
+      },
     }
   }
 

@@ -6,9 +6,13 @@ export const formatFraudAnalysis = (
   fraudAnalysis: FraudAnalysis,
   customer: Customer,
 ) => {
-  if (!fraudAnalysis) return null
+  if (
+    !fraudAnalysis ||
+    (!customer?.address && !fraudAnalysis?.customer?.address)
+  )
+    return null
 
-  const currentCustomer = customer || fraudAnalysis.customer
+  const currentCustomer = fraudAnalysis.customer || customer
   const parsedCustomer = formatCustomer(currentCustomer)
   const address = {
     ...parsedCustomer.address,

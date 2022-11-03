@@ -54,7 +54,6 @@ const normalizeTransactionConfig = (paymentSession: Session) => ({
   orderId: paymentSession.orderId,
   currency: paymentSession.currency,
   fraudAnalysis: {
-    ...settings.transactionConfig.fraudAnalysis,
     cart: paymentSession.items.map((item) => ({
       name: item.name,
       unitPrice: item.unitPrice,
@@ -62,6 +61,7 @@ const normalizeTransactionConfig = (paymentSession: Session) => ({
       sku: item.name,
       risk: 'Low',
     })),
+    ...settings.transactionConfig.fraudAnalysis,
   },
 })
 

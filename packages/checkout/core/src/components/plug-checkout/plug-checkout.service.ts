@@ -81,24 +81,34 @@ export class PlugCheckoutService {
     const customerService = new Customers()
     const { data: customer } = await customerService.find(customerId)
 
-    settings.transactionConfig.fraudAnalysis.customer = {
-      name: customer.name,
-      email: customer.email,
-      phoneNumber: customer.phoneNumber,
-      document: {
-        number: customer.document.number,
-        type: customer.document.type,
-        country: customer.document.country,
-      },
-      address: {
-        city: customer.address.city,
-        complement: customer.address.complement,
-        country: customer.address.country,
-        neighborhood: customer.address.district,
-        state: customer.address.state,
-        street: customer.address.street,
-        number: customer.address.streetNumber,
-        zipCode: customer.address.zipCode,
+    if (!customer.address) {
+      return
+    }
+
+    settings.transactionConfig = {
+      ...settings.transactionConfig,
+      fraudAnalysis: {
+        customer: {
+          name: customer.name,
+          email: customer.email,
+          phoneNumber: customer.phoneNumber,
+          document: {
+            number: customer.document.number,
+            type: customer.document.type,
+            country: customer.document.country,
+          },
+          address: {
+            city: customer.address.city,
+            complement: customer.address.complement,
+            country: customer.address.country,
+            neighborhood: customer.address.district,
+            state: customer.address.state,
+            street: customer.address.street,
+            number: customer.address.streetNumber,
+            zipCode: customer.address.zipCode,
+          },
+        },
+        ...settings.transactionConfig.fraudAnalysis,
       },
     }
   }

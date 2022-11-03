@@ -23,6 +23,7 @@ export class Charges {
       settings.transactionConfig.fraudAnalysis,
       settings.transactionConfig.customer,
     )
+
     const data: CreateChargeData = cleanObjectProperties({
       customerId: customerId || settings.transactionConfig.customerId,
       currency: settings.transactionConfig.currency,

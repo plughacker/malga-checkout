@@ -76,6 +76,11 @@ export const setThemeSuccessColors = (successColors: CustomizationColors) => {
   )
 
   document.documentElement.style.setProperty(
+    '--plug-checkout-color-modal-neutral',
+    successColors.medium,
+  )
+
+  document.documentElement.style.setProperty(
     '--plug-checkout-color-modal-action-button-success',
     '#FFF',
   )

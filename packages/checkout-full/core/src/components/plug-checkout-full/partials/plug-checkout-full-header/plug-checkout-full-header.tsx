@@ -1,4 +1,5 @@
 import { Component, Host, h, Prop } from '@stencil/core'
+import PlugBrand from '../../../../assets/plug-brand.svg'
 
 @Component({
   tag: 'plug-checkout-full-header',
@@ -16,6 +17,25 @@ export class PlugCheckoutFullHeader {
     }
 
     history.back()
+  }
+
+  renderImg() {
+    if (this.brand) {
+      return (
+        <img
+          class={{ 'plug-checkout-full-header__logo': true }}
+          src={this.brand}
+          alt="Logo"
+        />
+      )
+    }
+
+    return (
+      <i
+        class={{ 'plug-checkout-full-header__logo': true }}
+        innerHTML={PlugBrand}
+      />
+    )
   }
 
   render() {
@@ -37,11 +57,7 @@ export class PlugCheckoutFullHeader {
           >
             <checkout-icon icon="arrowLeft" />
           </button>
-          <img
-            class={{ 'plug-checkout-full-header__logo': true }}
-            src={this.brand}
-            alt="Logo"
-          />
+          {this.renderImg()}
           <div class={{ 'plug-checkout-full-header__message': true }}>
             <checkout-icon icon="lock" />
             <h5>Ambiente seguro</h5>

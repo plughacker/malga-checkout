@@ -48,6 +48,10 @@
     }
   }
 
+  & > checkout-icon > i > svg {
+    color: css(--plug-checkout-color-accent-light);
+  }
+
   & > .icon {
     @include square($size: var(--plug-checkout-spacing-sm));
 

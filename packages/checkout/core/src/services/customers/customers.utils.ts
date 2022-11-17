@@ -32,14 +32,6 @@ export const formatCustomerDocument = (
   },
 })
 
-export const getPhoneNumber = (phoneNumber: string) => {
-  if (!phoneNumber) {
-    return ' '
-  }
-
-  return cleanTextOnlyNumbers(phoneNumber)
-}
-
 export const formatPayload = (customer: Customer) => {
   const address = formatCustomerAddress(customer.address)
   const document = formatCustomerDocument(customer.document)
@@ -49,6 +41,6 @@ export const formatPayload = (customer: Customer) => {
     ...document,
     name: customer.name,
     email: customer.email,
-    phoneNumber: getPhoneNumber(customer.phoneNumber),
+    phoneNumber: cleanTextOnlyNumbers(customer.phoneNumber),
   }
 }

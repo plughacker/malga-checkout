@@ -3,25 +3,27 @@ import { cleanObjectProperties } from '@plug-checkout/utils'
 
 import settings from '../../stores/settings'
 
-import { Provider, ChargeConstructor, CreateChargeData } from './charges.types'
+import { ChargeConstructor, CreateChargeData } from './charges.types'
 import { formatFraudAnalysis } from './charges.utils'
+import { Payments, Provider } from '../payments'
 
 export class Charges {
   readonly api: Api
   readonly provider: Provider
+  readonly payments: Payments
 
   constructor({ provider }: ChargeConstructor) {
     this.api = new Api()
     this.provider = provider
+    this.payments = new Payments({ provider })
   }
 
   public async create(customerId?: string) {
-    const errorStatus = ['failed', 'charged_back', 'canceled', 'voided']
-
     const fraudAnalysis = formatFraudAnalysis(
       settings.transactionConfig.fraudAnalysis,
       settings.transactionConfig.customer,
     )
+
     const data: CreateChargeData = cleanObjectProperties({
       customerId: customerId || settings.transactionConfig.customerId,
       currency: settings.transactionConfig.currency,
@@ -31,6 +33,7 @@ export class Charges {
       amount: settings.transactionConfig.amount,
       statementDescriptor: settings.transactionConfig.statementDescriptor,
       capture: settings.transactionConfig.capture,
+      sessionId: settings.sessionId,
       fraudAnalysis,
     })
 
@@ -44,16 +47,10 @@ export class Charges {
       ? { 'X-Idempotency-Key': settings.idempotencyKey }
       : {}
 
-    const response = await this.api.create({
-      endpoint: '/charges',
-      data: payload,
+    return this.payments.pay({
       headers,
+      payload,
     })
-
-    return {
-      hasError: errorStatus.includes(response.data.status),
-      data: response.data,
-    }
   }
 
   public async find(chargeId: string) {

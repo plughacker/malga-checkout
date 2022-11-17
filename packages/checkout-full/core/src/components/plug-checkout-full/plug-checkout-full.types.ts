@@ -187,7 +187,16 @@ export interface Product {
   quantity: number
   description: string
   sku: string
-  risk: 'Low' | 'High'
+  risk: string
+}
+
+export interface Product {
+  name: string
+  amount: number
+  quantity: number
+  description: string
+  sku: string
+  risk: string
 }
 
 export interface PlugCheckoutFullPaymentMethods {
@@ -209,18 +218,18 @@ export interface PlugCheckoutFullFraudAnalysisCart {
   quantity: number
   sku: string
   unitPrice: number
-  risk: 'Low' | 'High'
+  risk: string
 }
 
 export interface PlugCheckoutFullFraudAnalysis {
-  customer: Customer
-  cart: PlugCheckoutFullFraudAnalysisCart[]
+  customer?: Customer
+  cart?: PlugCheckoutFullFraudAnalysisCart[]
 }
 
 export interface PlugCheckoutFullTransaction {
-  statementDescriptor: string
-  amount: number
-  capture: boolean
+  statementDescriptor?: string
+  amount?: number
+  capture?: boolean
   description?: string
   orderId?: string
   customerId?: string
@@ -250,3 +259,79 @@ export type PlugCheckoutFullChargeError =
   | PlugCheckoutFullBoletoChargeError
   | PlugCheckoutFullCreditChargeError
   | PlugCheckoutFullPixChargeError
+
+interface PlugCheckoutFullCustomizationColors {
+  lightest: string
+  light: string
+  medium: string
+  dark: string
+  darkest: string
+}
+
+export interface PlugCheckoutFullCustomization {
+  brandUrl: string
+  primaryColor: PlugCheckoutFullCustomizationColors
+  secondaryColor: PlugCheckoutFullCustomizationColors
+  errorColor: PlugCheckoutFullCustomizationColors
+  warningColor: PlugCheckoutFullCustomizationColors
+  successColor: PlugCheckoutFullCustomizationColors
+  backgroundColor: string
+}
+
+export interface PlugCheckoutFullSessionNormalized
+  extends PlugCheckoutFullSession {
+  checkoutPaymentMethods: PlugCheckoutFullPaymentMethods
+  transactionConfig: PlugCheckoutFullTransaction
+  customization: PlugCheckoutFullCustomization
+}
+
+export interface PlugCheckoutSessionItems {
+  name: string
+  description?: string
+  unitPrice: number
+  quantity: number
+  tangible?: boolean
+}
+
+export interface PlugCheckoutFullSession {
+  id: string
+  name: string
+  status: string
+  isActive: boolean
+  clientId: string
+  orderId?: string
+  amount: number
+  currency: string
+  capture: boolean
+  merchantId: string
+  dueDate: string
+  description?: string
+  statementDescriptor?: string
+  items: PlugCheckoutSessionItems[]
+  paymentLink: string
+  paymentMethods: PaymentMethod[]
+  createdAt: string
+  updatedAt?: string
+  publicKey?: string
+  settings: PlugCheckoutFullUserSettings
+}
+
+export type PaymentMethod = Boleto | Credit | Pix
+
+export interface PlugCheckoutFullUserSettings {
+  id: string
+  email: string
+  phone: string
+  statementDescription: string
+  logo: string
+  mainColor: string
+  secondaryColor?: string
+  attentionColor?: string
+  errorColor?: string
+  successColor?: string
+  backgroundColor?: string
+  companyName: string
+  clientId: string
+  documentNumber: string
+  language: string
+}

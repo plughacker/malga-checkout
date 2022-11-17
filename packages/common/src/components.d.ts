@@ -59,6 +59,8 @@ export namespace Components {
         "class"?: string;
         "icon": CheckoutIconNames;
     }
+    interface CheckoutLoader {
+    }
     interface CheckoutManualPayment {
         "fullWidth": boolean;
         "paymentMethod": CheckoutManualPaymentDescriptions;
@@ -74,6 +76,8 @@ export namespace Components {
         "errorTitle"?: string;
         "expirationDate"?: string;
         "expirationTime"?: number;
+        "hasSuccessRedirectUrl"?: boolean;
+        "isSession"?: boolean;
         "mode": CheckoutModalMode;
         "open": boolean;
         "paymentCode": string;
@@ -92,6 +96,8 @@ export namespace Components {
         "boletoImageUrl": string;
         "currency": string;
         "expirationDate": string;
+        "hasSuccessRedirectUrl"?: boolean;
+        "isSession"?: boolean;
         "waitingPaymentMessage": string;
     }
     interface CheckoutModalError {
@@ -107,12 +113,15 @@ export namespace Components {
         "countdownFilledProgressBarColor"?: string;
         "currency": string;
         "expirationTime": number;
+        "hasSuccessRedirectUrl"?: boolean;
         "importantMessages": string[];
+        "isSession"?: boolean;
         "qrCodeIdentificator": string;
         "qrCodeImageUrl": string;
         "waitingPaymentMessage": string;
     }
     interface CheckoutModalSuccess {
+        "hasSuccessRedirectUrl"?: boolean;
         "successActionButtonLabel": string;
         "successDescription": string;
     }
@@ -121,6 +130,7 @@ export namespace Components {
         "currency": string;
         "delivery": number;
         "fullWidth": boolean;
+        "isLoading": boolean;
         "label": string;
         "products"?: Product[];
     }
@@ -150,6 +160,10 @@ export namespace Components {
         "readonly": boolean;
         "required": boolean;
         "value"?: CheckoutSelectFieldValue;
+    }
+    interface CheckoutSkeleton {
+        "class"?: string;
+        "width"?: string;
     }
     interface CheckoutSwitch {
         "checked"?: boolean;
@@ -231,6 +245,12 @@ declare global {
         prototype: HTMLCheckoutIconElement;
         new (): HTMLCheckoutIconElement;
     };
+    interface HTMLCheckoutLoaderElement extends Components.CheckoutLoader, HTMLStencilElement {
+    }
+    var HTMLCheckoutLoaderElement: {
+        prototype: HTMLCheckoutLoaderElement;
+        new (): HTMLCheckoutLoaderElement;
+    };
     interface HTMLCheckoutManualPaymentElement extends Components.CheckoutManualPayment, HTMLStencilElement {
     }
     var HTMLCheckoutManualPaymentElement: {
@@ -285,6 +305,12 @@ declare global {
         prototype: HTMLCheckoutSelectFieldElement;
         new (): HTMLCheckoutSelectFieldElement;
     };
+    interface HTMLCheckoutSkeletonElement extends Components.CheckoutSkeleton, HTMLStencilElement {
+    }
+    var HTMLCheckoutSkeletonElement: {
+        prototype: HTMLCheckoutSkeletonElement;
+        new (): HTMLCheckoutSkeletonElement;
+    };
     interface HTMLCheckoutSwitchElement extends Components.CheckoutSwitch, HTMLStencilElement {
     }
     var HTMLCheckoutSwitchElement: {
@@ -311,6 +337,7 @@ declare global {
         "checkout-credit-card": HTMLCheckoutCreditCardElement;
         "checkout-error-message": HTMLCheckoutErrorMessageElement;
         "checkout-icon": HTMLCheckoutIconElement;
+        "checkout-loader": HTMLCheckoutLoaderElement;
         "checkout-manual-payment": HTMLCheckoutManualPaymentElement;
         "checkout-modal": HTMLCheckoutModalElement;
         "checkout-modal-boleto": HTMLCheckoutModalBoletoElement;
@@ -320,6 +347,7 @@ declare global {
         "checkout-order-summary": HTMLCheckoutOrderSummaryElement;
         "checkout-radio-field": HTMLCheckoutRadioFieldElement;
         "checkout-select-field": HTMLCheckoutSelectFieldElement;
+        "checkout-skeleton": HTMLCheckoutSkeletonElement;
         "checkout-switch": HTMLCheckoutSwitchElement;
         "checkout-text-field": HTMLCheckoutTextFieldElement;
         "checkout-typography": HTMLCheckoutTypographyElement;
@@ -375,6 +403,8 @@ declare namespace LocalJSX {
         "class"?: string;
         "icon"?: CheckoutIconNames;
     }
+    interface CheckoutLoader {
+    }
     interface CheckoutManualPayment {
         "fullWidth"?: boolean;
         "paymentMethod"?: CheckoutManualPaymentDescriptions;
@@ -390,6 +420,8 @@ declare namespace LocalJSX {
         "errorTitle"?: string;
         "expirationDate"?: string;
         "expirationTime"?: number;
+        "hasSuccessRedirectUrl"?: boolean;
+        "isSession"?: boolean;
         "mode"?: CheckoutModalMode;
         "onErrorButtonClicked"?: (event: CustomEvent<void>) => void;
         "onPixCountdownIsFinished"?: (event: CustomEvent<void>) => void;
@@ -411,6 +443,8 @@ declare namespace LocalJSX {
         "boletoImageUrl"?: string;
         "currency"?: string;
         "expirationDate"?: string;
+        "hasSuccessRedirectUrl"?: boolean;
+        "isSession"?: boolean;
         "onBoletoActionButtonIsClicked"?: (event: CustomEvent<void>) => void;
         "waitingPaymentMessage"?: string;
     }
@@ -428,7 +462,9 @@ declare namespace LocalJSX {
         "countdownFilledProgressBarColor"?: string;
         "currency"?: string;
         "expirationTime"?: number;
+        "hasSuccessRedirectUrl"?: boolean;
         "importantMessages"?: string[];
+        "isSession"?: boolean;
         "onCountdownIsFinished"?: (event: CustomEvent<void>) => void;
         "onPixActionButtonIsClicked"?: (event: CustomEvent<void>) => void;
         "qrCodeIdentificator"?: string;
@@ -436,6 +472,7 @@ declare namespace LocalJSX {
         "waitingPaymentMessage"?: string;
     }
     interface CheckoutModalSuccess {
+        "hasSuccessRedirectUrl"?: boolean;
         "onSuccessActionButtonClicked"?: (event: CustomEvent<void>) => void;
         "successActionButtonLabel"?: string;
         "successDescription"?: string;
@@ -445,6 +482,7 @@ declare namespace LocalJSX {
         "currency"?: string;
         "delivery"?: number;
         "fullWidth"?: boolean;
+        "isLoading"?: boolean;
         "label"?: string;
         "products"?: Product[];
     }
@@ -481,6 +519,10 @@ declare namespace LocalJSX {
         "readonly"?: boolean;
         "required"?: boolean;
         "value"?: CheckoutSelectFieldValue;
+    }
+    interface CheckoutSkeleton {
+        "class"?: string;
+        "width"?: string;
     }
     interface CheckoutSwitch {
         "checked"?: boolean;
@@ -531,6 +573,7 @@ declare namespace LocalJSX {
         "checkout-credit-card": CheckoutCreditCard;
         "checkout-error-message": CheckoutErrorMessage;
         "checkout-icon": CheckoutIcon;
+        "checkout-loader": CheckoutLoader;
         "checkout-manual-payment": CheckoutManualPayment;
         "checkout-modal": CheckoutModal;
         "checkout-modal-boleto": CheckoutModalBoleto;
@@ -540,6 +583,7 @@ declare namespace LocalJSX {
         "checkout-order-summary": CheckoutOrderSummary;
         "checkout-radio-field": CheckoutRadioField;
         "checkout-select-field": CheckoutSelectField;
+        "checkout-skeleton": CheckoutSkeleton;
         "checkout-switch": CheckoutSwitch;
         "checkout-text-field": CheckoutTextField;
         "checkout-typography": CheckoutTypography;
@@ -556,6 +600,7 @@ declare module "@stencil/core" {
             "checkout-credit-card": LocalJSX.CheckoutCreditCard & JSXBase.HTMLAttributes<HTMLCheckoutCreditCardElement>;
             "checkout-error-message": LocalJSX.CheckoutErrorMessage & JSXBase.HTMLAttributes<HTMLCheckoutErrorMessageElement>;
             "checkout-icon": LocalJSX.CheckoutIcon & JSXBase.HTMLAttributes<HTMLCheckoutIconElement>;
+            "checkout-loader": LocalJSX.CheckoutLoader & JSXBase.HTMLAttributes<HTMLCheckoutLoaderElement>;
             "checkout-manual-payment": LocalJSX.CheckoutManualPayment & JSXBase.HTMLAttributes<HTMLCheckoutManualPaymentElement>;
             "checkout-modal": LocalJSX.CheckoutModal & JSXBase.HTMLAttributes<HTMLCheckoutModalElement>;
             "checkout-modal-boleto": LocalJSX.CheckoutModalBoleto & JSXBase.HTMLAttributes<HTMLCheckoutModalBoletoElement>;
@@ -565,6 +610,7 @@ declare module "@stencil/core" {
             "checkout-order-summary": LocalJSX.CheckoutOrderSummary & JSXBase.HTMLAttributes<HTMLCheckoutOrderSummaryElement>;
             "checkout-radio-field": LocalJSX.CheckoutRadioField & JSXBase.HTMLAttributes<HTMLCheckoutRadioFieldElement>;
             "checkout-select-field": LocalJSX.CheckoutSelectField & JSXBase.HTMLAttributes<HTMLCheckoutSelectFieldElement>;
+            "checkout-skeleton": LocalJSX.CheckoutSkeleton & JSXBase.HTMLAttributes<HTMLCheckoutSkeletonElement>;
             "checkout-switch": LocalJSX.CheckoutSwitch & JSXBase.HTMLAttributes<HTMLCheckoutSwitchElement>;
             "checkout-text-field": LocalJSX.CheckoutTextField & JSXBase.HTMLAttributes<HTMLCheckoutTextFieldElement>;
             "checkout-typography": LocalJSX.CheckoutTypography & JSXBase.HTMLAttributes<HTMLCheckoutTypographyElement>;

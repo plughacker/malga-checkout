@@ -24,6 +24,8 @@ export class CheckoutModalPix {
   @Prop() actionButtonLabel = 'Continuar'
   @Prop() countdownFilledProgressBarColor?: string
   @Prop() countdownEmptyProgressBarColor?: string
+  @Prop() hasSuccessRedirectUrl?: boolean
+  @Prop() isSession?: boolean
   @Prop() importantMessages = [
     `Vamos avisar por e-mail quando o banco identificar o depósito.
   Esse processo é automático.`,
@@ -51,6 +53,16 @@ export class CheckoutModalPix {
   }
 
   private renderListImportantMessages = () => {
+    if (this.isSession) {
+      return (
+        <li>
+          Caso o tempo de pagamento tenha expirado e o Pix não tenha sido pago,
+          seu pedido será cancelado automaticamente. Não pague após este
+          horário.
+        </li>
+      )
+    }
+
     const mappedImportantMessage = this.importantMessages.map(
       (importantMessage) => <li>{importantMessage}</li>,
     )
@@ -175,16 +187,18 @@ export class CheckoutModalPix {
 
             <ul>{this.renderListImportantMessages()}</ul>
           </div>
-          <div
-            class={{
-              'checkout-modal-pix__action-button': true,
-            }}
-          >
-            <checkout-button
-              label={this.actionButtonLabel}
-              onClicked={() => this.pixActionButtonIsClicked.emit()}
-            />
-          </div>
+          {!!this.hasSuccessRedirectUrl && (
+            <div
+              class={{
+                'checkout-modal-pix__action-button': true,
+              }}
+            >
+              <checkout-button
+                label={this.actionButtonLabel}
+                onClicked={() => this.pixActionButtonIsClicked.emit()}
+              />
+            </div>
+          )}
         </section>
       </Host>
     )

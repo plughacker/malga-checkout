@@ -9,6 +9,7 @@ export const { state, onChange } = createStore<SettingsState>({
   merchantId: '',
   idempotencyKey: '',
   sandbox: false,
+  debug: false,
   dialogConfig: {
     show: true,
     actionButtonLabel: 'Continuar',

@@ -15,11 +15,50 @@ export class CheckoutOrderSummary {
   @Prop() currency: string
   @Prop() delivery: number
   @Prop() products?: Product[]
+  @Prop() isLoading = false
 
   @State() showDescription = true
 
   private handleToggleShowDescription = () => {
     this.showDescription = !this.showDescription
+  }
+
+  private renderBody = () => {
+    if (this.isLoading) {
+      return (
+        <div class={{ 'checkout-order-summary__loaders': true }}>
+          <checkout-loader />
+        </div>
+      )
+    }
+
+    return (
+      this.showDescription &&
+      this.products && (
+        <Fragment>
+          <ul
+            class={{ 'checkout-order-summary__products': true }}
+            aria-hidden={this.showDescription}
+          >
+            {this.renderProductList()}
+          </ul>
+          {!!this.delivery && (
+            <div class={{ 'checkout-order-summary__delivery': true }}>
+              <checkout-typography
+                color="darkness"
+                variation="subtitle1"
+                content="Frete"
+              />
+              <checkout-typography
+                tag="span"
+                variation="body1"
+                content={formatCurrency(this.delivery, this.currency)}
+              />
+            </div>
+          )}
+        </Fragment>
+      )
+    )
   }
 
   private renderProductList = () => {
@@ -31,11 +70,13 @@ export class CheckoutOrderSummary {
             variation="subtitle1"
             content={product.name}
           />{' '}
-          <checkout-typography
-            tag="span"
-            variation="body1"
-            content={`- ${product.description}`}
-          />
+          {!!product.description && (
+            <checkout-typography
+              tag="span"
+              variation="body1"
+              content={`- ${product.description}`}
+            />
+          )}
         </p>
         <checkout-typography
           tag="span"
@@ -70,35 +111,14 @@ export class CheckoutOrderSummary {
           )}
         </header>
 
-        {this.showDescription && this.products && (
-          <Fragment>
-            <ul
-              class={{ 'checkout-order-summary__products': true }}
-              aria-hidden={this.showDescription}
-            >
-              {this.renderProductList()}
-            </ul>
-            {this.delivery && (
-              <div class={{ 'checkout-order-summary__delivery': true }}>
-                <checkout-typography
-                  color="darkness"
-                  variation="subtitle1"
-                  content="Frete"
-                />
-                <checkout-typography
-                  tag="span"
-                  variation="body1"
-                  content={formatCurrency(this.delivery, this.currency)}
-                />
-              </div>
-            )}
-          </Fragment>
-        )}
+        {this.renderBody()}
 
-        <section class={{ 'checkout-order-summary__total': true }}>
-          <p>Total</p>
-          <p>{formatCurrency(this.amount, this.currency)}</p>
-        </section>
+        {!this.isLoading && (
+          <section class={{ 'checkout-order-summary__total': true }}>
+            <p>Total</p>
+            <p>{formatCurrency(this.amount, this.currency)}</p>
+          </section>
+        )}
       </Host>
     )
   }

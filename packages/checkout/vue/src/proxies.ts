@@ -11,13 +11,17 @@ export const PlugCheckout = /*@__PURE__*/ defineContainer<JSX.PlugCheckout>(
   [
     'clientId',
     'publicKey',
+    'sessionId',
     'idempotencyKey',
     'merchantId',
     'sandbox',
+    'debug',
     'dialogConfig',
     'paymentMethods',
     'transactionConfig',
+    'paymentSessionFetch',
     'paymentSuccess',
     'paymentFailed',
+    'isLoading',
   ],
 )

@@ -36,6 +36,7 @@ export class PlugCheckoutFullIdentification {
 
   @Prop() formValues: PlugCheckoutFullIdentificationFormValues
   @Prop() currency: string
+  @Prop() isLoading = false
 
   @Event() submitForm: EventEmitter<void>
   @Event() fieldChange: EventEmitter<{ field: string; value: string }>
@@ -47,6 +48,7 @@ export class PlugCheckoutFullIdentification {
   @State() validFields: PlugCheckoutFullIdentificationFormValidFields = {
     name: null,
     email: null,
+    phoneNumber: null,
     documentCountry: null,
     documentType: null,
     identification: null,
@@ -61,14 +63,13 @@ export class PlugCheckoutFullIdentification {
   }
 
   private checkValidatedField = () => {
-    const optionalField =
-      this.currency !== 'BRL'
-        ? ['complement', 'neighborhood']
-        : ['complement', 'neighborhood', 'documentCountry', 'documentType']
+    const optionalFields =
+      this.currency === 'BRL' ? ['documentCountry', 'documentType'] : []
+
     const validFieldValues = Object.entries(this.validFields)
 
     const filteredValidFieldValues = validFieldValues
-      .filter(([validField]) => !optionalField.includes(validField))
+      .filter(([validField]) => !optionalFields.includes(validField))
       .filter(([, validFieldValue]) => {
         if (validFieldValue === undefined) return false
 
@@ -109,9 +110,10 @@ export class PlugCheckoutFullIdentification {
   }
 
   private handleZipCodeFieldChange = async (event) => {
-    const zipCodeValue = cleanTextOnlyNumbers(event.target.value)
+    const zipCode = event.target.value
+    const zipCodeValue = cleanTextOnlyNumbers(zipCode)
 
-    this.fieldChange.emit({ field: 'zipCode', value: event.target.value })
+    this.fieldChange.emit({ field: 'zipCode', value: zipCode })
 
     if (zipCodeValue.length === 8) {
       const address =
@@ -122,7 +124,7 @@ export class PlugCheckoutFullIdentification {
       const validAddress = validAddressAutocomplete(address)
 
       this.manyFieldsChange.emit({
-        customerFormValues: { ...this.formValues, ...address },
+        customerFormValues: { ...this.formValues, ...address, zipCode },
       })
 
       this.validFields = {
@@ -143,6 +145,14 @@ export class PlugCheckoutFullIdentification {
   }
 
   render() {
+    if (this.isLoading) {
+      return (
+        <Host class={{ 'plug-checkout-full-identification__loader': true }}>
+          <checkout-loader />
+        </Host>
+      )
+    }
+
     return (
       <Host class={{ 'plug-checkout-full-identification__container': true }}>
         <checkout-typography
@@ -182,6 +192,24 @@ export class PlugCheckoutFullIdentification {
         />
         {!!this.validFields.email && (
           <checkout-error-message message={this.validFields.email} />
+        )}
+
+        <checkout-text-field
+          value={this.formValues.phoneNumber}
+          onInputed={this.handleFieldBlurred('phoneNumber')}
+          onChanged={this.handleFieldChange('phoneNumber')}
+          onBlurred={this.handleFieldBlurred('phoneNumber')}
+          onFocused={this.handleFieldFocused('phoneNumber')}
+          hasValidation={this.validFields.phoneNumber !== null}
+          hasError={!!this.validFields.phoneNumber}
+          fullWidth
+          type="tel"
+          inputmode="tel"
+          name="phoneNumber"
+          label="Telefone *"
+        />
+        {!!this.validFields.phoneNumber && (
+          <checkout-error-message message={this.validFields.phoneNumber} />
         )}
 
         <checkout-typography
@@ -377,22 +405,26 @@ export class PlugCheckoutFullIdentification {
             )}
           </div>
 
-          <checkout-text-field
-            value={this.formValues.complement}
-            onChanged={this.handleFieldChange('complement')}
-            onInputed={this.handleFieldBlurred('complement')}
-            onBlurred={this.handleFieldBlurred('complement')}
-            onFocused={this.handleFieldFocused('complement')}
-            hasValidation={this.validFields.complement !== null}
-            hasError={!!this.validFields.complement}
-            fullWidth
-            inputmode="text"
-            name="complement"
-            label="Complemento"
-          />
-          {!!this.validFields.complement && (
-            <checkout-error-message message={this.validFields.complement} />
-          )}
+          <div
+            class={{ 'plug-checkout-full-identification__error-message': true }}
+          >
+            <checkout-text-field
+              value={this.formValues.complement}
+              onChanged={this.handleFieldChange('complement')}
+              onInputed={this.handleFieldBlurred('complement')}
+              onBlurred={this.handleFieldBlurred('complement')}
+              onFocused={this.handleFieldFocused('complement')}
+              hasValidation={this.validFields.complement !== null}
+              hasError={!!this.validFields.complement}
+              fullWidth
+              inputmode="text"
+              name="complement"
+              label="Complemento *"
+            />
+            {!!this.validFields.complement && (
+              <checkout-error-message message={this.validFields.complement} />
+            )}
+          </div>
         </fieldset>
 
         <checkout-text-field
@@ -406,7 +438,7 @@ export class PlugCheckoutFullIdentification {
           fullWidth
           inputmode="text"
           name="neighborhood"
-          label="Bairro"
+          label="Bairro *"
         />
         {!!this.validFields.neighborhood && (
           <checkout-error-message message={this.validFields.neighborhood} />

@@ -91,3 +91,10 @@
     margin: 0;
   }
 }
+
+.checkout-order-summary__loaders {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}

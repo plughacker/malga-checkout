@@ -1,7 +1,7 @@
 {
   "name": "@plug-checkout/vue",
   "sideEffects": false,
-  "version": "1.4.5",
+  "version": "1.5.0",
   "license": "MIT",
   "description": "Vue specific wrapper for Plug Checkout core components",
   "repository": {
@@ -47,7 +47,7 @@
     "vue": "^3.1.1"
   },
   "dependencies": {
-    "@plug-checkout/core": "*"
+    "@plug-checkout/core": "1.5.0"
   },
   "jest": {
     "preset": "ts-jest",

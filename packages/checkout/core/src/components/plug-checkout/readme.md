@@ -10,27 +10,32 @@
 | Property            | Attribute         | Description | Type                         | Default                                                                                                                                                                                             |
 | ------------------- | ----------------- | ----------- | ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `clientId`          | `client-id`       |             | `string`                     | `undefined`                                                                                                                                                                                         |
+| `debug`             | `debug`           |             | `boolean`                    | `false`                                                                                                                                                                                             |
 | `dialogConfig`      | --                |             | `PlugCheckoutDialog`         | `{     show: true,     actionButtonLabel: 'Continuar',     successActionButtonLabel: 'Continuar',     errorActionButtonLabel: 'Tentar Novamente',     successRedirectUrl: '',   }`                  |
 | `idempotencyKey`    | `idempotency-key` |             | `string`                     | `undefined`                                                                                                                                                                                         |
+| `isLoading`         | `is-loading`      |             | `boolean`                    | `false`                                                                                                                                                                                             |
 | `merchantId`        | `merchant-id`     |             | `string`                     | `undefined`                                                                                                                                                                                         |
 | `paymentMethods`    | --                |             | `PlugCheckoutPaymentMethods` | `{     pix: undefined,     credit: undefined,     boleto: undefined,   }`                                                                                                                           |
 | `publicKey`         | `public-key`      |             | `string`                     | `undefined`                                                                                                                                                                                         |
 | `sandbox`           | `sandbox`         |             | `boolean`                    | `false`                                                                                                                                                                                             |
+| `sessionId`         | `session-id`      |             | `string`                     | `undefined`                                                                                                                                                                                         |
 | `transactionConfig` | --                |             | `PlugCheckoutTransaction`    | `{     statementDescriptor: '',     amount: 0,     description: '',     orderId: '',     customerId: '',     currency: 'BRL',     capture: false,     customer: null,     fraudAnalysis: null,   }` |
 
 
 ## Events
 
-| Event            | Description | Type                                                |
-| ---------------- | ----------- | --------------------------------------------------- |
-| `paymentFailed`  |             | `CustomEvent<{ error: PlugPaymentsChargeError; }>`  |
-| `paymentSuccess` |             | `CustomEvent<{ data: PlugPaymentsChargeSuccess; }>` |
+| Event                 | Description | Type                                                  |
+| --------------------- | ----------- | ----------------------------------------------------- |
+| `paymentFailed`       |             | `CustomEvent<{ error: PlugPaymentsError; }>`          |
+| `paymentSessionFetch` |             | `CustomEvent<{ paymentSession: SessionNormalized; }>` |
+| `paymentSuccess`      |             | `CustomEvent<{ data: PlugPaymentsSuccess; }>`         |
 
 
 ## Dependencies
 
 ### Depends on
 
+- checkout-loader
 - [plug-payments](../plug-payments)
 - [plug-payments-credit-saved-cards](../plug-payments-credit/partials/plug-payments-credit-saved-cards)
 - [plug-payments-credit](../plug-payments-credit)
@@ -42,6 +47,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  plug-checkout --> checkout-loader
   plug-checkout --> plug-payments
   plug-checkout --> plug-payments-credit-saved-cards
   plug-checkout --> plug-payments-credit
@@ -49,6 +55,7 @@ graph TD;
   plug-checkout --> plug-payments-pix
   plug-checkout --> checkout-button
   plug-checkout --> checkout-icon
+  checkout-loader --> checkout-icon
   plug-payments --> plug-payments-credit-saved-cards
   plug-payments --> checkout-radio-field
   plug-payments --> plug-payments-credit

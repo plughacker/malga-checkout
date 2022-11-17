@@ -16,7 +16,9 @@ export class Customers {
 
   public async create() {
     const response = await this.api.create({
-      endpoint: '/customers?force=true',
+      endpoint: settings.sessionId
+        ? '/sessions/customers?force=true'
+        : '/customers?force=true',
       data: formatPayload(this.customer),
     })
 
@@ -27,5 +29,11 @@ export class Customers {
     }
 
     return response.data.id
+  }
+
+  public async find(customerId: string) {
+    const endpoint = settings.sessionId ? '/sessions/customers' : '/customers'
+
+    return this.api.fetch({ endpoint: `${endpoint}/${customerId}` })
   }
 }

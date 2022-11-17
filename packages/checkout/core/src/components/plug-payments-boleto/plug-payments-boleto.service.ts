@@ -3,8 +3,6 @@ import { Charges } from '../../services/charges'
 
 import {
   PlugPaymentsBoletoChargeRequest,
-  PlugPaymentsBoletoChargeSuccess,
-  PlugPaymentsBoletoChargeError,
   PlugPaymentsBoletoPaymentFailedCallback,
   PlugPaymentsBoletoPaymentSuccessCallback,
   PlugPaymentsBoletoShowDialogCallback,
@@ -12,8 +10,12 @@ import {
 
 import { BoletoAttributes } from '../../providers/boleto'
 import settings from '../../stores/settings'
+import { PlugPayments } from '../../types/plug-payments.types'
+import { PlugPaymentsSuccess } from '../../types/plug-payments-success.types'
+import { PlugPaymentsPaymentMethodBoleto } from '../../types/plug-payments-payment-methods.types'
+import { PlugPaymentsError } from '../../types/plug-payments-error.types'
 
-export class PlugPaymentsBoletoService {
+export class PlugPaymentsBoletoService implements PlugPayments {
   readonly charge: Charges
   readonly data: BoletoAttributes
   readonly onPaymentSuccess: PlugPaymentsBoletoPaymentSuccessCallback
@@ -33,22 +35,25 @@ export class PlugPaymentsBoletoService {
     this.onShowDialog = onShowDialog
   }
 
-  private handlePaymentSuccess(data: PlugPaymentsBoletoChargeSuccess) {
+  handlePaymentSuccess(boletoData: PlugPaymentsSuccess) {
+    const paymentMethod =
+      boletoData.paymentMethod as PlugPaymentsPaymentMethodBoleto
+
     if (settings.dialogConfig.show) {
       this.onShowDialog({
         mode: 'boleto',
-        amount: data.amount,
+        amount: boletoData.amount,
         open: true,
-        paymentCode: data.paymentMethod.barcodeData,
-        paymentImageUrl: data.paymentMethod.barcodeImageUrl,
-        expirationDate: data.paymentMethod.expiresDate,
+        paymentCode: paymentMethod.barcodeData,
+        paymentImageUrl: paymentMethod.barcodeImageUrl,
+        expirationDate: paymentMethod.expiresDate,
       })
     }
 
-    this.onPaymentSuccess(data)
+    this.onPaymentSuccess(boletoData)
   }
 
-  private handlePaymentFailed(error: PlugPaymentsBoletoChargeError) {
+  handlePaymentFailed(error: PlugPaymentsError) {
     if (settings.dialogConfig.show) {
       this.onShowDialog({
         open: true,

@@ -14,8 +14,7 @@ import settings from '../../stores/settings'
 import savedCards from '../../stores/saved-cards'
 
 import { PaymentMethods, PaymentMethodsType } from './plug-payments.types'
-
-import { PlugPaymentsChargeError } from './plug-payments.types'
+import { PlugPaymentsError } from '../../types/plug-payments-error.types'
 
 @Component({
   tag: 'plug-payments',
@@ -25,7 +24,7 @@ export class PlugPayments implements ComponentInterface {
   @Prop() paymentMethods: PaymentMethods = ['credit', 'pix', 'boleto']
 
   @Event() paymentFail!: EventEmitter<{
-    error: PlugPaymentsChargeError
+    error: PlugPaymentsError
   }>
 
   private handlePaymentChange = (value: string) => {

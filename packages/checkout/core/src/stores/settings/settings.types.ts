@@ -7,9 +7,11 @@ import {
 export interface SettingsState {
   clientId: string
   publicKey: string
+  sessionId?: string
   idempotencyKey: string
   merchantId: string
   sandbox: boolean
+  debug: boolean
   dialogConfig: PlugCheckoutDialog
   paymentMethods: PlugCheckoutPaymentMethods
   transactionConfig: PlugCheckoutTransaction

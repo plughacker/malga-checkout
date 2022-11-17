@@ -1,4 +1,5 @@
 import { Component, Host, h, Prop } from '@stencil/core'
+import PlugBrand from '../../../../assets/plug-brand.svg'
 
 @Component({
   tag: 'plug-checkout-full-header',
@@ -7,6 +8,7 @@ import { Component, Host, h, Prop } from '@stencil/core'
 export class PlugCheckoutFullHeader {
   @Prop() brand: string
   @Prop() backRoute: string
+  @Prop() isLoading = false
 
   private handleNavigation = () => {
     if (this.backRoute) {
@@ -17,9 +19,37 @@ export class PlugCheckoutFullHeader {
     history.back()
   }
 
+  renderImg() {
+    if (this.brand) {
+      return (
+        <img
+          class={{ 'plug-checkout-full-header__logo': true }}
+          src={this.brand}
+          alt="Logo"
+        />
+      )
+    }
+
+    return (
+      <i
+        class={{ 'plug-checkout-full-header__logo': true }}
+        innerHTML={PlugBrand}
+      />
+    )
+  }
+
   render() {
     return (
       <Host class={{ 'plug-checkout-full-header__container': true }}>
+        {this.isLoading && (
+          <div
+            class={{ 'plug-checkout-full-header__progress-horizontal': true }}
+          >
+            <div
+              class={{ 'plug-checkout-full-header__bar-horizontal': true }}
+            />
+          </div>
+        )}
         <header class={{ 'plug-checkout-full-header__content': true }}>
           <button
             class={{ 'plug-checkout-full-header__navigation': true }}
@@ -27,11 +57,7 @@ export class PlugCheckoutFullHeader {
           >
             <checkout-icon icon="arrowLeft" />
           </button>
-          <img
-            class={{ 'plug-checkout-full-header__logo': true }}
-            src={this.brand}
-            alt="Logo"
-          />
+          {this.renderImg()}
           <div class={{ 'plug-checkout-full-header__message': true }}>
             <checkout-icon icon="lock" />
             <h5>Ambiente seguro</h5>

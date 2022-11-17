@@ -53,12 +53,12 @@
   }
 
   &:checked + label:before {
-    background-color: #5c7ec0;
+    background-color: var(--plug-checkout-color-brand-normal);
     opacity: 0.5;
   }
 
   &:checked + label:after {
-    background-color: #344383;
+    background-color: var(--plug-checkout-color-brand-middle);
     transform: translateX(16px);
   }
 }

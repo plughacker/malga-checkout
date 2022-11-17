@@ -1,9 +1,5 @@
-import { Boleto } from '../../providers/boleto'
-import { Pix } from '../../providers/pix'
-import { Card } from '../../providers/card'
 import { Customer } from '../../providers/base-provider'
-
-export type Provider = Boleto | Card | Pix
+import { Provider } from '../payments'
 
 export interface ChargeConstructor {
   provider: Provider
@@ -18,6 +14,7 @@ export interface CreateChargeData {
   statementDescriptor?: string
   capture?: boolean
   description?: string
+  fraudAnalysis?: FraudAnalysis
 }
 
 export interface FraudAnalysisCart {
@@ -25,10 +22,10 @@ export interface FraudAnalysisCart {
   quantity: number
   sku: string
   unitPrice: number
-  risk: 'Low' | 'High'
+  risk: string
 }
 
 export interface FraudAnalysis {
-  customer: Customer
-  cart: FraudAnalysisCart[]
+  customer?: Customer
+  cart?: FraudAnalysisCart[]
 }

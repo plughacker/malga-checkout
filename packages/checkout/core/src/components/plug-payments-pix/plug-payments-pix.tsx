@@ -5,8 +5,7 @@ import payment from '../../stores/payment'
 import dialog from '../../stores/dialog'
 
 import { PlugPaymentsPixService } from './plug-payments-pix.service'
-
-import { PlugPaymentsChargeError } from '../plug-payments/plug-payments.types'
+import { PlugPaymentsError } from '../../types/plug-payments-error.types'
 
 @Component({
   tag: 'plug-payments-pix',
@@ -14,7 +13,7 @@ import { PlugPaymentsChargeError } from '../plug-payments/plug-payments.types'
 })
 export class PlugPaymentsPix {
   @Event() pixPaymentFailed!: EventEmitter<{
-    error: PlugPaymentsChargeError
+    error: PlugPaymentsError
   }>
 
   private handleShowDialog = (dialogData) => {
@@ -22,6 +21,8 @@ export class PlugPaymentsPix {
   }
 
   private checkIfPixIsPaid = async () => {
+    if (settings.sessionId) return
+
     const pixService = new PlugPaymentsPixService({
       data: settings.paymentMethods.pix,
       onShowDialog: this.handleShowDialog,
@@ -49,6 +50,8 @@ export class PlugPaymentsPix {
         <checkout-manual-payment fullWidth paymentMethod="pix" />
         {settings.dialogConfig.show && dialog.configs.open && (
           <checkout-modal
+            isSession={!!settings.sessionId}
+            hasSuccessRedirectUrl={!!settings.dialogConfig.successRedirectUrl}
             currency={settings.transactionConfig.currency}
             mode={dialog.configs.mode}
             open={dialog.configs.open}

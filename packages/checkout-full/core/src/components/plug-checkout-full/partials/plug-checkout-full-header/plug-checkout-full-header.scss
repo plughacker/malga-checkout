@@ -1,4 +1,5 @@
 .plug-checkout-full-header__container {
+  position: static;
   display: block;
   width: 100%;
   height: 80px;
@@ -67,5 +68,45 @@
     @extend %typography-label;
     color: var(--plug-checkout-color-grey-darkness);
     margin-left: var(--plug-checkout-spacing-xs);
+  }
+}
+
+.plug-checkout-full-header__progress-horizontal {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 4px;
+  margin: 0;
+  background-color: rgba(211, 222, 243, 1);
+}
+
+.plug-checkout-full-header__bar-horizontal {
+  width: 50%;
+  height: 100%;
+  margin-left: 0;
+  background-color: var(--plug-checkout-color-brand-normal);
+
+  animation-name: spinner;
+  animation-duration: 750ms;
+  animation-timing-function: ease-in-out;
+  animation-play-state: running;
+  animation-direction: alternate-reverse;
+  animation-iteration-count: infinite;
+}
+
+@keyframes spinner {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+    margin-left: 50%;
+  }
+  100% {
+    width: 0;
+    margin-left: 100%;
   }
 }

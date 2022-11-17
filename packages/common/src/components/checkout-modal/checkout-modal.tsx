@@ -27,6 +27,8 @@ export class CheckoutModal {
   @Prop() pixWaitingPaymentMessage?: string
   @Prop() pixFilledProgressBarColor?: string
   @Prop() pixEmptyProgressBarColor?: string
+  @Prop() hasSuccessRedirectUrl?: boolean
+  @Prop() isSession?: boolean
 
   @Event() successButtonClicked: EventEmitter<void>
   @Event() errorButtonClicked: EventEmitter<void>
@@ -42,6 +44,7 @@ export class CheckoutModal {
         <div class={{ 'checkout-modal__content': true }}>
           {this.mode === 'success' && (
             <checkout-modal-success
+              hasSuccessRedirectUrl={this.hasSuccessRedirectUrl}
               successDescription={this.successDescription}
               successActionButtonLabel={this.successActionButtonLabel}
               onSuccessActionButtonClicked={() =>
@@ -60,6 +63,8 @@ export class CheckoutModal {
           )}
           {this.mode === 'pix' && (
             <checkout-modal-pix
+              hasSuccessRedirectUrl={this.hasSuccessRedirectUrl}
+              isSession={this.isSession}
               currency={this.currency}
               qrCodeIdentificator={this.paymentCode}
               qrCodeImageUrl={this.paymentImageUrl}
@@ -78,6 +83,8 @@ export class CheckoutModal {
           )}
           {this.mode === 'boleto' && (
             <checkout-modal-boleto
+              hasSuccessRedirectUrl={this.hasSuccessRedirectUrl}
+              isSession={this.isSession}
               currency={this.currency}
               boletoCode={this.paymentCode}
               boletoImageUrl={this.paymentImageUrl}

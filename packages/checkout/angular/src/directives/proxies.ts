@@ -17,6 +17,8 @@ export declare interface PlugCheckout extends Components.PlugCheckout {}
 @ProxyCmp({
   inputs: [
     'clientId',
+    'sessionId',
+    'debug',
     'dialogConfig',
     'merchantId',
     'paymentMethods',
@@ -24,6 +26,7 @@ export declare interface PlugCheckout extends Components.PlugCheckout {}
     'sandbox',
     'transactionConfig',
     'idempotencyKey',
+    'isLoading',
   ],
 })
 @Component({
@@ -35,12 +38,15 @@ export declare interface PlugCheckout extends Components.PlugCheckout {}
     'dialogConfig',
     'merchantId',
     'paymentMethods',
+    'sessionId',
     'publicKey',
     'sandbox',
+    'debug',
     'transactionConfig',
     'idempotencyKey',
+    'isLoading',
   ],
-  outputs: ['paymentSuccess', 'paymentFailed'],
+  outputs: ['paymentSessionFetch', 'paymentSuccess', 'paymentFailed'],
 })
 export class PlugCheckout {
   /**  */
@@ -51,6 +57,10 @@ export class PlugCheckout {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach()
     this.el = r.nativeElement
-    proxyOutputs(this, this.el, ['paymentSuccess', 'paymentFailed'])
+    proxyOutputs(this, this.el, [
+      'paymentSessionFetch',
+      'paymentSuccess',
+      'paymentFailed',
+    ])
   }
 }

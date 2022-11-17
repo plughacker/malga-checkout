@@ -19,6 +19,8 @@
 | `errorTitle`                  | `error-title`                    |             | `string`                                    | `undefined` |
 | `expirationDate`              | `expiration-date`                |             | `string`                                    | `undefined` |
 | `expirationTime`              | `expiration-time`                |             | `number`                                    | `undefined` |
+| `hasSuccessRedirectUrl`       | `has-success-redirect-url`       |             | `boolean`                                   | `undefined` |
+| `isSession`                   | `is-session`                     |             | `boolean`                                   | `undefined` |
 | `mode`                        | `mode`                           |             | `"boleto" \| "error" \| "pix" \| "success"` | `undefined` |
 | `open`                        | `open`                           |             | `boolean`                                   | `undefined` |
 | `paymentCode`                 | `payment-code`                   |             | `string`                                    | `undefined` |

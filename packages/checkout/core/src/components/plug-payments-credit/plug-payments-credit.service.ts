@@ -10,16 +10,17 @@ import { CustomerCards } from '../../services/customer-cards'
 
 import {
   PlugPaymentsCreditChargeRequest,
-  PlugPaymentsCreditChargeSuccess,
-  PlugPaymentsCreditChargeError,
   PlugPaymentsCreditFormValues,
   PlugPaymentsCreditPaymentFailedCallback,
   PlugPaymentsCreditPaymentSuccessCallback,
   PlugPaymentsCreditShowDialogCallback,
   PlugPaymentsCreditManualCard,
 } from './plug-payments-credit.types'
+import { PlugPayments } from '../../types/plug-payments.types'
+import { PlugPaymentsSuccess } from '../../types/plug-payments-success.types'
+import { PlugPaymentsError } from '../../types/plug-payments-error.types'
 
-export class PlugPaymentsCreditService {
+export class PlugPaymentsCreditService implements PlugPayments {
   readonly charge: Charges
   readonly customer: Customers
   readonly customerCards: CustomerCards
@@ -43,7 +44,7 @@ export class PlugPaymentsCreditService {
     this.onShowDialog = onShowDialog
   }
 
-  private handlePaymentSuccess(data: PlugPaymentsCreditChargeSuccess) {
+  handlePaymentSuccess(data: PlugPaymentsSuccess) {
     if (settings.dialogConfig.show) {
       this.onShowDialog({
         mode: 'success',
@@ -55,7 +56,7 @@ export class PlugPaymentsCreditService {
     this.onPaymentSuccess(data)
   }
 
-  private handlePaymentFailed(error: PlugPaymentsCreditChargeError) {
+  handlePaymentFailed(error: PlugPaymentsError) {
     if (settings.dialogConfig.show) {
       this.onShowDialog({
         open: true,

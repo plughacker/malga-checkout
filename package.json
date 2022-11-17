@@ -39,9 +39,9 @@
   "scripts": {
     "prepare": "husky install",
     "start:sdk": "lerna run start --scope @plug-checkout/core",
-    "build:sdk": "lerna run build --scope {@plug-checkout/core,@plug-checkout/angular,@plug-checkout/react,@plug-checkout/vue}",
+    "build:sdk": "lerna run build --scope '{@plug-checkout/utils,@plug-checkout/common,@plug-checkout/core,@plug-checkout/angular,@plug-checkout/react,@plug-checkout/vue}'",
     "start:full": "lerna run start --scope @plug-checkout-full/core",
-    "build:full": "lerna run build --scope {@plug-checkout-full/core,@plug-checkout-full/angular,@plug-checkout-full/react,@plug-checkout-full/vue}",
+    "build:full": "lerna run build --scope '{@plug-checkout/utils,@plug-checkout/common,@plug-checkout-full/core,@plug-checkout-full/angular,@plug-checkout-full/react,@plug-checkout-full/vue}'",
     "bootstrap": "lerna bootstrap",
     "clean": "lerna clean",
     "refresh": "yarn clean -y && yarn bootstrap",

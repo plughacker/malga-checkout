@@ -13,5 +13,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@plug-checkout/utils", "@plug-checkout/common"]
+  "ignore": []
 }

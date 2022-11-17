@@ -3,6 +3,7 @@
   "version": "1.5.0",
   "description": "Angular specific wrapper for Plug Checkout Full core components",
   "license": "MIT",
+  "private": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/plughacker/plug-checkout.git",

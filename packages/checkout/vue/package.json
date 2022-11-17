@@ -4,6 +4,7 @@
   "version": "1.5.0",
   "license": "MIT",
   "description": "Vue specific wrapper for Plug Checkout core components",
+  "private": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/plughacker/plug-checkout.git",

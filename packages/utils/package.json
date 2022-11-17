@@ -1,6 +1,7 @@
 {
   "name": "@plug-checkout/utils",
   "version": "0.0.1",
+  "private": true,
   "description": "Utility functions for Plug Checkout",
   "repository": {
     "type": "git",

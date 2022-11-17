@@ -25,7 +25,8 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "build": "yarn clean && yarn compile",
+    "build:fix": "node ./scripts/fix-build-files/fix-build-files.js",
+    "build": "yarn build:fix && yarn clean && yarn compile",
     "clean": "rimraf dist",
     "compile": "yarn tsc",
     "tsc": "tsc -p ."

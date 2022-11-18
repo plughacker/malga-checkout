@@ -1,0 +1,47 @@
+name: 🕊 Release
+on:
+  push:
+    branches:
+      - 'release/*'
+      - 'beta/*'
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    name: 🦋 Changesets Release
+    if: github.repository == 'plughacker/plug-checkout'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: ⎔ Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: yarn
+
+      - name: 📥 Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: 🔐 Setup npm auth
+        run: |
+          echo "registry=https://registry.npmjs.org" >> ~/.npmrc
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+
+      - name: 🚀 PR / Publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: yarn version
+          commit: 'chore: update version for release'
+          title: 'chore: update version for release'
+          publish: yarn release
+          createGithubReleases: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

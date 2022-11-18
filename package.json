@@ -13,7 +13,6 @@
     "checkout",
     "plug"
   ],
-  "version": "1.0.0",
   "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
   "license": "MIT",
   "config": {
@@ -47,6 +46,7 @@
     "refresh": "yarn clean -y && yarn bootstrap",
     "changeset": "changeset",
     "version": "changeset version",
+    "prerelease": "yarn build:sdk && yarn build:full",
     "release": "changeset publish"
   },
   "devDependencies": {

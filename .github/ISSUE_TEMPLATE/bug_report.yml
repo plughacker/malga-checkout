@@ -1,0 +1,43 @@
+name: 🐛 Bug Report
+description: Something is wrong with Plug Checkout.
+title: '[Bug]: '
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for contributing!
+
+        Do you need some help?
+        ======================
+        The issue tracker is meant for feature requests and bug reports only. This isn't the best place for
+        support or usage questions. Questions here don't have as much visibility as they do elsewhere. Before
+        you ask a question, here are some resources to get help first:
+
+        - Read the docs: https://docs.plugpagamentos.com/
+        - Explore examples: https://github.com/plughacker?q=demo-plug-checkout&type=all&language=&sort=
+        - Ask in chat: https://discord.com/h5J5ZkhTXV
+  - type: input
+    attributes:
+      label: What version of Plug Checkout are you using?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected Behavior
+      description: A concise description of what you expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Actual Behavior
+      description: A concise description of what you're experiencing.
+    validations:
+      required: true

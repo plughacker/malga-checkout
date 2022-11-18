@@ -13,7 +13,6 @@
     "checkout",
     "plug"
   ],
-  "version": "1.0.0",
   "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
   "license": "MIT",
   "config": {
@@ -38,13 +37,21 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "start:core": "npx lerna run start --scope @plug-checkout/core",
-    "build:components": "npx lerna run build --scope '{@plug-checkout/core,@plug-checkout/angular,@plug-checkout/react,@plug-checkout/vue'}",
-    "bootstrap": "npx lerna bootstrap",
-    "clean": "npx lerna clean",
-    "refresh": "yarn clean -y && yarn bootstrap"
+    "start:sdk": "lerna run start --scope @plug-checkout/core",
+    "build:sdk": "lerna run build --scope '{@plug-checkout/utils,@plug-checkout/common,@plug-checkout/core,@plug-checkout/angular,@plug-checkout/react,@plug-checkout/vue}'",
+    "start:full": "lerna run start --scope @plug-checkout-full/core",
+    "build:full": "lerna run build --scope '{@plug-checkout/utils,@plug-checkout/common,@plug-checkout-full/core,@plug-checkout-full/angular,@plug-checkout-full/react,@plug-checkout-full/vue}'",
+    "bootstrap": "lerna bootstrap",
+    "clean": "lerna clean",
+    "refresh": "yarn clean -y && yarn bootstrap",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "prerelease": "yarn build:sdk && yarn build:full",
+    "release": "changeset publish"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.4.7",
+    "@changesets/cli": "^2.25.2",
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
     "@typescript-eslint/eslint-plugin": "^4.28.0",

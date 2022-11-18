@@ -1,0 +1,17 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@2.2.0/schema.json",
+  "changelog": [
+    "@changesets/changelog-github",
+    { "repo": "plughacker/plug-checkout" }
+  ],
+  "commit": false,
+  "fixed": [
+    ["@plug-checkout/core","@plug-checkout/angular","@plug-checkout/react","@plug-checkout/vue"],
+    ["@plug-checkout-full/core","@plug-checkout-full/angular","@plug-checkout-full/react","@plug-checkout-full/vue"]
+  ],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": []
+}

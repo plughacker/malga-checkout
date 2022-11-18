@@ -3,6 +3,7 @@
   "sideEffects": false,
   "version": "1.5.0",
   "description": "React specific wrapper for Plug Checkout core components",
+  "private": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/plughacker/plug-checkout.git",
@@ -24,7 +25,8 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "build": "yarn clean && yarn compile",
+    "build:fix": "node ./scripts/fix-build-files/fix-build-files.js",
+    "build": "yarn build:fix && yarn clean && yarn compile",
     "clean": "rimraf dist",
     "compile": "yarn tsc",
     "tsc": "tsc -p ."

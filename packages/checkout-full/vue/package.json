@@ -4,6 +4,7 @@
   "version": "1.5.0",
   "license": "MIT",
   "description": "Vue specific wrapper for Plug Checkout Full core components",
+  "private": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/plughacker/plug-checkout.git",
@@ -24,7 +25,8 @@
   ],
   "scripts": {
     "test": "jest",
-    "build": "yarn clean && yarn build:cjs && yarn build:esm",
+    "build:fix": "node ./scripts/fix-build-files/fix-build-files.js",
+    "build": "yarn build:fix && yarn clean && yarn build:cjs && yarn build:esm",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "build:esm": "tsc --module es6 --outDir dist/esm",
     "clean": "rimraf dist"

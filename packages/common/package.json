@@ -1,6 +1,7 @@
 {
   "name": "@plug-checkout/common",
   "version": "0.0.1",
+  "private": true,
   "description": "Common components for Plug Checkout",
   "repository": {
     "type": "git",

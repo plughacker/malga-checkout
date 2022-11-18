@@ -2,6 +2,7 @@
   "name": "@plug-checkout-full/core",
   "version": "1.5.0",
   "description": "Core components for Plug Checkout Full",
+  "private": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/plughacker/plug-checkout.git",
@@ -57,7 +58,7 @@
     "puppeteer": "5.5.0"
   },
   "dependencies": {
-    "@plug-checkout/core": "1.5.0-beta.2",
+    "@plug-checkout/core": "1.5.0",
     "axios": "^0.21.1",
     "countries-and-timezones": "^3.3.0",
     "google-libphonenumber": "^3.2.31",

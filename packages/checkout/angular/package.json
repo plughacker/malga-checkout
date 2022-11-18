@@ -2,6 +2,7 @@
   "name": "@plug-checkout/angular",
   "version": "1.5.0",
   "description": "Angular specific wrapper for Plug Checkout core components",
+  "private": false,
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -22,7 +23,8 @@
     "web-components"
   ],
   "scripts": {
-    "build": "yarn build.ng",
+    "build:fix": "node ./scripts/fix-build-files/fix-build-files.js",
+    "build": "yarn build:fix && yarn build.ng",
     "build.fesm": "rollup --config ./scripts/rollup.config.js",
     "build.ng": "yarn build.es2015 && yarn build.es5",
     "build.es2015": "ngc -p tsconfig.json && rollup --config ./scripts/rollup.config.js",

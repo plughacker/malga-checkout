@@ -18,11 +18,9 @@ function getBrowserLocale() {
 }
 
 function getCurrentLocale(locale?: Locale) {
-  if (!locale && !window) return 'pt'
-
-  if (!locale && window) return getBrowserLocale() as Locale
-
   if (locale) return locale
+
+  if (!locale && !!window) return getBrowserLocale() as Locale
 
   return 'pt'
 }

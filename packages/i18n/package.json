@@ -1,0 +1,30 @@
+{
+  "name": "@plug-checkout/i18n",
+  "version": "0.0.1",
+  "description": "i18n for Plug Checkout",
+  "private": true,
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/i18n.umd.js",
+  "module": "dist/i18n.es.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "vite build",
+    "i18n:upload": "crowdin upload",
+    "i18n:download": "crowdin download"
+  },
+  "dependencies": {
+    "interpolate": "^0.1.0",
+    "ramda": "^0.28.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "@types/ramda": "^0.28.20",
+    "crowdin": "^3.5.0",
+    "typescript": "^4.9.3",
+    "vite": "^3.2.4",
+    "vite-plugin-dts": "^1.7.1"
+  }
+}

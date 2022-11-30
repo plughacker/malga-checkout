@@ -6,7 +6,7 @@ import pt from './configs/pt/translations.json' assert { type: 'json' }
 import en from './configs/en/translations.json' assert { type: 'json' }
 import config from './configs/translations.json' assert { type: 'json' }
 
-export type Locale = 'pt' | 'pt_BR' | 'en' | 'en_US' | 'en-US' | 'pt-BR'
+export type Locale = 'pt' | 'pt_BR' | 'en' | 'en_US' | 'en-US' | 'pt-BR' | 'default'
 export type Params = Record<string, string>
 
 function getBrowserLocale() {
@@ -28,7 +28,7 @@ function getCurrentLocale(locale?: Locale) {
 function getLocale(locale?: Locale) {
   const currentLocale = getCurrentLocale(locale)
   const locales = {
-    config,
+    default: config,
     pt,
     en,
     pt_BR: pt,

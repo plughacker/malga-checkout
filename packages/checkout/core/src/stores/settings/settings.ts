@@ -6,16 +6,14 @@ import { SettingsState } from './settings.types'
 export const { state, onChange } = createStore<SettingsState>({
   clientId: '',
   publicKey: '',
+  sessionId: '',
   merchantId: '',
   idempotencyKey: '',
+  locale: undefined,
   sandbox: false,
   debug: false,
   dialogConfig: {
     show: true,
-    actionButtonLabel: 'Continuar',
-    successActionButtonLabel: 'Continuar',
-    errorActionButtonLabel: 'Tentar Novamente',
-    successRedirectUrl: '',
   },
   paymentMethods: {
     pix: undefined,

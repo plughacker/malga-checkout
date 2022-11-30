@@ -15,6 +15,9 @@ import {
   clearedObjectProperties,
 } from '@plug-checkout/utils'
 
+import { t } from '@plug-checkout/i18n'
+import { Locale } from '@plug-checkout/i18n/dist/utils'
+
 import settings from '../../stores/settings'
 import payment from '../../stores/payment'
 
@@ -47,12 +50,9 @@ export class PlugCheckout {
   @Prop() merchantId?: string
   @Prop() sandbox = false
   @Prop() debug = false
+  @Prop() locale?: Locale
   @Prop() dialogConfig?: PlugCheckoutDialog = {
     show: true,
-    actionButtonLabel: 'Continuar',
-    successActionButtonLabel: 'Continuar',
-    errorActionButtonLabel: 'Tentar Novamente',
-    successRedirectUrl: '',
   }
   @Prop() paymentMethods?: PlugCheckoutPaymentMethods = {
     pix: undefined,
@@ -127,6 +127,7 @@ export class PlugCheckout {
     settings.sessionId = this.sessionId
     settings.merchantId = this.merchantId
     settings.idempotencyKey = this.idempotencyKey
+    settings.locale = this.locale
     settings.sandbox = this.sandbox
     settings.debug = this.debug
     settings.dialogConfig = this.dialogConfig
@@ -208,7 +209,7 @@ export class PlugCheckout {
           <div class={{ 'plug-checkout__submit': true }}>
             <checkout-button
               isLoading={this.isButtonLoading}
-              label="Pagar"
+              label={t('paymentMethods.common.payButton', this.locale)}
               disabled={handleDisablePayButton()}
               onClicked={this.handlePay}
             />

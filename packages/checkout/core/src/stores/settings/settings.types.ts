@@ -1,3 +1,4 @@
+import { Locale } from '@plug-checkout/i18n/dist/utils'
 import {
   PlugCheckoutDialog,
   PlugCheckoutTransaction,
@@ -10,6 +11,7 @@ export interface SettingsState {
   sessionId?: string
   idempotencyKey: string
   merchantId: string
+  locale?: Locale
   sandbox: boolean
   debug: boolean
   dialogConfig: PlugCheckoutDialog

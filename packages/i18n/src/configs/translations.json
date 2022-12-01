@@ -1,3 +1,95 @@
 {
-  "helloWorld": "Olá Mundo, {first} {last}"
+  "common": {
+    "total": "total"
+  },
+  "paymentMethods": {
+    "common": {
+      "payButton": "Pagar"
+    },
+    "card": {
+      "title": "Cartão de crédito",
+      "newCardTitle": "Novo cartão de crédito",
+      "newCard": {
+        "errorMessageAllFieldsRequired": "Preencha todos os campos para prosseguir.",
+        "fields": {
+          "cardNumber": {
+            "label": "Número do cartão *",
+            "errorMessageRequired": "Número do cartão é obrigatório.",
+            "errorMessageInvalidFormat": "Formato inválido, verifique os dados do cartão."
+          },
+          "expirationDate": {
+            "label": "Data de expiração (MM/AA) *",
+            "errorMessageRequired": "Validade é obrigatória.",
+            "errorMessageInvalidFormat": "Data inválida, verifique os dados do cartão."
+          },
+          "cvv": {
+            "label": "Código de segurança (CVV) *",
+            "errorMessageRequired": "CVV é obrigatório.",
+            "errorMessageInvalidFormat": "Formato inválido, verifique os dados do cartão."
+          },
+          "name": {
+            "label": "Nome no cartão *",
+            "errorMessageRequired": "Portador do cartão é obrigatório.",
+            "errorMessageInvalidFormat": "Formato inválido, verifique os dados do cartão."
+          },
+          "installments": {
+            "label": "Parcelamento *",
+            "errorMessageRequired": "Selecione uma parcela para prosseguir."
+          },
+          "saveCard": {
+            "label": "Armazenar cartão para compras futuras"
+          }
+        }
+      },
+      "savedCards": {
+        "card": "Cartão de crédito ••••",
+        "fields": {
+          "cvv": {
+            "description": "Para efetuar sua transação de forma segura, informe o CVV presente no verso do seu cartão.",
+            "label": "Código de segurança (CVV) *",
+            "errorMessage": "Formato inválido, verifique os dados do cartão."
+          },
+          "installments": {
+            "label": "Parcelamento *",
+            "errorMessage": "Parcelamento é obrigatório."
+          }
+        }
+      }
+    },
+    "pix": {
+      "title": "PIX"
+    },
+    "boleto": {
+      "title": "Boleto"
+    }
+  },
+  "dialogs": {
+    "common": {
+      "actionButtonLabel": "Continuar"
+    },
+    "pix": {
+      "waitingPaymentMessage": "",
+      "importantMessages": "",
+      "errorMessage": "Não foi possível concluir sua transação, tente novamente.",
+      "errorMessageExpired": "Caso já tenha feito o pagamento, aguarde o e-mail de confirmação. Se não fez o pagamento ainda, faça um novo pedido.",
+      "errorTitleExpired": "O código PIX expirou",
+      "successMessage": "Pagamento feito com sucesso"
+    },
+    "boleto": {
+      "waitingPaymentMessage": "",
+      "errorMessage": "Não foi possível concluir sua transação, tente novamente."
+    },
+    "card": {
+      "errorMessage": "Não foi possível concluir sua transação, tente novamente."
+    },
+    "session": {
+      "errorMessage": "Não foi possível concluir sua transação, tente novamente."
+    },
+    "success": {
+      "actionButtonLabel": "Continuar"
+    },
+    "error": {
+      "actionButtonLabel": "Tentar Novamente"
+    }
+  }
 }

@@ -1,3 +1,4 @@
+import { t } from '@plug-checkout/i18n'
 import {
   Component,
   Host,
@@ -78,7 +79,7 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
         label: `${currentInstallment}x ${centsToReal(
           installmentValue,
           settings.transactionConfig.currency,
-        )}, total ${centsToReal(
+        )}, ${t('common.total', settings.locale)} ${centsToReal(
           settings.transactionConfig.amount,
           settings.transactionConfig.currency,
         )}`,
@@ -126,7 +127,10 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
             hasValidation={credit.validations.fields.cardNumber !== null}
             hasError={!!credit.validations.fields.cardNumber}
             name="cardNumber"
-            label="Número do cartão *"
+            label={t(
+              'paymentMethods.card.newCard.fields.cardNumber.label',
+              settings.locale,
+            )}
           />
           {!credit.validations.allFieldsIsBlank &&
             !!credit.validations.fields.cardNumber && (
@@ -147,7 +151,10 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
               hasValidation={credit.validations.fields.expirationDate !== null}
               hasError={!!credit.validations.fields.expirationDate}
               name="expirationDate"
-              label="Data de expiração (MM/AA) *"
+              label={t(
+                'paymentMethods.card.newCard.fields.expirationDate.label',
+                settings.locale,
+              )}
               mask="99/99"
             />
 
@@ -162,7 +169,10 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
               hasValidation={credit.validations.fields.cvv !== null}
               hasError={!!credit.validations.fields.cvv}
               name="cvv"
-              label="Código de segurança (CVV) *"
+              label={t(
+                'paymentMethods.card.newCard.fields.cvv.label',
+                settings.locale,
+              )}
               mask="9999"
             />
           </fieldset>
@@ -188,7 +198,10 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
             hasValidation={credit.validations.fields.name !== null}
             hasError={!!credit.validations.fields.name}
             name="name"
-            label="Nome no cartão *"
+            label={t(
+              'paymentMethods.card.newCard.fields.name.label',
+              settings.locale,
+            )}
           />
           {!credit.validations.allFieldsIsBlank &&
             !!credit.validations.fields.name && (
@@ -207,7 +220,10 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
               fullWidth
               hasError={!!credit.validations.fields.installments}
               name="installments"
-              label="Parcelamento *"
+              label={t(
+                'paymentMethods.card.newCard.fields.installments.label',
+                settings.locale,
+              )}
             />
           )}
 
@@ -229,13 +245,21 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
               <checkout-typography
                 variation="field"
                 color="darkness"
-                content="Armazenar cartão para compras futuras"
+                content={t(
+                  'paymentMethods.card.newCard.fields.saveCard.label',
+                  settings.locale,
+                )}
               />
             </div>
           )}
 
           {credit.validations.allFieldsIsBlank && (
-            <checkout-error-message message="Preencha todos os campos para prosseguir." />
+            <checkout-error-message
+              message={t(
+                'paymentMethods.card.newCard.errorMessageAllFieldsRequired',
+                settings.locale,
+              )}
+            />
           )}
         </form>
       </Host>

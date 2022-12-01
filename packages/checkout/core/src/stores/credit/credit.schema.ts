@@ -1,14 +1,37 @@
 import * as Yup from 'yup'
 import Payment from 'payment'
 
+import { t } from '@plug-checkout/i18n'
+import settings from '../settings'
+
 export const schema = Yup.object().shape({
   cardNumber: Yup.string()
-    .required('Número do cartão é obrigatório.')
-    .min(14, 'Formato inválido, verifique os dados do cartão.')
-    .max(22, 'Formato inválido, verifique os dados do cartão.')
+    .required(
+      t(
+        'paymentMethods.card.newCard.fields.cardNumber.errorMessageRequired',
+        settings.locale,
+      ),
+    )
+    .min(
+      14,
+      t(
+        'paymentMethods.card.newCard.fields.cardNumber.errorMessageInvalidFormat',
+        settings.locale,
+      ),
+    )
+    .max(
+      22,
+      t(
+        'paymentMethods.card.newCard.fields.cardNumber.errorMessageInvalidFormat',
+        settings.locale,
+      ),
+    )
     .test(
       'isNumber',
-      'Formato inválido, verifique os dados do cartão.',
+      t(
+        'paymentMethods.card.newCard.fields.cardNumber.errorMessageInvalidFormat',
+        settings.locale,
+      ),
       (value) => {
         if (!value.length) {
           return true
@@ -18,10 +41,18 @@ export const schema = Yup.object().shape({
       },
     ),
   expirationDate: Yup.string()
-    .required('Validade é obrigatória.')
+    .required(
+      t(
+        'paymentMethods.card.newCard.fields.expirationDate.errorMessageRequired',
+        settings.locale,
+      ),
+    )
     .test(
       'isValidDate',
-      'Data inválida, verifique os dados do cartão.',
+      t(
+        'paymentMethods.card.newCard.fields.expirationDate.errorMessageInvalidFormat',
+        settings.locale,
+      ),
       (value) => {
         const normalizedValue = value.replace(/\D/g, '').trim()
 
@@ -47,14 +78,39 @@ export const schema = Yup.object().shape({
       },
     ),
   cvv: Yup.string()
-    .required('CVV é obrigatório.')
-    .min(3, 'Formato inválido, verifique os dados do cartão.')
-    .max(4, 'Formato inválido, verifique os dados do cartão.'),
+    .required(
+      t(
+        'paymentMethods.card.newCard.fields.cvv.errorMessageRequired',
+        settings.locale,
+      ),
+    )
+    .min(
+      3,
+      t(
+        'paymentMethods.card.newCard.fields.cvv.errorMessageInvalidFormat',
+        settings.locale,
+      ),
+    )
+    .max(
+      4,
+      t(
+        'paymentMethods.card.newCard.fields.cvv.errorMessageInvalidFormat',
+        settings.locale,
+      ),
+    ),
   name: Yup.string()
-    .required('Portador do cartão é obrigatório.')
+    .required(
+      t(
+        'paymentMethods.card.newCard.fields.name.errorMessageRequired',
+        settings.locale,
+      ),
+    )
     .test(
       'isValidName',
-      'Formato inválido, verifique os dados do cartão.',
+      t(
+        'paymentMethods.card.newCard.fields.name.errorMessageInvalidFormat',
+        settings.locale,
+      ),
       (value) => {
         const normalizedValue = value.replace(/[^A-Za-z]+/g, '')
         const comparedValue = value.replace(/\s/g, '')
@@ -64,7 +120,10 @@ export const schema = Yup.object().shape({
     ),
   installments: Yup.string().test(
     'isValidInstallments',
-    'Selecione uma parcela para prosseguir.',
+    t(
+      'paymentMethods.card.newCard.fields.installments.errorMessageRequired',
+      settings.locale,
+    ),
     (value, context) => {
       if (!context.options.context.hasInstallments) {
         return true

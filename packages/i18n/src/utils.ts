@@ -17,7 +17,7 @@ function getBrowserLocale() {
   return hasCurrentLanguage ? language : 'pt'
 }
 
-function getCurrentLocale(locale?: Locale) {
+export function getCurrentLocale(locale?: Locale) {
   if (locale) return locale
 
   if (!locale && !!window) return getBrowserLocale() as Locale

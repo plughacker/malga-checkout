@@ -1,4 +1,326 @@
-export const documentCountries = [
+import { Locale } from '@plug-checkout/i18n/dist/utils'
+import { getCurrentLocale } from '@plug-checkout/i18n'
+
+const documentCountriesEnglish = [
+  {
+    value: 'AL',
+    label: 'Albania',
+  },
+  {
+    value: 'AD',
+    label: 'Andorra',
+  },
+  {
+    value: 'AR',
+    label: 'Argentina',
+  },
+  {
+    value: 'AT',
+    label: 'Austria',
+  },
+  {
+    value: 'AU',
+    label: 'Australia',
+  },
+  {
+    value: 'BA',
+    label: 'Bosnia and Herzegovina',
+  },
+  {
+    value: 'BZ',
+    label: 'Belize',
+  },
+  {
+    value: 'BE',
+    label: 'Belgium',
+  },
+  {
+    value: 'BG',
+    label: 'Bulgaria',
+  },
+  {
+    value: 'BY',
+    label: 'Belarus',
+  },
+  {
+    value: 'CA',
+    label: 'Canada',
+  },
+  {
+    value: 'CU',
+    label: 'Cuba',
+  },
+  {
+    value: 'CY',
+    label: 'Cyprus',
+  },
+  {
+    value: 'CZ',
+    label: 'Czech Republic',
+  },
+  {
+    value: 'CH',
+    label: 'Switzerland',
+  },
+  {
+    value: 'CL',
+    label: 'Chile',
+  },
+  {
+    value: 'CN',
+    label: 'China',
+  },
+  {
+    value: 'CO',
+    label: 'Colombia',
+  },
+  {
+    value: 'CR',
+    label: 'Costa Rica',
+  },
+  {
+    value: 'DE',
+    label: 'Germany',
+  },
+  {
+    value: 'DK',
+    label: 'Denmark',
+  },
+  {
+    value: 'DO',
+    label: 'Dominican Republic',
+  },
+  {
+    value: 'EC',
+    label: 'Ecuador',
+  },
+  {
+    value: 'EE',
+    label: 'Estonia',
+  },
+  {
+    value: 'SV',
+    label: 'El Salvador',
+  },
+  {
+    value: 'GT',
+    label: 'Guatemala',
+  },
+  {
+    value: 'FI',
+    label: 'Finland',
+  },
+  {
+    value: 'FR',
+    label: 'France',
+  },
+  {
+    value: 'GB',
+    label: 'United Kingdom',
+  },
+  {
+    value: 'GR',
+    label: 'Greece',
+  },
+  {
+    value: 'HR',
+    label: 'Croatia',
+  },
+  {
+    value: 'HK',
+    label: 'Hong Kong',
+  },
+  {
+    value: 'HU',
+    label: 'Hungary',
+  },
+  {
+    value: 'IS',
+    label: 'Iceland',
+  },
+  {
+    value: 'ID',
+    label: 'Indonesia',
+  },
+  {
+    value: 'IE',
+    label: 'Ireland',
+  },
+  {
+    value: 'IN',
+    label: 'India',
+  },
+  {
+    value: 'IL',
+    label: 'Israel',
+  },
+  {
+    value: 'IT',
+    label: 'Italy',
+  },
+  {
+    value: 'LI',
+    label: 'Liechtenstein',
+  },
+  {
+    value: 'LT',
+    label: 'Lithuania',
+  },
+  {
+    value: 'LU',
+    label: 'Luxembourg',
+  },
+  {
+    value: 'LV',
+    label: 'Latvia',
+  },
+  {
+    value: 'MK',
+    label: 'Republic of Macedonia',
+  },
+  {
+    value: 'MC',
+    label: 'Monaco',
+  },
+  {
+    value: 'MD',
+    label: 'Republic of Moldova',
+  },
+  {
+    value: 'MT',
+    label: 'Malta',
+  },
+  {
+    value: 'MU',
+    label: 'Mauritius',
+  },
+  {
+    value: 'JP',
+    label: 'Japan',
+  },
+  {
+    value: 'KR',
+    label: 'South Korea',
+  },
+  {
+    value: 'MX',
+    label: 'Mexico',
+  },
+  {
+    value: 'ME',
+    label: 'Montenegro',
+  },
+  {
+    value: 'MY',
+    label: 'Malaysia',
+  },
+  {
+    value: 'NL',
+    label: 'Netherlands',
+  },
+  {
+    value: 'NZ',
+    label: 'New Zealand',
+  },
+  {
+    value: 'NO',
+    label: 'Norway',
+  },
+  {
+    value: 'PY',
+    label: 'Paraguay',
+  },
+  {
+    value: 'PE',
+    label: 'Peru',
+  },
+  {
+    value: 'PK',
+    label: 'Pakistan',
+  },
+  {
+    value: 'PL',
+    label: 'Poland',
+  },
+  {
+    value: 'PT',
+    label: 'Portugal',
+  },
+  {
+    value: 'RU',
+    label: 'Russian',
+  },
+  {
+    value: 'RO',
+    label: 'Romania',
+  },
+  {
+    value: 'SM',
+    label: 'San Marino',
+  },
+  {
+    value: 'RS',
+    label: 'Serbia',
+  },
+  {
+    value: 'SE',
+    label: 'Sweden',
+  },
+  {
+    value: 'SG',
+    label: 'Singapore',
+  },
+  {
+    value: 'TH',
+    label: 'Thailand',
+  },
+  {
+    value: 'TW',
+    label: 'Taiwan',
+  },
+  {
+    value: 'TR',
+    label: 'Turkey',
+  },
+  {
+    value: 'SI',
+    label: 'Slovenia',
+  },
+  {
+    value: 'SK',
+    label: 'Slovakia',
+  },
+  {
+    value: 'ES',
+    label: 'Spain',
+  },
+  {
+    value: 'UY',
+    label: 'Uruguay',
+  },
+  {
+    value: 'UA',
+    label: 'Ukraine',
+  },
+  {
+    value: 'US',
+    label: 'United States',
+  },
+  {
+    value: 'VE',
+    label: 'Venezuela',
+  },
+  {
+    value: 'VN',
+    label: 'Viet Nam',
+  },
+  {
+    value: 'ZA',
+    label: 'South Africa',
+  },
+]
+
+const documentCountriesPortuguese = [
   {
     value: 'AL',
     label: 'Albânia',
@@ -320,3 +642,18 @@ export const documentCountries = [
     label: 'África do Sul',
   },
 ]
+
+export const documentCountries = (locale?: Locale) => {
+  const currentLocale = getCurrentLocale(locale)
+  const locales = {
+    default: documentCountriesPortuguese,
+    pt: documentCountriesPortuguese,
+    en: documentCountriesEnglish,
+    pt_BR: documentCountriesPortuguese,
+    en_US: documentCountriesEnglish,
+    'pt-BR': documentCountriesPortuguese,
+    'en-US': documentCountriesEnglish,
+  }
+
+  return locales[currentLocale]
+}

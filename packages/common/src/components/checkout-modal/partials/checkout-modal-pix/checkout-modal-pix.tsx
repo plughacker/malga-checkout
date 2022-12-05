@@ -37,11 +37,6 @@ export class CheckoutModalPix {
   @Event() countdownIsFinished: EventEmitter<void>
   @Event() pixActionButtonIsClicked: EventEmitter<void>
 
-  defaultImportantMessages = [
-    t('dialogs.pix.importantMessageFirst', this.locale),
-    t('dialogs.pix.importantMessageSecond', this.locale),
-  ]
-
   private handleClickClipboard = () => {
     if (!this.clipboardIsClicked) {
       this.clipboardIsClicked = true
@@ -61,8 +56,13 @@ export class CheckoutModalPix {
       return <li>{t('dialogs.pix.importantMessageDefault', this.locale)}</li>
     }
 
+    const defaultImportantMessages = [
+      t('dialogs.pix.importantMessageFirst', this.locale),
+      t('dialogs.pix.importantMessageSecond', this.locale),
+    ]
+
     const currentImportantMessages =
-      this.importantMessages || this.defaultImportantMessages
+      this.importantMessages || defaultImportantMessages
     const mappedImportantMessage = currentImportantMessages.map(
       (importantMessage) => <li>{importantMessage}</li>,
     )

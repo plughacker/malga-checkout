@@ -16,6 +16,7 @@ import { Components } from '@plug-checkout/core'
 export declare interface PlugCheckout extends Components.PlugCheckout {}
 @ProxyCmp({
   inputs: [
+    'locale',
     'clientId',
     'sessionId',
     'debug',
@@ -34,6 +35,7 @@ export declare interface PlugCheckout extends Components.PlugCheckout {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: [
+    'locale',
     'clientId',
     'dialogConfig',
     'merchantId',

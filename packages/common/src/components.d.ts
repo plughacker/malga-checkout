@@ -7,6 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { CheckoutIconNames } from "./components/checkout-icon/checkout-icon.types";
 import { CheckoutButtonType } from "./components/checkout-button/checkout-button.types";
+import { Locale } from "@plug-checkout/i18n/dist/utils";
 import { CheckoutManualPaymentDescriptions } from "./components/checkout-manual-payment/checkout-manual-payment.types";
 import { CheckoutModalMode } from "./components/checkout-modal/checkout-modal.types";
 import { Product } from "./components/checkout-order-summary/checkout-order-summary.types";
@@ -29,6 +30,7 @@ export namespace Components {
         "icon"?: CheckoutIconNames;
         "isLoading"?: boolean;
         "label": string;
+        "locale"?: Locale;
         "type"?: CheckoutButtonType;
     }
     interface CheckoutClipboardButton {
@@ -45,10 +47,11 @@ export namespace Components {
         "expiry": string;
         "focused": string;
         "issuer": string;
-        "locale": { valid: string };
+        "locale"?: Locale;
         "name": string;
         "number": string;
-        "placeholders": { name: string };
+        "placeholderName"?: string;
+        "validity"?: string;
     }
     interface CheckoutErrorMessage {
         "customClass"?: string;
@@ -63,6 +66,7 @@ export namespace Components {
     }
     interface CheckoutManualPayment {
         "fullWidth": boolean;
+        "locale"?: Locale;
         "paymentMethod": CheckoutManualPaymentDescriptions;
     }
     interface CheckoutModal {
@@ -78,6 +82,7 @@ export namespace Components {
         "expirationTime"?: number;
         "hasSuccessRedirectUrl"?: boolean;
         "isSession"?: boolean;
+        "locale"?: Locale;
         "mode": CheckoutModalMode;
         "open": boolean;
         "paymentCode": string;
@@ -90,7 +95,7 @@ export namespace Components {
         "successDescription"?: string;
     }
     interface CheckoutModalBoleto {
-        "actionButtonLabel": string;
+        "actionButtonLabel"?: string;
         "amount": number;
         "boletoCode": string;
         "boletoImageUrl": string;
@@ -98,32 +103,36 @@ export namespace Components {
         "expirationDate": string;
         "hasSuccessRedirectUrl"?: boolean;
         "isSession"?: boolean;
-        "waitingPaymentMessage": string;
+        "locale"?: Locale;
+        "waitingPaymentMessage"?: string;
     }
     interface CheckoutModalError {
-        "errorActionButtonLabel": string;
+        "errorActionButtonLabel"?: string;
         "errorDescription"?: string;
         "errorSubtitle"?: string;
         "errorTitle"?: string;
+        "locale"?: Locale;
     }
     interface CheckoutModalPix {
-        "actionButtonLabel": string;
+        "actionButtonLabel"?: string;
         "amount": number;
         "countdownEmptyProgressBarColor"?: string;
         "countdownFilledProgressBarColor"?: string;
         "currency": string;
         "expirationTime": number;
         "hasSuccessRedirectUrl"?: boolean;
-        "importantMessages": string[];
+        "importantMessages"?: string[];
         "isSession"?: boolean;
+        "locale"?: Locale;
         "qrCodeIdentificator": string;
         "qrCodeImageUrl": string;
-        "waitingPaymentMessage": string;
+        "waitingPaymentMessage"?: string;
     }
     interface CheckoutModalSuccess {
         "hasSuccessRedirectUrl"?: boolean;
-        "successActionButtonLabel": string;
-        "successDescription": string;
+        "locale"?: Locale;
+        "successActionButtonLabel"?: string;
+        "successDescription"?: string;
     }
     interface CheckoutOrderSummary {
         "amount": number;
@@ -132,6 +141,7 @@ export namespace Components {
         "fullWidth": boolean;
         "isLoading": boolean;
         "label": string;
+        "locale"?: Locale;
         "products"?: Product[];
     }
     interface CheckoutRadioField {
@@ -369,6 +379,7 @@ declare namespace LocalJSX {
         "icon"?: CheckoutIconNames;
         "isLoading"?: boolean;
         "label"?: string;
+        "locale"?: Locale;
         "onBlured"?: (event: CustomEvent<void>) => void;
         "onClicked"?: (event: CustomEvent<void>) => void;
         "onFocused"?: (event: CustomEvent<void>) => void;
@@ -389,10 +400,11 @@ declare namespace LocalJSX {
         "expiry"?: string;
         "focused"?: string;
         "issuer"?: string;
-        "locale"?: { valid: string };
+        "locale"?: Locale;
         "name"?: string;
         "number"?: string;
-        "placeholders"?: { name: string };
+        "placeholderName"?: string;
+        "validity"?: string;
     }
     interface CheckoutErrorMessage {
         "customClass"?: string;
@@ -407,6 +419,7 @@ declare namespace LocalJSX {
     }
     interface CheckoutManualPayment {
         "fullWidth"?: boolean;
+        "locale"?: Locale;
         "paymentMethod"?: CheckoutManualPaymentDescriptions;
     }
     interface CheckoutModal {
@@ -422,6 +435,7 @@ declare namespace LocalJSX {
         "expirationTime"?: number;
         "hasSuccessRedirectUrl"?: boolean;
         "isSession"?: boolean;
+        "locale"?: Locale;
         "mode"?: CheckoutModalMode;
         "onErrorButtonClicked"?: (event: CustomEvent<void>) => void;
         "onPixCountdownIsFinished"?: (event: CustomEvent<void>) => void;
@@ -445,6 +459,7 @@ declare namespace LocalJSX {
         "expirationDate"?: string;
         "hasSuccessRedirectUrl"?: boolean;
         "isSession"?: boolean;
+        "locale"?: Locale;
         "onBoletoActionButtonIsClicked"?: (event: CustomEvent<void>) => void;
         "waitingPaymentMessage"?: string;
     }
@@ -453,6 +468,7 @@ declare namespace LocalJSX {
         "errorDescription"?: string;
         "errorSubtitle"?: string;
         "errorTitle"?: string;
+        "locale"?: Locale;
         "onErrorActionButtonClicked"?: (event: CustomEvent<void>) => void;
     }
     interface CheckoutModalPix {
@@ -465,6 +481,7 @@ declare namespace LocalJSX {
         "hasSuccessRedirectUrl"?: boolean;
         "importantMessages"?: string[];
         "isSession"?: boolean;
+        "locale"?: Locale;
         "onCountdownIsFinished"?: (event: CustomEvent<void>) => void;
         "onPixActionButtonIsClicked"?: (event: CustomEvent<void>) => void;
         "qrCodeIdentificator"?: string;
@@ -473,6 +490,7 @@ declare namespace LocalJSX {
     }
     interface CheckoutModalSuccess {
         "hasSuccessRedirectUrl"?: boolean;
+        "locale"?: Locale;
         "onSuccessActionButtonClicked"?: (event: CustomEvent<void>) => void;
         "successActionButtonLabel"?: string;
         "successDescription"?: string;
@@ -484,6 +502,7 @@ declare namespace LocalJSX {
         "fullWidth"?: boolean;
         "isLoading"?: boolean;
         "label"?: string;
+        "locale"?: Locale;
         "products"?: Product[];
     }
     interface CheckoutRadioField {

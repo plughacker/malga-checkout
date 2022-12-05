@@ -7,17 +7,18 @@
 
 ## Properties
 
-| Property                | Attribute                  | Description | Type      | Default                          |
-| ----------------------- | -------------------------- | ----------- | --------- | -------------------------------- |
-| `actionButtonLabel`     | `action-button-label`      |             | `string`  | `'Continuar'`                    |
-| `amount`                | `amount`                   |             | `number`  | `undefined`                      |
-| `boletoCode`            | `boleto-code`              |             | `string`  | `undefined`                      |
-| `boletoImageUrl`        | `boleto-image-url`         |             | `string`  | `undefined`                      |
-| `currency`              | `currency`                 |             | `string`  | `undefined`                      |
-| `expirationDate`        | `expiration-date`          |             | `string`  | `undefined`                      |
-| `hasSuccessRedirectUrl` | `has-success-redirect-url` |             | `boolean` | `undefined`                      |
-| `isSession`             | `is-session`               |             | `boolean` | `undefined`                      |
-| `waitingPaymentMessage` | `waiting-payment-message`  |             | `string`  | `'Pedido aguardando pagamento!'` |
+| Property                | Attribute                  | Description | Type                                                                    | Default     |
+| ----------------------- | -------------------------- | ----------- | ----------------------------------------------------------------------- | ----------- |
+| `actionButtonLabel`     | `action-button-label`      |             | `string`                                                                | `undefined` |
+| `amount`                | `amount`                   |             | `number`                                                                | `undefined` |
+| `boletoCode`            | `boleto-code`              |             | `string`                                                                | `undefined` |
+| `boletoImageUrl`        | `boleto-image-url`         |             | `string`                                                                | `undefined` |
+| `currency`              | `currency`                 |             | `string`                                                                | `undefined` |
+| `expirationDate`        | `expiration-date`          |             | `string`                                                                | `undefined` |
+| `hasSuccessRedirectUrl` | `has-success-redirect-url` |             | `boolean`                                                               | `undefined` |
+| `isSession`             | `is-session`               |             | `boolean`                                                               | `undefined` |
+| `locale`                | `locale`                   |             | `"default" \| "en" \| "en-US" \| "en_US" \| "pt" \| "pt-BR" \| "pt_BR"` | `undefined` |
+| `waitingPaymentMessage` | `waiting-payment-message`  |             | `string`                                                                | `undefined` |
 
 
 ## Events

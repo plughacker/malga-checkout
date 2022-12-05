@@ -10,33 +10,37 @@ import {
 } from '@stencil/core'
 
 import { formatCurrency } from '@plug-checkout/utils'
+import { Locale } from '@plug-checkout/i18n/dist/utils'
+import { t } from '@plug-checkout/i18n'
 
 @Component({
   tag: 'checkout-modal-pix',
   styleUrl: 'checkout-modal-pix.scss',
 })
 export class CheckoutModalPix {
+  @Prop() locale?: Locale
   @Prop() qrCodeIdentificator: string
   @Prop() qrCodeImageUrl: string
   @Prop() amount: number
   @Prop() currency: string
   @Prop() expirationTime: number
-  @Prop() actionButtonLabel = 'Continuar'
+  @Prop() actionButtonLabel?: string
   @Prop() countdownFilledProgressBarColor?: string
   @Prop() countdownEmptyProgressBarColor?: string
   @Prop() hasSuccessRedirectUrl?: boolean
   @Prop() isSession?: boolean
-  @Prop() importantMessages = [
-    `Vamos avisar por e-mail quando o banco identificar o depósito.
-  Esse processo é automático.`,
-    `Caso o tempo de pagamento tenha expirado e o Pix não tenha sido pago, seu pedido será cancelado automaticamente. Não pague após este horário.`,
-  ]
-  @Prop() waitingPaymentMessage = 'Pedido aguardando pagamento!'
+  @Prop() importantMessages?: string[]
+  @Prop() waitingPaymentMessage?: string
 
   @State() clipboardIsClicked = false
 
   @Event() countdownIsFinished: EventEmitter<void>
   @Event() pixActionButtonIsClicked: EventEmitter<void>
+
+  defaultImportantMessages = [
+    t('dialogs.pix.importantMessageFirst', this.locale),
+    t('dialogs.pix.importantMessageSecond', this.locale),
+  ]
 
   private handleClickClipboard = () => {
     if (!this.clipboardIsClicked) {
@@ -46,24 +50,20 @@ export class CheckoutModalPix {
 
   private handleClipboardButtonLabel = () => {
     if (this.clipboardIsClicked) {
-      return 'Código Copiado'
+      return t('dialogs.pix.clipboardClicked', this.locale)
     }
 
-    return 'Copiar Código'
+    return t('dialogs.pix.clipboard', this.locale)
   }
 
   private renderListImportantMessages = () => {
     if (this.isSession) {
-      return (
-        <li>
-          Caso o tempo de pagamento tenha expirado e o Pix não tenha sido pago,
-          seu pedido será cancelado automaticamente. Não pague após este
-          horário.
-        </li>
-      )
+      return <li>{t('dialogs.pix.importantMessageDefault', this.locale)}</li>
     }
 
-    const mappedImportantMessage = this.importantMessages.map(
+    const currentImportantMessages =
+      this.importantMessages || this.defaultImportantMessages
+    const mappedImportantMessage = currentImportantMessages.map(
       (importantMessage) => <li>{importantMessage}</li>,
     )
 
@@ -79,7 +79,10 @@ export class CheckoutModalPix {
             tag="h3"
             variation="header5"
             color="white"
-            content={this.waitingPaymentMessage}
+            content={
+              this.waitingPaymentMessage ||
+              t('dialogs.pix.waitingPaymentMessage', this.locale)
+            }
           />
         </header>
         <section class={{ 'checkout-modal-pix__content': true }}>
@@ -89,12 +92,12 @@ export class CheckoutModalPix {
           <checkout-typography
             tag="h4"
             variation="header6"
-            content="PIX disponível para pagamento!"
+            content={t('dialogs.pix.title', this.locale)}
           />
           <checkout-typography
             tag="h5"
             variation="field"
-            content="Faça o pagamento do PIX abaixo para finalizar o seu pedido:"
+            content={t('dialogs.pix.subtitle', this.locale)}
           />
           <div class={{ 'checkout-modal-pix__qr-code-informations': true }}>
             <img src={this.qrCodeImageUrl} alt="QR Code" />
@@ -110,7 +113,7 @@ export class CheckoutModalPix {
                 content={this.qrCodeIdentificator}
               />
               <checkout-clipboard-button
-                label="Escaneie ou clique para copiar o código para pagar no aplicativo do seu banco."
+                label={t('dialogs.pix.clipboardDescription', this.locale)}
                 clipboardContent={this.qrCodeIdentificator}
               />
             </div>
@@ -133,8 +136,11 @@ export class CheckoutModalPix {
               <Fragment>
                 <div>
                   <p>
-                    Seu código
-                    <strong> expira em:</strong>
+                    {t('dialogs.pix.expirationTimeCode', this.locale)}
+                    <strong>
+                      {' '}
+                      {t('dialogs.pix.expirationTime', this.locale)}
+                    </strong>
                   </p>
                   <checkout-countdown
                     filledProgressBarColor={
@@ -147,7 +153,7 @@ export class CheckoutModalPix {
                 </div>
 
                 <p>
-                  <strong>Valor a pagar: </strong>
+                  <strong>{t('dialogs.pix.amount', this.locale)} </strong>
                   {formatCurrency(this.amount, this.currency)}
                 </p>
               </Fragment>
@@ -162,15 +168,19 @@ export class CheckoutModalPix {
               tag="h5"
               color="darkness"
               variation="field"
-              content="Para fazer o pagamento"
+              content={t('dialogs.pix.paymentInstructions', this.locale)}
             />
 
             <ol>
               <li>
-                Abra o aplicativo do seu banco e selecione o ambiente do PIX.
+                {t('dialogs.pix.paymentInstructionsFirstMessage', this.locale)}
               </li>
-              <li>Escolha a opção pagar com código e cole o código acima.</li>
-              <li>Confirme as informações e finalize a sua compra.</li>
+              <li>
+                {t('dialogs.pix.paymentInstructionsSecondMessage', this.locale)}
+              </li>
+              <li>
+                {t('dialogs.pix.paymentInstructionsThirdMessage', this.locale)}
+              </li>
             </ol>
           </div>
           <div
@@ -182,7 +192,7 @@ export class CheckoutModalPix {
               tag="h5"
               color="darkness"
               variation="field"
-              content="Informações importantes"
+              content={t('dialogs.pix.importantMessage', this.locale)}
             />
 
             <ul>{this.renderListImportantMessages()}</ul>
@@ -194,7 +204,10 @@ export class CheckoutModalPix {
               }}
             >
               <checkout-button
-                label={this.actionButtonLabel}
+                label={
+                  this.actionButtonLabel ||
+                  t('dialogs.common.actionButtonLabel', this.locale)
+                }
                 onClicked={() => this.pixActionButtonIsClicked.emit()}
               />
             </div>

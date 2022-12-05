@@ -1,18 +1,21 @@
 import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
 import { formatDate, formatCurrency, parseDate } from '@plug-checkout/utils'
+import { Locale } from '@plug-checkout/i18n/dist/utils'
+import { t } from '@plug-checkout/i18n'
 
 @Component({
   tag: 'checkout-modal-boleto',
   styleUrl: 'checkout-modal-boleto.scss',
 })
 export class CheckoutModalBoleto {
+  @Prop() locale?: Locale
   @Prop() boletoCode: string
   @Prop() boletoImageUrl: string
   @Prop() amount: number
   @Prop() currency: string
   @Prop() expirationDate: string
-  @Prop() actionButtonLabel = 'Continuar'
-  @Prop() waitingPaymentMessage = 'Pedido aguardando pagamento!'
+  @Prop() actionButtonLabel?: string
+  @Prop() waitingPaymentMessage?: string
   @Prop() hasSuccessRedirectUrl?: boolean
   @Prop() isSession?: boolean
 
@@ -35,7 +38,10 @@ export class CheckoutModalBoleto {
             tag="h3"
             variation="header5"
             color="white"
-            content={this.waitingPaymentMessage}
+            content={
+              this.waitingPaymentMessage ||
+              t('dialogs.boleto.waitingPaymentMessage', this.locale)
+            }
           />
         </header>
         <section class={{ 'checkout-modal-boleto__content': true }}>
@@ -45,12 +51,12 @@ export class CheckoutModalBoleto {
           <checkout-typography
             tag="h4"
             variation="header6"
-            content="Boleto disponível para pagamento!"
+            content={t('dialogs.boleto.title', this.locale)}
           />
           <checkout-typography
             tag="h5"
             variation="field"
-            content="Faça o pagamento do Boleto abaixo para finalizar o seu pedido:"
+            content={t('dialogs.boleto.subtitle', this.locale)}
           />
           <div class={{ 'checkout-modal-boleto__bar-code-informations': true }}>
             <checkout-typography
@@ -59,7 +65,7 @@ export class CheckoutModalBoleto {
               content={this.boletoCode}
             />
             <checkout-clipboard-button
-              label="Escaneie ou clique para copiar o código para pagar no aplicativo do seu banco."
+              label={t('dialogs.boleto.clipboardDescription', this.locale)}
               clipboardContent={this.boletoCode}
             />
           </div>
@@ -67,7 +73,7 @@ export class CheckoutModalBoleto {
             class={{ 'checkout-modal-boleto__clipboard-button-mobile': true }}
           >
             <checkout-button
-              label="Copiar Código"
+              label={t('dialogs.boleto.clipboard', this.locale)}
               clipboardContent={this.boletoCode}
             />
           </div>
@@ -77,11 +83,13 @@ export class CheckoutModalBoleto {
             }}
           >
             <p>
-              <strong>Valor a pagar: </strong>
+              <strong>{t('dialogs.boleto.amount', this.locale)} </strong>
               {formatCurrency(this.amount, this.currency)}
             </p>
             <p>
-              <strong>Vencimento: </strong>
+              <strong>
+                {t('dialogs.boleto.expirationDate', this.locale)}{' '}
+              </strong>
               {this.getExpirationDateFormatted()}
             </p>
           </div>
@@ -95,21 +103,20 @@ export class CheckoutModalBoleto {
               tag="h5"
               color="darkness"
               variation="field"
-              content="Informações Importantes"
+              content={t('dialogs.boleto.importantMessage', this.locale)}
             />
 
             <ul>
               {!this.isSession && (
                 <li>
-                  Vamos avisar por e-mail quando o banco identificar o depósito.
-                  Esse processo pode levar até 48h e é automático.
+                  {t('dialogs.boleto.importantMessageDefault', this.locale)}
                 </li>
               )}
 
               <li>
-                Caso o boleto não seja pago até{' '}
-                {this.getExpirationDateFormatted()}, o pedido será cancelado
-                automaticamente. Não pague após esta data.
+                {t('dialogs.boleto.importantMessageFirst', this.locale, {
+                  expirationDate: this.getExpirationDateFormatted(),
+                })}
               </li>
             </ul>
           </div>
@@ -123,14 +130,17 @@ export class CheckoutModalBoleto {
                 tag="span"
                 color="white"
                 variation="button"
-                content="Exibir Boleto"
+                content={t('dialogs.boleto.showBoleto', this.locale)}
               />
               <checkout-icon icon="newTab" />
             </a>
 
             {!!this.hasSuccessRedirectUrl && (
               <checkout-button
-                label={this.actionButtonLabel}
+                label={
+                  this.actionButtonLabel ||
+                  t('dialogs.common.actionButtonLabel', this.locale)
+                }
                 onClicked={() => this.boletoActionButtonIsClicked.emit()}
               />
             )}

@@ -1,3 +1,4 @@
+import { Locale } from '@plug-checkout/i18n/dist/utils'
 import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
 
 import { CheckoutModalMode } from './checkout-modal.types'
@@ -29,6 +30,7 @@ export class CheckoutModal {
   @Prop() pixEmptyProgressBarColor?: string
   @Prop() hasSuccessRedirectUrl?: boolean
   @Prop() isSession?: boolean
+  @Prop() locale?: Locale
 
   @Event() successButtonClicked: EventEmitter<void>
   @Event() errorButtonClicked: EventEmitter<void>
@@ -44,6 +46,7 @@ export class CheckoutModal {
         <div class={{ 'checkout-modal__content': true }}>
           {this.mode === 'success' && (
             <checkout-modal-success
+              locale={this.locale}
               hasSuccessRedirectUrl={this.hasSuccessRedirectUrl}
               successDescription={this.successDescription}
               successActionButtonLabel={this.successActionButtonLabel}
@@ -54,6 +57,7 @@ export class CheckoutModal {
           )}
           {this.mode === 'error' && (
             <checkout-modal-error
+              locale={this.locale}
               errorTitle={this.errorTitle}
               errorSubtitle={this.errorSubtitle}
               errorDescription={this.errorDescription}
@@ -63,6 +67,7 @@ export class CheckoutModal {
           )}
           {this.mode === 'pix' && (
             <checkout-modal-pix
+              locale={this.locale}
               hasSuccessRedirectUrl={this.hasSuccessRedirectUrl}
               isSession={this.isSession}
               currency={this.currency}
@@ -83,6 +88,7 @@ export class CheckoutModal {
           )}
           {this.mode === 'boleto' && (
             <checkout-modal-boleto
+              locale={this.locale}
               hasSuccessRedirectUrl={this.hasSuccessRedirectUrl}
               isSession={this.isSession}
               currency={this.currency}

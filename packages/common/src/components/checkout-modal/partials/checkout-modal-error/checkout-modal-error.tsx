@@ -1,3 +1,5 @@
+import { t } from '@plug-checkout/i18n'
+import { Locale } from '@plug-checkout/i18n/dist/utils'
 import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
 
 @Component({
@@ -5,10 +7,11 @@ import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
   styleUrl: 'checkout-modal-error.scss',
 })
 export class CheckoutModalError {
+  @Prop() locale?: Locale
   @Prop() errorTitle?: string
   @Prop() errorSubtitle?: string
   @Prop() errorDescription?: string
-  @Prop() errorActionButtonLabel = 'Tentar Novamente'
+  @Prop() errorActionButtonLabel?: string
 
   @Event() errorActionButtonClicked: EventEmitter<void>
 
@@ -38,7 +41,10 @@ export class CheckoutModalError {
           content={this.errorDescription}
         />
         <checkout-button
-          label={this.errorActionButtonLabel}
+          label={
+            this.errorActionButtonLabel ||
+            t('dialogs.error.actionButtonLabel', this.locale)
+          }
           onClick={() => this.errorActionButtonClicked.emit()}
         />
       </Host>

@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property                   | Attribute                     | Description | Type      | Default                          |
-| -------------------------- | ----------------------------- | ----------- | --------- | -------------------------------- |
-| `hasSuccessRedirectUrl`    | `has-success-redirect-url`    |             | `boolean` | `undefined`                      |
-| `successActionButtonLabel` | `success-action-button-label` |             | `string`  | `'Continuar'`                    |
-| `successDescription`       | `success-description`         |             | `string`  | `'Pedido recebido com sucesso!'` |
+| Property                   | Attribute                     | Description | Type                                                                    | Default     |
+| -------------------------- | ----------------------------- | ----------- | ----------------------------------------------------------------------- | ----------- |
+| `hasSuccessRedirectUrl`    | `has-success-redirect-url`    |             | `boolean`                                                               | `undefined` |
+| `locale`                   | `locale`                      |             | `"default" \| "en" \| "en-US" \| "en_US" \| "pt" \| "pt-BR" \| "pt_BR"` | `undefined` |
+| `successActionButtonLabel` | `success-action-button-label` |             | `string`                                                                | `undefined` |
+| `successDescription`       | `success-description`         |             | `string`                                                                | `undefined` |
 
 
 ## Events

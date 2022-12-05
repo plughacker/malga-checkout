@@ -1,3 +1,5 @@
+import { t } from '@plug-checkout/i18n'
+import { Locale } from '@plug-checkout/i18n/dist/utils'
 import { Component, Host, h, ComponentInterface, Prop } from '@stencil/core'
 
 import { CheckoutManualPaymentDescriptions } from './checkout-manual-payment.types'
@@ -9,25 +11,31 @@ import { CheckoutManualPaymentDescriptions } from './checkout-manual-payment.typ
 export class CheckoutManualPayment implements ComponentInterface {
   @Prop() fullWidth: boolean
   @Prop() paymentMethod: CheckoutManualPaymentDescriptions = 'pix'
+  @Prop() locale?: Locale
 
-  static DESCRIPTIONS = {
+  descriptions = {
     pix: (
       <span slot="content" class="checkout-manual-payment__description">
-        O QR Code do PIX será exibido{' '}
-        <strong>após a confirmação de compra</strong>.
-      </span>
-    ),
-    pixWithTimer: (
-      <span slot="content" class="checkout-manual-payment__description">
-        O QR Code será exibido após a confirmação de compra com{' '}
-        <strong>validade de 10 minutos para ser pago</strong>. O pedido será
-        cancelado automaticamente após esse período.
+        {t('paymentMethods.pix.descriptions.showQrCode', this.locale)}{' '}
+        <strong>
+          {t(
+            'paymentMethods.pix.descriptions.paymentConfirmation',
+            this.locale,
+          )}
+        </strong>
+        .
       </span>
     ),
     boleto: (
       <span slot="content" class="checkout-manual-payment__description">
-        O boleto com o código de barras será exibido{' '}
-        <strong>após a confirmação de compra</strong>.
+        {t('paymentMethods.boleto.descriptions.showBarcode', this.locale)}{' '}
+        <strong>
+          {t(
+            'paymentMethods.boleto.descriptions.paymentConfirmation',
+            this.locale,
+          )}
+        </strong>
+        .
       </span>
     ),
   }
@@ -41,7 +49,7 @@ export class CheckoutManualPayment implements ComponentInterface {
         }}
       >
         <checkout-typography tag="p">
-          {CheckoutManualPayment.DESCRIPTIONS[this.paymentMethod]}
+          {this.descriptions[this.paymentMethod]}
         </checkout-typography>
       </Host>
     )

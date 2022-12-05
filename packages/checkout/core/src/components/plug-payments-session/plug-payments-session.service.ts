@@ -12,6 +12,7 @@ import {
   PlugPaymentsSessionDialogShowCallback,
   PlugPaymentsSessionRequest,
 } from './plug-payments-session.types'
+import { t } from '@plug-checkout/i18n'
 
 export class PlugPaymentsSessionService {
   readonly session?: Sessions
@@ -27,8 +28,7 @@ export class PlugPaymentsSessionService {
       this.onShowDialog({
         open: true,
         mode: 'error',
-        errorMessage:
-          'Não foi possível concluir sua transação, tente novamente.',
+        errorMessage: t('dialogs.session.errorMessage', settings.locale),
       })
     }
   }

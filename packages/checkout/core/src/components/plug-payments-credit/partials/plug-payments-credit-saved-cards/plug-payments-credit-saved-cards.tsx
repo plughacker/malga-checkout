@@ -10,6 +10,7 @@ import dialog from '../../../../stores/dialog'
 import { PlugPaymentsCreditSavedCardsService } from './plug-payments-credit-saved-cards.service'
 
 import { centsToReal } from '../plug-payments-credit-form/plug-payments-credit-form.utils'
+import { t } from '@plug-checkout/i18n'
 
 @Component({
   tag: 'plug-payments-credit-saved-cards',
@@ -41,7 +42,7 @@ export class PlugPaymentsCreditSavedCards {
         label: `${currentInstallment}x ${centsToReal(
           installmentValue,
           settings.transactionConfig.currency,
-        )}, total ${centsToReal(
+        )}, ${t('common.total', settings.locale)} ${centsToReal(
           settings.transactionConfig.amount,
           settings.transactionConfig.currency,
         )}`,
@@ -75,7 +76,10 @@ export class PlugPaymentsCreditSavedCards {
           <div class={{ 'plug-payments-credit-saved-cards__card': true }}>
             <checkout-radio-field
               fullWidth
-              label={`Cartão de crédito •••• ${card.last4digits}`}
+              label={`${t(
+                'paymentMethods.card.savedCards.card',
+                settings.locale,
+              )} ${card.last4digits}`}
               value={value}
               endIcon={getCardBrand(card.first6digits)}
               isChecked={isChecked}
@@ -88,7 +92,10 @@ export class PlugPaymentsCreditSavedCards {
                 <checkout-typography
                   variation="field"
                   color="dark"
-                  content="Para efetuar sua transação de forma segura, informe o CVV presente no verso do seu cartão."
+                  content={t(
+                    'paymentMethods.card.savedCards.fields.cvv.description',
+                    settings.locale,
+                  )}
                 />
                 <div
                   class={{
@@ -98,7 +105,10 @@ export class PlugPaymentsCreditSavedCards {
                   <checkout-text-field
                     fullWidth
                     name="cvv"
-                    label="Código de segurança (CVV) *"
+                    label={t(
+                      'paymentMethods.card.savedCards.fields.cvv.label',
+                      settings.locale,
+                    )}
                     mask="9999"
                     value={payment.cvv}
                     onChanged={this.handleCvvChange}
@@ -107,7 +117,12 @@ export class PlugPaymentsCreditSavedCards {
                     hasError={validationCvv}
                   />
                   {!!validationCvv && (
-                    <checkout-error-message message="Formato inválido, verifique os dados do cartão." />
+                    <checkout-error-message
+                      message={t(
+                        'paymentMethods.card.savedCards.fields.cvv.errorMessage',
+                        settings.locale,
+                      )}
+                    />
                   )}
                 </div>
                 {settings.paymentMethods?.credit?.installments?.show && (
@@ -115,7 +130,10 @@ export class PlugPaymentsCreditSavedCards {
                     <checkout-select-field
                       fullWidth
                       name="installments"
-                      label="Parcelamento *"
+                      label={t(
+                        'paymentMethods.card.savedCards.fields.installments.label',
+                        settings.locale,
+                      )}
                       value={payment.installments}
                       onChanged={this.handleInstallmentsChange}
                       options={this.renderInstallmentOptions()}
@@ -123,7 +141,12 @@ export class PlugPaymentsCreditSavedCards {
                     />
 
                     {!!validationInstallments && (
-                      <checkout-error-message message="Parcelamento é obrigatório." />
+                      <checkout-error-message
+                        message={t(
+                          'paymentMethods.card.savedCards.fields.installments.errorMessage',
+                          settings.locale,
+                        )}
+                      />
                     )}
                   </div>
                 )}

@@ -9,6 +9,8 @@ import {
 } from '@stencil/core'
 
 import { getCurrentIssuer, getMaxLengthPerIssuer } from '@plug-checkout/utils'
+import { Locale } from '@plug-checkout/i18n/dist/utils'
+import { t } from '@plug-checkout/i18n'
 
 @Component({
   tag: 'checkout-credit-card',
@@ -21,8 +23,9 @@ export class CheckoutCreditCard implements ComponentInterface {
   @Prop({ mutable: true }) issuer: string
   @Prop() name: string
   @Prop({ mutable: true }) number: string
-  @Prop() locale: { valid: string } = { valid: 'valido ate' }
-  @Prop() placeholders: { name: string } = { name: 'Nome Completo' }
+  @Prop() validity?: string
+  @Prop() placeholderName?: string
+  @Prop() locale?: Locale
 
   @State() options: { issuer: string; maxLength: number } = {
     issuer: 'unknow',
@@ -31,7 +34,9 @@ export class CheckoutCreditCard implements ComponentInterface {
 
   @Watch('cvv')
   protected handleWatchCvv() {
-    this.cvv = this.cvv.trim() || 'CVV'
+    this.cvv =
+      this.cvv.trim() ||
+      t('paymentMethods.card.newCard.creditCard.cvv', this.locale)
   }
 
   @Watch('number')
@@ -94,8 +99,16 @@ export class CheckoutCreditCard implements ComponentInterface {
   }
 
   render() {
-    const { cvv, focused, locale, name, placeholders, number, expiry, issuer } =
-      this
+    const {
+      cvv,
+      focused,
+      validity,
+      name,
+      placeholderName,
+      number,
+      expiry,
+      issuer,
+    } = this
 
     return (
       <Host>
@@ -110,7 +123,10 @@ export class CheckoutCreditCard implements ComponentInterface {
           >
             <div class="checkout-credit-card__card--front">
               <div class="checkout-credit-card__safe-environment">
-                ambiente seguro
+                {t(
+                  'paymentMethods.card.newCard.creditCard.safeEnvironment',
+                  this.locale,
+                )}
               </div>
               <div class="checkout-credit-card__card__background" />
               <div class="checkout-credit-card__issuer" />
@@ -140,7 +156,9 @@ export class CheckoutCreditCard implements ComponentInterface {
                   'checkout-credit-card--filled': !!name,
                 }}
               >
-                {name || placeholders.name}
+                {name ||
+                  placeholderName ||
+                  t('paymentMethods.card.newCard.creditCard.name', this.locale)}
               </div>
               <div
                 class={{
@@ -150,7 +168,11 @@ export class CheckoutCreditCard implements ComponentInterface {
                 }}
               >
                 <div class="checkout-credit-card__expiry__valid">
-                  {locale.valid}
+                  {validity ||
+                    t(
+                      'paymentMethods.card.newCard.creditCard.validity',
+                      this.locale,
+                    )}
                 </div>
                 <div class="checkout-credit-card__expiry__value">{expiry}</div>
               </div>
@@ -158,7 +180,10 @@ export class CheckoutCreditCard implements ComponentInterface {
             </div>
             <div class="checkout-credit-card__card--back">
               <div class="checkout-credit-card__safe-environment">
-                ambiente seguro
+                {t(
+                  'paymentMethods.card.newCard.creditCard.safeEnvironment',
+                  this.locale,
+                )}
               </div>
               <div class="checkout-credit-card__card__background" />
               <div class="checkout-credit-card__stripe" />

@@ -16,6 +16,7 @@ import { PlugPayments } from '../../types/plug-payments.types'
 import { PlugPaymentsSuccess } from '../../types/plug-payments-success.types'
 import { PlugPaymentsError } from '../../types/plug-payments-error.types'
 import { PlugPaymentsPaymentMethodPix } from '../../types/plug-payments-payment-methods.types'
+import { t } from '@plug-checkout/i18n'
 
 export class PlugPaymentsPixService implements PlugPayments {
   readonly charge?: Charges
@@ -61,8 +62,7 @@ export class PlugPaymentsPixService implements PlugPayments {
       this.onShowDialog({
         open: true,
         mode: 'error',
-        errorMessage:
-          'Não foi possível concluir sua transação, tente novamente.',
+        errorMessage: t('dialogs.pix.errorMessage', settings.locale),
       })
     }
 
@@ -101,9 +101,8 @@ export class PlugPaymentsPixService implements PlugPayments {
         this.onShowDialog({
           open: true,
           mode: 'error',
-          errorTitle: 'O código PIX expirou',
-          errorMessage:
-            'Caso já tenha feito o pagamento, aguarde o e-mail de confirmação. Se não fez o pagamento ainda, faça um novo pedido.',
+          errorTitle: t('dialogs.pix.errorTitleExpired', settings.locale),
+          errorMessage: t('dialogs.pix.errorMessageExpired', settings.locale),
         })
 
         this.handlePaymentFailed({
@@ -118,14 +117,13 @@ export class PlugPaymentsPixService implements PlugPayments {
       this.onShowDialog({
         mode: 'success',
         open: true,
-        successMessage: 'Pagamento feito com sucesso',
+        successMessage: t('dialogs.pix.successMessage', settings.locale),
       })
     } catch (error) {
       this.onShowDialog({
         open: true,
         mode: 'error',
-        errorMessage:
-          'Não foi possível concluir sua transação, tente novamente.',
+        errorMessage: t('dialogs.pix.errorMessage', settings.locale),
       })
 
       this.handlePaymentFailed({

@@ -32,10 +32,10 @@ export interface PlugCheckoutPaymentMethods {
 
 export interface PlugCheckoutDialog {
   show: boolean
-  actionButtonLabel: string
-  successActionButtonLabel: string
-  errorActionButtonLabel: string
-  successRedirectUrl: string
+  actionButtonLabel?: string
+  successActionButtonLabel?: string
+  errorActionButtonLabel?: string
+  successRedirectUrl?: string
   boletoWaitingPaymentMessage?: string
   pixWaitingPaymentMessage?: string
   pixImportantMessages?: string[]

@@ -3,6 +3,8 @@ import { Component, Host, h, Prop, State, Fragment } from '@stencil/core'
 import { Product } from './checkout-order-summary.types'
 
 import { formatCurrency } from '@plug-checkout/utils'
+import { Locale } from '@plug-checkout/i18n/dist/utils'
+import { t } from '@plug-checkout/i18n'
 
 @Component({
   tag: 'checkout-order-summary',
@@ -15,6 +17,7 @@ export class CheckoutOrderSummary {
   @Prop() currency: string
   @Prop() delivery: number
   @Prop() products?: Product[]
+  @Prop() locale?: Locale
   @Prop() isLoading = false
 
   @State() showDescription = true
@@ -47,7 +50,7 @@ export class CheckoutOrderSummary {
               <checkout-typography
                 color="darkness"
                 variation="subtitle1"
-                content="Frete"
+                content={t('common.order.delivery', this.locale)}
               />
               <checkout-typography
                 tag="span"
@@ -115,7 +118,7 @@ export class CheckoutOrderSummary {
 
         {!this.isLoading && (
           <section class={{ 'checkout-order-summary__total': true }}>
-            <p>Total</p>
+            <p>{t('common.order.amount', this.locale)}</p>
             <p>{formatCurrency(this.amount, this.currency)}</p>
           </section>
         )}

@@ -1,3 +1,141 @@
 {
-  "helloWorld": "Olá Mundo, {first} {last}"
+  "common": {
+    "total": "total",
+    "processing": "Processando",
+    "other": "Outro",
+    "order": {
+      "amount": "Total",
+      "delivery": "Frete"
+    }
+  },
+  "paymentMethods": {
+    "common": {
+      "payButton": "Pagar"
+    },
+    "card": {
+      "title": "Cartão de crédito",
+      "newCardTitle": "Novo cartão de crédito",
+      "newCard": {
+        "errorMessageAllFieldsRequired": "Preencha todos os campos para prosseguir.",
+        "creditCard": {
+          "validity": "valido ate",
+          "name": "Nome Completo",
+          "cvv": "CVV",
+          "safeEnvironment": "ambiente seguro"
+        },
+        "fields": {
+          "cardNumber": {
+            "label": "Número do cartão *",
+            "errorMessageRequired": "Número do cartão é obrigatório.",
+            "errorMessageInvalidFormat": "Formato inválido, verifique os dados do cartão."
+          },
+          "expirationDate": {
+            "label": "Data de expiração (MM/AA) *",
+            "errorMessageRequired": "Validade é obrigatória.",
+            "errorMessageInvalidFormat": "Data inválida, verifique os dados do cartão."
+          },
+          "cvv": {
+            "label": "Código de segurança (CVV) *",
+            "errorMessageRequired": "CVV é obrigatório.",
+            "errorMessageInvalidFormat": "Formato inválido, verifique os dados do cartão."
+          },
+          "name": {
+            "label": "Nome no cartão *",
+            "errorMessageRequired": "Portador do cartão é obrigatório.",
+            "errorMessageInvalidFormat": "Formato inválido, verifique os dados do cartão."
+          },
+          "installments": {
+            "label": "Parcelamento *",
+            "errorMessageRequired": "Selecione uma parcela para prosseguir."
+          },
+          "saveCard": {
+            "label": "Armazenar cartão para compras futuras"
+          }
+        }
+      },
+      "savedCards": {
+        "card": "Cartão de crédito ••••",
+        "fields": {
+          "cvv": {
+            "description": "Para efetuar sua transação de forma segura, informe o CVV presente no verso do seu cartão.",
+            "label": "Código de segurança (CVV) *",
+            "errorMessage": "Formato inválido, verifique os dados do cartão."
+          },
+          "installments": {
+            "label": "Parcelamento *",
+            "errorMessage": "Parcelamento é obrigatório."
+          }
+        }
+      }
+    },
+    "pix": {
+      "title": "PIX",
+      "descriptions": {
+        "showQrCode": "O QR Code do PIX será exibido",
+        "paymentConfirmation": "após a confirmação de compra"
+      }
+    },
+    "boleto": {
+      "title": "Boleto",
+      "descriptions": {
+        "showBarcode": "O boleto com o código de barras será exibido",
+        "paymentConfirmation": "após a confirmação de compra"
+      }
+    }
+  },
+  "dialogs": {
+    "common": {
+      "actionButtonLabel": "Continuar"
+    },
+    "pix": {
+      "title": "PIX disponível para pagamento!",
+      "subtitle": "Faça o pagamento do PIX abaixo para finalizar o seu pedido:",
+      "waitingPaymentMessage": "Pedido aguardando pagamento!",
+      "importantMessage": "Informações importantes",
+      "importantMessageDefault": "Caso o tempo de pagamento tenha expirado e o Pix não tenha sido pago, seu pedido será cancelado automaticamente. Não pague após este horário.",
+      "importantMessageFirst": "Vamos avisar por e-mail quando o banco identificar o depósito. Esse processo é automático.",
+      "importantMessageSecond": "Caso o tempo de pagamento tenha expirado e o Pix não tenha sido pago, seu pedido será cancelado automaticamente. Não pague após este horário.",
+      "errorMessage": "Não foi possível concluir sua transação, tente novamente.",
+      "errorMessageExpired": "Caso já tenha feito o pagamento, aguarde o e-mail de confirmação. Se não fez o pagamento ainda, faça um novo pedido.",
+      "errorTitleExpired": "O código PIX expirou",
+      "successMessage": "Pagamento feito com sucesso",
+      "clipboardDescription": "Escaneie ou clique para copiar o código para pagar no aplicativo do seu banco.",
+      "clipboard": "Copiar Código",
+      "clipboardClicked": "Código Copiado",
+      "expirationTimeCode": "Seu código",
+      "expirationTime": "expira em:",
+      "amount": "Valor a pagar:",
+      "paymentInstructions": "Para fazer o pagamento",
+      "paymentInstructionsFirstMessage": "Abra o aplicativo do seu banco e selecione o ambiente do PIX.",
+      "paymentInstructionsSecondMessage": "Escolha a opção pagar com código e cole o código acima.",
+      "paymentInstructionsThirdMessage": "Confirme as informações e finalize a sua compra."
+    },
+    "boleto": {
+      "title": "Boleto disponível para pagamento!",
+      "subtitle": "Faça o pagamento do Boleto abaixo para finalizar o seu pedido:",
+      "waitingPaymentMessage": "Pedido aguardando pagamento!",
+      "errorMessage": "Não foi possível concluir sua transação, tente novamente.",
+      "clipboard": "Copiar Código",
+      "clipboardDescription": "Escaneie ou clique para copiar o código para pagar no aplicativo do seu banco.",
+      "amount": "Valor a pagar:",
+      "expirationDate": "Vencimento:",
+      "importantMessage": "Informações importantes",
+      "importantMessageDefault": "Vamos avisar por e-mail quando o banco identificar o depósito. Esse processo pode levar até 48h e é automático.",
+      "importantMessageFirst": "Caso o boleto não seja pago até {expirationDate}, o pedido será cancelado automaticamente. Não pague após esta data.",
+      "showBoleto": "Exibir Boleto"
+    },
+    "card": {
+      "errorMessage": "Não foi possível concluir sua transação, tente novamente."
+    },
+    "session": {
+      "errorMessage": "Não foi possível concluir sua transação, tente novamente."
+    },
+    "success": {
+      "description": "Pedido recebido com sucesso!",
+      "actionButtonLabel": "Continuar"
+    },
+    "error": {
+      "actionButtonLabel": "Tentar Novamente"
+    }
+  }
 }

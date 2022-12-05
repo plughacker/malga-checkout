@@ -26,7 +26,11 @@ export class PlugPaymentsBoleto {
   render() {
     return (
       <Host>
-        <checkout-manual-payment fullWidth paymentMethod="boleto" />
+        <checkout-manual-payment
+          fullWidth
+          locale={settings.locale}
+          paymentMethod="boleto"
+        />
         {settings.dialogConfig.show && dialog.configs.open && (
           <checkout-modal
             isSession={!!settings.sessionId}

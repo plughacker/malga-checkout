@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { Locale } from "@plug-checkout/i18n/dist/utils";
 import { PlugCheckoutDialog, PlugCheckoutPaymentMethods, PlugCheckoutTransaction } from "./components/plug-checkout/plug-checkout.types";
 import { SessionNormalized } from "./services/sessions/sessions.types";
 import { PlugPaymentsSuccess } from "./types/plug-payments-success.types";
@@ -17,6 +18,7 @@ export namespace Components {
         "dialogConfig"?: PlugCheckoutDialog;
         "idempotencyKey"?: string;
         "isLoading": boolean;
+        "locale"?: Locale;
         "merchantId"?: string;
         "paymentMethods"?: PlugCheckoutPaymentMethods;
         "publicKey": string;
@@ -98,6 +100,7 @@ declare namespace LocalJSX {
         "dialogConfig"?: PlugCheckoutDialog;
         "idempotencyKey"?: string;
         "isLoading"?: boolean;
+        "locale"?: Locale;
         "merchantId"?: string;
         "onPaymentFailed"?: (event: CustomEvent<{
     error: PlugPaymentsError

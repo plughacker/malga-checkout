@@ -10,8 +10,12 @@ import {
 
 import Clipboard from 'clipboard'
 
+import { t } from '@plug-checkout/i18n'
+import { Locale } from '@plug-checkout/i18n/dist/utils'
+
 import { CheckoutButtonType } from './checkout-button.types'
 import { CheckoutIconNames } from '../checkout-icon/checkout-icon.types'
+
 @Component({
   tag: 'checkout-button',
   styleUrl: 'checkout-button.scss',
@@ -25,6 +29,7 @@ export class CheckoutButton implements ComponentInterface {
   @Prop() disabled? = false
   @Prop() type?: CheckoutButtonType = 'button'
   @Prop() isLoading?: boolean
+  @Prop() locale?: Locale
 
   @Event() clicked!: EventEmitter<void>
   @Event() focused!: EventEmitter<void>
@@ -86,7 +91,7 @@ export class CheckoutButton implements ComponentInterface {
               class={this.isLoading ? 'icon icon-loading' : 'icon'}
             />
           )}
-          {this.isLoading ? 'Processando' : this.label}
+          {this.isLoading ? t('common.processing', this.locale) : this.label}
         </button>
       </Host>
     )

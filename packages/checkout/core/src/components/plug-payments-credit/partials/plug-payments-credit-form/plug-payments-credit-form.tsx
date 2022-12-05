@@ -46,6 +46,7 @@ export class PlugPaymentsCreditForm implements ComponentInterface {
         hasInstallments:
           settings.paymentMethods.credit.installments.show || false,
       },
+      settings.locale,
     )
 
     credit.validations = {

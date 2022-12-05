@@ -209,6 +209,7 @@ export class PlugCheckout {
           <div class={{ 'plug-checkout__submit': true }}>
             <checkout-button
               isLoading={this.isButtonLoading}
+              locale={settings.locale}
               label={t('paymentMethods.common.payButton', this.locale)}
               disabled={handleDisablePayButton()}
               onClicked={this.handlePay}

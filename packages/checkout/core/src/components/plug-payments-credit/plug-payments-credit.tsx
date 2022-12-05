@@ -36,6 +36,7 @@ export class PlugPaymentsCredit {
       <Host class={{ 'plug-payments-credit__container': true }}>
         {settings.paymentMethods.credit.showCreditCard && (
           <checkout-credit-card
+            locale={settings.locale}
             focused={this.currentFieldFocused}
             cvv={credit.form.cvv}
             expiry={credit.form.expirationDate}

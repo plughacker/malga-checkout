@@ -47,7 +47,11 @@ export class PlugPaymentsPix {
   render() {
     return (
       <Host>
-        <checkout-manual-payment fullWidth paymentMethod="pix" />
+        <checkout-manual-payment
+          fullWidth
+          locale={settings.locale}
+          paymentMethod="pix"
+        />
         {settings.dialogConfig.show && dialog.configs.open && (
           <checkout-modal
             isSession={!!settings.sessionId}

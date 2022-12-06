@@ -54,6 +54,7 @@ export class PlugPaymentsPix {
         />
         {settings.dialogConfig.show && dialog.configs.open && (
           <checkout-modal
+            locale={settings.locale}
             isSession={!!settings.sessionId}
             hasSuccessRedirectUrl={!!settings.dialogConfig.successRedirectUrl}
             currency={settings.transactionConfig.currency}

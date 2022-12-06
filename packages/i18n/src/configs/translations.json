@@ -137,5 +137,86 @@
     "error": {
       "actionButtonLabel": "Tentar Novamente"
     }
+  },
+  "page": {
+    "safeEnvironment": "Ambiente seguro",
+    "order": "Pedido",
+    "identification": "Identificação",
+    "payment": "Pagamento",
+    "secureAndEncrypted": "Seguro e encriptado",
+    "customer": {
+      "personalData": "Dados pessoais",
+      "document": "Documento",
+      "address": "Endereço",
+      "submitButton": "Próximo",
+      "fields": {
+        "name": {
+          "label": "Nome completo *",
+          "errorMessageRequired": "Nome completo é obrigatório.",
+          "errorMessageInvalidFormat": "Data inválida, verifique os dados do cartão."
+        },
+        "email": {
+          "label": "E-mail *",
+          "errorMessageRequired": "E-mail é obrigatório.",
+          "errorMessageInvalidFormat": "Formato inválido, verifique seu e-mail."
+        },
+        "phoneNumber": {
+          "label": "Telefone *",
+          "errorMessageRequired": "Telefone é obrigatório.",
+          "errorMessageInvalidFormat": "Formato inválido, verifique o seu número de telefone."
+        },
+        "documentCountry": {
+          "label": "País do documento *",
+          "errorMessageRequired": "Selecione um país para continuar."
+        },
+        "documentType": {
+          "label": "Tipo do documento *",
+          "errorMessageRequired": "Selecione um tipo de documento para continuar."
+        },
+        "identification": {
+          "labelBrazil": "CPF/CNPJ *",
+          "errorMessageRequiredBrazil": "CPF ou CNPJ é obrigatório.",
+          "errorMessageInvalidFormatBrazil": "Formato inválido, verifique seu CPF ou CNPJ.",
+          "labelInternational": "Número do documento *",
+          "errorMessageRequiredInternational": "Número do documento é obrigatório.",
+          "errorMessageInvalidFormatInternational": "Formato inválido, verifique o seu documento."
+        },
+        "zipCode": {
+          "labelBrazil": "CEP *",
+          "descriptionBrazil": "Não sei meu CEP",
+          "errorMessageRequiredBrazil": "CEP é obrigatório.",
+          "labelInternational": "Código postal *",
+          "errorMessageRequiredInternational": "Código postal é obrigatório."
+        },
+        "street": {
+          "label": "Endereço *",
+          "errorMessageRequired": "Endereço é obrigatório."
+        },
+        "number": {
+          "label": "Número *",
+          "errorMessageRequired": "Número é obrigatório."
+        },
+        "complement": {
+          "label": "Complemento *",
+          "errorMessageRequired": "Complemento é obrigatório."
+        },
+        "neighborhood": {
+          "label": "Bairro *",
+          "errorMessageRequired": "Bairro é obrigatório."
+        },
+        "city": {
+          "label": "Cidade *",
+          "errorMessageRequired": "Cidade é obrigatório."
+        },
+        "state": {
+          "label": "Estado *",
+          "errorMessageRequired": "Cidade é obrigatório."
+        },
+        "country": {
+          "label": "País *",
+          "errorMessageRequired": "Selecione um país para continuar."
+        }
+      }
+    }
   }
 }

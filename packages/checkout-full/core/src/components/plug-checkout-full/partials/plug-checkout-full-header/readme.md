@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property    | Attribute    | Description | Type      | Default     |
-| ----------- | ------------ | ----------- | --------- | ----------- |
-| `backRoute` | `back-route` |             | `string`  | `undefined` |
-| `brand`     | `brand`      |             | `string`  | `undefined` |
-| `isLoading` | `is-loading` |             | `boolean` | `false`     |
+| Property    | Attribute    | Description | Type                                                                    | Default     |
+| ----------- | ------------ | ----------- | ----------------------------------------------------------------------- | ----------- |
+| `backRoute` | `back-route` |             | `string`                                                                | `undefined` |
+| `brand`     | `brand`      |             | `string`                                                                | `undefined` |
+| `isLoading` | `is-loading` |             | `boolean`                                                               | `false`     |
+| `locale`    | `locale`     |             | `"default" \| "en" \| "en-US" \| "en_US" \| "pt" \| "pt-BR" \| "pt_BR"` | `undefined` |
 
 
 ## Dependencies

@@ -269,6 +269,7 @@ export class PlugCheckoutFull implements ComponentInterface {
                 </span>
 
                 <plug-checkout
+                  locale={this.locale}
                   publicKey={this.publicKey}
                   clientId={this.clientId}
                   sessionId={this.sessionId}

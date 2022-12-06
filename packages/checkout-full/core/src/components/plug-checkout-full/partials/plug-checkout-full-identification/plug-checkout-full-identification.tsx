@@ -26,6 +26,8 @@ import {
   getIdentificationMask,
   validAddressAutocomplete,
 } from './plug-checkout-full-identification.utils'
+import { t } from '@plug-checkout/i18n'
+import { Locale } from '@plug-checkout/i18n/dist/utils'
 
 @Component({
   tag: 'plug-checkout-full-identification',
@@ -34,6 +36,7 @@ import {
 export class PlugCheckoutFullIdentification {
   identificationService = new PlugCheckoutFullIdentificationService()
 
+  @Prop() locale?: Locale
   @Prop() formValues: PlugCheckoutFullIdentificationFormValues
   @Prop() currency: string
   @Prop() isLoading = false
@@ -94,6 +97,7 @@ export class PlugCheckoutFullIdentification {
         [field]: isMaskedField ? normalizedValue : event.target.value,
       },
       { currency: this.currency },
+      this.locale,
     )
 
     this.validFields = {
@@ -158,7 +162,7 @@ export class PlugCheckoutFullIdentification {
         <checkout-typography
           tag="h4"
           variation="subtitle1"
-          content="Dados pessoais"
+          content={t('page.customer.personalData', this.locale)}
         />
         <checkout-text-field
           value={this.formValues.name}
@@ -171,7 +175,7 @@ export class PlugCheckoutFullIdentification {
           fullWidth
           inputmode="text"
           name="name"
-          label="Nome completo *"
+          label={t('page.customer.fields.name.label', this.locale)}
         />
         {!!this.validFields.name && (
           <checkout-error-message message={this.validFields.name} />
@@ -188,7 +192,7 @@ export class PlugCheckoutFullIdentification {
           fullWidth
           inputmode="email"
           name="email"
-          label="E-mail *"
+          label={t('page.customer.fields.email.label', this.locale)}
         />
         {!!this.validFields.email && (
           <checkout-error-message message={this.validFields.email} />
@@ -206,7 +210,7 @@ export class PlugCheckoutFullIdentification {
           type="tel"
           inputmode="tel"
           name="phoneNumber"
-          label="Telefone *"
+          label={t('page.customer.fields.phoneNumber.label', this.locale)}
         />
         {!!this.validFields.phoneNumber && (
           <checkout-error-message message={this.validFields.phoneNumber} />
@@ -215,7 +219,7 @@ export class PlugCheckoutFullIdentification {
         <checkout-typography
           tag="h4"
           variation="subtitle1"
-          content="Documento"
+          content={t('page.customer.document', this.locale)}
         />
 
         {this.currency !== 'BRL' && (
@@ -238,7 +242,10 @@ export class PlugCheckoutFullIdentification {
                   options={documentCountries}
                   fullWidth
                   name="documentCountry"
-                  label="País do documento *"
+                  label={t(
+                    'page.customer.fields.documentCountry.label',
+                    this.locale,
+                  )}
                 />
                 {!!this.validFields.documentCountry && (
                   <checkout-error-message
@@ -264,7 +271,10 @@ export class PlugCheckoutFullIdentification {
                   }
                   fullWidth
                   name="documentType"
-                  label="Tipo do documento *"
+                  label={t(
+                    'page.customer.fields.documentType.label',
+                    this.locale,
+                  )}
                 />
                 {!!this.validFields.documentType && (
                   <checkout-error-message
@@ -288,7 +298,15 @@ export class PlugCheckoutFullIdentification {
           inputmode="numeric"
           name="identification"
           label={
-            this.currency === 'BRL' ? 'CPF/CNPJ *' : 'Número do documento *'
+            this.currency === 'BRL'
+              ? t(
+                  'page.customer.fields.identification.labelBrazil',
+                  this.locale,
+                )
+              : t(
+                  'page.customer.fields.identification.labelInternational',
+                  this.locale,
+                )
           }
           mask={
             this.currency === 'BRL'
@@ -303,7 +321,7 @@ export class PlugCheckoutFullIdentification {
         <checkout-typography
           tag="h4"
           variation="subtitle1"
-          content="Endereço"
+          content={t('page.customer.address', this.locale)}
         />
 
         {this.currency === 'BRL' && (
@@ -326,7 +344,10 @@ export class PlugCheckoutFullIdentification {
                 fullWidth
                 inputmode="numeric"
                 name="zipCode"
-                label="CEP *"
+                label={t(
+                  'page.customer.fields.zipCode.labelBrazil',
+                  this.locale,
+                )}
                 mask="99999-999"
               />
               {!!this.validFields.zipCode && (
@@ -338,7 +359,7 @@ export class PlugCheckoutFullIdentification {
               href="https://buscacepinter.correios.com.br/app/endereco/index.php"
               target="_blank"
             >
-              Não sei meu CEP
+              {t('page.customer.fields.zipCode.descriptionBrazil', this.locale)}
             </a>
           </fieldset>
         )}
@@ -356,7 +377,10 @@ export class PlugCheckoutFullIdentification {
               fullWidth
               inputmode="text"
               name="zipCode"
-              label="Código postal *"
+              label={t(
+                'page.customer.fields.zipCode.labelInternational',
+                this.locale,
+              )}
             />
             {!!this.validFields.zipCode && (
               <checkout-error-message message={this.validFields.zipCode} />
@@ -375,7 +399,7 @@ export class PlugCheckoutFullIdentification {
           fullWidth
           inputmode="text"
           name="street"
-          label="Endereço *"
+          label={t('page.customer.fields.street.label', this.locale)}
         />
         {!!this.validFields.street && (
           <checkout-error-message message={this.validFields.street} />
@@ -398,7 +422,7 @@ export class PlugCheckoutFullIdentification {
               fullWidth
               inputmode="text"
               name="number"
-              label="Número *"
+              label={t('page.customer.fields.number.label', this.locale)}
             />
             {!!this.validFields.number && (
               <checkout-error-message message={this.validFields.number} />
@@ -419,7 +443,7 @@ export class PlugCheckoutFullIdentification {
               fullWidth
               inputmode="text"
               name="complement"
-              label="Complemento *"
+              label={t('page.customer.fields.complement.label', this.locale)}
             />
             {!!this.validFields.complement && (
               <checkout-error-message message={this.validFields.complement} />
@@ -438,7 +462,7 @@ export class PlugCheckoutFullIdentification {
           fullWidth
           inputmode="text"
           name="neighborhood"
-          label="Bairro *"
+          label={t('page.customer.fields.neighborhood.label', this.locale)}
         />
         {!!this.validFields.neighborhood && (
           <checkout-error-message message={this.validFields.neighborhood} />
@@ -461,7 +485,7 @@ export class PlugCheckoutFullIdentification {
               fullWidth
               inputmode="text"
               name="city"
-              label="Cidade *"
+              label={t('page.customer.fields.city.label', this.locale)}
             />
             {!!this.validFields.city && (
               <checkout-error-message message={this.validFields.city} />
@@ -482,7 +506,7 @@ export class PlugCheckoutFullIdentification {
               fullWidth
               inputmode="text"
               name="state"
-              label="Estado *"
+              label={t('page.customer.fields.state.label', this.locale)}
             />
             {!!this.validFields.state && (
               <checkout-error-message message={this.validFields.state} />
@@ -500,7 +524,7 @@ export class PlugCheckoutFullIdentification {
           options={countries}
           fullWidth
           name="country"
-          label="País *"
+          label={t('page.customer.fields.country.label', this.locale)}
         />
         {!!this.validFields.country && (
           <checkout-error-message message={this.validFields.country} />
@@ -508,7 +532,7 @@ export class PlugCheckoutFullIdentification {
 
         <checkout-button
           type="submit"
-          label="Próximo"
+          label={t('page.customer.submitButton', this.locale)}
           disabled={!this.allFieldIsValidated}
           onClick={this.handleSubmitForm}
         />

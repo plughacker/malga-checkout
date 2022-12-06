@@ -32,6 +32,8 @@ import {
   formatSuccess,
   formatProducts,
 } from './plug-checkout-full.utils'
+import { Locale } from '@plug-checkout/i18n/dist/utils'
+import { t } from '@plug-checkout/i18n'
 
 @Component({
   tag: 'plug-checkout-full',
@@ -43,6 +45,7 @@ export class PlugCheckoutFull implements ComponentInterface {
   @Prop() sessionId?: string
   @Prop() merchantId?: string
   @Prop() idempotencyKey?: string
+  @Prop() locale?: Locale
   @Prop() sandbox = false
   @Prop() debug = false
   @Prop() paymentMethods?: PlugCheckoutFullPaymentMethods = {
@@ -69,10 +72,6 @@ export class PlugCheckoutFull implements ComponentInterface {
   }
   @Prop() dialogConfig: PlugCheckoutFullDialog = {
     show: true,
-    actionButtonLabel: 'Continuar',
-    successActionButtonLabel: 'Continuar',
-    errorActionButtonLabel: 'Tentar Novamente',
-    successRedirectUrl: '',
   }
 
   @Event() transactionSuccess!: EventEmitter<{
@@ -216,6 +215,7 @@ export class PlugCheckoutFull implements ComponentInterface {
         }}
       >
         <plug-checkout-full-header
+          locale={this.locale}
           brand={this.renderBrand()}
           backRoute={this.pageConfig.backRoute}
         />
@@ -223,7 +223,7 @@ export class PlugCheckoutFull implements ComponentInterface {
         <plug-checkout-full-content>
           <checkout-order-summary
             slot="order"
-            label="Pedido"
+            label={t('page.order', this.locale)}
             amount={this.handleGetAmount()}
             products={this.handleGetProducts()}
             delivery={this.pageConfig.delivery}
@@ -234,12 +234,13 @@ export class PlugCheckoutFull implements ComponentInterface {
           <div slot="informations" class="plug-checkout-full__informations">
             {!this.transactionConfig.customerId && (
               <checkout-accordion
-                label="Identificação"
+                label={t('page.identification', this.locale)}
                 isEditable={this.currentSection !== 'identification'}
                 opened={this.currentSection === 'identification'}
                 onExpandClick={() => this.handleChangeSection('identification')}
               >
                 <plug-checkout-full-identification
+                  locale={this.locale}
                   currency={currency}
                   formValues={this.customerFormFields}
                   onFieldChange={({ detail }) => {
@@ -257,14 +258,14 @@ export class PlugCheckoutFull implements ComponentInterface {
             )}
 
             <checkout-accordion
-              label="Pagamento"
+              label={t('page.payment', this.locale)}
               opened={this.currentSection === 'payments' || this.isLoading}
               onExpandClick={() => this.handleChangeSection('payments')}
             >
               <Fragment>
                 <span slot="accordion-header-additional-information">
                   <checkout-icon icon="lock" />
-                  Seguro e encriptado
+                  {t('page.secureAndEncrypted', this.locale)}
                 </span>
 
                 <plug-checkout

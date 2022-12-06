@@ -7,116 +7,161 @@ import { PhoneNumberUtil } from 'google-libphonenumber'
 
 import { PlugCheckoutFullIdentificationFormValues } from './plug-checkout-full-identification.types'
 import { normalizeValidationErrors } from './plug-checkout-full-identification.utils'
+import { Locale } from '@plug-checkout/i18n/dist/utils'
+import { t } from '@plug-checkout/i18n'
 
 const phoneUtil = PhoneNumberUtil.getInstance()
 
-export const schema = Yup.object().shape({
-  name: Yup.string().required('Nome completo é obrigatório.'),
-  email: Yup.string()
-    .email('Formato inválido, verifique seu e-mail.')
-    .required('E-mail é obrigatório.'),
-  phoneNumber: Yup.string()
-    .test(
-      'isValidPhoneNumber',
-      'Formato inválido, verifique o seu número de telefone.',
-      (value, context) => {
-        try {
-          const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
-          const { countries } = ct.getTimezone(timezone)
-          const country = context.parent.country || countries[0] || 'BR'
-          const phoneNumber = phoneUtil.parseAndKeepRawInput(value, country)
-
-          if (!phoneUtil.isPossibleNumber(phoneNumber)) return false
-
-          const isValidPhone = phoneUtil.isValidNumberForRegion(
-            phoneNumber,
-            country,
-          )
-
-          return !!isValidPhone
-        } catch (err) {
-          return false
-        }
-      },
-    )
-    .required('Telefone é obrigatório.'),
-  documentType: Yup.string().when(['$currency'], {
-    is: (currency: string) => currency !== 'BRL',
-    then: Yup.string().test(
-      'isValidDocumentType',
-      'Selecione um tipo de documento para continuar.',
-      (value) => value !== 'none',
+export const schema = (locale?: Locale) => {
+  return Yup.object().shape({
+    name: Yup.string().required(
+      t('page.customer.fields.name.errorMessageRequired', locale),
     ),
-  }),
-  documentCountry: Yup.string().when(['$currency'], {
-    is: (currency: string) => currency !== 'BRL',
-    then: Yup.string().test(
-      'isValidDocumentCountry',
-      'Selecione um país para continuar.',
-      (value) => value !== 'none',
-    ),
-  }),
-  identification: Yup.string()
-    .when(['$currency'], {
-      is: (currency: string) => currency === 'BRL',
-      then: Yup.string()
-        .required('CPF ou CNPJ é obrigatório.')
-        .test(
-          'isValidIdentification',
-          'Formato inválido, verifique seu CPF ou CNPJ.',
-          (value) => isCPFOrCNPJ(value),
-        ),
-    })
-    .when(['$currency'], {
-      is: (currency: string) => currency !== 'BRL',
-      then: Yup.string()
-        .required('Número do documento é obrigatório.')
-        .test(
-          'isValidIdentification',
-          'Formato inválido, verifique o seu documento.',
-          (value, context) => {
-            if (context.parent.documentType === 'other') {
-              return true
-            }
+    email: Yup.string()
+      .email(t('page.customer.fields.email.errorMessageInvalidFormat', locale))
+      .required(t('page.customer.fields.email.errorMessageRequired', locale)),
+    phoneNumber: Yup.string()
+      .test(
+        'isValidPhoneNumber',
+        t('page.customer.fields.phoneNumber.errorMessageInvalidFormat', locale),
+        (value, context) => {
+          try {
+            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+            const { countries } = ct.getTimezone(timezone)
+            const country = context.parent.country || countries[0] || 'BR'
+            const phoneNumber = phoneUtil.parseAndKeepRawInput(value, country)
 
-            const isValid = validateTaxId(
-              context.parent.documentCountry,
-              context.parent.documentType,
-              value,
+            if (!phoneUtil.isPossibleNumber(phoneNumber)) return false
+
+            const isValidPhone = phoneUtil.isValidNumberForRegion(
+              phoneNumber,
+              country,
             )
 
-            return isValid
-          },
-        ),
-    }),
-  street: Yup.string().required('Endereço é obrigatório.'),
-  number: Yup.string().required('Número é obrigatório.'),
-  complement: Yup.string().required('Complemento é obrigatório'),
-  neighborhood: Yup.string().required('Bairro é obrigatório'),
-  city: Yup.string().required('Cidade é obrigatório.'),
-  state: Yup.string().required('Estado é obrigatório.'),
-  zipCode: Yup.string()
-    .when(['$currency'], {
-      is: (currency: string) => currency === 'BRL',
-      then: Yup.string().required('CEP é obrigatório'),
-    })
-    .when(['$currency'], {
+            return !!isValidPhone
+          } catch (err) {
+            return false
+          }
+        },
+      )
+      .required(
+        t('page.customer.fields.phoneNumber.errorMessageRequired', locale),
+      ),
+    documentType: Yup.string().when(['$currency'], {
       is: (currency: string) => currency !== 'BRL',
-      then: Yup.string().required('Código postal é obrigatório'),
+      then: Yup.string().test(
+        'isValidDocumentType',
+        t('page.customer.fields.documentType.errorMessageRequired', locale),
+        (value) => value !== 'none',
+      ),
     }),
-  country: Yup.string().test(
-    'isValidCountry',
-    'Selecione um país para continuar.',
-    (value) => value !== 'none',
-  ),
-})
+    documentCountry: Yup.string().when(['$currency'], {
+      is: (currency: string) => currency !== 'BRL',
+      then: Yup.string().test(
+        'isValidDocumentCountry',
+        t('page.customer.fields.documentCountry.errorMessageRequired', locale),
+        (value) => value !== 'none',
+      ),
+    }),
+    identification: Yup.string()
+      .when(['$currency'], {
+        is: (currency: string) => currency === 'BRL',
+        then: Yup.string()
+          .required(
+            t(
+              'page.customer.fields.identification.errorMessageRequiredBrazil',
+              locale,
+            ),
+          )
+          .test(
+            'isValidIdentification',
+            t(
+              'page.customer.fields.identification.errorMessageInvalidFormatBrazil',
+              locale,
+            ),
+            (value) => isCPFOrCNPJ(value),
+          ),
+      })
+      .when(['$currency'], {
+        is: (currency: string) => currency !== 'BRL',
+        then: Yup.string()
+          .required(
+            t(
+              'page.customer.fields.identification.errorMessageRequiredInternational',
+              locale,
+            ),
+          )
+          .test(
+            'isValidIdentification',
+            t(
+              'page.customer.fields.identification.errorMessageInvalidFormatInternational',
+              locale,
+            ),
+            (value, context) => {
+              if (context.parent.documentType === 'other') {
+                return true
+              }
+
+              const isValid = validateTaxId(
+                context.parent.documentCountry,
+                context.parent.documentType,
+                value,
+              )
+
+              return isValid
+            },
+          ),
+      }),
+    street: Yup.string().required(
+      t('page.customer.fields.street.errorMessageRequired', locale),
+    ),
+    number: Yup.string().required(
+      t('page.customer.fields.number.errorMessageRequired', locale),
+    ),
+    complement: Yup.string().required(
+      t('page.customer.fields.complement.errorMessageRequired', locale),
+    ),
+    neighborhood: Yup.string().required(
+      t('page.customer.fields.neighborhood.errorMessageRequired', locale),
+    ),
+    city: Yup.string().required(
+      t('page.customer.fields.city.errorMessageRequired', locale),
+    ),
+    state: Yup.string().required(
+      t('page.customer.fields.state.errorMessageRequired', locale),
+    ),
+    zipCode: Yup.string()
+      .when(['$currency'], {
+        is: (currency: string) => currency === 'BRL',
+        then: Yup.string().required(
+          t('page.customer.fields.zipCode.errorMessageRequiredBrazil', locale),
+        ),
+      })
+      .when(['$currency'], {
+        is: (currency: string) => currency !== 'BRL',
+        then: Yup.string().required(
+          t(
+            'page.customer.fields.zipCode.errorMessageRequiredInternational',
+            locale,
+          ),
+        ),
+      }),
+    country: Yup.string().test(
+      'isValidCountry',
+      t('page.customer.fields.country.errorMessageRequired', locale),
+      (value) => value !== 'none',
+    ),
+  })
+}
 
 export const validateCustomer = async (
   data: Partial<PlugCheckoutFullIdentificationFormValues>,
   context?: Record<string, unknown>,
+  locale?: Locale,
 ) => {
   try {
-    await schema.validate(data, { abortEarly: false, context })
+    const customerSchema = schema(locale)
+    await customerSchema.validate(data, { abortEarly: false, context })
 
     return { isValid: true }
   } catch (error) {

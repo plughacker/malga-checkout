@@ -523,7 +523,7 @@ export class PlugCheckoutFullIdentification {
           onBlurred={this.handleFieldBlurred('country')}
           onFocused={this.handleFieldFocused('country')}
           hasError={!!this.validFields.country}
-          options={countries}
+          options={countries(this.locale)}
           fullWidth
           name="country"
           label={t('page.customer.fields.country.label', this.locale)}

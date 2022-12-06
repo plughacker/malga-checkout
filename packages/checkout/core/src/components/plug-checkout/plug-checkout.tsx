@@ -92,6 +92,11 @@ export class PlugCheckout {
     settings.transactionConfig = this.transactionConfig
   }
 
+  @Watch('locale')
+  protected handleWatchLocale() {
+    settings.locale = this.locale
+  }
+
   protected plugCheckoutService: PlugCheckoutService
 
   constructor() {

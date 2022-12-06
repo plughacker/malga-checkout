@@ -149,6 +149,8 @@ export class PlugCheckoutFullIdentification {
   }
 
   render() {
+    const documentTypesByCountries = documentTypesByCountry(this.locale)
+
     if (this.isLoading) {
       return (
         <Host class={{ 'plug-checkout-full-identification__loader': true }}>
@@ -239,7 +241,7 @@ export class PlugCheckoutFullIdentification {
                   onBlurred={this.handleFieldBlurred('documentCountry')}
                   onFocused={this.handleFieldFocused('documentCountry')}
                   hasError={!!this.validFields.documentCountry}
-                  options={documentCountries}
+                  options={documentCountries(this.locale)}
                   fullWidth
                   name="documentCountry"
                   label={t(
@@ -267,7 +269,7 @@ export class PlugCheckoutFullIdentification {
                   onFocused={this.handleFieldFocused('documentType')}
                   hasError={!!this.validFields.documentType}
                   options={
-                    documentTypesByCountry[this.formValues.documentCountry]
+                    documentTypesByCountries[this.formValues.documentCountry]
                   }
                   fullWidth
                   name="documentType"
@@ -532,6 +534,7 @@ export class PlugCheckoutFullIdentification {
 
         <checkout-button
           type="submit"
+          locale={this.locale}
           label={t('page.customer.submitButton', this.locale)}
           disabled={!this.allFieldIsValidated}
           onClick={this.handleSubmitForm}

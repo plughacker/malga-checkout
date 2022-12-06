@@ -223,6 +223,7 @@ export class PlugCheckoutFull implements ComponentInterface {
         <plug-checkout-full-content>
           <checkout-order-summary
             slot="order"
+            locale={this.locale}
             label={t('page.order', this.locale)}
             amount={this.handleGetAmount()}
             products={this.handleGetProducts()}

@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { Locale } from "@plug-checkout/i18n/dist/utils";
 import { PlugCheckoutFullChargeError, PlugCheckoutFullChargeSuccess, PlugCheckoutFullDialog, PlugCheckoutFullPage, PlugCheckoutFullPaymentMethods, PlugCheckoutFullTransaction } from "./components/plug-checkout-full/plug-checkout-full.types";
 import { PlugCheckoutFullIdentificationFormValues } from "./components/plug-checkout-full/partials/plug-checkout-full-identification/plug-checkout-full-identification.types";
 export namespace Components {
@@ -13,6 +14,7 @@ export namespace Components {
         "debug": boolean;
         "dialogConfig": PlugCheckoutFullDialog;
         "idempotencyKey"?: string;
+        "locale"?: Locale;
         "merchantId"?: string;
         "pageConfig"?: PlugCheckoutFullPage;
         "paymentMethods"?: PlugCheckoutFullPaymentMethods;
@@ -30,11 +32,13 @@ export namespace Components {
         "backRoute": string;
         "brand": string;
         "isLoading": boolean;
+        "locale"?: Locale;
     }
     interface PlugCheckoutFullIdentification {
         "currency": string;
         "formValues": PlugCheckoutFullIdentificationFormValues;
         "isLoading": boolean;
+        "locale"?: Locale;
     }
 }
 declare global {
@@ -82,6 +86,7 @@ declare namespace LocalJSX {
         "debug"?: boolean;
         "dialogConfig"?: PlugCheckoutFullDialog;
         "idempotencyKey"?: string;
+        "locale"?: Locale;
         "merchantId"?: string;
         "onTransactionFailed"?: (event: CustomEvent<{
     error: PlugCheckoutFullChargeError
@@ -105,11 +110,13 @@ declare namespace LocalJSX {
         "backRoute"?: string;
         "brand"?: string;
         "isLoading"?: boolean;
+        "locale"?: Locale;
     }
     interface PlugCheckoutFullIdentification {
         "currency"?: string;
         "formValues"?: PlugCheckoutFullIdentificationFormValues;
         "isLoading"?: boolean;
+        "locale"?: Locale;
         "onFieldChange"?: (event: CustomEvent<{ field: string; value: string }>) => void;
         "onManyFieldsChange"?: (event: CustomEvent<{
     customerFormValues: PlugCheckoutFullIdentificationFormValues

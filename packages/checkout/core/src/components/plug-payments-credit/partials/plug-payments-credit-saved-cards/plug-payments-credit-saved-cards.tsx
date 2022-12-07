@@ -181,6 +181,7 @@ export class PlugPaymentsCreditSavedCards {
         {this.renderSavedCards()}
         {settings.dialogConfig.show && dialog.configs.open && (
           <checkout-modal
+            locale={settings.locale}
             currency={settings.transactionConfig.currency}
             mode={dialog.configs.mode}
             open={dialog.configs.open}

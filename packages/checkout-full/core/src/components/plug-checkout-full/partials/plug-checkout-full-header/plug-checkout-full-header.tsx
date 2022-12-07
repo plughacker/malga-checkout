@@ -1,3 +1,5 @@
+import { t } from '@plug-checkout/i18n'
+import { Locale } from '@plug-checkout/i18n/dist/utils'
 import { Component, Host, h, Prop } from '@stencil/core'
 import PlugBrand from '../../../../assets/plug-brand.svg'
 
@@ -6,6 +8,7 @@ import PlugBrand from '../../../../assets/plug-brand.svg'
   styleUrl: 'plug-checkout-full-header.scss',
 })
 export class PlugCheckoutFullHeader {
+  @Prop() locale?: Locale
   @Prop() brand: string
   @Prop() backRoute: string
   @Prop() isLoading = false
@@ -19,7 +22,7 @@ export class PlugCheckoutFullHeader {
     history.back()
   }
 
-  renderImg() {
+  private renderImg = () => {
     if (this.brand) {
       return (
         <img
@@ -60,7 +63,7 @@ export class PlugCheckoutFullHeader {
           {this.renderImg()}
           <div class={{ 'plug-checkout-full-header__message': true }}>
             <checkout-icon icon="lock" />
-            <h5>Ambiente seguro</h5>
+            <h5>{t('page.safeEnvironment', this.locale)}</h5>
           </div>
         </header>
       </Host>

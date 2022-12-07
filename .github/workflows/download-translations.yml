@@ -1,0 +1,48 @@
+name: Translations Download
+
+on:
+  push:
+    branches:
+      - 'translations/*'
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+env:
+  CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+  CROWDIN_API_TOKEN: ${{ secrets.CROWDIN_API_TOKEN }}
+
+jobs:
+  crowdin:
+    name: 'Crowdin Download'
+    if: github.repository == 'plughacker/plug-checkout'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: yarn
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Setup Crowdin CLI
+        run: yarn global add @crowdin/cli
+
+      - name: Download translation files to Crowdin
+        run: yarn i18n:download
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        id: auto-commit-action
+        with:
+          commit_message: 'chore(translations): fetch new translations'
+
+      - name: 'Run if changes have been detected'
+        if: steps.auto-commit-action.outputs.changes_detected == 'true'
+        run: echo "New translations downloaded!"

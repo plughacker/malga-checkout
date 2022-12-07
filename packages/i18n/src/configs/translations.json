@@ -18,7 +18,7 @@
       "newCard": {
         "errorMessageAllFieldsRequired": "Preencha todos os campos para prosseguir.",
         "creditCard": {
-          "validity": "valido ate",
+          "validity": "válido até",
           "name": "Nome Completo",
           "cvv": "CVV",
           "safeEnvironment": "ambiente seguro"
@@ -210,7 +210,7 @@
         },
         "state": {
           "label": "Estado *",
-          "errorMessageRequired": "Cidade é obrigatório."
+          "errorMessageRequired": "Estado é obrigatório."
         },
         "country": {
           "label": "País *",

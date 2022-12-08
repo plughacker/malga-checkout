@@ -1,5 +1,8 @@
 import { Customer } from '../../providers/base-provider'
-import { cleanTextOnlyNumbers } from '@plug-checkout/utils'
+import {
+  cleanTextOnlyNumbers,
+  cleanTextSpecialCharacters,
+} from '@plug-checkout/utils'
 
 export const formatCustomerAddress = (
   customerAddress?: Customer['address'],
@@ -8,13 +11,18 @@ export const formatCustomerAddress = (
     return {}
   }
 
+  const isBrazil = customerAddress.country.toLowerCase() === 'br'
+  const zipCode = isBrazil
+    ? cleanTextOnlyNumbers(customerAddress.zipCode)
+    : cleanTextSpecialCharacters(customerAddress.zipCode)
+
   return {
     address: {
       country: customerAddress.country,
       state: customerAddress.state,
       city: customerAddress.city,
       district: customerAddress.neighborhood,
-      zipCode: cleanTextOnlyNumbers(customerAddress.zipCode),
+      zipCode,
       street: customerAddress.street,
       streetNumber: customerAddress.number,
       complement: customerAddress.complement,
@@ -24,13 +32,22 @@ export const formatCustomerAddress = (
 
 export const formatCustomerDocument = (
   customerDocument?: Customer['document'],
-) => ({
-  document: {
-    type: customerDocument.type,
-    number: cleanTextOnlyNumbers(customerDocument.number),
-    country: customerDocument.country,
-  },
-})
+) => {
+  const isBrazilianDocument = ['cpf', 'cnpj'].includes(
+    customerDocument.type.toLowerCase(),
+  )
+  const documentNumber = isBrazilianDocument
+    ? cleanTextOnlyNumbers(customerDocument.number)
+    : cleanTextSpecialCharacters(customerDocument.number)
+
+  return {
+    document: {
+      type: customerDocument.type,
+      number: documentNumber,
+      country: customerDocument.country,
+    },
+  }
+}
 
 export const formatPayload = (customer: Customer) => {
   const address = formatCustomerAddress(customer.address)

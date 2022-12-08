@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { CheckoutIconNames } from "./components/checkout-icon/checkout-icon.types";
 import { CheckoutButtonType } from "./components/checkout-button/checkout-button.types";
 import { Locale } from "@plug-checkout/i18n/dist/utils";
+import { CheckoutDropdownOptions } from "./components/checkout-dropdown/checkout-dropdown.types";
 import { CheckoutManualPaymentDescriptions } from "./components/checkout-manual-payment/checkout-manual-payment.types";
 import { CheckoutModalMode } from "./components/checkout-modal/checkout-modal.types";
 import { Product } from "./components/checkout-order-summary/checkout-order-summary.types";
@@ -52,6 +53,12 @@ export namespace Components {
         "number": string;
         "placeholderName"?: string;
         "validity"?: string;
+    }
+    interface CheckoutDropdown {
+        "fullWidth"?: boolean;
+        "label"?: string;
+        "options": CheckoutDropdownOptions[];
+        "value": string;
     }
     interface CheckoutErrorMessage {
         "customClass"?: string;
@@ -243,6 +250,12 @@ declare global {
         prototype: HTMLCheckoutCreditCardElement;
         new (): HTMLCheckoutCreditCardElement;
     };
+    interface HTMLCheckoutDropdownElement extends Components.CheckoutDropdown, HTMLStencilElement {
+    }
+    var HTMLCheckoutDropdownElement: {
+        prototype: HTMLCheckoutDropdownElement;
+        new (): HTMLCheckoutDropdownElement;
+    };
     interface HTMLCheckoutErrorMessageElement extends Components.CheckoutErrorMessage, HTMLStencilElement {
     }
     var HTMLCheckoutErrorMessageElement: {
@@ -345,6 +358,7 @@ declare global {
         "checkout-clipboard-button": HTMLCheckoutClipboardButtonElement;
         "checkout-countdown": HTMLCheckoutCountdownElement;
         "checkout-credit-card": HTMLCheckoutCreditCardElement;
+        "checkout-dropdown": HTMLCheckoutDropdownElement;
         "checkout-error-message": HTMLCheckoutErrorMessageElement;
         "checkout-icon": HTMLCheckoutIconElement;
         "checkout-loader": HTMLCheckoutLoaderElement;
@@ -405,6 +419,13 @@ declare namespace LocalJSX {
         "number"?: string;
         "placeholderName"?: string;
         "validity"?: string;
+    }
+    interface CheckoutDropdown {
+        "fullWidth"?: boolean;
+        "label"?: string;
+        "onChanged"?: (event: CustomEvent<{ value: string }>) => void;
+        "options"?: CheckoutDropdownOptions[];
+        "value"?: string;
     }
     interface CheckoutErrorMessage {
         "customClass"?: string;
@@ -590,6 +611,7 @@ declare namespace LocalJSX {
         "checkout-clipboard-button": CheckoutClipboardButton;
         "checkout-countdown": CheckoutCountdown;
         "checkout-credit-card": CheckoutCreditCard;
+        "checkout-dropdown": CheckoutDropdown;
         "checkout-error-message": CheckoutErrorMessage;
         "checkout-icon": CheckoutIcon;
         "checkout-loader": CheckoutLoader;
@@ -617,6 +639,7 @@ declare module "@stencil/core" {
             "checkout-clipboard-button": LocalJSX.CheckoutClipboardButton & JSXBase.HTMLAttributes<HTMLCheckoutClipboardButtonElement>;
             "checkout-countdown": LocalJSX.CheckoutCountdown & JSXBase.HTMLAttributes<HTMLCheckoutCountdownElement>;
             "checkout-credit-card": LocalJSX.CheckoutCreditCard & JSXBase.HTMLAttributes<HTMLCheckoutCreditCardElement>;
+            "checkout-dropdown": LocalJSX.CheckoutDropdown & JSXBase.HTMLAttributes<HTMLCheckoutDropdownElement>;
             "checkout-error-message": LocalJSX.CheckoutErrorMessage & JSXBase.HTMLAttributes<HTMLCheckoutErrorMessageElement>;
             "checkout-icon": LocalJSX.CheckoutIcon & JSXBase.HTMLAttributes<HTMLCheckoutIconElement>;
             "checkout-loader": LocalJSX.CheckoutLoader & JSXBase.HTMLAttributes<HTMLCheckoutLoaderElement>;

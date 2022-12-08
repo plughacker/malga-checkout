@@ -1,6 +1,6 @@
 import { t } from '@plug-checkout/i18n'
 import { Locale } from '@plug-checkout/i18n/dist/utils'
-import { Component, Host, h, Prop } from '@stencil/core'
+import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
 import PlugBrand from '../../../../assets/plug-brand.svg'
 
 @Component({
@@ -11,7 +11,10 @@ export class PlugCheckoutFullHeader {
   @Prop() locale?: Locale
   @Prop() brand: string
   @Prop() backRoute: string
+  @Prop() language: string
   @Prop() isLoading = false
+
+  @Event() changeLanguage: EventEmitter<{ value: Locale }>
 
   private handleNavigation = () => {
     if (this.backRoute) {
@@ -41,6 +44,10 @@ export class PlugCheckoutFullHeader {
     )
   }
 
+  private handleChangeLanguage = (language: Locale) => {
+    this.changeLanguage.emit({ value: language })
+  }
+
   render() {
     return (
       <Host class={{ 'plug-checkout-full-header__container': true }}>
@@ -60,10 +67,24 @@ export class PlugCheckoutFullHeader {
           >
             <checkout-icon icon="arrowLeft" />
           </button>
-          {this.renderImg()}
-          <div class={{ 'plug-checkout-full-header__message': true }}>
-            <checkout-icon icon="lock" />
-            <h5>{t('page.safeEnvironment', this.locale)}</h5>
+          <div class={{ 'plug-checkout-full-header__brand-container': true }}>
+            {this.renderImg()}
+            <div class={{ 'plug-checkout-full-header__message': true }}>
+              <checkout-icon icon="lock" />
+              <h5>{t('page.safeEnvironment', this.locale)}</h5>
+            </div>
+          </div>
+          <div class={{ 'plug-checkout-full-header__language': true }}>
+            <checkout-dropdown
+              value={this.language}
+              options={[
+                { label: 'Português', value: 'default' },
+                { label: 'English', value: 'en' },
+              ]}
+              onChanged={({ detail: { value } }) =>
+                this.handleChangeLanguage(value as Locale)
+              }
+            />
           </div>
         </header>
       </Host>

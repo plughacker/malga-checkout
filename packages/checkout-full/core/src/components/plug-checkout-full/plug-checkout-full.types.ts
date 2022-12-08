@@ -211,6 +211,7 @@ export interface PlugCheckoutFullPage {
   delivery: number
   backRoute: string
   products: Product[]
+  internationalCustomer: boolean
 }
 
 export interface PlugCheckoutFullFraudAnalysisCart {

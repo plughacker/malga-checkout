@@ -47,16 +47,16 @@ export const schema = (locale?: Locale) => {
       .required(
         t('page.customer.fields.phoneNumber.errorMessageRequired', locale),
       ),
-    documentType: Yup.string().when(['$currency'], {
-      is: (currency: string) => currency !== 'BRL',
+    documentType: Yup.string().when(['$internationalCustomer'], {
+      is: (internationalCustomer: boolean) => internationalCustomer,
       then: Yup.string().test(
         'isValidDocumentType',
         t('page.customer.fields.documentType.errorMessageRequired', locale),
         (value) => value !== 'none',
       ),
     }),
-    documentCountry: Yup.string().when(['$currency'], {
-      is: (currency: string) => currency !== 'BRL',
+    documentCountry: Yup.string().when(['$internationalCustomer'], {
+      is: (internationalCustomer: boolean) => internationalCustomer,
       then: Yup.string().test(
         'isValidDocumentCountry',
         t('page.customer.fields.documentCountry.errorMessageRequired', locale),
@@ -64,8 +64,8 @@ export const schema = (locale?: Locale) => {
       ),
     }),
     identification: Yup.string()
-      .when(['$currency'], {
-        is: (currency: string) => currency === 'BRL',
+      .when(['$internationalCustomer'], {
+        is: (internationalCustomer: boolean) => !internationalCustomer,
         then: Yup.string()
           .required(
             t(
@@ -82,8 +82,8 @@ export const schema = (locale?: Locale) => {
             (value) => isCPFOrCNPJ(value),
           ),
       })
-      .when(['$currency'], {
-        is: (currency: string) => currency !== 'BRL',
+      .when(['$internationalCustomer'], {
+        is: (internationalCustomer: boolean) => internationalCustomer,
         then: Yup.string()
           .required(
             t(
@@ -131,14 +131,14 @@ export const schema = (locale?: Locale) => {
       t('page.customer.fields.state.errorMessageRequired', locale),
     ),
     zipCode: Yup.string()
-      .when(['$currency'], {
-        is: (currency: string) => currency === 'BRL',
+      .when(['$internationalCustomer'], {
+        is: (internationalCustomer: boolean) => !internationalCustomer,
         then: Yup.string().required(
           t('page.customer.fields.zipCode.errorMessageRequiredBrazil', locale),
         ),
       })
-      .when(['$currency'], {
-        is: (currency: string) => currency !== 'BRL',
+      .when(['$internationalCustomer'], {
+        is: (internationalCustomer: boolean) => internationalCustomer,
         then: Yup.string().required(
           t(
             'page.customer.fields.zipCode.errorMessageRequiredInternational',

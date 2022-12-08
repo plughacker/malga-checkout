@@ -89,13 +89,10 @@ export class PlugCheckoutFullIdentification {
   }
 
   private handleFieldBlurred = (field: string) => async (event) => {
-    const isMaskedField = ['identification', 'zipCode'].includes(field)
-    const normalizedValue = cleanTextOnlyNumbers(event.target.value)
-
     const validation = await validateCustomer(
       {
         ...this.formValues,
-        [field]: isMaskedField ? normalizedValue : event.target.value,
+        [field]: event.target.value,
       },
       { internationalCustomer: this.internationalCustomer },
       this.locale,

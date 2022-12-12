@@ -1,0 +1,18 @@
+{
+  "mode": "pre",
+  "tag": "beta",
+  "initialVersions": {
+    "@plug-checkout-full/angular": "1.5.0",
+    "@plug-checkout-full/core": "1.5.0",
+    "@plug-checkout-full/react": "1.5.0",
+    "@plug-checkout-full/vue": "1.5.0",
+    "@plug-checkout/angular": "1.5.0",
+    "@plug-checkout/core": "1.5.0",
+    "@plug-checkout/react": "1.5.0",
+    "@plug-checkout/vue": "1.5.0",
+    "@plug-checkout/common": "0.0.1",
+    "@plug-checkout/i18n": "0.0.1",
+    "@plug-checkout/utils": "0.0.1"
+  },
+  "changesets": []
+}

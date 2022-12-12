@@ -7,12 +7,12 @@
 
 ## Properties
 
-| Property     | Attribute    | Description | Type                                                                    | Default     |
-| ------------ | ------------ | ----------- | ----------------------------------------------------------------------- | ----------- |
-| `currency`   | `currency`   |             | `string`                                                                | `undefined` |
-| `formValues` | --           |             | `PlugCheckoutFullIdentificationFormValues`                              | `undefined` |
-| `isLoading`  | `is-loading` |             | `boolean`                                                               | `false`     |
-| `locale`     | `locale`     |             | `"default" \| "en" \| "en-US" \| "en_US" \| "pt" \| "pt-BR" \| "pt_BR"` | `undefined` |
+| Property                | Attribute                | Description | Type                                                                    | Default     |
+| ----------------------- | ------------------------ | ----------- | ----------------------------------------------------------------------- | ----------- |
+| `formValues`            | --                       |             | `PlugCheckoutFullIdentificationFormValues`                              | `undefined` |
+| `internationalCustomer` | `international-customer` |             | `boolean`                                                               | `undefined` |
+| `isLoading`             | `is-loading`             |             | `boolean`                                                               | `false`     |
+| `locale`                | `locale`                 |             | `"default" \| "en" \| "en-US" \| "en_US" \| "pt" \| "pt-BR" \| "pt_BR"` | `undefined` |
 
 
 ## Events

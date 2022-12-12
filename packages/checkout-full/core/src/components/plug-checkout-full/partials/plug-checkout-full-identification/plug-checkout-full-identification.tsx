@@ -38,7 +38,7 @@ export class PlugCheckoutFullIdentification {
 
   @Prop() locale?: Locale
   @Prop() formValues: PlugCheckoutFullIdentificationFormValues
-  @Prop() currency: string
+  @Prop() internationalCustomer: boolean
   @Prop() isLoading = false
 
   @Event() submitForm: EventEmitter<void>
@@ -66,8 +66,9 @@ export class PlugCheckoutFullIdentification {
   }
 
   private checkValidatedField = () => {
-    const optionalFields =
-      this.currency === 'BRL' ? ['documentCountry', 'documentType'] : []
+    const optionalFields = !this.internationalCustomer
+      ? ['documentCountry', 'documentType']
+      : []
 
     const validFieldValues = Object.entries(this.validFields)
 
@@ -88,15 +89,12 @@ export class PlugCheckoutFullIdentification {
   }
 
   private handleFieldBlurred = (field: string) => async (event) => {
-    const isMaskedField = ['identification', 'zipCode'].includes(field)
-    const normalizedValue = cleanTextOnlyNumbers(event.target.value)
-
     const validation = await validateCustomer(
       {
         ...this.formValues,
-        [field]: isMaskedField ? normalizedValue : event.target.value,
+        [field]: event.target.value,
       },
-      { currency: this.currency },
+      { internationalCustomer: this.internationalCustomer },
       this.locale,
     )
 
@@ -224,7 +222,7 @@ export class PlugCheckoutFullIdentification {
           content={t('page.customer.document', this.locale)}
         />
 
-        {this.currency !== 'BRL' && (
+        {this.internationalCustomer && (
           <Fragment>
             <fieldset
               class={{ 'plug-checkout-full-identification__row-fields': true }}
@@ -300,7 +298,7 @@ export class PlugCheckoutFullIdentification {
           inputmode="numeric"
           name="identification"
           label={
-            this.currency === 'BRL'
+            !this.internationalCustomer
               ? t(
                   'page.customer.fields.identification.labelBrazil',
                   this.locale,
@@ -311,7 +309,7 @@ export class PlugCheckoutFullIdentification {
                 )
           }
           mask={
-            this.currency === 'BRL'
+            !this.internationalCustomer
               ? getIdentificationMask(this.formValues.identification)
               : null
           }
@@ -326,7 +324,7 @@ export class PlugCheckoutFullIdentification {
           content={t('page.customer.address', this.locale)}
         />
 
-        {this.currency === 'BRL' && (
+        {!this.internationalCustomer && (
           <fieldset
             class={{ 'plug-checkout-full-identification__zipcode': true }}
           >
@@ -366,7 +364,7 @@ export class PlugCheckoutFullIdentification {
           </fieldset>
         )}
 
-        {this.currency !== 'BRL' && (
+        {this.internationalCustomer && (
           <Fragment>
             <checkout-text-field
               value={this.formValues.zipCode}

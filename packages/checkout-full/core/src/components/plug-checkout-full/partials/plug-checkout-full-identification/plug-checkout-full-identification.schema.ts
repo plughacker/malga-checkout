@@ -1,6 +1,10 @@
 import * as Yup from 'yup'
 import { isCPFOrCNPJ } from 'brazilian-values'
-import { validateTaxId } from '@plug-checkout/utils'
+import {
+  validateTaxId,
+  cleanTextOnlyNumbers,
+  cleanTextSpecialCharacters,
+} from '@plug-checkout/utils'
 
 import { PlugCheckoutFullIdentificationFormValues } from './plug-checkout-full-identification.types'
 import { normalizeValidationErrors } from './plug-checkout-full-identification.utils'
@@ -18,16 +22,16 @@ export const schema = (locale?: Locale) => {
     phoneNumber: Yup.string().required(
       t('page.customer.fields.phoneNumber.errorMessageRequired', locale),
     ),
-    documentType: Yup.string().when(['$currency'], {
-      is: (currency: string) => currency !== 'BRL',
+    documentType: Yup.string().when(['$internationalCustomer'], {
+      is: (internationalCustomer: boolean) => internationalCustomer,
       then: Yup.string().test(
         'isValidDocumentType',
         t('page.customer.fields.documentType.errorMessageRequired', locale),
         (value) => value !== 'none',
       ),
     }),
-    documentCountry: Yup.string().when(['$currency'], {
-      is: (currency: string) => currency !== 'BRL',
+    documentCountry: Yup.string().when(['$internationalCustomer'], {
+      is: (internationalCustomer: boolean) => internationalCustomer,
       then: Yup.string().test(
         'isValidDocumentCountry',
         t('page.customer.fields.documentCountry.errorMessageRequired', locale),
@@ -35,8 +39,8 @@ export const schema = (locale?: Locale) => {
       ),
     }),
     identification: Yup.string()
-      .when(['$currency'], {
-        is: (currency: string) => currency === 'BRL',
+      .when(['$internationalCustomer'], {
+        is: (internationalCustomer: boolean) => !internationalCustomer,
         then: Yup.string()
           .required(
             t(
@@ -50,11 +54,11 @@ export const schema = (locale?: Locale) => {
               'page.customer.fields.identification.errorMessageInvalidFormatBrazil',
               locale,
             ),
-            (value) => isCPFOrCNPJ(value),
+            (value) => isCPFOrCNPJ(cleanTextOnlyNumbers(value)),
           ),
       })
-      .when(['$currency'], {
-        is: (currency: string) => currency !== 'BRL',
+      .when(['$internationalCustomer'], {
+        is: (internationalCustomer: boolean) => internationalCustomer,
         then: Yup.string()
           .required(
             t(
@@ -72,11 +76,12 @@ export const schema = (locale?: Locale) => {
               if (context.parent.documentType === 'other') {
                 return true
               }
+              const documentNumber = cleanTextSpecialCharacters(value)
 
               const isValid = validateTaxId(
                 context.parent.documentCountry,
                 context.parent.documentType,
-                value,
+                documentNumber,
               )
 
               return isValid
@@ -102,20 +107,27 @@ export const schema = (locale?: Locale) => {
       t('page.customer.fields.state.errorMessageRequired', locale),
     ),
     zipCode: Yup.string()
-      .when(['$currency'], {
-        is: (currency: string) => currency === 'BRL',
-        then: Yup.string().required(
-          t('page.customer.fields.zipCode.errorMessageRequiredBrazil', locale),
-        ),
-      })
-      .when(['$currency'], {
-        is: (currency: string) => currency !== 'BRL',
-        then: Yup.string().required(
-          t(
-            'page.customer.fields.zipCode.errorMessageRequiredInternational',
-            locale,
+      .when(['$internationalCustomer'], {
+        is: (internationalCustomer: boolean) => !internationalCustomer,
+        then: Yup.string()
+          .transform((value) => cleanTextOnlyNumbers(value))
+          .required(
+            t(
+              'page.customer.fields.zipCode.errorMessageRequiredBrazil',
+              locale,
+            ),
           ),
-        ),
+      })
+      .when(['$internationalCustomer'], {
+        is: (internationalCustomer: boolean) => internationalCustomer,
+        then: Yup.string()
+          .transform((value) => cleanTextSpecialCharacters(value))
+          .required(
+            t(
+              'page.customer.fields.zipCode.errorMessageRequiredInternational',
+              locale,
+            ),
+          ),
       }),
     country: Yup.string().test(
       'isValidCountry',

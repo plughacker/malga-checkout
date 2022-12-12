@@ -60,6 +60,7 @@ export class PlugCheckoutFull implements ComponentInterface {
     backRoute: '',
     delivery: 0,
     products: [],
+    internationalCustomer: false,
   }
   @Prop() transactionConfig?: PlugCheckoutFullTransaction = {
     statementDescriptor: '',
@@ -253,8 +254,8 @@ export class PlugCheckoutFull implements ComponentInterface {
                 onExpandClick={() => this.handleChangeSection('identification')}
               >
                 <plug-checkout-full-identification
-                  locale={this.language}
-                  currency={currency}
+                  locale={this.locale}
+                  internationalCustomer={this.pageConfig.internationalCustomer}
                   formValues={this.customerFormFields}
                   onFieldChange={({ detail }) => {
                     this.handleSetCustomerFormValues(detail.field, detail.value)

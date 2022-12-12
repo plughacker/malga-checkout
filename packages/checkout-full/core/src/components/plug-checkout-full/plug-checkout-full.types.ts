@@ -206,11 +206,12 @@ export interface PlugCheckoutFullPaymentMethods {
 }
 
 export interface PlugCheckoutFullPage {
-  brandUrl: string
-  footerDescription: string
-  delivery: number
-  backRoute: string
-  products: Product[]
+  brandUrl?: string
+  footerDescription?: string
+  delivery?: number
+  backRoute?: string
+  products?: Product[]
+  internationalCustomer?: boolean
 }
 
 export interface PlugCheckoutFullFraudAnalysisCart {

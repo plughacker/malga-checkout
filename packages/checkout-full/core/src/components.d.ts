@@ -37,8 +37,8 @@ export namespace Components {
         "locale"?: Locale;
     }
     interface PlugCheckoutFullIdentification {
-        "currency": string;
         "formValues": PlugCheckoutFullIdentificationFormValues;
+        "internationalCustomer": boolean;
         "isLoading": boolean;
         "locale"?: Locale;
     }
@@ -119,8 +119,8 @@ declare namespace LocalJSX {
         "onChangeLanguage"?: (event: CustomEvent<{ value: Locale }>) => void;
     }
     interface PlugCheckoutFullIdentification {
-        "currency"?: string;
         "formValues"?: PlugCheckoutFullIdentificationFormValues;
+        "internationalCustomer"?: boolean;
         "isLoading"?: boolean;
         "locale"?: Locale;
         "onFieldChange"?: (event: CustomEvent<{ field: string; value: string }>) => void;

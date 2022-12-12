@@ -7,6 +7,7 @@ import {
   Event,
   EventEmitter,
 } from '@stencil/core'
+import clickOutside from 'click-outside'
 import { CheckoutIconNames } from '../checkout-icon/checkout-icon.types'
 
 import { CheckoutDropdownOptions } from './checkout-dropdown.types'
@@ -26,6 +27,8 @@ export class CheckoutDropdown {
   @Event() changed!: EventEmitter<{ value: string }>
 
   @State() showOptions = false
+
+  dropdownRef = null
 
   private toggleShowOptions = () => {
     this.showOptions = !this.showOptions
@@ -69,6 +72,16 @@ export class CheckoutDropdown {
     return this.label
   }
 
+  componentDidRender() {
+    if (this.dropdownRef) {
+      clickOutside(this.dropdownRef, () => {
+        if (this.showOptions) {
+          this.showOptions = false
+        }
+      })
+    }
+  }
+
   render() {
     return (
       <Host
@@ -78,6 +91,7 @@ export class CheckoutDropdown {
         }}
       >
         <button
+          ref={(el) => (this.dropdownRef = el)}
           class={{ 'checkout-dropdown__button': true }}
           onClick={this.toggleShowOptions}
         >

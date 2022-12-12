@@ -1,6 +1,6 @@
 {
   "name": "@plug-checkout-full/core",
-  "version": "1.5.0",
+  "version": "1.6.0-beta.0",
   "description": "Core components for Plug Checkout Full",
   "private": false,
   "repository": {
@@ -58,7 +58,7 @@
     "puppeteer": "5.5.0"
   },
   "dependencies": {
-    "@plug-checkout/core": "1.5.0",
+    "@plug-checkout/core": "1.6.0-beta.0",
     "axios": "^0.21.1",
     "inputmask": "^5.0.6",
     "payment": "2.3.0",

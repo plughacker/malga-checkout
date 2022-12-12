@@ -1,6 +1,6 @@
 {
   "name": "@plug-checkout-full/angular",
-  "version": "1.5.0",
+  "version": "1.6.0-beta.0",
   "description": "Angular specific wrapper for Plug Checkout Full core components",
   "license": "MIT",
   "private": false,
@@ -46,7 +46,7 @@
   ],
   "dependencies": {
     "tslib": "^1.9.3",
-    "@plug-checkout-full/core": "1.5.0"
+    "@plug-checkout-full/core": "1.6.0-beta.0"
   },
   "peerDependencies": {
     "@angular-devkit/core": "^7.2.1",

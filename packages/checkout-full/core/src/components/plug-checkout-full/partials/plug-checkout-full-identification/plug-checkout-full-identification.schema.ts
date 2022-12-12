@@ -1,16 +1,11 @@
 import * as Yup from 'yup'
-import ct from 'countries-and-timezones'
 import { isCPFOrCNPJ } from 'brazilian-values'
 import { validateTaxId } from '@plug-checkout/utils'
-
-import { PhoneNumberUtil } from 'google-libphonenumber'
 
 import { PlugCheckoutFullIdentificationFormValues } from './plug-checkout-full-identification.types'
 import { normalizeValidationErrors } from './plug-checkout-full-identification.utils'
 import { Locale } from '@plug-checkout/i18n/dist/utils'
 import { t } from '@plug-checkout/i18n'
-
-const phoneUtil = PhoneNumberUtil.getInstance()
 
 export const schema = (locale?: Locale) => {
   return Yup.object().shape({
@@ -20,33 +15,9 @@ export const schema = (locale?: Locale) => {
     email: Yup.string()
       .email(t('page.customer.fields.email.errorMessageInvalidFormat', locale))
       .required(t('page.customer.fields.email.errorMessageRequired', locale)),
-    phoneNumber: Yup.string()
-      .test(
-        'isValidPhoneNumber',
-        t('page.customer.fields.phoneNumber.errorMessageInvalidFormat', locale),
-        (value, context) => {
-          try {
-            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
-            const { countries } = ct.getTimezone(timezone)
-            const country = context.parent.country || countries[0] || 'BR'
-            const phoneNumber = phoneUtil.parseAndKeepRawInput(value, country)
-
-            if (!phoneUtil.isPossibleNumber(phoneNumber)) return false
-
-            const isValidPhone = phoneUtil.isValidNumberForRegion(
-              phoneNumber,
-              country,
-            )
-
-            return !!isValidPhone
-          } catch (err) {
-            return false
-          }
-        },
-      )
-      .required(
-        t('page.customer.fields.phoneNumber.errorMessageRequired', locale),
-      ),
+    phoneNumber: Yup.string().required(
+      t('page.customer.fields.phoneNumber.errorMessageRequired', locale),
+    ),
     documentType: Yup.string().when(['$currency'], {
       is: (currency: string) => currency !== 'BRL',
       then: Yup.string().test(

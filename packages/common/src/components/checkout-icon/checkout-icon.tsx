@@ -29,6 +29,7 @@ import EloIcon from '../../assets/icons/elo.svg'
 import DiscoverIcon from '../../assets/icons/discover.svg'
 import AmexIcon from '../../assets/icons/amex.svg'
 import DinersclubIcon from '../../assets/icons/dinersclub.svg'
+import GlobeIcon from '../../assets/icons/globe.svg'
 
 @Component({ tag: 'checkout-icon', styleUrl: 'checkout-icon.scss' })
 export class CheckoutIcon implements ComponentInterface {
@@ -64,6 +65,7 @@ export class CheckoutIcon implements ComponentInterface {
       hipercard: HipercardIcon,
       mastercard: MatercardIcon,
       visa: VisaIcon,
+      globe: GlobeIcon,
     }
 
     return icons[this.icon]

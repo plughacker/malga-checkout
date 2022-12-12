@@ -27,11 +27,13 @@ export namespace Components {
     }
     interface PlugCheckoutFullFooter {
         "description": string;
+        "language": string;
     }
     interface PlugCheckoutFullHeader {
         "backRoute": string;
         "brand": string;
         "isLoading": boolean;
+        "language": string;
         "locale"?: Locale;
     }
     interface PlugCheckoutFullIdentification {
@@ -105,12 +107,16 @@ declare namespace LocalJSX {
     }
     interface PlugCheckoutFullFooter {
         "description"?: string;
+        "language"?: string;
+        "onChangeLanguage"?: (event: CustomEvent<{ value: Locale }>) => void;
     }
     interface PlugCheckoutFullHeader {
         "backRoute"?: string;
         "brand"?: string;
         "isLoading"?: boolean;
+        "language"?: string;
         "locale"?: Locale;
+        "onChangeLanguage"?: (event: CustomEvent<{ value: Locale }>) => void;
     }
     interface PlugCheckoutFullIdentification {
         "currency"?: string;

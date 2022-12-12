@@ -39,11 +39,18 @@
 
     & > checkout-icon {
       margin-right: 14px;
+
+      & > i > svg {
+        width: 18px;
+        height: 18px;
+        color: var(--plug-checkout-color-brand-middle);
+      }
     }
   }
 
   & > checkout-icon {
     margin-left: 14px;
+    color: var(--plug-checkout-color-grey-darkness);
   }
 }
 

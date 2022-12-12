@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type                                                                                                                                                                                                                                                                                                                                                  | Default     |
-| -------- | --------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `class`  | `class`   |             | `string`                                                                                                                                                                                                                                                                                                                                              | `undefined` |
-| `icon`   | `icon`    |             | `"arrowDown" \| "calendar" \| "check" \| "creditCard" \| "cvv" \| "dollar" \| "lock" \| "spinner" \| "user" \| "warning" \| "poweredByPlug" \| "edit" \| "eye" \| "eyeSlash" \| "arrowLeft" \| "error" \| "checkLarge" \| "clipboard" \| "pix" \| "newTab" \| "amex" \| "dinersclub" \| "discover" \| "elo" \| "hipercard" \| "mastercard" \| "visa"` | `undefined` |
+| Property | Attribute | Description | Type                                                                                                                                                                                                                                                                                                                                                             | Default     |
+| -------- | --------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `class`  | `class`   |             | `string`                                                                                                                                                                                                                                                                                                                                                         | `undefined` |
+| `icon`   | `icon`    |             | `"arrowDown" \| "calendar" \| "check" \| "creditCard" \| "cvv" \| "dollar" \| "lock" \| "spinner" \| "user" \| "warning" \| "poweredByPlug" \| "edit" \| "eye" \| "eyeSlash" \| "arrowLeft" \| "error" \| "checkLarge" \| "clipboard" \| "pix" \| "newTab" \| "amex" \| "dinersclub" \| "discover" \| "elo" \| "hipercard" \| "mastercard" \| "visa" \| "globe"` | `undefined` |
 
 
 ## Dependencies
@@ -20,6 +20,7 @@
  - [checkout-accordion](../checkout-accordion)
  - [checkout-button](../checkout-button)
  - [checkout-clipboard-button](../checkout-clipboard-button)
+ - [checkout-dropdown](../checkout-dropdown)
  - [checkout-loader](../checkout-loader)
  - [checkout-modal-boleto](../checkout-modal/partials/checkout-modal-boleto)
  - [checkout-modal-error](../checkout-modal/partials/checkout-modal-error)
@@ -36,6 +37,7 @@ graph TD;
   checkout-accordion --> checkout-icon
   checkout-button --> checkout-icon
   checkout-clipboard-button --> checkout-icon
+  checkout-dropdown --> checkout-icon
   checkout-loader --> checkout-icon
   checkout-modal-boleto --> checkout-icon
   checkout-modal-error --> checkout-icon

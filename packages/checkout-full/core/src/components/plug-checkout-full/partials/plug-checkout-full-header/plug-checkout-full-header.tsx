@@ -77,8 +77,9 @@ export class PlugCheckoutFullHeader {
           <div class={{ 'plug-checkout-full-header__language': true }}>
             <checkout-dropdown
               value={this.language}
+              startIcon="globe"
               options={[
-                { label: 'Português', value: 'default' },
+                { label: 'Português', value: 'pt' },
                 { label: 'English', value: 'en' },
               ]}
               onChanged={({ detail: { value } }) =>

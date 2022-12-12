@@ -21,8 +21,9 @@ export class PlugCheckoutFullFooter {
         <footer class={{ 'plug-checkout-full-footer__content': true }}>
           <checkout-dropdown
             value={this.language}
+            startIcon="globe"
             options={[
-              { label: 'Português', value: 'default' },
+              { label: 'Português', value: 'pt' },
               { label: 'English', value: 'en' },
             ]}
             onChanged={({ detail: { value } }) =>

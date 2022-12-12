@@ -41,6 +41,7 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v4
         id: auto-commit-action
         with:
+          commit_options: '--no-verify'
           commit_message: 'chore(translations): fetch new translations'
 
       - name: 'Run if changes have been detected'

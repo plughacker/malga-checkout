@@ -7,6 +7,7 @@ import {
   Event,
   EventEmitter,
 } from '@stencil/core'
+import { CheckoutIconNames } from '../checkout-icon/checkout-icon.types'
 
 import { CheckoutDropdownOptions } from './checkout-dropdown.types'
 
@@ -17,6 +18,8 @@ import { CheckoutDropdownOptions } from './checkout-dropdown.types'
 export class CheckoutDropdown {
   @Prop() fullWidth?: boolean = false
   @Prop() label?: string
+  @Prop() endIcon?: CheckoutIconNames = 'arrowDown'
+  @Prop() startIcon: CheckoutIconNames
   @Prop() value: string
   @Prop() options: CheckoutDropdownOptions[]
 
@@ -79,10 +82,10 @@ export class CheckoutDropdown {
           onClick={this.toggleShowOptions}
         >
           <span>
-            <checkout-icon icon="calendar" />
+            <checkout-icon icon={this.startIcon} />
             {this.getCurrentLabel()}
           </span>
-          <checkout-icon icon="arrowDown" />
+          <checkout-icon icon={this.endIcon} />
         </button>
         {this.showOptions && (
           <ul class={{ 'checkout-dropdown__list': true }}>

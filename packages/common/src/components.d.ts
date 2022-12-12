@@ -55,9 +55,11 @@ export namespace Components {
         "validity"?: string;
     }
     interface CheckoutDropdown {
+        "endIcon"?: CheckoutIconNames;
         "fullWidth"?: boolean;
         "label"?: string;
         "options": CheckoutDropdownOptions[];
+        "startIcon": CheckoutIconNames;
         "value": string;
     }
     interface CheckoutErrorMessage {
@@ -421,10 +423,12 @@ declare namespace LocalJSX {
         "validity"?: string;
     }
     interface CheckoutDropdown {
+        "endIcon"?: CheckoutIconNames;
         "fullWidth"?: boolean;
         "label"?: string;
         "onChanged"?: (event: CustomEvent<{ value: string }>) => void;
         "options"?: CheckoutDropdownOptions[];
+        "startIcon"?: CheckoutIconNames;
         "value"?: string;
     }
     interface CheckoutErrorMessage {

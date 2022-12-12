@@ -1,3 +1,222 @@
 {
-  "helloWorld": "Hello World, {first} {last}"
+  "common": {
+    "total": "total",
+    "processing": "Processing",
+    "other": "Other",
+    "order": {
+      "amount": "Total",
+      "delivery": "Shipping fee"
+    }
+  },
+  "paymentMethods": {
+    "common": {
+      "payButton": "Pay"
+    },
+    "card": {
+      "title": "Credit Card",
+      "newCardTitle": "New Credit Card",
+      "newCard": {
+        "errorMessageAllFieldsRequired": "Fill in all fields to proceed.",
+        "creditCard": {
+          "validity": "valid thru",
+          "name": "Full Name",
+          "cvv": "CVV",
+          "safeEnvironment": "safe session"
+        },
+        "fields": {
+          "cardNumber": {
+            "label": "Card number *",
+            "errorMessageRequired": "A card number is required.",
+            "errorMessageInvalidFormat": "Invalid format. Please, verify your card data."
+          },
+          "expirationDate": {
+            "label": "Expiration date (MM/AA) *",
+            "errorMessageRequired": "The expiration date is required.",
+            "errorMessageInvalidFormat": "The expiration date is invalid. Please, verify your card data."
+          },
+          "cvv": {
+            "label": "Card Verification Value (CVV) * ",
+            "errorMessageRequired": "A CVV is required.",
+            "errorMessageInvalidFormat": "Invalid format. Please, verify your card data."
+          },
+          "name": {
+            "label": "Card name *",
+            "errorMessageRequired": "A card name is required.",
+            "errorMessageInvalidFormat": "Invalid format. Please, verify your card data."
+          },
+          "installments": {
+            "label": "Installments *",
+            "errorMessageRequired": "Select an installment to proceed."
+          },
+          "saveCard": {
+            "label": "Save card for future use"
+          }
+        }
+      },
+      "savedCards": {
+        "card": "Credit Card ••••",
+        "fields": {
+          "cvv": {
+            "description": "To process your transaction, please provide the CVV on the back of your card.",
+            "label": "Card Verification Value (CVV) * ",
+            "errorMessage": "Invalid format. Please, verify your card data."
+          },
+          "installments": {
+            "label": "Installments *",
+            "errorMessage": "Installments are required."
+          }
+        }
+      }
+    },
+    "pix": {
+      "title": "PIX",
+      "descriptions": {
+        "showQrCode": "The PIX QR Code will be display",
+        "paymentConfirmation": "after confirmation"
+      }
+    },
+    "boleto": {
+      "title": "Boleto",
+      "descriptions": {
+        "showBarcode": "The Boleto bar code will be display",
+        "paymentConfirmation": "after confirmation"
+      }
+    }
+  },
+  "dialogs": {
+    "common": {
+      "actionButtonLabel": "Next"
+    },
+    "pix": {
+      "title": "PIX is available for payment!",
+      "subtitle": "Pay the QR Code below to complete your order:",
+      "waitingPaymentMessage": "Order awaiting payment!",
+      "importantMessage": "Important information",
+      "importantMessageDefault": "If the QR Code has expired and the Pix has not been paid, your order will be automatically canceled. Do not pay after this time.",
+      "importantMessageFirst": "We will notify you by email when the bank identifies the deposit. This process can take up to 48 hours and is automatic.",
+      "importantMessageSecond": "If the QR Code has expired and the Pix has not been paid, your order will be automatically canceled. Do not pay after this time.",
+      "errorMessage": "It was not possible to process your transaction. Please, try again.",
+      "errorMessageExpired": "If you have already made the payment, wait for the confirmation e-mail. If you haven't made payment yet, please place a new order.",
+      "errorTitleExpired": "This PIX code has expired",
+      "successMessage": "Payment made successfully",
+      "clipboardDescription": "Scan or copy the code to pay in your bank's app.",
+      "clipboard": "Copy Code",
+      "clipboardClicked": "Copied!",
+      "expirationTimeCode": "Your code",
+      "expirationTime": "expires on:",
+      "amount": "Total:",
+      "paymentInstructions": "To pay",
+      "paymentInstructionsFirstMessage": "Open your bank app and select the PIX section.",
+      "paymentInstructionsSecondMessage": "Choose \"Pay with Code\" and paste the code above.",
+      "paymentInstructionsThirdMessage": "Confirm the information and pay."
+    },
+    "boleto": {
+      "title": "Boleto is available for payment!",
+      "subtitle": "Pay the Boleto below to complete your order:",
+      "waitingPaymentMessage": "Order awaiting payment!",
+      "errorMessage": "It was not possible to process your transaction. Please, try again.",
+      "clipboard": "Copy Code",
+      "clipboardDescription": "Scan or copy the code to pay in your bank's app.",
+      "amount": "Total:",
+      "expirationDate": "Expiration date:",
+      "importantMessage": "Important information",
+      "importantMessageDefault": "We will notify you by email when the bank identifies the deposit. This process can take up to 48 hours and is automatic.",
+      "importantMessageFirst": "If the boleto is not paid by {expirationDate}, your order will be automatically canceled. Do not pay after this date.",
+      "showBoleto": "Show boleto"
+    },
+    "card": {
+      "errorMessage": "It was not possible to process your transaction. Please, try again."
+    },
+    "session": {
+      "errorMessage": "It was not possible to process your transaction. Please, try again."
+    },
+    "success": {
+      "description": "Order received successfully!",
+      "actionButtonLabel": "Next"
+    },
+    "error": {
+      "actionButtonLabel": "Try again"
+    }
+  },
+  "page": {
+    "safeEnvironment": "Safe session",
+    "order": "Order",
+    "identification": "Identification",
+    "payment": "Payment",
+    "secureAndEncrypted": "Secure and encrypted",
+    "customer": {
+      "personalData": "Personal details",
+      "document": "Document",
+      "address": "Address",
+      "submitButton": "Next",
+      "fields": {
+        "name": {
+          "label": "Full Name *",
+          "errorMessageRequired": "Full name is required.",
+          "errorMessageInvalidFormat": "The expiration date is invalid. Please, verify your card data."
+        },
+        "email": {
+          "label": "E-mail *",
+          "errorMessageRequired": "An e-mail is required.",
+          "errorMessageInvalidFormat": "Invalid format. Please, verify your e-mail."
+        },
+        "phoneNumber": {
+          "label": "Phone *",
+          "errorMessageRequired": "A phone number is required.",
+          "errorMessageInvalidFormat": "Invalid format. Please, verify your phone number."
+        },
+        "documentCountry": {
+          "label": "Document Country *",
+          "errorMessageRequired": "Select your country to continue."
+        },
+        "documentType": {
+          "label": "Document Type *",
+          "errorMessageRequired": "Please, select a document type to continue."
+        },
+        "identification": {
+          "labelBrazil": "CPF/CNPJ*",
+          "errorMessageRequiredBrazil": "A CPF or a CNPJ is required.",
+          "errorMessageInvalidFormatBrazil": "Invalid format. Please, verify your CPF or CNPJ.",
+          "labelInternational": "Document ID *",
+          "errorMessageRequiredInternational": "The document ID is required.",
+          "errorMessageInvalidFormatInternational": "Invalid format. Please, verify your document."
+        },
+        "zipCode": {
+          "labelBrazil": "Zip Code *",
+          "descriptionBrazil": "I don't know my zip code",
+          "errorMessageRequiredBrazil": "A Zip Code is required.",
+          "labelInternational": "Zip Code *",
+          "errorMessageRequiredInternational": "A zip code is required."
+        },
+        "street": {
+          "label": "Address *",
+          "errorMessageRequired": "The street is required."
+        },
+        "number": {
+          "label": "Number *",
+          "errorMessageRequired": "A number is required."
+        },
+        "complement": {
+          "label": "Street Address 2 *",
+          "errorMessageRequired": "Street Address 2 is required."
+        },
+        "neighborhood": {
+          "label": "Neighborhood *",
+          "errorMessageRequired": "The neighborhood is required."
+        },
+        "city": {
+          "label": "City *",
+          "errorMessageRequired": "The city is required."
+        },
+        "state": {
+          "label": "State *",
+          "errorMessageRequired": "The state is required."
+        },
+        "country": {
+          "label": "Country *",
+          "errorMessageRequired": "Select your country to continue."
+        }
+      }
+    }
+  }
 }

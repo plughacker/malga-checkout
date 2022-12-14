@@ -15,6 +15,7 @@
     "@plug-checkout/utils": "0.0.1"
   },
   "changesets": [
-    "neat-ways-pay"
+    "neat-ways-pay",
+    "violet-days-train"
   ]
 }

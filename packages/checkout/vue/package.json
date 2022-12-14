@@ -1,7 +1,7 @@
 {
   "name": "@plug-checkout/vue",
   "sideEffects": false,
-  "version": "1.6.0-beta.0",
+  "version": "1.6.0-beta.1",
   "license": "MIT",
   "description": "Vue specific wrapper for Plug Checkout core components",
   "private": false,
@@ -49,7 +49,7 @@
     "vue": "^3.1.1"
   },
   "dependencies": {
-    "@plug-checkout/core": "1.6.0-beta.0"
+    "@plug-checkout/core": "1.6.0-beta.1"
   },
   "jest": {
     "preset": "ts-jest",

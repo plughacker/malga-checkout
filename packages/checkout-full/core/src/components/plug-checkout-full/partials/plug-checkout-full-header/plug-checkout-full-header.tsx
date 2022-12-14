@@ -9,8 +9,8 @@ import PlugBrand from '../../../../assets/plug-brand.svg'
 })
 export class PlugCheckoutFullHeader {
   @Prop() locale?: Locale
+  @Prop() backRoute?: string
   @Prop() brand: string
-  @Prop() backRoute: string
   @Prop() language: string
   @Prop() isLoading = false
 
@@ -61,12 +61,15 @@ export class PlugCheckoutFullHeader {
           </div>
         )}
         <header class={{ 'plug-checkout-full-header__content': true }}>
-          <button
-            class={{ 'plug-checkout-full-header__navigation': true }}
-            onClick={this.handleNavigation}
-          >
-            <checkout-icon icon="arrowLeft" />
-          </button>
+          {!!this.backRoute && (
+            <button
+              class={{ 'plug-checkout-full-header__navigation': true }}
+              onClick={this.handleNavigation}
+            >
+              <checkout-icon icon="arrowLeft" />
+            </button>
+          )}
+
           <div class={{ 'plug-checkout-full-header__brand-container': true }}>
             {this.renderImg()}
             <div class={{ 'plug-checkout-full-header__message': true }}>

@@ -6,7 +6,7 @@ import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
   styleUrl: 'plug-checkout-full-footer.scss',
 })
 export class PlugCheckoutFullFooter {
-  @Prop() description: string
+  @Prop() description?: string
   @Prop() language: string
 
   @Event() changeLanguage: EventEmitter<{ value: Locale }>
@@ -30,7 +30,7 @@ export class PlugCheckoutFullFooter {
               this.handleChangeLanguage(value as Locale)
             }
           />
-          {this.description}
+          {!!this.description && this.description}
         </footer>
       </Host>
     )

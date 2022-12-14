@@ -254,7 +254,7 @@ export class PlugCheckoutFull implements ComponentInterface {
                 onExpandClick={() => this.handleChangeSection('identification')}
               >
                 <plug-checkout-full-identification
-                  locale={this.locale}
+                  locale={this.language}
                   internationalCustomer={this.pageConfig.internationalCustomer}
                   formValues={this.customerFormFields}
                   onFieldChange={({ detail }) => {
@@ -320,15 +320,13 @@ export class PlugCheckoutFull implements ComponentInterface {
           </div>
         </plug-checkout-full-content>
 
-        {this.pageConfig.footerDescription && (
-          <plug-checkout-full-footer
-            language={this.language}
-            onChangeLanguage={({ detail: { value } }) =>
-              this.handleChangeLanguage(value)
-            }
-            description={this.pageConfig.footerDescription}
-          />
-        )}
+        <plug-checkout-full-footer
+          language={this.language}
+          onChangeLanguage={({ detail: { value } }) =>
+            this.handleChangeLanguage(value)
+          }
+          description={this.pageConfig.footerDescription}
+        />
       </Host>
     )
   }

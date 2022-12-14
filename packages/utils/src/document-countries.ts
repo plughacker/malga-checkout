@@ -15,52 +15,40 @@ const documentCountriesEnglish = [
     label: 'Argentina',
   },
   {
-    value: 'AT',
-    label: 'Austria',
-  },
-  {
     value: 'AU',
     label: 'Australia',
   },
   {
-    value: 'BA',
-    label: 'Bosnia and Herzegovina',
-  },
-  {
-    value: 'BZ',
-    label: 'Belize',
-  },
-  {
-    value: 'BE',
-    label: 'Belgium',
-  },
-  {
-    value: 'BG',
-    label: 'Bulgaria',
+    value: 'AT',
+    label: 'Austria',
   },
   {
     value: 'BY',
     label: 'Belarus',
   },
   {
+    value: 'BE',
+    label: 'Belgium',
+  },
+  {
+    value: 'BZ',
+    label: 'Belize',
+  },
+  {
+    value: 'BA',
+    label: 'Bosnia and Herzegovina',
+  },
+  {
+    value: 'BR',
+    label: 'Brazil',
+  },
+  {
+    value: 'BG',
+    label: 'Bulgaria',
+  },
+  {
     value: 'CA',
     label: 'Canada',
-  },
-  {
-    value: 'CU',
-    label: 'Cuba',
-  },
-  {
-    value: 'CY',
-    label: 'Cyprus',
-  },
-  {
-    value: 'CZ',
-    label: 'Czech Republic',
-  },
-  {
-    value: 'CH',
-    label: 'Switzerland',
   },
   {
     value: 'CL',
@@ -79,8 +67,20 @@ const documentCountriesEnglish = [
     label: 'Costa Rica',
   },
   {
-    value: 'DE',
-    label: 'Germany',
+    value: 'HR',
+    label: 'Croatia',
+  },
+  {
+    value: 'CU',
+    label: 'Cuba',
+  },
+  {
+    value: 'CY',
+    label: 'Cyprus',
+  },
+  {
+    value: 'CZ',
+    label: 'Czech Republic',
   },
   {
     value: 'DK',
@@ -95,16 +95,12 @@ const documentCountriesEnglish = [
     label: 'Ecuador',
   },
   {
-    value: 'EE',
-    label: 'Estonia',
-  },
-  {
     value: 'SV',
     label: 'El Salvador',
   },
   {
-    value: 'GT',
-    label: 'Guatemala',
+    value: 'EE',
+    label: 'Estonia',
   },
   {
     value: 'FI',
@@ -115,16 +111,16 @@ const documentCountriesEnglish = [
     label: 'France',
   },
   {
-    value: 'GB',
-    label: 'United Kingdom',
+    value: 'DE',
+    label: 'Germany',
   },
   {
     value: 'GR',
     label: 'Greece',
   },
   {
-    value: 'HR',
-    label: 'Croatia',
+    value: 'GT',
+    label: 'Guatemala',
   },
   {
     value: 'HK',
@@ -139,6 +135,10 @@ const documentCountriesEnglish = [
     label: 'Iceland',
   },
   {
+    value: 'IN',
+    label: 'India',
+  },
+  {
     value: 'ID',
     label: 'Indonesia',
   },
@@ -147,16 +147,20 @@ const documentCountriesEnglish = [
     label: 'Ireland',
   },
   {
-    value: 'IN',
-    label: 'India',
-  },
-  {
     value: 'IL',
     label: 'Israel',
   },
   {
     value: 'IT',
     label: 'Italy',
+  },
+  {
+    value: 'JP',
+    label: 'Japan',
+  },
+  {
+    value: 'LV',
+    label: 'Latvia',
   },
   {
     value: 'LI',
@@ -171,20 +175,8 @@ const documentCountriesEnglish = [
     label: 'Luxembourg',
   },
   {
-    value: 'LV',
-    label: 'Latvia',
-  },
-  {
-    value: 'MK',
-    label: 'Republic of Macedonia',
-  },
-  {
-    value: 'MC',
-    label: 'Monaco',
-  },
-  {
-    value: 'MD',
-    label: 'Republic of Moldova',
+    value: 'MY',
+    label: 'Malaysia',
   },
   {
     value: 'MT',
@@ -195,24 +187,16 @@ const documentCountriesEnglish = [
     label: 'Mauritius',
   },
   {
-    value: 'JP',
-    label: 'Japan',
-  },
-  {
-    value: 'KR',
-    label: 'South Korea',
-  },
-  {
     value: 'MX',
     label: 'Mexico',
   },
   {
-    value: 'ME',
-    label: 'Montenegro',
+    value: 'MC',
+    label: 'Monaco',
   },
   {
-    value: 'MY',
-    label: 'Malaysia',
+    value: 'ME',
+    label: 'Montenegro',
   },
   {
     value: 'NL',
@@ -227,16 +211,16 @@ const documentCountriesEnglish = [
     label: 'Norway',
   },
   {
+    value: 'PK',
+    label: 'Pakistan',
+  },
+  {
     value: 'PY',
     label: 'Paraguay',
   },
   {
     value: 'PE',
     label: 'Peru',
-  },
-  {
-    value: 'PK',
-    label: 'Pakistan',
   },
   {
     value: 'PL',
@@ -247,12 +231,20 @@ const documentCountriesEnglish = [
     label: 'Portugal',
   },
   {
-    value: 'RU',
-    label: 'Russian',
+    value: 'MK',
+    label: 'Republic of Macedonia',
+  },
+  {
+    value: 'MD',
+    label: 'Republic of Moldova',
   },
   {
     value: 'RO',
     label: 'Romania',
+  },
+  {
+    value: 'RU',
+    label: 'Russian',
   },
   {
     value: 'SM',
@@ -263,48 +255,64 @@ const documentCountriesEnglish = [
     label: 'Serbia',
   },
   {
-    value: 'SE',
-    label: 'Sweden',
-  },
-  {
     value: 'SG',
     label: 'Singapore',
-  },
-  {
-    value: 'TH',
-    label: 'Thailand',
-  },
-  {
-    value: 'TW',
-    label: 'Taiwan',
-  },
-  {
-    value: 'TR',
-    label: 'Turkey',
-  },
-  {
-    value: 'SI',
-    label: 'Slovenia',
   },
   {
     value: 'SK',
     label: 'Slovakia',
   },
   {
+    value: 'SI',
+    label: 'Slovenia',
+  },
+  {
+    value: 'ZA',
+    label: 'South Africa',
+  },
+  {
+    value: 'KR',
+    label: 'South Korea',
+  },
+  {
     value: 'ES',
     label: 'Spain',
   },
   {
-    value: 'UY',
-    label: 'Uruguay',
+    value: 'SE',
+    label: 'Sweden',
+  },
+  {
+    value: 'CH',
+    label: 'Switzerland',
+  },
+  {
+    value: 'TW',
+    label: 'Taiwan',
+  },
+  {
+    value: 'TH',
+    label: 'Thailand',
+  },
+  {
+    value: 'TR',
+    label: 'Turkey',
   },
   {
     value: 'UA',
     label: 'Ukraine',
   },
   {
+    value: 'GB',
+    label: 'United Kingdom',
+  },
+  {
     value: 'US',
     label: 'United States',
+  },
+  {
+    value: 'UY',
+    label: 'Uruguay',
   },
   {
     value: 'VE',
@@ -314,16 +322,20 @@ const documentCountriesEnglish = [
     value: 'VN',
     label: 'Viet Nam',
   },
-  {
-    value: 'ZA',
-    label: 'South Africa',
-  },
 ]
 
 const documentCountriesPortuguese = [
   {
+    value: 'ZA',
+    label: 'África do Sul',
+  },
+  {
     value: 'AL',
     label: 'Albânia',
+  },
+  {
+    value: 'DE',
+    label: 'Alemanha',
   },
   {
     value: 'AD',
@@ -334,56 +346,40 @@ const documentCountriesPortuguese = [
     label: 'Argentina',
   },
   {
-    value: 'AT',
-    label: 'Áustria',
-  },
-  {
     value: 'AU',
     label: 'Austrália',
   },
   {
-    value: 'BA',
-    label: 'Bósnia e Herzegovina',
-  },
-  {
-    value: 'BZ',
-    label: 'Belize',
+    value: 'AT',
+    label: 'Áustria',
   },
   {
     value: 'BE',
     label: 'Bélgica',
   },
   {
-    value: 'BG',
-    label: 'Bulgária',
-  },
-  {
-    value: 'BR',
-    label: 'Brasil',
+    value: 'BZ',
+    label: 'Belize',
   },
   {
     value: 'BY',
     label: 'Bielorrússia',
   },
   {
+    value: 'BA',
+    label: 'Bósnia e Herzegovina',
+  },
+  {
+    value: 'BR',
+    label: 'Brasil',
+  },
+  {
+    value: 'BG',
+    label: 'Bulgária',
+  },
+  {
     value: 'CA',
     label: 'Canadá',
-  },
-  {
-    value: 'CU',
-    label: 'Cuba',
-  },
-  {
-    value: 'CY',
-    label: 'Chipre',
-  },
-  {
-    value: 'CZ',
-    label: 'República Tcheca',
-  },
-  {
-    value: 'CH',
-    label: 'Suiça',
   },
   {
     value: 'CL',
@@ -394,40 +390,60 @@ const documentCountriesPortuguese = [
     label: 'China',
   },
   {
+    value: 'CY',
+    label: 'Chipre',
+  },
+  {
     value: 'CO',
     label: 'Colômbia',
+  },
+  {
+    value: 'KR',
+    label: 'Coreia do Sul',
   },
   {
     value: 'CR',
     label: 'Costa Rica',
   },
   {
-    value: 'DE',
-    label: 'Alemanha',
+    value: 'HR',
+    label: 'Croácia',
+  },
+  {
+    value: 'CU',
+    label: 'Cuba',
   },
   {
     value: 'DK',
     label: 'Dinamarca',
   },
   {
-    value: 'DO',
-    label: 'República Dominicana',
+    value: 'SV',
+    label: 'El Salvador',
   },
   {
     value: 'EC',
     label: 'Equador',
   },
   {
+    value: 'SK',
+    label: 'Eslováquia',
+  },
+  {
+    value: 'SI',
+    label: 'Eslovênia',
+  },
+  {
+    value: 'ES',
+    label: 'Espanha',
+  },
+  {
+    value: 'US',
+    label: 'Estados Unidos',
+  },
+  {
     value: 'EE',
     label: 'Estônia',
-  },
-  {
-    value: 'SV',
-    label: 'El Salvador',
-  },
-  {
-    value: 'GT',
-    label: 'Guatemala',
   },
   {
     value: 'FI',
@@ -438,16 +454,16 @@ const documentCountriesPortuguese = [
     label: 'França',
   },
   {
-    value: 'GB',
-    label: 'Reino Unido',
-  },
-  {
     value: 'GR',
     label: 'Grécia',
   },
   {
-    value: 'HR',
-    label: 'Croácia',
+    value: 'GT',
+    label: 'Guatemala',
+  },
+  {
+    value: 'NL',
+    label: 'Holanda',
   },
   {
     value: 'HK',
@@ -458,8 +474,8 @@ const documentCountriesPortuguese = [
     label: 'Hungria',
   },
   {
-    value: 'IS',
-    label: 'Islândia',
+    value: 'IN',
+    label: 'Índia',
   },
   {
     value: 'ID',
@@ -470,8 +486,8 @@ const documentCountriesPortuguese = [
     label: 'Irlanda',
   },
   {
-    value: 'IN',
-    label: 'Índia',
+    value: 'IS',
+    label: 'Islândia',
   },
   {
     value: 'IL',
@@ -480,6 +496,14 @@ const documentCountriesPortuguese = [
   {
     value: 'IT',
     label: 'Itália',
+  },
+  {
+    value: 'JP',
+    label: 'Japão',
+  },
+  {
+    value: 'LV',
+    label: 'Letônia',
   },
   {
     value: 'LI',
@@ -494,20 +518,12 @@ const documentCountriesPortuguese = [
     label: 'Luxemburgo',
   },
   {
-    value: 'LV',
-    label: 'Letônia',
-  },
-  {
     value: 'MK',
     label: 'Macedônia',
   },
   {
-    value: 'MC',
-    label: 'Mônaco',
-  },
-  {
-    value: 'MD',
-    label: 'Moldova',
+    value: 'MY',
+    label: 'Malásia',
   },
   {
     value: 'MT',
@@ -518,36 +534,32 @@ const documentCountriesPortuguese = [
     label: 'Maurício',
   },
   {
-    value: 'JP',
-    label: 'Japão',
-  },
-  {
-    value: 'KR',
-    label: 'Coreia do Sul',
-  },
-  {
     value: 'MX',
     label: 'México',
+  },
+  {
+    value: 'MD',
+    label: 'Moldova',
+  },
+  {
+    value: 'MC',
+    label: 'Mônaco',
   },
   {
     value: 'ME',
     label: 'Montenegro',
   },
   {
-    value: 'MY',
-    label: 'Malásia',
-  },
-  {
-    value: 'NL',
-    label: 'Holanda',
+    value: 'NO',
+    label: 'Noruega',
   },
   {
     value: 'NZ',
     label: 'Nova Zelândia',
   },
   {
-    value: 'NO',
-    label: 'Noruega',
+    value: 'PK',
+    label: 'Paquistão',
   },
   {
     value: 'PY',
@@ -558,10 +570,6 @@ const documentCountriesPortuguese = [
     label: 'Peru',
   },
   {
-    value: 'PK',
-    label: 'Paquistão',
-  },
-  {
     value: 'PL',
     label: 'Polônia',
   },
@@ -570,12 +578,24 @@ const documentCountriesPortuguese = [
     label: 'Portugal',
   },
   {
-    value: 'RU',
-    label: 'Rússia',
+    value: 'GB',
+    label: 'Reino Unido',
+  },
+  {
+    value: 'DO',
+    label: 'República Dominicana',
+  },
+  {
+    value: 'CZ',
+    label: 'República Tcheca',
   },
   {
     value: 'RO',
     label: 'Romênia',
+  },
+  {
+    value: 'RU',
+    label: 'Rússia',
   },
   {
     value: 'SM',
@@ -586,12 +606,16 @@ const documentCountriesPortuguese = [
     label: 'Sérvia',
   },
   {
+    value: 'SG',
+    label: 'Singapura',
+  },
+  {
     value: 'SE',
     label: 'Suécia',
   },
   {
-    value: 'SG',
-    label: 'Singapura',
+    value: 'CH',
+    label: 'Suiça',
   },
   {
     value: 'TH',
@@ -606,28 +630,12 @@ const documentCountriesPortuguese = [
     label: 'Turquia',
   },
   {
-    value: 'SI',
-    label: 'Eslovênia',
-  },
-  {
-    value: 'SK',
-    label: 'Eslováquia',
-  },
-  {
-    value: 'ES',
-    label: 'Espanha',
-  },
-  {
-    value: 'UY',
-    label: 'Uruguai',
-  },
-  {
     value: 'UA',
     label: 'Ucrânia',
   },
   {
-    value: 'US',
-    label: 'Estados Unidos',
+    value: 'UY',
+    label: 'Uruguai',
   },
   {
     value: 'VE',
@@ -636,10 +644,6 @@ const documentCountriesPortuguese = [
   {
     value: 'VN',
     label: 'Vietnam',
-  },
-  {
-    value: 'ZA',
-    label: 'África do Sul',
   },
 ]
 

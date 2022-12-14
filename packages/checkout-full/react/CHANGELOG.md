@@ -1,5 +1,14 @@
 # @plug-checkout-full/react
 
+## 1.6.0-beta.1
+
+### Patch Changes
+
+- [#52](https://github.com/plughacker/plug-checkout/pull/52) [`2a569b1`](https://github.com/plughacker/plug-checkout/commit/2a569b1ce30b59abc996c012f3f70953dc6aea2a) Thanks [@leonardorpr](https://github.com/leonardorpr)! - minor fixes
+
+- Updated dependencies [[`2a569b1`](https://github.com/plughacker/plug-checkout/commit/2a569b1ce30b59abc996c012f3f70953dc6aea2a)]:
+  - @plug-checkout-full/core@1.6.0-beta.1
+
 ## 1.6.0-beta.0
 
 ### Patch Changes

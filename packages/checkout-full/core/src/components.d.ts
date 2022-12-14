@@ -30,7 +30,7 @@ export namespace Components {
         "language": string;
     }
     interface PlugCheckoutFullHeader {
-        "backRoute": string;
+        "backRoute"?: string;
         "brand": string;
         "isLoading": boolean;
         "language": string;

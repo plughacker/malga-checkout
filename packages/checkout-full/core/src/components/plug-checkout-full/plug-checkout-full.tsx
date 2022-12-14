@@ -320,15 +320,13 @@ export class PlugCheckoutFull implements ComponentInterface {
           </div>
         </plug-checkout-full-content>
 
-        {this.pageConfig.footerDescription && (
-          <plug-checkout-full-footer
-            language={this.language}
-            onChangeLanguage={({ detail: { value } }) =>
-              this.handleChangeLanguage(value)
-            }
-            description={this.pageConfig.footerDescription}
-          />
-        )}
+        <plug-checkout-full-footer
+          language={this.language}
+          onChangeLanguage={({ detail: { value } }) =>
+            this.handleChangeLanguage(value)
+          }
+          description={this.pageConfig.footerDescription}
+        />
       </Host>
     )
   }

@@ -26,7 +26,7 @@ export namespace Components {
     interface PlugCheckoutFullContent {
     }
     interface PlugCheckoutFullFooter {
-        "description": string;
+        "description"?: string;
         "language": string;
     }
     interface PlugCheckoutFullHeader {

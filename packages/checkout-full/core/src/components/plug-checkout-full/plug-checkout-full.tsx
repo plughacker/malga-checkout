@@ -254,7 +254,7 @@ export class PlugCheckoutFull implements ComponentInterface {
                 onExpandClick={() => this.handleChangeSection('identification')}
               >
                 <plug-checkout-full-identification
-                  locale={this.locale}
+                  locale={this.language}
                   internationalCustomer={this.pageConfig.internationalCustomer}
                   formValues={this.customerFormFields}
                   onFieldChange={({ detail }) => {

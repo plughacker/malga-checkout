@@ -1,0 +1,97 @@
+.checkout-dropdown__container {
+  position: relative;
+
+  &--full-width {
+    width: 100%;
+  }
+}
+
+.checkout-dropdown__button {
+  @extend %reset;
+  @extend %typography-label;
+  @include transition($element: border-color);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+
+  height: 40px;
+  min-width: 180px;
+  padding: calc(var(--plug-checkout-spacing-sm) - 3px);
+  border: 1px solid var(--plug-checkout-color-grey-light);
+  border-radius: var(--plug-checkout-border-radius-default);
+
+  &:hover, &:focus {
+    @include border(
+      $size: 2px,
+      $color: var(--plug-checkout-color-brand-middle)
+    );
+  }
+
+  & > span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    & > checkout-icon {
+      margin-right: 14px;
+
+      & > i > svg {
+        width: 18px;
+        height: 18px;
+        color: var(--plug-checkout-color-brand-middle);
+      }
+    }
+  }
+
+  & > checkout-icon {
+    margin-left: 14px;
+    color: var(--plug-checkout-color-grey-darkness);
+  }
+}
+
+.checkout-dropdown__list {
+  @extend %reset;
+  list-style: none;
+
+  position: absolute;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: var(--plug-checkout-spacing-xs);
+  padding-bottom: var(--plug-checkout-spacing-xs);
+
+  background-color: var(--plug-checkout-color-accent-light);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+  border-radius: var(--plug-checkout-border-radius-default);
+}
+
+.checkout-dropdown__list-item {
+  @extend %reset;
+  @extend %typography-label;
+  @include transition($element: background-color);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-top: var(--plug-checkout-spacing-xs);
+  padding-bottom: var(--plug-checkout-spacing-xs);
+  cursor: pointer;
+
+  background-color: var(--plug-checkout-color-accent-light);
+
+  &:hover {
+    background-color: var(--plug-checkout-color-brand-clean);
+  }
+
+  &--selected {
+    background-color: var(--plug-checkout-color-brand-clean);
+  }
+}

@@ -1,4 +1,6 @@
-import { Component, Host, h, Prop } from '@stencil/core'
+import { t } from '@plug-checkout/i18n'
+import { Locale } from '@plug-checkout/i18n/dist/utils'
+import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
 import PlugBrand from '../../../../assets/plug-brand.svg'
 
 @Component({
@@ -6,9 +8,13 @@ import PlugBrand from '../../../../assets/plug-brand.svg'
   styleUrl: 'plug-checkout-full-header.scss',
 })
 export class PlugCheckoutFullHeader {
+  @Prop() locale?: Locale
+  @Prop() backRoute?: string
   @Prop() brand: string
-  @Prop() backRoute: string
+  @Prop() language: string
   @Prop() isLoading = false
+
+  @Event() changeLanguage: EventEmitter<{ value: Locale }>
 
   private handleNavigation = () => {
     if (this.backRoute) {
@@ -19,7 +25,7 @@ export class PlugCheckoutFullHeader {
     history.back()
   }
 
-  renderImg() {
+  private renderImg = () => {
     if (this.brand) {
       return (
         <img
@@ -38,6 +44,10 @@ export class PlugCheckoutFullHeader {
     )
   }
 
+  private handleChangeLanguage = (language: Locale) => {
+    this.changeLanguage.emit({ value: language })
+  }
+
   render() {
     return (
       <Host class={{ 'plug-checkout-full-header__container': true }}>
@@ -51,16 +61,34 @@ export class PlugCheckoutFullHeader {
           </div>
         )}
         <header class={{ 'plug-checkout-full-header__content': true }}>
-          <button
-            class={{ 'plug-checkout-full-header__navigation': true }}
-            onClick={this.handleNavigation}
-          >
-            <checkout-icon icon="arrowLeft" />
-          </button>
-          {this.renderImg()}
-          <div class={{ 'plug-checkout-full-header__message': true }}>
-            <checkout-icon icon="lock" />
-            <h5>Ambiente seguro</h5>
+          {!!this.backRoute && (
+            <button
+              class={{ 'plug-checkout-full-header__navigation': true }}
+              onClick={this.handleNavigation}
+            >
+              <checkout-icon icon="arrowLeft" />
+            </button>
+          )}
+
+          <div class={{ 'plug-checkout-full-header__brand-container': true }}>
+            {this.renderImg()}
+            <div class={{ 'plug-checkout-full-header__message': true }}>
+              <checkout-icon icon="lock" />
+              <h5>{t('page.safeEnvironment', this.locale)}</h5>
+            </div>
+          </div>
+          <div class={{ 'plug-checkout-full-header__language': true }}>
+            <checkout-dropdown
+              value={this.language}
+              startIcon="globe"
+              options={[
+                { label: 'Português', value: 'pt' },
+                { label: 'English', value: 'en' },
+              ]}
+              onChanged={({ detail: { value } }) =>
+                this.handleChangeLanguage(value as Locale)
+              }
+            />
           </div>
         </header>
       </Host>

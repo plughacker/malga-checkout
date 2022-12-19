@@ -1,7 +1,10 @@
-export const documentCountries = [
+import { Locale } from '@plug-checkout/i18n/dist/utils'
+import { getCurrentLocale } from '@plug-checkout/i18n'
+
+const documentCountriesEnglish = [
   {
     value: 'AL',
-    label: 'Albânia',
+    label: 'Albania',
   },
   {
     value: 'AD',
@@ -12,56 +15,40 @@ export const documentCountries = [
     label: 'Argentina',
   },
   {
-    value: 'AT',
-    label: 'Áustria',
-  },
-  {
     value: 'AU',
-    label: 'Austrália',
+    label: 'Australia',
   },
   {
-    value: 'BA',
-    label: 'Bósnia e Herzegovina',
+    value: 'AT',
+    label: 'Austria',
+  },
+  {
+    value: 'BY',
+    label: 'Belarus',
+  },
+  {
+    value: 'BE',
+    label: 'Belgium',
   },
   {
     value: 'BZ',
     label: 'Belize',
   },
   {
-    value: 'BE',
-    label: 'Bélgica',
-  },
-  {
-    value: 'BG',
-    label: 'Bulgária',
+    value: 'BA',
+    label: 'Bosnia and Herzegovina',
   },
   {
     value: 'BR',
-    label: 'Brasil',
+    label: 'Brazil',
   },
   {
-    value: 'BY',
-    label: 'Bielorrússia',
+    value: 'BG',
+    label: 'Bulgaria',
   },
   {
     value: 'CA',
-    label: 'Canadá',
-  },
-  {
-    value: 'CU',
-    label: 'Cuba',
-  },
-  {
-    value: 'CY',
-    label: 'Chipre',
-  },
-  {
-    value: 'CZ',
-    label: 'República Tcheca',
-  },
-  {
-    value: 'CH',
-    label: 'Suiça',
+    label: 'Canada',
   },
   {
     value: 'CL',
@@ -73,39 +60,390 @@ export const documentCountries = [
   },
   {
     value: 'CO',
-    label: 'Colômbia',
+    label: 'Colombia',
   },
   {
     value: 'CR',
     label: 'Costa Rica',
   },
   {
-    value: 'DE',
-    label: 'Alemanha',
+    value: 'HR',
+    label: 'Croatia',
+  },
+  {
+    value: 'CU',
+    label: 'Cuba',
+  },
+  {
+    value: 'CY',
+    label: 'Cyprus',
+  },
+  {
+    value: 'CZ',
+    label: 'Czech Republic',
   },
   {
     value: 'DK',
-    label: 'Dinamarca',
+    label: 'Denmark',
   },
   {
     value: 'DO',
-    label: 'República Dominicana',
+    label: 'Dominican Republic',
   },
   {
     value: 'EC',
-    label: 'Equador',
-  },
-  {
-    value: 'EE',
-    label: 'Estônia',
+    label: 'Ecuador',
   },
   {
     value: 'SV',
     label: 'El Salvador',
   },
   {
+    value: 'EE',
+    label: 'Estonia',
+  },
+  {
+    value: 'FI',
+    label: 'Finland',
+  },
+  {
+    value: 'FR',
+    label: 'France',
+  },
+  {
+    value: 'DE',
+    label: 'Germany',
+  },
+  {
+    value: 'GR',
+    label: 'Greece',
+  },
+  {
     value: 'GT',
     label: 'Guatemala',
+  },
+  {
+    value: 'HK',
+    label: 'Hong Kong',
+  },
+  {
+    value: 'HU',
+    label: 'Hungary',
+  },
+  {
+    value: 'IS',
+    label: 'Iceland',
+  },
+  {
+    value: 'IN',
+    label: 'India',
+  },
+  {
+    value: 'ID',
+    label: 'Indonesia',
+  },
+  {
+    value: 'IE',
+    label: 'Ireland',
+  },
+  {
+    value: 'IL',
+    label: 'Israel',
+  },
+  {
+    value: 'IT',
+    label: 'Italy',
+  },
+  {
+    value: 'JP',
+    label: 'Japan',
+  },
+  {
+    value: 'LV',
+    label: 'Latvia',
+  },
+  {
+    value: 'LI',
+    label: 'Liechtenstein',
+  },
+  {
+    value: 'LT',
+    label: 'Lithuania',
+  },
+  {
+    value: 'LU',
+    label: 'Luxembourg',
+  },
+  {
+    value: 'MY',
+    label: 'Malaysia',
+  },
+  {
+    value: 'MT',
+    label: 'Malta',
+  },
+  {
+    value: 'MU',
+    label: 'Mauritius',
+  },
+  {
+    value: 'MX',
+    label: 'Mexico',
+  },
+  {
+    value: 'MC',
+    label: 'Monaco',
+  },
+  {
+    value: 'ME',
+    label: 'Montenegro',
+  },
+  {
+    value: 'NL',
+    label: 'Netherlands',
+  },
+  {
+    value: 'NZ',
+    label: 'New Zealand',
+  },
+  {
+    value: 'NO',
+    label: 'Norway',
+  },
+  {
+    value: 'PK',
+    label: 'Pakistan',
+  },
+  {
+    value: 'PY',
+    label: 'Paraguay',
+  },
+  {
+    value: 'PE',
+    label: 'Peru',
+  },
+  {
+    value: 'PL',
+    label: 'Poland',
+  },
+  {
+    value: 'PT',
+    label: 'Portugal',
+  },
+  {
+    value: 'MK',
+    label: 'Republic of Macedonia',
+  },
+  {
+    value: 'MD',
+    label: 'Republic of Moldova',
+  },
+  {
+    value: 'RO',
+    label: 'Romania',
+  },
+  {
+    value: 'RU',
+    label: 'Russian',
+  },
+  {
+    value: 'SM',
+    label: 'San Marino',
+  },
+  {
+    value: 'RS',
+    label: 'Serbia',
+  },
+  {
+    value: 'SG',
+    label: 'Singapore',
+  },
+  {
+    value: 'SK',
+    label: 'Slovakia',
+  },
+  {
+    value: 'SI',
+    label: 'Slovenia',
+  },
+  {
+    value: 'ZA',
+    label: 'South Africa',
+  },
+  {
+    value: 'KR',
+    label: 'South Korea',
+  },
+  {
+    value: 'ES',
+    label: 'Spain',
+  },
+  {
+    value: 'SE',
+    label: 'Sweden',
+  },
+  {
+    value: 'CH',
+    label: 'Switzerland',
+  },
+  {
+    value: 'TW',
+    label: 'Taiwan',
+  },
+  {
+    value: 'TH',
+    label: 'Thailand',
+  },
+  {
+    value: 'TR',
+    label: 'Turkey',
+  },
+  {
+    value: 'UA',
+    label: 'Ukraine',
+  },
+  {
+    value: 'GB',
+    label: 'United Kingdom',
+  },
+  {
+    value: 'US',
+    label: 'United States',
+  },
+  {
+    value: 'UY',
+    label: 'Uruguay',
+  },
+  {
+    value: 'VE',
+    label: 'Venezuela',
+  },
+  {
+    value: 'VN',
+    label: 'Viet Nam',
+  },
+]
+
+const documentCountriesPortuguese = [
+  {
+    value: 'ZA',
+    label: 'África do Sul',
+  },
+  {
+    value: 'AL',
+    label: 'Albânia',
+  },
+  {
+    value: 'DE',
+    label: 'Alemanha',
+  },
+  {
+    value: 'AD',
+    label: 'Andorra',
+  },
+  {
+    value: 'AR',
+    label: 'Argentina',
+  },
+  {
+    value: 'AU',
+    label: 'Austrália',
+  },
+  {
+    value: 'AT',
+    label: 'Áustria',
+  },
+  {
+    value: 'BE',
+    label: 'Bélgica',
+  },
+  {
+    value: 'BZ',
+    label: 'Belize',
+  },
+  {
+    value: 'BY',
+    label: 'Bielorrússia',
+  },
+  {
+    value: 'BA',
+    label: 'Bósnia e Herzegovina',
+  },
+  {
+    value: 'BR',
+    label: 'Brasil',
+  },
+  {
+    value: 'BG',
+    label: 'Bulgária',
+  },
+  {
+    value: 'CA',
+    label: 'Canadá',
+  },
+  {
+    value: 'CL',
+    label: 'Chile',
+  },
+  {
+    value: 'CN',
+    label: 'China',
+  },
+  {
+    value: 'CY',
+    label: 'Chipre',
+  },
+  {
+    value: 'CO',
+    label: 'Colômbia',
+  },
+  {
+    value: 'KR',
+    label: 'Coreia do Sul',
+  },
+  {
+    value: 'CR',
+    label: 'Costa Rica',
+  },
+  {
+    value: 'HR',
+    label: 'Croácia',
+  },
+  {
+    value: 'CU',
+    label: 'Cuba',
+  },
+  {
+    value: 'DK',
+    label: 'Dinamarca',
+  },
+  {
+    value: 'SV',
+    label: 'El Salvador',
+  },
+  {
+    value: 'EC',
+    label: 'Equador',
+  },
+  {
+    value: 'SK',
+    label: 'Eslováquia',
+  },
+  {
+    value: 'SI',
+    label: 'Eslovênia',
+  },
+  {
+    value: 'ES',
+    label: 'Espanha',
+  },
+  {
+    value: 'US',
+    label: 'Estados Unidos',
+  },
+  {
+    value: 'EE',
+    label: 'Estônia',
   },
   {
     value: 'FI',
@@ -116,16 +454,16 @@ export const documentCountries = [
     label: 'França',
   },
   {
-    value: 'GB',
-    label: 'Reino Unido',
-  },
-  {
     value: 'GR',
     label: 'Grécia',
   },
   {
-    value: 'HR',
-    label: 'Croácia',
+    value: 'GT',
+    label: 'Guatemala',
+  },
+  {
+    value: 'NL',
+    label: 'Holanda',
   },
   {
     value: 'HK',
@@ -136,8 +474,8 @@ export const documentCountries = [
     label: 'Hungria',
   },
   {
-    value: 'IS',
-    label: 'Islândia',
+    value: 'IN',
+    label: 'Índia',
   },
   {
     value: 'ID',
@@ -148,8 +486,8 @@ export const documentCountries = [
     label: 'Irlanda',
   },
   {
-    value: 'IN',
-    label: 'Índia',
+    value: 'IS',
+    label: 'Islândia',
   },
   {
     value: 'IL',
@@ -158,6 +496,14 @@ export const documentCountries = [
   {
     value: 'IT',
     label: 'Itália',
+  },
+  {
+    value: 'JP',
+    label: 'Japão',
+  },
+  {
+    value: 'LV',
+    label: 'Letônia',
   },
   {
     value: 'LI',
@@ -172,20 +518,12 @@ export const documentCountries = [
     label: 'Luxemburgo',
   },
   {
-    value: 'LV',
-    label: 'Letônia',
-  },
-  {
     value: 'MK',
     label: 'Macedônia',
   },
   {
-    value: 'MC',
-    label: 'Mônaco',
-  },
-  {
-    value: 'MD',
-    label: 'Moldova',
+    value: 'MY',
+    label: 'Malásia',
   },
   {
     value: 'MT',
@@ -196,36 +534,32 @@ export const documentCountries = [
     label: 'Maurício',
   },
   {
-    value: 'JP',
-    label: 'Japão',
-  },
-  {
-    value: 'KR',
-    label: 'Coreia do Sul',
-  },
-  {
     value: 'MX',
     label: 'México',
+  },
+  {
+    value: 'MD',
+    label: 'Moldova',
+  },
+  {
+    value: 'MC',
+    label: 'Mônaco',
   },
   {
     value: 'ME',
     label: 'Montenegro',
   },
   {
-    value: 'MY',
-    label: 'Malásia',
-  },
-  {
-    value: 'NL',
-    label: 'Holanda',
+    value: 'NO',
+    label: 'Noruega',
   },
   {
     value: 'NZ',
     label: 'Nova Zelândia',
   },
   {
-    value: 'NO',
-    label: 'Noruega',
+    value: 'PK',
+    label: 'Paquistão',
   },
   {
     value: 'PY',
@@ -236,10 +570,6 @@ export const documentCountries = [
     label: 'Peru',
   },
   {
-    value: 'PK',
-    label: 'Paquistão',
-  },
-  {
     value: 'PL',
     label: 'Polônia',
   },
@@ -248,12 +578,24 @@ export const documentCountries = [
     label: 'Portugal',
   },
   {
-    value: 'RU',
-    label: 'Rússia',
+    value: 'GB',
+    label: 'Reino Unido',
+  },
+  {
+    value: 'DO',
+    label: 'República Dominicana',
+  },
+  {
+    value: 'CZ',
+    label: 'República Tcheca',
   },
   {
     value: 'RO',
     label: 'Romênia',
+  },
+  {
+    value: 'RU',
+    label: 'Rússia',
   },
   {
     value: 'SM',
@@ -264,12 +606,16 @@ export const documentCountries = [
     label: 'Sérvia',
   },
   {
+    value: 'SG',
+    label: 'Singapura',
+  },
+  {
     value: 'SE',
     label: 'Suécia',
   },
   {
-    value: 'SG',
-    label: 'Singapura',
+    value: 'CH',
+    label: 'Suiça',
   },
   {
     value: 'TH',
@@ -284,28 +630,12 @@ export const documentCountries = [
     label: 'Turquia',
   },
   {
-    value: 'SI',
-    label: 'Eslovênia',
-  },
-  {
-    value: 'SK',
-    label: 'Eslováquia',
-  },
-  {
-    value: 'ES',
-    label: 'Espanha',
-  },
-  {
-    value: 'UY',
-    label: 'Uruguai',
-  },
-  {
     value: 'UA',
     label: 'Ucrânia',
   },
   {
-    value: 'US',
-    label: 'Estados Unidos',
+    value: 'UY',
+    label: 'Uruguai',
   },
   {
     value: 'VE',
@@ -315,8 +645,19 @@ export const documentCountries = [
     value: 'VN',
     label: 'Vietnam',
   },
-  {
-    value: 'ZA',
-    label: 'África do Sul',
-  },
 ]
+
+export const documentCountries = (locale?: Locale) => {
+  const currentLocale = getCurrentLocale(locale)
+  const locales = {
+    default: documentCountriesPortuguese,
+    pt: documentCountriesPortuguese,
+    en: documentCountriesEnglish,
+    pt_BR: documentCountriesPortuguese,
+    en_US: documentCountriesEnglish,
+    'pt-BR': documentCountriesPortuguese,
+    'en-US': documentCountriesEnglish,
+  }
+
+  return locales[currentLocale]
+}

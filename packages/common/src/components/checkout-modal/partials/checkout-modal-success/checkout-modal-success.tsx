@@ -1,3 +1,5 @@
+import { t } from '@plug-checkout/i18n'
+import { Locale } from '@plug-checkout/i18n/dist/utils'
 import { Component, Host, h, Event, EventEmitter, Prop } from '@stencil/core'
 
 @Component({
@@ -5,8 +7,9 @@ import { Component, Host, h, Event, EventEmitter, Prop } from '@stencil/core'
   styleUrl: 'checkout-modal-success.scss',
 })
 export class CheckoutModalSuccess {
-  @Prop() successDescription = 'Pedido recebido com sucesso!'
-  @Prop() successActionButtonLabel = 'Continuar'
+  @Prop() locale?: Locale
+  @Prop() successDescription?: string
+  @Prop() successActionButtonLabel?: string
   @Prop() hasSuccessRedirectUrl?: boolean
 
   @Event() successActionButtonClicked: EventEmitter<void>
@@ -19,11 +22,17 @@ export class CheckoutModalSuccess {
           tag="h3"
           variation="header5"
           color="white"
-          content={this.successDescription}
+          content={
+            this.successDescription ||
+            t('dialogs.success.description', this.locale)
+          }
         />
         {!!this.hasSuccessRedirectUrl && (
           <checkout-button
-            label={this.successActionButtonLabel}
+            label={
+              this.successActionButtonLabel ||
+              t('dialogs.success.actionButtonLabel', this.locale)
+            }
             onClicked={() => this.successActionButtonClicked.emit()}
           />
         )}

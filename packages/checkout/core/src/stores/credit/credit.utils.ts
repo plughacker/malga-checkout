@@ -1,3 +1,4 @@
+import { Locale } from '@plug-checkout/i18n/dist/utils'
 import { ValidationError } from 'yup'
 
 import settings from '../settings'
@@ -60,9 +61,11 @@ export const checkIfAllFieldsIsBlank = (data: CreditForm) => {
 export const validateCreditForm = async (
   data: Partial<CreditForm>,
   context?: Record<string, unknown>,
+  locale?: Locale,
 ) => {
   try {
-    await schema.validate(data, { abortEarly: false, context })
+    const cardSchema = schema(locale)
+    await cardSchema.validate(data, { abortEarly: false, context })
 
     return { isValid: true }
   } catch (error) {

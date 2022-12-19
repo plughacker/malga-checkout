@@ -36,6 +36,7 @@ export class PlugPaymentsCredit {
       <Host class={{ 'plug-payments-credit__container': true }}>
         {settings.paymentMethods.credit.showCreditCard && (
           <checkout-credit-card
+            locale={settings.locale}
             focused={this.currentFieldFocused}
             cvv={credit.form.cvv}
             expiry={credit.form.expirationDate}
@@ -50,6 +51,7 @@ export class PlugPaymentsCredit {
         />
         {settings.dialogConfig.show && dialog.configs.open && (
           <checkout-modal
+            locale={settings.locale}
             isSession={!!settings.sessionId}
             hasSuccessRedirectUrl={!!settings.dialogConfig.successRedirectUrl}
             currency={settings.transactionConfig.currency}

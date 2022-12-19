@@ -9,6 +9,8 @@ import {
   Fragment,
 } from '@stencil/core'
 
+import { t } from '@plug-checkout/i18n'
+
 import payment from '../../stores/payment'
 import settings from '../../stores/settings'
 import savedCards from '../../stores/saved-cards'
@@ -39,10 +41,10 @@ export class PlugPayments implements ComponentInterface {
 
   private renderCreditCardLabel() {
     if (savedCards.hasCards) {
-      return 'Novo cartão de crédito'
+      return t('paymentMethods.card.newCardTitle', settings.locale)
     }
 
-    return 'Cartão de crédito'
+    return t('paymentMethods.card.title', settings.locale)
   }
 
   render() {
@@ -72,7 +74,7 @@ export class PlugPayments implements ComponentInterface {
             <Fragment>
               <checkout-radio-field
                 fullWidth
-                label="Boleto"
+                label={t('paymentMethods.boleto.title', settings.locale)}
                 value="boleto"
                 isChecked={payment.selectedPaymentMethod === 'boleto'}
                 onClicked={() => this.handlePaymentChange('boleto')}
@@ -87,7 +89,7 @@ export class PlugPayments implements ComponentInterface {
             <Fragment>
               <checkout-radio-field
                 fullWidth
-                label="PIX"
+                label={t('paymentMethods.pix.title', settings.locale)}
                 value="pix"
                 endIcon="pix"
                 isChecked={payment.selectedPaymentMethod === 'pix'}

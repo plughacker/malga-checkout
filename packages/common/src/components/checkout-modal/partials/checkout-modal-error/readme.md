@@ -7,12 +7,13 @@
 
 ## Properties
 
-| Property                 | Attribute                   | Description | Type     | Default              |
-| ------------------------ | --------------------------- | ----------- | -------- | -------------------- |
-| `errorActionButtonLabel` | `error-action-button-label` |             | `string` | `'Tentar Novamente'` |
-| `errorDescription`       | `error-description`         |             | `string` | `undefined`          |
-| `errorSubtitle`          | `error-subtitle`            |             | `string` | `undefined`          |
-| `errorTitle`             | `error-title`               |             | `string` | `undefined`          |
+| Property                 | Attribute                   | Description | Type                                                                    | Default     |
+| ------------------------ | --------------------------- | ----------- | ----------------------------------------------------------------------- | ----------- |
+| `errorActionButtonLabel` | `error-action-button-label` |             | `string`                                                                | `undefined` |
+| `errorDescription`       | `error-description`         |             | `string`                                                                | `undefined` |
+| `errorSubtitle`          | `error-subtitle`            |             | `string`                                                                | `undefined` |
+| `errorTitle`             | `error-title`               |             | `string`                                                                | `undefined` |
+| `locale`                 | `locale`                    |             | `"default" \| "en" \| "en-US" \| "en_US" \| "pt" \| "pt-BR" \| "pt_BR"` | `undefined` |
 
 
 ## Events

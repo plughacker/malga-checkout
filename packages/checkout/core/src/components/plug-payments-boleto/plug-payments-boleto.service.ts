@@ -14,6 +14,7 @@ import { PlugPayments } from '../../types/plug-payments.types'
 import { PlugPaymentsSuccess } from '../../types/plug-payments-success.types'
 import { PlugPaymentsPaymentMethodBoleto } from '../../types/plug-payments-payment-methods.types'
 import { PlugPaymentsError } from '../../types/plug-payments-error.types'
+import { t } from '@plug-checkout/i18n'
 
 export class PlugPaymentsBoletoService implements PlugPayments {
   readonly charge: Charges
@@ -58,8 +59,7 @@ export class PlugPaymentsBoletoService implements PlugPayments {
       this.onShowDialog({
         open: true,
         mode: 'error',
-        errorMessage:
-          'Não foi possível concluir sua transação, tente novamente.',
+        errorMessage: t('dialogs.boleto.errorMessage', settings.locale),
       })
     }
 

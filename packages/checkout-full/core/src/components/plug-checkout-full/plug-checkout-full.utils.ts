@@ -78,13 +78,17 @@ export const formatProducts = (
     }))
   }
 
-  return products.map((product) => ({
-    name: product.name,
-    quantity: product.quantity,
-    sku: product.sku,
-    unitPrice: product.amount,
-    risk: product.risk,
-  }))
+  if (products) {
+    return products.map((product) => ({
+      name: product.name,
+      quantity: product.quantity,
+      sku: product.sku,
+      unitPrice: product.amount,
+      risk: product.risk,
+    }))
+  }
+
+  return []
 }
 
 export const formatFraudAnalysis = (

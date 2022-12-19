@@ -206,11 +206,12 @@ export interface PlugCheckoutFullPaymentMethods {
 }
 
 export interface PlugCheckoutFullPage {
-  brandUrl: string
-  footerDescription: string
-  delivery: number
-  backRoute: string
-  products: Product[]
+  brandUrl?: string
+  footerDescription?: string
+  delivery?: number
+  backRoute?: string
+  products?: Product[]
+  internationalCustomer?: boolean
 }
 
 export interface PlugCheckoutFullFraudAnalysisCart {
@@ -239,10 +240,10 @@ export interface PlugCheckoutFullTransaction {
 
 export interface PlugCheckoutFullDialog {
   show: boolean
-  actionButtonLabel: string
-  successActionButtonLabel: string
-  errorActionButtonLabel: string
-  successRedirectUrl: string
+  actionButtonLabel?: string
+  successActionButtonLabel?: string
+  errorActionButtonLabel?: string
+  successRedirectUrl?: string
   boletoWaitingPaymentMessage?: string
   pixWaitingPaymentMessage?: string
   pixImportantMessages?: string[]

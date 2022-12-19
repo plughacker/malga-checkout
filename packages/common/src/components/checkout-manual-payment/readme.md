@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property        | Attribute        | Description | Type                                  | Default     |
-| --------------- | ---------------- | ----------- | ------------------------------------- | ----------- |
-| `fullWidth`     | `full-width`     |             | `boolean`                             | `undefined` |
-| `paymentMethod` | `payment-method` |             | `"boleto" \| "pix" \| "pixWithTimer"` | `'pix'`     |
+| Property        | Attribute        | Description | Type                                                                    | Default     |
+| --------------- | ---------------- | ----------- | ----------------------------------------------------------------------- | ----------- |
+| `fullWidth`     | `full-width`     |             | `boolean`                                                               | `undefined` |
+| `locale`        | `locale`         |             | `"default" \| "en" \| "en-US" \| "en_US" \| "pt" \| "pt-BR" \| "pt_BR"` | `undefined` |
+| `paymentMethod` | `payment-method` |             | `"boleto" \| "pix" \| "pixWithTimer"`                                   | `'pix'`     |
 
 
 ## Dependencies

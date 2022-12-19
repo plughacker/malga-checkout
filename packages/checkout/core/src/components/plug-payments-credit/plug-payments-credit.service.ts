@@ -19,6 +19,7 @@ import {
 import { PlugPayments } from '../../types/plug-payments.types'
 import { PlugPaymentsSuccess } from '../../types/plug-payments-success.types'
 import { PlugPaymentsError } from '../../types/plug-payments-error.types'
+import { t } from '@plug-checkout/i18n'
 
 export class PlugPaymentsCreditService implements PlugPayments {
   readonly charge: Charges
@@ -61,8 +62,7 @@ export class PlugPaymentsCreditService implements PlugPayments {
       this.onShowDialog({
         open: true,
         mode: 'error',
-        errorMessage:
-          'Não foi possível concluir sua transação, tente novamente.',
+        errorMessage: t('dialogs.card.errorMessage', settings.locale),
       })
     }
 

@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { Locale } from "@plug-checkout/i18n/dist/utils";
 import { PlugCheckoutFullChargeError, PlugCheckoutFullChargeSuccess, PlugCheckoutFullDialog, PlugCheckoutFullPage, PlugCheckoutFullPaymentMethods, PlugCheckoutFullTransaction } from "./components/plug-checkout-full/plug-checkout-full.types";
 import { PlugCheckoutFullIdentificationFormValues } from "./components/plug-checkout-full/partials/plug-checkout-full-identification/plug-checkout-full-identification.types";
 export namespace Components {
@@ -13,6 +14,7 @@ export namespace Components {
         "debug": boolean;
         "dialogConfig": PlugCheckoutFullDialog;
         "idempotencyKey"?: string;
+        "locale"?: Locale;
         "merchantId"?: string;
         "pageConfig"?: PlugCheckoutFullPage;
         "paymentMethods"?: PlugCheckoutFullPaymentMethods;
@@ -24,17 +26,21 @@ export namespace Components {
     interface PlugCheckoutFullContent {
     }
     interface PlugCheckoutFullFooter {
-        "description": string;
+        "description"?: string;
+        "language": string;
     }
     interface PlugCheckoutFullHeader {
-        "backRoute": string;
+        "backRoute"?: string;
         "brand": string;
         "isLoading": boolean;
+        "language": string;
+        "locale"?: Locale;
     }
     interface PlugCheckoutFullIdentification {
-        "currency": string;
         "formValues": PlugCheckoutFullIdentificationFormValues;
+        "internationalCustomer": boolean;
         "isLoading": boolean;
+        "locale"?: Locale;
     }
 }
 declare global {
@@ -82,6 +88,7 @@ declare namespace LocalJSX {
         "debug"?: boolean;
         "dialogConfig"?: PlugCheckoutFullDialog;
         "idempotencyKey"?: string;
+        "locale"?: Locale;
         "merchantId"?: string;
         "onTransactionFailed"?: (event: CustomEvent<{
     error: PlugCheckoutFullChargeError
@@ -100,16 +107,22 @@ declare namespace LocalJSX {
     }
     interface PlugCheckoutFullFooter {
         "description"?: string;
+        "language"?: string;
+        "onChangeLanguage"?: (event: CustomEvent<{ value: Locale }>) => void;
     }
     interface PlugCheckoutFullHeader {
         "backRoute"?: string;
         "brand"?: string;
         "isLoading"?: boolean;
+        "language"?: string;
+        "locale"?: Locale;
+        "onChangeLanguage"?: (event: CustomEvent<{ value: Locale }>) => void;
     }
     interface PlugCheckoutFullIdentification {
-        "currency"?: string;
         "formValues"?: PlugCheckoutFullIdentificationFormValues;
+        "internationalCustomer"?: boolean;
         "isLoading"?: boolean;
+        "locale"?: Locale;
         "onFieldChange"?: (event: CustomEvent<{ field: string; value: string }>) => void;
         "onManyFieldsChange"?: (event: CustomEvent<{
     customerFormValues: PlugCheckoutFullIdentificationFormValues

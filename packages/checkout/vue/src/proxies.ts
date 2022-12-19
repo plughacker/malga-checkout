@@ -9,6 +9,7 @@ export const PlugCheckout = /*@__PURE__*/ defineContainer<JSX.PlugCheckout>(
   'plug-checkout',
   undefined,
   [
+    'locale',
     'clientId',
     'publicKey',
     'sessionId',

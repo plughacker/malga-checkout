@@ -10,6 +10,7 @@ export const PlugCheckoutFull =
     'plug-checkout-full',
     undefined,
     [
+      'locale',
       'clientId',
       'publicKey',
       'sessionId',

@@ -1,6 +1,6 @@
 {
   "name": "@plug-checkout/core",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Core components for Plug Checkout",
   "private": false,
   "repository": {
@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "@plug-checkout/common": "*",
+    "@plug-checkout/i18n": "*",
     "@plug-checkout/utils": "*",
     "@stencil/angular-output-target": "^0.2.0",
     "@stencil/core": "^2.6.0",

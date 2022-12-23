@@ -16,6 +16,11 @@
 
   & > checkout-dropdown {
     margin-bottom: var(--plug-checkout-spacing-default);
+
+    span {
+      color: white; 
+      mix-blend-mode: difference;
+    }
   }
 
   @include md {

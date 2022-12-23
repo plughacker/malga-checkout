@@ -1,5 +1,14 @@
 # @plug-checkout/angular
 
+## 1.6.1
+
+### Patch Changes
+
+- [`ef911d6`](https://github.com/plughacker/plug-checkout/commit/ef911d640079ba75e70a279f4ee40f555a5fbf54) Thanks [@leonardorpr](https://github.com/leonardorpr)! - fix language selector
+
+- Updated dependencies [[`ef911d6`](https://github.com/plughacker/plug-checkout/commit/ef911d640079ba75e70a279f4ee40f555a5fbf54)]:
+  - @plug-checkout/core@1.6.1
+
 ## 1.6.0
 
 ### Minor Changes

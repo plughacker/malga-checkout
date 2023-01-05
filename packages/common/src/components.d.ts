@@ -7,7 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { CheckoutIconNames } from "./components/checkout-icon/checkout-icon.types";
 import { CheckoutButtonType } from "./components/checkout-button/checkout-button.types";
-import { Locale } from "@plug-checkout/i18n/dist/utils";
+import { Locale } from "@malga-checkout/i18n/dist/utils";
 import { CheckoutDropdownOptions } from "./components/checkout-dropdown/checkout-dropdown.types";
 import { CheckoutManualPaymentDescriptions } from "./components/checkout-manual-payment/checkout-manual-payment.types";
 import { CheckoutModalMode } from "./components/checkout-modal/checkout-modal.types";

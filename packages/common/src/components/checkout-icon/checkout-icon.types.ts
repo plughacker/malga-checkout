@@ -9,7 +9,7 @@ export type CheckoutIconNames =
   | 'spinner'
   | 'user'
   | 'warning'
-  | 'poweredByPlug'
+  | 'poweredByMalga'
   | 'edit'
   | 'eye'
   | 'eyeSlash'

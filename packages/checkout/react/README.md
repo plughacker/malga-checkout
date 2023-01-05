@@ -1,35 +1,35 @@
-# Plug Checkout - React
+# Malga Checkout - React
 
 A simple, fast and customizable way of integrating with Plug, with no need to stop using your favorite front-end framework.
 
 ## Introduction
 
-[Here is a demonstration](https://github.com/plughacker/demo-plug-checkout-react) of a React application integrated with Plug Checkout.
+[Here is a demonstration](https://github.com/plughacker/demo-malga-checkout-react) of a React application integrated with Malga Checkout.
 
 ## Get Started
 
 To start it, simply install the dependency on your project
 
 ```bash
-yarn add @plug-checkout/react
+yarn add @malga-checkout/react
 # or
-npm install --save @plug-checkout/react
+npm install --save @malga-checkout/react
 ```
 
-Import Plug Checkout in one of your components
+Import Malga Checkout in one of your components
 
 ```js
-import PlugCheckout from '@plug-checkout/react'
+import MalgaCheckout from '@malga-checkout/react'
 ```
 
 And use it like this. Its most basic way, with no customization, needs very few configurations.
 
 ```tsx
-<PlugCheckout
+<MalgaCheckout
   publicKey="<YOUR_PUBLIC_KEY>"
   clientId="<YOUR_CLIENT_ID>"
   merchantId="<YOUR_MERCHANT_ID"
-  statementDescriptor="#1 Demonstration Plug Checkout"
+  statementDescriptor="#1 Demonstration Malga Checkout"
   amount={100}
   onPaymentSuccess={({ detail }) => handlePaymentSuccess(detail.data)}
   onPaymentFailed={({ detail }) => handlePaymentFailed(detail.error)}
@@ -46,7 +46,7 @@ Below there is a list of properties that the component accepts for you to custom
 | `publicKey`              | Public key for client-side applications, generated from Plug’s API. [Click here](https://docs.plugpagamentos.com/#section/Autenticacao/Client-Token) to read more about it in the documentation. | `string`   | `undefined`                   |
 | `capture`                | It determines if the transaction should be captured immediately.                                                                                                                                 | `boolean`  | `false`                       |
 | `clientId`               | Key to identify the client on Plug. [Click here](https://docs.plugpagamentos.com/#section/Get-started/Configure-uma-conta-Plug) to read more about it in the documentation.                      | `string`   | `undefined`                   |
-| `customFormStyleClasses` | Properties that make the use of CSS classes available for individual customization of each component of Plug Checkout.                                                                           | `object`   | `{}`                          |
+| `customFormStyleClasses` | Properties that make the use of CSS classes available for individual customization of each component of Malga Checkout.                                                                          | `object`   | `{}`                          |
 | `installmentsConfig`     | Configurations for the installments field, if it should be exhibited and/or the quantity of installments the transaction provides.                                                               | `object`   | `{ show: true, quantity: 1 }` |
 | `merchantId`             | Subaccounts identifier on Plug. [Click here](https://docs.plugpagamentos.com/#tag/Merchants) to read more about it in the documentation.                                                         | `string`   | `undefined`                   |
 | `sandbox`                | Flag to define if the requests for Plug’s API must be made in a homologation or production environment.                                                                                          | `boolean`  | `false`                       |
@@ -65,54 +65,54 @@ For theme customization (color pallet, spacing and typography) you may overwrite
 ```css
 :root {
   /* Colors */
-  --plug-checkout-color-brand-accent-light: #4ebff1;
-  --plug-checkout-color-brand-accent-normal: #0055a2;
-  --plug-checkout-color-brand-light: #0091ea;
-  --plug-checkout-color-brand-normal: #5c7ec0;
-  --plug-checkout-color-brand-middle: #344383;
-  --plug-checkout-color-brand-dark: #141b4d;
-  --plug-checkout-color-grey-light: #aaafc5;
-  --plug-checkout-color-grey-normal: #8b90a7;
-  --plug-checkout-color-grey-middle: #5e6277;
-  --plug-checkout-color-grey-dark: #3f4252;
-  --plug-checkout-color-accent-light: #ffffff;
-  --plug-checkout-color-accent-normal: #eef2f6;
-  --plug-checkout-color-accent-middle: #aebfd0;
-  --plug-checkout-color-warning-light: #fff8e1;
-  --plug-checkout-color-warning-normal: #fac30e;
-  --plug-checkout-color-warning-middle: #ffa200;
-  --plug-checkout-color-success: #32c000;
+  --malga-checkout-color-brand-accent-light: #4ebff1;
+  --malga-checkout-color-brand-accent-normal: #0055a2;
+  --malga-checkout-color-brand-light: #0091ea;
+  --malga-checkout-color-brand-normal: #5c7ec0;
+  --malga-checkout-color-brand-middle: #344383;
+  --malga-checkout-color-brand-dark: #141b4d;
+  --malga-checkout-color-grey-light: #aaafc5;
+  --malga-checkout-color-grey-normal: #8b90a7;
+  --malga-checkout-color-grey-middle: #5e6277;
+  --malga-checkout-color-grey-dark: #3f4252;
+  --malga-checkout-color-accent-light: #ffffff;
+  --malga-checkout-color-accent-normal: #eef2f6;
+  --malga-checkout-color-accent-middle: #aebfd0;
+  --malga-checkout-color-warning-light: #fff8e1;
+  --malga-checkout-color-warning-normal: #fac30e;
+  --malga-checkout-color-warning-middle: #ffa200;
+  --malga-checkout-color-success: #32c000;
 
   /* Typography */
-  --plug-checkout-typography-family: 'Lato', sans-serif;
+  --malga-checkout-typography-family: 'Lato', sans-serif;
 
   /* Spacings */
-  --plug-checkout-spacing-xxs: 4px;
-  --plug-checkout-spacing-xs: 8px;
-  --plug-checkout-spacing-sm: 16px;
-  --plug-checkout-spacing-default: 24px;
-  --plug-checkout-spacing-md: 32px;
-  --plug-checkout-spacing-lg: 48px;
-  --plug-checkout-spacing-xlg: 64px;
-  --plug-checkout-spacing-xxlg: 96px;
+  --malga-checkout-spacing-xxs: 4px;
+  --malga-checkout-spacing-xs: 8px;
+  --malga-checkout-spacing-sm: 16px;
+  --malga-checkout-spacing-default: 24px;
+  --malga-checkout-spacing-md: 32px;
+  --malga-checkout-spacing-lg: 48px;
+  --malga-checkout-spacing-xlg: 64px;
+  --malga-checkout-spacing-xxlg: 96px;
 
   /* Sizes */
-  --plug-checkout-size-min-width: 250px;
+  --malga-checkout-size-min-width: 250px;
 
   /* Border Radius */
-  --plug-checkout-border-radius-default: 4px;
+  --malga-checkout-border-radius-default: 4px;
 
   /* Transitions Time */
-  --plug-checkout-transition-slow: 0.3s;
-  --plug-checkout-transition-default: 0.5s;
+  --malga-checkout-transition-slow: 0.3s;
+  --malga-checkout-transition-default: 0.5s;
 }
 ```
 
-You can see an example of how to do it by [clicking here](https://github.com/plughacker/demo-plug-checkout-react/blob/main/src/index.css).
+You can see an example of how to do it by [clicking here](https://github.com/plughacker/demo-malga-checkout-react/blob/main/src/index.css).
 
 ### Components
 
-For customization focused directly on visual components that are part of the Plug Checkout, we provide the prop customFormStyleClasses which accepts an object with a series of properties that may be attributed CSS classes, that are created on your main file of CSS of application (usually the index.css). Below there is a list of properties the customFormStyleClasses supports:
+For customization focused directly on visual components that are part of the Malga Checkout, we provide the prop customFormStyleClasses which accepts an object with a series of properties that may be attributed CSS classes, that are created on your main file of CSS of application (usually the index.css). Below there is a list of properties the customFormStyleClasses supports:
 
 ```js
 const defaultCustomStyles = {
@@ -137,7 +137,7 @@ const defaultCustomStyles = {
 }
 ```
 
-You can see an example of how to do it by [clicking here](https://github.com/plughacker/demo-plug-checkout-react/blob/main/src/App.tsx).
+You can see an example of how to do it by [clicking here](https://github.com/plughacker/demo-malga-checkout-react/blob/main/src/App.tsx).
 
 ## Contributing
 

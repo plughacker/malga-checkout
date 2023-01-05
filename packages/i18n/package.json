@@ -1,7 +1,7 @@
 {
-  "name": "@plug-checkout/i18n",
+  "name": "@malga-checkout/i18n",
   "version": "0.0.1",
-  "description": "i18n for Plug Checkout",
+  "description": "i18n for Malga Checkout",
   "private": true,
   "type": "module",
   "files": [

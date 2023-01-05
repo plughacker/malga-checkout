@@ -1,0 +1,28 @@
+.malga-payments__container {
+  display: flex;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.malga-payments__content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  & > checkout-radio-field {
+    margin-bottom: calc(
+      var(--malga-checkout-spacing-xxs) + var(--malga-checkout-spacing-xs)
+    );
+  }
+
+  & > malga-payments-boleto > checkout-manual-payment,
+  & > malga-payments-pix > checkout-manual-payment {
+    margin-bottom: var(--malga-checkout-spacing-sm);
+  }
+
+  & > malga-payments-boleto > checkout-manual-payment > checkout-typography,
+  & > malga-payments-pix > checkout-manual-payment > checkout-typography {
+    padding: 0px var(--malga-checkout-spacing-sm);
+  }
+}

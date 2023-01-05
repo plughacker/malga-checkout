@@ -2,9 +2,9 @@ import { Component, Host, h, Prop, State, Fragment } from '@stencil/core'
 
 import { Product } from './checkout-order-summary.types'
 
-import { formatCurrency } from '@plug-checkout/utils'
-import { Locale } from '@plug-checkout/i18n/dist/utils'
-import { t } from '@plug-checkout/i18n'
+import { formatCurrency } from '@malga-checkout/utils'
+import { Locale } from '@malga-checkout/i18n/dist/utils'
+import { t } from '@malga-checkout/i18n'
 
 @Component({
   tag: 'checkout-order-summary',

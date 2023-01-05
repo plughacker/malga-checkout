@@ -1,0 +1,30 @@
+.malga-payments-credit-saved-cards__container {
+  display: block;
+}
+
+.malga-payments-credit-saved-cards__card {
+  margin-bottom: calc(
+    var(--malga-checkout-spacing-xxs) + var(--malga-checkout-spacing-xs)
+  );
+}
+
+.malga-payments-credit-saved-cards__card {
+  margin-bottom: calc(
+    var(--malga-checkout-spacing-xxs) + var(--malga-checkout-spacing-xs)
+  );
+}
+
+.malga-payments-credit-saved-cards__content {
+  display: flex;
+  flex-direction: column;
+  padding: var(--malga-checkout-spacing-sm);
+
+  & > checkout-typography > p {
+    font-weight: 400;
+    margin-bottom: var(--malga-checkout-spacing-default);
+  }
+}
+
+.malga-payments-credit-saved-cards__cvv-container {
+  margin-bottom: 8px;
+}

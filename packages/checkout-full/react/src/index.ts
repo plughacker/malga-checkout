@@ -1,2 +1,2 @@
 export * from './components'
-export { PlugCheckoutFull as default } from './components'
+export { MalgaCheckoutFull as default } from './components'

@@ -1,9 +1,9 @@
-import { Locale } from '@plug-checkout/i18n/dist/utils'
+import { Locale } from '@malga-checkout/i18n/dist/utils'
 import {
-  PlugCheckoutDialog,
-  PlugCheckoutTransaction,
-  PlugCheckoutPaymentMethods,
-} from '../../components/plug-checkout/plug-checkout.types'
+  MalgaCheckoutDialog,
+  MalgaCheckoutTransaction,
+  MalgaCheckoutPaymentMethods,
+} from '../../components/malga-checkout/malga-checkout.types'
 
 export interface SettingsState {
   clientId: string
@@ -14,7 +14,7 @@ export interface SettingsState {
   locale?: Locale
   sandbox: boolean
   debug: boolean
-  dialogConfig: PlugCheckoutDialog
-  paymentMethods: PlugCheckoutPaymentMethods
-  transactionConfig: PlugCheckoutTransaction
+  dialogConfig: MalgaCheckoutDialog
+  paymentMethods: MalgaCheckoutPaymentMethods
+  transactionConfig: MalgaCheckoutTransaction
 }

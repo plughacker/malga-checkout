@@ -1,3 +1,3 @@
-import '@plug-checkout/common'
+import '@malga-checkout/common'
 
 export { Components, JSX } from './components'

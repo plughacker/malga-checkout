@@ -1,5 +1,5 @@
 name: 💡 Feature Request
-description: I want to add something to Plug Checkout.
+description: I want to add something to Malga Checkout.
 title: '[Feature]: '
 labels:
   - feature
@@ -16,7 +16,7 @@ body:
         you ask a question, here are some resources to get help first:
 
         - Read the docs: https://docs.plugpagamentos.com/
-        - Explore examples: https://github.com/plughacker?q=demo-plug-checkout&type=all&language=&sort=
+        - Explore examples: https://github.com/plughacker?q=demo-malga-checkout&type=all&language=&sort=
         - Ask in chat: https://discord.com/h5J5ZkhTXV
   - type: textarea
     attributes:

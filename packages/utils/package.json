@@ -1,16 +1,16 @@
 {
-  "name": "@plug-checkout/utils",
+  "name": "@malga-checkout/utils",
   "version": "0.0.1",
   "private": true,
-  "description": "Utility functions for Plug Checkout",
+  "description": "Utility functions for Malga Checkout",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/plughacker/plug-checkout.git",
+    "url": "git+https://github.com/plughacker/malga-checkout.git",
     "directory": "packages/utils"
   },
   "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
   "bugs": {
-    "url": "https://github.com/plughacker/plug-checkout/issues"
+    "url": "https://github.com/plughacker/malga-checkout/issues"
   },
   "keywords": [
     "payments",
@@ -26,7 +26,7 @@
   "dependencies": {
     "payment": "^2.4.6",
     "stdnum": "^1.3.8",
-    "@plug-checkout/i18n": "*"
+    "@malga-checkout/i18n": "*"
   },
-  "homepage": "https://github.com/plughacker/plug-checkout#readme"
+  "homepage": "https://github.com/plughacker/malga-checkout#readme"
 }

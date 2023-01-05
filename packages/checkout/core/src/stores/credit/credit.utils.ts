@@ -1,4 +1,4 @@
-import { Locale } from '@plug-checkout/i18n/dist/utils'
+import { Locale } from '@malga-checkout/i18n/dist/utils'
 import { ValidationError } from 'yup'
 
 import settings from '../settings'

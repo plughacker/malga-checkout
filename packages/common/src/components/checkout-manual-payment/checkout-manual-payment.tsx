@@ -1,5 +1,5 @@
-import { t } from '@plug-checkout/i18n'
-import { Locale } from '@plug-checkout/i18n/dist/utils'
+import { t } from '@malga-checkout/i18n'
+import { Locale } from '@malga-checkout/i18n/dist/utils'
 import { Component, Host, h, ComponentInterface, Prop } from '@stencil/core'
 
 import { CheckoutManualPaymentDescriptions } from './checkout-manual-payment.types'

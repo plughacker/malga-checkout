@@ -1,6 +1,6 @@
 import { BaseProvider } from '../base-provider'
 
-import { parseInstallments } from '@plug-checkout/utils'
+import { parseInstallments } from '@malga-checkout/utils'
 
 import {
   CardForm,

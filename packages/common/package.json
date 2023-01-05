@@ -1,16 +1,16 @@
 {
-  "name": "@plug-checkout/common",
+  "name": "@malga-checkout/common",
   "version": "0.0.1",
   "private": true,
-  "description": "Common components for Plug Checkout",
+  "description": "Common components for Malga Checkout",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/plughacker/plug-checkout.git",
+    "url": "git+https://github.com/plughacker/malga-checkout.git",
     "directory": "packages/common"
   },
   "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
   "bugs": {
-    "url": "https://github.com/plughacker/plug-checkout/issues"
+    "url": "https://github.com/plughacker/malga-checkout/issues"
   },
   "keywords": [
     "payments",
@@ -31,7 +31,7 @@
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/plug-checkout-common/plug-checkout-common.esm.js",
+  "unpkg": "dist/malga-checkout-common/malga-checkout-common.esm.js",
   "files": [
     "dist/",
     "loader/"
@@ -54,8 +54,8 @@
     "stencil-inline-svg": "^1.1.0"
   },
   "dependencies": {
-    "@plug-checkout/i18n": "*",
-    "@plug-checkout/utils": "*",
+    "@malga-checkout/i18n": "*",
+    "@malga-checkout/utils": "*",
     "canvas-circular-countdown": "^1.5.0",
     "click-outside": "^2.0.2",
     "clipboard": "^2.0.8",
@@ -63,5 +63,5 @@
     "inputmask": "^5.0.6",
     "payment": "^2.4.6"
   },
-  "homepage": "https://github.com/plughacker/plug-checkout#readme"
+  "homepage": "https://github.com/plughacker/malga-checkout#readme"
 }

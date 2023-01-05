@@ -1,0 +1,32 @@
+.malga-checkout-full-footer__container {
+  display: block;
+  width: 100%;
+}
+
+.malga-checkout-full-footer__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--malga-checkout-color-grey-darkness);
+  margin: var(--malga-checkout-spacing-md) 0;
+
+  @extend %typography-label;
+
+  & > checkout-dropdown {
+    margin-bottom: var(--malga-checkout-spacing-default);
+
+    span {
+      color: white;
+      mix-blend-mode: difference;
+    }
+  }
+
+  @include md {
+    & > checkout-dropdown {
+      display: none;
+      margin-bottom: 0;
+    }
+  }
+}

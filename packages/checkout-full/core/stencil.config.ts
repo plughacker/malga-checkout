@@ -6,7 +6,7 @@ import { vueOutputTarget } from '@stencil/vue-output-target'
 import { inlineSvg } from 'stencil-inline-svg'
 
 export const config: Config = {
-  namespace: 'plug-checkout-full',
+  namespace: 'malga-checkout-full',
   plugins: [
     inlineSvg(),
     sass({
@@ -21,17 +21,17 @@ export const config: Config = {
   ],
   outputTargets: [
     angularOutputTarget({
-      componentCorePackage: '@plug-checkout-full/core',
+      componentCorePackage: '@malga-checkout-full/core',
       directivesProxyFile: '../angular/src/directives/proxies.ts',
     }),
     reactOutputTarget({
-      componentCorePackage: '@plug-checkout-full/core',
+      componentCorePackage: '@malga-checkout-full/core',
       proxiesFile: '../react/src/components.ts',
       includeDefineCustomElements: true,
       includePolyfills: true,
     }),
     vueOutputTarget({
-      componentCorePackage: '@plug-checkout-full/core',
+      componentCorePackage: '@malga-checkout-full/core',
       proxiesFile: '../vue/src/proxies.ts',
       includeDefineCustomElements: false,
       includePolyfills: false,

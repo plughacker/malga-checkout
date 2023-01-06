@@ -1,8 +1,3 @@
-%field-is-filled {
-  background-color: var(--malga-checkout-color-brand-clean) !important;
-  border: 1px solid var(--malga-checkout-color-brand-clean) !important;
-}
-
 .checkout-radio-field__container {
   @extend %reset;
 
@@ -22,24 +17,27 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
-  height: 50px;
-  padding: var(--malga-checkout-spacing-sm);
-  border: 1px solid var(--malga-checkout-color-grey-light);
+  height: 40px;
+  padding: var(--malga-checkout-spacing-xs) var(--malga-checkout-spacing-default);
+  border: 1px solid var(--malga-checkout-color-accent-middle);
   border-radius: var(--malga-checkout-border-radius-default);
   background: transparent;
   transition: all var(--malga-checkout-transition-default) ease;
   cursor: pointer;
+  color: var(--malga-checkout-color-grey-light);
 
   & > checkout-icon {
     margin-left: auto;
   }
 
   &:hover {
-    @extend %field-is-filled;
+    border: 1px solid var(--malga-checkout-color-brand-normal);
   }
 
   &--filled {
-    @extend %field-is-filled;
+    background-color: transparent !important;
+    border: 1px solid var(--malga-checkout-color-brand-normal);
+    color: var(--malga-checkout-color-brand-dark)
   }
 }
 
@@ -62,9 +60,8 @@
     transform: translate3d(-50%, -50%, 0);
     width: 20px;
     height: 20px;
-    border: 1px solid var(--malga-checkout-color-grey-light);
+    border: 2px solid var(--malga-checkout-color-grey-light);
     border-radius: 50%;
-    background-color: rgba(143, 155, 179, 0.16);
   }
 
   &:checked {

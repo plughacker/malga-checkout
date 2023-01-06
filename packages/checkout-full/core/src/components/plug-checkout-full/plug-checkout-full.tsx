@@ -198,7 +198,10 @@ export class PlugCheckoutFull implements ComponentInterface {
   }
 
   render() {
-    const customer = formatCustomer(this.customerFormFields)
+    const customer = formatCustomer(
+      this.customerFormFields,
+      this.pageConfig.internationalCustomer,
+    )
     const checkoutCustomer = this.transactionConfig.customerId ? null : customer
     const currency = this.paymentSession
       ? this.paymentSession.currency

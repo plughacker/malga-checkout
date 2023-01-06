@@ -1,5 +1,14 @@
 # @plug-checkout/angular
 
+## 1.6.2
+
+### Patch Changes
+
+- [#59](https://github.com/plughacker/plug-checkout/pull/59) [`e469537`](https://github.com/plughacker/plug-checkout/commit/e469537d74be00c74515fc6d62e69a5870ac0311) Thanks [@leonardorpr](https://github.com/leonardorpr)! - fix customer normalization
+
+- Updated dependencies [[`e469537`](https://github.com/plughacker/plug-checkout/commit/e469537d74be00c74515fc6d62e69a5870ac0311)]:
+  - @plug-checkout/core@1.6.2
+
 ## 1.6.1
 
 ### Patch Changes

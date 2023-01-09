@@ -54,6 +54,8 @@ graph TD;
   plug-checkout-full --> plug-checkout
   plug-checkout-full --> plug-checkout-full-footer
   plug-checkout-full-header --> checkout-icon
+  plug-checkout-full-header --> checkout-dropdown
+  checkout-dropdown --> checkout-icon
   checkout-order-summary --> checkout-loader
   checkout-order-summary --> checkout-typography
   checkout-order-summary --> checkout-icon
@@ -126,6 +128,7 @@ graph TD;
   checkout-manual-payment --> checkout-typography
   plug-payments-pix --> checkout-manual-payment
   plug-payments-pix --> checkout-modal
+  plug-checkout-full-footer --> checkout-dropdown
   style plug-checkout-full fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

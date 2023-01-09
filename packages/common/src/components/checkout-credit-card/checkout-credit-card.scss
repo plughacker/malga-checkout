@@ -1,5 +1,5 @@
 $malga-checkout-credit-card-size: 290px !default;
-$malga-checkout-credit-card-font: 'Open Sans', sans-serif !default;
+$malga-checkout-credit-card-font: 'Inter', sans-serif !default;
 
 $malga-checkout-credit-card-name-font-size: 18px !default;
 $malga-checkout-credit-card-name-font-family: $malga-checkout-credit-card-font !default;
@@ -13,10 +13,10 @@ $malga-checkout-credit-card-cvv-font-family: $malga-checkout-credit-card-font !d
 $malga-checkout-credit-card-cvv-color: #1d1f2a !default;
 
 $malga-checkout-credit-card-safe-environment-color: var(
-  --malga-checkout-color-grey-light
+  --malga-checkout-color-accent-middle
 ) !default;
 $malga-checkout-credit-card-text-color: var(
-  --malga-checkout-color-grey-light
+  --malga-checkout-color-accent-middle
 ) !default;
 $malga-checkout-credit-card-signature-background: repeating-linear-gradient(
   0.1deg,

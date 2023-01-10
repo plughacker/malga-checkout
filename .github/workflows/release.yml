@@ -13,7 +13,7 @@ env:
 jobs:
   release:
     name: Changesets Release
-    if: github.repository == 'plughacker/malga-checkout'
+    if: github.repository == 'plughacker/plug-checkout'
     runs-on: ubuntu-latest
 
     steps:

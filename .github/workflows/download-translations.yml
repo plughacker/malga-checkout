@@ -15,7 +15,7 @@ env:
 jobs:
   crowdin:
     name: 'Crowdin Download'
-    if: github.repository == 'plughacker/malga-checkout'
+    if: github.repository == 'plughacker/plug-checkout'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo

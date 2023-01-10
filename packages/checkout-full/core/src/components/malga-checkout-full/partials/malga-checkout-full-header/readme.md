@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property    | Attribute    | Description | Type                                                                    | Default     |
@@ -13,19 +12,17 @@
 | `language`  | `language`   |             | `string`                                                                | `undefined` |
 | `locale`    | `locale`     |             | `"default" \| "en" \| "en-US" \| "en_US" \| "pt" \| "pt-BR" \| "pt_BR"` | `undefined` |
 
-
 ## Events
 
 | Event            | Description | Type                              |
 | ---------------- | ----------- | --------------------------------- |
 | `changeLanguage` |             | `CustomEvent<{ value: Locale; }>` |
 
-
 ## Dependencies
 
 ### Used by
 
- - [malga-checkout-full](../..)
+- [malga-checkout-full](../..)
 
 ### Depends on
 
@@ -33,6 +30,7 @@
 - checkout-dropdown
 
 ### Graph
+
 ```mermaid
 graph TD;
   malga-checkout-full-header --> checkout-icon
@@ -42,6 +40,6 @@ graph TD;
   style malga-checkout-full-header fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

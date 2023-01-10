@@ -2,24 +2,22 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
-| Property            | Attribute         | Description | Type                                                                    | Default                                                                                                                                                                         |
-| ------------------- | ----------------- | ----------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `clientId`          | `client-id`       |             | `string`                                                                | `undefined`                                                                                                                                                                     |
-| `debug`             | `debug`           |             | `boolean`                                                               | `false`                                                                                                                                                                         |
-| `dialogConfig`      | --                |             | `MalgaCheckoutFullDialog`                                               | `{     show: true,   }`                                                                                                                                                         |
-| `idempotencyKey`    | `idempotency-key` |             | `string`                                                                | `undefined`                                                                                                                                                                     |
-| `locale`            | `locale`          |             | `"default" \| "en" \| "en-US" \| "en_US" \| "pt" \| "pt-BR" \| "pt_BR"` | `undefined`                                                                                                                                                                     |
-| `merchantId`        | `merchant-id`     |             | `string`                                                                | `undefined`                                                                                                                                                                     |
-| `pageConfig`        | --                |             | `MalgaCheckoutFullPage`                                                 | `{     brandUrl: '',     footerDescription: '',     backRoute: '',     delivery: 0,     products: [],     internationalCustomer: false,   }`                                    |
-| `paymentMethods`    | --                |             | `MalgaCheckoutFullPaymentMethods`                                       | `{     pix: undefined,     credit: undefined,     boleto: undefined,   }`                                                                                                       |
-| `publicKey`         | `public-key`      |             | `string`                                                                | `undefined`                                                                                                                                                                     |
-| `sandbox`           | `sandbox`         |             | `boolean`                                                               | `false`                                                                                                                                                                         |
-| `sessionId`         | `session-id`      |             | `string`                                                                | `undefined`                                                                                                                                                                     |
-| `transactionConfig` | --                |             | `MalgaCheckoutFullTransaction`                                          | `{     statementDescriptor: '',     amount: 0,     description: '',     orderId: '',     customerId: '',     currency: 'BRL',     capture: false,     fraudAnalysis: null,   }` |
-
+| Property            | Attribute         | Description | Type                                                                    | Default                                                                                                                                       |
+| ------------------- | ----------------- | ----------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `clientId`          | `client-id`       |             | `string`                                                                | `undefined`                                                                                                                                   |
+| `debug`             | `debug`           |             | `boolean`                                                               | `false`                                                                                                                                       |
+| `dialogConfig`      | --                |             | `MalgaCheckoutFullDialog`                                               | `{ show: true, }`                                                                                                                             |
+| `idempotencyKey`    | `idempotency-key` |             | `string`                                                                | `undefined`                                                                                                                                   |
+| `locale`            | `locale`          |             | `"default" \| "en" \| "en-US" \| "en_US" \| "pt" \| "pt-BR" \| "pt_BR"` | `undefined`                                                                                                                                   |
+| `merchantId`        | `merchant-id`     |             | `string`                                                                | `undefined`                                                                                                                                   |
+| `pageConfig`        | --                |             | `MalgaCheckoutFullPage`                                                 | `{ brandUrl: '', footerDescription: '', backRoute: '', delivery: 0, products: [], internationalCustomer: false, }`                            |
+| `paymentMethods`    | --                |             | `MalgaCheckoutFullPaymentMethods`                                       | `{ pix: undefined, credit: undefined, boleto: undefined, }`                                                                                   |
+| `publicKey`         | `public-key`      |             | `string`                                                                | `undefined`                                                                                                                                   |
+| `sandbox`           | `sandbox`         |             | `boolean`                                                               | `false`                                                                                                                                       |
+| `sessionId`         | `session-id`      |             | `string`                                                                | `undefined`                                                                                                                                   |
+| `transactionConfig` | --                |             | `MalgaCheckoutFullTransaction`                                          | `{ statementDescriptor: '', amount: 0, description: '', orderId: '', customerId: '', currency: 'BRL', capture: false, fraudAnalysis: null, }` |
 
 ## Events
 
@@ -27,7 +25,6 @@
 | -------------------- | ----------- | -------------------------------------------------------- |
 | `transactionFailed`  |             | `CustomEvent<{ error: MalgaCheckoutFullChargeError; }>`  |
 | `transactionSuccess` |             | `CustomEvent<{ data: MalgaCheckoutFullChargeSuccess; }>` |
-
 
 ## Dependencies
 
@@ -43,6 +40,7 @@
 - [malga-checkout-full-footer](./partials/malga-checkout-full-footer)
 
 ### Graph
+
 ```mermaid
 graph TD;
   malga-checkout-full --> malga-checkout-full-header
@@ -132,6 +130,6 @@ graph TD;
   style malga-checkout-full fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

@@ -38,12 +38,11 @@ const getCustomerDocument = (
 
 export const formatCustomer = (
   customer: MalgaCheckoutFullIdentificationFormValues,
-  currency: string,
+  isInternationalCustomer: boolean,
 ): Customer => {
-  const document =
-    currency === 'BRL'
-      ? getCustomerDocumentBrl(customer)
-      : getCustomerDocument(customer)
+  const document = isInternationalCustomer
+    ? getCustomerDocument(customer)
+    : getCustomerDocumentBrl(customer)
 
   return {
     name: customer.name,

@@ -14,14 +14,14 @@
   padding: 0;
 
   & > checkout-icon {
-    margin-right: var(--plug-checkout-spacing-xs);
+    margin-right: var(--malga-checkout-spacing-xs);
   }
 
   & > checkout-typography {
     text-align: start;
 
     & > span {
-      color: var(--plug-checkout-color-grey-normal);
+      color: var(--malga-checkout-color-grey-normal);
     }
   }
 }

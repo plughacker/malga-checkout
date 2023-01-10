@@ -3,11 +3,11 @@
 /* auto-generated vue proxies */
 import { defineContainer } from './vue-component-lib/utils'
 
-import type { JSX } from '@plug-checkout-full/core'
+import type { JSX } from '@malga-checkout-full/core'
 
-export const PlugCheckoutFull =
-  /*@__PURE__*/ defineContainer<JSX.PlugCheckoutFull>(
-    'plug-checkout-full',
+export const MalgaCheckoutFull =
+  /*@__PURE__*/ defineContainer<JSX.MalgaCheckoutFull>(
+    'malga-checkout-full',
     undefined,
     [
       'locale',

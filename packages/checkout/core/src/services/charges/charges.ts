@@ -1,5 +1,5 @@
 import { Api } from '../api'
-import { cleanObjectProperties } from '@plug-checkout/utils'
+import { cleanObjectProperties } from '@malga-checkout/utils'
 
 import settings from '../../stores/settings'
 

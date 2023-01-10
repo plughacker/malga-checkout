@@ -20,7 +20,7 @@ export class CheckoutCountdown {
   timer = new Timer()
 
   @Prop() expirationTime?: number
-  @Prop() filledProgressBarColor = '#344383'
+  @Prop() filledProgressBarColor = '#2FAC9B'
   @Prop() emptyProgressBarColor = '#D8DFF0'
 
   @State() countdown: string

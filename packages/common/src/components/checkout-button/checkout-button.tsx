@@ -10,8 +10,8 @@ import {
 
 import Clipboard from 'clipboard'
 
-import { t } from '@plug-checkout/i18n'
-import { Locale } from '@plug-checkout/i18n/dist/utils'
+import { t } from '@malga-checkout/i18n'
+import { Locale } from '@malga-checkout/i18n/dist/utils'
 
 import { CheckoutButtonType } from './checkout-button.types'
 import { CheckoutIconNames } from '../checkout-icon/checkout-icon.types'

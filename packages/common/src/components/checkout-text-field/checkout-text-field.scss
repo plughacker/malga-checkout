@@ -1,10 +1,10 @@
 %field-is-filled {
   top: 2px !important;
   font-size: 12px !important;
-  background: var(--plug-checkout-color-accent-light) !important;
-  padding: 0 var(--plug-checkout-spacing-xs) !important;
-  margin: 0 var(--plug-checkout-spacing-xs) !important;
-  line-height: var(--plug-checkout-spacing-sm) !important;
+  background: var(--malga-checkout-color-accent-light) !important;
+  padding: 0 var(--malga-checkout-spacing-xs) !important;
+  margin: 0 var(--malga-checkout-spacing-xs) !important;
+  line-height: var(--malga-checkout-spacing-sm) !important;
   z-index: 2 !important;
 }
 
@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  width: var(--plug-checkout-size-min-width);
+  width: var(--malga-checkout-size-min-width);
 
   &--full-width {
     width: 100%;
@@ -34,7 +34,7 @@
 
   position: relative;
   width: 100%;
-  height: 50px;
+  height: 40px;
 
   display: flex;
   align-items: center;
@@ -45,8 +45,9 @@
     top: 50%;
     left: 0;
     transform: translateY(-50%);
-    margin: 0 var(--plug-checkout-spacing-sm);
+    margin: 0 var(--malga-checkout-spacing-sm);
     transition: all 0.15s ease-in-out;
+    color: var(--malga-checkout-color-grey-light);
   }
 
   &--filled {
@@ -71,11 +72,11 @@
   width: 100%;
 
   background: transparent;
-  border: 1px solid var(--plug-checkout-color-grey-light);
-  border-radius: var(--plug-checkout-border-radius-default);
-  color: var(--plug-checkout-color-grey-darkness);
-  padding: 0 var(--plug-checkout-spacing-md) 0 var(--plug-checkout-spacing-sm);
-  height: 50px;
+  border: 1px solid var(--malga-checkout-color-accent-middle);
+  border-radius: var(--malga-checkout-border-radius-default);
+  color: var(--malga-checkout-color-grey-light);
+  padding: 0 var(--malga-checkout-spacing-md) 0 var(--malga-checkout-spacing-sm);
+  height: 40px;
   outline: none;
   appearance: none;
   z-index: 1;
@@ -96,24 +97,24 @@
     outline: none;
 
     &::-moz-placeholder {
-      font-size: var(--plug-checkout-spacing-sm);
-      color: var(--plug-checkout-color-grey-darkness);
+      font-size: var(--malga-checkout-spacing-sm);
+      color: var(--malga-checkout-color-grey-light);
       opacity: 0.5;
     }
 
     &::-webkit-input-placeholder {
-      font-size: var(--plug-checkout-spacing-sm);
-      color: var(--plug-checkout-color-grey-darkness);
+      font-size: var(--malga-checkout-spacing-sm);
+      color: var(--malga-checkout-color-grey-light);
       opacity: 0.5;
     }
 
     & > option {
-      color: var(--plug-checkout-color-grey-darkness) !important;
+      color: var(--malga-checkout-color-grey-light) !important;
     }
   }
 
   & > option {
-    color: var(--plug-checkout-color-grey-darkness) !important;
+    color: var(--malga-checkout-color-grey-light) !important;
   }
 
   &:focus + checkout-typography label {

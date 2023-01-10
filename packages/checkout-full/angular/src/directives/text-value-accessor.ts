@@ -5,7 +5,7 @@ import { ValueAccessor } from './value-accessor';
 
 @Directive({
   /* tslint:disable-next-line:directive-selector */
-  selector: 'checkout-input, checkout-select, checkout-input, checkout-select, checkout-input, checkout-input, plug-checkout-form',
+  selector: 'checkout-input, checkout-select, checkout-input, checkout-select, checkout-input, checkout-input, malga-checkout-form',
   host: {
     '(changed)': 'handleChangeEvent($event.target.value)'
     '(inputed)': 'handleChangeEvent($event.target.value)'

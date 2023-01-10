@@ -21,14 +21,15 @@
 
   height: 40px;
   min-width: 180px;
-  padding: calc(var(--plug-checkout-spacing-sm) - 3px);
-  border: 1px solid var(--plug-checkout-color-grey-light);
-  border-radius: var(--plug-checkout-border-radius-default);
+  padding: calc(var(--malga-checkout-spacing-sm) - 3px);
+  border: 1px solid var(--malga-checkout-color-grey-light);
+  border-radius: var(--malga-checkout-border-radius-default);
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     @include border(
       $size: 2px,
-      $color: var(--plug-checkout-color-brand-middle)
+      $color: var(--malga-checkout-color-brand-middle)
     );
   }
 
@@ -43,14 +44,14 @@
       & > i > svg {
         width: 18px;
         height: 18px;
-        color: var(--plug-checkout-color-brand-middle);
+        color: var(--malga-checkout-color-brand-middle);
       }
     }
   }
 
   & > checkout-icon {
     margin-left: 14px;
-    color: var(--plug-checkout-color-grey-darkness);
+    color: var(--malga-checkout-color-grey-darkness);
   }
 }
 
@@ -64,12 +65,12 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-top: var(--plug-checkout-spacing-xs);
-  padding-bottom: var(--plug-checkout-spacing-xs);
+  padding-top: var(--malga-checkout-spacing-xs);
+  padding-bottom: var(--malga-checkout-spacing-xs);
 
-  background-color: var(--plug-checkout-color-accent-light);
+  background-color: var(--malga-checkout-color-accent-light);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
-  border-radius: var(--plug-checkout-border-radius-default);
+  border-radius: var(--malga-checkout-border-radius-default);
 }
 
 .checkout-dropdown__list-item {
@@ -81,17 +82,17 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding-top: var(--plug-checkout-spacing-xs);
-  padding-bottom: var(--plug-checkout-spacing-xs);
+  padding-top: var(--malga-checkout-spacing-xs);
+  padding-bottom: var(--malga-checkout-spacing-xs);
   cursor: pointer;
 
-  background-color: var(--plug-checkout-color-accent-light);
+  background-color: var(--malga-checkout-color-accent-light);
 
   &:hover {
-    background-color: var(--plug-checkout-color-brand-clean);
+    background-color: var(--malga-checkout-color-brand-clean);
   }
 
   &--selected {
-    background-color: var(--plug-checkout-color-brand-clean);
+    background-color: var(--malga-checkout-color-brand-clean);
   }
 }

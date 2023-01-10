@@ -1,17 +1,17 @@
 {
-  "name": "@plug-checkout-full/angular",
+  "name": "@malga-checkout-full/angular",
   "version": "1.6.2",
-  "description": "Angular specific wrapper for Plug Checkout Full core components",
+  "description": "Angular specific wrapper for Malga Checkout Full core components",
   "license": "MIT",
   "private": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/plughacker/plug-checkout.git",
+    "url": "git+https://github.com/plughacker/malga-checkout.git",
     "directory": "packages/checkout-full/angular"
   },
-  "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
+  "author": "Leonardo Pinheiro <leonardo@malga.io>",
   "bugs": {
-    "url": "https://github.com/plughacker/plug-checkout/issues"
+    "url": "https://github.com/plughacker/malga-checkout/issues"
   },
   "keywords": [
     "payments",
@@ -46,7 +46,7 @@
   ],
   "dependencies": {
     "tslib": "^1.9.3",
-    "@plug-checkout-full/core": "1.6.2"
+    "@malga-checkout-full/core": "1.6.2"
   },
   "peerDependencies": {
     "@angular-devkit/core": "^7.2.1",

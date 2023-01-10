@@ -1,8 +1,8 @@
 import * as Yup from 'yup'
 import Payment from 'payment'
 
-import { t } from '@plug-checkout/i18n'
-import { Locale } from '@plug-checkout/i18n/dist/utils'
+import { t } from '@malga-checkout/i18n'
+import { Locale } from '@malga-checkout/i18n/dist/utils'
 
 export const schema = (locale?: Locale) => {
   return Yup.object().shape({

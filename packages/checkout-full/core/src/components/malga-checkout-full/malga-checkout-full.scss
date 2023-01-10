@@ -1,0 +1,24 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.malga-checkout-full__container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--malga-checkout-color-page-background);
+
+  &--full-height {
+    height: 100%;
+  }
+}
+
+.malga-checkout-full__informations {
+  & > checkout-accordion:first-child {
+    margin-bottom: var(--malga-checkout-spacing-sm);
+  }
+}

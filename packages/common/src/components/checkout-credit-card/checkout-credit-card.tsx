@@ -8,9 +8,9 @@ import {
   ComponentInterface,
 } from '@stencil/core'
 
-import { getCurrentIssuer, getMaxLengthPerIssuer } from '@plug-checkout/utils'
-import { Locale } from '@plug-checkout/i18n/dist/utils'
-import { t } from '@plug-checkout/i18n'
+import { getCurrentIssuer, getMaxLengthPerIssuer } from '@malga-checkout/utils'
+import { Locale } from '@malga-checkout/i18n/dist/utils'
+import { t } from '@malga-checkout/i18n'
 
 @Component({
   tag: 'checkout-credit-card',

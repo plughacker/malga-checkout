@@ -53,12 +53,12 @@
   }
 
   &:checked + label:before {
-    background-color: var(--plug-checkout-color-brand-normal);
+    background-color: var(--malga-checkout-color-brand-normal);
     opacity: 0.5;
   }
 
   &:checked + label:after {
-    background-color: var(--plug-checkout-color-brand-middle);
+    background-color: var(--malga-checkout-color-brand-middle);
     transform: translateX(16px);
   }
 }

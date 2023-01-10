@@ -1,7 +1,7 @@
 import {
-  PlugCheckoutPaymentMethods,
-  PlugCheckoutTransaction,
-} from '../../components/plug-checkout/plug-checkout.types'
+  MalgaCheckoutPaymentMethods,
+  MalgaCheckoutTransaction,
+} from '../../components/malga-checkout/malga-checkout.types'
 import { PaymentMethodBoleto } from '../../providers/boleto'
 import { PaymentMethodCard } from '../../providers/card'
 import { PaymentMethodPix } from '../../providers/pix'
@@ -12,8 +12,8 @@ export type PaymentMethod =
   | PaymentMethodPix
 
 export interface SessionNormalized extends Session {
-  checkoutPaymentMethods: PlugCheckoutPaymentMethods
-  transactionConfig: PlugCheckoutTransaction
+  checkoutPaymentMethods: MalgaCheckoutPaymentMethods
+  transactionConfig: MalgaCheckoutTransaction
   customization: CustomizationData
 }
 

@@ -3,7 +3,7 @@ import { sass } from '@stencil/sass'
 import { inlineSvg } from 'stencil-inline-svg'
 
 export const config: Config = {
-  namespace: 'plug-checkout-common',
+  namespace: 'malga-checkout-common',
   plugins: [
     inlineSvg(),
     sass({

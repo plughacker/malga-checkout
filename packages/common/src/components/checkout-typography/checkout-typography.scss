@@ -11,10 +11,10 @@ $typography-variantions-map: (
 );
 
 $typography-colors-map: (
-  'white': var(--plug-checkout-color-accent-light),
-  'dark': var(--plug-checkout-color-grey-dark),
-  'darkness': var(--plug-checkout-color-grey-darkness),
-  'warning': var(--plug-checkout-color-warning-middle),
+  'white': var(--malga-checkout-color-accent-light),
+  'dark': var(--malga-checkout-color-grey-dark),
+  'darkness': var(--malga-checkout-color-grey-darkness),
+  'warning': var(--malga-checkout-color-warning-middle),
 );
 
 .checkout-typography {

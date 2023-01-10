@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core'
-import { defineCustomElements } from '@plug-checkout/core/loader'
+import { defineCustomElements } from '@malga-checkout/core/loader'
 
-import { PlugCheckoutFull } from './directives/proxies'
+import { MalgaCheckoutFull } from './directives/proxies'
 
 defineCustomElements(window)
 
-const DECLARATIONS = [PlugCheckoutFull]
+const DECLARATIONS = [MalgaCheckoutFull]
 
 @NgModule({
   declarations: DECLARATIONS,
@@ -13,4 +13,4 @@ const DECLARATIONS = [PlugCheckoutFull]
   imports: [],
   providers: [],
 })
-export class PlugCheckoutModule {}
+export class MalgaCheckoutModule {}

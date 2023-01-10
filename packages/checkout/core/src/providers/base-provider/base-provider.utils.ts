@@ -1,4 +1,4 @@
-import { cleanTextOnlyNumbers } from '@plug-checkout/utils'
+import { cleanTextOnlyNumbers } from '@malga-checkout/utils'
 
 import { Customer } from './base-provider.types'
 

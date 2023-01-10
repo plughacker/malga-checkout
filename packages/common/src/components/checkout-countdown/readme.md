@@ -11,7 +11,7 @@
 | ------------------------ | --------------------------- | ----------- | -------- | ----------- |
 | `emptyProgressBarColor`  | `empty-progress-bar-color`  |             | `string` | `'#D8DFF0'` |
 | `expirationTime`         | `expiration-time`           |             | `number` | `undefined` |
-| `filledProgressBarColor` | `filled-progress-bar-color` |             | `string` | `'#344383'` |
+| `filledProgressBarColor` | `filled-progress-bar-color` |             | `string` | `'#2FAC9B'` |
 
 
 ## Events

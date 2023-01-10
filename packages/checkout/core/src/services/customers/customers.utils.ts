@@ -2,7 +2,7 @@ import { Customer } from '../../providers/base-provider'
 import {
   cleanTextOnlyNumbers,
   cleanTextSpecialCharacters,
-} from '@plug-checkout/utils'
+} from '@malga-checkout/utils'
 
 export const formatCustomerAddress = (
   customerAddress?: Customer['address'],

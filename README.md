@@ -4,16 +4,16 @@ A simple, fast and customizable way of integrating with Plug, with no need to st
 
 ## Get Started
 
-Inicially, it is highly recommended that you read [Plug’s documentation](https://docs.plugpagamentos.com/) for better understanding of how our APIs work, generate your login credentials and mostly to understand how to generate your publicKey, which is one of the requirements so that you can use Malga Checkout in the best way. Trust me, it will only take a few minutes.
+Inicially, it is highly recommended that you read [Plug’s documentation](https://docs.malga.io/) for better understanding of how our APIs work, generate your login credentials and mostly to understand how to generate your publicKey, which is one of the requirements so that you can use Malga Checkout in the best way. Trust me, it will only take a few minutes.
 
 ## Integration
 
 Now that you have your publicKey in hands, simply choose one of the options below, to access the step by step of how to integrate with Malga Checkout in your application.
 
-- Integration with Angular, [click here](https://docs.plugpagamentos.com/docs/sdks/angular)
-- Integration with React, [click here](https://docs.plugpagamentos.com/docs/sdks/react)
-- Integration with Vue, [click here](https://docs.plugpagamentos.com/docs/sdks/vue)
-- Integration with Vanilla, [click here](https://docs.plugpagamentos.com/docs/sdks/js)
+- Integration with Angular, [click here](https://docs.malga.io/docs/sdks/angular)
+- Integration with React, [click here](https://docs.malga.io/docs/sdks/react)
+- Integration with Vue, [click here](https://docs.malga.io/docs/sdks/vue)
+- Integration with Vanilla, [click here](https://docs.malga.io/docs/sdks/js)
 
 ## Contributing
 

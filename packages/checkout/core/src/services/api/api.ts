@@ -22,14 +22,14 @@ export class Api {
 
   private getCurrentHost() {
     if (settings.debug) {
-      return 'https://api.dev.plugpagamentos.com/v1'
+      return 'https://api.dev.malga.io/v1'
     }
 
     if (settings.sandbox) {
-      return 'https://sandbox-api.plugpagamentos.com/v1'
+      return 'https://sandbox-api.malga.io/v1'
     }
 
-    return 'https://api.plugpagamentos.com/v1'
+    return 'https://api.malga.io/v1'
   }
 
   public async create({ endpoint, data, headers }: CreateParams) {

@@ -9,7 +9,7 @@
     "url": "git+https://github.com/plughacker/malga-checkout.git",
     "directory": "packages/checkout-full/angular"
   },
-  "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
+  "author": "Leonardo Pinheiro <leonardo@malga.io>",
   "bugs": {
     "url": "https://github.com/plughacker/malga-checkout/issues"
   },

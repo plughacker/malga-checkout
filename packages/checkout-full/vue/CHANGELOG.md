@@ -1,5 +1,16 @@
 # @malga-checkout-full/vue
 
+## 1.7.0
+
+### Minor Changes
+
+- [`9cd509d`](https://github.com/plughacker/plug-checkout/commit/9cd509dc828d7e9ec3687ae2b01ce34c2bb6d5d9) Thanks [@leonardorpr](https://github.com/leonardorpr)! - rebranding
+
+### Patch Changes
+
+- Updated dependencies [[`9cd509d`](https://github.com/plughacker/plug-checkout/commit/9cd509dc828d7e9ec3687ae2b01ce34c2bb6d5d9)]:
+  - @malga-checkout-full/core@1.7.0
+
 ## 1.6.2
 
 ### Patch Changes

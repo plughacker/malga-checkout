@@ -1,6 +1,6 @@
 {
   "name": "@malga-checkout/core",
-  "version": "1.6.2",
+  "version": "1.7.0",
   "description": "Core components for Malga Checkout",
   "private": false,
   "repository": {

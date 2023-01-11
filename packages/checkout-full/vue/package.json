@@ -1,18 +1,18 @@
 {
-  "name": "@plug-checkout-full/vue",
+  "name": "@malga-checkout-full/vue",
   "sideEffects": false,
-  "version": "1.6.2",
+  "version": "1.7.0",
   "license": "MIT",
-  "description": "Vue specific wrapper for Plug Checkout Full core components",
+  "description": "Vue specific wrapper for Malga Checkout Full core components",
   "private": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/plughacker/plug-checkout.git",
+    "url": "git+https://github.com/plughacker/malga-checkout.git",
     "directory": "packages/checkout-full/vue"
   },
-  "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
+  "author": "Leonardo Pinheiro <leonardo@malga.io>",
   "bugs": {
-    "url": "https://github.com/plughacker/plug-checkout/issues"
+    "url": "https://github.com/plughacker/malga-checkout/issues"
   },
   "keywords": [
     "payments",
@@ -38,7 +38,7 @@
     "dist/"
   ],
   "dependencies": {
-    "@plug-checkout-full/core": "1.6.2"
+    "@malga-checkout-full/core": "1.7.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",

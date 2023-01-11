@@ -1,7 +1,7 @@
 import {
   cleanTextOnlyNumbers,
   transformExpirationDate,
-} from '@plug-checkout/utils'
+} from '@malga-checkout/utils'
 
 import { CardData } from './tokens.types'
 

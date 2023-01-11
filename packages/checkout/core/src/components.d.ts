@@ -5,159 +5,159 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { Locale } from "@plug-checkout/i18n/dist/utils";
-import { PlugCheckoutDialog, PlugCheckoutPaymentMethods, PlugCheckoutTransaction } from "./components/plug-checkout/plug-checkout.types";
+import { Locale } from "@malga-checkout/i18n/dist/utils";
+import { MalgaCheckoutDialog, MalgaCheckoutPaymentMethods, MalgaCheckoutTransaction } from "./components/malga-checkout/malga-checkout.types";
 import { SessionNormalized } from "./services/sessions/sessions.types";
-import { PlugPaymentsSuccess } from "./types/plug-payments-success.types";
-import { PlugPaymentsError } from "./types/plug-payments-error.types";
-import { PaymentMethods } from "./components/plug-payments/plug-payments.types";
+import { MalgaPaymentsSuccess } from "./types/malga-payments-success.types";
+import { MalgaPaymentsError } from "./types/malga-payments-error.types";
+import { PaymentMethods } from "./components/malga-payments/malga-payments.types";
 export namespace Components {
-    interface PlugCheckout {
+    interface MalgaCheckout {
         "clientId"?: string;
         "debug": boolean;
-        "dialogConfig"?: PlugCheckoutDialog;
+        "dialogConfig"?: MalgaCheckoutDialog;
         "idempotencyKey"?: string;
         "isLoading": boolean;
         "locale"?: Locale;
         "merchantId"?: string;
-        "paymentMethods"?: PlugCheckoutPaymentMethods;
+        "paymentMethods"?: MalgaCheckoutPaymentMethods;
         "publicKey": string;
         "sandbox": boolean;
         "sessionId"?: string;
-        "transactionConfig"?: PlugCheckoutTransaction;
+        "transactionConfig"?: MalgaCheckoutTransaction;
     }
-    interface PlugPayments {
+    interface MalgaPayments {
         "paymentMethods": PaymentMethods;
     }
-    interface PlugPaymentsBoleto {
+    interface MalgaPaymentsBoleto {
     }
-    interface PlugPaymentsCredit {
+    interface MalgaPaymentsCredit {
     }
-    interface PlugPaymentsCreditForm {
+    interface MalgaPaymentsCreditForm {
     }
-    interface PlugPaymentsCreditSavedCards {
+    interface MalgaPaymentsCreditSavedCards {
     }
-    interface PlugPaymentsPix {
+    interface MalgaPaymentsPix {
     }
 }
 declare global {
-    interface HTMLPlugCheckoutElement extends Components.PlugCheckout, HTMLStencilElement {
+    interface HTMLMalgaCheckoutElement extends Components.MalgaCheckout, HTMLStencilElement {
     }
-    var HTMLPlugCheckoutElement: {
-        prototype: HTMLPlugCheckoutElement;
-        new (): HTMLPlugCheckoutElement;
+    var HTMLMalgaCheckoutElement: {
+        prototype: HTMLMalgaCheckoutElement;
+        new (): HTMLMalgaCheckoutElement;
     };
-    interface HTMLPlugPaymentsElement extends Components.PlugPayments, HTMLStencilElement {
+    interface HTMLMalgaPaymentsElement extends Components.MalgaPayments, HTMLStencilElement {
     }
-    var HTMLPlugPaymentsElement: {
-        prototype: HTMLPlugPaymentsElement;
-        new (): HTMLPlugPaymentsElement;
+    var HTMLMalgaPaymentsElement: {
+        prototype: HTMLMalgaPaymentsElement;
+        new (): HTMLMalgaPaymentsElement;
     };
-    interface HTMLPlugPaymentsBoletoElement extends Components.PlugPaymentsBoleto, HTMLStencilElement {
+    interface HTMLMalgaPaymentsBoletoElement extends Components.MalgaPaymentsBoleto, HTMLStencilElement {
     }
-    var HTMLPlugPaymentsBoletoElement: {
-        prototype: HTMLPlugPaymentsBoletoElement;
-        new (): HTMLPlugPaymentsBoletoElement;
+    var HTMLMalgaPaymentsBoletoElement: {
+        prototype: HTMLMalgaPaymentsBoletoElement;
+        new (): HTMLMalgaPaymentsBoletoElement;
     };
-    interface HTMLPlugPaymentsCreditElement extends Components.PlugPaymentsCredit, HTMLStencilElement {
+    interface HTMLMalgaPaymentsCreditElement extends Components.MalgaPaymentsCredit, HTMLStencilElement {
     }
-    var HTMLPlugPaymentsCreditElement: {
-        prototype: HTMLPlugPaymentsCreditElement;
-        new (): HTMLPlugPaymentsCreditElement;
+    var HTMLMalgaPaymentsCreditElement: {
+        prototype: HTMLMalgaPaymentsCreditElement;
+        new (): HTMLMalgaPaymentsCreditElement;
     };
-    interface HTMLPlugPaymentsCreditFormElement extends Components.PlugPaymentsCreditForm, HTMLStencilElement {
+    interface HTMLMalgaPaymentsCreditFormElement extends Components.MalgaPaymentsCreditForm, HTMLStencilElement {
     }
-    var HTMLPlugPaymentsCreditFormElement: {
-        prototype: HTMLPlugPaymentsCreditFormElement;
-        new (): HTMLPlugPaymentsCreditFormElement;
+    var HTMLMalgaPaymentsCreditFormElement: {
+        prototype: HTMLMalgaPaymentsCreditFormElement;
+        new (): HTMLMalgaPaymentsCreditFormElement;
     };
-    interface HTMLPlugPaymentsCreditSavedCardsElement extends Components.PlugPaymentsCreditSavedCards, HTMLStencilElement {
+    interface HTMLMalgaPaymentsCreditSavedCardsElement extends Components.MalgaPaymentsCreditSavedCards, HTMLStencilElement {
     }
-    var HTMLPlugPaymentsCreditSavedCardsElement: {
-        prototype: HTMLPlugPaymentsCreditSavedCardsElement;
-        new (): HTMLPlugPaymentsCreditSavedCardsElement;
+    var HTMLMalgaPaymentsCreditSavedCardsElement: {
+        prototype: HTMLMalgaPaymentsCreditSavedCardsElement;
+        new (): HTMLMalgaPaymentsCreditSavedCardsElement;
     };
-    interface HTMLPlugPaymentsPixElement extends Components.PlugPaymentsPix, HTMLStencilElement {
+    interface HTMLMalgaPaymentsPixElement extends Components.MalgaPaymentsPix, HTMLStencilElement {
     }
-    var HTMLPlugPaymentsPixElement: {
-        prototype: HTMLPlugPaymentsPixElement;
-        new (): HTMLPlugPaymentsPixElement;
+    var HTMLMalgaPaymentsPixElement: {
+        prototype: HTMLMalgaPaymentsPixElement;
+        new (): HTMLMalgaPaymentsPixElement;
     };
     interface HTMLElementTagNameMap {
-        "plug-checkout": HTMLPlugCheckoutElement;
-        "plug-payments": HTMLPlugPaymentsElement;
-        "plug-payments-boleto": HTMLPlugPaymentsBoletoElement;
-        "plug-payments-credit": HTMLPlugPaymentsCreditElement;
-        "plug-payments-credit-form": HTMLPlugPaymentsCreditFormElement;
-        "plug-payments-credit-saved-cards": HTMLPlugPaymentsCreditSavedCardsElement;
-        "plug-payments-pix": HTMLPlugPaymentsPixElement;
+        "malga-checkout": HTMLMalgaCheckoutElement;
+        "malga-payments": HTMLMalgaPaymentsElement;
+        "malga-payments-boleto": HTMLMalgaPaymentsBoletoElement;
+        "malga-payments-credit": HTMLMalgaPaymentsCreditElement;
+        "malga-payments-credit-form": HTMLMalgaPaymentsCreditFormElement;
+        "malga-payments-credit-saved-cards": HTMLMalgaPaymentsCreditSavedCardsElement;
+        "malga-payments-pix": HTMLMalgaPaymentsPixElement;
     }
 }
 declare namespace LocalJSX {
-    interface PlugCheckout {
+    interface MalgaCheckout {
         "clientId"?: string;
         "debug"?: boolean;
-        "dialogConfig"?: PlugCheckoutDialog;
+        "dialogConfig"?: MalgaCheckoutDialog;
         "idempotencyKey"?: string;
         "isLoading"?: boolean;
         "locale"?: Locale;
         "merchantId"?: string;
         "onPaymentFailed"?: (event: CustomEvent<{
-    error: PlugPaymentsError
+    error: MalgaPaymentsError
   }>) => void;
         "onPaymentSessionFetch"?: (event: CustomEvent<{
     paymentSession: SessionNormalized
   }>) => void;
         "onPaymentSuccess"?: (event: CustomEvent<{
-    data: PlugPaymentsSuccess
+    data: MalgaPaymentsSuccess
   }>) => void;
-        "paymentMethods"?: PlugCheckoutPaymentMethods;
+        "paymentMethods"?: MalgaCheckoutPaymentMethods;
         "publicKey"?: string;
         "sandbox"?: boolean;
         "sessionId"?: string;
-        "transactionConfig"?: PlugCheckoutTransaction;
+        "transactionConfig"?: MalgaCheckoutTransaction;
     }
-    interface PlugPayments {
+    interface MalgaPayments {
         "onPaymentFail"?: (event: CustomEvent<{
-    error: PlugPaymentsError
+    error: MalgaPaymentsError
   }>) => void;
         "paymentMethods"?: PaymentMethods;
     }
-    interface PlugPaymentsBoleto {
+    interface MalgaPaymentsBoleto {
     }
-    interface PlugPaymentsCredit {
+    interface MalgaPaymentsCredit {
     }
-    interface PlugPaymentsCreditForm {
+    interface MalgaPaymentsCreditForm {
         "onCurrentFieldChange"?: (event: CustomEvent<{ field: string }>) => void;
     }
-    interface PlugPaymentsCreditSavedCards {
+    interface MalgaPaymentsCreditSavedCards {
     }
-    interface PlugPaymentsPix {
+    interface MalgaPaymentsPix {
         "onPixPaymentFailed"?: (event: CustomEvent<{
-    error: PlugPaymentsError
+    error: MalgaPaymentsError
   }>) => void;
     }
     interface IntrinsicElements {
-        "plug-checkout": PlugCheckout;
-        "plug-payments": PlugPayments;
-        "plug-payments-boleto": PlugPaymentsBoleto;
-        "plug-payments-credit": PlugPaymentsCredit;
-        "plug-payments-credit-form": PlugPaymentsCreditForm;
-        "plug-payments-credit-saved-cards": PlugPaymentsCreditSavedCards;
-        "plug-payments-pix": PlugPaymentsPix;
+        "malga-checkout": MalgaCheckout;
+        "malga-payments": MalgaPayments;
+        "malga-payments-boleto": MalgaPaymentsBoleto;
+        "malga-payments-credit": MalgaPaymentsCredit;
+        "malga-payments-credit-form": MalgaPaymentsCreditForm;
+        "malga-payments-credit-saved-cards": MalgaPaymentsCreditSavedCards;
+        "malga-payments-pix": MalgaPaymentsPix;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "plug-checkout": LocalJSX.PlugCheckout & JSXBase.HTMLAttributes<HTMLPlugCheckoutElement>;
-            "plug-payments": LocalJSX.PlugPayments & JSXBase.HTMLAttributes<HTMLPlugPaymentsElement>;
-            "plug-payments-boleto": LocalJSX.PlugPaymentsBoleto & JSXBase.HTMLAttributes<HTMLPlugPaymentsBoletoElement>;
-            "plug-payments-credit": LocalJSX.PlugPaymentsCredit & JSXBase.HTMLAttributes<HTMLPlugPaymentsCreditElement>;
-            "plug-payments-credit-form": LocalJSX.PlugPaymentsCreditForm & JSXBase.HTMLAttributes<HTMLPlugPaymentsCreditFormElement>;
-            "plug-payments-credit-saved-cards": LocalJSX.PlugPaymentsCreditSavedCards & JSXBase.HTMLAttributes<HTMLPlugPaymentsCreditSavedCardsElement>;
-            "plug-payments-pix": LocalJSX.PlugPaymentsPix & JSXBase.HTMLAttributes<HTMLPlugPaymentsPixElement>;
+            "malga-checkout": LocalJSX.MalgaCheckout & JSXBase.HTMLAttributes<HTMLMalgaCheckoutElement>;
+            "malga-payments": LocalJSX.MalgaPayments & JSXBase.HTMLAttributes<HTMLMalgaPaymentsElement>;
+            "malga-payments-boleto": LocalJSX.MalgaPaymentsBoleto & JSXBase.HTMLAttributes<HTMLMalgaPaymentsBoletoElement>;
+            "malga-payments-credit": LocalJSX.MalgaPaymentsCredit & JSXBase.HTMLAttributes<HTMLMalgaPaymentsCreditElement>;
+            "malga-payments-credit-form": LocalJSX.MalgaPaymentsCreditForm & JSXBase.HTMLAttributes<HTMLMalgaPaymentsCreditFormElement>;
+            "malga-payments-credit-saved-cards": LocalJSX.MalgaPaymentsCreditSavedCards & JSXBase.HTMLAttributes<HTMLMalgaPaymentsCreditSavedCardsElement>;
+            "malga-payments-pix": LocalJSX.MalgaPaymentsPix & JSXBase.HTMLAttributes<HTMLMalgaPaymentsPixElement>;
         }
     }
 }

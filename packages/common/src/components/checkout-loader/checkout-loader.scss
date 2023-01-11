@@ -1,10 +1,10 @@
 .checkout-loader__container {
   & > checkout-icon > i > svg {
-    color: css(--plug-checkout-color-brand-middle);
+    color: css(--malga-checkout-color-brand-middle);
   }
 
   & > .icon {
-    @include square($size: var(--plug-checkout-spacing-sm));
+    @include square($size: var(--malga-checkout-spacing-sm));
 
     display: flex;
     align-items: center;

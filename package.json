@@ -1,7 +1,7 @@
 {
-  "name": "plug-checkout",
+  "name": "malga-checkout",
   "private": true,
-  "description": "Plug Checkout is a webcomponent running on all front-end frameworks",
+  "description": "Malga Checkout is a webcomponent running on all front-end frameworks",
   "keywords": [
     "web-components",
     "react",
@@ -13,10 +13,10 @@
     "checkout",
     "plug"
   ],
-  "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
+  "author": "Leonardo Pinheiro <leonardo@malga.io>",
   "contributors": [
-    "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
-    "Filippe Rodrigues <filippe@plugpagamentos.com>"
+    "Leonardo Pinheiro <leonardo@malga.io>",
+    "Filippe Rodrigues <filippe@malga.io>"
   ],
   "license": "MIT",
   "config": {
@@ -41,12 +41,12 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "start:sdk": "lerna run start --scope @plug-checkout/core",
-    "build:sdk": "lerna run build --scope '{@plug-checkout/i18n,@plug-checkout/utils,@plug-checkout/common,@plug-checkout/core,@plug-checkout/angular,@plug-checkout/react,@plug-checkout/vue}'",
-    "start:full": "lerna run start --scope @plug-checkout-full/core",
-    "build:full": "lerna run build --scope '{@plug-checkout/i18n,@plug-checkout/utils,@plug-checkout/common,@plug-checkout-full/core,@plug-checkout-full/angular,@plug-checkout-full/react,@plug-checkout-full/vue}'",
-    "i18n:download": "lerna run i18n:download --scope @plug-checkout/i18n",
-    "i18n:upload": "lerna run i18n:upload --scope @plug-checkout/i18n",
+    "start:sdk": "lerna run start --scope @malga-checkout/core",
+    "build:sdk": "lerna run build --scope '{@malga-checkout/i18n,@malga-checkout/utils,@malga-checkout/common,@malga-checkout/core,@malga-checkout/angular,@malga-checkout/react,@malga-checkout/vue}'",
+    "start:full": "lerna run start --scope @malga-checkout-full/core",
+    "build:full": "lerna run build --scope '{@malga-checkout/i18n,@malga-checkout/utils,@malga-checkout/common,@malga-checkout-full/core,@malga-checkout-full/angular,@malga-checkout-full/react,@malga-checkout-full/vue}'",
+    "i18n:download": "lerna run i18n:download --scope @malga-checkout/i18n",
+    "i18n:upload": "lerna run i18n:upload --scope @malga-checkout/i18n",
     "bootstrap": "lerna bootstrap",
     "clean": "lerna clean",
     "refresh": "yarn clean -y && yarn bootstrap",

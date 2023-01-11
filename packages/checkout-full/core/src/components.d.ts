@@ -5,112 +5,112 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { Locale } from "@plug-checkout/i18n/dist/utils";
-import { PlugCheckoutFullChargeError, PlugCheckoutFullChargeSuccess, PlugCheckoutFullDialog, PlugCheckoutFullPage, PlugCheckoutFullPaymentMethods, PlugCheckoutFullTransaction } from "./components/plug-checkout-full/plug-checkout-full.types";
-import { PlugCheckoutFullIdentificationFormValues } from "./components/plug-checkout-full/partials/plug-checkout-full-identification/plug-checkout-full-identification.types";
+import { Locale } from "@malga-checkout/i18n/dist/utils";
+import { MalgaCheckoutFullChargeError, MalgaCheckoutFullChargeSuccess, MalgaCheckoutFullDialog, MalgaCheckoutFullPage, MalgaCheckoutFullPaymentMethods, MalgaCheckoutFullTransaction } from "./components/malga-checkout-full/malga-checkout-full.types";
+import { MalgaCheckoutFullIdentificationFormValues } from "./components/malga-checkout-full/partials/malga-checkout-full-identification/malga-checkout-full-identification.types";
 export namespace Components {
-    interface PlugCheckoutFull {
+    interface MalgaCheckoutFull {
         "clientId"?: string;
         "debug": boolean;
-        "dialogConfig": PlugCheckoutFullDialog;
+        "dialogConfig": MalgaCheckoutFullDialog;
         "idempotencyKey"?: string;
         "locale"?: Locale;
         "merchantId"?: string;
-        "pageConfig"?: PlugCheckoutFullPage;
-        "paymentMethods"?: PlugCheckoutFullPaymentMethods;
+        "pageConfig"?: MalgaCheckoutFullPage;
+        "paymentMethods"?: MalgaCheckoutFullPaymentMethods;
         "publicKey"?: string;
         "sandbox": boolean;
         "sessionId"?: string;
-        "transactionConfig"?: PlugCheckoutFullTransaction;
+        "transactionConfig"?: MalgaCheckoutFullTransaction;
     }
-    interface PlugCheckoutFullContent {
+    interface MalgaCheckoutFullContent {
     }
-    interface PlugCheckoutFullFooter {
+    interface MalgaCheckoutFullFooter {
         "description"?: string;
         "language": string;
     }
-    interface PlugCheckoutFullHeader {
+    interface MalgaCheckoutFullHeader {
         "backRoute"?: string;
         "brand": string;
         "isLoading": boolean;
         "language": string;
         "locale"?: Locale;
     }
-    interface PlugCheckoutFullIdentification {
-        "formValues": PlugCheckoutFullIdentificationFormValues;
+    interface MalgaCheckoutFullIdentification {
+        "formValues": MalgaCheckoutFullIdentificationFormValues;
         "internationalCustomer": boolean;
         "isLoading": boolean;
         "locale"?: Locale;
     }
 }
 declare global {
-    interface HTMLPlugCheckoutFullElement extends Components.PlugCheckoutFull, HTMLStencilElement {
+    interface HTMLMalgaCheckoutFullElement extends Components.MalgaCheckoutFull, HTMLStencilElement {
     }
-    var HTMLPlugCheckoutFullElement: {
-        prototype: HTMLPlugCheckoutFullElement;
-        new (): HTMLPlugCheckoutFullElement;
+    var HTMLMalgaCheckoutFullElement: {
+        prototype: HTMLMalgaCheckoutFullElement;
+        new (): HTMLMalgaCheckoutFullElement;
     };
-    interface HTMLPlugCheckoutFullContentElement extends Components.PlugCheckoutFullContent, HTMLStencilElement {
+    interface HTMLMalgaCheckoutFullContentElement extends Components.MalgaCheckoutFullContent, HTMLStencilElement {
     }
-    var HTMLPlugCheckoutFullContentElement: {
-        prototype: HTMLPlugCheckoutFullContentElement;
-        new (): HTMLPlugCheckoutFullContentElement;
+    var HTMLMalgaCheckoutFullContentElement: {
+        prototype: HTMLMalgaCheckoutFullContentElement;
+        new (): HTMLMalgaCheckoutFullContentElement;
     };
-    interface HTMLPlugCheckoutFullFooterElement extends Components.PlugCheckoutFullFooter, HTMLStencilElement {
+    interface HTMLMalgaCheckoutFullFooterElement extends Components.MalgaCheckoutFullFooter, HTMLStencilElement {
     }
-    var HTMLPlugCheckoutFullFooterElement: {
-        prototype: HTMLPlugCheckoutFullFooterElement;
-        new (): HTMLPlugCheckoutFullFooterElement;
+    var HTMLMalgaCheckoutFullFooterElement: {
+        prototype: HTMLMalgaCheckoutFullFooterElement;
+        new (): HTMLMalgaCheckoutFullFooterElement;
     };
-    interface HTMLPlugCheckoutFullHeaderElement extends Components.PlugCheckoutFullHeader, HTMLStencilElement {
+    interface HTMLMalgaCheckoutFullHeaderElement extends Components.MalgaCheckoutFullHeader, HTMLStencilElement {
     }
-    var HTMLPlugCheckoutFullHeaderElement: {
-        prototype: HTMLPlugCheckoutFullHeaderElement;
-        new (): HTMLPlugCheckoutFullHeaderElement;
+    var HTMLMalgaCheckoutFullHeaderElement: {
+        prototype: HTMLMalgaCheckoutFullHeaderElement;
+        new (): HTMLMalgaCheckoutFullHeaderElement;
     };
-    interface HTMLPlugCheckoutFullIdentificationElement extends Components.PlugCheckoutFullIdentification, HTMLStencilElement {
+    interface HTMLMalgaCheckoutFullIdentificationElement extends Components.MalgaCheckoutFullIdentification, HTMLStencilElement {
     }
-    var HTMLPlugCheckoutFullIdentificationElement: {
-        prototype: HTMLPlugCheckoutFullIdentificationElement;
-        new (): HTMLPlugCheckoutFullIdentificationElement;
+    var HTMLMalgaCheckoutFullIdentificationElement: {
+        prototype: HTMLMalgaCheckoutFullIdentificationElement;
+        new (): HTMLMalgaCheckoutFullIdentificationElement;
     };
     interface HTMLElementTagNameMap {
-        "plug-checkout-full": HTMLPlugCheckoutFullElement;
-        "plug-checkout-full-content": HTMLPlugCheckoutFullContentElement;
-        "plug-checkout-full-footer": HTMLPlugCheckoutFullFooterElement;
-        "plug-checkout-full-header": HTMLPlugCheckoutFullHeaderElement;
-        "plug-checkout-full-identification": HTMLPlugCheckoutFullIdentificationElement;
+        "malga-checkout-full": HTMLMalgaCheckoutFullElement;
+        "malga-checkout-full-content": HTMLMalgaCheckoutFullContentElement;
+        "malga-checkout-full-footer": HTMLMalgaCheckoutFullFooterElement;
+        "malga-checkout-full-header": HTMLMalgaCheckoutFullHeaderElement;
+        "malga-checkout-full-identification": HTMLMalgaCheckoutFullIdentificationElement;
     }
 }
 declare namespace LocalJSX {
-    interface PlugCheckoutFull {
+    interface MalgaCheckoutFull {
         "clientId"?: string;
         "debug"?: boolean;
-        "dialogConfig"?: PlugCheckoutFullDialog;
+        "dialogConfig"?: MalgaCheckoutFullDialog;
         "idempotencyKey"?: string;
         "locale"?: Locale;
         "merchantId"?: string;
         "onTransactionFailed"?: (event: CustomEvent<{
-    error: PlugCheckoutFullChargeError
+    error: MalgaCheckoutFullChargeError
   }>) => void;
         "onTransactionSuccess"?: (event: CustomEvent<{
-    data: PlugCheckoutFullChargeSuccess
+    data: MalgaCheckoutFullChargeSuccess
   }>) => void;
-        "pageConfig"?: PlugCheckoutFullPage;
-        "paymentMethods"?: PlugCheckoutFullPaymentMethods;
+        "pageConfig"?: MalgaCheckoutFullPage;
+        "paymentMethods"?: MalgaCheckoutFullPaymentMethods;
         "publicKey"?: string;
         "sandbox"?: boolean;
         "sessionId"?: string;
-        "transactionConfig"?: PlugCheckoutFullTransaction;
+        "transactionConfig"?: MalgaCheckoutFullTransaction;
     }
-    interface PlugCheckoutFullContent {
+    interface MalgaCheckoutFullContent {
     }
-    interface PlugCheckoutFullFooter {
+    interface MalgaCheckoutFullFooter {
         "description"?: string;
         "language"?: string;
         "onChangeLanguage"?: (event: CustomEvent<{ value: Locale }>) => void;
     }
-    interface PlugCheckoutFullHeader {
+    interface MalgaCheckoutFullHeader {
         "backRoute"?: string;
         "brand"?: string;
         "isLoading"?: boolean;
@@ -118,34 +118,34 @@ declare namespace LocalJSX {
         "locale"?: Locale;
         "onChangeLanguage"?: (event: CustomEvent<{ value: Locale }>) => void;
     }
-    interface PlugCheckoutFullIdentification {
-        "formValues"?: PlugCheckoutFullIdentificationFormValues;
+    interface MalgaCheckoutFullIdentification {
+        "formValues"?: MalgaCheckoutFullIdentificationFormValues;
         "internationalCustomer"?: boolean;
         "isLoading"?: boolean;
         "locale"?: Locale;
         "onFieldChange"?: (event: CustomEvent<{ field: string; value: string }>) => void;
         "onManyFieldsChange"?: (event: CustomEvent<{
-    customerFormValues: PlugCheckoutFullIdentificationFormValues
+    customerFormValues: MalgaCheckoutFullIdentificationFormValues
   }>) => void;
         "onSubmitForm"?: (event: CustomEvent<void>) => void;
     }
     interface IntrinsicElements {
-        "plug-checkout-full": PlugCheckoutFull;
-        "plug-checkout-full-content": PlugCheckoutFullContent;
-        "plug-checkout-full-footer": PlugCheckoutFullFooter;
-        "plug-checkout-full-header": PlugCheckoutFullHeader;
-        "plug-checkout-full-identification": PlugCheckoutFullIdentification;
+        "malga-checkout-full": MalgaCheckoutFull;
+        "malga-checkout-full-content": MalgaCheckoutFullContent;
+        "malga-checkout-full-footer": MalgaCheckoutFullFooter;
+        "malga-checkout-full-header": MalgaCheckoutFullHeader;
+        "malga-checkout-full-identification": MalgaCheckoutFullIdentification;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "plug-checkout-full": LocalJSX.PlugCheckoutFull & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullElement>;
-            "plug-checkout-full-content": LocalJSX.PlugCheckoutFullContent & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullContentElement>;
-            "plug-checkout-full-footer": LocalJSX.PlugCheckoutFullFooter & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullFooterElement>;
-            "plug-checkout-full-header": LocalJSX.PlugCheckoutFullHeader & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullHeaderElement>;
-            "plug-checkout-full-identification": LocalJSX.PlugCheckoutFullIdentification & JSXBase.HTMLAttributes<HTMLPlugCheckoutFullIdentificationElement>;
+            "malga-checkout-full": LocalJSX.MalgaCheckoutFull & JSXBase.HTMLAttributes<HTMLMalgaCheckoutFullElement>;
+            "malga-checkout-full-content": LocalJSX.MalgaCheckoutFullContent & JSXBase.HTMLAttributes<HTMLMalgaCheckoutFullContentElement>;
+            "malga-checkout-full-footer": LocalJSX.MalgaCheckoutFullFooter & JSXBase.HTMLAttributes<HTMLMalgaCheckoutFullFooterElement>;
+            "malga-checkout-full-header": LocalJSX.MalgaCheckoutFullHeader & JSXBase.HTMLAttributes<HTMLMalgaCheckoutFullHeaderElement>;
+            "malga-checkout-full-identification": LocalJSX.MalgaCheckoutFullIdentification & JSXBase.HTMLAttributes<HTMLMalgaCheckoutFullIdentificationElement>;
         }
     }
 }

@@ -1,13 +1,8 @@
-%field-is-filled {
-  background-color: var(--plug-checkout-color-brand-clean) !important;
-  border: 1px solid var(--plug-checkout-color-brand-clean) !important;
-}
-
 .checkout-radio-field__container {
   @extend %reset;
 
   display: flex;
-  width: var(--plug-checkout-size-min-width);
+  width: var(--malga-checkout-size-min-width);
 
   &--full-width {
     width: 100%;
@@ -22,24 +17,27 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
-  height: 50px;
-  padding: var(--plug-checkout-spacing-sm);
-  border: 1px solid var(--plug-checkout-color-grey-light);
-  border-radius: var(--plug-checkout-border-radius-default);
+  height: 40px;
+  padding: var(--malga-checkout-spacing-xs) var(--malga-checkout-spacing-default);
+  border: 1px solid var(--malga-checkout-color-accent-middle);
+  border-radius: var(--malga-checkout-border-radius-default);
   background: transparent;
-  transition: all var(--plug-checkout-transition-default) ease;
+  transition: all var(--malga-checkout-transition-default) ease;
   cursor: pointer;
+  color: var(--malga-checkout-color-grey-light);
 
   & > checkout-icon {
     margin-left: auto;
   }
 
   &:hover {
-    @extend %field-is-filled;
+    border: 1px solid var(--malga-checkout-color-brand-normal);
   }
 
   &--filled {
-    @extend %field-is-filled;
+    background-color: transparent !important;
+    border: 1px solid var(--malga-checkout-color-brand-normal);
+    color: var(--malga-checkout-color-brand-dark)
   }
 }
 
@@ -50,7 +48,7 @@
   height: 20px;
   appearance: none;
   position: relative;
-  margin-right: var(--plug-checkout-spacing-default);
+  margin-right: var(--malga-checkout-spacing-default);
   cursor: pointer;
   border: none;
 
@@ -62,14 +60,13 @@
     transform: translate3d(-50%, -50%, 0);
     width: 20px;
     height: 20px;
-    border: 1px solid var(--plug-checkout-color-grey-light);
+    border: 2px solid var(--malga-checkout-color-grey-light);
     border-radius: 50%;
-    background-color: rgba(143, 155, 179, 0.16);
   }
 
   &:checked {
     &:before {
-      border: 1px solid var(--plug-checkout-color-brand-middle);
+      border: 1px solid var(--malga-checkout-color-brand-middle);
       background-color: transparent;
     }
 
@@ -82,7 +79,7 @@
       width: 13px;
       height: 13px;
       border-radius: 50%;
-      background-color: var(--plug-checkout-color-brand-middle);
+      background-color: var(--malga-checkout-color-brand-middle);
     }
   }
 }

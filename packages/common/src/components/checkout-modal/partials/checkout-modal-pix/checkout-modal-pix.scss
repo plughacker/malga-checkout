@@ -17,16 +17,16 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: var(--plug-checkout-spacing-default) 0
-    var(--plug-checkout-spacing-md) 0;
-  background: var(--plug-checkout-color-modal-neutral);
+  padding: var(--malga-checkout-spacing-default) 0
+    var(--malga-checkout-spacing-md) 0;
+  background: var(--malga-checkout-color-modal-neutral);
 
   @include md {
     flex-direction: row;
     height: 170px;
     padding: 0;
-    border-radius: var(--plug-checkout-border-radius-lg)
-      var(--plug-checkout-border-radius-lg) 0 0;
+    border-radius: var(--malga-checkout-border-radius-lg)
+      var(--malga-checkout-border-radius-lg) 0 0;
   }
 
   & > checkout-icon {
@@ -34,7 +34,7 @@
 
     @include md {
       display: block;
-      margin-right: var(--plug-checkout-spacing-default);
+      margin-right: var(--malga-checkout-spacing-default);
       margin-bottom: 0;
     }
   }
@@ -54,24 +54,25 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: var(--plug-checkout-spacing-md) var(--plug-checkout-spacing-default);
-  background: var(--plug-checkout-color-accent-light);
+  padding: var(--malga-checkout-spacing-md)
+    var(--malga-checkout-spacing-default);
+  background: var(--malga-checkout-color-accent-light);
   position: relative;
 
   @include md {
     max-height: 500px;
     overflow: auto;
-    border-radius: 0 0 var(--plug-checkout-border-radius-lg)
-      var(--plug-checkout-border-radius-lg);
+    border-radius: 0 0 var(--malga-checkout-border-radius-lg)
+      var(--malga-checkout-border-radius-lg);
   }
 
   & > checkout-typography > h4 {
-    color: var(--plug-checkout-color-brand-middle);
+    color: var(--malga-checkout-color-grey-middle);
     text-align: center;
   }
 
   & > checkout-typography > h5 {
-    color: var(--plug-checkout-color-grey-darkness);
+    color: var(--malga-checkout-color-grey-darkness);
     font-weight: 400;
     text-align: center;
     margin-top: 23px;
@@ -83,7 +84,7 @@
     display: block;
     height: 10px;
     width: 100%;
-    background: var(--plug-checkout-color-accent-light);
+    background: var(--malga-checkout-color-accent-light);
     border-radius: 20px 20px 0 0;
     top: -10px;
     left: 0px;
@@ -98,10 +99,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--plug-checkout-spacing-sm);
-  border-radius: var(--plug-checkout-border-radius-md);
-  background: var(--plug-checkout-color-accent-normal);
-  margin-bottom: var(--plug-checkout-spacing-md);
+  padding: var(--malga-checkout-spacing-sm);
+  border-radius: var(--malga-checkout-border-radius-md);
+  background: var(--malga-checkout-color-accent-normal);
+  margin-bottom: var(--malga-checkout-spacing-md);
 
   @include md {
     flex-direction: row;
@@ -114,7 +115,7 @@
     @include md {
       width: 147px;
       height: 147px;
-      margin-right: var(--plug-checkout-spacing-md);
+      margin-right: var(--malga-checkout-spacing-md);
     }
   }
 
@@ -124,7 +125,7 @@
     width: 100%;
     word-wrap: break-word;
     overflow: hidden;
-    margin-top: var(--plug-checkout-spacing-default);
+    margin-top: var(--malga-checkout-spacing-default);
 
     @include md {
       width: auto;
@@ -151,7 +152,7 @@
 
       @include md {
         font-size: 16px;
-        margin-bottom: var(--plug-checkout-spacing-md);
+        margin-bottom: var(--malga-checkout-spacing-md);
       }
     }
   }
@@ -160,7 +161,7 @@
 .checkout-modal-pix__clipboard-button-mobile {
   display: flex;
   justify-content: center;
-  margin-bottom: var(--plug-checkout-spacing-md);
+  margin-bottom: var(--malga-checkout-spacing-md);
 
   @include md {
     display: none;
@@ -168,14 +169,14 @@
 }
 
 .checkout-modal-pix__payment-informations {
-  margin-bottom: var(--plug-checkout-spacing-default);
+  margin-bottom: var(--malga-checkout-spacing-default);
 
   p {
     @extend %typography-field;
     padding: 0;
     margin: 0;
     line-height: 24px;
-    color: var(--plug-checkout-color-grey-darkness);
+    color: var(--malga-checkout-color-grey-darkness);
 
     & > strong {
       font-weight: bold;
@@ -185,7 +186,7 @@
   &--countdown {
     display: flex;
     flex-direction: column;
-    margin-bottom: var(--plug-checkout-spacing-lg);
+    margin-bottom: var(--malga-checkout-spacing-lg);
 
     @include md {
       flex-direction: row;
@@ -194,7 +195,7 @@
     }
 
     & > p {
-      margin-top: calc(-1 * var(--plug-checkout-spacing-default));
+      margin-top: calc(-1 * var(--malga-checkout-spacing-default));
 
       @include md {
         margin-top: 0;
@@ -207,10 +208,10 @@
       align-items: center;
 
       & > checkout-countdown {
-        margin-left: var(--plug-checkout-spacing-default);
+        margin-left: var(--malga-checkout-spacing-default);
 
         @include md {
-          margin-left: var(--plug-checkout-spacing-xs);
+          margin-left: var(--malga-checkout-spacing-xs);
         }
       }
     }
@@ -220,34 +221,34 @@
 .checkout-modal-pix__informations {
   & > checkout-typography > h5 {
     font-weight: bold;
-    margin-bottom: var(--plug-checkout-spacing-default);
+    margin-bottom: var(--malga-checkout-spacing-default);
     text-align: center;
   }
 
   & > ul > li,
   & > ol > li {
     @extend %typography-field;
-    color: var(--plug-checkout-color-grey-darkness);
+    color: var(--malga-checkout-color-grey-darkness);
     padding: 0;
     margin: 0;
-    margin-bottom: var(--plug-checkout-spacing-default);
+    margin-bottom: var(--malga-checkout-spacing-default);
   }
 
   & > ol {
-    padding: 0 var(--plug-checkout-spacing-default);
+    padding: 0 var(--malga-checkout-spacing-default);
     list-style-type: decimal;
   }
 
   & > ul {
-    padding: 0 var(--plug-checkout-spacing-default);
+    padding: 0 var(--malga-checkout-spacing-default);
   }
 }
 
 .checkout-modal-pix__action-button {
   display: flex;
   justify-content: center;
-  margin-top: var(--plug-checkout-spacing-sm);
-  padding-bottom: var(--plug-checkout-spacing-sm);
+  margin-top: var(--malga-checkout-spacing-sm);
+  padding-bottom: var(--malga-checkout-spacing-sm);
 
   @include md {
     padding-bottom: 0;

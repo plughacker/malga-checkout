@@ -1,17 +1,17 @@
 {
-  "name": "@plug-checkout/react",
+  "name": "@malga-checkout/react",
   "sideEffects": false,
-  "version": "1.6.2",
-  "description": "React specific wrapper for Plug Checkout core components",
+  "version": "1.7.0",
+  "description": "React specific wrapper for Malga Checkout core components",
   "private": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/plughacker/plug-checkout.git",
+    "url": "git+https://github.com/plughacker/malga-checkout.git",
     "directory": "packages/checkout/react"
   },
-  "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
+  "author": "Leonardo Pinheiro <leonardo@malga.io>",
   "bugs": {
-    "url": "https://github.com/plughacker/plug-checkout/issues"
+    "url": "https://github.com/plughacker/malga-checkout/issues"
   },
   "keywords": [
     "payments",
@@ -53,7 +53,7 @@
     "typescript": "^4.3.4"
   },
   "dependencies": {
-    "@plug-checkout/core": "1.6.2"
+    "@malga-checkout/core": "1.7.0"
   },
   "peerDependencies": {
     "react": "^16.7.0",

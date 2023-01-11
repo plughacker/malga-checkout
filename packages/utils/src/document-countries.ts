@@ -1,5 +1,5 @@
-import { Locale } from '@plug-checkout/i18n/dist/utils'
-import { getCurrentLocale } from '@plug-checkout/i18n'
+import { Locale } from '@malga-checkout/i18n/dist/utils'
+import { getCurrentLocale } from '@malga-checkout/i18n'
 
 const documentCountriesEnglish = [
   {

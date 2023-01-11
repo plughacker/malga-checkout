@@ -1,9 +1,9 @@
 .checkout-order-summary__container {
   display: flex;
   flex-direction: column;
-  padding: var(--plug-checkout-spacing-sm);
-  border-radius: var(--plug-checkout-spacing-xs);
-  background: var(--plug-checkout-color-accent-light);
+  padding: var(--malga-checkout-spacing-sm);
+  border-radius: var(--malga-checkout-spacing-xs);
+  background: var(--malga-checkout-color-accent-light);
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
 
   &--full-width {
@@ -20,10 +20,10 @@
   & > h3 {
     padding: 0;
     margin: 0;
-    font-family: var(--plug-checkout-typography-family);
-    font-size: var(--plug-checkout-spacing-sm);
+    font-family: var(--malga-checkout-typography-family);
+    font-size: var(--malga-checkout-spacing-sm);
     font-weight: bold;
-    color: var(--plug-checkout-color-brand-middle);
+    color: var(--malga-checkout-color-brand-middle);
   }
 
   & > button {
@@ -36,7 +36,7 @@
     padding: 0;
 
     & > checkout-icon > i > svg {
-      color: var(--plug-checkout-color-brand-middle);
+      color: var(--malga-checkout-color-brand-middle);
     }
   }
 }
@@ -46,14 +46,14 @@
   flex-direction: column;
   padding: 0;
   margin: 0;
-  margin-top: var(--plug-checkout-spacing-sm);
+  margin-top: var(--malga-checkout-spacing-sm);
 }
 
 .checkout-order-summary__product-item {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: var(--plug-checkout-spacing-xs);
+  margin-top: var(--malga-checkout-spacing-xs);
 
   & > p {
     padding: 0;
@@ -61,7 +61,7 @@
   }
 
   & > checkout-typography > span {
-    margin-left: var(--plug-checkout-spacing-default);
+    margin-left: var(--malga-checkout-spacing-default);
   }
 }
 
@@ -69,7 +69,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: var(--plug-checkout-spacing-default);
+  margin-top: var(--malga-checkout-spacing-default);
 }
 
 .checkout-order-summary__total {
@@ -78,13 +78,13 @@
   align-items: center;
   justify-content: space-between;
   padding-top: calc(
-    var(--plug-checkout-spacing-xs) + var(--plug-checkout-spacing-xxs)
+    var(--malga-checkout-spacing-xs) + var(--malga-checkout-spacing-xxs)
   );
-  margin-top: var(--plug-checkout-spacing-sm);
+  margin-top: var(--malga-checkout-spacing-sm);
   border-top: 1px solid black;
 
   & > p {
-    font-family: var(--plug-checkout-typography-family);
+    font-family: var(--malga-checkout-typography-family);
     font-size: 16px;
     font-weight: 700;
     padding: 0;

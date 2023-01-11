@@ -1,16 +1,16 @@
 {
-  "name": "@plug-checkout/core",
-  "version": "1.6.2",
-  "description": "Core components for Plug Checkout",
+  "name": "@malga-checkout/core",
+  "version": "1.7.0",
+  "description": "Core components for Malga Checkout",
   "private": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/plughacker/plug-checkout.git",
+    "url": "git+https://github.com/plughacker/malga-checkout.git",
     "directory": "packages/checkout/core"
   },
-  "author": "Leonardo Pinheiro <leonardo@plugpagamentos.com>",
+  "author": "Leonardo Pinheiro <leonardo@malga.io>",
   "bugs": {
-    "url": "https://github.com/plughacker/plug-checkout/issues"
+    "url": "https://github.com/plughacker/malga-checkout/issues"
   },
   "keywords": [
     "payments",
@@ -31,7 +31,7 @@
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/plug-checkout/plug-checkout.esm.js",
+  "unpkg": "dist/malga-checkout/malga-checkout.esm.js",
   "files": [
     "dist/",
     "loader/"
@@ -44,9 +44,9 @@
     "generate": "stencil generate"
   },
   "devDependencies": {
-    "@plug-checkout/common": "*",
-    "@plug-checkout/i18n": "*",
-    "@plug-checkout/utils": "*",
+    "@malga-checkout/common": "*",
+    "@malga-checkout/i18n": "*",
+    "@malga-checkout/utils": "*",
     "@stencil/angular-output-target": "^0.2.0",
     "@stencil/core": "^2.6.0",
     "@stencil/react-output-target": "^0.1.0",
@@ -70,5 +70,5 @@
     "uuid": "^8.3.2",
     "yup": "^0.32.9"
   },
-  "homepage": "https://github.com/plughacker/plug-checkout#readme"
+  "homepage": "https://github.com/plughacker/malga-checkout#readme"
 }

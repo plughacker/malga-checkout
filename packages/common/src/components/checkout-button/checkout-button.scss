@@ -18,42 +18,42 @@
   outline: none;
 
   height: 40px;
-  padding: 0 var(--plug-checkout-spacing-sm);
+  padding: 0 var(--malga-checkout-spacing-sm);
   border: 0;
-  border-radius: var(--plug-checkout-border-radius-default);
-  background: var(--plug-checkout-color-brand-middle);
+  border-radius: var(--malga-checkout-border-radius-default);
+  background: var(--malga-checkout-color-brand-middle);
 
   letter-spacing: 1.25px;
   text-align: center;
-  color: var(--plug-checkout-color-accent-light);
+  color: var(--malga-checkout-color-accent-light);
 
   &:hover {
-    background: var(--plug-checkout-color-brand-normal);
+    background: var(--malga-checkout-color-brand-normal);
   }
 
   &:focus {
     @include border(
       $size: 2px,
-      $color: var(--plug-checkout-color-brand-accent-light)
+      $color: var(--malga-checkout-color-brand-accent-light)
     );
   }
 
   &:disabled {
-    background: var(--plug-checkout-color-accent-normal);
-    color: var(--plug-checkout-color-accent-middle);
+    background: var(--malga-checkout-color-accent-normal);
+    color: var(--malga-checkout-color-accent-middle);
     cursor: not-allowed;
 
     > .icon {
-      color: var(--plug-checkout-color-accent-middle);
+      color: var(--malga-checkout-color-accent-middle);
     }
   }
 
   & > checkout-icon > i > svg {
-    color: css(--plug-checkout-color-accent-light);
+    color: css(--malga-checkout-color-accent-light);
   }
 
   & > .icon {
-    @include square($size: var(--plug-checkout-spacing-sm));
+    @include square($size: var(--malga-checkout-spacing-sm));
 
     display: flex;
     align-items: center;

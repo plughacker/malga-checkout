@@ -1,9 +1,9 @@
 .checkout-accordion__container {
   display: flex;
   flex-direction: column;
-  padding: var(--plug-checkout-spacing-sm);
-  border-radius: var(--plug-checkout-spacing-xs);
-  background: var(--plug-checkout-color-accent-light);
+  padding: var(--malga-checkout-spacing-sm);
+  border-radius: var(--malga-checkout-spacing-xs);
+  background: var(--malga-checkout-color-accent-light);
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
 
   &--full-width {
@@ -17,10 +17,10 @@
   align-items: center;
   justify-content: space-between;
 
-  font-family: var(--plug-checkout-typography-family);
-  font-size: var(--plug-checkout-spacing-sm);
+  font-family: var(--malga-checkout-typography-family);
+  font-size: var(--malga-checkout-spacing-sm);
   font-weight: bold;
-  color: var(--plug-checkout-color-brand-middle);
+  color: var(--malga-checkout-color-brand-middle);
 
   & > button {
     display: flex;
@@ -34,7 +34,7 @@
     padding: 0;
 
     & > checkout-icon > i > svg {
-      color: var(--plug-checkout-color-brand-middle);
+      color: var(--malga-checkout-color-brand-middle);
     }
   }
 
@@ -44,11 +44,11 @@
     align-items: center;
 
     @extend %typography-label;
-    color: var(--plug-checkout-color-grey-light);
-    fill: var(--plug-checkout-color-grey-light);
+    color: var(--malga-checkout-color-grey-light);
+    fill: var(--malga-checkout-color-grey-light);
 
     & > checkout-icon {
-      margin-right: var(--plug-checkout-spacing-xs);
+      margin-right: var(--malga-checkout-spacing-xs);
     }
   }
 
@@ -66,6 +66,6 @@
 
   &--opened {
     height: 100%;
-    margin-top: var(--plug-checkout-spacing-sm);
+    margin-top: var(--malga-checkout-spacing-sm);
   }
 }

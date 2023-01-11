@@ -1,7 +1,7 @@
 import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
-import { formatDate, formatCurrency, parseDate } from '@plug-checkout/utils'
-import { Locale } from '@plug-checkout/i18n/dist/utils'
-import { t } from '@plug-checkout/i18n'
+import { formatDate, formatCurrency, parseDate } from '@malga-checkout/utils'
+import { Locale } from '@malga-checkout/i18n/dist/utils'
+import { t } from '@malga-checkout/i18n'
 
 @Component({
   tag: 'checkout-modal-boleto',

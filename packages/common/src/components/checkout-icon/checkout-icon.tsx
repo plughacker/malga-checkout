@@ -19,7 +19,7 @@ import UserIcon from '../../assets/icons/user.svg'
 import WarningIcon from '../../assets/icons/warning.svg'
 import EyeIcon from '../../assets/icons/eye.svg'
 import EyeSlashIcon from '../../assets/icons/eye-slash.svg'
-import PoweredByPlug from '../../assets/icons/powered-by-plug.svg'
+import PoweredByMalga from '../../assets/icons/powered-by-malga.svg'
 import PixIcon from '../../assets/icons/pix.svg'
 import NewTabIcon from '../../assets/icons/new-tab.svg'
 import VisaIcon from '../../assets/icons/visa.svg'
@@ -48,7 +48,7 @@ export class CheckoutIcon implements ComponentInterface {
       spinner: SpinnerIcon,
       user: UserIcon,
       warning: WarningIcon,
-      poweredByPlug: PoweredByPlug,
+      poweredByMalga: PoweredByMalga,
       edit: EditIcon,
       eye: EyeIcon,
       eyeSlash: EyeSlashIcon,

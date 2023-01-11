@@ -1,4 +1,4 @@
-import { Locale } from '@plug-checkout/i18n/dist/utils'
+import { Locale } from '@malga-checkout/i18n/dist/utils'
 import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
 
 import { CheckoutModalMode } from './checkout-modal.types'

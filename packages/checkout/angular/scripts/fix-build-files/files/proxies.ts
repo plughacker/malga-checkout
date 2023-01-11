@@ -11,9 +11,9 @@ import {
 } from '@angular/core'
 import { ProxyCmp, proxyOutputs } from './angular-component-lib/utils'
 
-import { Components } from '@plug-checkout/core'
+import { Components } from '@malga-checkout/core'
 
-export declare interface PlugCheckout extends Components.PlugCheckout {}
+export declare interface MalgaCheckout extends Components.MalgaCheckout {}
 @ProxyCmp({
   inputs: [
     'locale',
@@ -31,7 +31,7 @@ export declare interface PlugCheckout extends Components.PlugCheckout {}
   ],
 })
 @Component({
-  selector: 'plug-checkout',
+  selector: 'malga-checkout',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: [
@@ -50,7 +50,7 @@ export declare interface PlugCheckout extends Components.PlugCheckout {}
   ],
   outputs: ['paymentSessionFetch', 'paymentSuccess', 'paymentFailed'],
 })
-export class PlugCheckout {
+export class MalgaCheckout {
   /**  */
   paymentSuccess!: EventEmitter<CustomEvent<{ data: unknown }>>
   /**  */

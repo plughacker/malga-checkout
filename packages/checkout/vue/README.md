@@ -1,6 +1,6 @@
 # Malga Checkout - Vue
 
-A simple, fast and customizable way of integrating with Plug, with no need to stop using your favorite front-end framework.
+A simple, fast and customizable way of integrating with Malga, with no need to stop using your favorite front-end framework.
 
 ## Introduction
 

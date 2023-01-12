@@ -1,10 +1,10 @@
 # Malga Checkout
 
-A simple, fast and customizable way of integrating with Plug, with no need to stop using your favorite front-end framework.
+A simple, fast and customizable way of integrating with Malga, with no need to stop using your favorite front-end framework.
 
 ## Get Started
 
-Inicially, it is highly recommended that you read [Plug’s documentation](https://docs.malga.io/) for better understanding of how our APIs work, generate your login credentials and mostly to understand how to generate your publicKey, which is one of the requirements so that you can use Malga Checkout in the best way. Trust me, it will only take a few minutes.
+Inicially, it is highly recommended that you read [Malga’s documentation](https://docs.malga.io/) for better understanding of how our APIs work, generate your login credentials and mostly to understand how to generate your publicKey, which is one of the requirements so that you can use Malga Checkout in the best way. Trust me, it will only take a few minutes.
 
 ## Integration
 

@@ -11,7 +11,7 @@
     "stencil",
     "payments",
     "checkout",
-    "plug"
+    "malga"
   ],
   "author": "Leonardo Pinheiro <leonardo@malga.io>",
   "contributors": [

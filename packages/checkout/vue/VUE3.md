@@ -1,6 +1,6 @@
 # Malga Checkout - Vue3
 
-A simple, fast and customizable way of integrating with Plug, with no need to stop using your favorite front-end framework.
+A simple, fast and customizable way of integrating with Malga, with no need to stop using your favorite front-end framework.
 
 ## Introduction
 
@@ -99,13 +99,13 @@ Below there is a list of properties that the component accepts for you to custom
 | Property                  | Description                                                                                                                                                                            | Type       | Default                       |
 | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ----------------------------- |
 | `:amount`                 | Total amount of the transaction, we indicate that the amount be used in CENTS form.                                                                                                    | `number`   | `undefined`                   |
-| `:publicKey`              | Public key for client-side applications, generated from Plug’s API. [Click here](https://docs.malga.io/#section/Autenticacao/Client-Token) to read more about it in the documentation. | `string`   | `undefined`                   |
+| `:publicKey`              | Public key for client-side applications, generated from Malga’s API. [Click here](https://docs.malga.io/#section/Autenticacao/Client-Token) to read more about it in the documentation. | `string`   | `undefined`                   |
 | `:capture`                | It determines if the transaction should be captured immediately.                                                                                                                       | `boolean`  | `false`                       |
-| `:clientId`               | Key to identify the client on Plug. [Click here](https://docs.malga.io/#section/Get-started/Configure-uma-conta-Plug) to read more about it in the documentation.                      | `string`   | `undefined`                   |
+| `:clientId`               | Key to identify the client on Malga. [Click here](https://docs.malga.io/#section/Get-started/Configure-uma-conta-malga) to read more about it in the documentation.                      | `string`   | `undefined`                   |
 | `:customFormStyleClasses` | Properties that make the use of CSS classes available for individual customization of each component of Malga Checkout.                                                                | `object`   | `{}`                          |
 | `installmentsConfig`      | Configurations for the installments field, if it should be exhibited and/or the quantity of installments the transaction provides.                                                     | `object`   | `{ show: true, quantity: 1 }` |
-| `:merchantId`             | Subaccounts identifier on Plug. [Click here](https://docs.malga.io/#tag/Merchants) to read more about it in the documentation.                                                         | `string`   | `undefined`                   |
-| `:sandbox`                | Flag to define if the requests for Plug’s API must be made in a homologation or production environment.                                                                                | `boolean`  | `false`                       |
+| `:merchantId`             | Subaccounts identifier on Malga. [Click here](https://docs.malga.io/#tag/Merchants) to read more about it in the documentation.                                                         | `string`   | `undefined`                   |
+| `:sandbox`                | Flag to define if the requests for Malga’s API must be made in a homologation or production environment.                                                                                | `boolean`  | `false`                       |
 | `:statementDescriptor`    | Description that will be shown on the buyer’s bill.                                                                                                                                    | `string`   | `undefined`                   |
 | `@paymentSuccess`         | Callback called right after the success of the transaction.                                                                                                                            | `function` | `undefined`                   |
 | `@paymentFailed`          | Callback called right after some transaction fail occurs.                                                                                                                              | `function` | `undefined`                   |

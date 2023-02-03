@@ -32,7 +32,7 @@ const formatFraudAnalysisBrowser = async (
   }
 }
 
-export const formatFraudAnalysis = (
+export const formatFraudAnalysis = async (
   fraudAnalysis: FraudAnalysis,
   customer: Customer,
 ) => {
@@ -48,6 +48,10 @@ export const formatFraudAnalysis = (
     ...parsedCustomer.address,
     number: parsedCustomer.address.streetNumber,
   }
+  const browser = await formatFraudAnalysisBrowser(
+    fraudAnalysis.browserFingerprint,
+    parsedCustomer.email,
+  )
 
   delete address.streetNumber
 
@@ -60,10 +64,7 @@ export const formatFraudAnalysis = (
       identity: parsedCustomer.document.number,
       deliveryAddress: address,
       billingAddress: address,
-      ...formatFraudAnalysisBrowser(
-        fraudAnalysis.browserFingerprint,
-        parsedCustomer.email,
-      ),
+      ...browser,
     },
     cart: {
       items: fraudAnalysis.cart,

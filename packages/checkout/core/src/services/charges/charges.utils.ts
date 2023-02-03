@@ -2,6 +2,36 @@ import { formatPayload as formatCustomer } from '../customers/customers.utils'
 import { Customer } from '../../providers/base-provider'
 import { FraudAnalysis } from './charges.types'
 
+import {
+  cookiesEnabled,
+  getUserAgent,
+  getHostname,
+  getIpAddress,
+} from '@malga-checkout/utils'
+
+const formatFraudAnalysisBrowser = async (
+  browserFingerprint?: string,
+  email?: string,
+) => {
+  if (!browserFingerprint) return {}
+
+  const ipAddress = await getIpAddress()
+  const hostName = getHostname()
+  const cookiesAccepted = cookiesEnabled()
+  const type = getUserAgent()
+
+  return {
+    browser: {
+      browserFingerprint,
+      email,
+      cookiesAccepted,
+      hostName,
+      ipAddress,
+      type,
+    },
+  }
+}
+
 export const formatFraudAnalysis = (
   fraudAnalysis: FraudAnalysis,
   customer: Customer,
@@ -30,6 +60,10 @@ export const formatFraudAnalysis = (
       identity: parsedCustomer.document.number,
       deliveryAddress: address,
       billingAddress: address,
+      ...formatFraudAnalysisBrowser(
+        fraudAnalysis.browserFingerprint,
+        parsedCustomer.email,
+      ),
     },
     cart: {
       items: fraudAnalysis.cart,

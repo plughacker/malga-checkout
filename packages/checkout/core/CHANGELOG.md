@@ -1,5 +1,11 @@
 # @malga-checkout/core
 
+## 1.8.0
+
+### Minor Changes
+
+- [#65](https://github.com/plughacker/malga-checkout/pull/65) [`df3a79c`](https://github.com/plughacker/malga-checkout/commit/df3a79c55fc43dd3be932f394e7b2c6a85905d3a) Thanks [@leonardorpr](https://github.com/leonardorpr)! - adding browser node to fraudAnalysis
+
 ## 1.7.0
 
 ### Minor Changes

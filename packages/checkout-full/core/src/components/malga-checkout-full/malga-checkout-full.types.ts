@@ -223,6 +223,7 @@ export interface MalgaCheckoutFullFraudAnalysisCart {
 }
 
 export interface MalgaCheckoutFullFraudAnalysis {
+  browserFingerprint?: string
   customer?: Customer
   cart?: MalgaCheckoutFullFraudAnalysisCart[]
 }

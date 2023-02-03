@@ -2,7 +2,37 @@ import { formatPayload as formatCustomer } from '../customers/customers.utils'
 import { Customer } from '../../providers/base-provider'
 import { FraudAnalysis } from './charges.types'
 
-export const formatFraudAnalysis = (
+import {
+  cookiesEnabled,
+  getUserAgent,
+  getHostname,
+  getIpAddress,
+} from '@malga-checkout/utils'
+
+const formatFraudAnalysisBrowser = async (
+  browserFingerprint?: string,
+  email?: string,
+) => {
+  if (!browserFingerprint) return {}
+
+  const ipAddress = await getIpAddress()
+  const hostName = getHostname()
+  const cookiesAccepted = cookiesEnabled()
+  const type = getUserAgent()
+
+  return {
+    browser: {
+      browserFingerprint,
+      email,
+      cookiesAccepted,
+      hostName,
+      ipAddress,
+      type,
+    },
+  }
+}
+
+export const formatFraudAnalysis = async (
   fraudAnalysis: FraudAnalysis,
   customer: Customer,
 ) => {
@@ -18,6 +48,10 @@ export const formatFraudAnalysis = (
     ...parsedCustomer.address,
     number: parsedCustomer.address.streetNumber,
   }
+  const browser = await formatFraudAnalysisBrowser(
+    fraudAnalysis.browserFingerprint,
+    parsedCustomer.email,
+  )
 
   delete address.streetNumber
 
@@ -30,6 +64,7 @@ export const formatFraudAnalysis = (
       identity: parsedCustomer.document.number,
       deliveryAddress: address,
       billingAddress: address,
+      ...browser,
     },
     cart: {
       items: fraudAnalysis.cart,

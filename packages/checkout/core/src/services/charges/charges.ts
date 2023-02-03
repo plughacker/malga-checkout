@@ -19,7 +19,7 @@ export class Charges {
   }
 
   public async create(customerId?: string) {
-    const fraudAnalysis = formatFraudAnalysis(
+    const fraudAnalysis = await formatFraudAnalysis(
       settings.transactionConfig.fraudAnalysis,
       settings.transactionConfig.customer,
     )

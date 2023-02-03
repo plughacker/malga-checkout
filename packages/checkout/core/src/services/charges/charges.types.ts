@@ -26,6 +26,7 @@ export interface FraudAnalysisCart {
 }
 
 export interface FraudAnalysis {
+  browserFingerprint?: string
   customer?: Customer
   cart?: FraudAnalysisCart[]
 }

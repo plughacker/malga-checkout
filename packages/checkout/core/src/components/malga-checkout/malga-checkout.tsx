@@ -121,7 +121,6 @@ export class MalgaCheckout {
 
       this.isButtonLoading = false
     } catch (err) {
-      console.log(err)
       this.isButtonLoading = false
     }
   }

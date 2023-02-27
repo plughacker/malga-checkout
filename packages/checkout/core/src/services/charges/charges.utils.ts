@@ -38,13 +38,15 @@ export const formatFraudAnalysis = async (
 ) => {
   if (
     !fraudAnalysis ||
-    (!customer?.address && !fraudAnalysis?.customer?.address)
+    (!customer.address && !fraudAnalysis.customer.address) ||
+    !customer.usePartialCustomer
   )
     return null
 
   const currentCustomer = fraudAnalysis.customer || customer
   const parsedCustomer = formatCustomer(currentCustomer)
-  const address = {
+
+  const address = parsedCustomer.address && {
     ...parsedCustomer.address,
     number: parsedCustomer.address.streetNumber,
   }
@@ -53,7 +55,9 @@ export const formatFraudAnalysis = async (
     parsedCustomer.email,
   )
 
-  delete address.streetNumber
+  if (address) {
+    delete address.streetNumber
+  }
 
   return {
     customer: {
@@ -62,8 +66,10 @@ export const formatFraudAnalysis = async (
       phone: parsedCustomer.phoneNumber,
       identityType: parsedCustomer.document.type.toUpperCase(),
       identity: parsedCustomer.document.number,
-      deliveryAddress: address,
-      billingAddress: address,
+      ...(currentCustomer.address && {
+        deliveryAddress: address,
+        billingAddress: address,
+      }),
       ...browser,
     },
     cart: {

@@ -11,11 +11,23 @@ export const formatCustomerPayload = (customer: Customer) => {
   const address = formatCustomerAddress(customer.address)
   const document = formatCustomerDocument(customer.document)
 
-  return {
-    ...address,
+  const haveFilledAddress = Object.values(customer.address).some(
+    (value) => value,
+  )
+
+  const baseCustomer = {
     ...document,
     name: customer.name,
     email: customer.email,
     phoneNumber: cleanTextOnlyNumbers(customer.phoneNumber),
   }
+
+  if (haveFilledAddress) {
+    return {
+      ...address,
+      ...baseCustomer,
+    }
+  }
+
+  return baseCustomer
 }

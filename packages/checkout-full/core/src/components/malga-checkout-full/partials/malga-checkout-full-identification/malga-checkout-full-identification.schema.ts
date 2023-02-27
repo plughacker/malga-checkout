@@ -88,52 +88,26 @@ export const schema = (locale?: Locale) => {
             },
           ),
       }),
-    street: Yup.string().required(
-      t('page.customer.fields.street.errorMessageRequired', locale),
-    ),
-    number: Yup.string().required(
-      t('page.customer.fields.number.errorMessageRequired', locale),
-    ),
-    complement: Yup.string().required(
-      t('page.customer.fields.complement.errorMessageRequired', locale),
-    ),
-    neighborhood: Yup.string().required(
-      t('page.customer.fields.neighborhood.errorMessageRequired', locale),
-    ),
-    city: Yup.string().required(
-      t('page.customer.fields.city.errorMessageRequired', locale),
-    ),
-    state: Yup.string().required(
-      t('page.customer.fields.state.errorMessageRequired', locale),
-    ),
+    street: Yup.string().optional(),
+    number: Yup.string().optional(),
+    complement: Yup.string().optional(),
+    neighborhood: Yup.string().optional(),
+    city: Yup.string().optional(),
+    state: Yup.string().optional(),
     zipCode: Yup.string()
       .when(['$internationalCustomer'], {
         is: (internationalCustomer: boolean) => !internationalCustomer,
         then: Yup.string()
           .transform((value) => cleanTextOnlyNumbers(value))
-          .required(
-            t(
-              'page.customer.fields.zipCode.errorMessageRequiredBrazil',
-              locale,
-            ),
-          ),
+          .optional(),
       })
       .when(['$internationalCustomer'], {
         is: (internationalCustomer: boolean) => internationalCustomer,
         then: Yup.string()
           .transform((value) => cleanTextSpecialCharacters(value))
-          .required(
-            t(
-              'page.customer.fields.zipCode.errorMessageRequiredInternational',
-              locale,
-            ),
-          ),
+          .optional(),
       }),
-    country: Yup.string().test(
-      'isValidCountry',
-      t('page.customer.fields.country.errorMessageRequired', locale),
-      (value) => value !== 'none',
-    ),
+    country: Yup.string().optional(),
   })
 }
 

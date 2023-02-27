@@ -66,14 +66,25 @@ export class MalgaCheckoutFullIdentification {
   }
 
   private checkValidatedField = () => {
-    const optionalFields = !this.internationalCustomer
-      ? ['documentCountry', 'documentType']
-      : []
+    const optionalFields = [
+      'documentCountry',
+      'documentType',
+      'zipCode',
+      'street',
+      'number',
+      'complement',
+      'neighborhood',
+      'city',
+      'state',
+      'country',
+    ]
+
+    const partialFields = !this.internationalCustomer ? optionalFields : []
 
     const validFieldValues = Object.entries(this.validFields)
 
     const filteredValidFieldValues = validFieldValues
-      .filter(([validField]) => !optionalFields.includes(validField))
+      .filter(([validField]) => !partialFields.includes(validField))
       .filter(([, validFieldValue]) => {
         if (validFieldValue === undefined) return false
 

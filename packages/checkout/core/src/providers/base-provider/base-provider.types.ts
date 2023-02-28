@@ -21,7 +21,6 @@ export interface Customer {
     state: string
     country: string
   }
-  usePartialCustomer?: boolean
 }
 
 export interface CustomerPayload {

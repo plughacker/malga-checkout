@@ -11,9 +11,9 @@ export const formatCustomerPayload = (customer: Customer) => {
   const address = formatCustomerAddress(customer.address)
   const document = formatCustomerDocument(customer.document)
 
-  const haveFilledAddress = Object.values(customer.address).some(
-    (value) => value,
-  )
+  const haveFilledAddress = Object.values(
+    customer.address ? customer.address : {},
+  ).some((value) => value)
 
   const baseCustomer = {
     ...document,

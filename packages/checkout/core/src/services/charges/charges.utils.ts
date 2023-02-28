@@ -38,8 +38,7 @@ export const formatFraudAnalysis = async (
 ) => {
   if (
     !fraudAnalysis ||
-    (!customer.address && !fraudAnalysis.customer.address) ||
-    !customer.usePartialCustomer
+    (!fraudAnalysis?.customer?.address && !fraudAnalysis?.usePartialCustomer)
   )
     return null
 

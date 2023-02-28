@@ -11,5 +11,86 @@
     <script type="module" src="/build/malga-checkout-full.esm.js"></script>
     <script nomodule src="/build/malga-checkout-full.js"></script>
   </head>
-  <body></body>
+  <body>
+    <malga-checkout-full
+      sandbox
+      public-key="f53937b1-e57b-4103-b3df-7bff4da3bbda"
+      client-id="8edc08eb-0264-4c10-ba88-0d04ab40804a"
+      merchant-id="fa5d96ad-2e8d-477b-9345-2e3a8ea9a069"
+    ></malga-checkout-full>
+
+    <script>
+      const malgaCheckout = document.querySelector('malga-checkout-full')
+
+      malgaCheckout.pageConfig = {
+        //brandUrl: 'https://images.endeavor.org.br/uploads/2021/02/11131027/brex-henrique-empreendedor-endeavor-logo.png',
+        footerDescription: 'Todos os direitos reservados',
+        delivery: 100,
+        products: [
+          {
+            name: 'Nome do produto 1',
+            quantity: 2,
+            amount: 100,
+            description:
+              'Descrição do produto que deve ter até duas linhas ou ficaria inviável né?',
+            sku: '123',
+            risk: 'Low',
+          },
+          {
+            name: 'Nome do produto 2',
+            quantity: 2,
+            amount: 100,
+            description:
+              'Descrição do produto que deve ter até duas linhas ou ficaria inviável né?',
+            sku: '123',
+            risk: 'Low',
+          },
+        ],
+      }
+
+      malgaCheckout.paymentMethods = {
+        pix: {
+          expiresIn: 3600,
+        },
+        credit: {
+          installments: {
+            quantity: 1,
+            show: true,
+          },
+          checkedSaveCard: false,
+          showCreditCard: true,
+        },
+        boleto: {
+          expiresDate: '2022-12-31',
+          instructions: 'Instruções para pagamento do boleto',
+          interest: {
+            days: 1,
+            amount: 100,
+          },
+          fine: {
+            days: 2,
+            amount: 200,
+          },
+        },
+      }
+
+      malgaCheckout.transactionConfig = {
+        statementDescriptor: '#1 Demonstration Plug Checkout',
+        amount: 300,
+        description: '',
+        orderId: '',
+        customerId: '',
+        currency: 'BRL',
+        capture: false,
+        customer: null,
+      }
+
+      malgaCheckout.addEventListener('transactionSuccess', () =>
+        console.log('Approved'),
+      )
+      malgaCheckout.addEventListener('transactionFailed', () =>
+        console.log('Failed'),
+      )
+    </script>
+  </body>
 </html>

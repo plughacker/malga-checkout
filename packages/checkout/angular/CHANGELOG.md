@@ -1,5 +1,16 @@
 # @malga-checkout/angular
 
+## 1.9.0
+
+### Minor Changes
+
+- [#69](https://github.com/plughacker/malga-checkout/pull/69) [`35cf656`](https://github.com/plughacker/malga-checkout/commit/35cf65666ff8029c2bf7568e009f32fb4b537893) Thanks [@leonardorpr](https://github.com/leonardorpr)! - Removes mandatory address fields of customer property and added flag usePartialCustomer to use customer without address into fraudAnalysis
+
+### Patch Changes
+
+- Updated dependencies [[`35cf656`](https://github.com/plughacker/malga-checkout/commit/35cf65666ff8029c2bf7568e009f32fb4b537893)]:
+  - @malga-checkout/core@1.9.0
+
 ## 1.8.0
 
 ### Minor Changes

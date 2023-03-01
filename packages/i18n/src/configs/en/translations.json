@@ -182,38 +182,38 @@
           "errorMessageInvalidFormatInternational": "Invalid format. Please, verify your document."
         },
         "zipCode": {
-          "labelBrazil": "Zip Code *",
+          "labelBrazil": "CEP",
           "descriptionBrazil": "I don't know my zip code",
           "errorMessageRequiredBrazil": "A Zip Code is required.",
-          "labelInternational": "Zip Code *",
+          "labelInternational": "Código postal",
           "errorMessageRequiredInternational": "A zip code is required."
         },
         "street": {
-          "label": "Address *",
+          "label": "Endereço",
           "errorMessageRequired": "The street is required."
         },
         "number": {
-          "label": "Number *",
+          "label": "Number",
           "errorMessageRequired": "A number is required."
         },
         "complement": {
-          "label": "Street Address 2 *",
+          "label": "Street Address 2",
           "errorMessageRequired": "Street Address 2 is required."
         },
         "neighborhood": {
-          "label": "Neighborhood *",
+          "label": "Neighborhood",
           "errorMessageRequired": "The neighborhood is required."
         },
         "city": {
-          "label": "City *",
+          "label": "City",
           "errorMessageRequired": "The city is required."
         },
         "state": {
-          "label": "State *",
+          "label": "State",
           "errorMessageRequired": "The state is required."
         },
         "country": {
-          "label": "Country *",
+          "label": "Country",
           "errorMessageRequired": "Select your country to continue."
         }
       }

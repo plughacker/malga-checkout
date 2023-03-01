@@ -36,13 +36,14 @@ export const formatFraudAnalysis = async (
   fraudAnalysis: FraudAnalysis,
   customer: Customer,
 ) => {
+  const currentCustomer = fraudAnalysis.customer || customer
+
   if (
     !fraudAnalysis ||
-    (!fraudAnalysis?.customer?.address && !fraudAnalysis?.usePartialCustomer)
+    (!currentCustomer?.address && !fraudAnalysis?.usePartialCustomer)
   )
     return null
 
-  const currentCustomer = fraudAnalysis.customer || customer
   const parsedCustomer = formatCustomer(currentCustomer)
 
   const address = parsedCustomer.address && {

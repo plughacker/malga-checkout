@@ -29,4 +29,5 @@ export interface FraudAnalysis {
   browserFingerprint?: string
   customer?: Customer
   cart?: FraudAnalysisCart[]
+  usePartialCustomer?: boolean
 }

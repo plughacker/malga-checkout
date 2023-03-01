@@ -144,10 +144,17 @@ export class MalgaCheckoutFull implements ComponentInterface {
     )
 
     if (this.transactionConfig.customerId) {
-      return formatFraudAnalysisWithCustomerId(products)
+      return formatFraudAnalysisWithCustomerId(
+        products,
+        this.transactionConfig.fraudAnalysis?.usePartialCustomer,
+      )
     }
 
-    return formatFraudAnalysis(customer, products)
+    return formatFraudAnalysis(
+      customer,
+      products,
+      this.transactionConfig.fraudAnalysis?.usePartialCustomer,
+    )
   }
 
   private renderBrand = () => {

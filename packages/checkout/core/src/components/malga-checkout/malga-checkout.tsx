@@ -117,7 +117,6 @@ export class MalgaCheckout {
   private handlePay = async () => {
     try {
       this.isButtonLoading = true
-
       await this.MalgaCheckoutService.pay()
 
       this.isButtonLoading = false

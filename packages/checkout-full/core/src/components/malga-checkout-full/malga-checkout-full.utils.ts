@@ -40,6 +40,22 @@ export const formatCustomer = (
   customer: MalgaCheckoutFullIdentificationFormValues,
   isInternationalCustomer: boolean,
 ): Customer => {
+  const customerAddress = {
+    zipCode: customer.zipCode,
+    street: customer.street,
+    number: customer.number,
+    complement: customer.complement,
+    neighborhood: customer.neighborhood,
+    city: customer.city,
+    state: customer.state,
+    country: customer.country,
+  }
+
+  const hasCustomerAddress = Object.values(customerAddress).some(
+    (value) => value,
+  )
+
+  const address = hasCustomerAddress ? customerAddress : null
   const document = isInternationalCustomer
     ? getCustomerDocument(customer)
     : getCustomerDocumentBrl(customer)
@@ -49,16 +65,7 @@ export const formatCustomer = (
     email: customer.email,
     phoneNumber: customer.phoneNumber,
     document,
-    address: {
-      zipCode: customer.zipCode,
-      street: customer.street,
-      number: customer.number,
-      complement: customer.complement,
-      neighborhood: customer.neighborhood,
-      city: customer.city,
-      state: customer.state,
-      country: customer.country,
-    },
+    address,
   }
 }
 
@@ -93,15 +100,19 @@ export const formatProducts = (
 export const formatFraudAnalysis = (
   customer: Customer,
   products: MalgaCheckoutFullFraudAnalysisCart[],
+  usePartialCustomer?: boolean,
 ) => ({
   customer,
   cart: products,
+  usePartialCustomer,
 })
 
 export const formatFraudAnalysisWithCustomerId = (
   products: MalgaCheckoutFullFraudAnalysisCart[],
+  usePartialCustomer?: boolean,
 ) => ({
   cart: products,
+  usePartialCustomer,
 })
 
 export const formatPaymentSession = (

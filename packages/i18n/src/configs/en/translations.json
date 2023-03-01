@@ -182,14 +182,14 @@
           "errorMessageInvalidFormatInternational": "Invalid format. Please, verify your document."
         },
         "zipCode": {
-          "labelBrazil": "CEP",
+          "labelBrazil": "Zip Code",
           "descriptionBrazil": "I don't know my zip code",
           "errorMessageRequiredBrazil": "A Zip Code is required.",
-          "labelInternational": "Código postal",
+          "labelInternational": "Zip Code",
           "errorMessageRequiredInternational": "A zip code is required."
         },
         "street": {
-          "label": "Endereço",
+          "label": "Address",
           "errorMessageRequired": "The street is required."
         },
         "number": {

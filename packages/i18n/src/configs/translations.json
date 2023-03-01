@@ -182,38 +182,38 @@
           "errorMessageInvalidFormatInternational": "Formato inválido, verifique o seu documento."
         },
         "zipCode": {
-          "labelBrazil": "CEP *",
+          "labelBrazil": "CEP",
           "descriptionBrazil": "Não sei meu CEP",
           "errorMessageRequiredBrazil": "CEP é obrigatório.",
-          "labelInternational": "Código postal *",
+          "labelInternational": "Código postal",
           "errorMessageRequiredInternational": "Código postal é obrigatório."
         },
         "street": {
-          "label": "Endereço *",
+          "label": "Endereço",
           "errorMessageRequired": "Endereço é obrigatório."
         },
         "number": {
-          "label": "Número *",
+          "label": "Número",
           "errorMessageRequired": "Número é obrigatório."
         },
         "complement": {
-          "label": "Complemento *",
+          "label": "Complemento",
           "errorMessageRequired": "Complemento é obrigatório."
         },
         "neighborhood": {
-          "label": "Bairro *",
+          "label": "Bairro",
           "errorMessageRequired": "Bairro é obrigatório."
         },
         "city": {
-          "label": "Cidade *",
+          "label": "Cidade",
           "errorMessageRequired": "Cidade é obrigatório."
         },
         "state": {
-          "label": "Estado *",
+          "label": "Estado",
           "errorMessageRequired": "Estado é obrigatório."
         },
         "country": {
-          "label": "País *",
+          "label": "País",
           "errorMessageRequired": "Selecione um país para continuar."
         }
       }

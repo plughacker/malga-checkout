@@ -81,9 +81,11 @@ export class MalgaCheckoutService {
     const customerService = new Customers()
     const { data: customer } = await customerService.find(customerId)
 
-    if (!customer.address) {
-      return
-    }
+    const hasCustomerAddress = Object.values(customer.address || {}).some(
+      (value) => value,
+    )
+
+    const address = hasCustomerAddress ? customer.address : null
 
     settings.transactionConfig = {
       ...settings.transactionConfig,
@@ -97,16 +99,7 @@ export class MalgaCheckoutService {
             type: customer.document.type,
             country: customer.document.country,
           },
-          address: {
-            city: customer.address.city,
-            complement: customer.address.complement,
-            country: customer.address.country,
-            neighborhood: customer.address.district,
-            state: customer.address.state,
-            street: customer.address.street,
-            number: customer.address.streetNumber,
-            zipCode: customer.address.zipCode,
-          },
+          address,
         },
         ...settings.transactionConfig.fraudAnalysis,
       },

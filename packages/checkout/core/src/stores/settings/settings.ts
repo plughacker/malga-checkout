@@ -29,6 +29,7 @@ export const { state, onChange } = createStore<SettingsState>({
     currency: 'BRL',
     capture: false,
     customer: null,
+    paymentFlowMetadata: null,
   },
 })
 

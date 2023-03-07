@@ -237,6 +237,7 @@ export interface MalgaCheckoutFullTransaction {
   customerId?: string
   currency?: string
   fraudAnalysis?: MalgaCheckoutFullFraudAnalysis
+  paymentFlowMetadata?: Record<string, unknown>
 }
 
 export interface MalgaCheckoutFullDialog {

@@ -71,6 +71,7 @@ export class MalgaCheckoutFull implements ComponentInterface {
     currency: 'BRL',
     capture: false,
     fraudAnalysis: null,
+    paymentFlowMetadata: null,
   }
   @Prop() dialogConfig: MalgaCheckoutFullDialog = {
     show: true,

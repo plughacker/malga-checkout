@@ -15,6 +15,7 @@ export interface CreateChargeData {
   capture?: boolean
   description?: string
   fraudAnalysis?: FraudAnalysis
+  paymentFlow?: Record<string, unknown>
 }
 
 export interface FraudAnalysisCart {

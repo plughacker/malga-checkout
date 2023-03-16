@@ -1,5 +1,16 @@
 # @malga-checkout-full/angular
 
+## 1.10.0
+
+### Minor Changes
+
+- [`30f04d0`](https://github.com/plughacker/malga-checkout/commit/30f04d00800a8ab2c3c91d8d220eeb3bbad2ce82) Thanks [@leonardorpr](https://github.com/leonardorpr)! - support metadata of payment flow
+
+### Patch Changes
+
+- Updated dependencies [[`30f04d0`](https://github.com/plughacker/malga-checkout/commit/30f04d00800a8ab2c3c91d8d220eeb3bbad2ce82)]:
+  - @malga-checkout-full/core@1.10.0
+
 ## 1.9.0
 
 ### Minor Changes

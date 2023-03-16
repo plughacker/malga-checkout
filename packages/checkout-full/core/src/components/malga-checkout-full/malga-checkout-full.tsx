@@ -71,6 +71,7 @@ export class MalgaCheckoutFull implements ComponentInterface {
     currency: 'BRL',
     capture: false,
     fraudAnalysis: null,
+    paymentFlowMetadata: null,
   }
   @Prop() dialogConfig: MalgaCheckoutFullDialog = {
     show: true,
@@ -317,7 +318,10 @@ export class MalgaCheckoutFull implements ComponentInterface {
                   onPaymentSessionFetch={({ detail: { paymentSession } }) => {
                     this.handleChangeCustomization(paymentSession)
                     this.handleSetPaymentSessionData(
-                      formatPaymentSession(paymentSession),
+                      formatPaymentSession(
+                        paymentSession,
+                        this.transactionConfig,
+                      ),
                     )
                   }}
                   isLoading={this.isLoading}

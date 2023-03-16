@@ -12,6 +12,7 @@ export function formatPayData(
     paymentSource: payload.paymentSource,
     paymentMethod: payload.paymentMethod,
     customerId: payload.customerId,
-    fraudAnalysis: payload.fraudAnalysis
+    fraudAnalysis: payload.fraudAnalysis,
+    paymentFlow: payload.paymentFlow,
   }
 }

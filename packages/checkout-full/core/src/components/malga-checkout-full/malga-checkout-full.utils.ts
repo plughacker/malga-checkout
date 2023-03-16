@@ -117,13 +117,17 @@ export const formatFraudAnalysisWithCustomerId = (
 
 export const formatPaymentSession = (
   paymentSession,
+  transactionConfig,
 ): MalgaCheckoutFullSessionNormalized => {
   if (!paymentSession) return
 
   return {
     ...paymentSession,
     checkoutPaymentMethods: paymentSession.checkoutPaymentMethods,
-    transactionConfig: paymentSession.transactionConfig,
+    transactionConfig: {
+      ...transactionConfig,
+      ...paymentSession.transactionConfig,
+    },
     customization: paymentSession.customization,
   }
 }

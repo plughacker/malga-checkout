@@ -35,6 +35,11 @@ export class Charges {
       capture: settings.transactionConfig.capture,
       sessionId: settings.sessionId,
       fraudAnalysis,
+      ...(settings.transactionConfig.paymentFlowMetadata && {
+        paymentFlow: {
+          metadata: settings.transactionConfig.paymentFlowMetadata,
+        },
+      }),
     })
 
     const payload = {

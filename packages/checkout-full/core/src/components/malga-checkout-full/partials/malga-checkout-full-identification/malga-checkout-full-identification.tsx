@@ -14,6 +14,7 @@ import {
   cleanTextOnlyNumbers,
   documentCountries,
   documentTypesByCountry,
+  brazilianStates,
 } from '@malga-checkout/utils'
 
 import { MalgaCheckoutFullIdentificationService } from './malga-checkout-full-identification.service'
@@ -122,6 +123,18 @@ export class MalgaCheckoutFullIdentification {
     this.checkValidatedField()
   }
 
+  private handleChangeCountryFieldChange = (event) => {
+    const country = event.target.value
+    this.fieldChange.emit({ field: 'country', value: country })
+
+    this.handleResetStateAfterCountryChange()
+    this.checkValidatedField()
+  }
+
+  private handleResetStateAfterCountryChange() {
+    this.fieldChange.emit({ field: 'state', value: '' })
+  }
+
   private handleZipCodeFieldChange = async (event) => {
     const zipCode = event.target.value
     const zipCodeValue = cleanTextOnlyNumbers(zipCode)
@@ -159,6 +172,7 @@ export class MalgaCheckoutFullIdentification {
 
   render() {
     const documentTypesByCountries = documentTypesByCountry(this.locale)
+    const isTheSelectedCountryBR = this.formValues.country === 'BR'
 
     if (this.isLoading) {
       return (
@@ -399,6 +413,22 @@ export class MalgaCheckoutFullIdentification {
           </Fragment>
         )}
 
+        <checkout-select-field
+          value={this.formValues.country}
+          onChanged={this.handleChangeCountryFieldChange}
+          onInputed={this.handleFieldBlurred('country')}
+          onBlurred={this.handleFieldBlurred('country')}
+          onFocused={this.handleFieldFocused('country')}
+          hasError={!!this.validFields.country}
+          options={countries(this.locale)}
+          fullWidth
+          name="country"
+          label={t('page.customer.fields.country.label', this.locale)}
+        />
+        {!!this.validFields.country && (
+          <checkout-error-message message={this.validFields.country} />
+        )}
+
         <checkout-text-field
           value={this.formValues.street}
           onChanged={this.handleFieldChange('street')}
@@ -514,40 +544,47 @@ export class MalgaCheckoutFullIdentification {
               'malga-checkout-full-identification__error-message': true,
             }}
           >
-            <checkout-text-field
-              value={this.formValues.state}
-              onChanged={this.handleFieldChange('state')}
-              onInputed={this.handleFieldBlurred('state')}
-              onBlurred={this.handleFieldBlurred('state')}
-              onFocused={this.handleFieldFocused('state')}
-              hasValidation={this.validFields.state !== null}
-              hasError={!!this.validFields.state}
-              fullWidth
-              inputmode="text"
-              name="state"
-              label={t('page.customer.fields.state.label', this.locale)}
-            />
-            {!!this.validFields.state && (
-              <checkout-error-message message={this.validFields.state} />
+            {isTheSelectedCountryBR ? (
+              <Fragment>
+                <checkout-select-field
+                  value={this.formValues.state}
+                  onChanged={this.handleFieldChange('state')}
+                  onInputed={this.handleFieldBlurred('state')}
+                  onBlurred={this.handleFieldBlurred('state')}
+                  onFocused={this.handleFieldFocused('state')}
+                  hasError={!!this.validFields.state}
+                  options={brazilianStates}
+                  fullWidth
+                  name="state"
+                  label={t('page.customer.fields.state.label', this.locale)}
+                />
+                {!!this.validFields.state && (
+                  <checkout-error-message message={this.validFields.state} />
+                )}
+              </Fragment>
+            ) : (
+              <Fragment>
+                <checkout-text-field
+                  value={this.formValues.state}
+                  onChanged={this.handleFieldChange('state')}
+                  onInputed={this.handleFieldBlurred('state')}
+                  onBlurred={this.handleFieldBlurred('state')}
+                  onFocused={this.handleFieldFocused('state')}
+                  hasValidation={this.validFields.state !== null}
+                  hasError={!!this.validFields.state}
+                  fullWidth
+                  inputmode="text"
+                  name="state"
+                  label={t('page.customer.fields.state.label', this.locale)}
+                  maxlength={2}
+                />
+                {!!this.validFields.state && (
+                  <checkout-error-message message={this.validFields.state} />
+                )}
+              </Fragment>
             )}
           </div>
         </fieldset>
-
-        <checkout-select-field
-          value={this.formValues.country}
-          onChanged={this.handleFieldChange('country')}
-          onInputed={this.handleFieldBlurred('country')}
-          onBlurred={this.handleFieldBlurred('country')}
-          onFocused={this.handleFieldFocused('country')}
-          hasError={!!this.validFields.country}
-          options={countries(this.locale)}
-          fullWidth
-          name="country"
-          label={t('page.customer.fields.country.label', this.locale)}
-        />
-        {!!this.validFields.country && (
-          <checkout-error-message message={this.validFields.country} />
-        )}
 
         <checkout-button
           type="submit"

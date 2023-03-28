@@ -38,6 +38,11 @@ export const documentTypesByCountry = (locale?: Locale) => ({
     { value: 'tin', label: 'TIN' },
     { value: 'other', label: t('common.other', locale) },
   ],
+  BO: [
+    { value: 'nit', label: 'NIT' },
+    { value: 'ci', label: 'CI' },
+    { value: 'other', label: t('common.other', locale) },
+  ],
   BE: [
     { value: 'vat', label: 'VAT' },
     { value: 'other', label: t('common.other', locale) },
@@ -278,6 +283,11 @@ export const documentTypesByCountry = (locale?: Locale) => ({
     { value: 'konto', label: 'Konto' },
     { value: 'mva', label: 'MVA' },
     { value: 'orgnr', label: 'Orgnr' },
+    { value: 'other', label: t('common.other', locale) },
+  ],
+  PA: [
+    { value: 'nit', label: 'NIT' },
+    { value: 'ci', label: 'CI' },
     { value: 'other', label: t('common.other', locale) },
   ],
   PY: [

@@ -172,7 +172,8 @@ export class MalgaCheckoutFullIdentification {
 
   render() {
     const documentTypesByCountries = documentTypesByCountry(this.locale)
-    const isTheSelectedCountryBR = this.formValues.country === 'BR'
+    const isTheSelectedCountryBR =
+      this.formValues.country === 'BR' || !this.internationalCustomer
 
     if (this.isLoading) {
       return (
@@ -349,6 +350,22 @@ export class MalgaCheckoutFullIdentification {
           content={t('page.customer.address', this.locale)}
         />
 
+        <checkout-select-field
+          value={this.formValues.country}
+          onChanged={this.handleChangeCountryFieldChange}
+          onInputed={this.handleFieldBlurred('country')}
+          onBlurred={this.handleFieldBlurred('country')}
+          onFocused={this.handleFieldFocused('country')}
+          hasError={!!this.validFields.country}
+          options={countries(this.locale)}
+          fullWidth
+          name="country"
+          label={t('page.customer.fields.country.label', this.locale)}
+        />
+        {!!this.validFields.country && (
+          <checkout-error-message message={this.validFields.country} />
+        )}
+
         {!this.internationalCustomer && (
           <fieldset
             class={{ 'malga-checkout-full-identification__zipcode': true }}
@@ -411,22 +428,6 @@ export class MalgaCheckoutFullIdentification {
               <checkout-error-message message={this.validFields.zipCode} />
             )}
           </Fragment>
-        )}
-
-        <checkout-select-field
-          value={this.formValues.country}
-          onChanged={this.handleChangeCountryFieldChange}
-          onInputed={this.handleFieldBlurred('country')}
-          onBlurred={this.handleFieldBlurred('country')}
-          onFocused={this.handleFieldFocused('country')}
-          hasError={!!this.validFields.country}
-          options={countries(this.locale)}
-          fullWidth
-          name="country"
-          label={t('page.customer.fields.country.label', this.locale)}
-        />
-        {!!this.validFields.country && (
-          <checkout-error-message message={this.validFields.country} />
         )}
 
         <checkout-text-field

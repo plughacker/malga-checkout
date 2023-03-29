@@ -174,8 +174,6 @@ export class MalgaCheckoutFullIdentification {
 
       const validAddress = validAddressAutocomplete(address)
 
-      console.log(validAddress)
-
       this.manyFieldsChange.emit({
         customerFormValues: { ...this.formValues, ...address, zipCode },
       })

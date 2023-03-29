@@ -42,7 +42,7 @@
 
   & > checkout-text-field:last-child,
   & > div:last-child {
-    @include sm {
+    @include md {
       margin-left: var(--malga-checkout-spacing-xs);
     }
   }

@@ -35,6 +35,10 @@ const documentCountriesEnglish = [
     label: 'Belize',
   },
   {
+    value: 'BO',
+    label: 'Bolivia',
+  },
+  {
     value: 'BA',
     label: 'Bosnia and Herzegovina',
   },
@@ -215,6 +219,10 @@ const documentCountriesEnglish = [
     label: 'Pakistan',
   },
   {
+    value: 'PA',
+    label: 'Panama',
+  },
+  {
     value: 'PY',
     label: 'Paraguay',
   },
@@ -364,6 +372,10 @@ const documentCountriesPortuguese = [
   {
     value: 'BY',
     label: 'Bielorrússia',
+  },
+  {
+    value: 'BO',
+    label: 'Bolívia',
   },
   {
     value: 'BA',
@@ -560,6 +572,10 @@ const documentCountriesPortuguese = [
   {
     value: 'PK',
     label: 'Paquistão',
+  },
+  {
+    value: 'PA',
+    label: 'Panamá',
   },
   {
     value: 'PY',

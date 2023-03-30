@@ -48,6 +48,15 @@
   }
 }
 
+.malga-checkout-full-identification__international-fields {
+  gap: var(--malga-checkout-spacing-xs);
+
+  @include md {
+    gap: none
+  }
+}
+  
+
 .malga-checkout-full-identification__zipcode {
   display: flex;
   flex-direction: row;

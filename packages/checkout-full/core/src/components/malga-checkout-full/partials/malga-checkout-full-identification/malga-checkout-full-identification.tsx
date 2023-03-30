@@ -95,7 +95,7 @@ export class MalgaCheckoutFullIdentification {
   }
 
   private handleFieldFocused = (field: string) => () => {
-    this.validFields = { ...this.validFields, [field]: null }
+    this.handleChangeValidField({ field, value: null })
     this.checkValidatedField()
   }
 
@@ -119,6 +119,44 @@ export class MalgaCheckoutFullIdentification {
 
   private handleFieldChange = (field: string) => (event) => {
     this.fieldChange.emit({ field, value: event.target.value })
+    this.checkValidatedField()
+  }
+
+  private handleResetDocumentTypeAfterCountryChange() {
+    this.fieldChange.emit({ field: 'documentType', value: '' })
+    this.handleChangeValidField({ field: 'documentType', value: null })
+  }
+
+  private handleChangeValidField({ field, value }) {
+    this.validFields = {
+      ...this.validFields,
+      [field]: value,
+    }
+  }
+
+  private handleChangeDocumentCountry = (event) => {
+    const documentCountry = event.target.value
+    const documentTypesByCountries = documentTypesByCountry(this.locale)
+
+    this.fieldChange.emit({
+      field: 'documentCountry',
+      value: documentCountry,
+    })
+
+    const shouldAddOtherToDocumentType =
+      !documentTypesByCountries[documentCountry]
+
+    if (shouldAddOtherToDocumentType) {
+      this.fieldChange.emit({
+        field: 'documentType',
+        value: 'other',
+      })
+
+      this.handleChangeValidField({ field: 'documentType', value: undefined })
+    } else {
+      this.handleResetDocumentTypeAfterCountryChange()
+    }
+
     this.checkValidatedField()
   }
 
@@ -159,6 +197,9 @@ export class MalgaCheckoutFullIdentification {
 
   render() {
     const documentTypesByCountries = documentTypesByCountry(this.locale)
+    const hasDocumentTypes =
+      !this.formValues.documentCountry ||
+      documentTypesByCountries[this.formValues.documentCountry]
 
     if (this.isLoading) {
       return (
@@ -236,16 +277,20 @@ export class MalgaCheckoutFullIdentification {
         {this.internationalCustomer && (
           <Fragment>
             <fieldset
-              class={{ 'malga-checkout-full-identification__row-fields': true }}
+              class={{
+                'malga-checkout-full-identification__row-fields': true,
+                'malga-checkout-full-identification__international-fields':
+                  true,
+              }}
             >
-              <div
+              <span
                 class={{
                   'malga-checkout-full-identification__error-message': true,
                 }}
               >
                 <checkout-select-field
                   value={this.formValues.documentCountry}
-                  onChanged={this.handleFieldChange('documentCountry')}
+                  onChanged={this.handleChangeDocumentCountry}
                   onInputed={this.handleFieldBlurred('documentCountry')}
                   onBlurred={this.handleFieldBlurred('documentCountry')}
                   onFocused={this.handleFieldFocused('documentCountry')}
@@ -263,36 +308,42 @@ export class MalgaCheckoutFullIdentification {
                     message={this.validFields.documentCountry}
                   />
                 )}
-              </div>
+              </span>
 
-              <div
-                class={{
-                  'malga-checkout-full-identification__error-message': true,
-                }}
-              >
-                <checkout-select-field
-                  value={this.formValues.documentType}
-                  onChanged={this.handleFieldChange('documentType')}
-                  onInputed={this.handleFieldBlurred('documentType')}
-                  onBlurred={this.handleFieldBlurred('documentType')}
-                  onFocused={this.handleFieldFocused('documentType')}
-                  hasError={!!this.validFields.documentType}
-                  options={
-                    documentTypesByCountries[this.formValues.documentCountry]
-                  }
-                  fullWidth
-                  name="documentType"
-                  label={t(
-                    'page.customer.fields.documentType.label',
-                    this.locale,
-                  )}
-                />
-                {!!this.validFields.documentType && (
-                  <checkout-error-message
-                    message={this.validFields.documentType}
-                  />
-                )}
-              </div>
+              {hasDocumentTypes && (
+                <span
+                  class={{
+                    'malga-checkout-full-identification__error-message': true,
+                  }}
+                >
+                  <Fragment>
+                    <checkout-select-field
+                      value={this.formValues.documentType}
+                      onChanged={this.handleFieldChange('documentType')}
+                      onInputed={this.handleFieldBlurred('documentType')}
+                      onBlurred={this.handleFieldBlurred('documentType')}
+                      onFocused={this.handleFieldFocused('documentType')}
+                      hasError={!!this.validFields.documentType}
+                      options={
+                        documentTypesByCountries[
+                          this.formValues.documentCountry
+                        ]
+                      }
+                      fullWidth
+                      name="documentType"
+                      label={t(
+                        'page.customer.fields.documentType.label',
+                        this.locale,
+                      )}
+                    />
+                    {!!this.validFields.documentType && (
+                      <checkout-error-message
+                        message={this.validFields.documentType}
+                      />
+                    )}
+                  </Fragment>
+                </span>
+              )}
             </fieldset>
           </Fragment>
         )}

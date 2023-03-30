@@ -133,7 +133,8 @@ export class MalgaCheckoutFullIdentification {
 
   private handleResetStateAfterCountryChange() {
     this.fieldChange.emit({ field: 'state', value: '' })
-    
+  }
+
   private handleResetDocumentTypeAfterCountryChange() {
     this.fieldChange.emit({ field: 'documentType', value: '' })
     this.handleChangeValidField({ field: 'documentType', value: null })

@@ -20,8 +20,10 @@ export class MalgaCheckoutFullIdentificationService {
       const response = await axios.get(
         `https://viacep.com.br/ws/${zipCode}/json`,
       )
-      const zipCodeFormatted = this.formatZipCodeData(response.data)
-
+      const zipCodeFormatted = {
+        ...this.formatZipCodeData(response.data),
+        country: 'BR',
+      }
       return zipCodeFormatted
     } catch (error) {
       return {

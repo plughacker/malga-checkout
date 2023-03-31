@@ -1,5 +1,14 @@
 # @malga-checkout/angular
 
+## 1.10.1
+
+### Patch Changes
+
+- [`ce5fca8`](https://github.com/plughacker/malga-checkout/commit/ce5fca87000e3693f39f1e6b549dd6949b9fa10c) Thanks [@Ricardo-vasconcelos](https://github.com/Ricardo-vasconcelos)! - Add limit to state character and add 2 new countries
+
+- Updated dependencies [[`ce5fca8`](https://github.com/plughacker/malga-checkout/commit/ce5fca87000e3693f39f1e6b549dd6949b9fa10c)]:
+  - @malga-checkout/core@1.10.1
+
 ## 1.10.0
 
 ### Minor Changes

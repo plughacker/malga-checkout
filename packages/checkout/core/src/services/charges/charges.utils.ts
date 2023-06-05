@@ -36,7 +36,7 @@ export const formatFraudAnalysis = async (
   fraudAnalysis: FraudAnalysis,
   customer: Customer,
 ) => {
-  const currentCustomer = fraudAnalysis.customer || customer
+  const currentCustomer = fraudAnalysis?.customer || customer
 
   if (
     !fraudAnalysis ||

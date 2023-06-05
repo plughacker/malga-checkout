@@ -1,5 +1,14 @@
 # @malga-checkout/vue
 
+## 1.10.2
+
+### Patch Changes
+
+- [`3205519`](https://github.com/plughacker/malga-checkout/commit/32055198de71a2be8b65a7fc9c31192263e18804) Thanks [@leonardorpr](https://github.com/leonardorpr)! - Fix customer parser when fraud analysis is not configured
+
+- Updated dependencies [[`3205519`](https://github.com/plughacker/malga-checkout/commit/32055198de71a2be8b65a7fc9c31192263e18804)]:
+  - @malga-checkout/core@1.10.2
+
 ## 1.10.1
 
 ### Patch Changes

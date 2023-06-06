@@ -1,5 +1,14 @@
 # @malga-checkout/angular
 
+## 1.10.3
+
+### Patch Changes
+
+- [`b1bc191`](https://github.com/plughacker/malga-checkout/commit/b1bc1917b2c624cf4c797d2889bc62a9390075dd) Thanks [@filipperodrigues](https://github.com/filipperodrigues)! - Fixing sessions without settings configuration
+
+- Updated dependencies [[`b1bc191`](https://github.com/plughacker/malga-checkout/commit/b1bc1917b2c624cf4c797d2889bc62a9390075dd)]:
+  - @malga-checkout/core@1.10.3
+
 ## 1.10.2
 
 ### Patch Changes

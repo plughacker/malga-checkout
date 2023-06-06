@@ -18,11 +18,11 @@ export interface SessionNormalized extends Session {
 }
 
 export interface Session {
-  id: string
+  id?: string
   name: string
-  status: string
+  status?: string
   isActive: boolean
-  clientId: string
+  clientId?: string
   orderId?: string
   amount: number
   currency: string
@@ -38,12 +38,12 @@ export interface Session {
     quantity: number
     tangible?: boolean
   }[]
-  paymentLink: string
+  paymentLink?: string
   paymentMethods: PaymentMethod[]
-  createdAt: string
+  createdAt?: string
   updatedAt?: string
   publicKey?: string
-  settings: UserSettings
+  settings?: UserSettings
 }
 
 export interface UserSettings {

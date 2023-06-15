@@ -1,5 +1,11 @@
 # @malga-checkout/core
 
+## 1.11.0
+
+### Minor Changes
+
+- [#88](https://github.com/plughacker/malga-checkout/pull/88) [`f1cd100`](https://github.com/plughacker/malga-checkout/commit/f1cd1000991b8c0a8d24899b40fcfe0ac042c61a) Thanks [@leonardorpr](https://github.com/leonardorpr)! - implement new rules to Zero Dollar
+
 ## 1.10.3
 
 ### Patch Changes

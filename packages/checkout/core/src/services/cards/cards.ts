@@ -3,6 +3,8 @@ import settings from '../../stores/settings'
 
 import { CardConstructor } from './cards.types'
 
+import { getZeroDollar } from './cards.utils'
+
 export class Cards {
   readonly api: Api
   readonly tokenId: string
@@ -13,9 +15,11 @@ export class Cards {
   }
 
   public async create() {
+    const zeroDollar = getZeroDollar()
+
     const response = await this.api.create({
       endpoint: settings.sessionId ? '/sessions/cards' : '/cards',
-      data: { tokenId: this.tokenId },
+      data: { tokenId: this.tokenId, ...zeroDollar },
     })
 
     const cardId = response.data.id

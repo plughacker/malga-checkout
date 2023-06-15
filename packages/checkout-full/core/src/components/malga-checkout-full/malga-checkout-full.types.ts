@@ -158,6 +158,8 @@ export interface Credit {
   }
   checkedSaveCard: boolean
   showCreditCard: boolean
+  cvvCheck?: boolean
+  cvvCheckMerchantId?: string
 }
 
 export interface Customer {

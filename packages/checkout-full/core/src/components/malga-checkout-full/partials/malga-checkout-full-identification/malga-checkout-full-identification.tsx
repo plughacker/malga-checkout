@@ -58,9 +58,9 @@ export class MalgaCheckoutFullIdentification {
     identification: null,
     zipCode: null,
     street: null,
-    number: null,
+    streetNumber: null,
     complement: null,
-    neighborhood: null,
+    district: null,
     city: null,
     state: null,
     country: null,
@@ -74,7 +74,7 @@ export class MalgaCheckoutFullIdentification {
       'street',
       'number',
       'complement',
-      'neighborhood',
+      'district',
       'city',
       'state',
       'country',
@@ -507,20 +507,20 @@ export class MalgaCheckoutFullIdentification {
             }}
           >
             <checkout-text-field
-              value={this.formValues.number}
-              onChanged={this.handleFieldChange('number')}
-              onInputed={this.handleFieldBlurred('number')}
-              onBlurred={this.handleFieldBlurred('number')}
-              onFocused={this.handleFieldFocused('number')}
-              hasValidation={this.validFields.number !== null}
-              hasError={!!this.validFields.number}
+              value={this.formValues.streetNumber}
+              onChanged={this.handleFieldChange('streetNumber')}
+              onInputed={this.handleFieldBlurred('streetNumber')}
+              onBlurred={this.handleFieldBlurred('streetNumber')}
+              onFocused={this.handleFieldFocused('streetNumber')}
+              hasValidation={this.validFields.streetNumber !== null}
+              hasError={!!this.validFields.streetNumber}
               fullWidth
               inputmode="text"
-              name="number"
+              name="streetNumber"
               label={t('page.customer.fields.number.label', this.locale)}
             />
-            {!!this.validFields.number && (
-              <checkout-error-message message={this.validFields.number} />
+            {!!this.validFields.streetNumber && (
+              <checkout-error-message message={this.validFields.streetNumber} />
             )}
           </div>
 
@@ -549,20 +549,20 @@ export class MalgaCheckoutFullIdentification {
         </fieldset>
 
         <checkout-text-field
-          value={this.formValues.neighborhood}
-          onChanged={this.handleFieldChange('neighborhood')}
-          onInputed={this.handleFieldBlurred('neighborhood')}
-          onBlurred={this.handleFieldBlurred('neighborhood')}
-          onFocused={this.handleFieldFocused('neighborhood')}
-          hasValidation={this.validFields.neighborhood !== null}
-          hasError={!!this.validFields.neighborhood}
+          value={this.formValues.district}
+          onChanged={this.handleFieldChange('district')}
+          onInputed={this.handleFieldBlurred('district')}
+          onBlurred={this.handleFieldBlurred('district')}
+          onFocused={this.handleFieldFocused('district')}
+          hasValidation={this.validFields.district !== null}
+          hasError={!!this.validFields.district}
           fullWidth
           inputmode="text"
-          name="neighborhood"
+          name="district"
           label={t('page.customer.fields.neighborhood.label', this.locale)}
         />
-        {!!this.validFields.neighborhood && (
-          <checkout-error-message message={this.validFields.neighborhood} />
+        {!!this.validFields.district && (
+          <checkout-error-message message={this.validFields.district} />
         )}
 
         <fieldset

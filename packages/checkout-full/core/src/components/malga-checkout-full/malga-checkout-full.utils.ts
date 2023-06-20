@@ -43,9 +43,9 @@ export const formatCustomer = (
   const customerAddress = {
     zipCode: customer.zipCode,
     street: customer.street,
-    number: customer.number,
+    streetNumber: customer.streetNumber,
     complement: customer.complement,
-    neighborhood: customer.neighborhood,
+    district: customer.district,
     city: customer.city,
     state: customer.state,
     country: customer.country,

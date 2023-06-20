@@ -89,9 +89,9 @@ export const schema = (locale?: Locale) => {
           ),
       }),
     street: Yup.string().optional(),
-    number: Yup.string().optional(),
+    streetNumber: Yup.string().optional(),
     complement: Yup.string().optional(),
-    neighborhood: Yup.string().optional(),
+    district: Yup.string().optional(),
     city: Yup.string().optional(),
     state: Yup.string().optional(),
     zipCode: Yup.string()

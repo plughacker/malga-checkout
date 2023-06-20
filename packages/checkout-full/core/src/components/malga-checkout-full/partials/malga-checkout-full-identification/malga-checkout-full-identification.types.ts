@@ -14,7 +14,7 @@ export interface ZipCodeResponse {
 export interface ZipCodeAutoComplete {
   street: string
   complement: string
-  neighborhood: string
+  district: string
   state: string
   city: string
 }
@@ -28,9 +28,9 @@ export interface MalgaCheckoutFullIdentificationFormValues {
   identification: string
   zipCode: string
   street: string
-  number: string
+  streetNumber: string
   complement: string
-  neighborhood: string
+  district: string
   city: string
   state: string
   country: string
@@ -45,9 +45,9 @@ export interface MalgaCheckoutFullIdentificationFormValidFields {
   identification: string | null
   zipCode: string | null
   street: string | null
-  number: string | null
+  streetNumber: string | null
   complement: string | null
-  neighborhood: string | null
+  district: string | null
   city: string | null
   state: string | null
   country: string | null

@@ -1,5 +1,16 @@
 # @malga-checkout-full/react
 
+## 1.12.0
+
+### Minor Changes
+
+- [`92b6696`](https://github.com/plughacker/malga-checkout/commit/92b66968f56ab73750e5d7b979fe1987568212b2) Thanks [@filipperodrigues](https://github.com/filipperodrigues)! - Refactored customer contract to match our API contract
+
+### Patch Changes
+
+- Updated dependencies [[`92b6696`](https://github.com/plughacker/malga-checkout/commit/92b66968f56ab73750e5d7b979fe1987568212b2)]:
+  - @malga-checkout-full/core@1.12.0
+
 ## 1.11.0
 
 ### Minor Changes

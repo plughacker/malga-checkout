@@ -7,7 +7,7 @@ export class MalgaCheckoutFullIdentificationService {
     const zipCodeFormatted = {
       street: zipCodeResponse.logradouro,
       complement: zipCodeResponse.complemento,
-      neighborhood: zipCodeResponse.bairro,
+      district: zipCodeResponse.bairro,
       state: zipCodeResponse.uf,
       city: zipCodeResponse.localidade,
     }
@@ -29,7 +29,7 @@ export class MalgaCheckoutFullIdentificationService {
       return {
         street: '',
         complement: '',
-        neighborhood: '',
+        district: '',
         state: '',
         city: '',
       }

@@ -21,10 +21,10 @@ export const formatCustomerAddress = (
       country: customerAddress.country,
       state: customerAddress.state,
       city: customerAddress.city,
-      district: customerAddress.neighborhood,
+      district: customerAddress.district,
       zipCode,
       street: customerAddress.street,
-      streetNumber: customerAddress.number,
+      streetNumber: customerAddress.streetNumber,
       complement: customerAddress.complement,
     },
   }

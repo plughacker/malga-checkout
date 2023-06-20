@@ -174,9 +174,9 @@ export interface Customer {
   address: {
     zipCode: string
     street: string
-    number: string
+    streetNumber: string
     complement: string
-    neighborhood: string
+    district: string
     city: string
     state: string
     country: string

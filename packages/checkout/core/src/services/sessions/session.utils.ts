@@ -53,6 +53,7 @@ const normalizeTransactionConfig = (paymentSession: Session) => ({
   description: paymentSession.description,
   orderId: paymentSession.orderId,
   currency: paymentSession.currency,
+  splitRules: paymentSession.splitRules,
   fraudAnalysis: {
     cart: paymentSession.items.map((item) => ({
       name: item.name,

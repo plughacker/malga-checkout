@@ -151,6 +151,10 @@ export interface Pix {
   expiresIn: number
 }
 
+export interface Drip {
+  param: string
+}
+
 export interface Credit {
   installments: {
     show: boolean
@@ -205,6 +209,7 @@ export interface MalgaCheckoutFullPaymentMethods {
   pix?: Pix
   credit?: Credit
   boleto?: Boleto
+  drip?: Drip
 }
 
 export interface MalgaCheckoutFullPage {

@@ -213,6 +213,8 @@ export class MalgaCheckout {
             />
           )}
 
+          {this.showCurrentPaymentMethod('drip') && <malga-payments-drip />}
+
           <div class={{ 'malga-checkout__submit': true }}>
             <checkout-button
               isLoading={this.isButtonLoading}

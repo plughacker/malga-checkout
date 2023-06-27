@@ -5,9 +5,9 @@
 
 ## Properties
 
-| Property         | Attribute | Description | Type                   | Default                       |
-| ---------------- | --------- | ----------- | ---------------------- | ----------------------------- |
-| `paymentMethods` | --        |             | `PaymentMethodsType[]` | `['credit', 'pix', 'boleto']` |
+| Property         | Attribute | Description | Type                   | Default                               |
+| ---------------- | --------- | ----------- | ---------------------- | ------------------------------------- |
+| `paymentMethods` | --        |             | `PaymentMethodsType[]` | `['credit', 'pix', 'boleto', 'drip']` |
 
 
 ## Events
@@ -30,6 +30,7 @@
 - [malga-payments-credit](../malga-payments-credit)
 - [malga-payments-boleto](../malga-payments-boleto)
 - [malga-payments-pix](../malga-payments-pix)
+- [malga-payments-drip](../malga-payments-drip)
 
 ### Graph
 ```mermaid
@@ -39,6 +40,7 @@ graph TD;
   malga-payments --> malga-payments-credit
   malga-payments --> malga-payments-boleto
   malga-payments --> malga-payments-pix
+  malga-payments --> malga-payments-drip
   malga-payments-credit-saved-cards --> checkout-radio-field
   malga-payments-credit-saved-cards --> checkout-typography
   malga-payments-credit-saved-cards --> checkout-text-field
@@ -87,6 +89,7 @@ graph TD;
   checkout-manual-payment --> checkout-typography
   malga-payments-pix --> checkout-manual-payment
   malga-payments-pix --> checkout-modal
+  malga-payments-drip --> checkout-modal
   malga-checkout --> malga-payments
   style malga-payments fill:#f9f,stroke:#333,stroke-width:4px
 ```

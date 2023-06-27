@@ -23,7 +23,7 @@ import { MalgaPaymentsError } from '../../types/malga-payments-error.types'
   styleUrl: 'malga-payments.scss',
 })
 export class MalgaPayments implements ComponentInterface {
-  @Prop() paymentMethods: PaymentMethods = ['credit', 'pix', 'boleto']
+  @Prop() paymentMethods: PaymentMethods = ['credit', 'pix', 'boleto', 'drip']
 
   @Event() paymentFail!: EventEmitter<{
     error: MalgaPaymentsError
@@ -101,6 +101,21 @@ export class MalgaPayments implements ComponentInterface {
                     this.paymentFail.emit({ error })
                   }
                 />
+              )}
+            </Fragment>
+          )}
+
+          {this.showCurrentPaymentMethod('drip') && (
+            <Fragment>
+              <checkout-radio-field
+                fullWidth
+                label={t('paymentMethods.drip.title', settings.locale)}
+                value="drip"
+                isChecked={payment.selectedPaymentMethod === 'drip'}
+                onClicked={() => this.handlePaymentChange('drip')}
+              />
+              {payment.selectedPaymentMethod === 'drip' && (
+                <malga-payments-drip />
               )}
             </Fragment>
           )}

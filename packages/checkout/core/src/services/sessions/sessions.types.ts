@@ -5,11 +5,13 @@ import {
 import { PaymentMethodBoleto } from '../../providers/boleto'
 import { PaymentMethodCard } from '../../providers/card'
 import { PaymentMethodPix } from '../../providers/pix'
+import { PaymentMethodDrip } from '../../providers/drip'
 
 export type PaymentMethod =
   | PaymentMethodBoleto
   | PaymentMethodCard
   | PaymentMethodPix
+  | PaymentMethodDrip
 
 export interface SessionNormalized extends Session {
   checkoutPaymentMethods: MalgaCheckoutPaymentMethods

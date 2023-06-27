@@ -40,6 +40,7 @@
 - [malga-payments-credit](../malga-payments-credit)
 - [malga-payments-boleto](../malga-payments-boleto)
 - [malga-payments-pix](../malga-payments-pix)
+- [malga-payments-drip](../malga-payments-drip)
 - checkout-button
 - checkout-icon
 
@@ -52,6 +53,7 @@ graph TD;
   malga-checkout --> malga-payments-credit
   malga-checkout --> malga-payments-boleto
   malga-checkout --> malga-payments-pix
+  malga-checkout --> malga-payments-drip
   malga-checkout --> checkout-button
   malga-checkout --> checkout-icon
   checkout-loader --> checkout-icon
@@ -60,6 +62,7 @@ graph TD;
   malga-payments --> malga-payments-credit
   malga-payments --> malga-payments-boleto
   malga-payments --> malga-payments-pix
+  malga-payments --> malga-payments-drip
   malga-payments-credit-saved-cards --> checkout-radio-field
   malga-payments-credit-saved-cards --> checkout-typography
   malga-payments-credit-saved-cards --> checkout-text-field
@@ -108,6 +111,7 @@ graph TD;
   checkout-manual-payment --> checkout-typography
   malga-payments-pix --> checkout-manual-payment
   malga-payments-pix --> checkout-modal
+  malga-payments-drip --> checkout-modal
   style malga-checkout fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

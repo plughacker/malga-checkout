@@ -81,6 +81,9 @@
         "showBarcode": "O boleto com o código de barras será exibido",
         "paymentConfirmation": "após a confirmação de compra"
       }
+    },
+    "drip": {
+      "title": "Drip"
     }
   },
   "dialogs": {
@@ -125,6 +128,9 @@
       "showBoleto": "Exibir Boleto"
     },
     "card": {
+      "errorMessage": "Não foi possível concluir sua transação, tente novamente."
+    },
+    "drip": {
       "errorMessage": "Não foi possível concluir sua transação, tente novamente."
     },
     "session": {

@@ -79,6 +79,7 @@ graph TD;
   malga-checkout --> malga-payments-credit
   malga-checkout --> malga-payments-boleto
   malga-checkout --> malga-payments-pix
+  malga-checkout --> malga-payments-nupay
   malga-checkout --> checkout-button
   malga-checkout --> checkout-icon
   malga-payments --> malga-payments-credit-saved-cards
@@ -86,6 +87,7 @@ graph TD;
   malga-payments --> malga-payments-credit
   malga-payments --> malga-payments-boleto
   malga-payments --> malga-payments-pix
+  malga-payments --> malga-payments-nupay
   malga-payments-credit-saved-cards --> checkout-radio-field
   malga-payments-credit-saved-cards --> checkout-typography
   malga-payments-credit-saved-cards --> checkout-text-field
@@ -128,6 +130,7 @@ graph TD;
   checkout-manual-payment --> checkout-typography
   malga-payments-pix --> checkout-manual-payment
   malga-payments-pix --> checkout-modal
+  malga-payments-nupay --> checkout-modal
   malga-checkout-full-footer --> checkout-dropdown
   style malga-checkout-full fill:#f9f,stroke:#333,stroke-width:4px
 ```

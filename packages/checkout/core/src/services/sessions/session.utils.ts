@@ -29,6 +29,10 @@ const normalizePaymentMethods = (paymentSession: Session) => {
           interest: currentPaymentMethods.interest,
           fine: currentPaymentMethods.fine,
         }
+      } else if (currentPaymentMethods.paymentType === 'nupay') {
+        previousPaymentMethods['nupay'] = {
+          param: currentPaymentMethods.param,
+        }
       } else {
         previousPaymentMethods['credit'] = {
           installments: {

@@ -37,6 +37,8 @@ export namespace Components {
     }
     interface MalgaPaymentsCreditSavedCards {
     }
+    interface MalgaPaymentsNupay {
+    }
     interface MalgaPaymentsPix {
     }
 }
@@ -77,6 +79,12 @@ declare global {
         prototype: HTMLMalgaPaymentsCreditSavedCardsElement;
         new (): HTMLMalgaPaymentsCreditSavedCardsElement;
     };
+    interface HTMLMalgaPaymentsNupayElement extends Components.MalgaPaymentsNupay, HTMLStencilElement {
+    }
+    var HTMLMalgaPaymentsNupayElement: {
+        prototype: HTMLMalgaPaymentsNupayElement;
+        new (): HTMLMalgaPaymentsNupayElement;
+    };
     interface HTMLMalgaPaymentsPixElement extends Components.MalgaPaymentsPix, HTMLStencilElement {
     }
     var HTMLMalgaPaymentsPixElement: {
@@ -90,6 +98,7 @@ declare global {
         "malga-payments-credit": HTMLMalgaPaymentsCreditElement;
         "malga-payments-credit-form": HTMLMalgaPaymentsCreditFormElement;
         "malga-payments-credit-saved-cards": HTMLMalgaPaymentsCreditSavedCardsElement;
+        "malga-payments-nupay": HTMLMalgaPaymentsNupayElement;
         "malga-payments-pix": HTMLMalgaPaymentsPixElement;
     }
 }
@@ -132,6 +141,8 @@ declare namespace LocalJSX {
     }
     interface MalgaPaymentsCreditSavedCards {
     }
+    interface MalgaPaymentsNupay {
+    }
     interface MalgaPaymentsPix {
         "onPixPaymentFailed"?: (event: CustomEvent<{
     error: MalgaPaymentsError
@@ -144,6 +155,7 @@ declare namespace LocalJSX {
         "malga-payments-credit": MalgaPaymentsCredit;
         "malga-payments-credit-form": MalgaPaymentsCreditForm;
         "malga-payments-credit-saved-cards": MalgaPaymentsCreditSavedCards;
+        "malga-payments-nupay": MalgaPaymentsNupay;
         "malga-payments-pix": MalgaPaymentsPix;
     }
 }
@@ -157,6 +169,7 @@ declare module "@stencil/core" {
             "malga-payments-credit": LocalJSX.MalgaPaymentsCredit & JSXBase.HTMLAttributes<HTMLMalgaPaymentsCreditElement>;
             "malga-payments-credit-form": LocalJSX.MalgaPaymentsCreditForm & JSXBase.HTMLAttributes<HTMLMalgaPaymentsCreditFormElement>;
             "malga-payments-credit-saved-cards": LocalJSX.MalgaPaymentsCreditSavedCards & JSXBase.HTMLAttributes<HTMLMalgaPaymentsCreditSavedCardsElement>;
+            "malga-payments-nupay": LocalJSX.MalgaPaymentsNupay & JSXBase.HTMLAttributes<HTMLMalgaPaymentsNupayElement>;
             "malga-payments-pix": LocalJSX.MalgaPaymentsPix & JSXBase.HTMLAttributes<HTMLMalgaPaymentsPixElement>;
         }
     }

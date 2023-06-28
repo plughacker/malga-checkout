@@ -213,6 +213,8 @@ export class MalgaCheckout {
             />
           )}
 
+          {this.showCurrentPaymentMethod('nupay') && <malga-payments-nupay />}
+
           <div class={{ 'malga-checkout__submit': true }}>
             <checkout-button
               isLoading={this.isButtonLoading}

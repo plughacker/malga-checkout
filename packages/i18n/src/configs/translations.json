@@ -81,6 +81,9 @@
         "showBarcode": "O boleto com o código de barras será exibido",
         "paymentConfirmation": "após a confirmação de compra"
       }
+    },
+    "nupay": {
+      "title": "NuPay"
     }
   },
   "dialogs": {
@@ -128,6 +131,9 @@
       "errorMessage": "Não foi possível concluir sua transação, tente novamente."
     },
     "session": {
+      "errorMessage": "Não foi possível concluir sua transação, tente novamente."
+    },
+    "nupay": {
       "errorMessage": "Não foi possível concluir sua transação, tente novamente."
     },
     "success": {

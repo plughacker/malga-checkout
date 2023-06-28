@@ -1,5 +1,6 @@
 import { Customer } from '../../providers/base-provider'
 import { BoletoAttributes } from '../../providers/boleto'
+import { NuPayAttributes } from '../../providers/nupay'
 import { PixAttributes } from '../../providers/pix'
 import { FraudAnalysis } from '../../services/charges'
 
@@ -31,6 +32,7 @@ export interface MalgaCheckoutPaymentMethods {
   pix?: PixAttributes
   credit?: Credit
   boleto?: BoletoAttributes
+  nupay?: NuPayAttributes
 }
 
 export interface MalgaCheckoutDialog {

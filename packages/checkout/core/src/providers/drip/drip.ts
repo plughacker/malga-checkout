@@ -7,6 +7,8 @@ import {
 
 import settings from '../../stores/settings'
 
+import { getItems, getBrowser } from './drip.utils'
+
 export class Drip extends BaseProvider {
   readonly drip: DripAttributes
 
@@ -19,9 +21,13 @@ export class Drip extends BaseProvider {
   }
 
   public getPaymentMethod(): PaymentMethodDrip {
+    const items = getItems(this.drip)
+    const browser = getBrowser(this.drip)
+
     return {
       paymentType: 'drip',
-      param: this.drip.param,
+      ...items,
+      ...browser,
     }
   }
 }

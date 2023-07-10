@@ -30,8 +30,13 @@ const normalizePaymentMethods = (paymentSession: Session) => {
           fine: currentPaymentMethods.fine,
         }
       } else if (currentPaymentMethods.paymentType === 'drip') {
-        previousPaymentMethods['drip'] = {
-          param: currentPaymentMethods.param,
+        if (!currentPaymentMethods?.items && !currentPaymentMethods?.browser) {
+          previousPaymentMethods['drip'] = true
+        } else {
+          previousPaymentMethods['drip'] = {
+            items: currentPaymentMethods?.items,
+            browser: currentPaymentMethods?.browser,
+          }
         }
       } else {
         previousPaymentMethods['credit'] = {

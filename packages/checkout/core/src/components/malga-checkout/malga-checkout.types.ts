@@ -32,7 +32,7 @@ export interface MalgaCheckoutPaymentMethods {
   pix?: PixAttributes
   credit?: Credit
   boleto?: BoletoAttributes
-  drip?: DripAttributes
+  drip?: DripAttributes | boolean
 }
 
 export interface MalgaCheckoutDialog {

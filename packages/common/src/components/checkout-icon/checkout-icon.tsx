@@ -30,6 +30,7 @@ import DiscoverIcon from '../../assets/icons/discover.svg'
 import AmexIcon from '../../assets/icons/amex.svg'
 import DinersclubIcon from '../../assets/icons/dinersclub.svg'
 import GlobeIcon from '../../assets/icons/globe.svg'
+import DripIcon from '../../assets/icons/drip.svg'
 
 @Component({ tag: 'checkout-icon', styleUrl: 'checkout-icon.scss' })
 export class CheckoutIcon implements ComponentInterface {
@@ -66,6 +67,7 @@ export class CheckoutIcon implements ComponentInterface {
       mastercard: MatercardIcon,
       visa: VisaIcon,
       globe: GlobeIcon,
+      drip: DripIcon,
     }
 
     return icons[this.icon]

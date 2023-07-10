@@ -26,8 +26,24 @@ export class MalgaPaymentsDrip {
 
   render() {
     return (
-      <Host>
-        <p>Drip</p>
+      <Host class={{ 'malga-payments-drip__container': true }}>
+        <malga-payments-drip-content
+          cashback="R$0,40"
+          installments={[
+            {
+              dueDate: '2023-07-31',
+              amount: 'R$6,67',
+            },
+            {
+              dueDate: '2023-08-29',
+              amount: 'R$6,67',
+            },
+            {
+              dueDate: '2023-09-29',
+              amount: 'R$6,66',
+            },
+          ]}
+        />
         {settings.dialogConfig.show && dialog.configs.open && (
           <checkout-modal
             locale={settings.locale}

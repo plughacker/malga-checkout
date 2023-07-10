@@ -111,6 +111,7 @@ export class MalgaPayments implements ComponentInterface {
                 fullWidth
                 label={t('paymentMethods.drip.title', settings.locale)}
                 value="drip"
+                endIcon="drip"
                 isChecked={payment.selectedPaymentMethod === 'drip'}
                 onClicked={() => this.handlePaymentChange('drip')}
               />

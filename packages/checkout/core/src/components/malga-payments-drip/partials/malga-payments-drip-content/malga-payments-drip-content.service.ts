@@ -10,16 +10,21 @@ import { MalgaPaymentsDripContentConstructor } from './malga-payments-drip-conte
 export class MalgaPaymentsDripContentService {
   readonly amount: number
   readonly date: Date
+  readonly dripURL: string
 
-  constructor({ amount }: MalgaPaymentsDripContentConstructor) {
+  constructor({ amount, debug, sandbox }: MalgaPaymentsDripContentConstructor) {
     this.amount = amount / 100
     this.date = formatISODate(new Date())
+    this.dripURL =
+      sandbox || debug
+        ? 'https://sbx-drip-be.usedrip.com.br/api/v1/instalments_simulator'
+        : 'https://drip-be.usedrip.com.br/api/v1/instalments_simulator'
   }
 
   public async getContent() {
     try {
       const { data } = await axios.get(
-        `https://sbx-drip-be.usedrip.com.br/api/v1/instalments_simulator?amount=${this.amount}&date=${this.date}`,
+        `${this.dripURL}?amount=${this.amount}&date=${this.date}`,
       )
 
       const parsedCashback = parseAmountDecimalToInteger(

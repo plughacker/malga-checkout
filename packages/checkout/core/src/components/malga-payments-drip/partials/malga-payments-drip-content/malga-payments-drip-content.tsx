@@ -26,6 +26,8 @@ export class MalgaPaymentsDripContent implements ComponentInterface {
   private fetchInstallments = async () => {
     const dripContentService = new MalgaPaymentsDripContentService({
       amount: settings.transactionConfig.amount,
+      sandbox: settings.sandbox,
+      debug: settings.debug,
     })
     const { cashback, installments } = await dripContentService.getContent()
 

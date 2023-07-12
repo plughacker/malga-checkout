@@ -15,12 +15,14 @@
 ### Depends on
 
 - [malga-payments-drip-content](./partials/malga-payments-drip-content)
+- [malga-payments-drip-iframe](./partials/malga-payments-drip-iframe)
 - checkout-modal
 
 ### Graph
 ```mermaid
 graph TD;
   malga-payments-drip --> malga-payments-drip-content
+  malga-payments-drip --> malga-payments-drip-iframe
   malga-payments-drip --> checkout-modal
   malga-payments-drip-content --> malga-payments-drip-installments
   malga-payments-drip-installments --> checkout-typography

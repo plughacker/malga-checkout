@@ -115,9 +115,7 @@ export class MalgaPayments implements ComponentInterface {
                 isChecked={payment.selectedPaymentMethod === 'drip'}
                 onClicked={() => this.handlePaymentChange('drip')}
               />
-              {payment.selectedPaymentMethod === 'drip' && (
-                <malga-payments-drip />
-              )}
+              <malga-payments-drip />
             </Fragment>
           )}
         </section>

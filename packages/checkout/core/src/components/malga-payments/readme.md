@@ -90,6 +90,7 @@ graph TD;
   malga-payments-pix --> checkout-manual-payment
   malga-payments-pix --> checkout-modal
   malga-payments-drip --> malga-payments-drip-content
+  malga-payments-drip --> malga-payments-drip-iframe
   malga-payments-drip --> checkout-modal
   malga-payments-drip-content --> malga-payments-drip-installments
   malga-payments-drip-installments --> checkout-typography

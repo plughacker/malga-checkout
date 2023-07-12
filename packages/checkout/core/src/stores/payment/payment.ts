@@ -7,6 +7,7 @@ export const { state, onChange } = createStore({
   installments: '',
   cardId: '',
   chargeId: '',
+  paymentUrl: '',
 })
 
 onChange('selectedPaymentMethod', (value) => {

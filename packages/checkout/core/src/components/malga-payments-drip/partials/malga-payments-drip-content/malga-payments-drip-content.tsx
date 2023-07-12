@@ -5,10 +5,14 @@ import {
   h,
   ComponentInterface,
   getAssetPath,
-  Prop,
+  State,
 } from '@stencil/core'
 
 import settings from '../../../../stores/settings'
+
+import { MalgaPaymentsDripContentService } from './malga-payments-drip-content.service'
+
+import { MalgaPaymentsDripContentInstallment } from './malga-payments-drip-content.types'
 
 @Component({
   tag: 'malga-payments-drip-content',
@@ -16,8 +20,22 @@ import settings from '../../../../stores/settings'
   assetsDirs: ['assets'],
 })
 export class MalgaPaymentsDripContent implements ComponentInterface {
-  @Prop() installments: { dueDate: string; amount: string }[]
-  @Prop() cashback: string
+  @State() installments: MalgaPaymentsDripContentInstallment[] = []
+  @State() cashback = ''
+
+  private fetchInstallments = async () => {
+    const dripContentService = new MalgaPaymentsDripContentService({
+      amount: settings.transactionConfig.amount,
+    })
+    const { cashback, installments } = await dripContentService.getContent()
+
+    this.cashback = cashback
+    this.installments = installments
+  }
+
+  componentWillLoad() {
+    this.fetchInstallments()
+  }
 
   render() {
     const dripPaymentIllustration = getAssetPath('./assets/drip-pay.png')

@@ -5,14 +5,6 @@
 <!-- Auto Generated Below -->
 
 
-## Properties
-
-| Property       | Attribute  | Description | Type                                     | Default     |
-| -------------- | ---------- | ----------- | ---------------------------------------- | ----------- |
-| `cashback`     | `cashback` |             | `string`                                 | `undefined` |
-| `installments` | --         |             | `{ dueDate: string; amount: string; }[]` | `undefined` |
-
-
 ## Dependencies
 
 ### Used by

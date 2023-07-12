@@ -151,8 +151,21 @@ export interface Pix {
   expiresIn: number
 }
 
+interface DripItem {
+  id: string
+  quantity: number
+  title: string
+  unitPrice: number
+}
+
+interface DripBrowser {
+  ipAddress: string
+  browserFingerprint: string
+}
+
 export interface Drip {
-  param: string
+  items?: DripItem[]
+  browser?: DripBrowser
 }
 
 export interface Credit {
@@ -209,7 +222,7 @@ export interface MalgaCheckoutFullPaymentMethods {
   pix?: Pix
   credit?: Credit
   boleto?: Boleto
-  drip?: Drip
+  drip?: Drip | boolean
 }
 
 export interface MalgaCheckoutFullPage {
@@ -327,7 +340,7 @@ export interface MalgaCheckoutFullSession {
   settings: MalgaCheckoutFullUserSettings
 }
 
-export type PaymentMethod = Boleto | Credit | Pix
+export type PaymentMethod = Boleto | Credit | Pix | Drip
 
 export interface MalgaCheckoutFullUserSettings {
   id: string

@@ -53,6 +53,7 @@ export class MalgaCheckoutFull implements ComponentInterface {
     pix: undefined,
     credit: undefined,
     boleto: undefined,
+    drip: undefined,
   }
   @Prop() pageConfig?: MalgaCheckoutFullPage = {
     brandUrl: '',

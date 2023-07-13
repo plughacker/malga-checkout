@@ -11,8 +11,8 @@ interface DripAttributesBrowser {
 }
 
 export interface DripAttributes {
-  items?: DripAttributesItem[]
-  browser?: DripAttributesBrowser
+  items?: DripAttributesItem[] | null
+  browser?: DripAttributesBrowser | null
 }
 
 export interface PaymentMethodDrip extends DripAttributes {

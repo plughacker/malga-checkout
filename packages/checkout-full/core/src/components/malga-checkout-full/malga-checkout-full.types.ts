@@ -222,7 +222,7 @@ export interface MalgaCheckoutFullPaymentMethods {
   pix?: Pix
   credit?: Credit
   boleto?: Boleto
-  drip?: Drip | boolean
+  drip?: Drip
 }
 
 export interface MalgaCheckoutFullPage {

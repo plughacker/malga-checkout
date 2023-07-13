@@ -1,4 +1,5 @@
 import settings from '../../stores/settings'
+import payment from '../../stores/payment'
 
 import { Drip, DripAttributes } from '../../providers/drip'
 
@@ -36,14 +37,7 @@ export class MalgaPaymentsDripService implements MalgaPayments {
   }
 
   handlePaymentSuccess(data: MalgaPaymentsSuccess) {
-    if (settings.dialogConfig.show) {
-      this.onShowDialog({
-        mode: 'success',
-        amount: data.amount,
-        open: true,
-      })
-    }
-
+    payment.paymentUrl = ''
     this.onPaymentSuccess(data)
   }
 

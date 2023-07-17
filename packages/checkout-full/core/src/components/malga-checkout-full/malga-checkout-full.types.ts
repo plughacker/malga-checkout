@@ -209,15 +209,6 @@ export interface Product {
   risk: string
 }
 
-export interface Product {
-  name: string
-  amount: number
-  quantity: number
-  description: string
-  sku: string
-  risk: string
-}
-
 export interface MalgaCheckoutFullPaymentMethods {
   pix?: Pix
   credit?: Credit

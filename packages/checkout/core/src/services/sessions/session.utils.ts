@@ -31,8 +31,8 @@ const normalizePaymentMethods = (paymentSession: Session) => {
         }
       } else if (currentPaymentMethods.paymentType === 'drip') {
         previousPaymentMethods['drip'] = {
-          items: currentPaymentMethods?.items || null,
-          browser: currentPaymentMethods?.browser || null,
+          items: null,
+          browser: null,
         }
       } else {
         previousPaymentMethods['credit'] = {

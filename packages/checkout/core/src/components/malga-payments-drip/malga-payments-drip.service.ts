@@ -15,6 +15,7 @@ import { MalgaPayments } from '../../types/malga-payments.types'
 import { MalgaPaymentsSuccess } from '../../types/malga-payments-success.types'
 import { MalgaPaymentsError } from '../../types/malga-payments-error.types'
 import { t } from '@malga-checkout/i18n'
+import { MalgaPaymentsPaymentMethodDrip } from '../../types/malga-payments-payment-methods.types'
 
 export class MalgaPaymentsDripService implements MalgaPayments {
   readonly charge?: Charges
@@ -37,7 +38,9 @@ export class MalgaPaymentsDripService implements MalgaPayments {
   }
 
   handlePaymentSuccess(data: MalgaPaymentsSuccess) {
-    payment.paymentUrl = ''
+    payment.paymentUrl = (
+      data.paymentMethod as MalgaPaymentsPaymentMethodDrip
+    ).paymentUrl
     this.onPaymentSuccess(data)
   }
 

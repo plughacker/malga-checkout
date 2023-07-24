@@ -15,6 +15,7 @@
 }
 
 .malga-payments-drip-iframe__modal {
+  position: relative;
   display: flex;
   height: 100%;
   width: 100%;
@@ -26,6 +27,21 @@
     width: 100%;
     height: 100%;
     border-radius: 8px;
+  }
+
+  & > button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    width: 25px;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--malga-checkout-color-accent-light);
+    cursor: pointer;
   }
 
   @include lg {

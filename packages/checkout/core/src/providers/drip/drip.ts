@@ -7,7 +7,12 @@ import {
 
 import settings from '../../stores/settings'
 
-import { getItems, getBrowser } from './drip.utils'
+import {
+  getItems,
+  getBrowser,
+  getSuccessRedirectUrl,
+  getCancelRedirectUrl,
+} from './drip.utils'
 
 export class Drip extends BaseProvider {
   readonly drip: DripAttributes
@@ -23,11 +28,15 @@ export class Drip extends BaseProvider {
   public getPaymentMethod(): PaymentMethodDrip {
     const items = getItems(this.drip)
     const browser = getBrowser(this.drip)
+    const successRedirectUrl = getSuccessRedirectUrl(this.drip)
+    const cancelRedirectUrl = getCancelRedirectUrl(this.drip)
 
     return {
       paymentType: 'drip',
       ...items,
       ...browser,
+      ...successRedirectUrl,
+      ...cancelRedirectUrl,
     }
   }
 }

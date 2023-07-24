@@ -15,3 +15,15 @@ export const getItems = (drip: DripAttributes) => {
     browser: drip.browser,
   }
 }
+
+export const getSuccessRedirectUrl = (drip: DripAttributes) => {
+  if (!drip.successRedirectUrl) return {}
+
+  return { successRedirectUrl: drip.successRedirectUrl }
+}
+
+export const getCancelRedirectUrl = (drip: DripAttributes) => {
+  if (!drip.cancelRedirectUrl) return {}
+
+  return { cancelRedirectUrl: drip.cancelRedirectUrl }
+}

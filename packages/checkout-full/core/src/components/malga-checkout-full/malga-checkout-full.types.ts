@@ -166,6 +166,8 @@ interface DripBrowser {
 export interface Drip {
   items?: DripItem[]
   browser?: DripBrowser
+  successRedirectUrl?: string
+  cancelRedirectUrl?: string
 }
 
 export interface Credit {

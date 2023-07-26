@@ -116,6 +116,7 @@ graph TD;
   malga-payments-drip --> checkout-modal
   malga-payments-drip-content --> malga-payments-drip-installments
   malga-payments-drip-installments --> checkout-typography
+  malga-payments-drip-iframe --> checkout-icon
   style malga-checkout fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

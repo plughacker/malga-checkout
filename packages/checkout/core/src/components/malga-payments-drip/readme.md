@@ -26,6 +26,7 @@ graph TD;
   malga-payments-drip --> checkout-modal
   malga-payments-drip-content --> malga-payments-drip-installments
   malga-payments-drip-installments --> checkout-typography
+  malga-payments-drip-iframe --> checkout-icon
   checkout-modal --> checkout-modal-success
   checkout-modal --> checkout-modal-error
   checkout-modal --> checkout-modal-pix

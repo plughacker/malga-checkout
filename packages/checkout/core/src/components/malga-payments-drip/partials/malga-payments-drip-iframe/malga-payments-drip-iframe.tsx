@@ -15,7 +15,9 @@ export class MalgaPaymentsDripIframe implements ComponentInterface {
     return (
       <Host class={{ 'malga-payments-drip-iframe__container': true }}>
         <div class={{ 'malga-payments-drip-iframe__modal': true }}>
-          <button onClick={this.handleCloseIframe}>X</button>
+          <button onClick={this.handleCloseIframe}>
+            <checkout-icon icon="close" />
+          </button>
           <iframe src={payment.paymentUrl} title="Drip" frameBorder={0} />
         </div>
       </Host>

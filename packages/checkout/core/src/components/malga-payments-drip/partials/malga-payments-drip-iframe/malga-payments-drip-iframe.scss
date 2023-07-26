@@ -36,11 +36,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 25px;
-    width: 25px;
+    height: 30px;
+    width: 30px;
     border: none;
-    border-radius: 50%;
-    background-color: var(--malga-checkout-color-accent-light);
+    background-color: transparent;
     cursor: pointer;
   }
 

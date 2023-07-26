@@ -1,12 +1,5 @@
 import { t } from '@malga-checkout/i18n'
-import {
-  Component,
-  Host,
-  h,
-  ComponentInterface,
-  getAssetPath,
-  State,
-} from '@stencil/core'
+import { Component, Host, h, ComponentInterface, State } from '@stencil/core'
 
 import settings from '../../../../stores/settings'
 
@@ -14,10 +7,11 @@ import { MalgaPaymentsDripContentService } from './malga-payments-drip-content.s
 
 import { MalgaPaymentsDripContentInstallment } from './malga-payments-drip-content.types'
 
+import DripPayIcon from './assets/drip-pay.svg'
+
 @Component({
   tag: 'malga-payments-drip-content',
   styleUrl: 'malga-payments-drip-content.scss',
-  assetsDirs: ['assets'],
 })
 export class MalgaPaymentsDripContent implements ComponentInterface {
   @State() installments: MalgaPaymentsDripContentInstallment[] = []
@@ -40,11 +34,9 @@ export class MalgaPaymentsDripContent implements ComponentInterface {
   }
 
   render() {
-    const dripPaymentIllustration = getAssetPath('./assets/drip-pay.png')
-
     return (
       <Host class={{ 'malga-payments-drip-content__container': true }}>
-        <img alt="Drip" src={dripPaymentIllustration} />
+        <i innerHTML={DripPayIcon} />
         <p>
           {t('paymentMethods.drip.descriptions.first', settings.locale)}{' '}
           <strong>

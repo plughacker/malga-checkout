@@ -34,6 +34,7 @@ export class Charges {
       statementDescriptor: settings.transactionConfig.statementDescriptor,
       capture: settings.transactionConfig.capture,
       sessionId: settings.sessionId,
+      splitRules: settings.transactionConfig.splitRules,
       fraudAnalysis,
       ...(settings.transactionConfig.paymentFlowMetadata && {
         paymentFlow: {

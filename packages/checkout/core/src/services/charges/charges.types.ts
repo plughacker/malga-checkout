@@ -16,6 +16,7 @@ export interface CreateChargeData {
   description?: string
   fraudAnalysis?: FraudAnalysis
   paymentFlow?: Record<string, unknown>
+  splitRules?: SplitRule[]
 }
 
 export interface FraudAnalysisCart {
@@ -31,4 +32,16 @@ export interface FraudAnalysis {
   customer?: Customer
   cart?: FraudAnalysisCart[]
   usePartialCustomer?: boolean
+}
+
+export interface SplitRule {
+  sellerId: string
+  percentage?: number
+  amount?: number
+  processingFee: boolean
+  liable: boolean
+  fares?: {
+    mdr: number
+    fee: number
+  }
 }

@@ -241,6 +241,7 @@ export interface MalgaCheckoutFullTransaction {
   currency?: string
   fraudAnalysis?: MalgaCheckoutFullFraudAnalysis
   paymentFlowMetadata?: Record<string, unknown>
+  splitRules?: MalgaCheckoutFullSplitRule[]
 }
 
 export interface MalgaCheckoutFullDialog {
@@ -340,4 +341,16 @@ export interface MalgaCheckoutFullUserSettings {
   clientId: string
   documentNumber: string
   language: string
+}
+
+export interface MalgaCheckoutFullSplitRule {
+  sellerId: string
+  percentage?: number
+  amount?: number
+  processingFee: boolean
+  liable: boolean
+  fares?: {
+    mdr: number
+    fee: number
+  }
 }

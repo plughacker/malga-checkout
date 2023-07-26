@@ -1,7 +1,7 @@
 import { Customer } from '../../providers/base-provider'
 import { BoletoAttributes } from '../../providers/boleto'
 import { PixAttributes } from '../../providers/pix'
-import { FraudAnalysis } from '../../services/charges'
+import { FraudAnalysis, SplitRule } from '../../services/charges'
 
 export interface Credit {
   installments: {
@@ -24,6 +24,7 @@ export interface MalgaCheckoutTransaction {
   customerId?: string
   currency?: string
   fraudAnalysis?: FraudAnalysis
+  splitRules?: SplitRule[]
   paymentFlowMetadata?: Record<string, unknown>
 }
 

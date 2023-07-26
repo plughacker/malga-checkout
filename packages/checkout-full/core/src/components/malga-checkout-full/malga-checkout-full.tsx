@@ -72,6 +72,7 @@ export class MalgaCheckoutFull implements ComponentInterface {
     capture: false,
     fraudAnalysis: null,
     paymentFlowMetadata: null,
+    splitRules: null,
   }
   @Prop() dialogConfig: MalgaCheckoutFullDialog = {
     show: true,

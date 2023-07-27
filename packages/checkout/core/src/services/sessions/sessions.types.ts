@@ -6,6 +6,7 @@ import { PaymentMethodBoleto } from '../../providers/boleto'
 import { PaymentMethodCard } from '../../providers/card'
 import { PaymentMethodPix } from '../../providers/pix'
 import { PaymentMethodDrip } from '../../providers/drip'
+import { SplitRule } from '../charges/charges.types'
 
 export type PaymentMethod =
   | PaymentMethodBoleto
@@ -33,6 +34,7 @@ export interface Session {
   dueDate: string
   description?: string
   statementDescriptor?: string
+  splitRules?: SplitRule[]
   items: {
     name: string
     description?: string

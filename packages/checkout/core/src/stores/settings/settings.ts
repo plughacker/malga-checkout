@@ -31,6 +31,7 @@ export const { state, onChange } = createStore<SettingsState>({
     capture: false,
     customer: null,
     paymentFlowMetadata: null,
+    splitRules: null,
   },
 })
 

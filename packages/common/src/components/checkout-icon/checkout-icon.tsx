@@ -10,6 +10,7 @@ import CheckLargeIcon from '../../assets/icons/check-large.svg'
 import CreditCardIcon from '../../assets/icons/credit-card.svg'
 import CvvIcon from '../../assets/icons/cvv.svg'
 import ClipboardIcon from '../../assets/icons/clipboard.svg'
+import CloseIcon from '../../assets/icons/close.svg'
 import DollarIcon from '../../assets/icons/dollar.svg'
 import EditIcon from '../../assets/icons/edit.svg'
 import ErrorIcon from '../../assets/icons/error.svg'
@@ -30,6 +31,7 @@ import DiscoverIcon from '../../assets/icons/discover.svg'
 import AmexIcon from '../../assets/icons/amex.svg'
 import DinersclubIcon from '../../assets/icons/dinersclub.svg'
 import GlobeIcon from '../../assets/icons/globe.svg'
+import DripIcon from '../../assets/icons/drip.svg'
 
 @Component({ tag: 'checkout-icon', styleUrl: 'checkout-icon.scss' })
 export class CheckoutIcon implements ComponentInterface {
@@ -43,6 +45,7 @@ export class CheckoutIcon implements ComponentInterface {
       check: CheckIcon,
       creditCard: CreditCardIcon,
       cvv: CvvIcon,
+      close: CloseIcon,
       dollar: DollarIcon,
       lock: LockIcon,
       spinner: SpinnerIcon,
@@ -66,6 +69,7 @@ export class CheckoutIcon implements ComponentInterface {
       mastercard: MatercardIcon,
       visa: VisaIcon,
       globe: GlobeIcon,
+      drip: DripIcon,
     }
 
     return icons[this.icon]

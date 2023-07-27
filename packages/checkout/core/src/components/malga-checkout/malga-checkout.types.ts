@@ -1,6 +1,7 @@
 import { Customer } from '../../providers/base-provider'
 import { BoletoAttributes } from '../../providers/boleto'
 import { PixAttributes } from '../../providers/pix'
+import { DripAttributes } from '../../providers/drip'
 import { FraudAnalysis, SplitRule } from '../../services/charges'
 
 export interface Credit {
@@ -32,6 +33,7 @@ export interface MalgaCheckoutPaymentMethods {
   pix?: PixAttributes
   credit?: Credit
   boleto?: BoletoAttributes
+  drip?: DripAttributes
 }
 
 export interface MalgaCheckoutDialog {

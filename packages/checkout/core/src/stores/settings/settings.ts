@@ -19,6 +19,7 @@ export const { state, onChange } = createStore<SettingsState>({
     pix: undefined,
     credit: undefined,
     boleto: undefined,
+    drip: undefined,
   },
   transactionConfig: {
     statementDescriptor: '',

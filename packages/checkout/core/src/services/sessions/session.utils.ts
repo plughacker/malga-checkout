@@ -29,6 +29,13 @@ const normalizePaymentMethods = (paymentSession: Session) => {
           interest: currentPaymentMethods.interest,
           fine: currentPaymentMethods.fine,
         }
+      } else if (currentPaymentMethods.paymentType === 'drip') {
+        previousPaymentMethods['drip'] = {
+          items: null,
+          browser: null,
+          successRedirectUrl: currentPaymentMethods.successRedirectUrl,
+          cancelRedirectUrl: currentPaymentMethods.cancelRedirectUrl,
+        }
       } else {
         previousPaymentMethods['credit'] = {
           installments: {

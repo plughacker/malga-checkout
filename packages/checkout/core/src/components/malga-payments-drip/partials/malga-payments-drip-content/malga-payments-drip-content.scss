@@ -1,0 +1,20 @@
+.malga-payments-drip-content__container {
+  display: flex;
+  flex-direction: column;
+
+  & > i {
+    align-self: center;
+  }
+
+  & > p {
+    @extend %typography-body1;
+    color: var(--malga-checkout-color-grey-dark);
+    text-align: center;
+    margin-top: var(--malga-checkout-spacing-md);
+    margin-bottom: var(--malga-checkout-spacing-md);
+
+    & > strong {
+      font-weight: 700;
+    }
+  }
+}

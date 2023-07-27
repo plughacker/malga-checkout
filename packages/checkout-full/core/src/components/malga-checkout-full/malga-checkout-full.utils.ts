@@ -1,3 +1,5 @@
+import { v4 as uuid } from 'uuid'
+
 import {
   Customer,
   MalgaCheckoutFullChargeSuccess,
@@ -5,6 +7,8 @@ import {
   MalgaCheckoutSessionItems,
   Product,
   MalgaCheckoutFullFraudAnalysisCart,
+  MalgaCheckoutFullPaymentMethods,
+  Drip,
 } from './malga-checkout-full.types'
 import { MalgaCheckoutFullIdentificationFormValues } from './partials/malga-checkout-full-identification/malga-checkout-full-identification.types'
 
@@ -137,3 +141,33 @@ export const formatSuccess = (
 ): MalgaCheckoutFullChargeSuccess => ({
   ...MalgaPaymentsSuccess,
 })
+
+const formatDripPaymentMethod = (drip: Drip, products: Product[]) => {
+  const items = products.map((product) => ({
+    id: uuid(),
+    title: product.name,
+    quantity: product.quantity,
+    unitPrice: product.amount,
+  }))
+
+  return {
+    items: drip.items || items,
+    browser: drip.browser || null,
+  }
+}
+
+export const formatPaymentMethods = (
+  paymentMethods: MalgaCheckoutFullPaymentMethods,
+  products: Product[],
+) => {
+  const currentPaymentMethods = paymentMethods
+
+  if (currentPaymentMethods.drip) {
+    currentPaymentMethods.drip = formatDripPaymentMethod(
+      paymentMethods.drip,
+      products,
+    )
+  }
+
+  return currentPaymentMethods
+}

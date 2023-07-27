@@ -27,5 +27,7 @@ export type CheckoutIconNames =
   | 'mastercard'
   | 'visa'
   | 'globe'
+  | 'drip'
+  | 'close'
 
 export type CheckoutIconsObject = Record<CheckoutIconNames, string>

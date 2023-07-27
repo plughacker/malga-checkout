@@ -81,6 +81,18 @@
         "showBarcode": "O boleto com o código de barras será exibido",
         "paymentConfirmation": "após a confirmação de compra"
       }
+    },
+    "drip": {
+      "title": "PIX parcelado + cashback",
+      "descriptions": {
+        "first": "São 3 passos simples para ter sua",
+        "second": "compra confirmada em 3x no PIX parcelado, zero juros, cashback",
+        "third": "e dependendo do seu perfil, com ou sem pagamento de entrada."
+      },
+      "installments": {
+        "fifteenDays": "° PIX em 15 dias",
+        "thirtyDays": "° PIX em 30 dias"
+      }
     }
   },
   "dialogs": {
@@ -125,6 +137,9 @@
       "showBoleto": "Exibir Boleto"
     },
     "card": {
+      "errorMessage": "Não foi possível concluir sua transação, tente novamente."
+    },
+    "drip": {
       "errorMessage": "Não foi possível concluir sua transação, tente novamente."
     },
     "session": {

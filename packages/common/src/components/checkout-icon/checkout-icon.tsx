@@ -22,6 +22,7 @@ import EyeSlashIcon from '../../assets/icons/eye-slash.svg'
 import PoweredByMalga from '../../assets/icons/powered-by-malga.svg'
 import PixIcon from '../../assets/icons/pix.svg'
 import NewTabIcon from '../../assets/icons/new-tab.svg'
+import NubankIcon from '../../assets/icons/nubank.svg'
 import VisaIcon from '../../assets/icons/visa.svg'
 import MatercardIcon from '../../assets/icons/mastercard.svg'
 import HipercardIcon from '../../assets/icons/hipercard.svg'
@@ -66,6 +67,7 @@ export class CheckoutIcon implements ComponentInterface {
       mastercard: MatercardIcon,
       visa: VisaIcon,
       globe: GlobeIcon,
+      nubank: NubankIcon,
     }
 
     return icons[this.icon]

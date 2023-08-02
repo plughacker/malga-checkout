@@ -2,6 +2,7 @@ import { Component, Host, h } from '@stencil/core'
 
 import settings from '../../stores/settings'
 import dialog from '../../stores/dialog'
+import payment from '../../stores/payment'
 
 @Component({
   tag: 'malga-payments-nupay',
@@ -19,7 +20,8 @@ export class MalgaPaymentsNuPay {
   render() {
     return (
       <Host class={{ 'malga-payments-nupay__container': true }}>
-        <p>NuPay</p>
+        <malga-payments-nupay-content />
+        {!!payment.paymentUrl && <malga-payments-nupay-iframe />}
         {settings.dialogConfig.show && dialog.configs.open && (
           <checkout-modal
             locale={settings.locale}

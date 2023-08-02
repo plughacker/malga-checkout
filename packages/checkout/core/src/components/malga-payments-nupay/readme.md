@@ -14,12 +14,17 @@
 
 ### Depends on
 
+- [malga-payments-nupay-content](./partials/malga-payments-nupay-content)
+- [malga-payments-nupay-iframe](./partials/malga-payments-nupay-iframe)
 - checkout-modal
 
 ### Graph
 ```mermaid
 graph TD;
+  malga-payments-nupay --> malga-payments-nupay-content
+  malga-payments-nupay --> malga-payments-nupay-iframe
   malga-payments-nupay --> checkout-modal
+  malga-payments-nupay-iframe --> checkout-icon
   checkout-modal --> checkout-modal-success
   checkout-modal --> checkout-modal-error
   checkout-modal --> checkout-modal-pix

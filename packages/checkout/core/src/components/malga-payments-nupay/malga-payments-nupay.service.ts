@@ -1,4 +1,5 @@
 import settings from '../../stores/settings'
+import payment from '../../stores/payment'
 
 import { Charges } from '../../services/charges'
 
@@ -13,6 +14,7 @@ import { MalgaPaymentsSuccess } from '../../types/malga-payments-success.types'
 import { MalgaPaymentsError } from '../../types/malga-payments-error.types'
 import { t } from '@malga-checkout/i18n'
 import { NuPay, NuPayAttributes } from '../../providers/nupay'
+import { MalgaPaymentsTransactionsRequestsNuPay } from '../../types/malga-payments-transaction-requests.types'
 
 export class MalgaPaymentsNuPayService implements MalgaPayments {
   readonly charge: Charges
@@ -35,6 +37,14 @@ export class MalgaPaymentsNuPayService implements MalgaPayments {
   }
 
   handlePaymentSuccess(data: MalgaPaymentsSuccess) {
+    const paymentUrl = (
+      data.transactionRequests as MalgaPaymentsTransactionsRequestsNuPay[]
+    )[0]?.nupay?.paymentUrl
+
+    if (!!paymentUrl) {
+      payment.paymentUrl = paymentUrl
+    }
+
     this.onPaymentSuccess(data)
   }
 

@@ -111,7 +111,10 @@ graph TD;
   checkout-manual-payment --> checkout-typography
   malga-payments-pix --> checkout-manual-payment
   malga-payments-pix --> checkout-modal
+  malga-payments-nupay --> malga-payments-nupay-content
+  malga-payments-nupay --> malga-payments-nupay-iframe
   malga-payments-nupay --> checkout-modal
+  malga-payments-nupay-iframe --> checkout-icon
   style malga-checkout fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

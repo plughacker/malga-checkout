@@ -15,6 +15,7 @@
 
   & > h5 {
     @extend %typography-subtitle1;
+    margin-bottom: var(--malga-checkout-spacing-xxs);
   }
 
   & > ul {

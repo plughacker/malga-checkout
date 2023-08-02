@@ -14,7 +14,7 @@
 | `locale`            | `locale`          |             | `"default" \| "en" \| "en-US" \| "en_US" \| "pt" \| "pt-BR" \| "pt_BR"` | `undefined`                                                                                                                                                                                                    |
 | `merchantId`        | `merchant-id`     |             | `string`                                                                | `undefined`                                                                                                                                                                                                    |
 | `pageConfig`        | --                |             | `MalgaCheckoutFullPage`                                                 | `{     brandUrl: '',     footerDescription: '',     backRoute: '',     delivery: 0,     products: [],     internationalCustomer: false,   }`                                                                   |
-| `paymentMethods`    | --                |             | `MalgaCheckoutFullPaymentMethods`                                       | `{     pix: undefined,     credit: undefined,     boleto: undefined,   }`                                                                                                                                      |
+| `paymentMethods`    | --                |             | `MalgaCheckoutFullPaymentMethods`                                       | `{     pix: undefined,     credit: undefined,     boleto: undefined,     nupay: undefined,   }`                                                                                                                |
 | `publicKey`         | `public-key`      |             | `string`                                                                | `undefined`                                                                                                                                                                                                    |
 | `sandbox`           | `sandbox`         |             | `boolean`                                                               | `false`                                                                                                                                                                                                        |
 | `sessionId`         | `session-id`      |             | `string`                                                                | `undefined`                                                                                                                                                                                                    |
@@ -130,7 +130,10 @@ graph TD;
   checkout-manual-payment --> checkout-typography
   malga-payments-pix --> checkout-manual-payment
   malga-payments-pix --> checkout-modal
+  malga-payments-nupay --> malga-payments-nupay-content
+  malga-payments-nupay --> malga-payments-nupay-iframe
   malga-payments-nupay --> checkout-modal
+  malga-payments-nupay-iframe --> checkout-icon
   malga-checkout-full-footer --> checkout-dropdown
   style malga-checkout-full fill:#f9f,stroke:#333,stroke-width:4px
 ```

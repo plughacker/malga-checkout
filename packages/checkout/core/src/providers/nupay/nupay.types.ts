@@ -1,10 +1,11 @@
 export interface NuPayAttributes {
-  param: string
+  taxValue?: number
+  delayToAutoCancel: number
+  orderUrl: string
 }
 
-export interface PaymentMethodNuPay {
+export interface PaymentMethodNuPay extends NuPayAttributes {
   paymentType: 'nupay'
-  param: string
 }
 
 export interface NuPayConstructor {

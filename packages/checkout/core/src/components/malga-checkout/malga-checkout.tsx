@@ -58,6 +58,7 @@ export class MalgaCheckout {
     pix: undefined,
     credit: undefined,
     boleto: undefined,
+    nupay: undefined,
   }
   @Prop() transactionConfig?: MalgaCheckoutTransaction = {
     statementDescriptor: '',

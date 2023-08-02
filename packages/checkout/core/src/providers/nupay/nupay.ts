@@ -7,6 +7,8 @@ import {
 
 import settings from '../../stores/settings'
 
+import { normalizeTaxValue } from './nupay.utils'
+
 export class NuPay extends BaseProvider {
   readonly nupay: NuPayAttributes
 
@@ -19,9 +21,13 @@ export class NuPay extends BaseProvider {
   }
 
   public getPaymentMethod(): PaymentMethodNuPay {
+    const taxValue = normalizeTaxValue(this.nupay)
+
     return {
       paymentType: 'nupay',
-      param: this.nupay.param,
+      delayToAutoCancel: this.nupay.delayToAutoCancel,
+      orderUrl: this.nupay.orderUrl,
+      ...taxValue,
     }
   }
 }

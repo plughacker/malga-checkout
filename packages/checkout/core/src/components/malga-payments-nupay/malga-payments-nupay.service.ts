@@ -35,14 +35,6 @@ export class MalgaPaymentsNuPayService implements MalgaPayments {
   }
 
   handlePaymentSuccess(data: MalgaPaymentsSuccess) {
-    if (settings.dialogConfig.show) {
-      this.onShowDialog({
-        mode: 'success',
-        amount: data.amount,
-        open: true,
-      })
-    }
-
     this.onPaymentSuccess(data)
   }
 

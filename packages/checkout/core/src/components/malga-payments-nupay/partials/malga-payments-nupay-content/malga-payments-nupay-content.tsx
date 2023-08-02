@@ -1,5 +1,7 @@
-//import { t } from '@malga-checkout/i18n'
+import { t } from '@malga-checkout/i18n'
 import { Component, Host, h, ComponentInterface } from '@stencil/core'
+
+import settings from '../../../../stores/settings'
 
 @Component({
   tag: 'malga-payments-nupay-content',
@@ -9,28 +11,21 @@ export class MalgaPaymentsNuPayContent implements ComponentInterface {
   render() {
     return (
       <Host class={{ 'malga-payments-nupay-content__container': true }}>
-        <h4>Mais rápido, fácil e seguro.</h4>
-        <h5>Novidade</h5>
-        <p>
-          Você pode ter um limite extra para essa compra! Verifique no momento
-          do pagamento se está disponível.
-        </p>
+        <h4>{t('paymentMethods.nupay.content.title', settings.locale)}</h4>
+        <h5>{t('paymentMethods.nupay.content.subtitle', settings.locale)}</h5>
+        <p>{t('paymentMethods.nupay.content.description', settings.locale)}</p>
         <ul>
-          <li>• A compra será finalizada no app do Nubank.</li>
-          <li>• Parcele sua compra no crédito ou pague à vista pelo débito.</li>
-          <li>• Não precisa preencher os dados do seu cartão.</li>
-          <li>
-            • Pode confiar, é seguro. Sua compra é protegida pelas nossas
-            medidas de segurança.
-          </li>
+          <li>• {t('paymentMethods.nupay.stepper.first', settings.locale)}</li>
+          <li>• {t('paymentMethods.nupay.stepper.second', settings.locale)}</li>
+          <li>• {t('paymentMethods.nupay.stepper.third', settings.locale)}</li>
+          <li>• {t('paymentMethods.nupay.stepper.fourth', settings.locale)}</li>
         </ul>
         <small>
-          Para usar essa forma de pagamento, você{' '}
+          {t('paymentMethods.nupay.details.first', settings.locale)}{' '}
           <strong>
-            precisa ser cliente do Nubank e ter limite de crédito ou saldo
-            disponível
+            {t('paymentMethods.nupay.details.second', settings.locale)}
           </strong>{' '}
-          na conta.
+          {t('paymentMethods.nupay.details.third', settings.locale)}
         </small>
       </Host>
     )

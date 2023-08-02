@@ -152,7 +152,9 @@ export interface Pix {
 }
 
 export interface NuPay {
-  param: string
+  taxValue?: number | null
+  delayToAutoCancel: number
+  orderUrl: string
 }
 
 export interface Credit {

@@ -1,5 +1,5 @@
 export interface NuPayAttributes {
-  taxValue?: number
+  taxValue?: number | null
   delayToAutoCancel: number
   orderUrl: string
 }

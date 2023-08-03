@@ -2,11 +2,13 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property         | Attribute | Description | Type                   | Default                               |
 | ---------------- | --------- | ----------- | ---------------------- | ------------------------------------- |
 | `paymentMethods` | --        |             | `PaymentMethodsType[]` | `['credit', 'pix', 'boleto', 'drip']` |
+
 
 ## Events
 
@@ -14,11 +16,12 @@
 | ------------- | ----------- | --------------------------------------------- |
 | `paymentFail` |             | `CustomEvent<{ error: MalgaPaymentsError; }>` |
 
+
 ## Dependencies
 
 ### Used by
 
-- [malga-checkout](../malga-checkout)
+ - [malga-checkout](../malga-checkout)
 
 ### Depends on
 
@@ -31,7 +34,6 @@
 - [malga-payments-drip](../malga-payments-drip)
 
 ### Graph
-
 ```mermaid
 graph TD;
   malga-payments --> malga-payments-credit-saved-cards
@@ -103,6 +105,6 @@ graph TD;
   style malga-payments fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

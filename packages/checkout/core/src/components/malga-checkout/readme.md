@@ -2,22 +2,24 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
-| Property            | Attribute         | Description | Type                                                                    | Default                                                                                                                                                                                  |
-| ------------------- | ----------------- | ----------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `clientId`          | `client-id`       |             | `string`                                                                | `undefined`                                                                                                                                                                              |
-| `debug`             | `debug`           |             | `boolean`                                                               | `false`                                                                                                                                                                                  |
-| `dialogConfig`      | --                |             | `MalgaCheckoutDialog`                                                   | `{ show: true, }`                                                                                                                                                                        |
-| `idempotencyKey`    | `idempotency-key` |             | `string`                                                                | `undefined`                                                                                                                                                                              |
-| `isLoading`         | `is-loading`      |             | `boolean`                                                               | `false`                                                                                                                                                                                  |
-| `locale`            | `locale`          |             | `"default" \| "en" \| "en-US" \| "en_US" \| "pt" \| "pt-BR" \| "pt_BR"` | `undefined`                                                                                                                                                                              |
-| `merchantId`        | `merchant-id`     |             | `string`                                                                | `undefined`                                                                                                                                                                              |
-| `paymentMethods`    | --                |             | `MalgaCheckoutPaymentMethods`                                           | `{ pix: undefined, credit: undefined, boleto: undefined, nupay: undefined, }`                                                                                                            |
-| `publicKey`         | `public-key`      |             | `string`                                                                | `undefined`                                                                                                                                                                              |
-| `sandbox`           | `sandbox`         |             | `boolean`                                                               | `false`                                                                                                                                                                                  |
-| `sessionId`         | `session-id`      |             | `string`                                                                | `undefined`                                                                                                                                                                              |
-| `transactionConfig` | --                |             | `MalgaCheckoutTransaction`                                              | `{ statementDescriptor: '', amount: 0, description: '', orderId: '', customerId: '', currency: 'BRL', capture: false, customer: null, fraudAnalysis: null, paymentFlowMetadata: null, }` |
+| Property            | Attribute         | Description | Type                                                                    | Default                                                                                                                                                                                                                                                  |
+| ------------------- | ----------------- | ----------- | ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `clientId`          | `client-id`       |             | `string`                                                                | `undefined`                                                                                                                                                                                                                                              |
+| `debug`             | `debug`           |             | `boolean`                                                               | `false`                                                                                                                                                                                                                                                  |
+| `dialogConfig`      | --                |             | `MalgaCheckoutDialog`                                                   | `{     show: true,   }`                                                                                                                                                                                                                                  |
+| `idempotencyKey`    | `idempotency-key` |             | `string`                                                                | `undefined`                                                                                                                                                                                                                                              |
+| `isLoading`         | `is-loading`      |             | `boolean`                                                               | `false`                                                                                                                                                                                                                                                  |
+| `locale`            | `locale`          |             | `"default" \| "en" \| "en-US" \| "en_US" \| "pt" \| "pt-BR" \| "pt_BR"` | `undefined`                                                                                                                                                                                                                                              |
+| `merchantId`        | `merchant-id`     |             | `string`                                                                | `undefined`                                                                                                                                                                                                                                              |
+| `paymentMethods`    | --                |             | `MalgaCheckoutPaymentMethods`                                           | `{     pix: undefined,     credit: undefined,     boleto: undefined,     nupay: undefined,   }`                                                                                                                                                          |
+| `publicKey`         | `public-key`      |             | `string`                                                                | `undefined`                                                                                                                                                                                                                                              |
+| `sandbox`           | `sandbox`         |             | `boolean`                                                               | `false`                                                                                                                                                                                                                                                  |
+| `sessionId`         | `session-id`      |             | `string`                                                                | `undefined`                                                                                                                                                                                                                                              |
+| `transactionConfig` | --                |             | `MalgaCheckoutTransaction`                                              | `{     statementDescriptor: '',     amount: 0,     description: '',     orderId: '',     customerId: '',     currency: 'BRL',     capture: false,     customer: null,     fraudAnalysis: null,     splitRules: null,     paymentFlowMetadata: null,   }` |
+
 
 ## Events
 
@@ -26,6 +28,7 @@
 | `paymentFailed`       |             | `CustomEvent<{ error: MalgaPaymentsError; }>`         |
 | `paymentSessionFetch` |             | `CustomEvent<{ paymentSession: SessionNormalized; }>` |
 | `paymentSuccess`      |             | `CustomEvent<{ data: MalgaPaymentsSuccess; }>`        |
+
 
 ## Dependencies
 
@@ -37,15 +40,12 @@
 - [malga-payments-credit](../malga-payments-credit)
 - [malga-payments-boleto](../malga-payments-boleto)
 - [malga-payments-pix](../malga-payments-pix)
-  <<<<<<< HEAD
-- # [malga-payments-nupay](../malga-payments-nupay)
+- [malga-payments-nupay](../malga-payments-nupay)
 - [malga-payments-drip](../malga-payments-drip)
-  > > > > > > > release/drip-and-split
 - checkout-button
 - checkout-icon
 
 ### Graph
-
 ```mermaid
 graph TD;
   malga-checkout --> checkout-loader
@@ -127,6 +127,6 @@ graph TD;
   style malga-checkout fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

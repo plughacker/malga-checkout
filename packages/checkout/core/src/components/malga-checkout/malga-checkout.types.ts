@@ -2,7 +2,8 @@ import { Customer } from '../../providers/base-provider'
 import { BoletoAttributes } from '../../providers/boleto'
 import { NuPayAttributes } from '../../providers/nupay'
 import { PixAttributes } from '../../providers/pix'
-import { FraudAnalysis } from '../../services/charges'
+import { DripAttributes } from '../../providers/drip'
+import { FraudAnalysis, SplitRule } from '../../services/charges'
 
 export interface Credit {
   installments: {
@@ -25,6 +26,7 @@ export interface MalgaCheckoutTransaction {
   customerId?: string
   currency?: string
   fraudAnalysis?: FraudAnalysis
+  splitRules?: SplitRule[]
   paymentFlowMetadata?: Record<string, unknown>
 }
 
@@ -33,6 +35,7 @@ export interface MalgaCheckoutPaymentMethods {
   credit?: Credit
   boleto?: BoletoAttributes
   nupay?: NuPayAttributes
+  drip?: DripAttributes
 }
 
 export interface MalgaCheckoutDialog {

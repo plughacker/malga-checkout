@@ -5,9 +5,11 @@ export const isEmptyObject = (data: unknown) => {
 }
 
 export const clearEmptyObjectProperties = (data: unknown) => {
-  const clearedObject = Object.entries(data).filter(
-    ([, value]) => value && !isEmptyObject(value),
-  )
+  const clearedObject = Object.entries(data).filter(([, value]) => {
+    if (typeof value === 'boolean' && value === true) return true
+
+    return value && !isEmptyObject(value)
+  })
 
   return clearedObject
 }

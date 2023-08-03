@@ -36,6 +36,8 @@ const handleSavedCardValidations = () => {
   return true
 }
 
+const handleDripValidations = () => false
+
 const handlePixValidations = () => false
 
 const handleBoletoValidations = () => false
@@ -52,6 +54,7 @@ export const handleDisablePayButton = () => {
     boleto: handleBoletoValidations,
     default: handleUnselectPaymentMethodValidations,
     nupay: handleNuPayValidations,
+    drip: handleDripValidations,
   }
 
   if (payment.isSelectedSavedCard) {

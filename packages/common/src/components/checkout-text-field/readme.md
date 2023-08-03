@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property               | Attribute                | Description | Type                                                                                                                                                                                                                                                                                                                                                                                     | Default     |
@@ -31,7 +30,6 @@
 | `type`                 | `type`                   |             | `"date" \| "email" \| "number" \| "password" \| "search" \| "tel" \| "text" \| "time" \| "url"`                                                                                                                                                                                                                                                                                          | `'text'`    |
 | `value`                | `value`                  |             | `number \| string`                                                                                                                                                                                                                                                                                                                                                                       | `''`        |
 
-
 ## Events
 
 | Event     | Description | Type                                        |
@@ -41,7 +39,6 @@
 | `focused` |             | `CustomEvent<FocusEvent>`                   |
 | `inputed` |             | `CustomEvent<KeyboardEvent>`                |
 
-
 ## Dependencies
 
 ### Depends on
@@ -50,6 +47,7 @@
 - [checkout-icon](../checkout-icon)
 
 ### Graph
+
 ```mermaid
 graph TD;
   checkout-text-field --> checkout-typography
@@ -57,6 +55,6 @@ graph TD;
   style checkout-text-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

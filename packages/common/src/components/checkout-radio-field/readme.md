@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property               | Attribute                | Description | Type                                                                                                                                                                                                                                                                                                                                                                                     | Default     |
@@ -16,7 +15,6 @@
 | `label`                | `label`                  |             | `string`                                                                                                                                                                                                                                                                                                                                                                                 | `undefined` |
 | `value`                | `value`                  |             | `number \| string`                                                                                                                                                                                                                                                                                                                                                                       | `''`        |
 
-
 ## Events
 
 | Event     | Description | Type                                         |
@@ -25,7 +23,6 @@
 | `clicked` |             | `CustomEvent<MouseEvent>`                    |
 | `inputed` |             | `CustomEvent<KeyboardEvent>`                 |
 
-
 ## Dependencies
 
 ### Depends on
@@ -33,12 +30,13 @@
 - [checkout-icon](../checkout-icon)
 
 ### Graph
+
 ```mermaid
 graph TD;
   checkout-radio-field --> checkout-icon
   style checkout-radio-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

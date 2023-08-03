@@ -3,6 +3,7 @@ export type MalgaPaymentsPaymentMethods =
   | MalgaPaymentsPaymentMethodBoleto
   | MalgaPaymentsPaymentMethodCard
   | MalgaPaymentsPaymentMethodNuPay
+  | MalgaPaymentsPaymentMethodDrip
 
 export interface MalgaPaymentsPaymentMethodPix {
   paymentType: 'pix'
@@ -25,4 +26,9 @@ export interface MalgaPaymentsPaymentMethodCard {
 
 export interface MalgaPaymentsPaymentMethodNuPay {
   paymentType: 'nupay'
+}
+
+export interface MalgaPaymentsPaymentMethodDrip {
+  paymentType: 'drip'
+  paymentUrl: string
 }

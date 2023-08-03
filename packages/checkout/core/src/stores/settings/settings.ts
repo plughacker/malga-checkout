@@ -20,6 +20,7 @@ export const { state, onChange } = createStore<SettingsState>({
     credit: undefined,
     boleto: undefined,
     nupay: undefined,
+    drip: undefined,
   },
   transactionConfig: {
     statementDescriptor: '',
@@ -31,6 +32,7 @@ export const { state, onChange } = createStore<SettingsState>({
     capture: false,
     customer: null,
     paymentFlowMetadata: null,
+    splitRules: null,
   },
 })
 

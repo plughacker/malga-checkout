@@ -28,6 +28,7 @@ export type CheckoutIconNames =
   | 'visa'
   | 'globe'
   | 'nubank'
+  | 'drip'
   | 'close'
 
 export type CheckoutIconsObject = Record<CheckoutIconNames, string>

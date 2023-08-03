@@ -6,12 +6,15 @@ import { PaymentMethodBoleto } from '../../providers/boleto'
 import { PaymentMethodCard } from '../../providers/card'
 import { PaymentMethodPix } from '../../providers/pix'
 import { PaymentMethodNuPay } from '../../providers/nupay'
+import { PaymentMethodDrip } from '../../providers/drip'
+import { SplitRule } from '../charges/charges.types'
 
 export type PaymentMethod =
   | PaymentMethodBoleto
   | PaymentMethodCard
   | PaymentMethodPix
   | PaymentMethodNuPay
+  | PaymentMethodDrip
 
 export interface SessionNormalized extends Session {
   checkoutPaymentMethods: MalgaCheckoutPaymentMethods
@@ -33,6 +36,7 @@ export interface Session {
   dueDate: string
   description?: string
   statementDescriptor?: string
+  splitRules?: SplitRule[]
   items: {
     name: string
     description?: string

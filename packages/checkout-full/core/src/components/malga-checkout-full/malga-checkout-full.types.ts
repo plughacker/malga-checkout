@@ -157,6 +157,25 @@ export interface NuPay {
   orderUrl: string
 }
 
+interface DripItem {
+  id: string
+  quantity: number
+  title: string
+  unitPrice: number
+}
+
+interface DripBrowser {
+  ipAddress: string
+  browserFingerprint: string
+}
+
+export interface Drip {
+  items?: DripItem[]
+  browser?: DripBrowser
+  successRedirectUrl?: string
+  cancelRedirectUrl?: string
+}
+
 export interface Credit {
   installments: {
     show: boolean
@@ -198,20 +217,12 @@ export interface Product {
   risk: string
 }
 
-export interface Product {
-  name: string
-  amount: number
-  quantity: number
-  description: string
-  sku: string
-  risk: string
-}
-
 export interface MalgaCheckoutFullPaymentMethods {
   pix?: Pix
   credit?: Credit
   boleto?: Boleto
   nupay?: NuPay
+  drip?: Drip
 }
 
 export interface MalgaCheckoutFullPage {
@@ -248,6 +259,7 @@ export interface MalgaCheckoutFullTransaction {
   currency?: string
   fraudAnalysis?: MalgaCheckoutFullFraudAnalysis
   paymentFlowMetadata?: Record<string, unknown>
+  splitRules?: MalgaCheckoutFullSplitRule[]
 }
 
 export interface MalgaCheckoutFullDialog {
@@ -329,7 +341,7 @@ export interface MalgaCheckoutFullSession {
   settings: MalgaCheckoutFullUserSettings
 }
 
-export type PaymentMethod = Boleto | Credit | Pix
+export type PaymentMethod = Boleto | Credit | Pix | Drip
 
 export interface MalgaCheckoutFullUserSettings {
   id: string
@@ -347,4 +359,16 @@ export interface MalgaCheckoutFullUserSettings {
   clientId: string
   documentNumber: string
   language: string
+}
+
+export interface MalgaCheckoutFullSplitRule {
+  sellerId: string
+  percentage?: number
+  amount?: number
+  processingFee: boolean
+  liable: boolean
+  fares?: {
+    mdr: number
+    fee: number
+  }
 }

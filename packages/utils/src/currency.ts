@@ -44,3 +44,9 @@ export const formatCurrency = (
 
   return currency.format(currentValue)
 }
+
+export const parseAmountDecimalToInteger = (amount: number) => {
+  const parsedAmount = amount * 100
+
+  return parsedAmount.toFixed()
+}

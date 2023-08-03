@@ -54,6 +54,7 @@ export class MalgaCheckoutFull implements ComponentInterface {
     pix: undefined,
     credit: undefined,
     boleto: undefined,
+    nupay: undefined,
     drip: undefined,
   }
   @Prop() pageConfig?: MalgaCheckoutFullPage = {

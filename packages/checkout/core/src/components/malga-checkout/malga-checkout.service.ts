@@ -11,6 +11,7 @@ import { MalgaPaymentsSuccess } from '../../types/malga-payments-success.types'
 import { MalgaPaymentsError } from '../../types/malga-payments-error.types'
 import { MalgaPaymentsSessionService } from '../malga-payments-session/malga-payments-session.service'
 import { Customers } from '../../services/customers'
+import { MalgaPaymentsNuPayService } from '../malga-payments-nupay/malga-payments-nupay.service'
 
 export class MalgaCheckoutService {
   readonly onPaymentSuccess: (
@@ -41,6 +42,7 @@ export class MalgaCheckoutService {
     const credit = this.handleCreditPaymentData()
 
     const paymentMethodsData = {
+      nupay: settings.paymentMethods.nupay,
       drip: settings.paymentMethods.drip,
       pix: settings.paymentMethods.pix,
       boleto: settings.paymentMethods.boleto,
@@ -59,6 +61,7 @@ export class MalgaCheckoutService {
       pix: MalgaPaymentsPixService,
       credit: MalgaPaymentsCreditService,
       boleto: MalgaPaymentsBoletoService,
+      nupay: MalgaPaymentsNuPayService,
     }
 
     return (
@@ -137,6 +140,11 @@ export class MalgaCheckoutService {
         paymentCode: '',
         paymentImageUrl: '',
         expirationDate: '',
+      },
+      nupay: {
+        open: false,
+        mode: 'success',
+        amount: 0,
       },
     }
 

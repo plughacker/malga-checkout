@@ -27,6 +27,7 @@ export type CheckoutIconNames =
   | 'mastercard'
   | 'visa'
   | 'globe'
+  | 'nubank'
   | 'drip'
   | 'close'
 

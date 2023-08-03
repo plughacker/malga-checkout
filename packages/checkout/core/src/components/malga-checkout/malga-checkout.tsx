@@ -58,6 +58,7 @@ export class MalgaCheckout {
     pix: undefined,
     credit: undefined,
     boleto: undefined,
+    nupay: undefined,
   }
   @Prop() transactionConfig?: MalgaCheckoutTransaction = {
     statementDescriptor: '',
@@ -214,6 +215,7 @@ export class MalgaCheckout {
             />
           )}
 
+          {this.showCurrentPaymentMethod('nupay') && <malga-payments-nupay />}
           {this.showCurrentPaymentMethod('drip') && <malga-payments-drip />}
 
           <div class={{ 'malga-checkout__submit': true }}>

@@ -151,6 +151,12 @@ export interface Pix {
   expiresIn: number
 }
 
+export interface NuPay {
+  taxValue?: number | null
+  delayToAutoCancel: number
+  orderUrl: string
+}
+
 interface DripItem {
   id: string
   quantity: number
@@ -215,6 +221,7 @@ export interface MalgaCheckoutFullPaymentMethods {
   pix?: Pix
   credit?: Credit
   boleto?: Boleto
+  nupay?: NuPay
   drip?: Drip
 }
 

@@ -105,6 +105,22 @@ export class MalgaPayments implements ComponentInterface {
             </Fragment>
           )}
 
+          {this.showCurrentPaymentMethod('nupay') && (
+            <Fragment>
+              <checkout-radio-field
+                fullWidth
+                label={t('paymentMethods.nupay.title', settings.locale)}
+                value="nupay"
+                endIcon="nubank"
+                isChecked={payment.selectedPaymentMethod === 'nupay'}
+                onClicked={() => this.handlePaymentChange('nupay')}
+              />
+              {payment.selectedPaymentMethod === 'nupay' && (
+                <malga-payments-nupay />
+              )}
+            </Fragment>
+          )}
+
           {this.showCurrentPaymentMethod('drip') && (
             <Fragment>
               <checkout-radio-field

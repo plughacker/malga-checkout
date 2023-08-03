@@ -14,5 +14,6 @@ onChange('selectedPaymentMethod', (value) => {
   state.cvv = ''
   state.cardId = ''
   state.installments = ''
+  state.paymentUrl = ''
   state.isSelectedSavedCard = value.includes('credit-')
 })

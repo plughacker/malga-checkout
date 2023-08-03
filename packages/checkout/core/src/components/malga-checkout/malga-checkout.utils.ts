@@ -42,6 +42,8 @@ const handlePixValidations = () => false
 
 const handleBoletoValidations = () => false
 
+const handleNuPayValidations = () => false
+
 const handleUnselectPaymentMethodValidations = () => true
 
 export const handleDisablePayButton = () => {
@@ -51,6 +53,7 @@ export const handleDisablePayButton = () => {
     pix: handlePixValidations,
     boleto: handleBoletoValidations,
     default: handleUnselectPaymentMethodValidations,
+    nupay: handleNuPayValidations,
     drip: handleDripValidations,
   }
 

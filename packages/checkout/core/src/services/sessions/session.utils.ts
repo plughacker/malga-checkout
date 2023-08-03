@@ -29,6 +29,12 @@ const normalizePaymentMethods = (paymentSession: Session) => {
           interest: currentPaymentMethods.interest,
           fine: currentPaymentMethods.fine,
         }
+      } else if (currentPaymentMethods.paymentType === 'nupay') {
+        previousPaymentMethods['nupay'] = {
+          taxValue: currentPaymentMethods.taxValue,
+          orderUrl: currentPaymentMethods.orderUrl,
+          delayToAutoCancel: currentPaymentMethods.delayToAutoCancel,
+        }
       } else if (currentPaymentMethods.paymentType === 'drip') {
         previousPaymentMethods['drip'] = {
           items: null,

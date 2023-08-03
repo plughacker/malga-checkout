@@ -1,4 +1,5 @@
 export type MalgaPaymentsTransactionsRequests =
+  | MalgaPaymentsTransactionsRequestsNuPay
   | MalgaPaymentsTransactionsRequestsPix
   | MalgaPaymentsTransactionsRequestsBase
 
@@ -24,5 +25,13 @@ export interface MalgaPaymentsTransactionsRequestsPix
     expiresIn: number
     qrCodeData: string
     qrCodeImageUrl: string
+  }
+}
+
+export interface MalgaPaymentsTransactionsRequestsNuPay
+  extends MalgaPaymentsTransactionsRequestsBase {
+  nupay: {
+    expiresIn: number
+    paymentUrl: string
   }
 }

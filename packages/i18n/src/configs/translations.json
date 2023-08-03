@@ -82,6 +82,25 @@
         "paymentConfirmation": "após a confirmação de compra"
       }
     },
+    "nupay": {
+      "title": "Nubank",
+      "content": {
+        "title": "Mais rápido, fácil e seguro.",
+        "subtitle": "Novidade",
+        "description": "Você pode ter um limite extra para essa compra! Verifique no momento do pagamento se está disponível."
+      },
+      "stepper": {
+        "first": "A compra será finalizada no app do Nubank.",
+        "second": "Parcele sua compra no crédito ou pague à vista pelo débito.",
+        "third": "Não precisa preencher os dados do seu cartão.",
+        "fourth": "Pode confiar, é seguro. Sua compra é protegida pelas nossas medidas de segurança."
+      },
+      "details": {
+        "first": "Para usar essa forma de pagamento, você",
+        "second": "precisa ser cliente do Nubank e ter limite de crédito ou saldo disponível",
+        "third": "na conta."
+      }
+    },
     "drip": {
       "title": "PIX parcelado + cashback",
       "descriptions": {
@@ -143,6 +162,9 @@
       "errorMessage": "Não foi possível concluir sua transação, tente novamente."
     },
     "session": {
+      "errorMessage": "Não foi possível concluir sua transação, tente novamente."
+    },
+    "nupay": {
       "errorMessage": "Não foi possível concluir sua transação, tente novamente."
     },
     "success": {

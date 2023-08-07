@@ -29,6 +29,19 @@ const normalizePaymentMethods = (paymentSession: Session) => {
           interest: currentPaymentMethods.interest,
           fine: currentPaymentMethods.fine,
         }
+      } else if (currentPaymentMethods.paymentType === 'nupay') {
+        previousPaymentMethods['nupay'] = {
+          taxValue: currentPaymentMethods.taxValue,
+          orderUrl: currentPaymentMethods.orderUrl,
+          delayToAutoCancel: currentPaymentMethods.delayToAutoCancel,
+        }
+      } else if (currentPaymentMethods.paymentType === 'drip') {
+        previousPaymentMethods['drip'] = {
+          items: null,
+          browser: null,
+          successRedirectUrl: currentPaymentMethods.successRedirectUrl,
+          cancelRedirectUrl: currentPaymentMethods.cancelRedirectUrl,
+        }
       } else {
         previousPaymentMethods['credit'] = {
           installments: {
@@ -53,6 +66,7 @@ const normalizeTransactionConfig = (paymentSession: Session) => ({
   description: paymentSession.description,
   orderId: paymentSession.orderId,
   currency: paymentSession.currency,
+  splitRules: paymentSession.splitRules,
   fraudAnalysis: {
     cart: paymentSession.items.map((item) => ({
       name: item.name,

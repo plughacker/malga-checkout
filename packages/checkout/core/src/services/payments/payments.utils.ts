@@ -14,5 +14,6 @@ export function formatPayData(
     customerId: payload.customerId,
     fraudAnalysis: payload.fraudAnalysis,
     paymentFlow: payload.paymentFlow,
+    splitRules: payload.splitRules,
   }
 }

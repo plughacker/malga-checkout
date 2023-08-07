@@ -1,0 +1,61 @@
+.malga-payments-nupay-iframe__container {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--malga-checkout-spacing-xs);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(29, 31, 42, 0.8);
+  transition: background-color 0.5s ease;
+  z-index: 30;
+  overflow: hidden;
+}
+
+.malga-payments-nupay-iframe__modal {
+  position: relative;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color: var(--malga-checkout-color-accent-light);
+  border-radius: 8px;
+  animation: moveUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+
+  & > iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+  }
+
+  & > button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  @include lg {
+    width: 80%;
+    height: 80%;
+  }
+}
+
+@keyframes moveUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+

@@ -58,6 +58,7 @@ export class MalgaCheckout {
     pix: undefined,
     credit: undefined,
     boleto: undefined,
+    nupay: undefined,
   }
   @Prop() transactionConfig?: MalgaCheckoutTransaction = {
     statementDescriptor: '',
@@ -69,6 +70,7 @@ export class MalgaCheckout {
     capture: false,
     customer: null,
     fraudAnalysis: null,
+    splitRules: null,
     paymentFlowMetadata: null,
   }
   @Prop() isLoading = false
@@ -212,6 +214,9 @@ export class MalgaCheckout {
               }
             />
           )}
+
+          {this.showCurrentPaymentMethod('nupay') && <malga-payments-nupay />}
+          {this.showCurrentPaymentMethod('drip') && <malga-payments-drip />}
 
           <div class={{ 'malga-checkout__submit': true }}>
             <checkout-button

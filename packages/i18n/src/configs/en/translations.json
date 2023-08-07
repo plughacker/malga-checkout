@@ -81,6 +81,37 @@
         "showBarcode": "The Boleto bar code will be display",
         "paymentConfirmation": "after confirmation"
       }
+    },
+    "nupay": {
+      "title": "Nubank",
+      "content": {
+        "title": "Faster, easier, and safer.",
+        "subtitle": "News",
+        "description": "You may have an extra limit for this purchase! Check the app if it is available."
+      },
+      "stepper": {
+        "first": "The purchase will be concluded in the Nubank app.",
+        "second": "Pay in cash by debit or try credit with installments.",
+        "third": "You do not need to fill in your card details.",
+        "fourth": "It's safe. Our security measures protect your purchase."
+      },
+      "details": {
+        "first": "To use this payment method, you",
+        "second": "must have a Nubank account with a credit limit or available balance",
+        "third": "."
+      }
+    },
+    "drip": {
+      "title": "Pix with installments + cashback",
+      "descriptions": {
+        "first": "There are 3 simple steps to have your",
+        "second": "purchase confirmed in 3 installments in PIX, zero interest, cashback",
+        "third": "and depending on your profile, with or without an entry fee."
+      },
+      "installments": {
+        "fifteenDays": "° PIX after 15 days",
+        "thirtyDays": "° PIX after 30 days"
+      }
     }
   },
   "dialogs": {
@@ -127,7 +158,13 @@
     "card": {
       "errorMessage": "It was not possible to process your transaction. Please, try again."
     },
+    "drip": {
+      "errorMessage": "It was not possible to process your transaction. Please, try again."
+    },
     "session": {
+      "errorMessage": "It was not possible to process your transaction. Please, try again."
+    },
+    "nupay": {
       "errorMessage": "It was not possible to process your transaction. Please, try again."
     },
     "success": {

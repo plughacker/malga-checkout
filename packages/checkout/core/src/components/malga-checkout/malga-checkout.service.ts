@@ -6,10 +6,12 @@ import dialog from '../../stores/dialog'
 import { MalgaPaymentsBoletoService } from '../malga-payments-boleto/malga-payments-boleto.service'
 import { MalgaPaymentsCreditService } from '../malga-payments-credit/malga-payments-credit.service'
 import { MalgaPaymentsPixService } from '../malga-payments-pix/malga-payments-pix.service'
+import { MalgaPaymentsDripService } from '../malga-payments-drip/malga-payments-drip.service'
 import { MalgaPaymentsSuccess } from '../../types/malga-payments-success.types'
 import { MalgaPaymentsError } from '../../types/malga-payments-error.types'
 import { MalgaPaymentsSessionService } from '../malga-payments-session/malga-payments-session.service'
 import { Customers } from '../../services/customers'
+import { MalgaPaymentsNuPayService } from '../malga-payments-nupay/malga-payments-nupay.service'
 
 export class MalgaCheckoutService {
   readonly onPaymentSuccess: (
@@ -40,6 +42,8 @@ export class MalgaCheckoutService {
     const credit = this.handleCreditPaymentData()
 
     const paymentMethodsData = {
+      nupay: settings.paymentMethods.nupay,
+      drip: settings.paymentMethods.drip,
       pix: settings.paymentMethods.pix,
       boleto: settings.paymentMethods.boleto,
       credit,
@@ -53,9 +57,11 @@ export class MalgaCheckoutService {
 
   private handlePaymentMethod() {
     const paymentMethods = {
+      drip: MalgaPaymentsDripService,
       pix: MalgaPaymentsPixService,
       credit: MalgaPaymentsCreditService,
       boleto: MalgaPaymentsBoletoService,
+      nupay: MalgaPaymentsNuPayService,
     }
 
     return (
@@ -117,6 +123,11 @@ export class MalgaCheckoutService {
         expirationDate: '',
         expirationTime: 3600,
       },
+      drip: {
+        open: false,
+        mode: 'success',
+        amount: 0,
+      },
       credit: {
         open: false,
         mode: 'success',
@@ -129,6 +140,11 @@ export class MalgaCheckoutService {
         paymentCode: '',
         paymentImageUrl: '',
         expirationDate: '',
+      },
+      nupay: {
+        open: false,
+        mode: 'success',
+        amount: 0,
       },
     }
 

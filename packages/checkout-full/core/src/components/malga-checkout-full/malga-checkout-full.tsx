@@ -31,6 +31,7 @@ import {
   formatPaymentSession,
   formatSuccess,
   formatProducts,
+  formatPaymentMethods,
 } from './malga-checkout-full.utils'
 import { Locale } from '@malga-checkout/i18n/dist/utils'
 import { getCurrentLocale } from '@malga-checkout/i18n'
@@ -53,6 +54,8 @@ export class MalgaCheckoutFull implements ComponentInterface {
     pix: undefined,
     credit: undefined,
     boleto: undefined,
+    nupay: undefined,
+    drip: undefined,
   }
   @Prop() pageConfig?: MalgaCheckoutFullPage = {
     brandUrl: '',
@@ -72,6 +75,7 @@ export class MalgaCheckoutFull implements ComponentInterface {
     capture: false,
     fraudAnalysis: null,
     paymentFlowMetadata: null,
+    splitRules: null,
   }
   @Prop() dialogConfig: MalgaCheckoutFullDialog = {
     show: true,
@@ -193,6 +197,12 @@ export class MalgaCheckoutFull implements ComponentInterface {
     this.language = language
   }
 
+  private handlePaymentMethods = () => {
+    if (this.paymentSession) return this.paymentSession.checkoutPaymentMethods
+
+    return formatPaymentMethods(this.paymentMethods, this.pageConfig.products)
+  }
+
   componentWillLoad() {
     if (!this.sessionId) {
       this.isLoading = false
@@ -217,10 +227,7 @@ export class MalgaCheckoutFull implements ComponentInterface {
     const transactionConfig = this.paymentSession
       ? this.paymentSession.transactionConfig
       : this.transactionConfig
-    const paymentMethods = this.paymentSession
-      ? this.paymentSession.checkoutPaymentMethods
-      : this.paymentMethods
-
+    const paymentMethods = this.handlePaymentMethods()
     const fraudAnalysis = this.handleFraudAnalysis(customer)
 
     return (

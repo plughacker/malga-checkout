@@ -1,0 +1,41 @@
+.malga-payments-nupay-content__container {
+  display: flex;
+  flex-direction: column;
+  color: var(--malga-checkout-color-grey-dark);
+
+  & > h4, h5, ul, ul > li, small, p {
+    @extend %reset;
+  }
+
+  & > h4 {
+    @extend %typography-field;
+    font-weight: 700;
+    margin-bottom: var(--malga-checkout-spacing-default);
+  }
+
+  & > h5 {
+    @extend %typography-subtitle1;
+    margin-bottom: var(--malga-checkout-spacing-xxs);
+  }
+
+  & > ul {
+    margin-bottom: var(--malga-checkout-spacing-sm);
+    list-style-type: none
+  }
+
+  & > p {
+    margin-bottom: var(--malga-checkout-spacing-sm);
+  }
+
+  & > p, & > ul > li {
+    @extend %typography-body1;
+  }
+
+  & > small {
+    @extend %typography-body2;
+
+    & > strong {
+      font-weight: 700;
+    }
+  }
+}

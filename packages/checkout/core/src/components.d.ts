@@ -37,6 +37,22 @@ export namespace Components {
     }
     interface MalgaPaymentsCreditSavedCards {
     }
+    interface MalgaPaymentsDrip {
+    }
+    interface MalgaPaymentsDripContent {
+    }
+    interface MalgaPaymentsDripIframe {
+    }
+    interface MalgaPaymentsDripInstallments {
+        "cashback": string;
+        "installments": { dueDate: string; amount: string }[];
+    }
+    interface MalgaPaymentsNupay {
+    }
+    interface MalgaPaymentsNupayContent {
+    }
+    interface MalgaPaymentsNupayIframe {
+    }
     interface MalgaPaymentsPix {
     }
 }
@@ -77,6 +93,48 @@ declare global {
         prototype: HTMLMalgaPaymentsCreditSavedCardsElement;
         new (): HTMLMalgaPaymentsCreditSavedCardsElement;
     };
+    interface HTMLMalgaPaymentsDripElement extends Components.MalgaPaymentsDrip, HTMLStencilElement {
+    }
+    var HTMLMalgaPaymentsDripElement: {
+        prototype: HTMLMalgaPaymentsDripElement;
+        new (): HTMLMalgaPaymentsDripElement;
+    };
+    interface HTMLMalgaPaymentsDripContentElement extends Components.MalgaPaymentsDripContent, HTMLStencilElement {
+    }
+    var HTMLMalgaPaymentsDripContentElement: {
+        prototype: HTMLMalgaPaymentsDripContentElement;
+        new (): HTMLMalgaPaymentsDripContentElement;
+    };
+    interface HTMLMalgaPaymentsDripIframeElement extends Components.MalgaPaymentsDripIframe, HTMLStencilElement {
+    }
+    var HTMLMalgaPaymentsDripIframeElement: {
+        prototype: HTMLMalgaPaymentsDripIframeElement;
+        new (): HTMLMalgaPaymentsDripIframeElement;
+    };
+    interface HTMLMalgaPaymentsDripInstallmentsElement extends Components.MalgaPaymentsDripInstallments, HTMLStencilElement {
+    }
+    var HTMLMalgaPaymentsDripInstallmentsElement: {
+        prototype: HTMLMalgaPaymentsDripInstallmentsElement;
+        new (): HTMLMalgaPaymentsDripInstallmentsElement;
+    };
+    interface HTMLMalgaPaymentsNupayElement extends Components.MalgaPaymentsNupay, HTMLStencilElement {
+    }
+    var HTMLMalgaPaymentsNupayElement: {
+        prototype: HTMLMalgaPaymentsNupayElement;
+        new (): HTMLMalgaPaymentsNupayElement;
+    };
+    interface HTMLMalgaPaymentsNupayContentElement extends Components.MalgaPaymentsNupayContent, HTMLStencilElement {
+    }
+    var HTMLMalgaPaymentsNupayContentElement: {
+        prototype: HTMLMalgaPaymentsNupayContentElement;
+        new (): HTMLMalgaPaymentsNupayContentElement;
+    };
+    interface HTMLMalgaPaymentsNupayIframeElement extends Components.MalgaPaymentsNupayIframe, HTMLStencilElement {
+    }
+    var HTMLMalgaPaymentsNupayIframeElement: {
+        prototype: HTMLMalgaPaymentsNupayIframeElement;
+        new (): HTMLMalgaPaymentsNupayIframeElement;
+    };
     interface HTMLMalgaPaymentsPixElement extends Components.MalgaPaymentsPix, HTMLStencilElement {
     }
     var HTMLMalgaPaymentsPixElement: {
@@ -90,6 +148,13 @@ declare global {
         "malga-payments-credit": HTMLMalgaPaymentsCreditElement;
         "malga-payments-credit-form": HTMLMalgaPaymentsCreditFormElement;
         "malga-payments-credit-saved-cards": HTMLMalgaPaymentsCreditSavedCardsElement;
+        "malga-payments-drip": HTMLMalgaPaymentsDripElement;
+        "malga-payments-drip-content": HTMLMalgaPaymentsDripContentElement;
+        "malga-payments-drip-iframe": HTMLMalgaPaymentsDripIframeElement;
+        "malga-payments-drip-installments": HTMLMalgaPaymentsDripInstallmentsElement;
+        "malga-payments-nupay": HTMLMalgaPaymentsNupayElement;
+        "malga-payments-nupay-content": HTMLMalgaPaymentsNupayContentElement;
+        "malga-payments-nupay-iframe": HTMLMalgaPaymentsNupayIframeElement;
         "malga-payments-pix": HTMLMalgaPaymentsPixElement;
     }
 }
@@ -132,6 +197,22 @@ declare namespace LocalJSX {
     }
     interface MalgaPaymentsCreditSavedCards {
     }
+    interface MalgaPaymentsDrip {
+    }
+    interface MalgaPaymentsDripContent {
+    }
+    interface MalgaPaymentsDripIframe {
+    }
+    interface MalgaPaymentsDripInstallments {
+        "cashback"?: string;
+        "installments"?: { dueDate: string; amount: string }[];
+    }
+    interface MalgaPaymentsNupay {
+    }
+    interface MalgaPaymentsNupayContent {
+    }
+    interface MalgaPaymentsNupayIframe {
+    }
     interface MalgaPaymentsPix {
         "onPixPaymentFailed"?: (event: CustomEvent<{
     error: MalgaPaymentsError
@@ -144,6 +225,13 @@ declare namespace LocalJSX {
         "malga-payments-credit": MalgaPaymentsCredit;
         "malga-payments-credit-form": MalgaPaymentsCreditForm;
         "malga-payments-credit-saved-cards": MalgaPaymentsCreditSavedCards;
+        "malga-payments-drip": MalgaPaymentsDrip;
+        "malga-payments-drip-content": MalgaPaymentsDripContent;
+        "malga-payments-drip-iframe": MalgaPaymentsDripIframe;
+        "malga-payments-drip-installments": MalgaPaymentsDripInstallments;
+        "malga-payments-nupay": MalgaPaymentsNupay;
+        "malga-payments-nupay-content": MalgaPaymentsNupayContent;
+        "malga-payments-nupay-iframe": MalgaPaymentsNupayIframe;
         "malga-payments-pix": MalgaPaymentsPix;
     }
 }
@@ -157,6 +245,13 @@ declare module "@stencil/core" {
             "malga-payments-credit": LocalJSX.MalgaPaymentsCredit & JSXBase.HTMLAttributes<HTMLMalgaPaymentsCreditElement>;
             "malga-payments-credit-form": LocalJSX.MalgaPaymentsCreditForm & JSXBase.HTMLAttributes<HTMLMalgaPaymentsCreditFormElement>;
             "malga-payments-credit-saved-cards": LocalJSX.MalgaPaymentsCreditSavedCards & JSXBase.HTMLAttributes<HTMLMalgaPaymentsCreditSavedCardsElement>;
+            "malga-payments-drip": LocalJSX.MalgaPaymentsDrip & JSXBase.HTMLAttributes<HTMLMalgaPaymentsDripElement>;
+            "malga-payments-drip-content": LocalJSX.MalgaPaymentsDripContent & JSXBase.HTMLAttributes<HTMLMalgaPaymentsDripContentElement>;
+            "malga-payments-drip-iframe": LocalJSX.MalgaPaymentsDripIframe & JSXBase.HTMLAttributes<HTMLMalgaPaymentsDripIframeElement>;
+            "malga-payments-drip-installments": LocalJSX.MalgaPaymentsDripInstallments & JSXBase.HTMLAttributes<HTMLMalgaPaymentsDripInstallmentsElement>;
+            "malga-payments-nupay": LocalJSX.MalgaPaymentsNupay & JSXBase.HTMLAttributes<HTMLMalgaPaymentsNupayElement>;
+            "malga-payments-nupay-content": LocalJSX.MalgaPaymentsNupayContent & JSXBase.HTMLAttributes<HTMLMalgaPaymentsNupayContentElement>;
+            "malga-payments-nupay-iframe": LocalJSX.MalgaPaymentsNupayIframe & JSXBase.HTMLAttributes<HTMLMalgaPaymentsNupayIframeElement>;
             "malga-payments-pix": LocalJSX.MalgaPaymentsPix & JSXBase.HTMLAttributes<HTMLMalgaPaymentsPixElement>;
         }
     }

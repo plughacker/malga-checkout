@@ -1,5 +1,16 @@
 # @malga-checkout/react
 
+## 1.13.0
+
+### Minor Changes
+
+- [#96](https://github.com/plughacker/malga-checkout/pull/96) [`cbed3f1`](https://github.com/plughacker/malga-checkout/commit/cbed3f1b0f7f052a0ddf3ea43d98cb0cf3d292e4) Thanks [@leonardorpr](https://github.com/leonardorpr)! - Drip, NuPay and Split
+
+### Patch Changes
+
+- Updated dependencies [[`cbed3f1`](https://github.com/plughacker/malga-checkout/commit/cbed3f1b0f7f052a0ddf3ea43d98cb0cf3d292e4)]:
+  - @malga-checkout/core@1.13.0
+
 ## 1.12.0
 
 ### Minor Changes

@@ -7,12 +7,14 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Locale } from "@malga-checkout/i18n/dist/utils";
 import { MalgaCheckoutDialog, MalgaCheckoutPaymentMethods, MalgaCheckoutTransaction } from "./components/malga-checkout/malga-checkout.types";
+import { AppInfo } from "./types/malga-app-info";
 import { SessionNormalized } from "./services/sessions/sessions.types";
 import { MalgaPaymentsSuccess } from "./types/malga-payments-success.types";
 import { MalgaPaymentsError } from "./types/malga-payments-error.types";
 import { PaymentMethods } from "./components/malga-payments/malga-payments.types";
 export namespace Components {
     interface MalgaCheckout {
+        "appInfo"?: AppInfo;
         "clientId"?: string;
         "debug": boolean;
         "dialogConfig"?: MalgaCheckoutDialog;
@@ -160,6 +162,7 @@ declare global {
 }
 declare namespace LocalJSX {
     interface MalgaCheckout {
+        "appInfo"?: AppInfo;
         "clientId"?: string;
         "debug"?: boolean;
         "dialogConfig"?: MalgaCheckoutDialog;

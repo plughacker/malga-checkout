@@ -4,6 +4,7 @@ import {
   MalgaCheckoutTransaction,
   MalgaCheckoutPaymentMethods,
 } from '../../components/malga-checkout/malga-checkout.types'
+import { AppInfo } from '../../types/malga-app-info'
 
 export interface SettingsState {
   clientId: string
@@ -17,4 +18,5 @@ export interface SettingsState {
   dialogConfig: MalgaCheckoutDialog
   paymentMethods: MalgaCheckoutPaymentMethods
   transactionConfig: MalgaCheckoutTransaction
+  appInfo?: AppInfo
 }

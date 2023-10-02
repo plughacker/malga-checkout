@@ -38,6 +38,7 @@ import { handleDisablePayButton } from './malga-checkout.utils'
 import { MalgaPaymentsSuccess } from '../../types/malga-payments-success.types'
 import { MalgaPaymentsError } from '../../types/malga-payments-error.types'
 import { SessionNormalized } from '../../services/sessions/sessions.types'
+import { AppInfo } from '../../types/malga-app-info'
 @Component({
   tag: 'malga-checkout',
   styleUrl: 'malga-checkout.scss',
@@ -74,6 +75,7 @@ export class MalgaCheckout {
     paymentFlowMetadata: null,
   }
   @Prop() isLoading = false
+  @Prop() appInfo?: AppInfo
 
   @Event() paymentSessionFetch?: EventEmitter<{
     paymentSession: SessionNormalized
@@ -140,6 +142,7 @@ export class MalgaCheckout {
     settings.dialogConfig = this.dialogConfig
     settings.paymentMethods = this.paymentMethods
     settings.transactionConfig = this.transactionConfig
+    settings.appInfo = this.appInfo
   }
 
   private handleStoreCurrentPaymentMethod = () => {

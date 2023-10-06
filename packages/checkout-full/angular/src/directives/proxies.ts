@@ -29,6 +29,7 @@ export declare interface MalgaCheckoutFull
     'sandbox',
     'debug',
     'transactionConfig',
+    'appInfo',
   ],
 })
 @Component({
@@ -48,6 +49,7 @@ export declare interface MalgaCheckoutFull
     'sandbox',
     'debug',
     'transactionConfig',
+    'appInfo',
   ],
   outputs: ['transactionSuccess', 'transactionFailed'],
 })

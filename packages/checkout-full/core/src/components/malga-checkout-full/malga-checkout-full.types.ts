@@ -372,3 +372,10 @@ export interface MalgaCheckoutFullSplitRule {
     fee: number
   }
 }
+
+export interface MalgaAppInfo {
+  system?: {
+    name?: string
+    version?: string
+  }
+}

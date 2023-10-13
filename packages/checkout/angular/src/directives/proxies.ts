@@ -28,6 +28,7 @@ export declare interface MalgaCheckout extends Components.MalgaCheckout {}
     'transactionConfig',
     'idempotencyKey',
     'isLoading',
+    'appInfo',
   ],
 })
 @Component({
@@ -47,6 +48,7 @@ export declare interface MalgaCheckout extends Components.MalgaCheckout {}
     'transactionConfig',
     'idempotencyKey',
     'isLoading',
+    'appInfo',
   ],
   outputs: ['paymentSessionFetch', 'paymentSuccess', 'paymentFailed'],
 })

@@ -1,5 +1,14 @@
 # @malga-checkout/vue
 
+## 1.13.1
+
+### Patch Changes
+
+- [#99](https://github.com/plughacker/malga-checkout/pull/99) [`332c869`](https://github.com/plughacker/malga-checkout/commit/332c86919b3d0de29812be15f20e33b6b62b0399) Thanks [@leonardorpr](https://github.com/leonardorpr)! - Adding appInfo
+
+- Updated dependencies [[`332c869`](https://github.com/plughacker/malga-checkout/commit/332c86919b3d0de29812be15f20e33b6b62b0399)]:
+  - @malga-checkout/core@1.13.1
+
 ## 1.13.0
 
 ### Minor Changes

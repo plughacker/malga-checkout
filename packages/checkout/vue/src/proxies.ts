@@ -24,5 +24,6 @@ export const MalgaCheckout = /*@__PURE__*/ defineContainer<JSX.MalgaCheckout>(
     'paymentSuccess',
     'paymentFailed',
     'isLoading',
+    'appInfo',
   ],
 )

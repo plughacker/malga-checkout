@@ -34,6 +34,7 @@ export const { state, onChange } = createStore<SettingsState>({
     paymentFlowMetadata: null,
     splitRules: null,
   },
+  appInfo: undefined,
 })
 
 onChange('idempotencyKey', (value) => {

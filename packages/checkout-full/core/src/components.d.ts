@@ -6,10 +6,11 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Locale } from "@malga-checkout/i18n/dist/utils";
-import { MalgaCheckoutFullChargeError, MalgaCheckoutFullChargeSuccess, MalgaCheckoutFullDialog, MalgaCheckoutFullPage, MalgaCheckoutFullPaymentMethods, MalgaCheckoutFullTransaction } from "./components/malga-checkout-full/malga-checkout-full.types";
+import { MalgaAppInfo, MalgaCheckoutFullChargeError, MalgaCheckoutFullChargeSuccess, MalgaCheckoutFullDialog, MalgaCheckoutFullPage, MalgaCheckoutFullPaymentMethods, MalgaCheckoutFullTransaction } from "./components/malga-checkout-full/malga-checkout-full.types";
 import { MalgaCheckoutFullIdentificationFormValues } from "./components/malga-checkout-full/partials/malga-checkout-full-identification/malga-checkout-full-identification.types";
 export namespace Components {
     interface MalgaCheckoutFull {
+        "appInfo"?: MalgaAppInfo;
         "clientId"?: string;
         "debug": boolean;
         "dialogConfig": MalgaCheckoutFullDialog;
@@ -84,6 +85,7 @@ declare global {
 }
 declare namespace LocalJSX {
     interface MalgaCheckoutFull {
+        "appInfo"?: MalgaAppInfo;
         "clientId"?: string;
         "debug"?: boolean;
         "dialogConfig"?: MalgaCheckoutFullDialog;

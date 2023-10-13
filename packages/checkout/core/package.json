@@ -1,6 +1,6 @@
 {
   "name": "@malga-checkout/core",
-  "version": "1.13.0",
+  "version": "1.13.1",
   "description": "Core components for Malga Checkout",
   "private": false,
   "repository": {
@@ -37,7 +37,8 @@
     "loader/"
   ],
   "scripts": {
-    "build": "stencil build --docs",
+    "build:fix": "node ./scripts/fix-version-file.js",
+    "build": "stencil build --docs && yarn build:fix",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
@@ -67,6 +68,7 @@
     "inputmask": "^5.0.6",
     "matercolors": "^2.3.0",
     "payment": "2.3.0",
+    "platform": "^1.3.6",
     "uuid": "^8.3.2",
     "yup": "^0.32.9"
   },

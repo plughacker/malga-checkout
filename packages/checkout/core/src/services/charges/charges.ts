@@ -1,3 +1,6 @@
+import platform from 'platform'
+import { version } from '../../../package.json'
+
 import { Api } from '../api'
 import { cleanObjectProperties } from '@malga-checkout/utils'
 
@@ -47,6 +50,18 @@ export class Charges {
       ...data,
       paymentMethod: this.provider.getPaymentMethod(),
       paymentSource: await this.provider.getPaymentSource(),
+      appInfo: {
+        ...settings.appInfo,
+        platform: {
+          integrator: 'Malga',
+          name: settings?.appInfo?.platform?.name ?? 'Checkout SDK',
+          version: settings?.appInfo?.platform?.version ?? version,
+        },
+        device: {
+          name: platform.name,
+          version: platform.version,
+        },
+      },
     }
 
     const headers = settings.idempotencyKey

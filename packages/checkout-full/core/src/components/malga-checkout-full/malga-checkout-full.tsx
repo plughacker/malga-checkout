@@ -20,6 +20,7 @@ import {
   Customer,
   MalgaCheckoutFullCustomization,
   MalgaCheckoutFullSessionNormalized,
+  MalgaAppInfo,
 } from './malga-checkout-full.types'
 
 import { MalgaCheckoutFullIdentificationFormValues } from './partials/malga-checkout-full-identification/malga-checkout-full-identification.types'
@@ -36,6 +37,8 @@ import {
 import { Locale } from '@malga-checkout/i18n/dist/utils'
 import { getCurrentLocale } from '@malga-checkout/i18n'
 import { t } from '@malga-checkout/i18n'
+
+import { version } from '../../../package.json'
 
 @Component({
   tag: 'malga-checkout-full',
@@ -80,6 +83,7 @@ export class MalgaCheckoutFull implements ComponentInterface {
   @Prop() dialogConfig: MalgaCheckoutFullDialog = {
     show: true,
   }
+  @Prop() appInfo?: MalgaAppInfo
 
   @Event() transactionSuccess!: EventEmitter<{
     data: MalgaCheckoutFullChargeSuccess
@@ -332,6 +336,10 @@ export class MalgaCheckoutFull implements ComponentInterface {
                     )
                   }}
                   isLoading={this.isLoading}
+                  appInfo={{
+                    ...this.appInfo,
+                    platform: { name: 'Checkout Full SDK', version },
+                  }}
                 />
               </Fragment>
             </checkout-accordion>

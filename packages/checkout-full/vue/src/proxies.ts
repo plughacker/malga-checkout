@@ -22,6 +22,7 @@ export const MalgaCheckoutFull =
       'pageConfig',
       'transactionConfig',
       'dialogConfig',
+      'appInfo',
       'transactionSuccess',
       'transactionFailed',
     ],

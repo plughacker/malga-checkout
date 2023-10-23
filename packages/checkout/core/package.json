@@ -63,6 +63,7 @@
   },
   "dependencies": {
     "@stencil/store": "^1.5.0",
+    "@plughacker/nodejs-packages-card-validator": "1.1.0",
     "axios": "^0.21.1",
     "brazilian-values": "^0.10.1",
     "inputmask": "^5.0.6",

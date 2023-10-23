@@ -1,4 +1,4 @@
-import Payment from 'payment'
+import valid from '@plughacker/nodejs-packages-card-validator'
 
 export const getMaxLengthPerIssuer = (issuer: string) => {
   const maxLengthPerIssuer = {
@@ -15,15 +15,15 @@ export const getMaxLengthPerIssuer = (issuer: string) => {
 }
 
 export const getCurrentIssuer = (number: string) => {
-  const issuer = Payment.fns.cardType(number) || 'unknown'
+  const issuer = valid.number(number).card.type || 'unknown'
 
   return issuer
 }
 
 export const getCardBrand = (firstCardNumbers: string): string => {
   const permittedBrands = [
-    'amex',
-    'dinersclub',
+    'american-express',
+    'diners-club',
     'discover',
     'elo',
     'hipercard',
@@ -31,7 +31,7 @@ export const getCardBrand = (firstCardNumbers: string): string => {
     'visa',
   ]
 
-  const cardBrand = Payment.fns.cardType(firstCardNumbers)
+  const cardBrand = valid.number(firstCardNumbers).card.type
   const isPermittedBrand = permittedBrands.includes(cardBrand)
 
   return isPermittedBrand ? cardBrand : undefined

@@ -41,7 +41,8 @@ export class CheckoutCreditCard implements ComponentInterface {
 
   @Watch('number')
   protected handleWatchFillNumber() {
-    const numberWhiteSpaces = this.issuer === 'amex' ? [4, 11] : [4, 9, 14]
+    const numberWhiteSpaces =
+      this.issuer === 'american-express' ? [4, 11] : [4, 9, 14]
 
     const parsedNumberStringToArray = this.number
       ? this.number.trim().split('')

@@ -2,8 +2,8 @@ import valid from '@plughacker/nodejs-packages-card-validator'
 
 export const getMaxLengthPerIssuer = (issuer: string) => {
   const maxLengthPerIssuer = {
-    amex: 15,
-    dinersclub: 16,
+    'american-express': 15,
+    'diners-club': 16,
     hipercard: 19,
     mastercard: 19,
     visa: 19,
@@ -15,8 +15,9 @@ export const getMaxLengthPerIssuer = (issuer: string) => {
 }
 
 export const getCurrentIssuer = (number: string) => {
-  const issuer = valid.number(number).card.type || 'unknown'
+  console.log('valid.number(number).card.type', valid.number(number).card.type)
 
+  const issuer = valid.number(number).card.type || 'unknown'
   return issuer
 }
 

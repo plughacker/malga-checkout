@@ -48,15 +48,20 @@ export class CheckoutCreditCard implements ComponentInterface {
       ? this.number.trim().split('')
       : []
 
+    console.log({ parsedNumberStringToArray })
+
     const maxLengthPerIssuer = getMaxLengthPerIssuer(this.issuer)
     const totalUnfilledCharacters =
       maxLengthPerIssuer - parsedNumberStringToArray.length
-    const autoFill = Array.from({ length: totalUnfilledCharacters }).fill('•')
 
+    console.log({ maxLengthPerIssuer })
+    const autoFill = Array.from({ length: totalUnfilledCharacters }).fill('•')
+    console.log({ autoFill })
     const cardNumber = [...parsedNumberStringToArray, ...autoFill]
+    console.log({ cardNumber })
     const newCardNumber = cardNumber.reduce((accumulator, current, index) => {
       const number = numberWhiteSpaces.includes(index) ? ' ' : current
-
+      console.log({ accumulator, number })
       return `${accumulator}${number}`
     }, '')
 
@@ -93,7 +98,7 @@ export class CheckoutCreditCard implements ComponentInterface {
   }
 
   componentWillLoad() {
-    this.handleWatchFillNumber()
+    // this.handleWatchFillNumber()
     this.handleWatchFillIssuerAndOptions()
     this.handleWatchExpiry()
     this.handleWatchCvv()
@@ -119,7 +124,7 @@ export class CheckoutCreditCard implements ComponentInterface {
               'checkout-credit-card__card': true,
               [`checkout-credit-card__card--${this.issuer}`]: true,
               'checkout-credit-card__card--flipped':
-                focused === 'cvv' && issuer !== 'amex',
+                focused === 'cvv' && issuer !== 'american-express',
             }}
           >
             <div class="checkout-credit-card__card--front">

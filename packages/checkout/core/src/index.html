@@ -11,57 +11,5 @@
     <script type="module" src="/build/malga-checkout.esm.js"></script>
     <script nomodule src="/build/malga-checkout.js"></script>
   </head>
-  <body>
-    <main>
-      <malga-checkout
-        sandbox="false"
-        public-key="<YOUR_PUBLIC_KEY>"
-        client-id="<YOUR_CLIENT_ID>"
-        merchant-id="<YOUR_MERCHANT_ID>"
-      >
-      </malga-checkout>
-    </main>
-    
-    <script>
-      const malgaCheckout = document.querySelector('malga-checkout')
-    
-      malgaCheckout.paymentMethods = {
-        credit: {
-          installments: {
-            quantity: 1,
-            show: true,
-          },
-          showCreditCard: true
-        },
-      }
-      malgaCheckout.transactionConfig = {
-        statementDescriptor: '#1 Demonstration Malga Checkout',
-        amount: 100,
-        description: '',
-        orderId: '',
-        customerId: '',
-        currency: 'BRL',
-        capture: false,
-        customer: null,
-      }
-    
-      malgaCheckout.dialogConfig={
-        show: true,
-        actionButtonLabel: 'Continuar',
-        errorActionButtonLabel: 'Tentar novamente',
-        successActionButtonLabel: 'Continuar',
-        successRedirectUrl: 'https://www.malga.io/',
-        pixFilledProgressBarColor: "#2FAC9B",
-        pixEmptyProgressBarColor: "#D8DFF0",
-      }
-    
-      malgaCheckout.addEventListener('paymentSuccess', (data) => {
-        // Your specifications here
-      })
-    
-      malgaCheckout.addEventListener('paymentFailed', (error) => {
-        // Your specifications here
-      })
-    </script>
-    </body>
+  <body></body>
 </html>

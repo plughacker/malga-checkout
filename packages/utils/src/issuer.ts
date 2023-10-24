@@ -15,9 +15,9 @@ export const getMaxLengthPerIssuer = (issuer: string) => {
 }
 
 export const getCurrentIssuer = (number: string) => {
-  console.log('valid.number(number).card.type', valid.number(number).card.type)
+  const parsedNumber = number.replace(/•/g, '')
 
-  const issuer = valid.number(number).card.type || 'unknown'
+  const issuer = valid.number(parsedNumber).card.type || 'unknown'
   return issuer
 }
 

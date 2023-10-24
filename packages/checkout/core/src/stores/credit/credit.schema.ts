@@ -38,7 +38,7 @@ export const schema = (locale?: Locale) => {
           if (!value.length) {
             return true
           }
-          console.log(valid.number(value))
+
           return valid.number(value).isValid
         },
       ),

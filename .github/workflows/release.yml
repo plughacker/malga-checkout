@@ -28,13 +28,13 @@ jobs:
           node-version-file: '.nvmrc'
           cache: yarn
 
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
-
       - name: Setup npm auth
         run: |
-          echo "registry=https://registry.npmjs.org" >> ~/.npmrc
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+          echo "@plughacker:registry=https://npm.pkg.github.com" > ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" >> ~/.npmrc
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
 
       - name: PR / Publish
         id: changesets

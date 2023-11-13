@@ -149,7 +149,7 @@ $malga-checkout-credit-card-visa-logo: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD
       }
     }
 
-    &--amex {
+    &--american-express {
       .checkout-credit-card__issuer {
         background-image: url($malga-checkout-credit-card-amex-logo);
         width: 80px;
@@ -161,7 +161,7 @@ $malga-checkout-credit-card-visa-logo: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD
       }
     }
 
-    &--dinersclub {
+    &--diners-club {
       .checkout-credit-card__issuer {
         background-image: url($malga-checkout-credit-card-dinersclub-logo);
         width: 90px;

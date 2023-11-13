@@ -1,5 +1,6 @@
 import * as Yup from 'yup'
-import Payment from 'payment'
+
+import valid from '@plughacker/nodejs-packages-card-validator'
 
 import { t } from '@malga-checkout/i18n'
 import { Locale } from '@malga-checkout/i18n/dist/utils'
@@ -38,7 +39,7 @@ export const schema = (locale?: Locale) => {
             return true
           }
 
-          return Payment.fns.validateCardNumber(value)
+          return valid.number(value).isValid
         },
       ),
     expirationDate: Yup.string()

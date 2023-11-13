@@ -1,6 +1,5 @@
 import { Locale } from '@malga-checkout/i18n/dist/utils'
 import { ValidationError } from 'yup'
-
 import settings from '../settings'
 
 import { state as credit } from './credit'

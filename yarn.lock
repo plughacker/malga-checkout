@@ -9530,13 +9530,6 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
-payment@2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/payment/-/payment-2.3.0.tgz#b2a95e9c3052459647da3926b8b66c553d93098f"
-  integrity sha1-sqlenDBSRZZH2jkmuLZsVT2TCY8=
-  dependencies:
-    qj "~2.0.0"
-
 payment@^2.4.6:
   version "2.4.6"
   resolved "https://registry.yarnpkg.com/payment/-/payment-2.4.6.tgz#a69bfae5ee6edb2210d8c9f7720ee702359a40f5"

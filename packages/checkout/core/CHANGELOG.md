@@ -1,5 +1,11 @@
 # @malga-checkout/core
 
+## 1.14.0
+
+### Minor Changes
+
+- [`b9b0073`](https://github.com/plughacker/malga-checkout/commit/b9b007368f352b73f4979af653404c3ac2916ea6) Thanks [@lariane-guerra](https://github.com/lariane-guerra)! - Change the card validation library
+
 ## 1.13.1
 
 ### Patch Changes

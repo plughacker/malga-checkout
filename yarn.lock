@@ -1964,6 +1964,13 @@
     npmlog "^4.1.2"
     write-file-atomic "^3.0.3"
 
+"@malga/card-validator@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@malga/card-validator/-/card-validator-1.0.1.tgz#81b8377997bff6c15736f68fc0be8a08172ed5b9"
+  integrity sha512-yHyQAEGBY2M6/W5dE6N2Goba3cqKzkAk8eY8uzXvWYN1Yq1F7zTZx7jDStH/LARRPDAT4WRCRIhybh7HCmFURw==
+  dependencies:
+    card-validator "^8.1.1"
+
 "@manypkg/find-root@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@manypkg/find-root/-/find-root-1.1.0.tgz#a62d8ed1cd7e7d4c11d9d52a8397460b5d4ad29f"
@@ -2212,13 +2219,6 @@
   integrity sha512-2v30UzgezzVZNCZlEryr8ujqaFW0EEH0fyuNxz5QdE3rlkCG2SXz8RTCT1V4q7inEI2kd2xTcROlq9OkEvY0TQ==
   dependencies:
     "@octokit/openapi-types" "^7.3.3"
-
-"@plughacker/nodejs-packages-card-validator@1.1.0", "@plughacker/nodejs-packages-card-validator@^1.1.0":
-  version "1.1.0"
-  resolved "https://npm.pkg.github.com/download/@plughacker/nodejs-packages-card-validator/1.1.0/abe46c9be87c4549c31cf0f97b905e13d15c12db#abe46c9be87c4549c31cf0f97b905e13d15c12db"
-  integrity sha512-e+0O6FojWmA6o1BiCu66AUpTaRPYChK5xvc0nW+bCQiIvvR3MmFwJ36tRAC3e+ojSV/JmABg5br0I04jJFYvEw==
-  dependencies:
-    card-validator "^8.1.1"
 
 "@rollup/pluginutils@^5.0.2":
   version "5.0.2"

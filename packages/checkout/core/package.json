@@ -62,8 +62,8 @@
     "stencil-inline-svg": "^1.1.0"
   },
   "dependencies": {
+    "@malga/card-validator": "^1.0.1",
     "@stencil/store": "^1.5.0",
-    "@plughacker/nodejs-packages-card-validator": "1.1.0",
     "axios": "^0.21.1",
     "brazilian-values": "^0.10.1",
     "inputmask": "^5.0.6",

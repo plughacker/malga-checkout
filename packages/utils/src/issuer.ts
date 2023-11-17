@@ -1,4 +1,4 @@
-import valid from '@plughacker/nodejs-packages-card-validator'
+import valid from '@malga/card-validator'
 
 export const getMaxLengthPerIssuer = (issuer: string) => {
   const maxLengthPerIssuer = {

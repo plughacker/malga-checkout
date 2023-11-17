@@ -1,6 +1,6 @@
 import * as Yup from 'yup'
 
-import valid from '@plughacker/nodejs-packages-card-validator'
+import valid from '@malga/card-validator'
 
 import { t } from '@malga-checkout/i18n'
 import { Locale } from '@malga-checkout/i18n/dist/utils'

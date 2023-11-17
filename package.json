@@ -74,8 +74,5 @@
     "lerna": "^4.0.0",
     "lint-staged": "^11.0.0",
     "prettier": "^2.3.1"
-  },
-  "dependencies": {
-    "@plughacker/nodejs-packages-card-validator": "^1.1.0"
   }
 }

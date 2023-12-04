@@ -73,6 +73,7 @@ export class MalgaCheckout {
     fraudAnalysis: null,
     splitRules: null,
     paymentFlowMetadata: null,
+    recurrence: null,
   }
   @Prop() isLoading = false
   @Prop() appInfo?: AppInfo

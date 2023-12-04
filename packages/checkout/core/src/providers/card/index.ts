@@ -4,4 +4,5 @@ export {
   CardFields,
   PaymentSourceCard,
   PaymentMethodCard,
+  Recurrence
 } from './card.types'

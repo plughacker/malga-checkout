@@ -15,6 +15,8 @@ import {
   handleTokenizationFlow,
 } from './card.utils'
 
+import settings from '../../stores/settings'
+
 export class Card extends BaseProvider {
   readonly card: CardAttributes
 
@@ -29,6 +31,7 @@ export class Card extends BaseProvider {
       installments: parseInstallments(
         this.card['installments' as keyof CardForm],
       ),
+      recurrence: settings.transactionConfig.recurrence,
     }
   }
 

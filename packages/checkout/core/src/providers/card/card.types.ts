@@ -26,7 +26,14 @@ export interface PaymentSourceCard {
   cardCvv: string
 }
 
+export enum Recurrence {
+  INITIAL = 'initial',
+  SUBSEQUENT = 'subsequent',
+  UNSCHEDULED = 'unscheduled'
+}
+
 export interface PaymentMethodCard {
   paymentType: 'credit' | 'debit'
   installments: number
+  recurrence?: Recurrence
 }

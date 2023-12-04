@@ -4,6 +4,7 @@ import { NuPayAttributes } from '../../providers/nupay'
 import { PixAttributes } from '../../providers/pix'
 import { DripAttributes } from '../../providers/drip'
 import { FraudAnalysis, SplitRule } from '../../services/charges'
+import { Recurrence } from '../../providers/card'
 
 export interface Credit {
   installments: {
@@ -28,6 +29,7 @@ export interface MalgaCheckoutTransaction {
   fraudAnalysis?: FraudAnalysis
   splitRules?: SplitRule[]
   paymentFlowMetadata?: Record<string, unknown>
+  recurrence?: Recurrence
 }
 
 export interface MalgaCheckoutPaymentMethods {

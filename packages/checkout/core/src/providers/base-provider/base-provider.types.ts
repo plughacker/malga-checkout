@@ -8,8 +8,8 @@ export interface Customer {
   phoneNumber: string
   document: {
     type: string
-    number: string
-    country: string
+    number?: string
+    country?: string
   }
   address?: {
     zipCode: string

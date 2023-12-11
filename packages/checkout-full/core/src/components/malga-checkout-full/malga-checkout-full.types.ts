@@ -260,6 +260,7 @@ export interface MalgaCheckoutFullTransaction {
   fraudAnalysis?: MalgaCheckoutFullFraudAnalysis
   paymentFlowMetadata?: Record<string, unknown>
   splitRules?: MalgaCheckoutFullSplitRule[]
+  providerReferenceKey?: string
 }
 
 export interface MalgaCheckoutFullDialog {

@@ -17,6 +17,7 @@ export interface CreateChargeData {
   fraudAnalysis?: FraudAnalysis
   paymentFlow?: Record<string, unknown>
   splitRules?: SplitRule[]
+  providerReferenceKey?: string
 }
 
 export interface FraudAnalysisCart {

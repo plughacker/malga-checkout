@@ -28,6 +28,7 @@ export interface MalgaCheckoutTransaction {
   fraudAnalysis?: FraudAnalysis
   splitRules?: SplitRule[]
   paymentFlowMetadata?: Record<string, unknown>
+  providerReferenceKey?: string
 }
 
 export interface MalgaCheckoutPaymentMethods {

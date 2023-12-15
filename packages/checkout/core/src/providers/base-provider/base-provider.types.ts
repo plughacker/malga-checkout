@@ -6,7 +6,7 @@ export interface Customer {
   name: string
   email: string
   phoneNumber: string
-  document: {
+  document?: {
     type: string
     number?: string
     country?: string

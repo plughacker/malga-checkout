@@ -38,6 +38,7 @@ export class Charges {
       capture: settings.transactionConfig.capture,
       sessionId: settings.sessionId,
       splitRules: settings.transactionConfig.splitRules,
+      providerReferenceKey: settings.transactionConfig.providerReferenceKey,
       fraudAnalysis,
       ...(settings.transactionConfig.paymentFlowMetadata && {
         paymentFlow: {

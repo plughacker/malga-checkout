@@ -6,10 +6,10 @@ export interface Customer {
   name: string
   email: string
   phoneNumber: string
-  document: {
+  document?: {
     type: string
-    number: string
-    country: string
+    number?: string
+    country?: string
   }
   address?: {
     zipCode: string
@@ -27,10 +27,10 @@ export interface CustomerPayload {
   name: string
   email: string
   phoneNumber: string
-  document: {
+  document?: {
     type: string
-    number: string
-    country: string
+    number?: string
+    country?: string
   }
   address?: {
     country: string

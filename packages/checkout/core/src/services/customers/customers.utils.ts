@@ -33,6 +33,14 @@ export const formatCustomerAddress = (
 export const formatCustomerDocument = (
   customerDocument?: Customer['document'],
 ) => {
+  if (!customerDocument || customerDocument.type === 'noDocument') {
+    return {
+      document: {
+        type: 'noDocument',
+      },
+    }
+  }
+
   const isBrazilianDocument = ['cpf', 'cnpj'].includes(
     customerDocument.type.toLowerCase(),
   )

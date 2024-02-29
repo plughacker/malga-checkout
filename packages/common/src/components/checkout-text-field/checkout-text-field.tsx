@@ -159,8 +159,8 @@ export class CheckoutTextField implements ComponentInterface {
               onBlur={this.onBlur}
               onFocus={this.onFocus}
               onChange={this.onChange}
-              autoComplete="off"
-              autocomplete="off"
+              autoComplete="on"
+              autocomplete="on"
             />
             <checkout-typography
               tag="label"

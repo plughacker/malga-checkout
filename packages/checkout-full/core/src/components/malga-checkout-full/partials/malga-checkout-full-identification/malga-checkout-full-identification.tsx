@@ -204,7 +204,6 @@ export class MalgaCheckoutFullIdentification {
   }
 
   private handleSubmitForm = () => {
-    console.log('this', this.formValues)
     this.submitForm.emit()
   }
 

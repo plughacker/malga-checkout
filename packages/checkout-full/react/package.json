@@ -53,11 +53,7 @@
     "typescript": "^4.3.4"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@malga-checkout-full/core": "1.15.0"
-=======
-    "@malga-checkout-full/core": "1.14.1"
->>>>>>> main
   },
   "peerDependencies": {
     "react": "^16.7.0",

@@ -45,11 +45,7 @@
     "dist/"
   ],
   "dependencies": {
-<<<<<<< HEAD
     "@malga-checkout/core": "1.15.0",
-=======
-    "@malga-checkout/core": "1.14.1",
->>>>>>> main
     "tslib": "^1.9.3"
   },
   "peerDependencies": {

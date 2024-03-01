@@ -1,11 +1,7 @@
 {
   "name": "@malga-checkout/react",
   "sideEffects": false,
-<<<<<<< HEAD
   "version": "1.15.0",
-=======
-  "version": "1.14.1",
->>>>>>> main
   "description": "React specific wrapper for Malga Checkout core components",
   "private": false,
   "repository": {

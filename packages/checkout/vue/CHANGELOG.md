@@ -1,5 +1,15 @@
 # @malga-checkout/vue
 
+## 1.15.0
+
+### Minor Changes
+
+- [`dc5873e`](https://github.com/plughacker/malga-checkout/commit/dc5873e1361e604ca6a4fca4f7ffe6d06508f4d0) Thanks [@filipperodrigues](https://github.com/filipperodrigues)! - Added providerReferenceKey and changed customer API to allow null document
+
+### Patch Changes
+
+- Updated dependencies [[`dc5873e`](https://github.com/plughacker/malga-checkout/commit/dc5873e1361e604ca6a4fca4f7ffe6d06508f4d0)]:
+  - @malga-checkout/core@1.15.0
 ## 1.14.1
 
 ### Patch Changes

@@ -38,7 +38,11 @@
     "dist/"
   ],
   "dependencies": {
+<<<<<<< HEAD
     "@malga-checkout-full/core": "1.15.0"
+=======
+    "@malga-checkout-full/core": "1.14.1"
+>>>>>>> main
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",

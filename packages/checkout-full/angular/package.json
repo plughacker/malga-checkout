@@ -46,7 +46,11 @@
   ],
   "dependencies": {
     "tslib": "^1.9.3",
+<<<<<<< HEAD
     "@malga-checkout-full/core": "1.15.0"
+=======
+    "@malga-checkout-full/core": "1.14.1"
+>>>>>>> main
   },
   "peerDependencies": {
     "@angular-devkit/core": "^7.2.1",

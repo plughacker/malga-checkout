@@ -1,6 +1,10 @@
 {
   "name": "@malga-checkout-full/core",
+<<<<<<< HEAD
   "version": "1.15.0",
+=======
+  "version": "1.14.1",
+>>>>>>> main
   "description": "Core components for Malga Checkout Full",
   "private": false,
   "repository": {

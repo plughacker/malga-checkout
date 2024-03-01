@@ -1,5 +1,11 @@
 # @malga-checkout/core
 
+## 1.15.1
+
+### Patch Changes
+
+- [#116](https://github.com/plughacker/malga-checkout/pull/116) [`dbc976e`](https://github.com/plughacker/malga-checkout/commit/dbc976e22c3f23fd1fa73673da630451f56a3dd6) Thanks [@lariane-guerra](https://github.com/lariane-guerra)! - Resolved the issue involving browser autocomplete.
+
 ## 1.15.0
 
 ### Minor Changes

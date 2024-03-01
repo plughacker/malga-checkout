@@ -95,8 +95,7 @@ export class MalgaCheckoutFullIdentification {
     this.allFieldIsValidated = !filteredValidFieldValues.length
   }
 
-  private handleFieldFocused = (field: string) => () => {
-    this.handleChangeValidField({ field, value: null })
+  private handleFieldFocused = () => () => {
     this.checkValidatedField()
   }
 
@@ -236,7 +235,7 @@ export class MalgaCheckoutFullIdentification {
           onInputed={this.handleFieldBlurred('name')}
           onChanged={this.handleFieldChange('name')}
           onBlurred={this.handleFieldBlurred('name')}
-          onFocused={this.handleFieldFocused('name')}
+          onFocused={this.handleFieldFocused()}
           hasValidation={this.validFields.name !== null}
           hasError={!!this.validFields.name}
           fullWidth
@@ -253,7 +252,7 @@ export class MalgaCheckoutFullIdentification {
           onInputed={this.handleFieldBlurred('email')}
           onChanged={this.handleFieldChange('email')}
           onBlurred={this.handleFieldBlurred('email')}
-          onFocused={this.handleFieldFocused('email')}
+          onFocused={this.handleFieldFocused()}
           hasValidation={this.validFields.email !== null}
           hasError={!!this.validFields.email}
           fullWidth
@@ -270,7 +269,7 @@ export class MalgaCheckoutFullIdentification {
           onInputed={this.handleFieldBlurred('phoneNumber')}
           onChanged={this.handleFieldChange('phoneNumber')}
           onBlurred={this.handleFieldBlurred('phoneNumber')}
-          onFocused={this.handleFieldFocused('phoneNumber')}
+          onFocused={this.handleFieldFocused()}
           hasValidation={this.validFields.phoneNumber !== null}
           hasError={!!this.validFields.phoneNumber}
           fullWidth
@@ -308,7 +307,7 @@ export class MalgaCheckoutFullIdentification {
                   onChanged={this.handleChangeDocumentCountry}
                   onInputed={this.handleFieldBlurred('documentCountry')}
                   onBlurred={this.handleFieldBlurred('documentCountry')}
-                  onFocused={this.handleFieldFocused('documentCountry')}
+                  onFocused={this.handleFieldFocused()}
                   hasError={!!this.validFields.documentCountry}
                   options={documentCountries(this.locale)}
                   fullWidth
@@ -337,7 +336,7 @@ export class MalgaCheckoutFullIdentification {
                       onChanged={this.handleFieldChange('documentType')}
                       onInputed={this.handleFieldBlurred('documentType')}
                       onBlurred={this.handleFieldBlurred('documentType')}
-                      onFocused={this.handleFieldFocused('documentType')}
+                      onFocused={this.handleFieldFocused()}
                       hasError={!!this.validFields.documentType}
                       options={
                         documentTypesByCountries[
@@ -368,7 +367,7 @@ export class MalgaCheckoutFullIdentification {
           onInputed={this.handleFieldBlurred('identification')}
           onChanged={this.handleFieldChange('identification')}
           onBlurred={this.handleFieldBlurred('identification')}
-          onFocused={this.handleFieldFocused('identification')}
+          onFocused={this.handleFieldFocused()}
           hasValidation={this.validFields.identification !== null}
           hasError={!!this.validFields.identification}
           fullWidth
@@ -406,7 +405,7 @@ export class MalgaCheckoutFullIdentification {
           onChanged={this.handleChangeCountryFieldChange}
           onInputed={this.handleFieldBlurred('country')}
           onBlurred={this.handleFieldBlurred('country')}
-          onFocused={this.handleFieldFocused('country')}
+          onFocused={this.handleFieldFocused()}
           hasError={!!this.validFields.country}
           options={countries(this.locale)}
           fullWidth
@@ -431,7 +430,7 @@ export class MalgaCheckoutFullIdentification {
                 onChanged={this.handleZipCodeFieldChange}
                 onInputed={this.handleFieldBlurred('zipCode')}
                 onBlurred={this.handleFieldBlurred('zipCode')}
-                onFocused={this.handleFieldFocused('zipCode')}
+                onFocused={this.handleFieldFocused()}
                 hasValidation={this.validFields.zipCode !== null}
                 hasError={!!this.validFields.zipCode}
                 fullWidth
@@ -464,7 +463,7 @@ export class MalgaCheckoutFullIdentification {
               onChanged={this.handleFieldChange('zipCode')}
               onInputed={this.handleFieldBlurred('zipCode')}
               onBlurred={this.handleFieldBlurred('zipCode')}
-              onFocused={this.handleFieldFocused('zipCode')}
+              onFocused={this.handleFieldFocused()}
               hasValidation={this.validFields.zipCode !== null}
               hasError={!!this.validFields.zipCode}
               fullWidth
@@ -486,7 +485,7 @@ export class MalgaCheckoutFullIdentification {
           onChanged={this.handleFieldChange('street')}
           onInputed={this.handleFieldBlurred('street')}
           onBlurred={this.handleFieldBlurred('street')}
-          onFocused={this.handleFieldFocused('street')}
+          onFocused={this.handleFieldFocused()}
           hasValidation={this.validFields.street !== null}
           hasError={!!this.validFields.street}
           fullWidth
@@ -511,7 +510,7 @@ export class MalgaCheckoutFullIdentification {
               onChanged={this.handleFieldChange('streetNumber')}
               onInputed={this.handleFieldBlurred('streetNumber')}
               onBlurred={this.handleFieldBlurred('streetNumber')}
-              onFocused={this.handleFieldFocused('streetNumber')}
+              onFocused={this.handleFieldFocused()}
               hasValidation={this.validFields.streetNumber !== null}
               hasError={!!this.validFields.streetNumber}
               fullWidth
@@ -534,7 +533,7 @@ export class MalgaCheckoutFullIdentification {
               onChanged={this.handleFieldChange('complement')}
               onInputed={this.handleFieldBlurred('complement')}
               onBlurred={this.handleFieldBlurred('complement')}
-              onFocused={this.handleFieldFocused('complement')}
+              onFocused={this.handleFieldFocused()}
               hasValidation={this.validFields.complement !== null}
               hasError={!!this.validFields.complement}
               fullWidth
@@ -553,7 +552,7 @@ export class MalgaCheckoutFullIdentification {
           onChanged={this.handleFieldChange('district')}
           onInputed={this.handleFieldBlurred('district')}
           onBlurred={this.handleFieldBlurred('district')}
-          onFocused={this.handleFieldFocused('district')}
+          onFocused={this.handleFieldFocused()}
           hasValidation={this.validFields.district !== null}
           hasError={!!this.validFields.district}
           fullWidth
@@ -578,7 +577,7 @@ export class MalgaCheckoutFullIdentification {
               onChanged={this.handleFieldChange('city')}
               onInputed={this.handleFieldBlurred('city')}
               onBlurred={this.handleFieldBlurred('city')}
-              onFocused={this.handleFieldFocused('city')}
+              onFocused={this.handleFieldFocused()}
               hasValidation={this.validFields.city !== null}
               hasError={!!this.validFields.city}
               fullWidth
@@ -603,7 +602,7 @@ export class MalgaCheckoutFullIdentification {
                   onChanged={this.handleFieldChange('state')}
                   onInputed={this.handleFieldBlurred('state')}
                   onBlurred={this.handleFieldBlurred('state')}
-                  onFocused={this.handleFieldFocused('state')}
+                  onFocused={this.handleFieldFocused()}
                   hasError={!!this.validFields.state}
                   options={brazilianStates}
                   fullWidth
@@ -621,7 +620,7 @@ export class MalgaCheckoutFullIdentification {
                   onChanged={this.handleFieldChange('state')}
                   onInputed={this.handleFieldBlurred('state')}
                   onBlurred={this.handleFieldBlurred('state')}
-                  onFocused={this.handleFieldFocused('state')}
+                  onFocused={this.handleFieldFocused()}
                   hasValidation={this.validFields.state !== null}
                   hasError={!!this.validFields.state}
                   fullWidth

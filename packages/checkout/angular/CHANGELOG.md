@@ -1,5 +1,14 @@
 # @malga-checkout/angular
 
+## 1.15.1
+
+### Patch Changes
+
+- [#116](https://github.com/plughacker/malga-checkout/pull/116) [`dbc976e`](https://github.com/plughacker/malga-checkout/commit/dbc976e22c3f23fd1fa73673da630451f56a3dd6) Thanks [@lariane-guerra](https://github.com/lariane-guerra)! - Resolved the issue involving browser autocomplete.
+
+- Updated dependencies [[`dbc976e`](https://github.com/plughacker/malga-checkout/commit/dbc976e22c3f23fd1fa73673da630451f56a3dd6)]:
+  - @malga-checkout/core@1.15.1
+
 ## 1.15.0
 
 ### Minor Changes
@@ -10,6 +19,7 @@
 
 - Updated dependencies [[`dc5873e`](https://github.com/plughacker/malga-checkout/commit/dc5873e1361e604ca6a4fca4f7ffe6d06508f4d0)]:
   - @malga-checkout/core@1.15.0
+
 ## 1.14.1
 
 ### Patch Changes

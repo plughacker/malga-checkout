@@ -43,12 +43,14 @@ export class CheckoutModalPix {
     }
   }
 
-  private handleClipboardButtonLabel = () => {
+  private handleClipboardButtonLabel = (isMobile: boolean) => {
     if (this.clipboardIsClicked) {
       return t('dialogs.pix.clipboardClicked', this.locale)
     }
-
-    return t('dialogs.pix.clipboard', this.locale)
+    if (isMobile) {
+      return t('dialogs.pix.clipboard', this.locale)
+    }
+    return t('dialogs.pix.clipboardDescription', this.locale)
   }
 
   private renderListImportantMessages = () => {
@@ -113,14 +115,15 @@ export class CheckoutModalPix {
                 content={this.qrCodeIdentificator}
               />
               <checkout-clipboard-button
-                label={t('dialogs.pix.clipboardDescription', this.locale)}
+                label={this.handleClipboardButtonLabel(false)}
                 clipboardContent={this.qrCodeIdentificator}
+                onClick={() => this.handleClickClipboard()}
               />
             </div>
           </div>
           <div class={{ 'checkout-modal-pix__clipboard-button-mobile': true }}>
             <checkout-button
-              label={this.handleClipboardButtonLabel()}
+              label={this.handleClipboardButtonLabel(true)}
               clipboardContent={this.qrCodeIdentificator}
               onClicked={() => this.handleClickClipboard()}
             />

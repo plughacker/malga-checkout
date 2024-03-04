@@ -1,5 +1,13 @@
-import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
-import { formatDate, formatCurrency, parseDate } from '@malga-checkout/utils'
+import {
+  Component,
+  Host,
+  h,
+  Prop,
+  Event,
+  State,
+  EventEmitter,
+} from '@stencil/core'
+import { formatCurrency, parseDate, formatDate } from '@malga-checkout/utils'
 import { Locale } from '@malga-checkout/i18n/dist/utils'
 import { t } from '@malga-checkout/i18n'
 
@@ -19,6 +27,8 @@ export class CheckoutModalBoleto {
   @Prop() hasSuccessRedirectUrl?: boolean
   @Prop() isSession?: boolean
 
+  @State() clipboardIsClicked = false
+
   @Event() boletoActionButtonIsClicked: EventEmitter<void>
 
   private getExpirationDateFormatted = () => {
@@ -27,6 +37,24 @@ export class CheckoutModalBoleto {
     const formattedDate = formatDate(currentDate)
 
     return formattedDate
+  }
+
+  private handleClickClipboard = () => {
+    if (!this.clipboardIsClicked) {
+      this.clipboardIsClicked = true
+    }
+  }
+
+  private handleClipboardButtonLabel = (isMobile: boolean) => {
+    if (this.clipboardIsClicked) {
+      return t('dialogs.common.clipboardClicked', this.locale)
+    }
+
+    if (isMobile) {
+      return t('dialogs.common.clipboard', this.locale)
+    }
+
+    return t('dialogs.common.clipboardDescription', this.locale)
   }
 
   render() {
@@ -65,16 +93,18 @@ export class CheckoutModalBoleto {
               content={this.boletoCode}
             />
             <checkout-clipboard-button
-              label={t('dialogs.boleto.clipboardDescription', this.locale)}
+              label={this.handleClipboardButtonLabel(false)}
               clipboardContent={this.boletoCode}
+              onClick={() => this.handleClickClipboard()}
             />
           </div>
           <div
             class={{ 'checkout-modal-boleto__clipboard-button-mobile': true }}
           >
             <checkout-button
-              label={t('dialogs.boleto.clipboard', this.locale)}
+              label={this.handleClipboardButtonLabel(true)}
               clipboardContent={this.boletoCode}
+              onClicked={() => this.handleClickClipboard()}
             />
           </div>
           <div

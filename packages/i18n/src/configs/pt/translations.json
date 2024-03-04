@@ -116,7 +116,10 @@
   },
   "dialogs": {
     "common": {
-      "actionButtonLabel": "Continuar"
+      "actionButtonLabel": "Continuar",
+      "clipboardClicked": "Código Copiado",
+      "clipboard": "Copiar Código",
+      "clipboardDescription" :"Escaneie ou clique para copiar o código para pagar no aplicativo do seu banco."
     },
     "pix": {
       "title": "PIX disponível para pagamento!",

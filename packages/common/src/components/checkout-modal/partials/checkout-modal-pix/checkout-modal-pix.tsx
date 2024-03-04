@@ -45,12 +45,12 @@ export class CheckoutModalPix {
 
   private handleClipboardButtonLabel = (isMobile: boolean) => {
     if (this.clipboardIsClicked) {
-      return t('dialogs.pix.clipboardClicked', this.locale)
+      return t('dialogs.common.clipboardClicked', this.locale)
     }
     if (isMobile) {
-      return t('dialogs.pix.clipboard', this.locale)
+      return t('dialogs.common.clipboard', this.locale)
     }
-    return t('dialogs.pix.clipboardDescription', this.locale)
+    return t('dialogs.common.clipboardDescription', this.locale)
   }
 
   private renderListImportantMessages = () => {

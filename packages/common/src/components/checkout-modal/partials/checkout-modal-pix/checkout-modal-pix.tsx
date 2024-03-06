@@ -9,7 +9,10 @@ import {
   EventEmitter,
 } from '@stencil/core'
 
-import { formatCurrency } from '@malga-checkout/utils'
+import {
+  formatCurrency,
+  handleClipboardButtonLabel,
+} from '@malga-checkout/utils'
 import { Locale } from '@malga-checkout/i18n/dist/utils'
 import { t } from '@malga-checkout/i18n'
 
@@ -43,15 +46,15 @@ export class CheckoutModalPix {
     }
   }
 
-  private handleClipboardButtonLabel = (isMobile: boolean) => {
-    if (this.clipboardIsClicked) {
-      return t('dialogs.common.clipboardClicked', this.locale)
-    }
-    if (isMobile) {
-      return t('dialogs.common.clipboard', this.locale)
-    }
-    return t('dialogs.common.clipboardDescription', this.locale)
-  }
+  // private handleClipboardButtonLabel = (isMobile: boolean) => {
+  //   if (this.clipboardIsClicked) {
+  //     return t('dialogs.common.clipboardClicked', this.locale)
+  //   }
+  //   if (isMobile) {
+  //     return t('dialogs.common.clipboard', this.locale)
+  //   }
+  //   return t('dialogs.common.clipboardDescription', this.locale)
+  // }
 
   private renderListImportantMessages = () => {
     if (this.isSession) {
@@ -115,7 +118,11 @@ export class CheckoutModalPix {
                 content={this.qrCodeIdentificator}
               />
               <checkout-clipboard-button
-                label={this.handleClipboardButtonLabel(false)}
+                label={handleClipboardButtonLabel(
+                  false,
+                  this.clipboardIsClicked,
+                  this.locale,
+                )}
                 clipboardContent={this.qrCodeIdentificator}
                 onClick={() => this.handleClickClipboard()}
               />
@@ -123,7 +130,11 @@ export class CheckoutModalPix {
           </div>
           <div class={{ 'checkout-modal-pix__clipboard-button-mobile': true }}>
             <checkout-button
-              label={this.handleClipboardButtonLabel(true)}
+              label={handleClipboardButtonLabel(
+                true,
+                this.clipboardIsClicked,
+                this.locale,
+              )}
               clipboardContent={this.qrCodeIdentificator}
               onClicked={() => this.handleClickClipboard()}
             />

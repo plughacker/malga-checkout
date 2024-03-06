@@ -7,7 +7,12 @@ import {
   State,
   EventEmitter,
 } from '@stencil/core'
-import { formatCurrency, parseDate, formatDate } from '@malga-checkout/utils'
+import {
+  formatCurrency,
+  parseDate,
+  formatDate,
+  handleClipboardButtonLabel,
+} from '@malga-checkout/utils'
 import { Locale } from '@malga-checkout/i18n/dist/utils'
 import { t } from '@malga-checkout/i18n'
 
@@ -43,18 +48,6 @@ export class CheckoutModalBoleto {
     if (!this.clipboardIsClicked) {
       this.clipboardIsClicked = true
     }
-  }
-
-  private handleClipboardButtonLabel = (isMobile: boolean) => {
-    if (this.clipboardIsClicked) {
-      return t('dialogs.common.clipboardClicked', this.locale)
-    }
-
-    if (isMobile) {
-      return t('dialogs.common.clipboard', this.locale)
-    }
-
-    return t('dialogs.common.clipboardDescription', this.locale)
   }
 
   render() {
@@ -93,7 +86,11 @@ export class CheckoutModalBoleto {
               content={this.boletoCode}
             />
             <checkout-clipboard-button
-              label={this.handleClipboardButtonLabel(false)}
+              label={handleClipboardButtonLabel(
+                false,
+                this.clipboardIsClicked,
+                this.locale,
+              )}
               clipboardContent={this.boletoCode}
               onClick={() => this.handleClickClipboard()}
             />
@@ -102,7 +99,11 @@ export class CheckoutModalBoleto {
             class={{ 'checkout-modal-boleto__clipboard-button-mobile': true }}
           >
             <checkout-button
-              label={this.handleClipboardButtonLabel(true)}
+              label={handleClipboardButtonLabel(
+                true,
+                this.clipboardIsClicked,
+                this.locale,
+              )}
               clipboardContent={this.boletoCode}
               onClicked={() => this.handleClickClipboard()}
             />

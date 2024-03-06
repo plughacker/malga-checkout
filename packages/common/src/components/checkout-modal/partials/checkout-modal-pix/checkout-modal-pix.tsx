@@ -9,7 +9,10 @@ import {
   EventEmitter,
 } from '@stencil/core'
 
-import { formatCurrency } from '@malga-checkout/utils'
+import {
+  formatCurrency,
+  handleClipboardButtonLabel,
+} from '@malga-checkout/utils'
 import { Locale } from '@malga-checkout/i18n/dist/utils'
 import { t } from '@malga-checkout/i18n'
 
@@ -41,14 +44,6 @@ export class CheckoutModalPix {
     if (!this.clipboardIsClicked) {
       this.clipboardIsClicked = true
     }
-  }
-
-  private handleClipboardButtonLabel = () => {
-    if (this.clipboardIsClicked) {
-      return t('dialogs.pix.clipboardClicked', this.locale)
-    }
-
-    return t('dialogs.pix.clipboard', this.locale)
   }
 
   private renderListImportantMessages = () => {
@@ -113,14 +108,23 @@ export class CheckoutModalPix {
                 content={this.qrCodeIdentificator}
               />
               <checkout-clipboard-button
-                label={t('dialogs.pix.clipboardDescription', this.locale)}
+                label={handleClipboardButtonLabel(
+                  false,
+                  this.clipboardIsClicked,
+                  this.locale,
+                )}
                 clipboardContent={this.qrCodeIdentificator}
+                onClick={() => this.handleClickClipboard()}
               />
             </div>
           </div>
           <div class={{ 'checkout-modal-pix__clipboard-button-mobile': true }}>
             <checkout-button
-              label={this.handleClipboardButtonLabel()}
+              label={handleClipboardButtonLabel(
+                true,
+                this.clipboardIsClicked,
+                this.locale,
+              )}
               clipboardContent={this.qrCodeIdentificator}
               onClicked={() => this.handleClickClipboard()}
             />

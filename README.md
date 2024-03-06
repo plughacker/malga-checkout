@@ -27,4 +27,3 @@ See our [contributing guidelines](./CONTRIBUTING.md) for more information.
 
 - Lenardo Pinheiro ([leonardorpr](https://github.com/leonardorpr))
 - Filippe Rodrigues ([filipperodrigues](https://github.com/filipperodrigues))
-

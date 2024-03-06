@@ -117,8 +117,8 @@
   "dialogs": {
     "common": {
       "actionButtonLabel": "Next",
-      "clipboard": "Copy Code",
       "clipboardClicked": "Copied!",
+      "clipboard": "Copy code",
       "clipboardDescription": "Scan or copy the code to pay in your bank's app."
     },
     "pix": {
@@ -146,6 +146,7 @@
       "subtitle": "Pay the Boleto below to complete your order:",
       "waitingPaymentMessage": "Order awaiting payment!",
       "errorMessage": "It was not possible to process your transaction. Please, try again.",
+      "clipboard": "Copy Code",
       "amount": "Total:",
       "expirationDate": "Expiration date:",
       "importantMessage": "Important information",

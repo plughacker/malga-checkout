@@ -46,16 +46,6 @@ export class CheckoutModalPix {
     }
   }
 
-  // private handleClipboardButtonLabel = (isMobile: boolean) => {
-  //   if (this.clipboardIsClicked) {
-  //     return t('dialogs.common.clipboardClicked', this.locale)
-  //   }
-  //   if (isMobile) {
-  //     return t('dialogs.common.clipboard', this.locale)
-  //   }
-  //   return t('dialogs.common.clipboardDescription', this.locale)
-  // }
-
   private renderListImportantMessages = () => {
     if (this.isSession) {
       return <li>{t('dialogs.pix.importantMessageDefault', this.locale)}</li>

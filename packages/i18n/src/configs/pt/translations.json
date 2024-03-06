@@ -119,7 +119,7 @@
       "actionButtonLabel": "Continuar",
       "clipboardClicked": "Código Copiado",
       "clipboard": "Copiar Código",
-      "clipboardDescription" :"Escaneie ou clique para copiar o código para pagar no aplicativo do seu banco."
+      "clipboardDescription": "Escaneie ou clique para copiar o código para pagar no aplicativo do seu banco."
     },
     "pix": {
       "title": "PIX disponível para pagamento!",
@@ -133,9 +133,6 @@
       "errorMessageExpired": "Caso já tenha feito o pagamento, aguarde o e-mail de confirmação. Se não fez o pagamento ainda, faça um novo pedido.",
       "errorTitleExpired": "O código PIX expirou",
       "successMessage": "Pagamento feito com sucesso",
-      "clipboardDescription": "Escaneie ou clique para copiar o código para pagar no aplicativo do seu banco.",
-      "clipboard": "Copiar Código",
-      "clipboardClicked": "Código Copiado",
       "expirationTimeCode": "Seu código",
       "expirationTime": "expira em:",
       "amount": "Valor a pagar:",
@@ -150,7 +147,6 @@
       "waitingPaymentMessage": "Pedido aguardando pagamento!",
       "errorMessage": "Não foi possível concluir sua transação, tente novamente.",
       "clipboard": "Copiar Código",
-      "clipboardDescription": "Escaneie ou clique para copiar o código para pagar no aplicativo do seu banco.",
       "amount": "Valor a pagar:",
       "expirationDate": "Vencimento:",
       "importantMessage": "Informações importantes",

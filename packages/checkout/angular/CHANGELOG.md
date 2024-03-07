@@ -1,5 +1,14 @@
 # @malga-checkout/angular
 
+## 1.15.2
+
+### Patch Changes
+
+- [#119](https://github.com/plughacker/malga-checkout/pull/119) [`15fca96`](https://github.com/plughacker/malga-checkout/commit/15fca96722317ea0303ba12001e95e8f36780f7f) Thanks [@plug-infra](https://github.com/plug-infra)! - Adjusted the function that handles the return of the action to copy the boleto or PIX code.
+
+- Updated dependencies [[`15fca96`](https://github.com/plughacker/malga-checkout/commit/15fca96722317ea0303ba12001e95e8f36780f7f)]:
+  - @malga-checkout/core@1.15.2
+
 ## 1.15.1
 
 ### Patch Changes

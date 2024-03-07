@@ -116,7 +116,10 @@
   },
   "dialogs": {
     "common": {
-      "actionButtonLabel": "Next"
+      "actionButtonLabel": "Next",
+      "clipboardClicked": "Copied!",
+      "clipboard": "Copy code",
+      "clipboardDescription": "Scan or copy the code to pay in your bank's app."
     },
     "pix": {
       "title": "PIX is available for payment!",
@@ -130,9 +133,6 @@
       "errorMessageExpired": "If you have already made the payment, wait for the confirmation e-mail. If you haven't made payment yet, please place a new order.",
       "errorTitleExpired": "This PIX code has expired",
       "successMessage": "Payment made successfully",
-      "clipboardDescription": "Scan or copy the code to pay in your bank's app.",
-      "clipboard": "Copy Code",
-      "clipboardClicked": "Copied!",
       "expirationTimeCode": "Your code",
       "expirationTime": "expires on:",
       "amount": "Total:",
@@ -147,7 +147,6 @@
       "waitingPaymentMessage": "Order awaiting payment!",
       "errorMessage": "It was not possible to process your transaction. Please, try again.",
       "clipboard": "Copy Code",
-      "clipboardDescription": "Scan or copy the code to pay in your bank's app.",
       "amount": "Total:",
       "expirationDate": "Expiration date:",
       "importantMessage": "Important information",

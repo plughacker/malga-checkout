@@ -1,5 +1,14 @@
 # @malga-checkout-full/vue
 
+## 1.15.3
+
+### Patch Changes
+
+- [#123](https://github.com/plughacker/malga-checkout/pull/123) [`a4d1391`](https://github.com/plughacker/malga-checkout/commit/a4d1391cce6667a2044fa6f94339f72690d38bbc) Thanks [@leonardorpr](https://github.com/leonardorpr)! - idempotency key error
+
+- Updated dependencies [[`a4d1391`](https://github.com/plughacker/malga-checkout/commit/a4d1391cce6667a2044fa6f94339f72690d38bbc)]:
+  - @malga-checkout-full/core@1.15.3
+
 ## 1.15.2
 
 ### Patch Changes

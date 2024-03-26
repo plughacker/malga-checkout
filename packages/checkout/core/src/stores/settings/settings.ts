@@ -1,13 +1,13 @@
 import { createStore } from '@stencil/store'
-import { v4 as uuidV4 } from 'uuid'
 
 import { SettingsState } from './settings.types'
 
-export const { state, onChange } = createStore<SettingsState>({
+export const { state } = createStore<SettingsState>({
   clientId: '',
   publicKey: '',
   sessionId: '',
   merchantId: '',
+  automaticallyGeneratedIdempotencyKey: true,
   idempotencyKey: '',
   locale: undefined,
   sandbox: false,
@@ -35,8 +35,4 @@ export const { state, onChange } = createStore<SettingsState>({
     splitRules: null,
   },
   appInfo: undefined,
-})
-
-onChange('idempotencyKey', (value) => {
-  state.idempotencyKey = value || uuidV4()
 })

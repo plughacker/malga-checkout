@@ -1,3 +1,5 @@
+import { v4 as uuid } from 'uuid'
+
 import settings from '../../stores/settings'
 import payment from '../../stores/payment'
 
@@ -45,6 +47,10 @@ export class MalgaPaymentsDripService implements MalgaPayments {
   }
 
   handlePaymentFailed(error: MalgaPaymentsError) {
+    if (settings.automaticallyGeneratedIdempotencyKey) {
+      settings.idempotencyKey = uuid()
+    }
+
     if (settings.dialogConfig.show) {
       this.onShowDialog({
         open: true,

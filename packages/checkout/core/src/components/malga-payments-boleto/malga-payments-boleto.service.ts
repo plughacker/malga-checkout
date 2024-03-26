@@ -1,3 +1,5 @@
+import { v4 as uuid } from 'uuid'
+
 import { Boleto } from '../../providers/boleto'
 import { Charges } from '../../services/charges'
 
@@ -55,6 +57,10 @@ export class MalgaPaymentsBoletoService implements MalgaPayments {
   }
 
   handlePaymentFailed(error: MalgaPaymentsError) {
+    if (settings.automaticallyGeneratedIdempotencyKey) {
+      settings.idempotencyKey = uuid()
+    }
+
     if (settings.dialogConfig.show) {
       this.onShowDialog({
         open: true,

@@ -10,6 +10,8 @@ import {
   Watch,
 } from '@stencil/core'
 
+import { v4 as uuid } from 'uuid'
+
 import {
   clearEmptyObjectProperties,
   clearedObjectProperties,
@@ -93,6 +95,12 @@ export class MalgaCheckout {
 
   @State() isButtonLoading = false
 
+  @Watch('idempotencyKey')
+  protected handleWatchIdempotencyKey() {
+    settings.idempotencyKey = this.idempotencyKey
+    settings.automaticallyGeneratedIdempotencyKey = !this.idempotencyKey
+  }
+
   @Watch('transactionConfig')
   protected handleWatchTransactionConfig() {
     settings.transactionConfig = this.transactionConfig
@@ -136,7 +144,8 @@ export class MalgaCheckout {
     settings.publicKey = this.publicKey
     settings.sessionId = this.sessionId
     settings.merchantId = this.merchantId
-    settings.idempotencyKey = this.idempotencyKey
+    settings.idempotencyKey = this.idempotencyKey || uuid()
+    settings.automaticallyGeneratedIdempotencyKey = !this.idempotencyKey
     settings.locale = this.locale
     settings.sandbox = this.sandbox
     settings.debug = this.debug

@@ -10,6 +10,7 @@ export interface SettingsState {
   clientId: string
   publicKey: string
   sessionId?: string
+  automaticallyGeneratedIdempotencyKey: boolean
   idempotencyKey: string
   merchantId: string
   locale?: Locale

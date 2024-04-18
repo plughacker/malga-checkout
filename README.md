@@ -10,10 +10,10 @@ Inicially, it is highly recommended that you read [Malga’s documentation](http
 
 Now that you have your publicKey in hands, simply choose one of the options below, to access the step by step of how to integrate with Malga Checkout in your application.
 
-- Integration with Angular, [click here](https://docs.malga.io/docs/sdks/angular)
-- Integration with React, [click here](https://docs.malga.io/docs/sdks/react)
-- Integration with Vue, [click here](https://docs.malga.io/docs/sdks/vue)
-- Integration with Vanilla, [click here](https://docs.malga.io/docs/sdks/js)
+- Integration with Angular, [click here](https://docs.malga.io/docs/sdks/malga-checkout/angular)
+- Integration with React, [click here](https://docs.malga.io/docs/sdks/malga-checkout/react)
+- Integration with Vue, [click here](https://docs.malga.io/docs/sdks/malga-checkout/vue)
+- Integration with Vanilla, [click here](https://docs.malga.io/docs/sdks/malga-checkout/js)
 
 ## Contributing
 

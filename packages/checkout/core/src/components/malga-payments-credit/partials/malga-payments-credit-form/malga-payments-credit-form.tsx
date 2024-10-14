@@ -139,56 +139,62 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
                 message={credit.validations.fields.cardNumber}
               />
             )}
-
-          <fieldset class="malga-payments-credit-form__row-fields">
-            <checkout-text-field
-              value={credit.form.expirationDate}
-              onChanged={this.handleFieldChange('expirationDate')}
-              onBlurred={this.handleValidationField('expirationDate')}
-              onFocused={this.handleFieldFocused('expirationDate')}
-              onPaste={this.handleFieldChange('expirationDate')}
-              fullWidth
-              inputmode="numeric"
-              hasValidation={credit.validations.fields.expirationDate !== null}
-              hasError={!!credit.validations.fields.expirationDate}
-              name="expirationDate"
-              label={t(
-                'paymentMethods.card.newCard.fields.expirationDate.label',
-                settings.locale,
-              )}
-              mask="99/99"
-            />
-
-            <checkout-text-field
-              value={credit.form.cvv}
-              onChanged={this.handleFieldChange('cvv')}
-              onBlurred={this.handleValidationField('cvv')}
-              onFocused={this.handleFieldFocused('cvv')}
-              onPaste={this.handleFieldChange('cvv')}
-              fullWidth
-              inputmode="numeric"
-              hasValidation={credit.validations.fields.cvv !== null}
-              hasError={!!credit.validations.fields.cvv}
-              name="cvv"
-              label={t(
-                'paymentMethods.card.newCard.fields.cvv.label',
-                settings.locale,
-              )}
-              mask="9999"
-            />
-          </fieldset>
-          {!credit.validations.allFieldsIsBlank &&
-            !!credit.validations.fields.expirationDate && (
-              <checkout-error-message
-                message={credit.validations.fields.expirationDate}
+          <div class="malga-payments-credit-form__container">
+            <fieldset class="malga-payments-credit-form__column-fields">
+              <checkout-text-field
+                value={credit.form.expirationDate}
+                onChanged={this.handleFieldChange('expirationDate')}
+                onBlurred={this.handleValidationField('expirationDate')}
+                onFocused={this.handleFieldFocused('expirationDate')}
+                onPaste={this.handleFieldChange('expirationDate')}
+                fullWidth
+                inputmode="numeric"
+                hasValidation={
+                  credit.validations.fields.expirationDate !== null
+                }
+                hasError={!!credit.validations.fields.expirationDate}
+                name="expirationDate"
+                label={t(
+                  'paymentMethods.card.newCard.fields.expirationDate.label',
+                  settings.locale,
+                )}
+                mask="99/99"
               />
-            )}
-
-          {!credit.validations.allFieldsIsBlank &&
-            !!credit.validations.fields.cvv && (
-              <checkout-error-message message={credit.validations.fields.cvv} />
-            )}
-
+              {!credit.validations.allFieldsIsBlank &&
+                !!credit.validations.fields.expirationDate && (
+                  <checkout-error-message
+                    style={{ marginTop: '0px' }}
+                    message={credit.validations.fields.expirationDate}
+                  />
+                )}
+            </fieldset>
+            <fieldset class="malga-payments-credit-form__column-fields">
+              <checkout-text-field
+                value={credit.form.cvv}
+                onChanged={this.handleFieldChange('cvv')}
+                onBlurred={this.handleValidationField('cvv')}
+                onFocused={this.handleFieldFocused('cvv')}
+                onPaste={this.handleFieldChange('cvv')}
+                fullWidth
+                inputmode="numeric"
+                hasValidation={credit.validations.fields.cvv !== null}
+                hasError={!!credit.validations.fields.cvv}
+                name="cvv"
+                label={t(
+                  'paymentMethods.card.newCard.fields.cvv.label',
+                  settings.locale,
+                )}
+                mask="9999"
+              />
+              {!credit.validations.allFieldsIsBlank &&
+                !!credit.validations.fields.cvv && (
+                  <checkout-error-message
+                    style={{ marginTop: '0px' }}
+                    message={credit.validations.fields.cvv}
+                  />
+                )}
+            </fieldset>
+          </div>
           <checkout-text-field
             value={credit.form.name.toUpperCase()}
             onChanged={this.handleFieldChange('name')}

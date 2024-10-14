@@ -1,5 +1,18 @@
 # @malga-checkout-full/react
 
+## 1.16.0
+
+### Minor Changes
+
+- [`ea6267d`](https://github.com/plughacker/malga-checkout/commit/ea6267d2b02316ec5df4325e6e65d21d57c3aa03) Thanks [@lariane-guerra](https://github.com/lariane-guerra)! - Adding items object to pix and boleto
+
+- [`c14a6b2`](https://github.com/plughacker/malga-checkout/commit/c14a6b24db6e1ff5bb7457d4bb655a8e64522ca7) Thanks [@lariane-guerra](https://github.com/lariane-guerra)! - Adding items object to pix and boleto payments
+
+### Patch Changes
+
+- Updated dependencies [[`ea6267d`](https://github.com/plughacker/malga-checkout/commit/ea6267d2b02316ec5df4325e6e65d21d57c3aa03), [`c14a6b2`](https://github.com/plughacker/malga-checkout/commit/c14a6b24db6e1ff5bb7457d4bb655a8e64522ca7)]:
+  - @malga-checkout-full/core@1.16.0
+
 ## 1.15.3
 
 ### Patch Changes

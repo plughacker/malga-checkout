@@ -6,7 +6,7 @@ import {
 } from './boleto.types'
 
 import settings from '../../stores/settings'
-import { normalizeBoletoFees } from './boleto.utils'
+import { getItems, normalizeBoletoFees } from './boleto.utils'
 
 export class Boleto extends BaseProvider {
   readonly boleto: BoletoAttributes
@@ -20,12 +20,15 @@ export class Boleto extends BaseProvider {
   }
 
   public getPaymentMethod(): PaymentMethodBoleto {
+    const items = getItems(this.boleto)
+
     return {
       paymentType: 'boleto',
       expiresDate: this.boleto.expiresDate,
       instructions: this.boleto.instructions,
       ...normalizeBoletoFees('interest', this.boleto.interest),
       ...normalizeBoletoFees('fine', this.boleto.fine),
+      ...items,
     }
   }
 }

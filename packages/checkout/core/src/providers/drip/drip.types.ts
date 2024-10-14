@@ -1,9 +1,4 @@
-interface DripAttributesItem {
-  id: string
-  quantity: number
-  title: string
-  unitPrice: number
-}
+import { MalgaPaymentsItem } from '../../types/malga-payments-items.types'
 
 interface DripAttributesBrowser {
   ipAddress: string
@@ -11,7 +6,7 @@ interface DripAttributesBrowser {
 }
 
 export interface DripAttributes {
-  items?: DripAttributesItem[] | null
+  items?: MalgaPaymentsItem[] | null
   browser?: DripAttributesBrowser | null
   successRedirectUrl?: string
   cancelRedirectUrl?: string

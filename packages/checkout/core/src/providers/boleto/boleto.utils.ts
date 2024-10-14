@@ -1,3 +1,13 @@
+import type { BoletoAttributes } from './boleto.types'
+
+export const getItems = (boleto: BoletoAttributes) => {
+  if (!boleto.items || !boleto.items?.length) return {}
+
+  return {
+    items: boleto.items,
+  }
+}
+
 export const normalizeBoletoFees = (feesType, fees) => {
   return fees ? { [feesType]: formatBoletoFees(fees) } : {}
 }

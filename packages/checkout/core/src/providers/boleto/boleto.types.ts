@@ -1,3 +1,5 @@
+import { MalgaPaymentsItem } from '../../types/malga-payments-items.types'
+
 export interface BoletoAttributes {
   expiresDate: string
   instructions: string
@@ -11,6 +13,7 @@ export interface BoletoAttributes {
     amount?: number
     percentage?: number
   }
+  items?: MalgaPaymentsItem[] | null
 }
 
 export interface PaymentMethodBoleto extends BoletoAttributes {

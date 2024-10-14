@@ -1,6 +1,6 @@
 import { DripAttributes } from './drip.types'
 
-export const getBrowser = (drip: DripAttributes) => {
+export const getItems = (drip: DripAttributes) => {
   if (!drip.items || !drip.items?.length) return {}
 
   return {
@@ -8,7 +8,7 @@ export const getBrowser = (drip: DripAttributes) => {
   }
 }
 
-export const getItems = (drip: DripAttributes) => {
+export const getBrowser = (drip: DripAttributes) => {
   if (!drip.browser) return {}
 
   return {

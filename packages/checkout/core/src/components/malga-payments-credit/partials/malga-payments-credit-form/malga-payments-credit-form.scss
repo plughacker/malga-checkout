@@ -10,11 +10,11 @@
   width: 100%;
 
   & > checkout-text-field {
-    margin-top: var(--malga-checkout-spacing-xs);
+    margin-top: var(--malga-checkout-spacing-sm);
   }
 
   & > checkout-select-field {
-    margin-top: var(--malga-checkout-spacing-xs);
+    margin-top: var(--malga-checkout-spacing-sm);
   }
 }
 
@@ -22,13 +22,13 @@
   display: flex;
   flex-direction: column;
   align-self: center;
-  margin-top: var(--malga-checkout-spacing-xs);
+  margin-top: var(--malga-checkout-spacing-sm);
   padding: 0px;
   margin: 0px;
 
   @media screen and (min-width: 768px) {
     flex-direction: row;
-    gap: var(--malga-checkout-spacing-xs);
+    gap: var(--malga-checkout-spacing-sm);
   }
 
 }
@@ -40,7 +40,7 @@
   border: none;
   padding: 0;
   margin: 0;
-  margin-top: var(--malga-checkout-spacing-xs);
+  margin-top: var(--malga-checkout-spacing-sm);
   gap: var(--malga-checkout-spacing-xs);
 
 }
@@ -50,7 +50,7 @@
   flex-direction: row;
   align-items: center;
   margin-top: var(--malga-checkout-spacing-default);
-  margin-bottom: var(--malga-checkout-spacing-xs);
+  margin-bottom: var(--malga-checkout-spacing-sm);
 
   & > checkout-typography {
     font-weight: 400;

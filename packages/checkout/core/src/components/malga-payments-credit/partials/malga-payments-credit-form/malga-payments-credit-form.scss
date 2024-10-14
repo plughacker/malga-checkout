@@ -18,22 +18,31 @@
   }
 }
 
-.malga-payments-credit-form__row-fields {
+.malga-payments-credit-form__container {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  border: none;
-  margin: 0px;
+  flex-direction: column;
+  align-self: center;
   margin-top: var(--malga-checkout-spacing-xs);
   padding: 0px;
+  margin: 0px;
 
-  & > checkout-text-field:first-child {
-    margin-right: var(--malga-checkout-spacing-xs);
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: var(--malga-checkout-spacing-xs);
   }
 
-  & > checkout-text-field:last-child {
-    margin-left: var(--malga-checkout-spacing-xs);
-  }
+}
+
+.malga-payments-credit-form__column-fields {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: none;
+  padding: 0;
+  margin: 0;
+  margin-top: var(--malga-checkout-spacing-xs);
+  gap: var(--malga-checkout-spacing-xs);
+
 }
 
 .malga-payments-credit-form__save-card {

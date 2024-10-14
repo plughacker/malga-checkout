@@ -1,5 +1,14 @@
 # @malga-checkout/vue
 
+## 1.16.1
+
+### Patch Changes
+
+- [`192b49b`](https://github.com/plughacker/malga-checkout/commit/192b49b64b916bd7e1d5603521b416a8a9716893) Thanks [@lariane-guerra](https://github.com/lariane-guerra)! - Fixed the credit payment responsible components
+
+- Updated dependencies [[`192b49b`](https://github.com/plughacker/malga-checkout/commit/192b49b64b916bd7e1d5603521b416a8a9716893)]:
+  - @malga-checkout/core@1.16.1
+
 ## 1.16.0
 
 ### Minor Changes

@@ -1,5 +1,16 @@
 # @malga-checkout-full/core
 
+## 1.17.0
+
+### Minor Changes
+
+- [`e634552`](https://github.com/plughacker/malga-checkout/commit/e6345528502112ad840270a70c936ce449f0747e) Thanks [@lariane-guerra](https://github.com/lariane-guerra)! - Update the object cart in fraudAnalysis
+
+### Patch Changes
+
+- Updated dependencies [[`e634552`](https://github.com/plughacker/malga-checkout/commit/e6345528502112ad840270a70c936ce449f0747e)]:
+  - @malga-checkout/core@1.17.0
+
 ## 1.16.1
 
 ### Patch Changes

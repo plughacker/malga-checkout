@@ -1,7 +1,7 @@
 {
   "name": "@malga-checkout-full/vue",
   "sideEffects": false,
-  "version": "1.16.1",
+  "version": "1.17.0",
   "license": "MIT",
   "description": "Vue specific wrapper for Malga Checkout Full core components",
   "private": false,
@@ -38,7 +38,7 @@
     "dist/"
   ],
   "dependencies": {
-    "@malga-checkout-full/core": "1.16.1"
+    "@malga-checkout-full/core": "1.17.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",

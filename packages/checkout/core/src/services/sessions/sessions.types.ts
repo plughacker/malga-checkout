@@ -43,6 +43,7 @@ export interface Session {
     unitPrice: number
     quantity: number
     tangible?: boolean
+    categoryId?: string
   }[]
   paymentLink?: string
   paymentMethods: PaymentMethod[]

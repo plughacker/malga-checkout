@@ -73,6 +73,8 @@ const normalizeTransactionConfig = (paymentSession: Session) => ({
       unitPrice: item.unitPrice,
       quantity: item.quantity,
       sku: item.name,
+      description: item.description,
+      categoryId: item.categoryId,
       risk: 'Low',
     })),
     ...settings.transactionConfig.fraudAnalysis,

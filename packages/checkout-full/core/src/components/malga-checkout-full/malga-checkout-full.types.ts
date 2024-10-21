@@ -240,6 +240,8 @@ export interface MalgaCheckoutFullFraudAnalysisCart {
   sku: string
   unitPrice: number
   risk: string
+  description?: string
+  categoryId?: string
 }
 
 export interface MalgaCheckoutFullFraudAnalysis {

@@ -110,20 +110,34 @@ export const schema = (locale?: Locale) => {
           cleanTextSpecialCharacters(value).optional(),
         ),
       })
-      .test('isValidZipcode', 'Digite um CEP válido', (value, context) => {
-        if (value.length === 0) return true
+      .test(
+        'isValidZipcode',
+        t(
+          'page.customer.fields.identification.errorMessageInvalidZipCodeFormat',
+          locale,
+        ),
+        (value, context) => {
+          if (value.length === 0) return true
 
-        return isPostalCode(value, context.parent.country)
-      })
-      .test('isValidCountry', 'Selecione um país', (value, context) => {
-        if (value.length === 0) return true
+          return isPostalCode(value, context.parent.country)
+        },
+      )
+      .test(
+        'isValidCountry',
+        t(
+          'page.customer.fields.identification.errorMessageRequiredCountry',
+          locale,
+        ),
+        (value, context) => {
+          if (value.length === 0) return true
 
-        if (!context.parent.country || context.parent.country === 'none') {
-          return false
-        }
+          if (!context.parent.country || context.parent.country === 'none') {
+            return false
+          }
 
-        return true
-      }),
+          return true
+        },
+      ),
   })
 }
 

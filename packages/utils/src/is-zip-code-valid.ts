@@ -64,7 +64,7 @@ const patterns = {
 
 export const locales = Object.keys(patterns)
 
-export const isPostalCode = (str: string, locale: string) => {
+export const isZipCodeValid = (str: string, locale: string) => {
   if (locale in patterns) {
     return patterns[locale].test(str)
   }

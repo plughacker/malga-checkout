@@ -4,7 +4,7 @@ import {
   validateTaxId,
   cleanTextOnlyNumbers,
   cleanTextSpecialCharacters,
-  isPostalCode,
+  isZipCodeValid,
 } from '@malga-checkout/utils'
 
 import { MalgaCheckoutFullIdentificationFormValues } from './malga-checkout-full-identification.types'
@@ -119,7 +119,7 @@ export const schema = (locale?: Locale) => {
         (value, context) => {
           if (value.length === 0) return true
 
-          return isPostalCode(value, context.parent.country)
+          return isZipCodeValid(value, context.parent.country)
         },
       )
       .test(

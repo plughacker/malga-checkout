@@ -4,6 +4,7 @@ import {
   validateTaxId,
   cleanTextOnlyNumbers,
   cleanTextSpecialCharacters,
+  isPostalCode,
 } from '@malga-checkout/utils'
 
 import { MalgaCheckoutFullIdentificationFormValues } from './malga-checkout-full-identification.types'
@@ -94,7 +95,9 @@ export const schema = (locale?: Locale) => {
     district: Yup.string().optional(),
     city: Yup.string().optional(),
     state: Yup.string().optional(),
+    country: Yup.string().optional(),
     zipCode: Yup.string()
+      .trim()
       .when(['$internationalCustomer'], {
         is: (internationalCustomer: boolean) => !internationalCustomer,
         then: Yup.string()
@@ -103,11 +106,24 @@ export const schema = (locale?: Locale) => {
       })
       .when(['$internationalCustomer'], {
         is: (internationalCustomer: boolean) => internationalCustomer,
-        then: Yup.string()
-          .transform((value) => cleanTextSpecialCharacters(value))
-          .optional(),
+        then: Yup.string().transform((value) =>
+          cleanTextSpecialCharacters(value).optional(),
+        ),
+      })
+      .test('isValidZipcode', 'Digite um CEP válido', (value, context) => {
+        if (value.length === 0) return true
+
+        return isPostalCode(value, context.parent.country)
+      })
+      .test('isValidCountry', 'Selecione um país', (value, context) => {
+        if (value.length === 0) return true
+
+        if (!context.parent.country || context.parent.country === 'none') {
+          return false
+        }
+
+        return true
       }),
-    country: Yup.string().optional(),
   })
 }
 
@@ -118,7 +134,10 @@ export const validateCustomer = async (
 ) => {
   try {
     const customerSchema = schema(locale)
-    await customerSchema.validate(data, { abortEarly: false, context })
+    await customerSchema.validate(data, {
+      abortEarly: false,
+      context,
+    })
 
     return { isValid: true }
   } catch (error) {

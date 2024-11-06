@@ -113,7 +113,7 @@ export const schema = (locale?: Locale) => {
       .test(
         'isValidZipcode',
         t(
-          'page.customer.fields.identification.errorMessageInvalidZipCodeFormat',
+          'page.customer.fields.zipCode.errorMessageInvalidZipCodeFormat',
           locale,
         ),
         (value, context) => {
@@ -124,10 +124,7 @@ export const schema = (locale?: Locale) => {
       )
       .test(
         'isValidCountry',
-        t(
-          'page.customer.fields.identification.errorMessageRequiredCountry',
-          locale,
-        ),
+        t('page.customer.fields.zipCode.errorMessageRequiredCountry', locale),
         (value, context) => {
           if (value.length === 0) return true
 

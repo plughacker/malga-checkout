@@ -106,9 +106,9 @@ export const schema = (locale?: Locale) => {
       })
       .when(['$internationalCustomer'], {
         is: (internationalCustomer: boolean) => internationalCustomer,
-        then: Yup.string().transform((value) =>
-          cleanTextSpecialCharacters(value).optional(),
-        ),
+        then: Yup.string()
+          .transform((value) => cleanTextSpecialCharacters(value))
+          .optional(),
       })
       .test(
         'isValidZipcode',

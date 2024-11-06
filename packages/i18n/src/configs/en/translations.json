@@ -221,6 +221,8 @@
           "labelBrazil": "Zip Code",
           "descriptionBrazil": "I don't know my zip code",
           "errorMessageRequiredBrazil": "A Zip Code is required.",
+          "errorMessageInvalidZipCodeFormat": "Enter a valid ZIP code",
+          "errorMessageRequiredCountry": "Select a country",
           "labelInternational": "Zip Code",
           "errorMessageRequiredInternational": "A zip code is required."
         },

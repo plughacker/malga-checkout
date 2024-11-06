@@ -1,5 +1,11 @@
 # @malga-checkout/core
 
+## 1.18.2
+
+### Patch Changes
+
+- [`caefe18`](https://github.com/plughacker/malga-checkout/commit/caefe184864edcb8c999162b49a5f18cf50e8acd) Thanks [@filipperodrigues](https://github.com/filipperodrigues)! - fixing customer validation schema
+
 ## 1.18.1
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@malga-checkout/angular",
-  "version": "1.18.1",
+  "version": "1.18.2",
   "description": "Angular specific wrapper for Malga Checkout core components",
   "private": false,
   "license": "MIT",
@@ -45,7 +45,7 @@
     "dist/"
   ],
   "dependencies": {
-    "@malga-checkout/core": "1.18.1",
+    "@malga-checkout/core": "1.18.2",
     "tslib": "^1.9.3"
   },
   "peerDependencies": {

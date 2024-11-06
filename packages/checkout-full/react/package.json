@@ -1,7 +1,7 @@
 {
   "name": "@malga-checkout-full/react",
   "sideEffects": false,
-  "version": "1.18.0",
+  "version": "1.18.1",
   "description": "React specific wrapper for Malga Checkout Full core components",
   "private": false,
   "repository": {
@@ -53,7 +53,7 @@
     "typescript": "^4.3.4"
   },
   "dependencies": {
-    "@malga-checkout-full/core": "1.18.0"
+    "@malga-checkout-full/core": "1.18.1"
   },
   "peerDependencies": {
     "react": "^16.7.0",

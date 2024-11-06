@@ -1,5 +1,14 @@
 # @malga-checkout/react
 
+## 1.18.1
+
+### Patch Changes
+
+- [`323ca2d`](https://github.com/plughacker/malga-checkout/commit/323ca2d5bca2b6eceb9597684d66a31ff4edce58) Thanks [@filipperodrigues](https://github.com/filipperodrigues)! - fixing wrong intl path
+
+- Updated dependencies [[`323ca2d`](https://github.com/plughacker/malga-checkout/commit/323ca2d5bca2b6eceb9597684d66a31ff4edce58)]:
+  - @malga-checkout/core@1.18.1
+
 ## 1.18.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @malga-checkout/core
 
+## 1.18.0
+
+### Minor Changes
+
+- [#137](https://github.com/plughacker/malga-checkout/pull/137) [`1d7c912`](https://github.com/plughacker/malga-checkout/commit/1d7c912b4a1a8a47e4657b1d12ff8f4034a5c46d) Thanks [@malga-sre-team](https://github.com/malga-sre-team)! - Adding zipcode validator and bumping up card validator lib version
+
 ## 1.17.0
 
 ### Minor Changes

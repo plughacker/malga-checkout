@@ -28,12 +28,12 @@ export class MalgaCheckoutService {
 
   private handleCreditPaymentData = () => {
     const isShowingInstallmentSelector =
-      settings.paymentMethods.credit.installments.show
+      settings.paymentMethods.credit?.installments?.show
 
     if (payment.isSelectedSavedCard) {
       const installments = isShowingInstallmentSelector
         ? payment.installments
-        : settings.paymentMethods.credit.installments.quantity
+        : settings.paymentMethods.credit?.installments?.quantity
 
       return {
         cardId: payment.cardId,
@@ -44,7 +44,7 @@ export class MalgaCheckoutService {
 
     const installments = isShowingInstallmentSelector
       ? credit.form.installments
-      : settings.paymentMethods.credit.installments.quantity
+      : settings.paymentMethods.credit?.installments?.quantity
 
     return {
       ...credit.form,

@@ -1,5 +1,16 @@
 # @malga-checkout-full/core
 
+## 1.19.0
+
+### Minor Changes
+
+- [`d923e91`](https://github.com/plughacker/malga-checkout/commit/d923e917824b69a69627806401f98f0610cac54a) Thanks [@filipperodrigues](https://github.com/filipperodrigues)! - adding a way to set up installments without the user having to select it
+
+### Patch Changes
+
+- Updated dependencies [[`d923e91`](https://github.com/plughacker/malga-checkout/commit/d923e917824b69a69627806401f98f0610cac54a)]:
+  - @malga-checkout/core@1.19.0
+
 ## 1.18.2
 
 ### Patch Changes

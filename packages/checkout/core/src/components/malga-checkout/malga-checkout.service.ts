@@ -78,8 +78,6 @@ export class MalgaCheckoutService {
       nupay: MalgaPaymentsNuPayService,
     }
 
-    console.log(payment.selectedPaymentMethod)
-
     return (
       paymentMethods[payment.selectedPaymentMethod] || paymentMethods.credit
     )
@@ -175,8 +173,6 @@ export class MalgaCheckoutService {
   }
 
   public async pay() {
-    console.log('inferno')
-
     const PaymentMethodClass = this.handlePaymentMethod()
     const paymentMethodData = this.handlePaymentData()
 

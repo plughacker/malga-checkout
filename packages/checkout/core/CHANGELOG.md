@@ -1,5 +1,11 @@
 # @malga-checkout/core
 
+## 1.20.0
+
+### Minor Changes
+
+- [`bd0aded`](https://github.com/plughacker/malga-checkout/commit/bd0aded92cd9cceb3dd00f9e380f7d165a73c363) Thanks [@filipperodrigues](https://github.com/filipperodrigues)! - fixing installments feat when using only one method
+
 ## 1.19.0
 
 ### Minor Changes

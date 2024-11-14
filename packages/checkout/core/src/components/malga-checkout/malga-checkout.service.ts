@@ -27,15 +27,29 @@ export class MalgaCheckoutService {
   }
 
   private handleCreditPaymentData = () => {
+    const isShowingInstallmentSelector =
+      settings.paymentMethods.credit.installments.show
+
     if (payment.isSelectedSavedCard) {
+      const installments = isShowingInstallmentSelector
+        ? payment.installments
+        : settings.paymentMethods.credit.installments.quantity
+
       return {
         cardId: payment.cardId,
         cardCvv: payment.cvv,
-        installments: payment.installments,
+        installments,
       }
     }
 
-    return credit.form
+    const installments = isShowingInstallmentSelector
+      ? credit.form.installments
+      : settings.paymentMethods.credit.installments.quantity
+
+    return {
+      ...credit.form,
+      installments,
+    }
   }
 
   private handlePaymentData = () => {
@@ -63,6 +77,8 @@ export class MalgaCheckoutService {
       boleto: MalgaPaymentsBoletoService,
       nupay: MalgaPaymentsNuPayService,
     }
+
+    console.log(payment.selectedPaymentMethod)
 
     return (
       paymentMethods[payment.selectedPaymentMethod] || paymentMethods.credit
@@ -159,6 +175,8 @@ export class MalgaCheckoutService {
   }
 
   public async pay() {
+    console.log('inferno')
+
     const PaymentMethodClass = this.handlePaymentMethod()
     const paymentMethodData = this.handlePaymentData()
 

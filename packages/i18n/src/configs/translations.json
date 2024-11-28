@@ -223,7 +223,7 @@
           "errorMessageRequiredBrazil": "CEP é obrigatório.",
           "errorMessageInvalidZipCodeFormat": "Digite um CEP válido",
           "errorMessageRequiredCountry": "Selecione um país",
-          "labelInternational": "Código postal",
+          "labelInternational": "Código postal (CEP)",
           "errorMessageRequiredInternational": "Código postal é obrigatório."
         },
         "street": {

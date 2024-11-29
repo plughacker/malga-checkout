@@ -1,5 +1,11 @@
 # @malga-checkout/core
 
+## 1.20.1
+
+### Patch Changes
+
+- [`4050b4e`](https://github.com/plughacker/malga-checkout/commit/4050b4e4ff4ac94a95d58ae249962766c603605a) Thanks [@lariane-guerra](https://github.com/lariane-guerra)! - Change intl to zipcode on adress customer
+
 ## 1.20.0
 
 ### Minor Changes

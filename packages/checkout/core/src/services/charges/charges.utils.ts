@@ -59,7 +59,9 @@ export const formatFraudAnalysis = async (
     delete address.streetNumber
   }
 
-  const phoneNumber = parsedCustomer?.phoneNumber ? { phoneNumber: parsedCustomer.phoneNumber } : {}
+  const phoneNumber = parsedCustomer?.phoneNumber?.trim()
+    ? { phoneNumber: parsedCustomer.phoneNumber }
+    : {}
 
   return {
     customer: {

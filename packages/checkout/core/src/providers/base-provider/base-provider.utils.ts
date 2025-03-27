@@ -12,7 +12,7 @@ export const formatCustomerPayload = (customer: Customer) => {
   const document = formatCustomerDocument(customer.document)
   const phoneNumber = customer?.phoneNumber
     ? cleanTextOnlyNumbers(customer.phoneNumber)
-    : ''
+    : ' '
 
   const haveFilledAddress = Object.values(
     customer.address ? customer.address : {},

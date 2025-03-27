@@ -64,8 +64,8 @@ export const formatPayload = (customer: Customer) => {
   return {
     ...address,
     ...document,
+    phoneNumber: customer?.phoneNumber || "",
     name: customer.name,
     email: customer.email,
-    phoneNumber: cleanTextOnlyNumbers(customer.phoneNumber),
   }
 }

@@ -1,5 +1,14 @@
 # @malga-checkout/vue
 
+## 1.20.2
+
+### Patch Changes
+
+- [#159](https://github.com/plughacker/malga-checkout/pull/159) [`b20ccba`](https://github.com/plughacker/malga-checkout/commit/b20ccba0f19b8b4e1cc2d65642cf7422c0fc211a) Thanks [@0xleozera](https://github.com/0xleozera)! - fix customer phone number
+
+- Updated dependencies [[`b20ccba`](https://github.com/plughacker/malga-checkout/commit/b20ccba0f19b8b4e1cc2d65642cf7422c0fc211a)]:
+  - @malga-checkout/core@1.20.2
+
 ## 1.20.1
 
 ### Patch Changes

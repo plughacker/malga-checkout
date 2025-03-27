@@ -113,7 +113,7 @@ export class MalgaCheckoutService {
         customer: {
           name: customer.name,
           email: customer.email,
-          phoneNumber: customer.phoneNumber,
+          phoneNumber: customer?.phoneNumber || "",
           document: {
             number: customer.document.number,
             type: customer.document.type,

@@ -1,5 +1,16 @@
 # @malga-checkout-full/react
 
+## 1.21.0
+
+### Minor Changes
+
+- [`237de82`](https://github.com/plughacker/malga-checkout/commit/237de8286481d74b9575f505ee3c81b6d4ee7c3e) Thanks [@lariane-guerra](https://github.com/lariane-guerra)! - Enabled name and email in customer object
+
+### Patch Changes
+
+- Updated dependencies [[`237de82`](https://github.com/plughacker/malga-checkout/commit/237de8286481d74b9575f505ee3c81b6d4ee7c3e)]:
+  - @malga-checkout-full/core@1.21.0
+
 ## 1.20.2
 
 ### Patch Changes

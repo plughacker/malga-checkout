@@ -1,5 +1,14 @@
 # @malga-checkout-full/core
 
+## 1.20.3
+
+### Patch Changes
+
+- [`26de03a`](https://github.com/plughacker/malga-checkout/commit/26de03a86bd74c2e2d4471837357d705eb73a999) Thanks [@lariane-guerra](https://github.com/lariane-guerra)! - Enabled customer name and email
+
+- Updated dependencies [[`26de03a`](https://github.com/plughacker/malga-checkout/commit/26de03a86bd74c2e2d4471837357d705eb73a999)]:
+  - @malga-checkout/core@1.20.3
+
 ## 1.20.2
 
 ### Patch Changes

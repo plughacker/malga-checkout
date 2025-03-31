@@ -1,5 +1,14 @@
 # @malga-checkout/vue
 
+## 1.20.5
+
+### Patch Changes
+
+- [`94b5213`](https://github.com/plughacker/malga-checkout/commit/94b521311a940a83ef65bc7be40e0e926fb4ba2f) Thanks [@filipperodrigues](https://github.com/filipperodrigues)! - stopping to send identity type when it's no document
+
+- Updated dependencies [[`94b5213`](https://github.com/plughacker/malga-checkout/commit/94b521311a940a83ef65bc7be40e0e926fb4ba2f)]:
+  - @malga-checkout/core@1.20.5
+
 ## 1.20.4
 
 ### Patch Changes

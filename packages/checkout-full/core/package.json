@@ -1,6 +1,6 @@
 {
   "name": "@malga-checkout-full/core",
-  "version": "1.20.4",
+  "version": "1.20.5",
   "description": "Core components for Malga Checkout Full",
   "private": false,
   "repository": {
@@ -60,7 +60,7 @@
     "puppeteer": "5.5.0"
   },
   "dependencies": {
-    "@malga-checkout/core": "1.20.4",
+    "@malga-checkout/core": "1.20.5",
     "axios": "^0.21.1",
     "inputmask": "^5.0.6",
     "stdnum": "^1.3.8",

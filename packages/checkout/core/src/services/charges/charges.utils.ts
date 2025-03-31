@@ -67,8 +67,10 @@ export const formatFraudAnalysis = async (
     customer: {
       name: parsedCustomer.name,
       email: parsedCustomer.email,
-      identityType: parsedCustomer.document.type,
-      identity: parsedCustomer.document.number,
+      ...(parsedCustomer.document && {
+        identityType: parsedCustomer.document.type,
+        identity: parsedCustomer.document.number,
+      }),
       ...(currentCustomer.address && {
         deliveryAddress: address,
         billingAddress: address,

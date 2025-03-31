@@ -32,8 +32,17 @@ export const formatCustomerAddress = (
 
 export const formatCustomerDocument = (
   customerDocument?: Customer['document'],
+  isFraudAnalysis: boolean = false,
 ) => {
   if (!customerDocument || customerDocument.type === 'noDocument') {
+    if (isFraudAnalysis) {
+      return {
+        document: {
+          type: 'NoDocument',
+        },
+      }
+    }
+
     return {
       document: {
         type: 'noDocument',
@@ -50,16 +59,18 @@ export const formatCustomerDocument = (
 
   return {
     document: {
-      type: customerDocument.type,
+      type: isFraudAnalysis
+        ? customerDocument.type.toUpperCase()
+        : customerDocument.type.toLowerCase(),
       number: documentNumber,
       country: customerDocument.country,
     },
   }
 }
 
-export const formatPayload = (customer: Customer) => {
+export const formatPayload = (customer: Customer, isFraudAnalysis: boolean = false) => {
   const address = formatCustomerAddress(customer.address)
-  const document = formatCustomerDocument(customer.document)
+  const document = formatCustomerDocument(customer.document, isFraudAnalysis)
 
   return {
     ...address,

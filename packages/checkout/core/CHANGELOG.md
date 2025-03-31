@@ -1,5 +1,11 @@
 # @malga-checkout/core
 
+## 1.20.4
+
+### Patch Changes
+
+- [#166](https://github.com/plughacker/malga-checkout/pull/166) [`4cabb7a`](https://github.com/plughacker/malga-checkout/commit/4cabb7a5a94d1f07a23a7a0469be09bf704cc2db) Thanks [@filipperodrigues](https://github.com/filipperodrigues)! - fixing customer document format when it's from fraudAnalysis
+
 ## 1.20.3
 
 ### Patch Changes

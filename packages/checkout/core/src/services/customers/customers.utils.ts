@@ -36,11 +36,7 @@ export const formatCustomerDocument = (
 ) => {
   if (!customerDocument || customerDocument.type === 'noDocument') {
     if (isFraudAnalysis) {
-      return {
-        document: {
-          type: 'NoDocument',
-        },
-      }
+      return null
     }
 
     return {

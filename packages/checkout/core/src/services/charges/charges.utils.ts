@@ -44,7 +44,7 @@ export const formatFraudAnalysis = async (
   )
     return null
 
-  const parsedCustomer = formatCustomer(currentCustomer)
+  const parsedCustomer = formatCustomer(currentCustomer, true)
 
   const address = parsedCustomer.address && {
     ...parsedCustomer.address,
@@ -67,7 +67,7 @@ export const formatFraudAnalysis = async (
     customer: {
       name: parsedCustomer.name,
       email: parsedCustomer.email,
-      identityType: parsedCustomer.document.type.toUpperCase(),
+      identityType: parsedCustomer.document.type,
       identity: parsedCustomer.document.number,
       ...(currentCustomer.address && {
         deliveryAddress: address,

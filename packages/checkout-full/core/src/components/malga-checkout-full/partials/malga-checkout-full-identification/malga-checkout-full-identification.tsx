@@ -84,14 +84,14 @@ export class MalgaCheckoutFullIdentification {
     const filteredValidFieldValues = validFieldValues
       .filter(([validField]) => !partialFields.includes(validField))
       .filter(([, validFieldValue]) => {
-        if (validFieldValue === undefined) return false
-
-        return validFieldValue === null || !!validFieldValue.length
+        return !validFieldValue || !!validFieldValue.length
       })
 
     console.log('campos ainda inválidos', filteredValidFieldValues)
 
     this.allFieldIsValidated = !filteredValidFieldValues.length
+
+    console.log('disabled', this.allFieldIsValidated)
   }
 
   private handleFieldFocused = () => () => {

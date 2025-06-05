@@ -44,7 +44,7 @@
     "start:sdk": "lerna run start --scope @malga-checkout/core",
     "build:sdk": "lerna run build --scope '{@malga-checkout/i18n,@malga-checkout/utils,@malga-checkout/common,@malga-checkout/core,@malga-checkout/angular,@malga-checkout/react,@malga-checkout/vue}'",
     "start:full": "lerna run start --scope @malga-checkout-full/core",
-    "build:full": "lerna run build --scope '{@malga-checkout/i18n,@malga-checkout/utils,@malga-checkout/common,@malga-checkout-full/core,@malga-checkout-full/angular,@malga-checkout-full/react,@malga-checkout-full/vue}'",
+    "build:full": "yarn build:sdk && lerna run build --scope '{@malga-checkout-full/core,@malga-checkout-full/angular,@malga-checkout-full/react,@malga-checkout-full/vue}'",
     "i18n:download": "lerna run i18n:download --scope @malga-checkout/i18n",
     "i18n:upload": "lerna run i18n:upload --scope @malga-checkout/i18n",
     "bootstrap": "lerna bootstrap",

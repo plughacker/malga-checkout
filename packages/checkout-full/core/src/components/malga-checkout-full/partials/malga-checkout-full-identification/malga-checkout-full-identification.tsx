@@ -67,22 +67,19 @@ export class MalgaCheckoutFullIdentification {
   }
 
   private checkValidatedField = () => {
-    const optionalFields = [
+    const optionalBrazilianFields = [
+      'complement',
       'documentCountry',
       'documentType',
-      'zipCode',
-      'street',
-      'streetNumber',
-      'complement',
-      'district',
-      'city',
-      'state',
-      'country',
     ]
 
-    const partialFields = !this.internationalCustomer ? optionalFields : []
+    const partialFields = !this.internationalCustomer
+      ? optionalBrazilianFields
+      : ['complement']
 
     const validFieldValues = Object.entries(this.validFields)
+
+    console.log('valid field values', validFieldValues)
 
     const filteredValidFieldValues = validFieldValues
       .filter(([validField]) => !partialFields.includes(validField))
@@ -91,6 +88,8 @@ export class MalgaCheckoutFullIdentification {
 
         return validFieldValue === null || !!validFieldValue.length
       })
+
+    console.log('campos ainda inválidos', filteredValidFieldValues)
 
     this.allFieldIsValidated = !filteredValidFieldValues.length
   }
@@ -108,6 +107,8 @@ export class MalgaCheckoutFullIdentification {
       { internationalCustomer: this.internationalCustomer },
       this.locale,
     )
+
+    console.log('validation', validation) //ta passando
 
     this.validFields = {
       ...this.validFields,
@@ -522,7 +523,6 @@ export class MalgaCheckoutFullIdentification {
               onChanged={this.handleFieldChange('complement')}
               onBlurred={this.handleValidationField('complement')}
               onFocused={this.handleFieldFocused()}
-              hasValidation={this.validFields.complement !== null}
               hasError={!!this.validFields.complement}
               fullWidth
               inputmode="text"

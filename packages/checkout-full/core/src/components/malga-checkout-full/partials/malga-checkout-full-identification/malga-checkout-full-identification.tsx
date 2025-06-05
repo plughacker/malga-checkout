@@ -72,7 +72,7 @@ export class MalgaCheckoutFullIdentification {
       'documentType',
       'zipCode',
       'street',
-      'number',
+      'streetNumber',
       'complement',
       'district',
       'city',
@@ -99,7 +99,7 @@ export class MalgaCheckoutFullIdentification {
     this.checkValidatedField()
   }
 
-  private handleFieldBlurred = (field: string) => async (event) => {
+  private handleValidationField = (field: string) => async (event) => {
     const validation = await validateCustomer(
       {
         ...this.formValues,
@@ -119,7 +119,7 @@ export class MalgaCheckoutFullIdentification {
 
   private handleFieldChange = (field: string) => (event) => {
     this.fieldChange.emit({ field, value: event.target.value })
-    this.checkValidatedField()
+    this.handleValidationField(field)(event)
   }
 
   private handleChangeCountryFieldChange = (event) => {
@@ -232,9 +232,8 @@ export class MalgaCheckoutFullIdentification {
         />
         <checkout-text-field
           value={this.formValues.name}
-          onInputed={this.handleFieldBlurred('name')}
           onChanged={this.handleFieldChange('name')}
-          onBlurred={this.handleFieldBlurred('name')}
+          onBlurred={this.handleValidationField('name')}
           onFocused={this.handleFieldFocused()}
           hasValidation={this.validFields.name !== null}
           hasError={!!this.validFields.name}
@@ -249,9 +248,8 @@ export class MalgaCheckoutFullIdentification {
 
         <checkout-text-field
           value={this.formValues.email}
-          onInputed={this.handleFieldBlurred('email')}
           onChanged={this.handleFieldChange('email')}
-          onBlurred={this.handleFieldBlurred('email')}
+          onBlurred={this.handleValidationField('email')}
           onFocused={this.handleFieldFocused()}
           hasValidation={this.validFields.email !== null}
           hasError={!!this.validFields.email}
@@ -266,9 +264,8 @@ export class MalgaCheckoutFullIdentification {
 
         <checkout-text-field
           value={this.formValues.phoneNumber}
-          onInputed={this.handleFieldBlurred('phoneNumber')}
           onChanged={this.handleFieldChange('phoneNumber')}
-          onBlurred={this.handleFieldBlurred('phoneNumber')}
+          onBlurred={this.handleValidationField('phoneNumber')}
           onFocused={this.handleFieldFocused()}
           hasValidation={this.validFields.phoneNumber !== null}
           hasError={!!this.validFields.phoneNumber}
@@ -305,8 +302,7 @@ export class MalgaCheckoutFullIdentification {
                 <checkout-select-field
                   value={this.formValues.documentCountry}
                   onChanged={this.handleChangeDocumentCountry}
-                  onInputed={this.handleFieldBlurred('documentCountry')}
-                  onBlurred={this.handleFieldBlurred('documentCountry')}
+                  onBlurred={this.handleValidationField('documentCountry')}
                   onFocused={this.handleFieldFocused()}
                   hasError={!!this.validFields.documentCountry}
                   options={documentCountries(this.locale)}
@@ -334,8 +330,7 @@ export class MalgaCheckoutFullIdentification {
                     <checkout-select-field
                       value={this.formValues.documentType}
                       onChanged={this.handleFieldChange('documentType')}
-                      onInputed={this.handleFieldBlurred('documentType')}
-                      onBlurred={this.handleFieldBlurred('documentType')}
+                      onBlurred={this.handleValidationField('documentType')}
                       onFocused={this.handleFieldFocused()}
                       hasError={!!this.validFields.documentType}
                       options={
@@ -364,9 +359,8 @@ export class MalgaCheckoutFullIdentification {
 
         <checkout-text-field
           value={this.formValues.identification}
-          onInputed={this.handleFieldBlurred('identification')}
           onChanged={this.handleFieldChange('identification')}
-          onBlurred={this.handleFieldBlurred('identification')}
+          onBlurred={this.handleValidationField('identification')}
           onFocused={this.handleFieldFocused()}
           hasValidation={this.validFields.identification !== null}
           hasError={!!this.validFields.identification}
@@ -403,8 +397,7 @@ export class MalgaCheckoutFullIdentification {
         <checkout-select-field
           value={this.formValues.country}
           onChanged={this.handleChangeCountryFieldChange}
-          onInputed={this.handleFieldBlurred('country')}
-          onBlurred={this.handleFieldBlurred('country')}
+          onBlurred={this.handleValidationField('country')}
           onFocused={this.handleFieldFocused()}
           hasError={!!this.validFields.country}
           options={countries(this.locale)}
@@ -428,8 +421,7 @@ export class MalgaCheckoutFullIdentification {
               <checkout-text-field
                 value={this.formValues.zipCode}
                 onChanged={this.handleZipCodeFieldChange}
-                onInputed={this.handleFieldBlurred('zipCode')}
-                onBlurred={this.handleFieldBlurred('zipCode')}
+                onBlurred={this.handleValidationField('zipCode')}
                 onFocused={this.handleFieldFocused()}
                 hasValidation={this.validFields.zipCode !== null}
                 hasError={!!this.validFields.zipCode}
@@ -461,8 +453,7 @@ export class MalgaCheckoutFullIdentification {
             <checkout-text-field
               value={this.formValues.zipCode}
               onChanged={this.handleFieldChange('zipCode')}
-              onInputed={this.handleFieldBlurred('zipCode')}
-              onBlurred={this.handleFieldBlurred('zipCode')}
+              onBlurred={this.handleValidationField('zipCode')}
               onFocused={this.handleFieldFocused()}
               hasValidation={this.validFields.zipCode !== null}
               hasError={!!this.validFields.zipCode}
@@ -483,8 +474,7 @@ export class MalgaCheckoutFullIdentification {
         <checkout-text-field
           value={this.formValues.street}
           onChanged={this.handleFieldChange('street')}
-          onInputed={this.handleFieldBlurred('street')}
-          onBlurred={this.handleFieldBlurred('street')}
+          onBlurred={this.handleValidationField('street')}
           onFocused={this.handleFieldFocused()}
           hasValidation={this.validFields.street !== null}
           hasError={!!this.validFields.street}
@@ -508,8 +498,7 @@ export class MalgaCheckoutFullIdentification {
             <checkout-text-field
               value={this.formValues.streetNumber}
               onChanged={this.handleFieldChange('streetNumber')}
-              onInputed={this.handleFieldBlurred('streetNumber')}
-              onBlurred={this.handleFieldBlurred('streetNumber')}
+              onBlurred={this.handleValidationField('streetNumber')}
               onFocused={this.handleFieldFocused()}
               hasValidation={this.validFields.streetNumber !== null}
               hasError={!!this.validFields.streetNumber}
@@ -531,8 +520,7 @@ export class MalgaCheckoutFullIdentification {
             <checkout-text-field
               value={this.formValues.complement}
               onChanged={this.handleFieldChange('complement')}
-              onInputed={this.handleFieldBlurred('complement')}
-              onBlurred={this.handleFieldBlurred('complement')}
+              onBlurred={this.handleValidationField('complement')}
               onFocused={this.handleFieldFocused()}
               hasValidation={this.validFields.complement !== null}
               hasError={!!this.validFields.complement}
@@ -550,8 +538,7 @@ export class MalgaCheckoutFullIdentification {
         <checkout-text-field
           value={this.formValues.district}
           onChanged={this.handleFieldChange('district')}
-          onInputed={this.handleFieldBlurred('district')}
-          onBlurred={this.handleFieldBlurred('district')}
+          onBlurred={this.handleValidationField('district')}
           onFocused={this.handleFieldFocused()}
           hasValidation={this.validFields.district !== null}
           hasError={!!this.validFields.district}
@@ -575,8 +562,7 @@ export class MalgaCheckoutFullIdentification {
             <checkout-text-field
               value={this.formValues.city}
               onChanged={this.handleFieldChange('city')}
-              onInputed={this.handleFieldBlurred('city')}
-              onBlurred={this.handleFieldBlurred('city')}
+              onBlurred={this.handleValidationField('city')}
               onFocused={this.handleFieldFocused()}
               hasValidation={this.validFields.city !== null}
               hasError={!!this.validFields.city}
@@ -600,8 +586,7 @@ export class MalgaCheckoutFullIdentification {
                 <checkout-select-field
                   value={this.formValues.state}
                   onChanged={this.handleFieldChange('state')}
-                  onInputed={this.handleFieldBlurred('state')}
-                  onBlurred={this.handleFieldBlurred('state')}
+                  onBlurred={this.handleValidationField('state')}
                   onFocused={this.handleFieldFocused()}
                   hasError={!!this.validFields.state}
                   options={brazilianStates}
@@ -618,8 +603,7 @@ export class MalgaCheckoutFullIdentification {
                 <checkout-text-field
                   value={this.formValues.state}
                   onChanged={this.handleFieldChange('state')}
-                  onInputed={this.handleFieldBlurred('state')}
-                  onBlurred={this.handleFieldBlurred('state')}
+                  onBlurred={this.handleValidationField('state')}
                   onFocused={this.handleFieldFocused()}
                   hasValidation={this.validFields.state !== null}
                   hasError={!!this.validFields.state}

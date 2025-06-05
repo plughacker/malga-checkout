@@ -48,7 +48,6 @@ graph TD;
   malga-checkout-full-identification --> checkout-button
   checkout-loader --> checkout-icon
   checkout-text-field --> checkout-typography
-  checkout-text-field --> checkout-icon
   checkout-error-message --> checkout-typography
   checkout-select-field --> checkout-typography
   checkout-select-field --> checkout-icon

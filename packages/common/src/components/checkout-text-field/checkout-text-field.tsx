@@ -63,6 +63,13 @@ export class CheckoutTextField implements ComponentInterface {
     })
   }
 
+  @Watch('mask')
+  protected maskChanged() {
+    if (this.mask && this.inputRef) {
+      this.handleSetMask()
+    }
+  }
+
   private onInput = (event: Event) => {
     const input = event.target as HTMLInputElement | null
 
@@ -112,12 +119,6 @@ export class CheckoutTextField implements ComponentInterface {
     }
   }
 
-  componentWillUpdate() {
-    if (this.mask) {
-      this.handleSetMask()
-    }
-  }
-
   render() {
     return (
       <Host
@@ -138,6 +139,7 @@ export class CheckoutTextField implements ComponentInterface {
               ref={(element) => (this.inputRef = element)}
               class={{
                 'checkout-text-field__native': true,
+                'checkout-text-field__native--error': this.hasError,
                 [this.customInputClass]: !!this.customInputClass,
               }}
               id={this.name}
@@ -168,7 +170,6 @@ export class CheckoutTextField implements ComponentInterface {
               variation="field"
               content={this.label}
             />
-            {this.hasError && <checkout-icon icon="warning" />}
           </div>
         </fieldset>
       </Host>

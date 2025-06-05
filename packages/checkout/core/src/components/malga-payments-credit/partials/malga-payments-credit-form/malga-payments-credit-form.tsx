@@ -58,10 +58,6 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
     }
   }
 
-  private handleSaveCardChange = () => {
-    credit.form = { ...credit.form, saveCard: !credit.form.saveCard }
-  }
-
   private handleFieldChange = (field: string) => (event) => {
     credit.form = { ...credit.form, [field]: event.target.value }
     this.currentFieldChange.emit({ field })
@@ -235,24 +231,6 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
                 message={credit.validations.fields.installments}
               />
             )}
-
-          {(settings.transactionConfig.customerId ||
-            settings.transactionConfig.customer) && (
-            <div class={{ 'malga-payments-credit-form__save-card': true }}>
-              <checkout-switch
-                checked={credit.form.saveCard}
-                onChanged={this.handleSaveCardChange}
-              />
-              <checkout-typography
-                variation="field"
-                color="darkness"
-                content={t(
-                  'paymentMethods.card.newCard.fields.saveCard.label',
-                  settings.locale,
-                )}
-              />
-            </div>
-          )}
 
           {credit.validations.allFieldsIsBlank && (
             <checkout-error-message

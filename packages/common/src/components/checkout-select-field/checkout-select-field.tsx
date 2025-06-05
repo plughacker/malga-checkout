@@ -109,6 +109,7 @@ export class CheckoutSelectField implements ComponentInterface {
             <select
               class={{
                 'checkout-select-field__native': true,
+                'checkout-text-field__native--error': this.hasError,
                 [this.customSelectClass]: !!this.customSelectClass,
               }}
               id={this.name}
@@ -130,7 +131,7 @@ export class CheckoutSelectField implements ComponentInterface {
               variation="field"
               content={this.label}
             />
-            <checkout-icon icon={this.hasError ? 'warning' : 'arrowDown'} />
+            <checkout-icon icon={'arrowDown'} />
           </div>
         </fieldset>
       </Host>

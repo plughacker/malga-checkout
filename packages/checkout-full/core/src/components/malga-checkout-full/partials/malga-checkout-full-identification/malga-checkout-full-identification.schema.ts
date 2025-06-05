@@ -1,5 +1,4 @@
 import * as Yup from 'yup'
-import { isCPFOrCNPJ } from 'brazilian-values'
 import {
   validateTaxId,
   cleanTextOnlyNumbers,
@@ -7,7 +6,10 @@ import {
 } from '@malga-checkout/utils'
 
 import { MalgaCheckoutFullIdentificationFormValues } from './malga-checkout-full-identification.types'
-import { normalizeValidationErrors } from './malga-checkout-full-identification.utils'
+import {
+  handleCpfOrCnpjInvalidMessage,
+  normalizeValidationErrors,
+} from './malga-checkout-full-identification.utils'
 import { Locale } from '@malga-checkout/i18n/dist/utils'
 import { t } from '@malga-checkout/i18n'
 
@@ -48,14 +50,20 @@ export const schema = (locale?: Locale) => {
               locale,
             ),
           )
-          .test(
-            'isValidIdentification',
-            t(
-              'page.customer.fields.identification.errorMessageInvalidFormatBrazil',
-              locale,
-            ),
-            (value) => isCPFOrCNPJ(cleanTextOnlyNumbers(value)),
-          ),
+          .test({
+            name: 'isValidCpfOrCnpj',
+            test(value, ctx) {
+              const errorMessage = handleCpfOrCnpjInvalidMessage(value, locale)
+
+              if (errorMessage) {
+                return ctx.createError({
+                  message: errorMessage,
+                })
+              }
+
+              return true
+            },
+          }),
       })
       .when(['$internationalCustomer'], {
         is: (internationalCustomer: boolean) => internationalCustomer,
@@ -66,48 +74,85 @@ export const schema = (locale?: Locale) => {
               locale,
             ),
           )
-          .test(
-            'isValidIdentification',
-            t(
-              'page.customer.fields.identification.errorMessageInvalidFormatInternational',
-              locale,
-            ),
-            (value, context) => {
-              if (context.parent.documentType === 'other') {
+          .test({
+            name: 'isValidIdentification',
+            test(value, ctx) {
+              if (ctx.parent.documentCountry === 'BR') {
+                const errorMessage = handleCpfOrCnpjInvalidMessage(
+                  value,
+                  locale,
+                )
+
+                if (errorMessage) {
+                  return ctx.createError({
+                    message: errorMessage,
+                  })
+                }
+
                 return true
               }
+
+              if (ctx.parent.documentType === 'other') {
+                return true
+              }
+
               const documentNumber = cleanTextSpecialCharacters(value)
 
               const isValid = validateTaxId(
-                context.parent.documentCountry,
-                context.parent.documentType,
+                ctx.parent.documentCountry,
+                ctx.parent.documentType,
                 documentNumber,
               )
 
               return isValid
             },
-          ),
+          }),
       }),
-    street: Yup.string().optional(),
-    streetNumber: Yup.string().optional(),
+    street: Yup.string().required(
+      t('page.customer.fields.street.errorMessageRequired', locale),
+    ),
+    streetNumber: Yup.string().required(
+      t('page.customer.fields.number.errorMessageRequired', locale),
+    ),
     complement: Yup.string().optional(),
-    district: Yup.string().optional(),
-    city: Yup.string().optional(),
-    state: Yup.string().optional(),
+    district: Yup.string().required(
+      t('page.customer.fields.neighborhood.errorMessageRequired', locale),
+    ),
+    city: Yup.string().required(
+      t('page.customer.fields.city.errorMessageRequired', locale),
+    ),
+    state: Yup.string().required(
+      t('page.customer.fields.state.errorMessageRequired', locale),
+    ),
     zipCode: Yup.string()
+      .required(
+        t('page.customer.fields.zipCode.errorMessageRequiredBrazil', locale),
+      )
       .when(['$internationalCustomer'], {
         is: (internationalCustomer: boolean) => !internationalCustomer,
         then: Yup.string()
           .transform((value) => cleanTextOnlyNumbers(value))
-          .optional(),
+          .required(
+            t(
+              'page.customer.fields.zipCode.errorMessageRequiredInternational',
+              locale,
+            ),
+          ),
       })
       .when(['$internationalCustomer'], {
         is: (internationalCustomer: boolean) => internationalCustomer,
         then: Yup.string()
           .transform((value) => cleanTextSpecialCharacters(value))
-          .optional(),
+          .required(
+            t(
+              'page.customer.fields.zipCode.errorMessageRequiredInternational',
+              locale,
+            ),
+          ),
       }),
-    country: Yup.string().optional(),
+    country: Yup.string().required(
+      t('page.customer.fields.country.errorMessageRequired', locale),
+    ),
   })
 }
 

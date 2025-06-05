@@ -1,6 +1,9 @@
 import { ValidationError } from 'yup'
 import { cleanTextOnlyNumbers } from '@malga-checkout/utils'
 import { ZipCodeAutoComplete } from './malga-checkout-full-identification.types'
+import { t } from '@malga-checkout/i18n'
+import { Locale } from '@malga-checkout/i18n/dist/utils'
+import { isCNPJ, isCPF } from 'brazilian-values'
 
 export const normalizeValidationErrors = (errors: ValidationError[]) => {
   const normalizedErrors = errors.reduce(
@@ -34,4 +37,47 @@ export const validAddressAutocomplete = (address: ZipCodeAutoComplete) => {
   )
 
   return reducedAddress
+}
+
+export const handleCpfOrCnpjInvalidMessage = (
+  number: string,
+  locale: Locale,
+) => {
+  const cleaned = cleanTextOnlyNumbers(number)
+
+  console.log('num', number)
+
+  console.log('cleaned', cleaned)
+
+  if (cleaned.length < 11) {
+    return t(
+      'page.customer.fields.identification.errorInvalidNationalDocument',
+      locale,
+    )
+  }
+
+  if (cleaned.length === 11) {
+    if (!isCPF(cleaned)) {
+      return t(
+        'page.customer.fields.identification.errorMessageInvalidCpf',
+        locale,
+      )
+    }
+    return ''
+  }
+
+  if (cleaned.length === 14) {
+    if (!isCNPJ(cleaned)) {
+      return t(
+        'page.customer.fields.identification.errorMessageInvalidCnpj',
+        locale,
+      )
+    }
+    return ''
+  }
+
+  return t(
+    'page.customer.fields.identification.errorInvalidNationalDocument',
+    locale,
+  )
 }

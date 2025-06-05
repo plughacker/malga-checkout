@@ -8,6 +8,21 @@
   z-index: 2 !important;
 }
 
+%field-is-wrong {
+  border: 1px solid var(--malga-checkout-color-warning-dark) !important;
+  &:focus + checkout-typography label {
+    color: var(--malga-checkout-color-warning-dark) !important;
+  }
+  &:focus {
+    &::-moz-placeholder {
+      color: var(--malga-checkout-color-warning-dark) !important;
+    }
+    &::-webkit-input-placeholder {
+      color: var(--malga-checkout-color-warning-dark) !important;
+    }
+  }
+}
+
 .checkout-text-field__container {
   @extend %reset;
 
@@ -55,15 +70,8 @@
       @extend %field-is-filled;
     }
   }
-
-  & > checkout-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    right: 8px;
-  }
 }
+
 
 .checkout-text-field__native {
   @extend %reset;
@@ -80,6 +88,10 @@
   outline: none;
   appearance: none;
   z-index: 1;
+
+  &--error {
+    @extend %field-is-wrong;
+  }
 
   &::-webkit-input-placeholder {
     color: transparent;

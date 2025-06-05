@@ -17,7 +17,7 @@ export const schema = (locale?: Locale) => {
       .min(
         14,
         t(
-          'paymentMethods.card.newCard.fields.cardNumber.errorMessageInvalidFormat',
+          'paymentMethods.card.newCard.fields.cardNumber.errorMessageRequired',
           locale,
         ),
       )
@@ -88,10 +88,7 @@ export const schema = (locale?: Locale) => {
       )
       .min(
         3,
-        t(
-          'paymentMethods.card.newCard.fields.cvv.errorMessageInvalidFormat',
-          locale,
-        ),
+        t('paymentMethods.card.newCard.fields.cvv.errorMessageMin', locale),
       )
       .max(
         4,

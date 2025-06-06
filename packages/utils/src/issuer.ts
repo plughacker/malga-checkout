@@ -1,4 +1,4 @@
-import valid from '@malga/card-validator'
+import cardValidator from '@malga/card-validator'
 
 export const getMaxLengthPerIssuer = (issuer: string) => {
   const maxLengthPerIssuer = {
@@ -21,7 +21,9 @@ export const getCurrentIssuer = (number: string) => {
     return 'unknown'
   }
 
-  const issuer = parsedNumber ? valid.number(parsedNumber).card.type : 'unknown'
+  const issuer = parsedNumber
+    ? cardValidator.valid.number(parsedNumber).card.type
+    : 'unknown'
   return issuer
 }
 
@@ -36,7 +38,7 @@ export const getCardBrand = (firstCardNumbers: string): string => {
     'visa',
   ]
 
-  const cardBrand = valid.number(firstCardNumbers).card.type
+  const cardBrand = cardValidator.valid.number(firstCardNumbers).card.type
   const isPermittedBrand = permittedBrands.includes(cardBrand)
 
   return isPermittedBrand ? cardBrand : undefined

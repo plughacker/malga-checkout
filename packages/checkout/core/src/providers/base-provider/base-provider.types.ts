@@ -3,9 +3,9 @@ export interface CustomerId {
 }
 
 export interface Customer {
-  name: string
-  email: string
-  phoneNumber: string
+  name?: string
+  email?: string
+  phoneNumber?: string
   document?: {
     type: string
     number?: string

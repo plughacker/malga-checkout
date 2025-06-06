@@ -1,21 +1,21 @@
-.malga-payments-credit-form__container {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
 .malga-payments-credit-form__form {
   width: 100%;
 
   & > checkout-text-field {
-    margin-top: var(--malga-checkout-spacing-xs);
+    margin-top: var(--malga-checkout-spacing-sm);
   }
 
   & > checkout-select-field {
-    margin-top: var(--malga-checkout-spacing-xs);
+    margin-top: var(--malga-checkout-spacing-sm);
   }
+}
+
+.malga-payments-credit-form__container {
+  display: flex;
+  flex-direction: column;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
 }
 
 .malga-payments-credit-form__row-fields {
@@ -62,7 +62,7 @@
   flex-direction: row;
   align-items: center;
   margin-top: var(--malga-checkout-spacing-default);
-  margin-bottom: var(--malga-checkout-spacing-xs);
+  margin-bottom: var(--malga-checkout-spacing-sm);
 
   & > checkout-typography {
     font-weight: 400;

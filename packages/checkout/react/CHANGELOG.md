@@ -1,5 +1,127 @@
 # @malga-checkout/react
 
+## 1.20.4
+
+### Patch Changes
+
+- [#166](https://github.com/plughacker/malga-checkout/pull/166) [`4cabb7a`](https://github.com/plughacker/malga-checkout/commit/4cabb7a5a94d1f07a23a7a0469be09bf704cc2db) Thanks [@filipperodrigues](https://github.com/filipperodrigues)! - fixing customer document format when it's from fraudAnalysis
+
+- Updated dependencies [[`4cabb7a`](https://github.com/plughacker/malga-checkout/commit/4cabb7a5a94d1f07a23a7a0469be09bf704cc2db)]:
+  - @malga-checkout/core@1.20.4
+
+## 1.20.3
+
+### Patch Changes
+
+- [`26de03a`](https://github.com/plughacker/malga-checkout/commit/26de03a86bd74c2e2d4471837357d705eb73a999) Thanks [@lariane-guerra](https://github.com/lariane-guerra)! - Enabled customer name and email
+
+- Updated dependencies [[`26de03a`](https://github.com/plughacker/malga-checkout/commit/26de03a86bd74c2e2d4471837357d705eb73a999)]:
+  - @malga-checkout/core@1.20.3
+
+## 1.20.2
+
+### Patch Changes
+
+- [#159](https://github.com/plughacker/malga-checkout/pull/159) [`b20ccba`](https://github.com/plughacker/malga-checkout/commit/b20ccba0f19b8b4e1cc2d65642cf7422c0fc211a) Thanks [@0xleozera](https://github.com/0xleozera)! - fix customer phone number
+
+- Updated dependencies [[`b20ccba`](https://github.com/plughacker/malga-checkout/commit/b20ccba0f19b8b4e1cc2d65642cf7422c0fc211a)]:
+  - @malga-checkout/core@1.20.2
+
+## 1.20.1
+
+### Patch Changes
+
+- [`4050b4e`](https://github.com/plughacker/malga-checkout/commit/4050b4e4ff4ac94a95d58ae249962766c603605a) Thanks [@lariane-guerra](https://github.com/lariane-guerra)! - Change intl to zipcode on adress customer
+
+- Updated dependencies [[`4050b4e`](https://github.com/plughacker/malga-checkout/commit/4050b4e4ff4ac94a95d58ae249962766c603605a)]:
+  - @malga-checkout/core@1.20.1
+
+## 1.20.0
+
+### Minor Changes
+
+- [`bd0aded`](https://github.com/plughacker/malga-checkout/commit/bd0aded92cd9cceb3dd00f9e380f7d165a73c363) Thanks [@filipperodrigues](https://github.com/filipperodrigues)! - fixing installments feat when using only one method
+
+### Patch Changes
+
+- Updated dependencies [[`bd0aded`](https://github.com/plughacker/malga-checkout/commit/bd0aded92cd9cceb3dd00f9e380f7d165a73c363)]:
+  - @malga-checkout/core@1.20.0
+
+## 1.19.0
+
+### Minor Changes
+
+- [`d923e91`](https://github.com/plughacker/malga-checkout/commit/d923e917824b69a69627806401f98f0610cac54a) Thanks [@filipperodrigues](https://github.com/filipperodrigues)! - adding a way to set up installments without the user having to select it
+
+### Patch Changes
+
+- Updated dependencies [[`d923e91`](https://github.com/plughacker/malga-checkout/commit/d923e917824b69a69627806401f98f0610cac54a)]:
+  - @malga-checkout/core@1.19.0
+
+## 1.18.2
+
+### Patch Changes
+
+- [`caefe18`](https://github.com/plughacker/malga-checkout/commit/caefe184864edcb8c999162b49a5f18cf50e8acd) Thanks [@filipperodrigues](https://github.com/filipperodrigues)! - fixing customer validation schema
+
+- Updated dependencies [[`caefe18`](https://github.com/plughacker/malga-checkout/commit/caefe184864edcb8c999162b49a5f18cf50e8acd)]:
+  - @malga-checkout/core@1.18.2
+
+## 1.18.1
+
+### Patch Changes
+
+- [`323ca2d`](https://github.com/plughacker/malga-checkout/commit/323ca2d5bca2b6eceb9597684d66a31ff4edce58) Thanks [@filipperodrigues](https://github.com/filipperodrigues)! - fixing wrong intl path
+
+- Updated dependencies [[`323ca2d`](https://github.com/plughacker/malga-checkout/commit/323ca2d5bca2b6eceb9597684d66a31ff4edce58)]:
+  - @malga-checkout/core@1.18.1
+
+## 1.18.0
+
+### Minor Changes
+
+- [`1d7c912`](https://github.com/plughacker/malga-checkout/commit/1d7c912b4a1a8a47e4657b1d12ff8f4034a5c46d) Thanks [@filipperodrigues](https://github.com/filipperodrigues)! - Adding zipcode validator and bumping up card validator lib version
+
+- [`2b6bc83`](https://github.com/plughacker/malga-checkout/commit/2b6bc839466d490afff918495cd56a735b75c532) Thanks [@filipperodrigues](https://github.com/filipperodrigues)! - adding zip code validator and bumping up card validator lib version
+
+### Patch Changes
+
+- Updated dependencies [[`1d7c912`](https://github.com/plughacker/malga-checkout/commit/1d7c912b4a1a8a47e4657b1d12ff8f4034a5c46d), [`2b6bc83`](https://github.com/plughacker/malga-checkout/commit/2b6bc839466d490afff918495cd56a735b75c532)]:
+  - @malga-checkout/core@1.18.0
+
+## 1.17.0
+
+### Minor Changes
+
+- [`e634552`](https://github.com/plughacker/malga-checkout/commit/e6345528502112ad840270a70c936ce449f0747e) Thanks [@lariane-guerra](https://github.com/lariane-guerra)! - Update the object cart in fraudAnalysis
+
+### Patch Changes
+
+- Updated dependencies [[`e634552`](https://github.com/plughacker/malga-checkout/commit/e6345528502112ad840270a70c936ce449f0747e)]:
+  - @malga-checkout/core@1.17.0
+
+## 1.16.1
+
+### Patch Changes
+
+- [`192b49b`](https://github.com/plughacker/malga-checkout/commit/192b49b64b916bd7e1d5603521b416a8a9716893) Thanks [@lariane-guerra](https://github.com/lariane-guerra)! - Fixed the credit payment responsible components
+
+- Updated dependencies [[`192b49b`](https://github.com/plughacker/malga-checkout/commit/192b49b64b916bd7e1d5603521b416a8a9716893)]:
+  - @malga-checkout/core@1.16.1
+
+## 1.16.0
+
+### Minor Changes
+
+- [`ea6267d`](https://github.com/plughacker/malga-checkout/commit/ea6267d2b02316ec5df4325e6e65d21d57c3aa03) Thanks [@lariane-guerra](https://github.com/lariane-guerra)! - Adding items object to pix and boleto
+
+- [`c14a6b2`](https://github.com/plughacker/malga-checkout/commit/c14a6b24db6e1ff5bb7457d4bb655a8e64522ca7) Thanks [@lariane-guerra](https://github.com/lariane-guerra)! - Adding items object to pix and boleto payments
+
+### Patch Changes
+
+- Updated dependencies [[`ea6267d`](https://github.com/plughacker/malga-checkout/commit/ea6267d2b02316ec5df4325e6e65d21d57c3aa03), [`c14a6b2`](https://github.com/plughacker/malga-checkout/commit/c14a6b24db6e1ff5bb7457d4bb655a8e64522ca7)]:
+  - @malga-checkout/core@1.16.0
+
 ## 1.15.3
 
 ### Patch Changes

@@ -79,19 +79,15 @@ export class MalgaCheckoutFullIdentification {
 
     const validFieldValues = Object.entries(this.validFields)
 
-    console.log('valid field values', validFieldValues)
-
     const filteredValidFieldValues = validFieldValues
       .filter(([validField]) => !partialFields.includes(validField))
       .filter(([, validFieldValue]) => {
-        return !validFieldValue || !!validFieldValue.length
+        if (validFieldValue === undefined) return false
+
+        return validFieldValue === null || !!validFieldValue.length
       })
 
-    console.log('campos ainda inválidos', filteredValidFieldValues)
-
     this.allFieldIsValidated = !filteredValidFieldValues.length
-
-    console.log('disabled', this.allFieldIsValidated)
   }
 
   private handleFieldFocused = () => () => {
@@ -108,8 +104,6 @@ export class MalgaCheckoutFullIdentification {
       this.locale,
     )
 
-    console.log('validation', validation) //ta passando
-
     this.validFields = {
       ...this.validFields,
       [field]: validation.errors ? validation.errors[field] : '',
@@ -125,6 +119,7 @@ export class MalgaCheckoutFullIdentification {
 
   private handleChangeCountryFieldChange = (event) => {
     const country = event.target.value
+
     this.fieldChange.emit({ field: 'country', value: country })
 
     this.handleResetStateAfterCountryChange()
@@ -133,6 +128,7 @@ export class MalgaCheckoutFullIdentification {
 
   private handleResetStateAfterCountryChange() {
     this.fieldChange.emit({ field: 'state', value: '' })
+    this.handleChangeValidField({ field: 'state', value: null })
   }
 
   private handleResetDocumentTypeAfterCountryChange() {
@@ -155,6 +151,8 @@ export class MalgaCheckoutFullIdentification {
       field: 'documentCountry',
       value: documentCountry,
     })
+
+    this.handleValidationField('country')(event)
 
     const shouldAddOtherToDocumentType =
       !documentTypesByCountries[documentCountry]
@@ -210,7 +208,7 @@ export class MalgaCheckoutFullIdentification {
 
   render() {
     const documentTypesByCountries = documentTypesByCountry(this.locale)
-    const isTheSelectedCountryBR =
+    const isTheSelectedCountryBr =
       this.formValues.country === 'BR' || !this.internationalCustomer
     const hasDocumentTypes =
       !this.formValues.documentCountry ||
@@ -395,21 +393,6 @@ export class MalgaCheckoutFullIdentification {
           content={t('page.customer.address', this.locale)}
         />
 
-        <checkout-select-field
-          value={this.formValues.country}
-          onChanged={this.handleChangeCountryFieldChange}
-          onBlurred={this.handleValidationField('country')}
-          onFocused={this.handleFieldFocused()}
-          hasError={!!this.validFields.country}
-          options={countries(this.locale)}
-          fullWidth
-          name="country"
-          label={t('page.customer.fields.country.label', this.locale)}
-        />
-        {!!this.validFields.country && (
-          <checkout-error-message message={this.validFields.country} />
-        )}
-
         {!this.internationalCustomer && (
           <fieldset
             class={{ 'malga-checkout-full-identification__zipcode': true }}
@@ -551,6 +534,24 @@ export class MalgaCheckoutFullIdentification {
           <checkout-error-message message={this.validFields.district} />
         )}
 
+        <Fragment>
+          <checkout-select-field
+            value={this.formValues.documentCountry || this.formValues.country}
+            onChanged={this.handleChangeCountryFieldChange}
+            onBlurred={this.handleValidationField('country')}
+            onFocused={this.handleFieldFocused()}
+            hasError={!!this.validFields.country}
+            options={countries(this.locale)}
+            fullWidth
+            name="country"
+            label={t('page.customer.fields.country.label', this.locale)}
+          />
+
+          {!!this.validFields.country && (
+            <checkout-error-message message={this.validFields.country} />
+          )}
+        </Fragment>
+
         <fieldset
           class={{ 'malga-checkout-full-identification__row-fields': true }}
         >
@@ -581,7 +582,7 @@ export class MalgaCheckoutFullIdentification {
               'malga-checkout-full-identification__error-message': true,
             }}
           >
-            {isTheSelectedCountryBR ? (
+            {isTheSelectedCountryBr ? (
               <Fragment>
                 <checkout-select-field
                   value={this.formValues.state}

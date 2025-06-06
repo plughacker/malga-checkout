@@ -2,6 +2,7 @@ import { BaseProvider } from '../base-provider'
 import { PixAttributes, PaymentMethodPix, PixConstructor } from './pix.types'
 
 import settings from '../../stores/settings'
+import { getItems } from './pix.utils'
 
 export class Pix extends BaseProvider {
   readonly pix: PixAttributes
@@ -15,9 +16,12 @@ export class Pix extends BaseProvider {
   }
 
   public getPaymentMethod(): PaymentMethodPix {
+    const items = getItems(this.pix)
+
     return {
       paymentType: 'pix',
       expiresIn: this.pix.expiresIn,
+      ...items,
     }
   }
 }

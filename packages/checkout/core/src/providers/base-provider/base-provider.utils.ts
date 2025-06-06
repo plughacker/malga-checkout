@@ -10,6 +10,9 @@ import {
 export const formatCustomerPayload = (customer: Customer) => {
   const address = formatCustomerAddress(customer.address)
   const document = formatCustomerDocument(customer.document)
+  const phoneNumber = customer?.phoneNumber
+    ? cleanTextOnlyNumbers(customer.phoneNumber)
+    : ' '
 
   const haveFilledAddress = Object.values(
     customer.address ? customer.address : {},
@@ -19,7 +22,7 @@ export const formatCustomerPayload = (customer: Customer) => {
     ...document,
     name: customer.name,
     email: customer.email,
-    phoneNumber: cleanTextOnlyNumbers(customer.phoneNumber),
+    phoneNumber,
   }
 
   if (haveFilledAddress) {

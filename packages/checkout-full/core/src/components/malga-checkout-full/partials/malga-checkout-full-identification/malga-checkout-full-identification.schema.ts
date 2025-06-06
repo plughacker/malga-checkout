@@ -1,8 +1,10 @@
 import * as Yup from 'yup'
+
 import {
   validateTaxId,
   cleanTextOnlyNumbers,
   cleanTextSpecialCharacters,
+  isZipCodeValid,
 } from '@malga-checkout/utils'
 
 import { MalgaCheckoutFullIdentificationFormValues } from './malga-checkout-full-identification.types'
@@ -124,17 +126,18 @@ export const schema = (locale?: Locale) => {
     state: Yup.string().required(
       t('page.customer.fields.state.errorMessageRequired', locale),
     ),
+    country: Yup.string().required(
+      t('page.customer.fields.country.errorMessageRequired', locale),
+    ),
     zipCode: Yup.string()
-      .required(
-        t('page.customer.fields.zipCode.errorMessageRequiredBrazil', locale),
-      )
+      .trim()
       .when(['$internationalCustomer'], {
         is: (internationalCustomer: boolean) => !internationalCustomer,
         then: Yup.string()
           .transform((value) => cleanTextOnlyNumbers(value))
           .required(
             t(
-              'page.customer.fields.zipCode.errorMessageRequiredInternational',
+              'page.customer.fields.zipCode.errorMessageRequiredBrazil',
               locale,
             ),
           ),
@@ -149,10 +152,17 @@ export const schema = (locale?: Locale) => {
               locale,
             ),
           ),
-      }),
-    country: Yup.string().required(
-      t('page.customer.fields.country.errorMessageRequired', locale),
-    ),
+      })
+      .test(
+        'isValidZipcode',
+        t(
+          'page.customer.fields.zipCode.errorMessageInvalidZipCodeFormat',
+          locale,
+        ),
+        (value, context) => {
+          return isZipCodeValid(value, context.parent.country)
+        },
+      ),
   })
 }
 
@@ -163,7 +173,10 @@ export const validateCustomer = async (
 ) => {
   try {
     const customerSchema = schema(locale)
-    await customerSchema.validate(data, { abortEarly: false, context })
+    await customerSchema.validate(data, {
+      abortEarly: false,
+      context,
+    })
 
     return { isValid: true }
   } catch (error) {

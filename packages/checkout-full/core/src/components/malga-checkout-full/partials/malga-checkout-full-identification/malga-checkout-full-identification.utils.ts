@@ -45,7 +45,7 @@ export const handleCpfOrCnpjInvalidMessage = (
 ) => {
   const cleaned = cleanTextOnlyNumbers(number)
 
-  if (cleaned.length < 11) {
+  if (cleaned.length < 11 || !cleaned) {
     return t(
       'page.customer.fields.identification.errorInvalidNationalDocument',
       locale,

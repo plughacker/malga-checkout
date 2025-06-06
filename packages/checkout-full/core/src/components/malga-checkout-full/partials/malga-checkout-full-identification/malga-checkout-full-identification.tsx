@@ -455,6 +455,24 @@ export class MalgaCheckoutFullIdentification {
           </Fragment>
         )}
 
+        <Fragment>
+          <checkout-select-field
+            value={this.formValues.documentCountry || this.formValues.country}
+            onChanged={this.handleChangeCountryFieldChange}
+            onBlurred={this.handleValidationField('country')}
+            onFocused={this.handleFieldFocused()}
+            hasError={!!this.validFields.country}
+            options={countries(this.locale)}
+            fullWidth
+            name="country"
+            label={t('page.customer.fields.country.label', this.locale)}
+          />
+
+          {!!this.validFields.country && (
+            <checkout-error-message message={this.validFields.country} />
+          )}
+        </Fragment>
+
         <checkout-text-field
           value={this.formValues.street}
           onChanged={this.handleFieldChange('street')}
@@ -533,24 +551,6 @@ export class MalgaCheckoutFullIdentification {
         {!!this.validFields.district && (
           <checkout-error-message message={this.validFields.district} />
         )}
-
-        <Fragment>
-          <checkout-select-field
-            value={this.formValues.documentCountry || this.formValues.country}
-            onChanged={this.handleChangeCountryFieldChange}
-            onBlurred={this.handleValidationField('country')}
-            onFocused={this.handleFieldFocused()}
-            hasError={!!this.validFields.country}
-            options={countries(this.locale)}
-            fullWidth
-            name="country"
-            label={t('page.customer.fields.country.label', this.locale)}
-          />
-
-          {!!this.validFields.country && (
-            <checkout-error-message message={this.validFields.country} />
-          )}
-        </Fragment>
 
         <fieldset
           class={{ 'malga-checkout-full-identification__row-fields': true }}

@@ -224,7 +224,7 @@
           "labelBrazil": "CEP *",
           "descriptionBrazil": "Não sei meu CEP",
           "errorMessageRequiredBrazil": "CEP é obrigatório.",
-          "labelInternational": "Código postal *",
+          "labelInternational": "Código postal (CEP) *",
           "errorMessageRequiredInternational": "Código postal é obrigatório.",
           "errorMessageInvalidZipCodeFormat": "Código postal inválido.",
           "errorMessageRequiredCountry": "Selecione um país"

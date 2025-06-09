@@ -6,7 +6,10 @@ import {
   ComponentInterface,
   Event,
   EventEmitter,
+  State,
 } from '@stencil/core'
+
+import cardValidator from '@malga/card-validator'
 
 import credit, { validateCreditForm } from '../../../../stores/credit'
 import settings from '../../../../stores/settings'
@@ -18,6 +21,8 @@ import { centsToReal } from './malga-payments-credit-form.utils'
 })
 export class MalgaPaymentsCreditForm implements ComponentInterface {
   @Event() currentFieldChange: EventEmitter<{ field: string }>
+
+  @State() maskCardNumber = ''
 
   private handleFieldFocused = (field: string) => () => {
     if (credit.validations.allFieldsIsBlank) {
@@ -59,6 +64,18 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
   }
 
   private handleFieldChange = (field: string) => (event) => {
+    if (field === 'cardNumber') {
+      const { card } = cardValidator.valid.number(event.target.value)
+
+      if (card.type) {
+        const newMask = cardValidator.maskCardNumber(card.type, '9')
+
+        if (this.maskCardNumber !== newMask) {
+          this.maskCardNumber = newMask
+        }
+      }
+    }
+
     credit.form = { ...credit.form, [field]: event.target.value }
     this.currentFieldChange.emit({ field })
     this.handleValidationField(field)(event)
@@ -120,7 +137,7 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
             onPaste={this.handleFieldChange('cardNumber')}
             fullWidth
             inputmode="numeric"
-            mask="9999 9999 9999 99999"
+            mask={this.maskCardNumber}
             hasValidation={credit.validations.fields.cardNumber !== null}
             hasError={!!credit.validations.fields.cardNumber}
             name="cardNumber"

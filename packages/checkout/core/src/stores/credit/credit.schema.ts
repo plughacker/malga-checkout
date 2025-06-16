@@ -1,6 +1,6 @@
 import * as Yup from 'yup'
 
-import valid from '@malga/card-validator'
+import cardValidator from '@malga/card-validator'
 
 import { t } from '@malga-checkout/i18n'
 import { Locale } from '@malga-checkout/i18n/dist/utils'
@@ -39,7 +39,7 @@ export const schema = (locale?: Locale) => {
             return true
           }
 
-          return valid.number(value).isValid
+          return cardValidator.valid.number(value).isValid
         },
       ),
     expirationDate: Yup.string()

@@ -105,12 +105,19 @@ export class CheckoutTextField implements ComponentInterface {
   private hasValue = (): boolean => this.getValue().length > 0
 
   private handleSetMask = () => {
-    Inputmask({
-      mask: this.mask,
-      placeholder: ' ',
-      showMaskOnHover: false,
-      showMaskOnFocus: false,
-    }).mask(this.inputRef)
+    if (this.inputRef) {
+      Inputmask.remove(this.inputRef)
+
+      Inputmask({
+        mask: this.mask,
+        default: '',
+        keepStatic: true,
+        autoUnmask: true,
+        placeholder: ' ',
+        showMaskOnHover: false,
+        showMaskOnFocus: false,
+      }).mask(this.inputRef)
+    }
   }
 
   componentDidLoad() {

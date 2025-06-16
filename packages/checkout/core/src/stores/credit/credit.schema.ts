@@ -35,7 +35,7 @@ export const schema = (locale?: Locale) => {
           locale,
         ),
         (value) => {
-          if (!value.length) {
+          if (!value.length ||  value.length < 14) {
             return true
           }
 
@@ -49,6 +49,16 @@ export const schema = (locale?: Locale) => {
           locale,
         ),
       )
+      .test('isMinDate', t(
+          'paymentMethods.card.newCard.fields.expirationDate.errorMessageMin',
+          locale,
+        ), (value) => {
+           const normalizedValue = value.replace(/\D/g, '').trim()
+           const lengthDate = normalizedValue.length
+
+
+           return lengthDate === 4
+        })
         .test(
         'isValidDate',
         t(
@@ -58,7 +68,7 @@ export const schema = (locale?: Locale) => {
         (value) => {
           const normalizedValue = value.replace(/\D/g, '').trim()
 
-          if (!normalizedValue) return true
+          if (!normalizedValue || normalizedValue.length < 4) return true
 
           const [month, year] = value.split('/')
 

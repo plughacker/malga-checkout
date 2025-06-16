@@ -32,6 +32,7 @@
           "expirationDate": {
             "label": "Expiração (MM/AA) *",
             "errorMessageRequired": "Validade é obrigatória.",
+            "errorMessageMin": "Data de expiração incompleta",
             "errorMessageInvalidFormat": "Cartão vencido."
           },
           "cvv": {
@@ -120,7 +121,7 @@
       "actionButtonLabel": "Continuar",
       "clipboardClicked": "Código Copiado",
       "clipboard": "Copiar Código",
-      "clipboardDescription" :"Escaneie ou clique para copiar o código para pagar no aplicativo do seu banco."
+      "clipboardDescription": "Escaneie ou clique para copiar o código para pagar no aplicativo do seu banco."
     },
     "pix": {
       "title": "PIX disponível para pagamento!",

@@ -27,6 +27,7 @@
           "cardNumber": {
             "label": "Número do cartão",
             "errorMessageRequired": "Número do cartão é obrigatório.",
+            "errorMessageMin": "Número do cartão incompleto.",
             "errorMessageInvalidFormat": "Número do cartão inválido."
           },
           "expirationDate": {

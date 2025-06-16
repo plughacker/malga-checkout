@@ -14,20 +14,22 @@ export const schema = (locale?: Locale) => {
           locale,
         ),
       )
-      .min(
-        14,
-        t(
+      .test("isMin",  t(
           'paymentMethods.card.newCard.fields.cardNumber.errorMessageMin',
           locale,
-        ),
-      )
-      .max(
-        22,
-        t(
+        ), (value ) => {
+          if(!value) return true
+
+          return value.length >= 14
+        })
+        .test("isMax", t(
           'paymentMethods.card.newCard.fields.cardNumber.errorMessageInvalidFormat',
           locale,
-        ),
-      )
+        ), (value) => {
+          if(!value) return true
+
+          return value.length <= 22
+        })
       .test(
         'isNumber',
         t(
@@ -50,9 +52,10 @@ export const schema = (locale?: Locale) => {
         ),
       )
       .test('invalidMonth', t('paymentMethods.card.newCard.fields.expirationDate.errorMessageMonthInvalid', locale), (value) => {
+         if(!value) return true
+
          const month = value.slice(0, 2);
          const parsedMonth = parseInt(month, 10);
-
 
         return parsedMonth >= 1 && parsedMonth <= 12;
 
@@ -65,8 +68,10 @@ export const schema = (locale?: Locale) => {
            const normalizedValue = value.replace(/\D/g, '').trim()
            const lengthDate = normalizedValue.length
 
+           if(!lengthDate) return true
 
-           return lengthDate === 4
+
+           return lengthDate > 1 && lengthDate <= 4
         })
         .test(
         'isValidDate',
@@ -79,7 +84,7 @@ export const schema = (locale?: Locale) => {
 
           const monthParsed = parseInt(value.slice(0, 2), 10);
 
-          if (!normalizedValue || normalizedValue.length < 4 || (monthParsed < 1 || monthParsed > 12)) return true
+          if (!normalizedValue.length || normalizedValue.length < 4 || (monthParsed < 1 || monthParsed > 12)) return true
 
           const [month, year] = value.split('/')
 
@@ -107,17 +112,19 @@ export const schema = (locale?: Locale) => {
           locale,
         ),
       )
-      .min(
-        3,
-        t('paymentMethods.card.newCard.fields.cvv.errorMessageMin', locale),
-      )
-      .max(
-        4,
-        t(
+      .test("isMin", t('paymentMethods.card.newCard.fields.cvv.errorMessageMin', locale), (value) => {
+        if(!value) return true
+
+        return value.length >= 3
+      })
+      .test("isMax", t(
           'paymentMethods.card.newCard.fields.cvv.errorMessageInvalidFormat',
           locale,
-        ),
-      ),
+        ), (value) => {
+        if(!value) return true
+
+        return value.length <= 4
+      }),
     name: Yup.string()
       .required(
         t(

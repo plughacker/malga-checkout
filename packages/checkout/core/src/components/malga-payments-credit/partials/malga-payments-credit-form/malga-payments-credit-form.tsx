@@ -233,7 +233,7 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
 
           {settings.paymentMethods?.credit?.installments?.show && (
             <checkout-select-field
-              value={credit.form.installments}
+              value={settings.paymentMethods?.credit?.installments.quantity === 1 ? 1 : credit.form.installments}
               onChanged={this.handleFieldChange('installments')}
               onBlurred={this.handleValidationField('installments')}
               onFocused={this.handleFieldFocused('installments')}

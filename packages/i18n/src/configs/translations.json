@@ -34,6 +34,7 @@
             "label": "Expiração (MM/AA)",
             "errorMessageRequired": "Validade é obrigatória.",
             "errorMessageMin": "Data de expiração incompleta",
+            "errorMessageMonthInvalid": "Data de expiração inválida.",
             "errorMessageInvalidFormat": "Cartão vencido."
           },
           "cvv": {

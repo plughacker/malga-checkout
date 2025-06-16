@@ -40,6 +40,7 @@ export class CheckoutTextField implements ComponentInterface {
   @Prop() placeholder?: string
   @Prop() label?: string
   @Prop() name: string
+  @Prop() autoUnmask = false
   @Prop() fullWidth = false
   @Prop() readonly = false
   @Prop() required = false
@@ -110,11 +111,9 @@ export class CheckoutTextField implements ComponentInterface {
 
       Inputmask({
         mask: this.mask,
-        default: '',
-        keepStatic: true,
-        autoUnmask: true,
         placeholder: ' ',
         showMaskOnHover: false,
+        autoUnmask: this.autoUnmask,
         showMaskOnFocus: false,
       }).mask(this.inputRef)
     }

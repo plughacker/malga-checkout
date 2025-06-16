@@ -131,6 +131,7 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
         >
           <checkout-text-field
             value={credit.form.cardNumber}
+            autoUnmask={true}
             onChanged={this.handleFieldChange('cardNumber')}
             onBlurred={this.handleValidationField('cardNumber')}
             onFocused={this.handleFieldFocused('cardNumber')}

@@ -189,6 +189,7 @@ export namespace Components {
         "class"?: string;
     }
     interface CheckoutTextField {
+        "autoUnmask": boolean;
         "autofocus": boolean;
         "customContainerClass"?: string;
         "customInputClass"?: string;
@@ -574,6 +575,7 @@ declare namespace LocalJSX {
         "onChanged"?: (event: CustomEvent<boolean>) => void;
     }
     interface CheckoutTextField {
+        "autoUnmask"?: boolean;
         "autofocus"?: boolean;
         "customContainerClass"?: string;
         "customInputClass"?: string;

@@ -1964,10 +1964,10 @@
     npmlog "^4.1.2"
     write-file-atomic "^3.0.3"
 
-"@malga/card-validator@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@malga/card-validator/-/card-validator-1.0.1.tgz#81b8377997bff6c15736f68fc0be8a08172ed5b9"
-  integrity sha512-yHyQAEGBY2M6/W5dE6N2Goba3cqKzkAk8eY8uzXvWYN1Yq1F7zTZx7jDStH/LARRPDAT4WRCRIhybh7HCmFURw==
+"@malga/card-validator@1.5.0", "@malga/card-validator@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@malga/card-validator/-/card-validator-1.5.0.tgz#8e4981577917fa3f26d497716ee3b02487a22b6a"
+  integrity sha512-LcPxrm53g+Azq6veyuE2G39qalS+p+NudomIxxDZj1Q7DPxKikGr2SPz5yaFedclTlASmxzlZQ73GhEjMDAXwA==
   dependencies:
     card-validator "^8.1.1"
 

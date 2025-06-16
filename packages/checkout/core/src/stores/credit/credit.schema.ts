@@ -17,7 +17,7 @@ export const schema = (locale?: Locale) => {
       .min(
         14,
         t(
-          'paymentMethods.card.newCard.fields.cardNumber.errorMessageRequired',
+          'paymentMethods.card.newCard.fields.cardNumber.errorMessageMin',
           locale,
         ),
       )
@@ -49,7 +49,7 @@ export const schema = (locale?: Locale) => {
           locale,
         ),
       )
-      .test(
+        .test(
         'isValidDate',
         t(
           'paymentMethods.card.newCard.fields.expirationDate.errorMessageInvalidFormat',

@@ -1,15 +1,127 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
-    />
-    <title>Malga Checkout Full</title>
 
-    <script type="module" src="/build/malga-checkout-full.esm.js"></script>
-    <script nomodule src="/build/malga-checkout-full.js"></script>
-  </head>
-  <body></body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Malga Checkout Full</title>
+  <script type="module" src="/build/malga-checkout-full.esm.js"></script>
+  <script nomodule src="/build/malga-checkout-full.js"></script>
+</head>
+
+<body>
+  <malga-checkout-full debug="true" public-key="c6bc4af6-99fb-4fed-a6f6-a6845f3d1731"
+    client-id="523afbe7-36dc-4654-9dba-e7167d0e5e2d"
+    merchant-id="df65cc19-495d-45c7-a7ab-4c6aac605d3c"></malga-checkout-full>
+  <script>
+    const malgaCheckoutFull = document.querySelector('malga-checkout-full')
+
+    malgaCheckoutFull.paymentMethods = {
+      pix: {
+        expiresIn: 600,
+        items: [
+          {
+            id: "123",
+            title: "Produto",
+            quantity: 1,
+            unitPrice: 100,
+          },
+        ],
+      },
+      credit: {
+        installments: {
+          quantity: 1,
+          show: true,
+        },
+        showCreditCard: true
+      },
+      boleto: {
+        expiresDate: '2022-12-31',
+        instructions: 'Instruções para pagamento do boleto',
+        interest: {
+          days: 1,
+          amount: 100,
+        },
+        fine: {
+          days: 2,
+          amount: 200,
+        },
+        items: [
+          {
+            id: "123",
+            title: "Produto",
+            quantity: 1,
+            unitPrice: 100,
+          },
+        ],
+      },
+      drip: {
+        browser: {
+          ipAddress: "127.0.0.1",
+          browserFingerprint: "123123123",
+        },
+        successRedirectUrl: "https://example.com",
+        cancelRedirectUrl: "https://example.com",
+      },
+      nupay: {
+        taxValue: 10,
+        delayToAutoCancel: 60,
+        orderUrl: "http://127.0.0.1",
+      },
+    }
+
+    malgaCheckoutFull.pageConfig = {
+      //brandUrl: 'https://exampleurl/assets/images/logo.png',
+      footerDescription: 'Todos os direitos reservados © 2022 Malga.',
+      backRoute: 'https://www.malga.io/',
+      delivery: 0,
+      internationalCustomer: true,
+      products: [
+        {
+          name: 'Produto 1',
+          quantity: 2,
+          amount: 50,
+          description: 'Descrição do produto 1',
+          sku: '123',
+          risk: 'Low',
+        },
+        {
+          name: 'Produto 2',
+          quantity: 2,
+          amount: 40,
+          description: 'Descrição do produto 2',
+          sku: '124',
+          risk: 'Low',
+        },
+      ],
+    }
+
+    malgaCheckoutFull.transactionConfig = {
+      statementDescriptor: '#1 Demonstration Malga Checkout',
+      amount: 100,
+      description: '',
+      orderId: '',
+      customerId: '',
+      currency: 'BRL',
+      capture: false,
+    }
+
+    malgaCheckoutFull.dialogConfig = {
+      show: true,
+      actionButtonLabel: 'Continuar',
+      errorActionButtonLabel: 'Tentar novamente',
+      successActionButtonLabel: 'Continuar',
+      successRedirectUrl: 'https://www.malga.io/',
+    }
+
+    malgaCheckoutFull.addEventListener('transactionSuccess', (data) => {
+      // Your specifications here
+    })
+
+    malgaCheckoutFull.addEventListener('transactionFailed', (error) => {
+      // Your specifications here
+    })
+  </script>
+</body>
+
 </html>

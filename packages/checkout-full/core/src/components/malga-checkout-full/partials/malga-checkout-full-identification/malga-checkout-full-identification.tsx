@@ -364,6 +364,7 @@ export class MalgaCheckoutFullIdentification {
           hasValidation={this.validFields.identification !== null}
           hasError={!!this.validFields.identification}
           fullWidth
+          disabled={this.internationalCustomer && (!this.formValues.documentCountry || !this.formValues.documentType)}
           inputmode="numeric"
           name="identification"
           label={

@@ -42,6 +42,7 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
     const isMaskedField = ['cvv'].includes(field)
     const normalizedValue = event.target.value.replace(/\D/g, '').trim()
 
+
     const validation = await validateCreditForm(
       {
         ...credit.form,
@@ -97,25 +98,46 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
           settings.transactionConfig.amount,
           settings.transactionConfig.currency,
         )}`,
-        value: currentInstallment,
+        value: String(currentInstallment),
       }
     })
 
     return installmentOptions
   }
 
-  private handleCheckedSaveCard = () => {
-    if (settings.paymentMethods.credit.checkedSaveCard) {
+  private handleValidationInstallments = async () => {
+    const { quantity, show } = settings.paymentMethods.credit.installments
+
+    if (show && quantity === 1) {
       credit.form = {
         ...credit.form,
-        saveCard: settings.paymentMethods.credit.checkedSaveCard,
+        installments: '1',
+      }
+
+      const validation = await validateCreditForm(
+        credit.form,
+        {
+          hasInstallments:
+            settings.paymentMethods.credit.installments.show || false,
+        },
+        settings.locale,
+      )
+
+      credit.validations = {
+        ...credit.validations,
+        fields: {
+          ...credit.validations.fields,
+          installments: validation.errors ? validation.errors['installments'] : '',
+        },
       }
     }
   }
 
+
   componentWillLoad() {
-    this.handleCheckedSaveCard()
+    this.handleValidationInstallments()
   }
+
 
   render() {
     return (
@@ -233,7 +255,7 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
 
           {settings.paymentMethods?.credit?.installments?.show && (
             <checkout-select-field
-              value={settings.paymentMethods?.credit?.installments.quantity === 1 ? 1 : credit.form.installments}
+              value={credit.form.installments}
               onChanged={this.handleFieldChange('installments')}
               onBlurred={this.handleValidationField('installments')}
               onFocused={this.handleFieldFocused('installments')}

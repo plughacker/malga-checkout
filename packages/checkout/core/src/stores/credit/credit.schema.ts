@@ -145,19 +145,16 @@ export const schema = (locale?: Locale) => {
           return normalizedValue.length === comparedValue.length
         },
       ),
-    installments: Yup.string().test(
-      'isValidInstallments',
+    installments: Yup.string().when('$hasInstallments', {
+    is: (hasInstallments: boolean) => hasInstallments,
+    then: Yup.string()
+    .required(
       t(
         'paymentMethods.card.newCard.fields.installments.errorMessageRequired',
-        locale,
-      ),
-      (value, context) => {
-        if (!context.options.context.hasInstallments) {
-          return true
-        }
-
-        return !!value && value !== 'none'
-      },
-    ),
+        locale
+      )
+    )
+    .min(1),
+    }),
   })
 }

@@ -31,7 +31,7 @@ export const schema = (locale?: Locale) => {
       then: Yup.string().test(
         'isValidDocumentType',
         t('page.customer.fields.documentType.errorMessageRequired', locale),
-        (value) => value !== 'none',
+        (value) => !!value.length,
       ),
     }),
     documentCountry: Yup.string().when(['$internationalCustomer'], {
@@ -55,6 +55,8 @@ export const schema = (locale?: Locale) => {
           .test({
             name: 'isValidCpfOrCnpj',
             test(value, ctx) {
+              if(!value) return true
+
               const errorMessage = handleCpfOrCnpjInvalidMessage(value, locale)
 
               if (errorMessage) {
@@ -79,6 +81,8 @@ export const schema = (locale?: Locale) => {
           .test({
             name: 'isValidIdentification',
             test(value, ctx) {
+              if(!value) return true
+
               if (ctx.parent.documentCountry === 'BR') {
                 const errorMessage = handleCpfOrCnpjInvalidMessage(
                   value,

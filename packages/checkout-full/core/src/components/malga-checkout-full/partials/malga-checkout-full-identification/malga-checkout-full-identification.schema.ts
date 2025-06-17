@@ -112,7 +112,20 @@ export const schema = (locale?: Locale) => {
 
               return isValid
             },
-          }),
+          })
+          .test(
+            'isValidCountryAndType',
+            t('page.customer.fields.identification.errorRequiredCountryAndType', locale),
+              (value, context) => {
+                if (value.length === 0) return true
+
+                  if (!context.parent.documentType || context.parent.documentType === 'none' || !context.parent.documentCountry || context.parent.documentCountry === 'none') {
+                    return false
+                  }
+
+                return true
+                },
+          ),
       }),
     street: Yup.string().required(
       t('page.customer.fields.street.errorMessageRequired', locale),
@@ -165,6 +178,19 @@ export const schema = (locale?: Locale) => {
         ),
         (value, context) => {
           return isZipCodeValid(value, context.parent.country)
+        },
+      )
+      .test(
+        'isValidCountry',
+        t('page.customer.fields.zipCode.errorMessageRequiredCountry', locale),
+        (value, context) => {
+          if (value.length === 0) return true
+
+          if (!context.parent.country || context.parent.country === 'none') {
+            return false
+          }
+
+          return true
         },
       ),
   })

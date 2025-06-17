@@ -364,7 +364,6 @@ export class MalgaCheckoutFullIdentification {
           hasValidation={this.validFields.identification !== null}
           hasError={!!this.validFields.identification}
           fullWidth
-          disabled={this.internationalCustomer && (!this.formValues.documentCountry || !this.formValues.documentType)}
           inputmode="numeric"
           name="identification"
           label={
@@ -433,6 +432,24 @@ export class MalgaCheckoutFullIdentification {
           </fieldset>
         )}
 
+        <Fragment>
+          <checkout-select-field
+            value={this.formValues.documentCountry || this.formValues.country}
+            onChanged={this.handleChangeCountryFieldChange}
+            onBlurred={this.handleValidationField('country')}
+            onFocused={this.handleFieldFocused()}
+            hasError={!!this.validFields.country}
+            options={countries(this.locale)}
+            fullWidth
+            name="country"
+            label={t('page.customer.fields.country.label', this.locale)}
+          />
+
+          {!!this.validFields.country && (
+            <checkout-error-message message={this.validFields.country} />
+          )}
+        </Fragment>
+
         {this.internationalCustomer && (
           <Fragment>
             <checkout-text-field
@@ -455,24 +472,6 @@ export class MalgaCheckoutFullIdentification {
             )}
           </Fragment>
         )}
-
-        <Fragment>
-          <checkout-select-field
-            value={this.formValues.documentCountry || this.formValues.country}
-            onChanged={this.handleChangeCountryFieldChange}
-            onBlurred={this.handleValidationField('country')}
-            onFocused={this.handleFieldFocused()}
-            hasError={!!this.validFields.country}
-            options={countries(this.locale)}
-            fullWidth
-            name="country"
-            label={t('page.customer.fields.country.label', this.locale)}
-          />
-
-          {!!this.validFields.country && (
-            <checkout-error-message message={this.validFields.country} />
-          )}
-        </Fragment>
 
         <checkout-text-field
           value={this.formValues.street}

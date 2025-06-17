@@ -219,6 +219,9 @@
           "errorMessageInvalidCpf": "CPF inválido.",
           "errorMessageInvalidCnpj": "CNPJ inválido.",
           "errorInvalidNationalDocument": "Seu documento está incompleto.",
+          "errorRequiredCountry": "Selecione um país.",
+          "errorRequiredType": "Selecione o tipo do documento.",
+          "errorRequiredCountryAndType": "Selecione o país e o tipo do documento.",
           "labelInternational": "Número do documento",
           "errorMessageRequiredInternational": "Número do documento é obrigatório.",
           "errorMessageInvalidFormatInternational": "Formato inválido, verifique o seu documento."

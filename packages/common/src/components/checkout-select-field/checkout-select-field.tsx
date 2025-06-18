@@ -109,7 +109,7 @@ export class CheckoutSelectField implements ComponentInterface {
             <select
               class={{
                 'checkout-select-field__native': true,
-                'checkout-text-field__native--error': this.hasError,
+                'checkout-select-field__native--error': this.hasError,
                 [this.customSelectClass]: !!this.customSelectClass,
               }}
               id={this.name}

@@ -25,6 +25,8 @@ graph TD;
   malga-payments-credit-form --> checkout-text-field
   malga-payments-credit-form --> checkout-error-message
   malga-payments-credit-form --> checkout-select-field
+  malga-payments-credit-form --> checkout-switch
+  malga-payments-credit-form --> checkout-typography
   checkout-text-field --> checkout-typography
   checkout-error-message --> checkout-typography
   checkout-select-field --> checkout-typography

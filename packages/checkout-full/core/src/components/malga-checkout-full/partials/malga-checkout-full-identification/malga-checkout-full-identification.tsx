@@ -120,6 +120,13 @@ export class MalgaCheckoutFullIdentification {
   private handleChangeCountryFieldChange = (event) => {
     const country = event.target.value
 
+    if (this.formValues.zipCode && this.validFields.zipCode) {
+      this.validFields = {
+        ...this.validFields,
+        zipCode: '',
+      }
+    }
+
     this.fieldChange.emit({ field: 'country', value: country })
 
     this.handleResetStateAfterCountryChange()
@@ -174,6 +181,7 @@ export class MalgaCheckoutFullIdentification {
   private handleZipCodeFieldChange = async (event) => {
     const zipCode = event.target.value
     const zipCodeValue = cleanTextOnlyNumbers(zipCode)
+
 
     this.fieldChange.emit({ field: 'zipCode', value: zipCode })
 

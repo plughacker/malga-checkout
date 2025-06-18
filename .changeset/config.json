@@ -6,8 +6,18 @@
   ],
   "commit": false,
   "fixed": [
-    ["@malga-checkout/core","@malga-checkout/angular","@malga-checkout/react","@malga-checkout/vue"],
-    ["@malga-checkout-full/core","@malga-checkout-full/angular","@malga-checkout-full/react","@malga-checkout-full/vue"]
+    [
+      "@malga-checkout/core",
+      "@malga-checkout/angular",
+      "@malga-checkout/react",
+      "@malga-checkout/vue"
+    ],
+    [
+      "@malga-checkout-full/core",
+      "@malga-checkout-full/angular",
+      "@malga-checkout-full/react",
+      "@malga-checkout-full/vue"
+    ]
   ],
   "linked": [],
   "access": "public",

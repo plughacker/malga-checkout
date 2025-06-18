@@ -11,7 +11,7 @@
 %field-is-wrong {
   border: 1px solid var(--malga-checkout-color-warning-dark) !important;
 
-  &:focus+checkout-typography label {
+  &:focus + checkout-typography label {
     color: var(--malga-checkout-color-warning-dark) !important;
   }
 
@@ -22,22 +22,6 @@
 
     &::-webkit-input-placeholder {
       color: var(--malga-checkout-color-warning-dark) !important;
-    }
-  }
-}
-
-%field-is-disabled {
-  border: 1px solid var(--malga-checkout-color-accent-normal) !important;
-  background-color: var(--malga-checkout-color-disabled) !important;
-  opacity: 40% !important;
-
-  &:focus {
-    &::-moz-placeholder {
-      color: var(--malga-checkout-color-grey-light) !important;
-    }
-
-    &::-webkit-input-placeholder {
-      color: var(--malga-checkout-color-grey-light) !important;
     }
   }
 }
@@ -74,7 +58,7 @@
   align-items: center;
   justify-content: start;
 
-  &>checkout-typography label {
+  & > checkout-typography label {
     position: absolute;
     top: 50%;
     left: 0;
@@ -85,12 +69,11 @@
   }
 
   &--filled {
-    &>checkout-typography label {
+    & > checkout-typography label {
       @extend %field-is-filled;
     }
   }
 }
-
 
 .checkout-text-field__native {
   @extend %reset;
@@ -110,10 +93,6 @@
 
   &--error {
     @extend %field-is-wrong;
-  }
-
-  &--disabled {
-    @extend %field-is-disabled
   }
 
   &::-webkit-input-placeholder {
@@ -143,16 +122,16 @@
       opacity: 0.5;
     }
 
-    &>option {
+    & > option {
       color: var(--malga-checkout-color-grey-light) !important;
     }
   }
 
-  &>option {
+  & > option {
     color: var(--malga-checkout-color-grey-light) !important;
   }
 
-  &:focus+checkout-typography label {
+  &:focus + checkout-typography label {
     @extend %field-is-filled;
   }
 }

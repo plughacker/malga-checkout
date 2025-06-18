@@ -14,22 +14,30 @@ export const schema = (locale?: Locale) => {
           locale,
         ),
       )
-      .test("isMin",  t(
+      .test(
+        'isMin',
+        t(
           'paymentMethods.card.newCard.fields.cardNumber.errorMessageMin',
           locale,
-        ), (value ) => {
-          if(!value) return true
+        ),
+        (value) => {
+          if (!value) return true
 
           return value.length >= 14
-        })
-        .test("isMax", t(
+        },
+      )
+      .test(
+        'isMax',
+        t(
           'paymentMethods.card.newCard.fields.cardNumber.errorMessageInvalidFormat',
           locale,
-        ), (value) => {
-          if(!value) return true
+        ),
+        (value) => {
+          if (!value) return true
 
           return value.length <= 22
-        })
+        },
+      )
       .test(
         'isNumber',
         t(
@@ -37,7 +45,7 @@ export const schema = (locale?: Locale) => {
           locale,
         ),
         (value) => {
-          if (!value.length ||  value.length < 14) {
+          if (!value.length || value.length < 14) {
             return true
           }
 
@@ -51,29 +59,37 @@ export const schema = (locale?: Locale) => {
           locale,
         ),
       )
-      .test('invalidMonth', t('paymentMethods.card.newCard.fields.expirationDate.errorMessageMonthInvalid', locale), (value) => {
-         if(!value) return true
+      .test(
+        'invalidMonth',
+        t(
+          'paymentMethods.card.newCard.fields.expirationDate.errorMessageMonthInvalid',
+          locale,
+        ),
+        (value) => {
+          if (!value) return true
 
-         const month = value.slice(0, 2);
-         const parsedMonth = parseInt(month, 10);
+          const month = value.slice(0, 2)
+          const parsedMonth = parseInt(month, 10)
 
-        return parsedMonth >= 1 && parsedMonth <= 12;
-
-
-      })
-      .test('isMinDate', t(
+          return parsedMonth >= 1 && parsedMonth <= 12
+        },
+      )
+      .test(
+        'isMinDate',
+        t(
           'paymentMethods.card.newCard.fields.expirationDate.errorMessageMin',
           locale,
-        ), (value) => {
-           const normalizedValue = value.replace(/\D/g, '').trim()
-           const lengthDate = normalizedValue.length
+        ),
+        (value) => {
+          const normalizedValue = value.replace(/\D/g, '').trim()
+          const lengthDate = normalizedValue.length
 
-           if(!lengthDate) return true
+          if (!lengthDate) return true
 
-
-           return lengthDate > 1 && lengthDate <= 4
-        })
-        .test(
+          return lengthDate > 1 && lengthDate <= 4
+        },
+      )
+      .test(
         'isValidDate',
         t(
           'paymentMethods.card.newCard.fields.expirationDate.errorMessageInvalidFormat',
@@ -82,9 +98,15 @@ export const schema = (locale?: Locale) => {
         (value) => {
           const normalizedValue = value.replace(/\D/g, '').trim()
 
-          const monthParsed = parseInt(value.slice(0, 2), 10);
+          const monthParsed = parseInt(value.slice(0, 2), 10)
 
-          if (!normalizedValue.length || normalizedValue.length < 4 || (monthParsed < 1 || monthParsed > 12)) return true
+          if (
+            !normalizedValue.length ||
+            normalizedValue.length < 4 ||
+            monthParsed < 1 ||
+            monthParsed > 12
+          )
+            return true
 
           const [month, year] = value.split('/')
 
@@ -112,19 +134,27 @@ export const schema = (locale?: Locale) => {
           locale,
         ),
       )
-      .test("isMin", t('paymentMethods.card.newCard.fields.cvv.errorMessageMin', locale), (value) => {
-        if(!value) return true
+      .test(
+        'isMin',
+        t('paymentMethods.card.newCard.fields.cvv.errorMessageMin', locale),
+        (value) => {
+          if (!value) return true
 
-        return value.length >= 3
-      })
-      .test("isMax", t(
+          return value.length >= 3
+        },
+      )
+      .test(
+        'isMax',
+        t(
           'paymentMethods.card.newCard.fields.cvv.errorMessageInvalidFormat',
           locale,
-        ), (value) => {
-        if(!value) return true
+        ),
+        (value) => {
+          if (!value) return true
 
-        return value.length <= 4
-      }),
+          return value.length <= 4
+        },
+      ),
     name: Yup.string()
       .required(
         t(
@@ -146,15 +176,15 @@ export const schema = (locale?: Locale) => {
         },
       ),
     installments: Yup.string().when('$hasInstallments', {
-    is: (hasInstallments: boolean) => hasInstallments,
-    then: Yup.string()
-    .required(
-      t(
-        'paymentMethods.card.newCard.fields.installments.errorMessageRequired',
-        locale
-      )
-    )
-    .min(1),
+      is: (hasInstallments: boolean) => hasInstallments,
+      then: Yup.string()
+        .required(
+          t(
+            'paymentMethods.card.newCard.fields.installments.errorMessageRequired',
+            locale,
+          ),
+        )
+        .min(1),
     }),
   })
 }

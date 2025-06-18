@@ -42,7 +42,6 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
     const isMaskedField = ['cvv'].includes(field)
     const normalizedValue = event.target.value.replace(/\D/g, '').trim()
 
-
     const validation = await validateCreditForm(
       {
         ...credit.form,
@@ -127,17 +126,17 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
         ...credit.validations,
         fields: {
           ...credit.validations.fields,
-          installments: validation.errors ? validation.errors['installments'] : '',
+          installments: validation.errors
+            ? validation.errors['installments']
+            : '',
         },
       }
     }
   }
 
-
   componentWillLoad() {
     this.handleValidationInstallments()
   }
-
 
   render() {
     return (

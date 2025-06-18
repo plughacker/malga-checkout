@@ -31,7 +31,7 @@ export const schema = (locale?: Locale) => {
       then: Yup.string().test(
         'isValidDocumentType',
         t('page.customer.fields.documentType.errorMessageRequired', locale),
-        (value) => !!value.length,
+        (value) => value !== 'none',
       ),
     }),
     documentCountry: Yup.string().when(['$internationalCustomer'], {
@@ -54,13 +54,13 @@ export const schema = (locale?: Locale) => {
           )
           .test({
             name: 'isValidCpfOrCnpj',
-            test(value, ctx) {
-              if(!value) return true
+            test(value, context) {
+              if (!value) return true
 
               const errorMessage = handleCpfOrCnpjInvalidMessage(value, locale)
 
               if (errorMessage) {
-                return ctx.createError({
+                return context.createError({
                   message: errorMessage,
                 })
               }
@@ -80,17 +80,17 @@ export const schema = (locale?: Locale) => {
           )
           .test({
             name: 'isValidIdentification',
-            test(value, ctx) {
-              if(!value) return true
+            test(value, context) {
+              if (!value) return true
 
-              if (ctx.parent.documentCountry === 'BR') {
+              if (context.parent.documentCountry === 'BR') {
                 const errorMessage = handleCpfOrCnpjInvalidMessage(
                   value,
                   locale,
                 )
 
                 if (errorMessage) {
-                  return ctx.createError({
+                  return context.createError({
                     message: errorMessage,
                   })
                 }
@@ -98,15 +98,15 @@ export const schema = (locale?: Locale) => {
                 return true
               }
 
-              if (ctx.parent.documentType === 'other') {
+              if (context.parent.documentType === 'other') {
                 return true
               }
 
               const documentNumber = cleanTextSpecialCharacters(value)
 
               const isValid = validateTaxId(
-                ctx.parent.documentCountry,
-                ctx.parent.documentType,
+                context.parent.documentCountry,
+                context.parent.documentType,
                 documentNumber,
               )
 
@@ -115,16 +115,24 @@ export const schema = (locale?: Locale) => {
           })
           .test(
             'isValidCountryAndType',
-            t('page.customer.fields.identification.errorRequiredCountryAndType', locale),
-              (value, context) => {
-                if (value.length === 0) return true
+            t(
+              'page.customer.fields.identification.errorRequiredCountryAndType',
+              locale,
+            ),
+            (value, context) => {
+              if (value.length === 0) return true
 
-                  if (!context.parent.documentType || context.parent.documentType === 'none' || !context.parent.documentCountry || context.parent.documentCountry === 'none') {
-                    return false
-                  }
+              if (
+                !context.parent.documentType ||
+                context.parent.documentType === 'none' ||
+                !context.parent.documentCountry ||
+                context.parent.documentCountry === 'none'
+              ) {
+                return false
+              }
 
-                return true
-                },
+              return true
+            },
           ),
       }),
     street: Yup.string().required(

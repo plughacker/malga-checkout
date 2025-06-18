@@ -147,7 +147,6 @@ export class CheckoutTextField implements ComponentInterface {
                 'checkout-text-field__native': true,
                 'checkout-text-field__native--error': this.hasError,
                 [this.customInputClass]: !!this.customInputClass,
-                'checkout-text-field__native--disabled': this.disabled
               }}
               id={this.name}
               placeholder={this.placeholder}

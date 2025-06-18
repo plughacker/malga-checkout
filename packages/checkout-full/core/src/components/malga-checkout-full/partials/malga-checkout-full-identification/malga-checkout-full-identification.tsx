@@ -334,7 +334,7 @@ export class MalgaCheckoutFullIdentification {
                       hasError={!!this.validFields.documentType}
                       options={
                         documentTypesByCountries[
-                        this.formValues.documentCountry
+                          this.formValues.documentCountry
                         ]
                       }
                       fullWidth
@@ -369,13 +369,13 @@ export class MalgaCheckoutFullIdentification {
           label={
             !this.internationalCustomer
               ? t(
-                'page.customer.fields.identification.labelBrazil',
-                this.locale,
-              )
+                  'page.customer.fields.identification.labelBrazil',
+                  this.locale,
+                )
               : t(
-                'page.customer.fields.identification.labelInternational',
-                this.locale,
-              )
+                  'page.customer.fields.identification.labelInternational',
+                  this.locale,
+                )
           }
           mask={
             !this.internationalCustomer

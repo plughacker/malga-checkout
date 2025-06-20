@@ -125,6 +125,8 @@ graph TD;
   malga-payments-credit-form --> checkout-text-field
   malga-payments-credit-form --> checkout-error-message
   malga-payments-credit-form --> checkout-select-field
+  malga-payments-credit-form --> checkout-switch
+  malga-payments-credit-form --> checkout-typography
   malga-payments-boleto --> checkout-manual-payment
   malga-payments-boleto --> checkout-modal
   checkout-manual-payment --> checkout-typography

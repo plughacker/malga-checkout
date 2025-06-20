@@ -63,6 +63,10 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
     }
   }
 
+  private handleSaveCardChange = () => {
+    credit.form = { ...credit.form, saveCard: !credit.form.saveCard }
+  }
+
   private handleFieldChange = (field: string) => (event) => {
     if (field === 'cardNumber') {
       const { card } = cardValidator.valid.number(event.target.value)
@@ -134,7 +138,17 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
     }
   }
 
+  private handleCheckedSaveCard = () => {
+    if (settings.paymentMethods.credit.checkedSaveCard) {
+      credit.form = {
+        ...credit.form,
+        saveCard: settings.paymentMethods.credit.checkedSaveCard,
+      }
+    }
+  }
+
   componentWillLoad() {
+    this.handleCheckedSaveCard()
     this.handleValidationInstallments()
   }
 
@@ -276,6 +290,24 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
                 message={credit.validations.fields.installments}
               />
             )}
+
+            {(settings.transactionConfig.customerId ||
+            settings.transactionConfig.customer) && (
+            <div class={{ 'malga-payments-credit-form__save-card': true }}>
+              <checkout-switch
+                checked={credit.form.saveCard}
+                onChanged={this.handleSaveCardChange}
+              />
+              <checkout-typography
+                variation="field"
+                color="darkness"
+                content={t(
+                  'paymentMethods.card.newCard.fields.saveCard.label',
+                  settings.locale,
+                )}
+              />
+            </div>
+          )}
 
           {credit.validations.allFieldsIsBlank && (
             <checkout-error-message

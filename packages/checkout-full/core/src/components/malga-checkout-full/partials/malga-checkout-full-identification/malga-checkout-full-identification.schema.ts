@@ -57,7 +57,7 @@ export const schema = (locale?: Locale) => {
             test(value, context) {
               if (!value) return true
 
-              const errorMessage = handleCpfOrCnpjInvalidMessage(value, locale)
+              const errorMessage = handleCpfOrCnpjInvalidMessage(value, locale, context.parent.documentType)
 
               if (errorMessage) {
                 return context.createError({
@@ -87,6 +87,7 @@ export const schema = (locale?: Locale) => {
                 const errorMessage = handleCpfOrCnpjInvalidMessage(
                   value,
                   locale,
+                  context.parent.documentType,
                 )
 
                 if (errorMessage) {

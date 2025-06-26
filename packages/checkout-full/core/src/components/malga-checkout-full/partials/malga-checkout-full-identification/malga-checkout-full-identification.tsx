@@ -66,6 +66,7 @@ export class MalgaCheckoutFullIdentification {
     country: null,
   }
 
+
   private checkValidatedField = () => {
     const optionalBrazilianFields = [
       'complement',
@@ -113,8 +114,37 @@ export class MalgaCheckoutFullIdentification {
   }
 
   private handleFieldChange = (field: string) => (event) => {
-    this.fieldChange.emit({ field, value: event.target.value })
+    const value = event.target.value
+    this.fieldChange.emit({ field, value })
+
+    if (field === 'documentType') {
+      this.validFields = {
+        ...this.validFields,
+        documentType: '',
+      }
+
+      if (this.formValues.identification) {
+        const updatedFormValues = { ...this.formValues, documentType: value }
+        this.handleValidationFieldWithValues('identification', updatedFormValues)()
+      }
+    }
+
     this.handleValidationField(field)(event)
+  }
+
+  private handleValidationFieldWithValues = (field: string, values: any) => async () => {
+    const validation = await validateCustomer(
+      values,
+      { internationalCustomer: this.internationalCustomer },
+      this.locale,
+    )
+
+    this.validFields = {
+      ...this.validFields,
+      [field]: validation.errors ? validation.errors[field] : '',
+    }
+
+    this.checkValidatedField()
   }
 
   private handleChangeCountryFieldChange = (event) => {
@@ -342,7 +372,7 @@ export class MalgaCheckoutFullIdentification {
                       hasError={!!this.validFields.documentType}
                       options={
                         documentTypesByCountries[
-                          this.formValues.documentCountry
+                        this.formValues.documentCountry
                         ]
                       }
                       fullWidth
@@ -377,18 +407,16 @@ export class MalgaCheckoutFullIdentification {
           label={
             !this.internationalCustomer
               ? t(
-                  'page.customer.fields.identification.labelBrazil',
-                  this.locale,
-                )
+                'page.customer.fields.identification.labelBrazil',
+                this.locale,
+              )
               : t(
-                  'page.customer.fields.identification.labelInternational',
-                  this.locale,
-                )
+                'page.customer.fields.identification.labelInternational',
+                this.locale,
+              )
           }
           mask={
-            !this.internationalCustomer
-              ? getIdentificationMask(this.formValues.identification)
-              : null
+            getIdentificationMask(this.formValues.documentCountry === 'BR' || !this.internationalCustomer, this.formValues.documentType, this.formValues.identification)
           }
         />
         {!!this.validFields.identification && (

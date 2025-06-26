@@ -20,7 +20,7 @@
     "ramda": "^0.28.0"
   },
   "devDependencies": {
-    "@types/node": "^18.11.9",
+    "@types/node": "^16.18.11",
     "@types/ramda": "^0.28.20",
     "crowdin": "^3.5.0",
     "typescript": "^4.9.3",

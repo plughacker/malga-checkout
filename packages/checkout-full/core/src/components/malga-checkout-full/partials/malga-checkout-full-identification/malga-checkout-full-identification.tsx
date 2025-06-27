@@ -115,6 +115,21 @@ export class MalgaCheckoutFullIdentification {
     this.checkValidatedField()
   }
 
+  private handleValidationIdentificationValue = (field: string, customValues: MalgaCheckoutFullIdentificationFormValues) => async () => {
+    const validation = await validateCustomer(
+      customValues,
+      { internationalCustomer: this.internationalCustomer },
+      this.locale,
+    )
+
+    this.validFields = {
+      ...this.validFields,
+      [field]: validation.errors ? validation.errors[field] : '',
+    }
+
+    this.checkValidatedField()
+  }
+
   private handleFieldChange = (field: string) => (event) => {
     const value = field === 'documentType' ? event.target.value :
       (this.formValues.documentCountry !== 'BR' ? event.target.value.replace(/\D/g, '').trim() : event.target.value)
@@ -129,7 +144,7 @@ export class MalgaCheckoutFullIdentification {
 
       if (this.formValues.identification) {
         const updatedFormValues = { ...this.formValues, documentType: value }
-        this.handleValidationField('identification')(updatedFormValues)
+        this.handleValidationIdentificationValue('identification', updatedFormValues)()
       }
     }
 
@@ -159,7 +174,9 @@ export class MalgaCheckoutFullIdentification {
 
   private handleResetDocumentTypeAfterCountryChange() {
     this.fieldChange.emit({ field: 'documentType', value: '' })
+    this.fieldChange.emit({ field: 'identification', value: '' })
     this.handleChangeValidField({ field: 'documentType', value: null })
+    this.handleChangeValidField({ field: 'identification', value: null })
   }
 
   private handleChangeValidField({ field, value }) {
@@ -199,6 +216,11 @@ export class MalgaCheckoutFullIdentification {
       this.handleChangeValidField({ field: 'documentType', value: undefined })
     } else {
       this.handleResetDocumentTypeAfterCountryChange()
+    }
+
+    if (this.formValues.identification) {
+      const updatedFormValues = { ...this.formValues, documentCountry }
+      this.handleValidationIdentificationValue('identification', updatedFormValues)()
     }
 
     this.checkValidatedField()

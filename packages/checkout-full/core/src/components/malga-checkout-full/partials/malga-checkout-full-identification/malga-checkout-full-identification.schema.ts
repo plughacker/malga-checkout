@@ -111,7 +111,16 @@ export const schema = (locale?: Locale) => {
                 documentNumber,
               )
 
-              return isValid
+              if (!isValid) {
+                return context.createError({
+                  message: t(
+                    'page.customer.fields.identification.errorMessageInvalidFormatInternational',
+                    locale,
+                  ),
+                })
+              }
+
+              return true
             },
           })
           .test(

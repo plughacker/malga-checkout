@@ -20,8 +20,9 @@ export const normalizeValidationErrors = (errors: ValidationError[]) => {
 export const getIdentificationMask = (isBrazilianDocument: boolean, documentType?: string, identification?: string) => {
   const normalizedIdentification = cleanTextOnlyNumbers(identification)
 
-  if (!normalizedIdentification || !isBrazilianDocument) return ''
-
+  if (!normalizedIdentification || !isBrazilianDocument) {
+    return ''
+  }
   const cnpjMask = '99.999.999/9999-99'
   const cpfMask = '999.999.999-99'
 

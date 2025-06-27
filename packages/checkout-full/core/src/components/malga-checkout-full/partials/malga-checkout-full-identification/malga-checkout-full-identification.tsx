@@ -96,11 +96,13 @@ export class MalgaCheckoutFullIdentification {
   }
 
   private handleValidationField = (field: string) => async (event) => {
+    const valuesToValidate = {
+      ...this.formValues,
+      [field]: event.target.value,
+    }
+
     const validation = await validateCustomer(
-      {
-        ...this.formValues,
-        [field]: event.target.value,
-      },
+      valuesToValidate,
       { internationalCustomer: this.internationalCustomer },
       this.locale,
     )
@@ -114,7 +116,9 @@ export class MalgaCheckoutFullIdentification {
   }
 
   private handleFieldChange = (field: string) => (event) => {
-    const value = event.target.value
+    const value = field === 'documentType' ? event.target.value :
+      (this.formValues.documentCountry !== 'BR' ? event.target.value.replace(/\D/g, '').trim() : event.target.value)
+
     this.fieldChange.emit({ field, value })
 
     if (field === 'documentType') {
@@ -125,26 +129,11 @@ export class MalgaCheckoutFullIdentification {
 
       if (this.formValues.identification) {
         const updatedFormValues = { ...this.formValues, documentType: value }
-        this.handleValidationFieldWithValues('identification', updatedFormValues)()
+        this.handleValidationField('identification')(updatedFormValues)
       }
     }
 
     this.handleValidationField(field)(event)
-  }
-
-  private handleValidationFieldWithValues = (field: string, values: any) => async () => {
-    const validation = await validateCustomer(
-      values,
-      { internationalCustomer: this.internationalCustomer },
-      this.locale,
-    )
-
-    this.validFields = {
-      ...this.validFields,
-      [field]: validation.errors ? validation.errors[field] : '',
-    }
-
-    this.checkValidatedField()
   }
 
   private handleChangeCountryFieldChange = (event) => {

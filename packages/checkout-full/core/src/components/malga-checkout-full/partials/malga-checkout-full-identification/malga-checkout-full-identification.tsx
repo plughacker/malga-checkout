@@ -178,6 +178,13 @@ export class MalgaCheckoutFullIdentification {
       value: documentCountry,
     })
 
+    if (this.validFields.identification) {
+      this.validFields = {
+        ...this.validFields,
+        identification: null,
+      }
+    }
+
     this.handleValidationField('country')(event)
 
     const shouldAddOtherToDocumentType =

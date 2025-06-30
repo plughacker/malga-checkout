@@ -11,8 +11,9 @@ export class MalgaPaymentsDripContentService {
   readonly amount: number
   readonly date: Date
   readonly dripURL: string
-
-  constructor({ amount, debug, sandbox }: MalgaPaymentsDripContentConstructor) {
+  readonly clientId: string
+  constructor({ amount, debug, sandbox, clientId }: MalgaPaymentsDripContentConstructor) {
+    this.clientId = clientId
     this.amount = amount / 100
     this.date = formatISODate(new Date())
     this.dripURL =
@@ -24,7 +25,7 @@ export class MalgaPaymentsDripContentService {
   public async getContent() {
     try {
       const { data } = await axios.get(
-        `${this.dripURL}?amount=${this.amount}&date=${this.date}`,
+        `${this.dripURL}?amount=${this.amount}&date=${this.date}&clientId=${this.clientId}`,
       )
 
       const parsedCashback = parseAmountDecimalToInteger(

@@ -17,16 +17,18 @@ export const normalizeValidationErrors = (errors: ValidationError[]) => {
   return normalizedErrors
 }
 
-export const getIdentificationMask = (isBrazilianDocument: boolean, documentType?: string, identification?: string) => {
+export const getIdentificationMask = (isBrazilianDocument: boolean, documentType: string, identification?: string) => {
   const normalizedIdentification = cleanTextOnlyNumbers(identification)
 
-  if (!normalizedIdentification || !isBrazilianDocument) {
+  if (!normalizedIdentification || !isBrazilianDocument || !documentType) {
     return ''
   }
+
   const cnpjMask = '99.999.999/9999-99'
   const cpfMask = '999.999.999-99'
 
-  return documentType === 'cnpj' || normalizedIdentification.length > 11 ? cnpjMask : cpfMask
+  const mask = documentType === 'cpf' ? cpfMask : cnpjMask
+  return mask
 }
 
 export const validAddressAutocomplete = (address: ZipCodeAutoComplete) => {

@@ -66,6 +66,7 @@ export class MalgaCheckoutFullIdentification {
     country: null,
   }
 
+  @State() maskIdentification = ''
 
   private checkValidatedField = () => {
     const optionalBrazilianFields = [
@@ -142,10 +143,22 @@ export class MalgaCheckoutFullIdentification {
         documentType: '',
       }
 
+      this.maskIdentification = getIdentificationMask(
+        this.formValues.documentCountry === 'BR' || !this.internationalCustomer,
+        value,
+        this.formValues.identification
+      )
+
       if (this.formValues.identification) {
         const updatedFormValues = { ...this.formValues, documentType: value }
         this.handleValidationIdentificationValue('identification', updatedFormValues)()
       }
+    } else {
+      this.maskIdentification = getIdentificationMask(
+        this.formValues.documentCountry === 'BR' || !this.internationalCustomer,
+        this.formValues.documentType,
+        this.formValues.identification
+      )
     }
 
     this.handleValidationField(field)(event)
@@ -189,6 +202,17 @@ export class MalgaCheckoutFullIdentification {
   private handleChangeDocumentCountry = (event) => {
     const documentCountry = event.target.value
     const documentTypesByCountries = documentTypesByCountry(this.locale)
+
+    if (documentCountry !== 'BR') {
+      this.maskIdentification = ''
+    } else {
+      const newMask = getIdentificationMask(
+        true,
+        this.formValues.documentType,
+        this.formValues.identification
+      )
+      this.maskIdentification = newMask
+    }
 
     this.fieldChange.emit({
       field: 'documentCountry',
@@ -433,9 +457,8 @@ export class MalgaCheckoutFullIdentification {
                 this.locale,
               )
           }
-          mask={
-            getIdentificationMask(this.formValues.documentCountry === 'BR' || !this.internationalCustomer, this.formValues.documentType, this.formValues.identification)
-          }
+          autoUnmask
+          mask={this.maskIdentification}
         />
         {!!this.validFields.identification && (
           <checkout-error-message message={this.validFields.identification} />

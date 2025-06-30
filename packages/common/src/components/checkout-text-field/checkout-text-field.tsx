@@ -67,7 +67,6 @@ export class CheckoutTextField implements ComponentInterface {
   @Watch('mask')
   protected maskChanged() {
     if (this.inputRef) {
-      console.log("oooi")
       this.handleSetMask()
     }
   }
@@ -108,7 +107,6 @@ export class CheckoutTextField implements ComponentInterface {
 
   private handleSetMask = () => {
     if (this.inputRef) {
-      console.log("deveria remover")
       Inputmask.remove(this.inputRef)
 
       Inputmask({

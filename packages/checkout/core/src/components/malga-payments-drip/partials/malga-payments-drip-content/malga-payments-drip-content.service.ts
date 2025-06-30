@@ -25,7 +25,12 @@ export class MalgaPaymentsDripContentService {
   public async getContent() {
     try {
       const { data } = await axios.get(
-        `${this.dripURL}?amount=${this.amount}&date=${this.date}&clientId=${this.clientId}`,
+        `${this.dripURL}?amount=${this.amount}&date=${this.date}`,
+        {
+          headers: {
+            'X-Client-Id': this.clientId
+          }
+        }
       )
 
       const parsedCashback = parseAmountDecimalToInteger(

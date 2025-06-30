@@ -22,6 +22,7 @@ export class MalgaPaymentsDripContent implements ComponentInterface {
       amount: settings.transactionConfig.amount,
       sandbox: settings.sandbox,
       debug: settings.debug,
+      clientId: settings.clientId,
     })
     const { cashback, installments } = await dripContentService.getContent()
 

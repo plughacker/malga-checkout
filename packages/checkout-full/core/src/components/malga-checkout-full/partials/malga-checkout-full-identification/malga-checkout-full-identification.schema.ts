@@ -19,7 +19,19 @@ export const schema = (locale?: Locale) => {
   return Yup.object().shape({
     name: Yup.string().required(
       t('page.customer.fields.name.errorMessageRequired', locale),
-    ),
+    ).test(
+        'isValidName',
+        t(
+          'page.customer.fields.name.errorMessageInvalidFormat',
+          locale,
+        ),
+        (value) => {
+          const normalizedValue = value.replace(/[^A-Za-z]+/g, '')
+          const comparedValue = value.replace(/\s/g, '')
+
+          return normalizedValue.length === comparedValue.length
+        },
+      ),
     email: Yup.string()
       .email(t('page.customer.fields.email.errorMessageInvalidFormat', locale))
       .required(t('page.customer.fields.email.errorMessageRequired', locale)),

@@ -193,7 +193,7 @@
         "name": {
           "label": "Nome completo",
           "errorMessageRequired": "Nome é obrigatório",
-          "errorMessageInvalidFormat": "Data inválida, verifique os dados do cartão."
+          "errorMessageInvalidFormat": "Nome inválido."
         },
         "email": {
           "label": "E-mail",

@@ -33,7 +33,7 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
       ...credit.validations,
       fields: {
         ...credit.validations.fields,
-        [field]: credit.form[field] ? '' : null,
+        [field]: credit.form[field] ? credit.validations.fields[field] : null,
       },
     }
   }
@@ -291,23 +291,23 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
               />
             )}
 
-            {(settings.transactionConfig.customerId ||
+          {(settings.transactionConfig.customerId ||
             settings.transactionConfig.customer) && (
-            <div class={{ 'malga-payments-credit-form__save-card': true }}>
-              <checkout-switch
-                checked={credit.form.saveCard}
-                onChanged={this.handleSaveCardChange}
-              />
-              <checkout-typography
-                variation="field"
-                color="darkness"
-                content={t(
-                  'paymentMethods.card.newCard.fields.saveCard.label',
-                  settings.locale,
-                )}
-              />
-            </div>
-          )}
+              <div class={{ 'malga-payments-credit-form__save-card': true }}>
+                <checkout-switch
+                  checked={credit.form.saveCard}
+                  onChanged={this.handleSaveCardChange}
+                />
+                <checkout-typography
+                  variation="field"
+                  color="darkness"
+                  content={t(
+                    'paymentMethods.card.newCard.fields.saveCard.label',
+                    settings.locale,
+                  )}
+                />
+              </div>
+            )}
 
           {credit.validations.allFieldsIsBlank && (
             <checkout-error-message

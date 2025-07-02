@@ -68,7 +68,8 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
   }
 
   private handleFieldChange = (field: string) => (event) => {
-    if (field === 'cardNumber') {
+    if (field === 'cardNumber' && event.target.value) {
+      console.log("entra??")
       const { card } = cardValidator.valid.number(event.target.value)
 
       if (card.type) {

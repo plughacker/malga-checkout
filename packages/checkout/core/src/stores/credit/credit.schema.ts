@@ -86,7 +86,7 @@ export const schema = (locale?: Locale) => {
 
           if (!lengthDate) return true
 
-          return lengthDate > 1 && lengthDate <= 4
+           return lengthDate === 4
         },
       )
       .test(

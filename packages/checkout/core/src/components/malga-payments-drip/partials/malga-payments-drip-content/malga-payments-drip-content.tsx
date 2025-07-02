@@ -34,6 +34,7 @@ export class MalgaPaymentsDripContent implements ComponentInterface {
     this.fetchInstallments()
   }
 
+
   render() {
     return (
       <Host class={{ 'malga-payments-drip-content__container': true }}>
@@ -41,7 +42,9 @@ export class MalgaPaymentsDripContent implements ComponentInterface {
         <p>
           {t('paymentMethods.drip.descriptions.first', settings.locale)}{' '}
           <strong>
-            {t('paymentMethods.drip.descriptions.second', settings.locale)}
+            {t('paymentMethods.drip.descriptions.second', settings.locale, {
+              installments: this.installments.length.toString()
+            })}
           </strong>{' '}
           {t('paymentMethods.drip.descriptions.third', settings.locale)}
         </p>

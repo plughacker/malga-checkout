@@ -1,11 +1,3 @@
-.malga-payments-credit-form__container {
-  display: flex;
-  margin-top: var(--malga-checkout-spacing-xs);
-  margin-bottom: var(--malga-checkout-spacing-md);
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .malga-payments-credit-form__form {
   width: 100%;
 
@@ -21,28 +13,48 @@
 .malga-payments-credit-form__container {
   display: flex;
   flex-direction: column;
-  align-self: center;
-  margin-top: var(--malga-checkout-spacing-sm);
-  padding: 0px;
   margin: 0px;
-
-  @media screen and (min-width: 768px) {
-    flex-direction: row;
-    gap: var(--malga-checkout-spacing-sm);
-  }
-
+  padding: 0px;
+  width: 100%;
 }
 
-.malga-payments-credit-form__column-fields {
-  width: 100%;
+.malga-payments-credit-form__row-fields {
+  display: flex;
+  height: 100%;
+  border: none;
+  margin: 0;
+  margin-top: var(--malga-checkout-spacing-xs);
+  margin-bottom: var(--malga-checkout-spacing-xs);
+  padding: 0;
+
+  @include md {
+    flex-direction: row;
+  }
+
+  & > checkout-text-field:first-child,
+  & > div:first-child {
+    margin-bottom: var(--malga-checkout-spacing-xs);
+
+    @include md {
+      margin-bottom: 0;
+      margin-right: var(--malga-checkout-spacing-xs);
+    }
+  }
+
+  & > checkout-text-field:last-child,
+  & > div:last-child {
+    @include md {
+      margin-left: var(--malga-checkout-spacing-xs);
+    }
+  }
+  flex-direction: column;
+}
+
+.malga-payments-credit__error-message {
   display: flex;
   flex-direction: column;
-  border: none;
-  padding: 0;
-  margin: 0;
-  margin-top: var(--malga-checkout-spacing-sm);
-  gap: var(--malga-checkout-spacing-xs);
-
+  width: 100%;
+  height: 100%;
 }
 
 .malga-payments-credit-form__save-card {

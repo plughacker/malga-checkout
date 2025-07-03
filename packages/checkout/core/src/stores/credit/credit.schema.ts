@@ -1,6 +1,6 @@
 import * as Yup from 'yup'
 
-import valid from '@malga/card-validator'
+import cardValidator from '@malga/card-validator'
 
 import { t } from '@malga-checkout/i18n'
 import { Locale } from '@malga-checkout/i18n/dist/utils'
@@ -14,19 +14,29 @@ export const schema = (locale?: Locale) => {
           locale,
         ),
       )
-      .min(
-        14,
+      .test(
+        'isMin',
         t(
-          'paymentMethods.card.newCard.fields.cardNumber.errorMessageInvalidFormat',
+          'paymentMethods.card.newCard.fields.cardNumber.errorMessageMin',
           locale,
         ),
+        (value) => {
+          if (!value) return true
+
+          return value.length >= 14
+        },
       )
-      .max(
-        22,
+      .test(
+        'isMax',
         t(
           'paymentMethods.card.newCard.fields.cardNumber.errorMessageInvalidFormat',
           locale,
         ),
+        (value) => {
+          if (!value) return true
+
+          return value.length <= 22
+        },
       )
       .test(
         'isNumber',
@@ -35,11 +45,11 @@ export const schema = (locale?: Locale) => {
           locale,
         ),
         (value) => {
-          if (!value.length) {
+          if (!value.length || value.length < 14) {
             return true
           }
 
-          return valid.number(value).isValid
+          return cardValidator.valid.number(value).isValid
         },
       ),
     expirationDate: Yup.string()
@@ -50,6 +60,36 @@ export const schema = (locale?: Locale) => {
         ),
       )
       .test(
+        'invalidMonth',
+        t(
+          'paymentMethods.card.newCard.fields.expirationDate.errorMessageMonthInvalid',
+          locale,
+        ),
+        (value) => {
+          if (!value) return true
+
+          const month = value.slice(0, 2)
+          const parsedMonth = parseInt(month, 10)
+
+          return parsedMonth >= 1 && parsedMonth <= 12
+        },
+      )
+      .test(
+        'isMinDate',
+        t(
+          'paymentMethods.card.newCard.fields.expirationDate.errorMessageMin',
+          locale,
+        ),
+        (value) => {
+          const normalizedValue = value.replace(/\D/g, '').trim()
+          const lengthDate = normalizedValue.length
+
+          if (!lengthDate) return true
+
+           return lengthDate === 4
+        },
+      )
+      .test(
         'isValidDate',
         t(
           'paymentMethods.card.newCard.fields.expirationDate.errorMessageInvalidFormat',
@@ -58,7 +98,15 @@ export const schema = (locale?: Locale) => {
         (value) => {
           const normalizedValue = value.replace(/\D/g, '').trim()
 
-          if (!normalizedValue) return true
+          const monthParsed = parseInt(value.slice(0, 2), 10)
+
+          if (
+            !normalizedValue.length ||
+            normalizedValue.length < 4 ||
+            monthParsed < 1 ||
+            monthParsed > 12
+          )
+            return true
 
           const [month, year] = value.split('/')
 
@@ -86,19 +134,26 @@ export const schema = (locale?: Locale) => {
           locale,
         ),
       )
-      .min(
-        3,
-        t(
-          'paymentMethods.card.newCard.fields.cvv.errorMessageInvalidFormat',
-          locale,
-        ),
+      .test(
+        'isMin',
+        t('paymentMethods.card.newCard.fields.cvv.errorMessageMin', locale),
+        (value) => {
+          if (!value) return true
+
+          return value.length >= 3
+        },
       )
-      .max(
-        4,
+      .test(
+        'isMax',
         t(
           'paymentMethods.card.newCard.fields.cvv.errorMessageInvalidFormat',
           locale,
         ),
+        (value) => {
+          if (!value) return true
+
+          return value.length <= 4
+        },
       ),
     name: Yup.string()
       .required(
@@ -120,19 +175,16 @@ export const schema = (locale?: Locale) => {
           return normalizedValue.length === comparedValue.length
         },
       ),
-    installments: Yup.string().test(
-      'isValidInstallments',
-      t(
-        'paymentMethods.card.newCard.fields.installments.errorMessageRequired',
-        locale,
-      ),
-      (value, context) => {
-        if (!context.options.context.hasInstallments) {
-          return true
-        }
-
-        return !!value && value !== 'none'
-      },
-    ),
+    installments: Yup.string().when('$hasInstallments', {
+      is: (hasInstallments: boolean) => hasInstallments,
+      then: Yup.string()
+        .required(
+          t(
+            'paymentMethods.card.newCard.fields.installments.errorMessageRequired',
+            locale,
+          ),
+        )
+        .min(1),
+    }),
   })
 }

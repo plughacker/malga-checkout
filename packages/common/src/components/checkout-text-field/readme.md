@@ -7,6 +7,7 @@
 
 | Property               | Attribute                | Description | Type                                                                                                                                                                                                                                                                                                                                                                                                            | Default     |
 | ---------------------- | ------------------------ | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `autoUnmask`           | `auto-unmask`            |             | `boolean`                                                                                                                                                                                                                                                                                                                                                                                                       | `false`     |
 | `autofocus`            | `autofocus`              |             | `boolean`                                                                                                                                                                                                                                                                                                                                                                                                       | `false`     |
 | `customContainerClass` | `custom-container-class` |             | `string`                                                                                                                                                                                                                                                                                                                                                                                                        | `undefined` |
 | `customInputClass`     | `custom-input-class`     |             | `string`                                                                                                                                                                                                                                                                                                                                                                                                        | `undefined` |
@@ -47,13 +48,11 @@
 ### Depends on
 
 - [checkout-typography](../checkout-typography)
-- [checkout-icon](../checkout-icon)
 
 ### Graph
 ```mermaid
 graph TD;
   checkout-text-field --> checkout-typography
-  checkout-text-field --> checkout-icon
   style checkout-text-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

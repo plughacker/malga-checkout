@@ -68,7 +68,6 @@ export class CheckoutButton implements ComponentInterface {
   render() {
     return (
       <Host
-        class={{ 'checkout-button__container--full-width': this.fullWidth }}
         style={{ pointerEvents: this.disabled ? 'none' : undefined }}
         aria-disabled={this.disabled ? 'true' : null}
       >

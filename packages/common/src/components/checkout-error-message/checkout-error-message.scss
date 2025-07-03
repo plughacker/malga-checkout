@@ -1,11 +1,7 @@
 .checkout-error-message {
-  @extend %centralized;
-
-  padding: var(--malga-checkout-spacing-xxs) 0px;
-  border-radius: var(--malga-checkout-border-radius-default);
-  text-align: center;
-  background: var(--malga-checkout-color-warning-light);
-  margin-top: var(--malga-checkout-spacing-xs);
+  & > checkout-typography > p {
+    margin-left: var(--malga-checkout-spacing-sm);
+  }
 
   &--full-width {
     width: 100%;

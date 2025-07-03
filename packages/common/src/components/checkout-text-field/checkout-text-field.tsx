@@ -40,6 +40,7 @@ export class CheckoutTextField implements ComponentInterface {
   @Prop() placeholder?: string
   @Prop() label?: string
   @Prop() name: string
+  @Prop() autoUnmask = false
   @Prop() fullWidth = false
   @Prop() readonly = false
   @Prop() required = false
@@ -61,6 +62,13 @@ export class CheckoutTextField implements ComponentInterface {
     this.changed.emit({
       value: this.value == null ? this.value : this.value.toString(),
     })
+  }
+
+  @Watch('mask')
+  protected maskChanged() {
+    if (this.inputRef) {
+      this.handleSetMask()
+    }
   }
 
   private onInput = (event: Event) => {
@@ -98,21 +106,20 @@ export class CheckoutTextField implements ComponentInterface {
   private hasValue = (): boolean => this.getValue().length > 0
 
   private handleSetMask = () => {
-    Inputmask({
-      mask: this.mask,
-      placeholder: ' ',
-      showMaskOnHover: false,
-      showMaskOnFocus: false,
-    }).mask(this.inputRef)
-  }
+    if (this.inputRef) {
+      Inputmask.remove(this.inputRef)
 
-  componentDidLoad() {
-    if (this.mask) {
-      this.handleSetMask()
+      Inputmask({
+        mask: this.mask,
+        placeholder: ' ',
+        showMaskOnHover: false,
+        autoUnmask: this.autoUnmask,
+        showMaskOnFocus: false,
+      }).mask(this.inputRef)
     }
   }
 
-  componentWillUpdate() {
+  componentDidLoad() {
     if (this.mask) {
       this.handleSetMask()
     }
@@ -138,6 +145,7 @@ export class CheckoutTextField implements ComponentInterface {
               ref={(element) => (this.inputRef = element)}
               class={{
                 'checkout-text-field__native': true,
+                'checkout-text-field__native--error': this.hasError,
                 [this.customInputClass]: !!this.customInputClass,
               }}
               id={this.name}
@@ -168,7 +176,6 @@ export class CheckoutTextField implements ComponentInterface {
               variation="field"
               content={this.label}
             />
-            {this.hasError && <checkout-icon icon="warning" />}
           </div>
         </fieldset>
       </Host>

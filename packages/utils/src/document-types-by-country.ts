@@ -51,7 +51,6 @@ export const documentTypesByCountry = (locale?: Locale) => ({
   BR: [
     { value: 'cpf', label: 'CPF' },
     { value: 'cnpj', label: 'CNPJ' },
-    { value: 'other', label: t('common.other', locale) },
   ],
   BY: [
     { value: 'unp', label: 'UNP' },

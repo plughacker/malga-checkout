@@ -20,7 +20,7 @@ export class CheckoutErrorMessage implements ComponentInterface {
       >
         <checkout-typography
           color="warning"
-          variation="subtitle2"
+          variation="body1"
           content={this.message}
         />
       </Host>

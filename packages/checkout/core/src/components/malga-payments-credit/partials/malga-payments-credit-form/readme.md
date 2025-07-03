@@ -33,7 +33,6 @@ graph TD;
   malga-payments-credit-form --> checkout-switch
   malga-payments-credit-form --> checkout-typography
   checkout-text-field --> checkout-typography
-  checkout-text-field --> checkout-icon
   checkout-error-message --> checkout-typography
   checkout-select-field --> checkout-typography
   checkout-select-field --> checkout-icon

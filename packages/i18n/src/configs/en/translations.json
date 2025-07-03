@@ -25,27 +25,31 @@
         },
         "fields": {
           "cardNumber": {
-            "label": "Card number *",
+            "label": "Card number",
             "errorMessageRequired": "A card number is required.",
-            "errorMessageInvalidFormat": "Invalid format. Please, verify your card data."
+            "errorMessageMin": "Incomplete card number.",
+            "errorMessageInvalidFormat": "Invalid card number."
           },
           "expirationDate": {
-            "label": "Expiration date (MM/AA) *",
+            "label": "Expiration (MM/YY)",
             "errorMessageRequired": "The expiration date is required.",
-            "errorMessageInvalidFormat": "The expiration date is invalid. Please, verify your card data."
+            "errorMessageMin": "Incomplete expiration date.",
+            "errorMessageMonthInvalid": "Invalid expiration date.",
+            "errorMessageInvalidFormat": "Expired card."
           },
           "cvv": {
-            "label": "Card Verification Value (CVV) * ",
+            "label": "CVV",
             "errorMessageRequired": "A CVV is required.",
-            "errorMessageInvalidFormat": "Invalid format. Please, verify your card data."
+            "errorMessageMin": "Incomplete CVV.",
+            "errorMessageInvalidFormat": "Invalid CVV."
           },
           "name": {
-            "label": "Card name *",
-            "errorMessageRequired": "A card name is required.",
-            "errorMessageInvalidFormat": "Invalid format. Please, verify your card data."
+            "label": "Cardholder name",
+            "errorMessageRequired": "Cardholder name is required.",
+            "errorMessageInvalidFormat": "Invalid name."
           },
           "installments": {
-            "label": "Installments *",
+            "label": "Installments",
             "errorMessageRequired": "Select an installment to proceed."
           },
           "saveCard": {
@@ -58,11 +62,11 @@
         "fields": {
           "cvv": {
             "description": "To process your transaction, please provide the CVV on the back of your card.",
-            "label": "Card Verification Value (CVV) * ",
+            "label": "Card Verification Value (CVV)",
             "errorMessage": "Invalid format. Please, verify your card data."
           },
           "installments": {
-            "label": "Installments *",
+            "label": "Installments",
             "errorMessage": "Installments are required."
           }
         }
@@ -105,7 +109,7 @@
       "title": "Pix with installments + cashback",
       "descriptions": {
         "first": "There are 3 simple steps to have your",
-        "second": "purchase confirmed in 3 installments in PIX, zero interest, cashback",
+        "second": "purchase confirmed in {installments}x PIX installments with no interest and cashback",
         "third": "and depending on your profile, with or without an entry fee."
       },
       "installments": {
@@ -187,33 +191,38 @@
       "submitButton": "Next",
       "fields": {
         "name": {
-          "label": "Full Name *",
-          "errorMessageRequired": "Full name is required.",
-          "errorMessageInvalidFormat": "The expiration date is invalid. Please, verify your card data."
+          "label": "Full Name",
+          "errorMessageRequired": "A name is required",
+          "errorMessageInvalidFormat": "Invalid name."
         },
         "email": {
-          "label": "E-mail *",
+          "label": "Email",
           "errorMessageRequired": "An e-mail is required.",
-          "errorMessageInvalidFormat": "Invalid format. Please, verify your e-mail."
+          "errorMessageInvalidFormat": "Invalid email."
         },
         "phoneNumber": {
-          "label": "Phone *",
+          "label": "Phone number",
           "errorMessageRequired": "A phone number is required.",
           "errorMessageInvalidFormat": "Invalid format. Please, verify your phone number."
         },
         "documentCountry": {
-          "label": "Document Country *",
-          "errorMessageRequired": "Select your country to continue."
+          "label": "Document Country",
+          "errorMessageRequired": "Country is required."
         },
         "documentType": {
-          "label": "Document Type *",
-          "errorMessageRequired": "Please, select a document type to continue."
+          "label": "Document Type",
+          "errorMessageRequired": "Document type is required."
         },
         "identification": {
-          "labelBrazil": "CPF/CNPJ*",
-          "errorMessageRequiredBrazil": "A CPF or a CNPJ is required.",
-          "errorMessageInvalidFormatBrazil": "Invalid format. Please, verify your CPF or CNPJ.",
-          "labelInternational": "Document ID *",
+          "labelBrazil": "CPF/CNPJ",
+          "errorMessageRequiredBrazil": "Document number is required.",
+          "errorMessageInvalidCpf": "Invalid CPF.",
+          "errorMessageInvalidCnpj": "Invalid CNPJ.",
+          "errorInvalidNationalDocument": "Your document is incomplete.",
+          "errorRequiredCountry": "Select a country.",
+          "errorRequiredType": "Select document type.",
+          "errorRequiredCountryAndType": "Select the country and document type.",
+          "labelInternational": "Document number",
           "errorMessageRequiredInternational": "The document ID is required.",
           "errorMessageInvalidFormatInternational": "Invalid format. Please, verify your document."
         },
@@ -221,10 +230,10 @@
           "labelBrazil": "Zip Code",
           "descriptionBrazil": "I don't know my zip code",
           "errorMessageRequiredBrazil": "A Zip Code is required.",
-          "errorMessageInvalidZipCodeFormat": "Enter a valid ZIP code",
-          "errorMessageRequiredCountry": "Select a country",
-          "labelInternational": "Zip Code",
-          "errorMessageRequiredInternational": "A zip code is required."
+          "labelInternational": "Postal code (ZIP code)",
+          "errorMessageRequiredInternational": "A zip code is required.",
+          "errorMessageInvalidZipCodeFormat": "Invalid postal code.",
+          "errorMessageRequiredCountry": "Select a country"
         },
         "street": {
           "label": "Address",
@@ -235,8 +244,7 @@
           "errorMessageRequired": "A number is required."
         },
         "complement": {
-          "label": "Street Address 2",
-          "errorMessageRequired": "Street Address 2 is required."
+          "label": "Additional info (optional)"
         },
         "neighborhood": {
           "label": "Neighborhood",
@@ -252,7 +260,7 @@
         },
         "country": {
           "label": "Country",
-          "errorMessageRequired": "Select your country to continue."
+          "errorMessageRequired": "Country is required."
         }
       }
     }

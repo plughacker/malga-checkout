@@ -1,5 +1,12 @@
 # @malga-checkout/vue
 
+## 1.21.0
+
+### Patch Changes
+
+- Updated dependencies [[`a963521`](https://github.com/plughacker/malga-checkout/commit/a9635218b33cb88d0abb9734383389fa6376e6dd)]:
+  - @malga-checkout/core@1.21.0
+
 ## 1.20.4
 
 ### Patch Changes

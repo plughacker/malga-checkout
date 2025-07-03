@@ -12,7 +12,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "vite build",
-    "i18n:upload": "crowdin upload",
+    "i18n:upload": "crowdin upload sources",
     "i18n:download": "crowdin download"
   },
   "dependencies": {

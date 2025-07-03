@@ -198,7 +198,7 @@
         "email": {
           "label": "E-mail",
           "errorMessageRequired": "E-mail é obrigatório.",
-          "errorMessageInvalidFormat": "Email inválido."
+          "errorMessageInvalidFormat": "E-mail inválido."
         },
         "phoneNumber": {
           "label": "Telefone",

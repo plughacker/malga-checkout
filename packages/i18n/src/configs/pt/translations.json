@@ -25,31 +25,27 @@
         },
         "fields": {
           "cardNumber": {
-            "label": "Número do cartão",
+            "label": "Número do cartão *",
             "errorMessageRequired": "Número do cartão é obrigatório.",
-            "errorMessageMin": "Número do cartão incompleto.",
-            "errorMessageInvalidFormat": "Número do cartão inválido."
+            "errorMessageInvalidFormat": "Formato inválido, verifique os dados do cartão."
           },
           "expirationDate": {
-            "label": "Expiração (MM/AA)",
+            "label": "Data de expiração (MM/AA) *",
             "errorMessageRequired": "Validade é obrigatória.",
-            "errorMessageMin": "Data de expiração incompleta.",
-            "errorMessageMonthInvalid": "Data de expiração inválida.",
-            "errorMessageInvalidFormat": "Cartão vencido."
+            "errorMessageInvalidFormat": "Data inválida, verifique os dados do cartão."
           },
           "cvv": {
-            "label": "CVV",
+            "label": "Código de segurança (CVV) *",
             "errorMessageRequired": "CVV é obrigatório.",
-            "errorMessageMin": "CVV incompleto.",
-            "errorMessageInvalidFormat": "CVV inválido."
+            "errorMessageInvalidFormat": "Formato inválido, verifique os dados do cartão."
           },
           "name": {
-            "label": "Nome do titular do cartão",
-            "errorMessageRequired": "Nome do titular é obrigatório.",
-            "errorMessageInvalidFormat": "Nome inválido."
+            "label": "Nome no cartão *",
+            "errorMessageRequired": "Portador do cartão é obrigatório.",
+            "errorMessageInvalidFormat": "Formato inválido, verifique os dados do cartão."
           },
           "installments": {
-            "label": "Parcelamento",
+            "label": "Parcelamento *",
             "errorMessageRequired": "Selecione uma parcela para prosseguir."
           },
           "saveCard": {
@@ -62,11 +58,11 @@
         "fields": {
           "cvv": {
             "description": "Para efetuar sua transação de forma segura, informe o CVV presente no verso do seu cartão.",
-            "label": "Código de segurança (CVV)",
+            "label": "Código de segurança (CVV) *",
             "errorMessage": "Formato inválido, verifique os dados do cartão."
           },
           "installments": {
-            "label": "Parcelamento",
+            "label": "Parcelamento *",
             "errorMessage": "Parcelamento é obrigatório."
           }
         }
@@ -109,7 +105,7 @@
       "title": "PIX parcelado + cashback",
       "descriptions": {
         "first": "São 3 passos simples para ter sua",
-       "second": "compra confirmada em {installments}x no PIX parcelado, zero juros, cashback",
+        "second": "compra confirmada em 3x no PIX parcelado, zero juros, cashback",
         "third": "e dependendo do seu perfil, com ou sem pagamento de entrada."
       },
       "installments": {
@@ -191,38 +187,33 @@
       "submitButton": "Próximo",
       "fields": {
         "name": {
-          "label": "Nome completo",
-          "errorMessageRequired": "Nome é obrigatório",
-          "errorMessageInvalidFormat": "Nome inválido."
+          "label": "Nome completo *",
+          "errorMessageRequired": "Nome completo é obrigatório.",
+          "errorMessageInvalidFormat": "Data inválida, verifique os dados do cartão."
         },
         "email": {
-          "label": "E-mail",
+          "label": "E-mail *",
           "errorMessageRequired": "E-mail é obrigatório.",
-          "errorMessageInvalidFormat": "Email inválido."
+          "errorMessageInvalidFormat": "Formato inválido, verifique seu e-mail."
         },
         "phoneNumber": {
-          "label": "Telefone",
+          "label": "Telefone *",
           "errorMessageRequired": "Telefone é obrigatório.",
           "errorMessageInvalidFormat": "Formato inválido, verifique o seu número de telefone."
         },
         "documentCountry": {
-          "label": "País do documento",
-          "errorMessageRequired": "País é obrigatório."
+          "label": "País do documento *",
+          "errorMessageRequired": "Selecione um país para continuar."
         },
         "documentType": {
-          "label": "Tipo do documento",
-          "errorMessageRequired": "Tipo do documento é obrigatório."
+          "label": "Tipo do documento *",
+          "errorMessageRequired": "Selecione um tipo de documento para continuar."
         },
         "identification": {
-          "labelBrazil": "CPF/CNPJ",
-          "errorMessageRequiredBrazil": "Número do documento é obrigatório.",
-          "errorMessageInvalidCpf": "CPF inválido.",
-          "errorMessageInvalidCnpj": "CNPJ inválido.",
-          "errorInvalidNationalDocument": "Seu documento está incompleto.",
-          "errorRequiredCountry": "Selecione um país.",
-          "errorRequiredType": "Selecione o tipo do documento.",
-          "errorRequiredCountryAndType": "Selecione o país e o tipo do documento.",
-          "labelInternational": "Número do documento",
+          "labelBrazil": "CPF/CNPJ *",
+          "errorMessageRequiredBrazil": "CPF ou CNPJ é obrigatório.",
+          "errorMessageInvalidFormatBrazil": "Formato inválido, verifique seu CPF ou CNPJ.",
+          "labelInternational": "Número do documento *",
           "errorMessageRequiredInternational": "Número do documento é obrigatório.",
           "errorMessageInvalidFormatInternational": "Formato inválido, verifique o seu documento."
         },
@@ -230,10 +221,10 @@
           "labelBrazil": "CEP",
           "descriptionBrazil": "Não sei meu CEP",
           "errorMessageRequiredBrazil": "CEP é obrigatório.",
+          "errorMessageInvalidZipCodeFormat": "Digite um CEP válido",
+          "errorMessageRequiredCountry": "Selecione um país",
           "labelInternational": "Código postal (CEP)",
-          "errorMessageRequiredInternational": "Código postal é obrigatório.",
-          "errorMessageInvalidZipCodeFormat": "Código postal inválido.",
-          "errorMessageRequiredCountry": "Selecione um país"
+          "errorMessageRequiredInternational": "Código postal é obrigatório."
         },
         "street": {
           "label": "Endereço",
@@ -244,7 +235,8 @@
           "errorMessageRequired": "Número é obrigatório."
         },
         "complement": {
-          "label": "Complemento (opcional)"
+          "label": "Complemento",
+          "errorMessageRequired": "Complemento é obrigatório."
         },
         "neighborhood": {
           "label": "Bairro",
@@ -260,7 +252,7 @@
         },
         "country": {
           "label": "País",
-          "errorMessageRequired": "País é obrigatório."
+          "errorMessageRequired": "Selecione um país para continuar."
         }
       }
     }

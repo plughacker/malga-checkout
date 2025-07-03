@@ -223,7 +223,7 @@
           "errorMessageRequiredBrazil": "A Zip Code is required.",
           "errorMessageInvalidZipCodeFormat": "Enter a valid ZIP code",
           "errorMessageRequiredCountry": "Select a country",
-          "labelInternational": "Zip Code",
+          "labelInternational": "Código postal (CEP)",
           "errorMessageRequiredInternational": "A zip code is required."
         },
         "street": {

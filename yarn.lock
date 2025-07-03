@@ -1964,10 +1964,10 @@
     npmlog "^4.1.2"
     write-file-atomic "^3.0.3"
 
-"@malga/card-validator@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@malga/card-validator/-/card-validator-1.0.1.tgz#81b8377997bff6c15736f68fc0be8a08172ed5b9"
-  integrity sha512-yHyQAEGBY2M6/W5dE6N2Goba3cqKzkAk8eY8uzXvWYN1Yq1F7zTZx7jDStH/LARRPDAT4WRCRIhybh7HCmFURw==
+"@malga/card-validator@1.5.0", "@malga/card-validator@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@malga/card-validator/-/card-validator-1.5.0.tgz#8e4981577917fa3f26d497716ee3b02487a22b6a"
+  integrity sha512-LcPxrm53g+Azq6veyuE2G39qalS+p+NudomIxxDZj1Q7DPxKikGr2SPz5yaFedclTlASmxzlZQ73GhEjMDAXwA==
   dependencies:
     card-validator "^8.1.1"
 
@@ -2550,10 +2550,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.20.55.tgz#c329cbd434c42164f846b909bd6f85b5537f6240"
   integrity sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==
 
-"@types/node@^18.11.9":
-  version "18.11.9"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.9.tgz#02d013de7058cea16d36168ef2fc653464cfbad4"
-  integrity sha512-CRpX21/kGdzjOpFsZSkcrXMGIBWMGNIHXXBVFSH+ggkftxg+XYP20TESbh+zFvFj3EQOl5byk0HTRn1IL6hbqg==
+"@types/node@^16.18.11":
+  version "16.18.126"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.18.126.tgz#27875faa2926c0f475b39a8bb1e546c0176f8d4b"
+  integrity sha512-OTcgaiwfGFBKacvfwuHzzn1KLxH/er8mluiy8/uM3sGXHaRe73RrSIj01jow9t4kJEW633Ov+cOexXeiApTyAw==
 
 "@types/node@~10.12.0":
   version "10.12.30"

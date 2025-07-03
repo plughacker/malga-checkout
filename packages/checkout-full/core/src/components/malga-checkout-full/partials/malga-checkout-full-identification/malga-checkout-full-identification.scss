@@ -18,7 +18,6 @@
 
 .malga-checkout-full-identification__row-fields {
   display: flex;
-  flex-direction: column;
   height: 100%;
   border: none;
   margin: 0;
@@ -46,16 +45,16 @@
       margin-left: var(--malga-checkout-spacing-xs);
     }
   }
+  flex-direction: column;
 }
 
 .malga-checkout-full-identification__international-fields {
   gap: var(--malga-checkout-spacing-xs);
 
   @include md {
-    gap: none
+    gap: none;
   }
 }
-  
 
 .malga-checkout-full-identification__zipcode {
   display: flex;

@@ -6,7 +6,10 @@ import {
   ComponentInterface,
   Event,
   EventEmitter,
+  State,
 } from '@stencil/core'
+
+import cardValidator from '@malga/card-validator'
 
 import credit, { validateCreditForm } from '../../../../stores/credit'
 import settings from '../../../../stores/settings'
@@ -19,6 +22,8 @@ import { centsToReal } from './malga-payments-credit-form.utils'
 export class MalgaPaymentsCreditForm implements ComponentInterface {
   @Event() currentFieldChange: EventEmitter<{ field: string }>
 
+  @State() maskCardNumber = ''
+
   private handleFieldFocused = (field: string) => () => {
     if (credit.validations.allFieldsIsBlank) {
       credit.validations = { ...credit.validations, allFieldsIsBlank: false }
@@ -28,7 +33,7 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
       ...credit.validations,
       fields: {
         ...credit.validations.fields,
-        [field]: credit.form[field] ? '' : null,
+        [field]: credit.form[field] ? credit.validations.fields[field] : null,
       },
     }
   }
@@ -63,6 +68,18 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
   }
 
   private handleFieldChange = (field: string) => (event) => {
+    if (field === 'cardNumber' && event.target.value) {
+      const { card } = cardValidator.valid.number(event.target.value)
+
+      if (card.type) {
+        const newMask = cardValidator.maskCardNumber(card.type, '9')
+
+        if (this.maskCardNumber !== newMask) {
+          this.maskCardNumber = newMask
+        }
+      }
+    }
+
     credit.form = { ...credit.form, [field]: event.target.value }
     this.currentFieldChange.emit({ field })
     this.handleValidationField(field)(event)
@@ -84,11 +101,41 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
           settings.transactionConfig.amount,
           settings.transactionConfig.currency,
         )}`,
-        value: currentInstallment,
+        value: String(currentInstallment),
       }
     })
 
     return installmentOptions
+  }
+
+  private handleValidationInstallments = async () => {
+    const { quantity, show } = settings.paymentMethods.credit.installments
+
+    if (show && quantity === 1) {
+      credit.form = {
+        ...credit.form,
+        installments: '1',
+      }
+
+      const validation = await validateCreditForm(
+        credit.form,
+        {
+          hasInstallments:
+            settings.paymentMethods.credit.installments.show || false,
+        },
+        settings.locale,
+      )
+
+      credit.validations = {
+        ...credit.validations,
+        fields: {
+          ...credit.validations.fields,
+          installments: validation.errors
+            ? validation.errors['installments']
+            : '',
+        },
+      }
+    }
   }
 
   private handleCheckedSaveCard = () => {
@@ -102,6 +149,7 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
 
   componentWillLoad() {
     this.handleCheckedSaveCard()
+    this.handleValidationInstallments()
   }
 
   render() {
@@ -118,13 +166,14 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
         >
           <checkout-text-field
             value={credit.form.cardNumber}
+            autoUnmask={true}
             onChanged={this.handleFieldChange('cardNumber')}
             onBlurred={this.handleValidationField('cardNumber')}
             onFocused={this.handleFieldFocused('cardNumber')}
             onPaste={this.handleFieldChange('cardNumber')}
             fullWidth
             inputmode="numeric"
-            mask="9999 9999 9999 99999"
+            mask={this.maskCardNumber}
             hasValidation={credit.validations.fields.cardNumber !== null}
             hasError={!!credit.validations.fields.cardNumber}
             name="cardNumber"
@@ -139,8 +188,9 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
                 message={credit.validations.fields.cardNumber}
               />
             )}
-          <div class="malga-payments-credit-form__container">
-            <fieldset class="malga-payments-credit-form__column-fields">
+
+          <fieldset class="malga-payments-credit-form__row-fields">
+            <div class="malga-payments-credit__error-message">
               <checkout-text-field
                 value={credit.form.expirationDate}
                 onChanged={this.handleFieldChange('expirationDate')}
@@ -163,12 +213,11 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
               {!credit.validations.allFieldsIsBlank &&
                 !!credit.validations.fields.expirationDate && (
                   <checkout-error-message
-                    style={{ marginTop: '0px' }}
                     message={credit.validations.fields.expirationDate}
                   />
                 )}
-            </fieldset>
-            <fieldset class="malga-payments-credit-form__column-fields">
+            </div>
+            <div class="malga-payments-credit__error-message">
               <checkout-text-field
                 value={credit.form.cvv}
                 onChanged={this.handleFieldChange('cvv')}
@@ -189,12 +238,12 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
               {!credit.validations.allFieldsIsBlank &&
                 !!credit.validations.fields.cvv && (
                   <checkout-error-message
-                    style={{ marginTop: '0px' }}
                     message={credit.validations.fields.cvv}
                   />
                 )}
-            </fieldset>
-          </div>
+            </div>
+          </fieldset>
+
           <checkout-text-field
             value={credit.form.name.toUpperCase()}
             onChanged={this.handleFieldChange('name')}
@@ -244,21 +293,21 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
 
           {(settings.transactionConfig.customerId ||
             settings.transactionConfig.customer) && (
-            <div class={{ 'malga-payments-credit-form__save-card': true }}>
-              <checkout-switch
-                checked={credit.form.saveCard}
-                onChanged={this.handleSaveCardChange}
-              />
-              <checkout-typography
-                variation="field"
-                color="darkness"
-                content={t(
-                  'paymentMethods.card.newCard.fields.saveCard.label',
-                  settings.locale,
-                )}
-              />
-            </div>
-          )}
+              <div class={{ 'malga-payments-credit-form__save-card': true }}>
+                <checkout-switch
+                  checked={credit.form.saveCard}
+                  onChanged={this.handleSaveCardChange}
+                />
+                <checkout-typography
+                  variation="field"
+                  color="darkness"
+                  content={t(
+                    'paymentMethods.card.newCard.fields.saveCard.label',
+                    settings.locale,
+                  )}
+                />
+              </div>
+            )}
 
           {credit.validations.allFieldsIsBlank && (
             <checkout-error-message

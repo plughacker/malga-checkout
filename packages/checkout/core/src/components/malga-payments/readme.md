@@ -51,7 +51,6 @@ graph TD;
   malga-payments-credit-saved-cards --> checkout-modal
   checkout-radio-field --> checkout-icon
   checkout-text-field --> checkout-typography
-  checkout-text-field --> checkout-icon
   checkout-error-message --> checkout-typography
   checkout-select-field --> checkout-typography
   checkout-select-field --> checkout-icon

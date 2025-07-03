@@ -1,6 +1,6 @@
 {
   "name": "@malga-checkout/common",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "description": "Common components for Malga Checkout",
   "repository": {

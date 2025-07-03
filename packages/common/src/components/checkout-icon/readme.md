@@ -27,7 +27,6 @@
  - [checkout-order-summary](../checkout-order-summary)
  - [checkout-radio-field](../checkout-radio-field)
  - [checkout-select-field](../checkout-select-field)
- - [checkout-text-field](../checkout-text-field)
 
 ### Graph
 ```mermaid
@@ -44,7 +43,6 @@ graph TD;
   checkout-order-summary --> checkout-icon
   checkout-radio-field --> checkout-icon
   checkout-select-field --> checkout-icon
-  checkout-text-field --> checkout-icon
   style checkout-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -66,21 +66,18 @@ export class MalgaCheckoutFullIdentification {
     country: null,
   }
 
+  @State() maskIdentification = ''
+
   private checkValidatedField = () => {
-    const optionalFields = [
+    const optionalBrazilianFields = [
+      'complement',
       'documentCountry',
       'documentType',
-      'zipCode',
-      'street',
-      'number',
-      'complement',
-      'district',
-      'city',
-      'state',
-      'country',
     ]
 
-    const partialFields = !this.internationalCustomer ? optionalFields : []
+    const partialFields = !this.internationalCustomer
+      ? optionalBrazilianFields
+      : ['complement']
 
     const validFieldValues = Object.entries(this.validFields)
 
@@ -99,12 +96,29 @@ export class MalgaCheckoutFullIdentification {
     this.checkValidatedField()
   }
 
-  private handleFieldBlurred = (field: string) => async (event) => {
+  private handleValidationField = (field: string) => async (event) => {
+    const valuesToValidate = {
+      ...this.formValues,
+      [field]: event.target.value,
+    }
+
     const validation = await validateCustomer(
-      {
-        ...this.formValues,
-        [field]: event.target.value,
-      },
+      valuesToValidate,
+      { internationalCustomer: this.internationalCustomer },
+      this.locale,
+    )
+
+    this.validFields = {
+      ...this.validFields,
+      [field]: validation.errors ? validation.errors[field] : '',
+    }
+
+    this.checkValidatedField()
+  }
+
+  private handleValidationIdentificationValue = (field: string, customValues: MalgaCheckoutFullIdentificationFormValues) => async () => {
+    const validation = await validateCustomer(
+      customValues,
       { internationalCustomer: this.internationalCustomer },
       this.locale,
     )
@@ -118,12 +132,48 @@ export class MalgaCheckoutFullIdentification {
   }
 
   private handleFieldChange = (field: string) => (event) => {
-    this.fieldChange.emit({ field, value: event.target.value })
-    this.checkValidatedField()
+    const value = field === 'documentType' ? event.target.value :
+      (this.formValues.documentCountry !== 'BR' ? event.target.value.replace(/\D/g, '').trim() : event.target.value)
+
+    this.fieldChange.emit({ field, value })
+
+    if (field === 'documentType') {
+      this.validFields = {
+        ...this.validFields,
+        documentType: '',
+      }
+
+      this.maskIdentification = getIdentificationMask(
+        this.formValues.documentCountry === 'BR' || !this.internationalCustomer,
+        value,
+        this.formValues.identification
+      )
+
+      if (this.formValues.identification) {
+        const updatedFormValues = { ...this.formValues, documentType: value }
+        this.handleValidationIdentificationValue('identification', updatedFormValues)()
+      }
+    } else {
+      this.maskIdentification = getIdentificationMask(
+        this.formValues.documentCountry === 'BR' || !this.internationalCustomer,
+        this.formValues.documentType,
+        this.formValues.identification
+      )
+    }
+
+    this.handleValidationField(field)(event)
   }
 
   private handleChangeCountryFieldChange = (event) => {
     const country = event.target.value
+
+    if (this.formValues.zipCode && this.validFields.zipCode) {
+      this.validFields = {
+        ...this.validFields,
+        zipCode: '',
+      }
+    }
+
     this.fieldChange.emit({ field: 'country', value: country })
 
     this.handleResetStateAfterCountryChange()
@@ -132,11 +182,14 @@ export class MalgaCheckoutFullIdentification {
 
   private handleResetStateAfterCountryChange() {
     this.fieldChange.emit({ field: 'state', value: '' })
+    this.handleChangeValidField({ field: 'state', value: null })
   }
 
   private handleResetDocumentTypeAfterCountryChange() {
     this.fieldChange.emit({ field: 'documentType', value: '' })
+    this.fieldChange.emit({ field: 'identification', value: '' })
     this.handleChangeValidField({ field: 'documentType', value: null })
+    this.handleChangeValidField({ field: 'identification', value: null })
   }
 
   private handleChangeValidField({ field, value }) {
@@ -150,10 +203,30 @@ export class MalgaCheckoutFullIdentification {
     const documentCountry = event.target.value
     const documentTypesByCountries = documentTypesByCountry(this.locale)
 
+    if (documentCountry !== 'BR') {
+      this.maskIdentification = ''
+    } else {
+      const newMask = getIdentificationMask(
+        true,
+        this.formValues.documentType,
+        this.formValues.identification
+      )
+      this.maskIdentification = newMask
+    }
+
     this.fieldChange.emit({
       field: 'documentCountry',
       value: documentCountry,
     })
+
+    if (this.validFields.identification) {
+      this.validFields = {
+        ...this.validFields,
+        identification: null,
+      }
+    }
+
+    this.handleValidationField('country')(event)
 
     const shouldAddOtherToDocumentType =
       !documentTypesByCountries[documentCountry]
@@ -169,12 +242,18 @@ export class MalgaCheckoutFullIdentification {
       this.handleResetDocumentTypeAfterCountryChange()
     }
 
+    if (this.formValues.identification) {
+      const updatedFormValues = { ...this.formValues, documentCountry }
+      this.handleValidationIdentificationValue('identification', updatedFormValues)()
+    }
+
     this.checkValidatedField()
   }
 
   private handleZipCodeFieldChange = async (event) => {
     const zipCode = event.target.value
     const zipCodeValue = cleanTextOnlyNumbers(zipCode)
+
 
     this.fieldChange.emit({ field: 'zipCode', value: zipCode })
 
@@ -209,7 +288,7 @@ export class MalgaCheckoutFullIdentification {
 
   render() {
     const documentTypesByCountries = documentTypesByCountry(this.locale)
-    const isTheSelectedCountryBR =
+    const isTheSelectedCountryBr =
       this.formValues.country === 'BR' || !this.internationalCustomer
     const hasDocumentTypes =
       !this.formValues.documentCountry ||
@@ -232,9 +311,8 @@ export class MalgaCheckoutFullIdentification {
         />
         <checkout-text-field
           value={this.formValues.name}
-          onInputed={this.handleFieldBlurred('name')}
           onChanged={this.handleFieldChange('name')}
-          onBlurred={this.handleFieldBlurred('name')}
+          onBlurred={this.handleValidationField('name')}
           onFocused={this.handleFieldFocused()}
           hasValidation={this.validFields.name !== null}
           hasError={!!this.validFields.name}
@@ -249,9 +327,8 @@ export class MalgaCheckoutFullIdentification {
 
         <checkout-text-field
           value={this.formValues.email}
-          onInputed={this.handleFieldBlurred('email')}
           onChanged={this.handleFieldChange('email')}
-          onBlurred={this.handleFieldBlurred('email')}
+          onBlurred={this.handleValidationField('email')}
           onFocused={this.handleFieldFocused()}
           hasValidation={this.validFields.email !== null}
           hasError={!!this.validFields.email}
@@ -266,9 +343,8 @@ export class MalgaCheckoutFullIdentification {
 
         <checkout-text-field
           value={this.formValues.phoneNumber}
-          onInputed={this.handleFieldBlurred('phoneNumber')}
           onChanged={this.handleFieldChange('phoneNumber')}
-          onBlurred={this.handleFieldBlurred('phoneNumber')}
+          onBlurred={this.handleValidationField('phoneNumber')}
           onFocused={this.handleFieldFocused()}
           hasValidation={this.validFields.phoneNumber !== null}
           hasError={!!this.validFields.phoneNumber}
@@ -305,8 +381,7 @@ export class MalgaCheckoutFullIdentification {
                 <checkout-select-field
                   value={this.formValues.documentCountry}
                   onChanged={this.handleChangeDocumentCountry}
-                  onInputed={this.handleFieldBlurred('documentCountry')}
-                  onBlurred={this.handleFieldBlurred('documentCountry')}
+                  onBlurred={this.handleValidationField('documentCountry')}
                   onFocused={this.handleFieldFocused()}
                   hasError={!!this.validFields.documentCountry}
                   options={documentCountries(this.locale)}
@@ -334,13 +409,12 @@ export class MalgaCheckoutFullIdentification {
                     <checkout-select-field
                       value={this.formValues.documentType}
                       onChanged={this.handleFieldChange('documentType')}
-                      onInputed={this.handleFieldBlurred('documentType')}
-                      onBlurred={this.handleFieldBlurred('documentType')}
+                      onBlurred={this.handleValidationField('documentType')}
                       onFocused={this.handleFieldFocused()}
                       hasError={!!this.validFields.documentType}
                       options={
                         documentTypesByCountries[
-                          this.formValues.documentCountry
+                        this.formValues.documentCountry
                         ]
                       }
                       fullWidth
@@ -364,9 +438,8 @@ export class MalgaCheckoutFullIdentification {
 
         <checkout-text-field
           value={this.formValues.identification}
-          onInputed={this.handleFieldBlurred('identification')}
           onChanged={this.handleFieldChange('identification')}
-          onBlurred={this.handleFieldBlurred('identification')}
+          onBlurred={this.handleValidationField('identification')}
           onFocused={this.handleFieldFocused()}
           hasValidation={this.validFields.identification !== null}
           hasError={!!this.validFields.identification}
@@ -376,19 +449,16 @@ export class MalgaCheckoutFullIdentification {
           label={
             !this.internationalCustomer
               ? t(
-                  'page.customer.fields.identification.labelBrazil',
-                  this.locale,
-                )
+                'page.customer.fields.identification.labelBrazil',
+                this.locale,
+              )
               : t(
-                  'page.customer.fields.identification.labelInternational',
-                  this.locale,
-                )
+                'page.customer.fields.identification.labelInternational',
+                this.locale,
+              )
           }
-          mask={
-            !this.internationalCustomer
-              ? getIdentificationMask(this.formValues.identification)
-              : null
-          }
+          autoUnmask
+          mask={this.maskIdentification}
         />
         {!!this.validFields.identification && (
           <checkout-error-message message={this.validFields.identification} />
@@ -399,22 +469,6 @@ export class MalgaCheckoutFullIdentification {
           variation="subtitle1"
           content={t('page.customer.address', this.locale)}
         />
-
-        <checkout-select-field
-          value={this.formValues.country}
-          onChanged={this.handleChangeCountryFieldChange}
-          onInputed={this.handleFieldBlurred('country')}
-          onBlurred={this.handleFieldBlurred('country')}
-          onFocused={this.handleFieldFocused()}
-          hasError={!!this.validFields.country}
-          options={countries(this.locale)}
-          fullWidth
-          name="country"
-          label={t('page.customer.fields.country.label', this.locale)}
-        />
-        {!!this.validFields.country && (
-          <checkout-error-message message={this.validFields.country} />
-        )}
 
         {!this.internationalCustomer && (
           <fieldset
@@ -428,8 +482,7 @@ export class MalgaCheckoutFullIdentification {
               <checkout-text-field
                 value={this.formValues.zipCode}
                 onChanged={this.handleZipCodeFieldChange}
-                onInputed={this.handleFieldBlurred('zipCode')}
-                onBlurred={this.handleFieldBlurred('zipCode')}
+                onBlurred={this.handleValidationField('zipCode')}
                 onFocused={this.handleFieldFocused()}
                 hasValidation={this.validFields.zipCode !== null}
                 hasError={!!this.validFields.zipCode}
@@ -456,13 +509,30 @@ export class MalgaCheckoutFullIdentification {
           </fieldset>
         )}
 
+        <Fragment>
+          <checkout-select-field
+            value={this.formValues.documentCountry || this.formValues.country}
+            onChanged={this.handleChangeCountryFieldChange}
+            onBlurred={this.handleValidationField('country')}
+            onFocused={this.handleFieldFocused()}
+            hasError={!!this.validFields.country}
+            options={countries(this.locale)}
+            fullWidth
+            name="country"
+            label={t('page.customer.fields.country.label', this.locale)}
+          />
+
+          {!!this.validFields.country && (
+            <checkout-error-message message={this.validFields.country} />
+          )}
+        </Fragment>
+
         {this.internationalCustomer && (
           <Fragment>
             <checkout-text-field
               value={this.formValues.zipCode}
               onChanged={this.handleFieldChange('zipCode')}
-              onInputed={this.handleFieldBlurred('zipCode')}
-              onBlurred={this.handleFieldBlurred('zipCode')}
+              onBlurred={this.handleValidationField('zipCode')}
               onFocused={this.handleFieldFocused()}
               hasValidation={this.validFields.zipCode !== null}
               hasError={!!this.validFields.zipCode}
@@ -483,8 +553,7 @@ export class MalgaCheckoutFullIdentification {
         <checkout-text-field
           value={this.formValues.street}
           onChanged={this.handleFieldChange('street')}
-          onInputed={this.handleFieldBlurred('street')}
-          onBlurred={this.handleFieldBlurred('street')}
+          onBlurred={this.handleValidationField('street')}
           onFocused={this.handleFieldFocused()}
           hasValidation={this.validFields.street !== null}
           hasError={!!this.validFields.street}
@@ -508,8 +577,7 @@ export class MalgaCheckoutFullIdentification {
             <checkout-text-field
               value={this.formValues.streetNumber}
               onChanged={this.handleFieldChange('streetNumber')}
-              onInputed={this.handleFieldBlurred('streetNumber')}
-              onBlurred={this.handleFieldBlurred('streetNumber')}
+              onBlurred={this.handleValidationField('streetNumber')}
               onFocused={this.handleFieldFocused()}
               hasValidation={this.validFields.streetNumber !== null}
               hasError={!!this.validFields.streetNumber}
@@ -531,10 +599,8 @@ export class MalgaCheckoutFullIdentification {
             <checkout-text-field
               value={this.formValues.complement}
               onChanged={this.handleFieldChange('complement')}
-              onInputed={this.handleFieldBlurred('complement')}
-              onBlurred={this.handleFieldBlurred('complement')}
+              onBlurred={this.handleValidationField('complement')}
               onFocused={this.handleFieldFocused()}
-              hasValidation={this.validFields.complement !== null}
               hasError={!!this.validFields.complement}
               fullWidth
               inputmode="text"
@@ -550,8 +616,7 @@ export class MalgaCheckoutFullIdentification {
         <checkout-text-field
           value={this.formValues.district}
           onChanged={this.handleFieldChange('district')}
-          onInputed={this.handleFieldBlurred('district')}
-          onBlurred={this.handleFieldBlurred('district')}
+          onBlurred={this.handleValidationField('district')}
           onFocused={this.handleFieldFocused()}
           hasValidation={this.validFields.district !== null}
           hasError={!!this.validFields.district}
@@ -575,8 +640,7 @@ export class MalgaCheckoutFullIdentification {
             <checkout-text-field
               value={this.formValues.city}
               onChanged={this.handleFieldChange('city')}
-              onInputed={this.handleFieldBlurred('city')}
-              onBlurred={this.handleFieldBlurred('city')}
+              onBlurred={this.handleValidationField('city')}
               onFocused={this.handleFieldFocused()}
               hasValidation={this.validFields.city !== null}
               hasError={!!this.validFields.city}
@@ -595,13 +659,12 @@ export class MalgaCheckoutFullIdentification {
               'malga-checkout-full-identification__error-message': true,
             }}
           >
-            {isTheSelectedCountryBR ? (
+            {isTheSelectedCountryBr ? (
               <Fragment>
                 <checkout-select-field
                   value={this.formValues.state}
                   onChanged={this.handleFieldChange('state')}
-                  onInputed={this.handleFieldBlurred('state')}
-                  onBlurred={this.handleFieldBlurred('state')}
+                  onBlurred={this.handleValidationField('state')}
                   onFocused={this.handleFieldFocused()}
                   hasError={!!this.validFields.state}
                   options={brazilianStates}
@@ -618,8 +681,7 @@ export class MalgaCheckoutFullIdentification {
                 <checkout-text-field
                   value={this.formValues.state}
                   onChanged={this.handleFieldChange('state')}
-                  onInputed={this.handleFieldBlurred('state')}
-                  onBlurred={this.handleFieldBlurred('state')}
+                  onBlurred={this.handleValidationField('state')}
                   onFocused={this.handleFieldFocused()}
                   hasValidation={this.validFields.state !== null}
                   hasError={!!this.validFields.state}

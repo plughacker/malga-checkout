@@ -1,5 +1,5 @@
 import * as Yup from 'yup'
-import { isCPFOrCNPJ } from 'brazilian-values'
+
 import {
   validateTaxId,
   cleanTextOnlyNumbers,
@@ -8,7 +8,10 @@ import {
 } from '@malga-checkout/utils'
 
 import { MalgaCheckoutFullIdentificationFormValues } from './malga-checkout-full-identification.types'
-import { normalizeValidationErrors } from './malga-checkout-full-identification.utils'
+import {
+  handleCpfOrCnpjInvalidMessage,
+  normalizeValidationErrors,
+} from './malga-checkout-full-identification.utils'
 import { Locale } from '@malga-checkout/i18n/dist/utils'
 import { t } from '@malga-checkout/i18n'
 
@@ -16,7 +19,19 @@ export const schema = (locale?: Locale) => {
   return Yup.object().shape({
     name: Yup.string().required(
       t('page.customer.fields.name.errorMessageRequired', locale),
-    ),
+    ).test(
+        'isValidName',
+        t(
+          'page.customer.fields.name.errorMessageInvalidFormat',
+          locale,
+        ),
+        (value) => {
+          const normalizedValue = value.replace(/[^A-Za-z]+/g, '')
+          const comparedValue = value.replace(/\s/g, '')
+
+          return normalizedValue.length === comparedValue.length
+        },
+      ),
     email: Yup.string()
       .email(t('page.customer.fields.email.errorMessageInvalidFormat', locale))
       .required(t('page.customer.fields.email.errorMessageRequired', locale)),
@@ -49,14 +64,22 @@ export const schema = (locale?: Locale) => {
               locale,
             ),
           )
-          .test(
-            'isValidIdentification',
-            t(
-              'page.customer.fields.identification.errorMessageInvalidFormatBrazil',
-              locale,
-            ),
-            (value) => isCPFOrCNPJ(cleanTextOnlyNumbers(value)),
-          ),
+          .test({
+            name: 'isValidCpfOrCnpj',
+            test(value, context) {
+              if (!value) return true
+
+              const errorMessage = handleCpfOrCnpjInvalidMessage(value, locale, context.parent.documentType)
+
+              if (errorMessage) {
+                return context.createError({
+                  message: errorMessage,
+                })
+              }
+
+              return true
+            },
+          }),
       })
       .when(['$internationalCustomer'], {
         is: (internationalCustomer: boolean) => internationalCustomer,
@@ -67,16 +90,31 @@ export const schema = (locale?: Locale) => {
               locale,
             ),
           )
-          .test(
-            'isValidIdentification',
-            t(
-              'page.customer.fields.identification.errorMessageInvalidFormatInternational',
-              locale,
-            ),
-            (value, context) => {
+          .test({
+            name: 'isValidIdentification',
+            test(value, context) {
+              if (!value) return true
+
+              if (context.parent.documentCountry === 'BR') {
+                const errorMessage = handleCpfOrCnpjInvalidMessage(
+                  value,
+                  locale,
+                  context.parent.documentType,
+                )
+
+                if (errorMessage) {
+                  return context.createError({
+                    message: errorMessage,
+                  })
+                }
+
+                return true
+              }
+
               if (context.parent.documentType === 'other') {
                 return true
               }
+
               const documentNumber = cleanTextSpecialCharacters(value)
 
               const isValid = validateTaxId(
@@ -85,30 +123,82 @@ export const schema = (locale?: Locale) => {
                 documentNumber,
               )
 
-              return isValid
+              if (!isValid) {
+                return context.createError({
+                  message: t(
+                    'page.customer.fields.identification.errorMessageInvalidFormatInternational',
+                    locale,
+                  ),
+                })
+              }
+
+              return true
+            },
+          })
+          .test(
+            'isValidCountryAndType',
+            t(
+              'page.customer.fields.identification.errorRequiredCountryAndType',
+              locale,
+            ),
+            (value, context) => {
+              if (value.length === 0) return true
+
+              if (
+                !context.parent.documentType ||
+                context.parent.documentType === 'none' ||
+                !context.parent.documentCountry ||
+                context.parent.documentCountry === 'none'
+              ) {
+                return false
+              }
+
+              return true
             },
           ),
       }),
-    street: Yup.string().optional(),
-    streetNumber: Yup.string().optional(),
+    street: Yup.string().required(
+      t('page.customer.fields.street.errorMessageRequired', locale),
+    ),
+    streetNumber: Yup.string().required(
+      t('page.customer.fields.number.errorMessageRequired', locale),
+    ),
     complement: Yup.string().optional(),
-    district: Yup.string().optional(),
-    city: Yup.string().optional(),
-    state: Yup.string().optional(),
-    country: Yup.string().optional(),
+    district: Yup.string().required(
+      t('page.customer.fields.neighborhood.errorMessageRequired', locale),
+    ),
+    city: Yup.string().required(
+      t('page.customer.fields.city.errorMessageRequired', locale),
+    ),
+    state: Yup.string().required(
+      t('page.customer.fields.state.errorMessageRequired', locale),
+    ),
+    country: Yup.string().required(
+      t('page.customer.fields.country.errorMessageRequired', locale),
+    ),
     zipCode: Yup.string()
       .trim()
       .when(['$internationalCustomer'], {
         is: (internationalCustomer: boolean) => !internationalCustomer,
         then: Yup.string()
           .transform((value) => cleanTextOnlyNumbers(value))
-          .optional(),
+          .required(
+            t(
+              'page.customer.fields.zipCode.errorMessageRequiredBrazil',
+              locale,
+            ),
+          ),
       })
       .when(['$internationalCustomer'], {
         is: (internationalCustomer: boolean) => internationalCustomer,
         then: Yup.string()
           .transform((value) => cleanTextSpecialCharacters(value))
-          .optional(),
+          .required(
+            t(
+              'page.customer.fields.zipCode.errorMessageRequiredInternational',
+              locale,
+            ),
+          ),
       })
       .test(
         'isValidZipcode',
@@ -117,8 +207,6 @@ export const schema = (locale?: Locale) => {
           locale,
         ),
         (value, context) => {
-          if (value.length === 0) return true
-
           return isZipCodeValid(value, context.parent.country)
         },
       )

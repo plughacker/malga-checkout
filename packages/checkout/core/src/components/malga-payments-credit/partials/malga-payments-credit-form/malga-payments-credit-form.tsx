@@ -38,14 +38,16 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
     }
   }
 
-  private handleValidationField = (field: string) => async (event) => {
+  private handleValidationField = (field: string, customValue?: string) => async (event) => {
     const isMaskedField = ['cvv'].includes(field)
-    const normalizedValue = event.target.value.replace(/\D/g, '').trim()
+
+    const valueEvent = customValue ? customValue : event.target.value
+    const normalizedValue = valueEvent.replace(/\D/g, '').trim()
 
     const validation = await validateCreditForm(
       {
         ...credit.form,
-        [field]: isMaskedField ? normalizedValue : event.target.value,
+        [field]: isMaskedField ? normalizedValue : valueEvent,
       },
       {
         hasInstallments:
@@ -67,6 +69,26 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
     credit.form = { ...credit.form, saveCard: !credit.form.saveCard }
   }
 
+  private handleCardNumberPaste = (event: ClipboardEvent) => {
+    event.preventDefault()
+
+    const value = event.clipboardData.getData('text')
+    credit.form = { ...credit.form, ['cardNumber']: value }
+
+    const { card } = cardValidator.valid.number(value)
+    if (card.type) {
+      const newMask = cardValidator.maskCardNumber(card.type, '9')
+      if (this.maskCardNumber !== newMask) {
+        this.maskCardNumber = newMask
+      }
+    } else {
+      this.maskCardNumber = ''
+    }
+
+    this.currentFieldChange.emit({ field: "cardNumber" })
+    this.handleValidationField("cardNumber", value)(event)
+  }
+
   private handleFieldChange = (field: string) => (event) => {
     if (field === 'cardNumber' && event.target.value) {
       const { card } = cardValidator.valid.number(event.target.value)
@@ -84,6 +106,7 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
     this.currentFieldChange.emit({ field })
     this.handleValidationField(field)(event)
   }
+
 
   private renderInstallmentOptions = () => {
     const installmentOptions = Array.from({
@@ -167,10 +190,11 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
           <checkout-text-field
             value={credit.form.cardNumber}
             autoUnmask={true}
+            maxlength={22}
             onChanged={this.handleFieldChange('cardNumber')}
             onBlurred={this.handleValidationField('cardNumber')}
             onFocused={this.handleFieldFocused('cardNumber')}
-            onPaste={this.handleFieldChange('cardNumber')}
+            onPaste={this.handleCardNumberPaste}
             fullWidth
             inputmode="numeric"
             mask={this.maskCardNumber}

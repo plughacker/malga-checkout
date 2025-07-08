@@ -1,3 +1,5 @@
+import cardValidator from '@malga/card-validator'
+
 import {
   Component,
   Host,
@@ -8,7 +10,7 @@ import {
   ComponentInterface,
 } from '@stencil/core'
 
-import { getCurrentIssuer, getMaxLengthPerIssuer } from '@malga-checkout/utils'
+import { applyCardMask, getCurrentIssuer } from '@malga-checkout/utils'
 import { Locale } from '@malga-checkout/i18n/dist/utils'
 import { t } from '@malga-checkout/i18n'
 
@@ -27,12 +29,10 @@ export class CheckoutCreditCard implements ComponentInterface {
   @Prop() placeholderName?: string
   @Prop() locale?: Locale
 
-  @State() options: { issuer: string; maxLength: number } = {
-    issuer: 'unknow',
-    maxLength: 19,
-  }
+  @State() cardMask = ''
 
   @Watch('cvv')
+
   protected handleWatchCvv() {
     this.cvv =
       this.cvv.trim() ||
@@ -41,41 +41,20 @@ export class CheckoutCreditCard implements ComponentInterface {
 
   @Watch('number')
   protected handleWatchFillNumber() {
-    const numberWhiteSpaces =
-      this.issuer === 'american-express' ? [4, 11] : [4, 9, 14]
+    this.updateIssuerAndOptions()
 
-    const parsedNumberStringToArray = this.number
-      ? this.number.trim().split('')
-      : []
+    const newMask = cardValidator.maskCardNumber(this.issuer, '9') || '9999 9999 9999 9999'
 
-    const maxLengthPerIssuer = getMaxLengthPerIssuer(this.issuer)
-    const totalUnfilledCharacters =
-      maxLengthPerIssuer - parsedNumberStringToArray.length
-
-    const autoFill = Array.from({ length: totalUnfilledCharacters }).fill('•')
-
-    const cardNumber = [...parsedNumberStringToArray, ...autoFill]
-
-    const newCardNumber = cardNumber.reduce((accumulator, current, index) => {
-      const number = numberWhiteSpaces.includes(index) ? ' ' : current
-      return `${accumulator}${number}`
-    }, '')
-
-    this.number = newCardNumber as string
-  }
-
-  @Watch('number')
-  protected handleWatchFillIssuerAndOptions() {
-    const issuer = getCurrentIssuer(this.number)
-    const maxLength = getMaxLengthPerIssuer(issuer)
-
-    this.issuer = issuer
-
-    this.options = {
-      issuer,
-      maxLength,
+    if (this.cardMask !== newMask) {
+      this.cardMask = newMask
     }
+
+    this.number = applyCardMask(this.number, this.cardMask)
   }
+  protected updateIssuerAndOptions() {
+    this.issuer = getCurrentIssuer(this.number)
+  }
+
 
   @Watch('expiry')
   protected handleWatchExpiry() {
@@ -94,8 +73,10 @@ export class CheckoutCreditCard implements ComponentInterface {
   }
 
   componentWillLoad() {
+    if (!this.number) {
+      this.number = '•••• •••• •••• ••••'
+    }
     this.handleWatchFillNumber()
-    this.handleWatchFillIssuerAndOptions()
     this.handleWatchExpiry()
     this.handleWatchCvv()
   }

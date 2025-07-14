@@ -1,19 +1,15 @@
-import cardValidator from '@malga/card-validator'
-
 import {
   Component,
   Host,
   h,
   Prop,
   Watch,
-  State,
   ComponentInterface,
 } from '@stencil/core'
 
-import { applyCardMask, getCurrentIssuer } from '@malga-checkout/utils'
+import { applyCardMask } from '@malga-checkout/utils'
 import { Locale } from '@malga-checkout/i18n/dist/utils'
 import { t } from '@malga-checkout/i18n'
-
 @Component({
   tag: 'checkout-credit-card',
   styleUrl: 'checkout-credit-card.scss',
@@ -28,11 +24,9 @@ export class CheckoutCreditCard implements ComponentInterface {
   @Prop() validity?: string
   @Prop() placeholderName?: string
   @Prop() locale?: Locale
-
-  @State() cardMask = ''
+  @Prop({ mutable: true }) mask: string
 
   @Watch('cvv')
-
   protected handleWatchCvv() {
     this.cvv =
       this.cvv.trim() ||
@@ -41,20 +35,8 @@ export class CheckoutCreditCard implements ComponentInterface {
 
   @Watch('number')
   protected handleWatchFillNumber() {
-    this.updateIssuerAndOptions()
-
-    const newMask = cardValidator.maskCardNumber(this.issuer, '9') || '9999 9999 9999 9999'
-
-    if (this.cardMask !== newMask) {
-      this.cardMask = newMask
-    }
-
-    this.number = applyCardMask(this.number, this.cardMask)
+    this.number = applyCardMask(this.number, this.mask);
   }
-  protected updateIssuerAndOptions() {
-    this.issuer = getCurrentIssuer(this.number)
-  }
-
 
   @Watch('expiry')
   protected handleWatchExpiry() {

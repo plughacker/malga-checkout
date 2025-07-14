@@ -16,32 +16,14 @@ export const getCardBrand = (firstCardNumbers: string): string => {
   return isPermittedBrand ? cardBrand : undefined
 }
 
-export const getCurrentIssuer = (number: string) => {
-  if (!number || number.trim() === '') {
-    return 'unknown'
-  }
-
-  const parsedNumber = number.replace(/•/g, '')
-
-  if (!parsedNumber.trim()) {
-    return 'unknown'
-  }
-
-  const { card } = cardValidator.valid.number(parsedNumber.trim())
-
-  return card.type || 'unknown'
-}
-
 export const applyCardMask = (cardNumber: string, cardMask: string) => {
   const cleanNumber = cardNumber.replace(/\D/g, '')
 
-  if (!cleanNumber) {
-    return cardMask.replace(/9/g, '•')
+  if(!cardMask || cardMask.trim() === '') {
+    cardMask = '9999 9999 9999 9999'
   }
 
   const cardValidation = cardValidator.valid.number(cleanNumber)
-  const isComplete = cardValidation.isValid && cleanNumber.length >= cardValidation.card.lengths[0]
-
 
   let maskedNumber = ''
   let numberIndex = 0
@@ -51,9 +33,10 @@ export const applyCardMask = (cardNumber: string, cardMask: string) => {
       if (numberIndex < cleanNumber.length) {
         maskedNumber += cleanNumber[numberIndex]
         numberIndex++
-      } else if (!isComplete) {
-        maskedNumber += '•'
       } else {
+        if(!cardValidation.isValid) {
+          maskedNumber += '•'
+        }
         maskedNumber += ' '
       }
     } else {

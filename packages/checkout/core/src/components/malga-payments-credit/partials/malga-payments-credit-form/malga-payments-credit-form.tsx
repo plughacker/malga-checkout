@@ -21,6 +21,7 @@ import { centsToReal } from './malga-payments-credit-form.utils'
 })
 export class MalgaPaymentsCreditForm implements ComponentInterface {
   @Event() currentFieldChange: EventEmitter<{ field: string }>
+  @Event() cardMaskChange: EventEmitter<{ mask: string, type: string }>
 
   @State() maskCardNumber = ''
 
@@ -76,35 +77,43 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
     credit.form = { ...credit.form, ['cardNumber']: value }
 
     const { card } = cardValidator.valid.number(value)
+
     if (card.type) {
       const newMask = cardValidator.maskCardNumber(card.type, '9')
       if (this.maskCardNumber !== newMask) {
         this.maskCardNumber = newMask
       }
     } else {
-      this.maskCardNumber = ''
+      this.maskCardNumber = '9999 9999 9999 9999'
     }
 
     this.currentFieldChange.emit({ field: "cardNumber" })
+    this.cardMaskChange.emit({ mask: this.maskCardNumber, type: card.type })
     this.handleValidationField("cardNumber", value)(event)
   }
 
   private handleFieldChange = (field: string) => (event) => {
+    credit.form = { ...credit.form, [field]: event.target.value }
+    this.currentFieldChange.emit({ field })
+    this.handleValidationField(field)(event)
+
     if (field === 'cardNumber' && event.target.value) {
       const { card } = cardValidator.valid.number(event.target.value)
 
       if (card.type) {
         const newMask = cardValidator.maskCardNumber(card.type, '9')
 
-        if (this.maskCardNumber !== newMask) {
+        if (newMask && this.maskCardNumber !== newMask) {
           this.maskCardNumber = newMask
+        } else if (!newMask) {
+          this.maskCardNumber = '9999 9999 9999 9999'
         }
+      } else {
+        this.maskCardNumber = '9999 9999 9999 9999'
       }
-    }
 
-    credit.form = { ...credit.form, [field]: event.target.value }
-    this.currentFieldChange.emit({ field })
-    this.handleValidationField(field)(event)
+      this.cardMaskChange.emit({ mask: this.maskCardNumber, type: card.type })
+    }
   }
 
 
@@ -192,6 +201,7 @@ export class MalgaPaymentsCreditForm implements ComponentInterface {
             autoUnmask={true}
             maxlength={22}
             onChanged={this.handleFieldChange('cardNumber')}
+            onInput={this.handleFieldChange('cardNumber')}
             onBlurred={this.handleValidationField('cardNumber')}
             onFocused={this.handleFieldFocused('cardNumber')}
             onPaste={this.handleCardNumberPaste}

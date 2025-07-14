@@ -40,7 +40,7 @@
 | `blurred` |             | `CustomEvent<FocusEvent>`                   |
 | `changed` |             | `CustomEvent<CheckoutTextFieldChangeEvent>` |
 | `focused` |             | `CustomEvent<FocusEvent>`                   |
-| `inputed` |             | `CustomEvent<KeyboardEvent>`                |
+| `inputed` |             | `CustomEvent<{ value: string; }>`           |
 | `pasted`  |             | `CustomEvent<ClipboardEvent>`               |
 
 

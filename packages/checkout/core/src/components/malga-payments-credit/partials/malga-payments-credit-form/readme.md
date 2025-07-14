@@ -5,9 +5,10 @@
 
 ## Events
 
-| Event                | Description | Type                              |
-| -------------------- | ----------- | --------------------------------- |
-| `currentFieldChange` |             | `CustomEvent<{ field: string; }>` |
+| Event                | Description | Type                                           |
+| -------------------- | ----------- | ---------------------------------------------- |
+| `cardMaskChange`     |             | `CustomEvent<{ mask: string; type: string; }>` |
+| `currentFieldChange` |             | `CustomEvent<{ field: string; }>`              |
 
 
 ## Dependencies

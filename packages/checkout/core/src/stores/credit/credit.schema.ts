@@ -45,9 +45,8 @@ export const schema = (locale?: Locale) => {
           locale,
         ),
         (value) => {
-          if (!value.length || value.length < 14) {
-            return true
-          }
+          if (!value.length || value.length < 14) return true
+
 
           return cardValidator.valid.number(value).isValid
         },

@@ -196,6 +196,7 @@ declare namespace LocalJSX {
     interface MalgaPaymentsCredit {
     }
     interface MalgaPaymentsCreditForm {
+        "onCardMaskChange"?: (event: CustomEvent<{ mask: string, type: string }>) => void;
         "onCurrentFieldChange"?: (event: CustomEvent<{ field: string }>) => void;
     }
     interface MalgaPaymentsCreditSavedCards {

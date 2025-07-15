@@ -49,6 +49,7 @@ export namespace Components {
         "focused": string;
         "issuer": string;
         "locale"?: Locale;
+        "mask": string;
         "name": string;
         "number": string;
         "placeholderName"?: string;
@@ -418,6 +419,7 @@ declare namespace LocalJSX {
         "focused"?: string;
         "issuer"?: string;
         "locale"?: Locale;
+        "mask"?: string;
         "name"?: string;
         "number"?: string;
         "placeholderName"?: string;
@@ -597,6 +599,7 @@ declare namespace LocalJSX {
         "onChanged"?: (event: CustomEvent<CheckoutTextFieldChangeEvent>) => void;
         "onFocused"?: (event: CustomEvent<FocusEvent>) => void;
         "onInputed"?: (event: CustomEvent<KeyboardEvent>) => void;
+        "onPasted"?: (event: CustomEvent<ClipboardEvent>) => void;
         "placeholder"?: string;
         "readonly"?: boolean;
         "required"?: boolean;

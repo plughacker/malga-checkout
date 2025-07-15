@@ -24,8 +24,14 @@
 }
 
 .malga-checkout-full-header__logo {
-  max-width: 200px;
-  max-height: 72px;
+  width: 200px;
+  height: 72px;
+  object-fit: contain;
+  object-position: center;
+
+  &--loading {
+    opacity: 0;
+  }
 
   @include md {
     margin-left: var(--malga-checkout-spacing-md);

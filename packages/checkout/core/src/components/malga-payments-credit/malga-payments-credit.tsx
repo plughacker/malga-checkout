@@ -10,6 +10,8 @@ import dialog from '../../stores/dialog'
 })
 export class MalgaPaymentsCredit {
   @State() currentFieldFocused = 'cardNumber'
+  @State() currentCardMask = ''
+  @State() currentTypeCard = ''
 
   private handleShowDialog = (dialogData) => {
     dialog.configs = { ...dialog.configs, ...dialogData }
@@ -42,12 +44,18 @@ export class MalgaPaymentsCredit {
             expiry={credit.form.expirationDate}
             name={credit.form.name}
             number={credit.form.cardNumber}
+            mask={this.currentCardMask}
+            issuer={this.currentTypeCard}
           />
         )}
         <malga-payments-credit-form
           onCurrentFieldChange={({ detail: { field } }) =>
             this.handleSetFocusedField(field)
           }
+          onCardMaskChange={({ detail: { mask, type } }) => {
+            this.currentCardMask = mask;
+            this.currentTypeCard = type
+          }}
         />
         {settings.dialogConfig.show && dialog.configs.open && (
           <checkout-modal

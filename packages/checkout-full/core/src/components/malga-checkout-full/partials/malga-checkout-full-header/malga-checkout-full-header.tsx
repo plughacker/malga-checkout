@@ -1,6 +1,6 @@
 import { t } from '@malga-checkout/i18n'
 import { Locale } from '@malga-checkout/i18n/dist/utils'
-import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
+import { Component, Host, h, Prop, Event, EventEmitter, State } from '@stencil/core'
 import MalgaBrand from '../../../../assets/malga-brand.svg'
 
 @Component({
@@ -15,6 +15,12 @@ export class MalgaCheckoutFullHeader {
   @Prop() isLoading = false
 
   @Event() changeLanguage: EventEmitter<{ value: Locale }>
+
+  @State() imageLoaded = false
+
+  private handleImageLoad = () => {
+    this.imageLoaded = true
+  }
 
   private handleNavigation = () => {
     if (this.backRoute) {
@@ -32,6 +38,7 @@ export class MalgaCheckoutFullHeader {
           class={{ 'malga-checkout-full-header__logo': true }}
           src={this.brand}
           alt="Logo"
+          onLoad={this.handleImageLoad}
         />
       )
     }

@@ -14,6 +14,7 @@
     },
     "card": {
       "title": "Cartão de crédito",
+      "testNotifyChanel": "Testando o canal de traduções no checkout",
       "newCardTitle": "Novo cartão de crédito",
       "newCard": {
         "errorMessageAllFieldsRequired": "Preencha todos os campos para prosseguir.",

@@ -598,7 +598,7 @@ declare namespace LocalJSX {
         "onBlurred"?: (event: CustomEvent<FocusEvent>) => void;
         "onChanged"?: (event: CustomEvent<CheckoutTextFieldChangeEvent>) => void;
         "onFocused"?: (event: CustomEvent<FocusEvent>) => void;
-        "onInputed"?: (event: CustomEvent<{ value: string }>) => void;
+        "onInputed"?: (event: CustomEvent<KeyboardEvent>) => void;
         "onPasted"?: (event: CustomEvent<ClipboardEvent>) => void;
         "placeholder"?: string;
         "readonly"?: boolean;

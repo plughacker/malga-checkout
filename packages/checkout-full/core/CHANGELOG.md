@@ -1,5 +1,16 @@
 # @malga-checkout-full/core
 
+## 1.22.0
+
+### Minor Changes
+
+- [`3527bd4`](https://github.com/plughacker/malga-checkout/commit/3527bd4bbc386658b29c2a96cdf6aa9f5dba3a6e) Thanks [@milenacrios](https://github.com/milenacrios)! - fixes in card preview and block resize logo image
+
+### Patch Changes
+
+- Updated dependencies [[`3527bd4`](https://github.com/plughacker/malga-checkout/commit/3527bd4bbc386658b29c2a96cdf6aa9f5dba3a6e)]:
+  - @malga-checkout/core@1.22.0
+
 ## 1.21.0
 
 ### Minor Changes

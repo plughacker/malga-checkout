@@ -41,6 +41,7 @@
 | `changed` |             | `CustomEvent<CheckoutTextFieldChangeEvent>` |
 | `focused` |             | `CustomEvent<FocusEvent>`                   |
 | `inputed` |             | `CustomEvent<KeyboardEvent>`                |
+| `pasted`  |             | `CustomEvent<ClipboardEvent>`               |
 
 
 ## Dependencies

@@ -1,32 +1,4 @@
 import cardValidator from '@malga/card-validator'
-
-export const getMaxLengthPerIssuer = (issuer: string) => {
-  const maxLengthPerIssuer = {
-    'american-express': 15,
-    'diners-club': 16,
-    hipercard: 19,
-    mastercard: 19,
-    visa: 19,
-  }
-
-  const maxLength = maxLengthPerIssuer[issuer] || 19
-
-  return maxLength
-}
-
-export const getCurrentIssuer = (number: string) => {
-  const parsedNumber = number.replace(/•/g, '')
-
-  if (!parsedNumber.trim()) {
-    return 'unknown'
-  }
-
-  const issuer = parsedNumber
-    ? cardValidator.valid.number(parsedNumber).card.type
-    : 'unknown'
-  return issuer
-}
-
 export const getCardBrand = (firstCardNumbers: string): string => {
   const permittedBrands = [
     'american-express',
@@ -42,4 +14,35 @@ export const getCardBrand = (firstCardNumbers: string): string => {
   const isPermittedBrand = permittedBrands.includes(cardBrand)
 
   return isPermittedBrand ? cardBrand : undefined
+}
+
+export const applyCardMask = (cardNumber: string, cardMask: string) => {
+  const cleanNumber = cardNumber.replace(/\D/g, '')
+
+  if (!cardMask || cardMask.trim() === '') {
+    cardMask = '9999 9999 9999 9999'
+  }
+
+  const cardValidation = cardValidator.valid.number(cleanNumber)
+  const maskedNumber: string[] = []
+  let currentDigitIndex = 0
+
+  for (let maskPosition = 0; maskPosition < cardMask.length; maskPosition++) {
+    const currentMaskChar = cardMask[maskPosition]
+
+    if (currentMaskChar === '9') {
+      if (currentDigitIndex < cleanNumber.length) {
+        maskedNumber.push(cleanNumber[currentDigitIndex])
+        currentDigitIndex++
+      } else {
+        if (!cardValidation.isValid) {
+          maskedNumber.push('•')
+        }
+      }
+    } else {
+      maskedNumber.push(currentMaskChar)
+    }
+  }
+
+  return maskedNumber.join('')
 }

@@ -16,8 +16,8 @@ env:
 jobs:
   crowdin:
     name: 'Crowdin Upload'
-    if: github.repository == 'plughacker/malga-checkout'
     runs-on: ubuntu-latest
+    if: github.repository == 'plughacker/malga-checkout'
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
@@ -50,3 +50,13 @@ jobs:
         run: |
           yarn i18n:upload
           echo "Files has been uploaded"
+
+      - name: Notify Slack channel
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_TRANSLATIONS_WEBHOOK_URL }}
+        uses: act10ns/slack@v1
+        with:
+          message: 📝 Novas traduções disponíveis no checkout para serem feitas! 📝
+          status: success
+          channel: ${{ secrets.SLACK_TRANSLATIONS_CHANNEL }}

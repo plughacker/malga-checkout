@@ -54,6 +54,7 @@ export class CheckoutTextField implements ComponentInterface {
   @Event() changed!: EventEmitter<CheckoutTextFieldChangeEvent>
   @Event() blurred!: EventEmitter<FocusEvent>
   @Event() focused!: EventEmitter<FocusEvent>
+  @Event() pasted!: EventEmitter<ClipboardEvent>
 
   inputRef!: HTMLInputElement
 
@@ -97,6 +98,15 @@ export class CheckoutTextField implements ComponentInterface {
     this.focused.emit(event)
   }
 
+  private onPaste = (event: ClipboardEvent) => {
+
+    const value = event.clipboardData.getData('text')
+
+    this.value = value
+
+    this.pasted.emit(event)
+  }
+
   private getValue = (): string => {
     return typeof this.value === 'number'
       ? this.value.toString()
@@ -115,6 +125,7 @@ export class CheckoutTextField implements ComponentInterface {
         showMaskOnHover: false,
         autoUnmask: this.autoUnmask,
         showMaskOnFocus: false,
+        clearIncomplete: false,
       }).mask(this.inputRef)
     }
   }
@@ -167,6 +178,7 @@ export class CheckoutTextField implements ComponentInterface {
               onBlur={this.onBlur}
               onFocus={this.onFocus}
               onChange={this.onChange}
+              onPaste={this.onPaste}
               autoComplete="on"
               autocomplete="on"
             />

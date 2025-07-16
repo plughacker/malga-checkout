@@ -14,6 +14,7 @@
 | `focused`         | `focused`          |             | `string`                                                                | `undefined` |
 | `issuer`          | `issuer`           |             | `string`                                                                | `undefined` |
 | `locale`          | `locale`           |             | `"default" \| "en" \| "en-US" \| "en_US" \| "pt" \| "pt-BR" \| "pt_BR"` | `undefined` |
+| `mask`            | `mask`             |             | `string`                                                                | `undefined` |
 | `name`            | `name`             |             | `string`                                                                | `undefined` |
 | `number`          | `number`           |             | `string`                                                                | `undefined` |
 | `placeholderName` | `placeholder-name` |             | `string`                                                                | `undefined` |

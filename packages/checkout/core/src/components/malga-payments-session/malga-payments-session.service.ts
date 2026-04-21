@@ -2,6 +2,7 @@ import { Sessions } from '../../services/sessions'
 import { CustomizationData } from '../../services/sessions/sessions.types'
 import settings from '../../stores/settings'
 import {
+  mergePaymentMethods,
   setThemeBackgroundColor,
   setThemeErrorColors,
   setThemePrimaryColors,
@@ -47,7 +48,10 @@ export class MalgaPaymentsSessionService {
         pixFilledProgressBarColor: session.customization.primaryColor.medium,
         pixEmptyProgressBarColor: session.customization.primaryColor.lightest,
       }
-      settings.paymentMethods = session.checkoutPaymentMethods
+      settings.paymentMethods = mergePaymentMethods(
+        settings.paymentMethods,
+        session.checkoutPaymentMethods,
+      )
       this.customize(session.customization)
 
       return session

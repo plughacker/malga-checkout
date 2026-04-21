@@ -14,6 +14,7 @@ export interface Credit {
   showCreditCard: boolean
   cvvCheck?: boolean
   cvvCheckMerchantId?: string
+  recurrence?: 'initial' | 'subsequent' | 'unscheduled'
 }
 
 export interface MalgaCheckoutTransaction {

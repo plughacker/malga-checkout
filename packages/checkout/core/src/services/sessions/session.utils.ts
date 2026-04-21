@@ -50,6 +50,9 @@ const normalizePaymentMethods = (paymentSession: Session) => {
           },
           checkedSaveCard: false,
           showCreditCard: true,
+          ...(currentPaymentMethods.recurrence && {
+            recurrence: currentPaymentMethods.recurrence,
+          }),
         }
       }
 

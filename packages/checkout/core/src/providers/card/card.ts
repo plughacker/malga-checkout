@@ -2,6 +2,8 @@ import { BaseProvider } from '../base-provider'
 
 import { parseInstallments } from '@malga-checkout/utils'
 
+import settings from '../../stores/settings'
+
 import {
   CardForm,
   CardTokenized,
@@ -24,11 +26,14 @@ export class Card extends BaseProvider {
   }
 
   public getPaymentMethod(): PaymentMethodCard {
+    const recurrence = settings.paymentMethods.credit?.recurrence
+
     return {
       paymentType: 'credit',
       installments: parseInstallments(
         this.card['installments' as keyof CardForm],
       ),
+      ...(recurrence && { recurrence }),
     }
   }
 

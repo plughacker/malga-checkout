@@ -29,4 +29,5 @@ export interface PaymentSourceCard {
 export interface PaymentMethodCard {
   paymentType: 'credit' | 'debit'
   installments: number
+  recurrence?: 'initial' | 'subsequent' | 'unscheduled'
 }

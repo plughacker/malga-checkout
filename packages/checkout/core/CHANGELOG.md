@@ -1,5 +1,11 @@
 # @malga-checkout/core
 
+## 1.22.1
+
+### Patch Changes
+
+- [`44e351a`](https://github.com/plughacker/malga-checkout/commit/44e351a9f863049f5f066370fb23b6d2adcd8fb1) Thanks [@filipperodrigues](https://github.com/filipperodrigues)! - adding support to recurrence parameter
+
 ## 1.22.0
 
 ### Minor Changes

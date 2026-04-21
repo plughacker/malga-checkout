@@ -1,32 +1,4 @@
 import { CustomizationColors } from '../../services/sessions/sessions.types'
-import {
-  Credit,
-  MalgaCheckoutPaymentMethods,
-} from '../malga-checkout/malga-checkout.types'
-
-export const mergePaymentMethods = (
-  sdkMethods: MalgaCheckoutPaymentMethods,
-  sessionMethods: MalgaCheckoutPaymentMethods,
-): MalgaCheckoutPaymentMethods => {
-  const merged = { ...sessionMethods }
-
-  if (sdkMethods?.credit && merged.credit) {
-    const sdkCredit = { ...sdkMethods.credit }
-    const defined: Partial<Credit> = {}
-
-    for (const key in sdkCredit) {
-      if (sdkCredit[key] !== undefined) {
-        defined[key] = sdkCredit[key]
-      }
-    }
-
-    merged.credit = { ...merged.credit, ...defined }
-  } else if (sdkMethods?.credit) {
-    merged.credit = sdkMethods.credit
-  }
-
-  return merged
-}
 
 export const setThemePrimaryColors = (primaryColors: CustomizationColors) => {
   document.documentElement.style.setProperty(

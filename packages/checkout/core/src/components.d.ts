@@ -18,6 +18,7 @@ export namespace Components {
         "clientId"?: string;
         "debug": boolean;
         "dialogConfig"?: MalgaCheckoutDialog;
+        "hiddenPoweredByMalga": boolean;
         "idempotencyKey"?: string;
         "isLoading": boolean;
         "locale"?: Locale;
@@ -166,6 +167,7 @@ declare namespace LocalJSX {
         "clientId"?: string;
         "debug"?: boolean;
         "dialogConfig"?: MalgaCheckoutDialog;
+        "hiddenPoweredByMalga"?: boolean;
         "idempotencyKey"?: string;
         "isLoading"?: boolean;
         "locale"?: Locale;

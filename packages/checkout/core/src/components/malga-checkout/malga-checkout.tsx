@@ -78,6 +78,7 @@ export class MalgaCheckout {
     providerReferenceKey: null,
   }
   @Prop() isLoading = false
+  @Prop() hiddenPoweredByMalga = false
   @Prop() appInfo?: AppInfo
 
   @Event() paymentSessionFetch?: EventEmitter<{
@@ -109,6 +110,11 @@ export class MalgaCheckout {
   @Watch('locale')
   protected handleWatchLocale() {
     settings.locale = this.locale
+  }
+
+  @Watch('hiddenPoweredByMalga')
+  protected handleWatchHiddenPoweredByMalga() {
+    settings.hiddenPoweredByMalga = this.hiddenPoweredByMalga
   }
 
   protected MalgaCheckoutService: MalgaCheckoutService
@@ -153,6 +159,7 @@ export class MalgaCheckout {
     settings.paymentMethods = this.paymentMethods
     settings.transactionConfig = this.transactionConfig
     settings.appInfo = this.appInfo
+    settings.hiddenPoweredByMalga = this.hiddenPoweredByMalga
   }
 
   private handleStoreCurrentPaymentMethod = () => {
@@ -239,7 +246,9 @@ export class MalgaCheckout {
               disabled={handleDisablePayButton()}
               onClicked={this.handlePay}
             />
-            <checkout-icon icon="poweredByMalga" />
+            {!settings.hiddenPoweredByMalga && (
+              <checkout-icon icon="poweredByMalga" />
+            )}
           </div>
         </section>
       </Host>

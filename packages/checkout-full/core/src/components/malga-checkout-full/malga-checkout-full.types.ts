@@ -226,6 +226,10 @@ export interface MalgaCheckoutFullPaymentMethods {
   drip?: Drip
 }
 
+export interface MalgaCheckoutFullSettings {
+  hiddenPoweredByMalga?: boolean
+}
+
 export interface MalgaCheckoutFullPage {
   brandUrl?: string
   footerDescription?: string

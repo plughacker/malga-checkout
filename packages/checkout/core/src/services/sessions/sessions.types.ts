@@ -69,6 +69,7 @@ export interface UserSettings {
   clientId: string
   documentNumber: string
   language: string
+  hiddenPoweredByMalga?: boolean
 }
 
 export interface CustomizationData {

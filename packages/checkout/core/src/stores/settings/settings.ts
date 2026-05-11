@@ -35,4 +35,5 @@ export const { state } = createStore<SettingsState>({
     splitRules: null,
   },
   appInfo: undefined,
+  hiddenPoweredByMalga: false
 })

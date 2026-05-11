@@ -48,6 +48,7 @@ export class MalgaPaymentsSessionService {
         pixEmptyProgressBarColor: session.customization.primaryColor.lightest,
       }
       settings.paymentMethods = session.checkoutPaymentMethods
+      settings.hiddenPoweredByMalga = session.settings?.hiddenPoweredByMalga ?? false
       this.customize(session.customization)
 
       return session

@@ -20,4 +20,6 @@ export interface SettingsState {
   paymentMethods: MalgaCheckoutPaymentMethods
   transactionConfig: MalgaCheckoutTransaction
   appInfo?: AppInfo
+  /** When true, "Powered by Malga" must not be shown (from session link `settings`). */
+  hiddenPoweredByMalga: boolean
 }

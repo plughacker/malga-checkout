@@ -20,6 +20,7 @@ import {
   Customer,
   MalgaCheckoutFullCustomization,
   MalgaCheckoutFullSessionNormalized,
+  MalgaCheckoutFullSettings,
   MalgaAppInfo,
 } from './malga-checkout-full.types'
 
@@ -84,6 +85,7 @@ export class MalgaCheckoutFull implements ComponentInterface {
   @Prop() dialogConfig: MalgaCheckoutFullDialog = {
     show: true,
   }
+  @Prop() settings?: MalgaCheckoutFullSettings
   @Prop() appInfo?: MalgaAppInfo
 
   @Event() transactionSuccess!: EventEmitter<{
@@ -311,6 +313,9 @@ export class MalgaCheckoutFull implements ComponentInterface {
                   idempotencyKey={this.idempotencyKey}
                   sandbox={this.sandbox}
                   debug={this.debug}
+                  hiddenPoweredByMalga={
+                    this.settings?.hiddenPoweredByMalga === true
+                  }
                   transactionConfig={{
                     ...transactionConfig,
                     customerId: this.transactionConfig.customerId,
